@@ -1,0 +1,377 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [ctx,#8]|139-104
+2|code|PUSH.W          {name-R2,R4-R9,LR}|45-233-247-67
+6|code|MOV             R7, name|7-70
+8|code|MOV             R5, ctx|13-70
+10|code|CBZ             R3, loc_20|75-177
+12|code|LDRB            R3, [name]|3-120
+14|code|CMP             R3, #0x66 ; 'f'|102-43
+16|code|BNE             loc_20|6-209
+18|code|LDRB            R3, [name,#1]|67-120
+20|code|CMP             R3, #0x64 ; 'd'|100-43
+22|code|BNE             loc_20|3-209
+24|code|LDRB            R3, [name,#2]|131-120
+26|code|SUBS            R3, #0x30 ; '0'|48-59
+28|code|CMP             R3, #9|9-43
+30|code|BLS             loc_EC|101-217
+32|code|MOV             name, R7|56-70
+34|code|LDR             R3, =grub_device_open|53-75
+36|code|BLX             R3; grub_device_open|152-71
+38|code|LDR.W           R8, =grub_errno|223-248-248-128
+42|code|MOV             R6, dev|6-70
+44|code|CBZ             dev, loc_6C|240-177
+46|code|LDR             R3, =grub_fs_probe|51-75
+48|code|BLX             R3; grub_fs_probe|152-71
+50|code|CBNZ            fs, loc_38|8-185
+52|code|MOVS            R4, #0|0-36
+54|code|B               loc_64|21-224
+56|code|LDR             R3, [fs,#0x1C]|195-105
+58|code|CMP             R3, #0|0-43
+60|code|BEQ             loc_34|250-208
+62|code|MOV             fs, dev|48-70
+64|code|ADD             R1, SP, #0x28+quid|1-169
+66|code|BLX             R3|152-71
+68|code|LDR.W           R3, [R8]|216-248-0-48
+72|code|CMP             R3, #0|0-43
+74|code|BNE             loc_34|243-209
+76|code|LDR             R0, [SP,#0x28+quid]|1-152
+78|code|CMP             R0, #0|0-40
+80|code|BEQ             loc_34|240-208
+82|code|LDR             R3, =grub_strcmp|43-75
+84|code|LDR             R1, [ctx]|41-104
+86|code|BLX             R3; grub_strcmp|152-71
+88|code|LDR             R3, =grub_free|42-75
+90|code|CLZ.W           R4, R0|176-250-128-244
+94|code|LDR             R0, [SP,#0x28+quid]|1-152
+96|code|LSRS            R4, R4, #5|100-9
+98|code|BLX             R3; grub_free|152-71
+100|code|MOV             R0, dev|48-70
+102|code|LDR             R3, =grub_device_close|40-75
+104|code|BLX             R3; grub_device_close|152-71
+106|code|B               loc_6E|0-224
+108|code|MOV             R4, dev|4-70
+110|code|LDR             R3, [ctx,#0x18]|171-105
+112|code|CBNZ            R3, loc_C0|51-187
+114|code|CMP             found, #0|0-44
+116|code|BEQ             loc_DA|49-208
+118|code|LDR             R3, [ctx,#0x14]|107-105
+120|code|CBNZ            R3, loc_C2|27-187
+122|code|MOVS            R0, #0xC|12-32
+124|code|LDR             R3, =grub_malloc|35-75
+126|code|BLX             R3; grub_malloc|152-71
+128|code|MOV             dev, cache_ent|6-70
+130|code|CBZ             cache_ent, loc_BA|208-177
+132|code|LDR.W           R9, =grub_strdup|223-248-156-144
+136|code|LDR             cache_ent, [ctx]|40-104
+138|code|BLX             R9; grub_strdup|200-71
+140|code|STR             R0, [cache_ent,#4]|112-96
+142|code|MOV             R0, name|56-70
+144|code|BLX             R9; grub_strdup|200-71
+146|code|STR             R0, [cache_ent,#8]|176-96
+148|code|CBZ             R0, loc_A4|48-177
+150|code|LDR             R3, [cache_ent,#4]|115-104
+152|code|CBZ             R3, loc_A4|35-177
+154|code|LDR             R3, =cache|29-75
+156|code|LDR             R2, [R3]|26-104
+158|code|STR             R2, [cache_ent]|50-96
+160|code|STR             cache_ent, [R3]|30-96
+162|code|B               loc_C2|14-224
+164|code|LDR.W           R9, =grub_free|223-248-92-144
+168|code|BLX             R9; grub_free|200-71
+170|code|LDR             R0, [cache_ent,#4]|112-104
+172|code|BLX             R9; grub_free|200-71
+174|code|MOV             R0, cache_ent|48-70
+176|code|BLX             R9; grub_free|200-71
+178|code|MOVS            R3, #0|0-35
+180|code|STR.W           R3, [R8]|200-248-0-48
+184|code|B               loc_C2|3-224
+186|code|STR.W           cache_ent, [R8]|200-248-0-0
+190|code|B               loc_C2|0-224
+192|code|CBZ             found, loc_DA|92-177
+194|code|LDR             R0, [ctx,#4]|104-104
+196|code|LDR             R3, [ctx,#0x14]|107-105
+198|code|ADDS            R3, #1|1-51
+200|code|STR             R3, [ctx,#0x14]|107-97
+202|code|CBZ             R0, loc_D2|16-177
+204|code|MOV             R1, name|57-70
+206|code|LDR             R3, =grub_env_set|17-75
+208|code|B               loc_D8|2-224
+210|code|LDR             R0, =unk_380|17-72
+212|code|MOV             R1, name|57-70
+214|code|LDR             R3, =grub_printf|17-75
+216|code|BLX             R3; grub_env_set|152-71
+218|code|MOVS            R3, #0|0-35
+220|code|STR.W           R3, [R8]|200-248-0-48
+224|code|CBZ             found, loc_F0|52-177
+226|code|LDR             R0, [ctx,#4]|104-104
+228|code|SUBS            R0, R0, R3|192-26
+230|code|IT NE|24-191
+232|code|MOVNE           R0, #1|1-32
+234|code|B               loc_F2|2-224
+236|code|MOVS            name, #0|0-32
+238|code|B               loc_F2|0-224
+240|code|MOV             R0, found|32-70
+242|code|ADD             SP, SP, #0xC|3-176
+244|code|POP.W           {R4-R9,PC}|189-232-240-131
+248|data|DCD grub_device_open|100-4-0-0
+252|data|DCD grub_fs_probe|140-4-0-0
+256|data|DCD grub_strcmp|128-4-0-0
+260|data|DCD grub_free|148-4-0-0
+264|data|DCD grub_device_close|136-4-0-0
+268|data|DCD grub_malloc|132-4-0-0
+272|data|DCD cache|76-4-0-0
+276|data|DCD grub_env_set|156-4-0-0
+280|data|DCD unk_380|128-3-0-0
+284|data|DCD grub_printf|120-4-0-0
+288|data|DCD grub_errno|112-4-0-0
+292|data|DCD grub_strdup|104-4-0-0
+296|code|PUSH.W          {R3-R11,LR}|45-233-248-79
+300|code|MOV             R4, ctx|4-70
+302|code|LDR             R6, =cache|60-78
+304|code|LDR.W           R8, =grub_strcmp|223-248-8-129
+308|code|LDR             R5, [R6]|53-104
+310|code|CBZ             cache_ent, loc_162|165-177
+312|code|LDR             R0, [cache_ent,#4]|104-104
+314|code|LDR             R1, [ctx]|33-104
+316|code|BLX             R8; grub_strcmp|192-71
+318|code|MOV             R7, R0|7-70
+320|code|CMP             R0, #0|0-40
+322|code|BEQ             loc_206|96-208
+324|code|MOV             R6, cache_ent|46-70
+326|code|LDR             cache_ent, [cache_ent]|45-104
+328|code|B               loc_136|245-231
+330|code|LDR             R3, [ctx,#0x14]|99-105
+332|code|STR             R0, [ctx,#0x18]|160-97
+334|code|CBNZ            R3, loc_162|67-185
+336|code|LDR             R7, =grub_free|52-79
+338|code|LDR             R0, [cache_ent,#4]|104-104
+340|code|BLX             R7; grub_free|184-71
+342|code|LDR             R0, [cache_ent,#8]|168-104
+344|code|BLX             R7; grub_free|184-71
+346|code|MOV             R0, cache_ent|40-70
+348|code|BLX             R7; grub_free|184-71
+350|code|LDR             R3, [cache_ent]|43-104
+352|code|STR             R3, [R6]|51-96
+354|code|LDR.W           R10, =grub_device_open|223-248-220-160
+358|code|MOVS            R7, #0|0-39
+360|code|LDR.W           R8, =grub_device_close|223-248-216-128
+364|code|LDR             R3, [ctx,#0x10]|35-105
+366|code|CMP             i, R3|159-66
+368|code|BCS             loc_1FA|67-210
+370|code|LDR             R3, [ctx,#0xC]|227-104
+372|code|MOV.W           R11, i,LSL#2|79-234-135-11
+376|code|LDR.W           R5, [R3,i,LSL#2]|83-248-39-80
+380|code|LDRB            R3, [R5]|43-120
+382|code|CMP             R3, #0|0-43
+384|code|BEQ             loc_1F6|57-208
+386|code|MOV             R0, R5|40-70
+388|code|LDR             R3, =grub_strlen|40-75
+390|code|BLX             R3; grub_strlen|152-71
+392|code|MOV             R1, ctx; data|33-70
+394|code|SUBS            R6, R0, #1|70-30
+396|code|ADD.W           R9, R5, R6|5-235-6-9
+400|code|LDRB            R2, [R5,R6]|170-93
+402|code|CMP             R2, #0x2C ; ','|44-42
+404|code|ITT EQ|4-191
+406|code|MOVEQ           R2, #0|0-34
+408|code|STRBEQ          R2, [R5,R6]|170-85
+410|code|LDR             R2, [ctx,#0xC]|226-104
+412|code|LDR.W           R0, [R2,R11]; name|82-248-11-0
+416|code|BL              iterate_device|255-247-46-255
+420|code|CBZ             R0, loc_1B8|64-177
+422|code|LDRB.W          R2, [end]|153-248-0-32
+426|code|CMP             R2, #0|0-42
+428|code|BNE             locret_21C|54-209
+430|code|MOVS            R2, #0x2C ; ','|44-34
+432|code|STRB.W          R2, [end]|137-248-0-32
+436|code|POP.W           {R3-R11,PC}|189-232-248-143
+440|code|LDRB            R3, [R5,R6]|171-93
+442|code|CBNZ            R3, loc_1F6|227-185
+444|code|LDR             R3, [ctx,#0xC]|227-104
+446|code|LDR.W           R0, [R3,R11]|83-248-11-0
+450|code|BLX             R10; grub_device_open|208-71
+452|code|MOV             R11, dev|131-70
+454|code|CBZ             dev, loc_1CE|16-177
+456|code|LDR             R3, [dev]|3-104
+458|code|CBNZ            R3, loc_1D8|43-185
+460|code|BLX             R8; grub_device_close|192-71
+462|code|LDRB            R3, [R5,R6]|171-93
+464|code|CBNZ            R3, loc_1F6|139-185
+466|code|MOVS            R3, #0x2C ; ','|44-35
+468|code|STRB            R3, [R5,R6]|171-85
+470|code|B               loc_1F6|14-224
+472|code|MOV             dev, R3|24-70
+474|code|MOV             R2, ctx|34-70
+476|code|LDR             R1, =(part_hook+1)|19-73
+478|code|LDR             R3, =grub_partition_iterate|20-75
+480|code|BLX             R3; grub_partition_iterate|152-71
+482|code|LDRB            R2, [R5,R6]|170-93
+484|code|MOV             end, R0|129-70
+486|code|CBNZ            R2, loc_1EC|10-185
+488|code|MOVS            R2, #0x2C ; ','|44-34
+490|code|STRB            R2, [R5,R6]|170-85
+492|code|MOV             ret, dev|88-70
+494|code|BLX             R8; grub_device_close|192-71
+496|code|CMP.W           ret, #0|185-241-0-15
+500|code|BNE             locret_21C|18-209
+502|code|ADDS            i, #1|1-55
+504|code|B               loc_16C|184-231
+506|code|MOV             R1, ctx|33-70
+508|code|LDR             R3, =grub_device_iterate|13-75
+510|code|LDR             R0, =(iterate_device+1)|14-72
+512|code|BLX             R3; grub_device_iterate|152-71
+514|code|POP.W           {R3-R11,PC}|189-232-248-143
+518|code|MOVS            R3, #1|1-35
+520|code|LDR             R0, [cache_ent,#8]; name|168-104
+522|code|STR             R3, [ctx,#0x18]|163-97
+524|code|MOV             R1, ctx; data|33-70
+526|code|BL              iterate_device|255-247-247-254
+530|code|CMP             R0, #0|0-40
+532|code|BEQ             loc_14A|153-208
+534|code|STR             R7, [ctx,#0x18]|167-97
+536|code|POP.W           {R3-R11,PC}|189-232-248-143
+540|code|POP.W           {R3-R11,PC}|189-232-248-143
+544|data|DCD cache|76-4-0-0
+548|data|DCD grub_free|148-4-0-0
+552|data|DCD grub_strlen|84-4-0-0
+556|data|DCD part_hook+1|73-2-0-0
+560|data|DCD grub_partition_iterate|108-4-0-0
+564|data|DCD grub_device_iterate|152-4-0-0
+568|data|DCD iterate_device+1|1-0-0-0
+572|data|DCD grub_strcmp|128-4-0-0
+576|data|DCD grub_device_open|100-4-0-0
+580|data|DCD grub_device_close|136-4-0-0
+584|code|PUSH            {R3-R7,LR}|248-181
+586|code|MOV             R5, disk|5-70
+588|code|LDR             R3, =grub_partition_get_name|13-75
+590|code|MOV             disk, partition|8-70
+592|code|MOV             R7, data|23-70
+594|code|BLX             R3; grub_partition_get_name|152-71
+596|code|MOV             R4, partition_name|4-70
+598|code|CBNZ            partition_name, loc_25C|8-185
+600|code|MOVS            R0, #1|1-32
+602|code|POP             {R3-ctx,PC}|248-189
+604|code|LDR             R1, [disk]|41-104
+606|code|MOV             R2, R4|34-70
+608|code|LDR             partition_name, =aSS; "%s,%s"|9-72
+610|code|LDR             R3, =grub_xasprintf|10-75
+612|code|BLX             R3; grub_xasprintf|152-71
+614|code|LDR             R6, =grub_free|10-78
+616|code|MOV             disk, R0|5-70
+618|code|MOV             devname, partition_name|32-70
+620|code|BLX             R6; grub_free|176-71
+622|code|CMP             devname, #0|0-45
+624|code|BEQ             loc_258|242-208
+626|code|MOV             R1, ctx; data|57-70
+628|code|MOV             R0, devname; name|40-70
+630|code|BL              iterate_device|255-247-195-254
+634|code|MOV             partition_name, R0|4-70
+636|code|MOV             ret, devname|40-70
+638|code|BLX             R6; grub_free|176-71
+640|code|MOV             R0, ret|32-70
+642|code|POP             {R3-ctx,PC}|248-189
+644|data|DCD grub_partition_get_name|92-4-0-0
+648|data|DCD aSS; "%s,%s"|132-3-0-0
+652|data|DCD grub_xasprintf|96-4-0-0
+656|data|DCD grub_free|148-4-0-0
+660|code|PUSH            {R4-R7,LR}|240-181
+662|code|SUB             SP, SP, #0x24|137-176
+664|code|MOV             R5, key|5-70
+666|code|LDR             R6, =grub_errno|18-78
+668|code|STR             hints_0, [SP,#0x38+ctx.hints]|4-147
+670|code|LDR             hints_0, [SP,#0x38+nhints]|14-155
+672|code|STR             key, [SP,#0x38+ctx]|1-144
+674|code|STR             var, [SP,#0x38+ctx.var]|2-145
+676|code|STR             R3, [SP,#0x38+ctx.nhints]|5-147
+678|code|MOVS            R3, #0|0-35
+680|code|STR             no_floppy, [SP,#0x38+ctx.no_floppy]|3-146
+682|code|STR             R3, [SP,#0x38+ctx.count]|6-147
+684|code|STR             R3, [SP,#0x38+ctx.is_cache]|7-147
+686|code|CBZ             var, loc_2C6|81-177
+688|code|LDR             R4, =grub_fs_autoload_hook|13-76
+690|code|ADD             key, SP, #0x38+ctx; ctx|1-168
+692|code|LDR             R7, [R4]|39-104
+694|code|STR             R3, [R4]|35-96
+696|code|BL              try|255-247-54-255
+700|code|LDR             R3, [R6]|51-104
+702|code|STR             saved_autoload, [R4]|39-96
+704|code|CBNZ            R3, loc_2CC|35-185
+706|code|LDR             R3, [SP,#0x38+ctx.count]|6-155
+708|code|CBNZ            R3, loc_2CC|19-185
+710|code|ADD             R0, SP, #0x38+ctx; ctx|1-168
+712|code|BL              try|255-247-46-255
+716|code|LDR             R3, [R6]|51-104
+718|code|CBNZ            R3, loc_2DE|51-185
+720|code|LDR             R3, [SP,#0x38+ctx.count]|6-155
+722|code|CBNZ            R3, loc_2DE|35-185
+724|code|MOVS            R0, #5|5-32
+726|code|LDR             R1, =aNoSuchDeviceS; "no such device: %s"|5-73
+728|code|MOV             R2, key|42-70
+730|code|LDR             R3, =grub_error|5-75
+732|code|BLX             R3; grub_error|152-71
+734|code|ADD             SP, SP, #0x24 ; '$'|9-176
+736|code|POP             {R4-R7,PC}|240-189
+738|data|ALIGN 4|0-191
+740|data|DCD grub_errno|112-4-0-0
+744|data|DCD grub_fs_autoload_hook|88-4-0-0
+748|data|DCD aNoSuchDeviceS; "no such device: %s"|138-3-0-0
+752|data|DCD grub_error|144-4-0-0
+756|code|PUSH            {cmd-args,R4,R5,LR}|55-181
+758|code|CBNZ            argc, loc_302|33-185
+760|code|LDR             argc, =aOneArgumentExp; "one argument expected"|12-73
+762|code|MOVS            cmd, #0x12|18-32
+764|code|LDR             R3, =grub_error|12-75
+766|code|BLX             R3; grub_error|152-71
+768|code|B               loc_328|18-224
+770|code|CMP             argc, #1|1-41
+772|code|LDR             cmd, [args]; key|16-104
+774|code|ADD.W           R3, args, #8; hints|2-241-8-3
+778|code|ITE NE|20-191
+780|code|LDRNE           R5, [args,#4]|85-104
+782|code|MOVEQ           R5, #0|0-37
+784|code|CMP             argc, #2|2-41
+786|code|MOV.W           args, #0; no_floppy|79-240-0-2
+790|code|ITE GT|204-191
+792|code|SUBGT           R4, argc, #2|140-30
+794|code|MOVLE           R4, #0|0-36
+796|code|MOV             argc, R5; var|41-70
+798|code|STR             R4, [SP,#0x18+nhints]; nhints|0-148
+800|code|BL              grub_search_label|255-247-184-255
+804|code|LDR             R3, =grub_errno|3-75
+806|code|LDR             R0, [R3]|24-104
+808|code|ADD             SP, SP, #0xC|3-176
+810|code|POP             {R4,R5,PC}|48-189
+812|data|DCD aOneArgumentExp; "one argument expected"|157-3-0-0
+816|data|DCD grub_error|144-4-0-0
+820|data|DCD grub_errno|112-4-0-0
+824|code|PUSH            {mod,R1,R4,LR}|19-181
+826|code|MOVS            R3, #0|0-35
+828|code|LDR             R1, =(grub_cmd_do_search+1)|5-73
+830|code|STR             R3, [SP,#0x10+var_10]|0-147
+832|code|LDR             R2, =aNameVariableHi; "NAME [VARIABLE] [HINTS]"|5-74
+834|code|LDR             R3, =aSearchDevicesB; "Search devices by label. If VARIABLE is"...|6-75
+836|code|LDR             R4, =grub_register_command_prio|6-76
+838|code|LDR             mod, =aSearchFsLabel; "search.fs_label"|7-72
+840|code|BLX             R4; grub_register_command_prio|160-71
+842|code|LDR             R3, =cache|7-75
+844|code|STR             R0, [R3,#(cmd - 0x44C)]|88-96
+846|code|ADD             SP, SP, #8|2-176
+848|code|POP             {R4,PC}|16-189
+850|data|ALIGN 4|0-191
+852|data|DCD grub_cmd_do_search+1|245-2-0-0
+856|data|DCD aNameVariableHi; "NAME [VARIABLE] [HINTS]"|195-3-0-0
+860|data|DCD aSearchDevicesB; "Search devices by label. If VARIABLE is"...|219-3-0-0
+864|data|DCD grub_register_command_prio|116-4-0-0
+868|data|DCD aSearchFsLabel; "search.fs_label"|179-3-0-0
+872|data|DCD cache|76-4-0-0
+876|code|PUSH            {R3,LR}|8-181
+878|code|LDR             R3, =cache|2-75
+880|code|LDR             R0, [R3,#(cmd - 0x44C)]|88-104
+882|code|LDR             R3, =grub_unregister_command|2-75
+884|code|BLX             R3; grub_unregister_command|152-71
+886|code|POP             {R3,PC}|8-189
+888|data|DCD cache|76-4-0-0
+892|data|DCD grub_unregister_command|124-4-0-0
+1083|data||255
+1084|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+1100|data|% 4|255-255-255-255

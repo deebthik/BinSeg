@@ -1,0 +1,559 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_file_filters_enabled|2-75
+2|code|MOVS            R2, #0|0-34
+4|code|STR             R2, [R3,#4]|90-96
+6|code|STR             R2, [R3,#8]|154-96
+8|code|STR             R2, [R3,#0xC]|218-96
+10|code|BX              LR|112-71
+12|data|DCD grub_file_filters_enabled|172-8-0-0
+16|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+20|code|MOV             R9, file|129-70
+22|code|LDR             R3, =grub_malloc|30-75
+24|code|MOV.W           file, #0x1000|79-244-128-80
+28|code|MOV             R5, hash|13-70
+30|code|MOV             R8, result|144-70
+32|code|BLX             R3; grub_malloc|152-71
+34|code|MOV             R7, readbuf|7-70
+36|code|CMP             readbuf, #0|0-40
+38|code|BEQ             loc_86|46-208
+40|code|LDR             readbuf, [hash,#0x24]|104-106
+42|code|LDR             R3, =grub_zalloc|26-75
+44|code|BLX             R3; grub_zalloc|152-71
+46|code|MOV             R6, context|6-70
+48|code|CBZ             context, fail|32-179
+50|code|LDR             R3, [hash,#0x14]|107-105
+52|code|BLX             R3|152-71
+54|code|LDR.W           R10, =grub_file_read|223-248-108-160
+58|code|MOV             R0, file|72-70
+60|code|MOV             R1, readbuf|57-70
+62|code|MOV.W           R2, #0x1000|79-244-128-82
+66|code|BLX             R10; grub_file_read|208-71
+68|code|SUBS            R4, r, #0|4-30
+70|code|BLT             fail|25-219
+72|code|BEQ             loc_56|5-208
+74|code|LDR             R3, [hash,#0x18]|171-105
+76|code|MOV             r, context|48-70
+78|code|MOV             R1, readbuf|57-70
+80|code|MOV             R2, r|34-70
+82|code|BLX             R3|152-71
+84|code|B               loc_3A|241-231
+86|code|LDR             R3, [hash,#0x1C]|235-105
+88|code|MOV             r, context|48-70
+90|code|BLX             R3|152-71
+92|code|LDR             R3, [hash,#0x20]|43-106
+94|code|MOV             R0, context|48-70
+96|code|BLX             R3|152-71
+98|code|LDR             R2, [hash,#0x10]|42-105
+100|code|LDR             R3, =grub_memmove|12-75
+102|code|LDR             hash, =grub_free|13-77
+104|code|MOV             R1, R0|1-70
+106|code|MOV             R0, result|64-70
+108|code|BLX             R3; grub_memmove|152-71
+110|code|MOV             R0, readbuf|56-70
+112|code|BLX             R5; grub_free|168-71
+114|code|MOV             R0, context|48-70
+116|code|BLX             R5; grub_free|168-71
+118|code|MOV             R0, r|32-70
+120|code|POP.W           {r-R10,PC}|189-232-240-135
+124|code|MOV             R0, readbuf|56-70
+126|code|LDR             R4, =grub_free|7-76
+128|code|BLX             R4; grub_free|160-71
+130|code|MOV             R0, context|48-70
+132|code|BLX             R4; grub_free|160-71
+134|code|LDR             R3, =grub_errno|6-75
+136|code|LDR             R0, [R3]|24-104
+138|code|POP.W           {R4-R10,PC}|189-232-240-135
+142|data|ALIGN 0x10|0-191
+144|data|DCD grub_malloc|156-8-0-0
+148|data|DCD grub_zalloc|148-8-0-0
+152|data|DCD grub_memmove|120-8-0-0
+156|data|DCD grub_free|184-8-0-0
+160|data|DCD grub_errno|128-8-0-0
+164|data|DCD grub_file_read|140-8-0-0
+168|code|SUB.W           R3, c, #0x30 ; '0'|160-241-48-3
+172|code|UXTB            R2, R3|218-178
+174|code|CMP             R2, #9|9-42
+176|code|BHI             loc_B6|1-216
+178|code|MOV             c, R3|24-70
+180|code|BX              LR|112-71
+182|code|SUB.W           R3, c, #0x61 ; 'a'|160-241-97-3
+186|code|CMP             R3, #5|5-43
+188|code|BHI             loc_C2|1-216
+190|code|SUBS            c, #0x57 ; 'W'|87-56
+192|code|BX              LR|112-71
+194|code|SUB.W           R3, c, #0x41 ; 'A'|160-241-65-3
+198|code|CMP             R3, #5|5-43
+200|code|ITE LS|148-191
+202|code|SUBLS           c, #0x37 ; '7'|55-56
+204|code|MOVHI.W         R0, #0xFFFFFFFF|79-240-255-48
+208|code|BX              LR|112-71
+210|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+214|code|SUB             SP, SP, #0x9C|167-176
+216|code|LDR             R7, [ctxt,#4]|71-104
+218|code|MOVS            R4, #0|0-36
+220|code|LDR.W           R10, =aliases|223-248-8-163
+224|code|MOV             R9, ctxt|129-70
+226|code|LDR.W           R11, =grub_strcmp|223-248-8-179
+230|code|MOV             R5, argc|13-70
+232|code|LDR             R3, [state,#0x18]|187-105
+234|code|MOV             R6, args|22-70
+236|code|MOV             R8, R4|160-70
+238|code|STR             R3, [SP,#0xC0+keep]|2-147
+240|code|LDR             keep_0, [state,#0x20]|59-106
+242|code|STR             R3, [SP,#0xC0+uncompress]|4-147
+244|code|LDR.W           R3, [ctxt]|217-248-0-48
+248|code|LDR.W           R1, [R4,R10]|84-248-10-16
+252|code|LDR             R3, [R3]|27-104
+254|code|LDR             R0, [R3,#8]|152-104
+256|code|BLX             R11; grub_strcmp|216-71
+258|code|CBNZ            R0, loc_10C|24-185
+260|code|ADD.W           R3, R10, R4|10-235-4-3
+264|code|LDR.W           R8, [R3,#4]|211-248-4-128
+268|code|ADDS            R4, #8|8-52
+270|code|CMP             R4, #0x28 ; '('|40-44
+272|code|BNE             loc_F4|240-209
+274|code|LDR             R3, [state]|59-104
+276|code|CBZ             R3, loc_11A|11-177
+278|code|LDR.W           R8, [state,#4]|215-248-4-128
+282|code|CMP.W           hashname, #0|184-241-0-15
+286|code|BNE             loc_126|2-209
+288|code|MOVS            R0, #0x12|18-32
+290|code|LDR             R1, =aNoHashSpecifie; "no hash specified"|152-73
+292|code|B               loc_134|6-224
+294|code|MOV             R0, hashname|64-70
+296|code|LDR             R3, =grub_crypto_lookup_md_by_name|151-75
+298|code|BLX             R3; grub_crypto_lookup_md_by_name|152-71
+300|code|MOV             R11, hash|131-70
+302|code|CBNZ            hash, loc_13A|32-185
+304|code|LDR             R1, =aUnknownHash; "unknown hash"|150-73
+306|code|MOVS            hash, #0x12|18-32
+308|code|LDR             R3, =grub_error|150-75
+310|code|BLX             R3; grub_error|152-71
+312|code|B               loc_37C|32-225
+314|code|LDR             R3, [hash,#0x10]|3-105
+316|code|CMP             R3, #0x40 ; '@'|64-43
+318|code|BLS             loc_146|2-217
+320|code|MOVS            hash, #0x26 ; '&'|38-32
+322|code|LDR             R1, =aMdlenIsTooLong; "mdlen is too long"|148-73
+324|code|B               loc_134|246-231
+326|code|LDR             R3, [state,#0x10]|59-105
+328|code|CBZ             R3, loc_14C|3-177
+330|code|LDR             R3, [state,#0x14]|123-105
+332|code|LDR             R4, [state,#8]|188-104
+334|code|STR             R3, [SP,#0xC0+prefix]|3-147
+336|code|CBNZ            R4, loc_15C|36-185
+338|code|SUBS            args, #4|4-62
+340|code|MOV             state, R4|39-70
+342|code|LDR.W           hashname, =grub_printf|223-248-132-130
+346|code|B               loc_2F6|204-224
+348|code|CBZ             argc, loc_164|21-177
+350|code|MOVS            hash, #0x12|18-32
+352|code|LDR             R1, =aCheckIsIncompa; "--check is incompatible with file list"|141-73
+354|code|B               loc_134|231-231
+356|code|LDR             hash, [state,#0xC]|248-104
+358|code|LDR             prefix_0, =grub_file_open|141-75
+360|code|BLX             R3; grub_file_open|152-71
+362|code|MOV             R4, R0|4-70
+364|code|CMP             R0, #0|0-40
+366|code|BNE             loc_1DE|54-209
+368|code|B               loc_1D8|50-224
+370|code|LDR             R3, =grub_print_error|139-75
+372|code|BLX             R3; grub_print_error|152-71
+374|code|LDR             R3, =grub_errno|139-75
+376|code|MOVS            R2, #0|0-34
+378|code|STR             R2, [R3]|26-96
+380|code|LDR             R3, [SP,#0xC0+err]|1-155
+382|code|ADDS            R3, #1|1-51
+384|code|STR             R3, [SP,#0xC0+err]|1-147
+386|code|MOV             R0, R7|56-70
+388|code|LDR             R3, =grub_free|136-75
+390|code|BLX             R3; grub_free|152-71
+392|code|MOV             R0, R4|32-70
+394|code|LDR             R3, =grub_file_getline|136-75
+396|code|BLX             R3; grub_file_getline|152-71
+398|code|MOV             R7, R0|7-70
+400|code|CMP             R0, #0|0-40
+402|code|BEQ.W           loc_2D2|0-240-158-128
+406|code|LDR.W           R10, =grub_isspace|223-248-88-162
+410|code|MOV             R6, R0|6-70
+412|code|MOV             R9, R6|177-70
+414|code|ADDS            R6, #1|1-54
+416|code|LDRB.W          R0, [R9]|153-248-0-0
+420|code|BLX             R10; grub_isspace|208-71
+422|code|CMP             R0, #0|0-40
+424|code|BNE             loc_19C|248-209
+426|code|MOV             R6, R9|78-70
+428|code|MOV             R8, R0|128-70
+430|code|LDR.W           R3, [hash,#0x10]|219-248-16-48
+434|code|CMP             R8, R3|152-69
+436|code|BCC             loc_1E4|22-211
+438|code|LDRB            R3, [R6]|51-120
+440|code|CMP             R3, #0x20 ; ' '|32-43
+442|code|BNE             loc_218|45-209
+444|code|LDRB            R3, [R6,#1]|115-120
+446|code|CMP             R3, #0x20 ; ' '|32-43
+448|code|BNE             loc_21E|45-209
+450|code|LDR             R3, [SP,#0xC0+prefix]|3-155
+452|code|ADDS            R6, #2|2-54
+454|code|CMP             R3, #0|0-43
+456|code|BEQ             loc_23C|56-208
+458|code|MOV             R1, R3|25-70
+460|code|LDR             R0, =aSS; "%s/%s"|120-72
+462|code|MOV             R2, R6|50-70
+464|code|LDR             R3, =grub_xasprintf|120-75
+466|code|BLX             R3; grub_xasprintf|152-71
+468|code|MOV             R8, R0|128-70
+470|code|CBNZ            R0, loc_224|40-187
+472|code|LDR             R3, =grub_errno|114-75
+474|code|LDR             R0, [R3]|24-104
+476|code|B               loc_37C|206-224
+478|code|STR             argc, [SP,#0xC0+err]|1-149
+480|code|MOV             state, argc|47-70
+482|code|B               loc_182|206-231
+484|code|LDRB.W          R0, [R9,R8,LSL#1]; c|25-248-24-0
+488|code|ADDS            R6, #2|2-54
+490|code|BL              hextoval|255-247-93-255
+494|code|MOV             R10, R0|130-70
+496|code|LDRB.W          R0, [R6,#-1]; c|22-248-1-12
+500|code|BL              hextoval|255-247-88-255
+504|code|CMP.W           R10, #0|186-241-0-15
+508|code|BLT             loc_202|1-219
+510|code|CMP             R0, #0|0-40
+512|code|BGE             loc_208|2-218
+514|code|MOVS            R0, #4|4-32
+516|code|LDR             R1, =aInvalidHashLis; "invalid hash list"|108-73
+518|code|B               loc_134|149-231
+520|code|ADD             R3, SP, #0xC0+var_A8|6-171
+522|code|ORR.W           R0, R0, R10,LSL#4|64-234-10-16
+526|code|STRB.W          R0, [R3,R8]|3-248-8-0
+530|code|ADD.W           R8, R8, #1|8-241-1-8
+534|code|B               loc_1AE|202-231
+536|code|CMP             R3, #9|9-43
+538|code|BEQ             loc_1BC|207-208
+540|code|B               loc_202|241-231
+542|code|CMP             R3, #9|9-43
+544|code|BEQ             loc_1C2|207-208
+546|code|B               loc_202|238-231
+548|code|LDR             R3, [SP,#0xC0+uncompress]|4-155
+550|code|CBNZ            R3, loc_22C|11-185
+552|code|BL              grub_file_filter_disable_compression|255-247-234-254
+556|code|MOV             R0, R8|64-70
+558|code|LDR             R3, =grub_file_open|91-75
+560|code|BLX             R3; grub_file_open|152-71
+562|code|LDR             R3, =grub_free|93-75
+564|code|MOV             R9, R0|129-70
+566|code|MOV             R0, R8|64-70
+568|code|BLX             R3; grub_free|152-71
+570|code|B               loc_24C|7-224
+572|code|LDR             R3, [SP,#0xC0+uncompress]|4-155
+574|code|CBNZ            R3, loc_244|11-185
+576|code|BL              grub_file_filter_disable_compression|255-247-222-254
+580|code|MOV             R0, R6|48-70
+582|code|LDR             R3, =grub_file_open|85-75
+584|code|BLX             R3; grub_file_open|152-71
+586|code|MOV             R9, R0|129-70
+588|code|LDR.W           R8, =grub_file_close|223-248-132-129
+592|code|CMP.W           R9, #0|185-241-0-15
+596|code|BNE             loc_262|5-209
+598|code|MOV             R0, R4|32-70
+600|code|BLX             R8; grub_file_close|192-71
+602|code|MOV             R0, R7|56-70
+604|code|LDR             R3, =grub_free|82-75
+606|code|BLX             R3; grub_free|152-71
+608|code|B               loc_1D8|186-231
+610|code|MOV             R0, R9; file|72-70
+612|code|MOV             R1, hash; hash|89-70
+614|code|ADD             R2, SP, #0xC0+result; result|22-170
+616|code|BL              hash_file|255-247-210-254
+620|code|MOV             R10, R0|130-70
+622|code|MOV             R0, R9|72-70
+624|code|BLX             R8; grub_file_close|192-71
+626|code|LDR.W           R9, =grub_free|223-248-52-145
+630|code|LDR             R3, =grub_printf_|81-75
+632|code|CMP.W           R10, #0|186-241-0-15
+636|code|BEQ             loc_298|12-208
+638|code|LDR             R0, =aSReadError; "%s: READ ERROR\n"|80-72
+640|code|MOV             R1, R6|49-70
+642|code|BLX             R3; grub_printf_|152-71
+644|code|LDR             R3, [SP,#0xC0+keep]|2-155
+646|code|CMP             R3, #0|0-43
+648|code|BNE.W           loc_172|127-244-115-175
+652|code|MOV             R0, R4|32-70
+654|code|BLX             R8; grub_file_close|192-71
+656|code|MOV             R0, R7|56-70
+658|code|BLX             R9; grub_free|200-71
+660|code|MOV             R0, R10|80-70
+662|code|B               loc_37C|113-224
+664|code|ADD             R0, SP, #0xC0+var_A8|6-168
+666|code|ADD             R1, SP, #0xC0+result|22-169
+668|code|LDR.W           R2, [hash,#0x10]|219-248-16-32
+672|code|LDR.W           R12, =grub_crypto_memcmp|223-248-80-193
+676|code|STR             R3, [SP,#0xC0+var_AC]|5-147
+678|code|BLX             R12; grub_crypto_memcmp|224-71
+680|code|LDR             R3, [SP,#0xC0+var_AC]|5-155
+682|code|CBZ             R0, loc_2CA|112-177
+684|code|LDR             R0, =aSHashMismatch; "%s: HASH MISMATCH\n"|69-72
+686|code|MOV             R1, R6|49-70
+688|code|BLX             R3|152-71
+690|code|LDR             R3, [SP,#0xC0+keep]|2-155
+692|code|CBNZ            R3, loc_2C6|59-185
+694|code|MOV             R0, R4|32-70
+696|code|BLX             R8; grub_file_close|192-71
+698|code|MOV             R0, R7|56-70
+700|code|BLX             R9; grub_free|200-71
+702|code|MOVS            R0, #1|1-32
+704|code|LDR             R1, =aHashOfSMismatc; "hash of '%s' mismatches"|65-73
+706|code|MOV             R2, R6|50-70
+708|code|B               loc_374|86-224
+710|code|ADDS            R5, #1|1-53
+712|code|B               loc_182|91-231
+714|code|MOV             R1, R6|49-70
+716|code|LDR             R0, =aSOk; "%s: OK\n"|63-72
+718|code|BLX             R3|152-71
+720|code|B               loc_182|87-231
+722|code|CBNZ            R5, loc_2D8|13-185
+724|code|LDR             R3, [SP,#0xC0+err]|1-155
+726|code|CBZ             R3, loc_2E6|51-177
+728|code|LDR             R1, =aDFilesCouldnTB; "%d files couldn't be read and hash of %"...|61-73
+730|code|MOV             R3, R5|43-70
+732|code|LDR             R2, [SP,#0xC0+err]|1-154
+734|code|MOVS            R0, #1|1-32
+736|code|LDR             R4, =grub_error|43-76
+738|code|BLX             R4; grub_error|160-71
+740|code|B               loc_37C|74-224
+742|code|LDR             R0, [SP,#0xC0+err]|1-152
+744|code|B               loc_37C|72-224
+746|code|LDR             R3, =grub_print_error|45-75
+748|code|BLX             R3; grub_print_error|152-71
+750|code|STR.W           file, [R9]|201-248-0-160
+754|code|ADDS            unread, #1|1-52
+756|code|ADDS            i, #1|1-55
+758|code|CMP             i, argc|175-66
+760|code|BCS             loc_36C|56-210
+762|code|LDR             R3, [SP,#0xC0+uncompress]|4-155
+764|code|CBNZ            R3, loc_302|11-185
+766|code|BL              grub_file_filter_disable_compression|255-247-127-254
+770|code|LDR.W           R0, [R6,#4]!|86-248-4-15
+774|code|LDR             R3, =grub_file_open|37-75
+776|code|BLX             R3; grub_file_open|152-71
+778|code|MOV             R10, file|130-70
+780|code|CBNZ            file, loc_31E|56-185
+782|code|LDR             R3, [SP,#0xC0+keep]|2-155
+784|code|LDR.W           R9, =grub_errno|223-248-144-144
+788|code|CMP             R3, #0|0-43
+790|code|BNE             loc_2EA|232-209
+792|code|LDR.W           file, [R9]|217-248-0-0
+796|code|B               loc_37C|46-224
+798|code|ADD.W           R9, SP, #0xC0+result|13-241-88-9
+802|code|MOV             R1, hash; hash|89-70
+804|code|MOV             R2, R9; result|74-70
+806|code|BL              hash_file|255-247-115-254
+810|code|LDR             R2, =grub_file_close|42-74
+812|code|STR             R0, [SP,#0xC0+err]|1-144
+814|code|MOV             err_0, file|80-70
+816|code|BLX             R2; grub_file_close|144-71
+818|code|LDR             R3, [SP,#0xC0+err]|1-155
+820|code|CBZ             R3, loc_346|59-177
+822|code|LDR             R2, [SP,#0xC0+keep]|2-154
+824|code|CBZ             R2, loc_368|178-177
+826|code|LDR             R3, =grub_print_error|25-75
+828|code|BLX             R3; grub_print_error|152-71
+830|code|LDR             R3, =grub_errno|25-75
+832|code|MOVS            R2, #0|0-34
+834|code|STR             R2, [R3]|26-96
+836|code|B               loc_2F2|213-231
+838|code|MOV             file, R3|154-70
+840|code|LDR.W           R3, [hash,#0x10]|219-248-16-48
+844|code|CMP             j, R3|154-69
+846|code|BCS             loc_35E|6-210
+848|code|LDRB.W          R1, [R9,j]|25-248-10-16
+852|code|ADD.W           j, j, #1|10-241-1-10
+856|code|LDR             R0, =a02x; "%02x"|31-72
+858|code|BLX             R8; grub_printf|192-71
+860|code|B               loc_348|244-231
+862|code|LDR             R1, [R6]|49-104
+864|code|LDR             R3, =grub_printf|30-75
+866|code|LDR             R0, =aS; "  %s\n"|31-72
+868|code|BLX             R3; grub_printf|152-71
+870|code|B               loc_2F4|197-231
+872|code|MOV             R0, R3|24-70
+874|code|B               loc_37C|7-224
+876|code|CBZ             unread, loc_37A|44-177
+878|code|LDR             R1, =aDFilesCouldnTB_0; "%d files couldn't be read"|29-73
+880|code|MOVS            R0, #1|1-32
+882|code|MOV             R2, unread|34-70
+884|code|LDR             R3, =grub_error|6-75
+886|code|BLX             R3; grub_error|152-71
+888|code|B               loc_37C|0-224
+890|code|MOV             R0, unread|32-70
+892|code|ADD             SP, SP, #0x9C|39-176
+894|code|POP.W           {R4-R11,PC}|189-232-240-143
+898|data|ALIGN 4|0-191
+900|data|DCD aNoHashSpecifie; "no hash specified"|148-5-0-0
+904|data|DCD grub_crypto_lookup_md_by_name|112-8-0-0
+908|data|DCD aUnknownHash; "unknown hash"|166-5-0-0
+912|data|DCD grub_error|180-8-0-0
+916|data|DCD aMdlenIsTooLong; "mdlen is too long"|179-5-0-0
+920|data|DCD aCheckIsIncompa; "--check is incompatible with file list"|197-5-0-0
+924|data|DCD grub_file_open|164-8-0-0
+928|data|DCD grub_print_error|144-8-0-0
+932|data|DCD grub_errno|128-8-0-0
+936|data|DCD grub_free|184-8-0-0
+940|data|DCD grub_file_getline|176-8-0-0
+944|data|DCD aSS; "%s/%s"|254-5-0-0
+948|data|DCD grub_xasprintf|116-8-0-0
+952|data|DCD aInvalidHashLis; "invalid hash list"|236-5-0-0
+956|data|DCD grub_printf_|188-8-0-0
+960|data|DCD aSReadError; "%s: READ ERROR\n"|4-6-0-0
+964|data|DCD aSHashMismatch; "%s: HASH MISMATCH\n"|20-6-0-0
+968|data|DCD aHashOfSMismatc; "hash of '%s' mismatches"|39-6-0-0
+972|data|DCD aSOk; "%s: OK\n"|63-6-0-0
+976|data|DCD aDFilesCouldnTB; "%d files couldn't be read and hash of %"...|71-6-0-0
+980|data|DCD grub_file_close|160-8-0-0
+984|data|DCD a02x; "%02x"|129-6-0-0
+988|data|DCD grub_printf|132-8-0-0
+992|data|DCD aS; "  %s\n"|134-6-0-0
+996|data|DCD aDFilesCouldnTB_0; "%d files couldn't be read"|140-6-0-0
+1000|data|DCD aliases|220-4-0-0
+1004|data|DCD grub_strcmp|152-8-0-0
+1008|data|DCD grub_isspace|168-8-0-0
+1012|data|DCD grub_crypto_memcmp|136-8-0-0
+1016|code|PUSH.W          {mod-R2,R4-R9,LR}|45-233-247-67
+1020|code|MOVS            R2, #0|0-34
+1022|code|LDR             R6, =(grub_cmd_hashsum+1)|32-78
+1024|code|LDR.W           R8, =aComputeOrCheck; "Compute or check hash checksum."|223-248-168-128
+1028|code|LDR             R7, =options|31-79
+1030|code|LDR             R5, =grub_register_extcmd|32-77
+1032|code|MOV             R1, R6|49-70
+1034|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+1038|code|STR             R7, [SP,#0x28+var_24]|1-151
+1040|code|LDR             R3, =aHHashCFilePPre; "-h HASH [-c FILE [-p PREFIX]] [FILE1 [F"...|30-75
+1042|code|LDR             mod, =aHashsum; "hashsum"|31-72
+1044|code|BLX             R5; grub_register_extcmd|168-71
+1046|code|LDR             R4, =cmd|31-76
+1048|code|LDR.W           R9, =aCFilePPrefixFi; "[-c FILE [-p PREFIX]] [FILE1 [FILE2 ..."...|223-248-148-144
+1052|code|MOV             R1, R6|49-70
+1054|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+1058|code|MOVS            R2, #0|0-34
+1060|code|STR             R7, [SP,#0x28+var_24]|1-151
+1062|code|MOV             R3, R9|75-70
+1064|code|STR             R0, [R4]|32-96
+1066|code|LDR             R0, =aMd5sum; "md5sum"|27-72
+1068|code|BLX             R5; grub_register_extcmd|168-71
+1070|code|MOV             R1, R6|49-70
+1072|code|MOV             R3, R9|75-70
+1074|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+1078|code|STR             R7, [SP,#0x28+var_24]|1-151
+1080|code|MOVS            R2, #0|0-34
+1082|code|STR             R0, [R4,#(cmd_md5 - 0x858)]|96-96
+1084|code|LDR             R0, =aSha1sum; "sha1sum"|23-72
+1086|code|BLX             R5; grub_register_extcmd|168-71
+1088|code|MOV             R1, R6|49-70
+1090|code|MOV             R3, R9|75-70
+1092|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+1096|code|STR             R7, [SP,#0x28+var_24]|1-151
+1098|code|MOVS            R2, #0|0-34
+1100|code|STR             R0, [R4,#(cmd_sha1 - 0x858)]|160-96
+1102|code|LDR             R0, =aSha256sum; "sha256sum"|20-72
+1104|code|BLX             R5; grub_register_extcmd|168-71
+1106|code|MOV             R1, R6|49-70
+1108|code|MOV             R3, R9|75-70
+1110|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+1114|code|STR             R7, [SP,#0x28+var_24]|1-151
+1116|code|MOVS            R2, #0|0-34
+1118|code|STR             R0, [R4,#(cmd_sha256 - 0x858)]|224-96
+1120|code|LDR             R0, =aSha512sum; "sha512sum"|16-72
+1122|code|BLX             R5; grub_register_extcmd|168-71
+1124|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+1128|code|STR             R7, [SP,#0x28+var_24]|1-151
+1130|code|MOV             R1, R6|49-70
+1132|code|MOVS            R2, #0|0-34
+1134|code|MOV             R3, R9|75-70
+1136|code|STR             R0, [R4,#(cmd_sha512 - 0x858)]|32-97
+1138|code|LDR             R0, =aCrc; "crc"|13-72
+1140|code|BLX             R5; grub_register_extcmd|168-71
+1142|code|STR             R0, [R4,#(cmd_crc - 0x858)]|96-97
+1144|code|ADD             SP, SP, #0xC|3-176
+1146|code|POP.W           {R4-R9,PC}|189-232-240-131
+1150|data|ALIGN 0x10|0-191
+1152|data|DCD grub_cmd_hashsum+1|211-0-0-0
+1156|data|DCD options|4-5-0-0
+1160|data|DCD grub_register_extcmd|192-8-0-0
+1164|data|DCD aHHashCFilePPre; "-h HASH [-c FILE [-p PREFIX]] [FILE1 [F"...|174-6-0-0
+1168|data|DCD aHashsum; "hashsum"|166-6-0-0
+1172|data|DCD cmd|88-8-0-0
+1176|data|DCD aMd5sum; "md5sum"|0-7-0-0
+1180|data|DCD aSha1sum; "sha1sum"|49-7-0-0
+1184|data|DCD aSha256sum; "sha256sum"|57-7-0-0
+1188|data|DCD aSha512sum; "sha512sum"|67-7-0-0
+1192|data|DCD aCrc; "crc"|77-7-0-0
+1196|data|DCD aComputeOrCheck; "Compute or check hash checksum."|224-6-0-0
+1200|data|DCD aCFilePPrefixFi; "[-c FILE [-p PREFIX]] [FILE1 [FILE2 ..."...|7-7-0-0
+1204|code|PUSH            {R3-R5,LR}|56-181
+1206|code|LDR             R5, =cmd|7-77
+1208|code|LDR             R4, =grub_unregister_extcmd|7-76
+1210|code|LDR             R0, [R5]|40-104
+1212|code|BLX             R4; grub_unregister_extcmd|160-71
+1214|code|LDR             R0, [R5,#(cmd_md5 - 0x858)]|104-104
+1216|code|BLX             R4; grub_unregister_extcmd|160-71
+1218|code|LDR             R0, [R5,#(cmd_sha1 - 0x858)]|168-104
+1220|code|BLX             R4; grub_unregister_extcmd|160-71
+1222|code|LDR             R0, [R5,#(cmd_sha256 - 0x858)]|232-104
+1224|code|BLX             R4; grub_unregister_extcmd|160-71
+1226|code|LDR             R0, [R5,#(cmd_sha512 - 0x858)]|40-105
+1228|code|BLX             R4; grub_unregister_extcmd|160-71
+1230|code|LDR             R0, [R5,#(cmd_crc - 0x858)]|104-105
+1232|code|BLX             R4; grub_unregister_extcmd|160-71
+1234|code|POP             {R3-R5,PC}|56-189
+1236|data|DCD cmd|88-8-0-0
+1240|data|DCD grub_unregister_extcmd|124-8-0-0
+1244|data|$7DEA9EC8E190BDB96C428FE64B5DD0DB <aSha256sum, aSha256>; "md5sum" ...|57-7-0-0-81-7-0-0-67-7-0-0-88-7-0-0-49-7-0-0-95-7-0-0-0-7-0-0-100-7-0-0-77-7-0-0-104-7-0-0
+1284|data|grub_arg_option <aHash, 0x68, 0, aSpecifyHashToU, aHash_0, \; "hash" ...|110-7-0-0-104-0-0-0-0-0-0-0-115-7-0-0-136-7-0-0-1-0-0-0-141-7-0-0-99-0-0-0-0-0-0-0-147-7-0-0-190-7-0-0-1-0-0-0-195-7-0-0-112-0-0-0-0-0-0-0-202-7-0-0-232-7-0-0-1-0-0-0-236-7-0-0-107-0-0-0-0-0-0-0-247-7-0-0-0-0-0-0-0-0-0-0-21-8-0-0-117-0-0-0-0-0-0-0-32-8-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+1428|data|DCB "no hash specified",0|110-111-32-104-97-115-104-32-115-112-101-99-105-102-105-101-100-0
+1446|data|DCB "unknown hash",0|117-110-107-110-111-119-110-32-104-97-115-104-0
+1459|data|DCB "mdlen is too long",0|109-100-108-101-110-32-105-115-32-116-111-111-32-108-111-110-103-0
+1477|data|DCB "--check is incompatible with file list",0|45-45-99-104-101-99-107-32-105-115-32-105-110-99-111-109-112-97-116-105-98-108-101-32-119-105-116-104-32-102-105-108-101-32-108-105-115-116-0
+1516|data|DCB "invalid hash list",0|105-110-118-97-108-105-100-32-104-97-115-104-32-108-105-115-116-0
+1534|data|DCB "%s/%s",0|37-115-47-37-115-0
+1540|data|DCB "%s: READ ERROR",0xA,0|37-115-58-32-82-69-65-68-32-69-82-82-79-82-10-0
+1556|data|DCB "%s: HASH MISMATCH",0xA,0|37-115-58-32-72-65-83-72-32-77-73-83-77-65-84-67-72-10-0
+1575|data|DCB "hash of '%s' mismatches",0|104-97-115-104-32-111-102-32-39-37-115-39-32-109-105-115-109-97-116-99-104-101-115-0
+1599|data|DCB "%s: OK",0xA,0|37-115-58-32-79-75-10-0
+1607|data|DCB "%d files couldn't be read and hash of %d files mismatches",0|37-100-32-102-105-108-101-115-32-99-111-117-108-100-110-39-116-32-98-101-32-114-101-97-100-32-97-110-100-32-104-97-115-104-32-111-102-32-37-100-32-102-105-108-101-115-32-109-105-115-109-97-116-99-104-101-115-0
+1665|data|DCB "%02x",0|37-48-50-120-0
+1670|data|DCB "  %s",0xA,0|32-32-37-115-10-0
+1676|data|DCB "%d files couldn't be read",0|37-100-32-102-105-108-101-115-32-99-111-117-108-100-110-39-116-32-98-101-32-114-101-97-100-0
+1702|data|DCB "hashsum",0|104-97-115-104-115-117-109-0
+1710|data|DCB "-h HASH [-c FILE [-p PREFIX]] [FILE1 [FILE2 ...]]",0|45-104-32-72-65-83-72-32-91-45-99-32-70-73-76-69-32-91-45-112-32-80-82-69-70-73-88-93-93-32-91-70-73-76-69-49-32-91-70-73-76-69-50-32-46-46-46-93-93-0
+1760|data|DCB "Compute or check hash checksum.",0|67-111-109-112-117-116-101-32-111-114-32-99-104-101-99-107-32-104-97-115-104-32-99-104-101-99-107-115-117-109-46-0
+1792|data|DCB "md5sum",0|109-100-53-115-117-109-0
+1799|data|DCB "[-c FILE [-p PREFIX]] [FILE1 [FILE2 ...]]",0|91-45-99-32-70-73-76-69-32-91-45-112-32-80-82-69-70-73-88-93-93-32-91-70-73-76-69-49-32-91-70-73-76-69-50-32-46-46-46-93-93-0
+1841|data|DCB "sha1sum",0|115-104-97-49-115-117-109-0
+1849|data|DCB "sha256sum",0|115-104-97-50-53-54-115-117-109-0
+1859|data|DCB "sha512sum",0|115-104-97-53-49-50-115-117-109-0
+1869|data|DCB "crc",0|99-114-99-0
+1873|data|DCB "sha256",0|115-104-97-50-53-54-0
+1880|data|DCB "sha512",0|115-104-97-53-49-50-0
+1887|data|DCB "sha1",0|115-104-97-49-0
+1892|data|DCB "md5",0|109-100-53-0
+1896|data|DCB "crc32",0|99-114-99-51-50-0
+1902|data|DCB "hash",0|104-97-115-104-0
+1907|data|DCB "Specify hash to use.",0|83-112-101-99-105-102-121-32-104-97-115-104-32-116-111-32-117-115-101-46-0
+1928|data|DCB "HASH",0|72-65-83-72-0
+1933|data|DCB "check",0|99-104-101-99-107-0
+1939|data|DCB "Check hashes of files with hash list FILE.",0|67-104-101-99-107-32-104-97-115-104-101-115-32-111-102-32-102-105-108-101-115-32-119-105-116-104-32-104-97-115-104-32-108-105-115-116-32-70-73-76-69-46-0
+1982|data|DCB "FILE",0|70-73-76-69-0
+1987|data|DCB "prefix",0|112-114-101-102-105-120-0
+1994|data|DCB "Base directory for hash list.",0|66-97-115-101-32-100-105-114-101-99-116-111-114-121-32-102-111-114-32-104-97-115-104-32-108-105-115-116-46-0
+2024|data|DCB "DIR",0|68-73-82-0
+2028|data|DCB "keep-going",0|107-101-101-112-45-103-111-105-110-103-0
+2039|data|DCB "Don't stop after first error.",0|68-111-110-39-116-32-115-116-111-112-32-97-102-116-101-114-32-102-105-114-115-116-32-101-114-114-111-114-46-0
+2069|data|DCB "uncompress",0|117-110-99-111-109-112-114-101-115-115-0
+2080|data|DCB "Uncompress file before checksumming.",0|85-110-99-111-109-112-114-101-115-115-32-102-105-108-101-32-98-101-102-111-114-101-32-99-104-101-99-107-115-117-109-109-105-110-103-46-0
+2117|data||255
+2118|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2136|data|% 4|255-255-255-255
+2140|data|% 4|255-255-255-255
+2144|data|% 4|255-255-255-255
+2148|data|% 4|255-255-255-255
+2152|data|% 4|255-255-255-255

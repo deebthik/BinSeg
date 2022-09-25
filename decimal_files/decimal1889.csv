@@ -1,0 +1,44 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|MOVS            R0, #1|1-32
+4|code|LDR             R3, =grub_machine_fini|2-75
+6|code|BLX             R3; grub_machine_fini|152-71
+8|code|LDR             R3, =grub_uboot_reset|2-75
+10|code|BLX             R3; grub_uboot_reset|152-71
+12|code|B               loc_C|254-231
+14|data|ALIGN 0x10|0-191
+16|data|DCD grub_machine_fini|148-0-0-0
+20|data|DCD grub_uboot_reset|160-0-0-0
+24|code|PUSH            {R3,LR}|8-181
+26|code|LDR             R3, =(grub_reboot+1)|1-75
+28|code|BLX             R3; grub_reboot|152-71
+30|code|NOP|0-191
+32|data|DCD grub_reboot+1|1-0-0-0
+36|code|PUSH            {mod,R1,R4,LR}|19-181
+38|code|MOVS            R2, #0|0-34
+40|code|LDR             R1, =(grub_cmd_reboot+1)|4-73
+42|code|STR             R2, [SP,#0x10+var_10]|0-146
+44|code|LDR             R3, =aRebootTheCompu; "Reboot the computer."|4-75
+46|code|LDR             R4, =grub_register_command_prio|5-76
+48|code|LDR             mod, =aReboot; "reboot"|5-72
+50|code|BLX             R4; grub_register_command_prio|160-71
+52|code|LDR             R3, =cmd|5-75
+54|code|STR             R0, [R3]|24-96
+56|code|ADD             SP, SP, #8|2-176
+58|code|POP             {R4,PC}|16-189
+60|data|DCD grub_cmd_reboot+1|25-0-0-0
+64|data|DCD aRebootTheCompu; "Reboot the computer."|107-0-0-0
+68|data|DCD grub_register_command_prio|152-0-0-0
+72|data|DCD aReboot; "reboot"|100-0-0-0
+76|data|DCD cmd|144-0-0-0
+80|code|PUSH            {R3,LR}|8-181
+82|code|LDR             R3, =cmd|2-75
+84|code|LDR             R0, [R3]|24-104
+86|code|LDR             R3, =grub_unregister_command|2-75
+88|code|BLX             R3; grub_unregister_command|152-71
+90|code|POP             {R3,PC}|8-189
+92|data|DCD cmd|144-0-0-0
+96|data|DCD grub_unregister_command|156-0-0-0
+100|data|DCB "reboot",0|114-101-98-111-111-116-0
+107|data|DCB "Reboot the computer.",0|82-101-98-111-111-116-32-116-104-101-32-99-111-109-112-117-116-101-114-46-0
+129|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

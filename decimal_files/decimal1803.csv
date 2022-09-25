@@ -1,0 +1,115 @@
+address|type|disassembly|bytes
+0|code|PUSH            {length-R7,LR}|248-181
+2|code|SUBS            outbuf, #1|1-57
+4|code|LDM.W           ctx, {R4,R5}|144-232-48-0
+8|code|ADD.W           R7, ctx, #8|0-241-8-7
+12|code|ADD             length, inbuf|19-68
+14|code|CMP             R2, R3|154-66
+16|code|BEQ             loc_40|22-208
+18|code|ADDS            R4, #1|1-52
+20|code|UXTB            R4, R4|228-178
+22|code|LDRB            R6, [R7,R4]|62-93
+24|code|ADD             R5, R6|53-68
+26|code|UXTB            R5, R5|237-178
+28|code|LDRB.W          LR, [R7,R5]|23-248-5-224
+32|code|STRB.W          LR, [R7,R4]|7-248-4-224
+36|code|STRB            R6, [R7,R5]|126-85
+38|code|LDRB.W          LR, [R7,R4]|23-248-4-224
+42|code|ADD             R6, LR|118-68
+44|code|UXTB            R6, R6|246-178
+46|code|LDRB.W          LR, [R7,R6]|23-248-6-224
+50|code|LDRB.W          R6, [R2],#1|18-248-1-107
+54|code|EOR.W           R6, LR, R6|142-234-6-6
+58|code|STRB.W          R6, [R1,#1]!|1-248-1-111
+62|code|B               loc_E|230-231
+64|code|STM.W           ctx, {R4,R5}|128-232-48-0
+68|code|MOVS            ctx, #0x40 ; '@'|64-32
+70|code|LDR             R3, =_gcry_burn_stack|1-75
+72|code|BLX             R3; _gcry_burn_stack|152-71
+74|code|POP             {R3-R7,PC}|248-189
+76|data|DCD _gcry_burn_stack|116-1-0-0
+80|code|LDR             R3, =initialized.6166|37-75
+82|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+86|code|MOV             R7, keylen|23-70
+88|code|LDR             keylen, [R3]|26-104
+90|code|SUB             SP, SP, #0x104|193-176
+92|code|MOV             R6, context|6-70
+94|code|MOV             R8, key|136-70
+96|code|CBNZ            R2, loc_68|18-185
+98|code|MOVS            key, #1|1-33
+100|code|STM.W           R3, {R1,R2}|131-232-6-0
+104|code|LDR             R3, [R3,#(selftest_failed.6167 - 0x168)]|91-104
+106|code|CBNZ            R3, loc_D2|147-187
+108|code|CMP             keylen, #4|4-47
+110|code|BLS             loc_D6|50-217
+112|code|MOV             R4, R6|52-70
+114|code|STR             R3, [R6,#4]|115-96
+116|code|STR.W           R3, [R4],#7|68-248-7-59
+120|code|MOV             R2, R4|34-70
+122|code|STRB.W          R3, [R2,#1]!|2-248-1-63
+126|code|ADDS            R3, #1|1-51
+128|code|CMP.W           R3, #0x100|179-245-128-127
+132|code|BNE             loc_7A|249-209
+134|code|LDR.W           R9, =__aeabi_uidivmod|223-248-108-144
+138|code|MOVS            R5, #0|0-37
+140|code|MOV             R0, R5|40-70
+142|code|MOV             R1, keylen|57-70
+144|code|BLX             R9; __aeabi_uidivmod|200-71
+146|code|LDRB.W          R3, [key,R1]|24-248-1-48
+150|code|STRB.W          R3, [SP,R5]|13-248-5-48
+154|code|ADDS            R5, #1|1-53
+156|code|CMP.W           R5, #0x100|181-245-128-127
+160|code|BNE             loc_8C|244-209
+162|code|MOVS            R3, #0|0-35
+164|code|MOV             R2, R3|26-70
+166|code|LDRB.W          R0, [R4,#1]!|20-248-1-15
+170|code|LDRB.W          R1, [SP,R2]|29-248-2-16
+174|code|ADDS            R2, #1; n|1-50
+176|code|ADD             R3, R0|3-68
+178|code|CMP.W           R2, #0x100|178-245-128-127
+182|code|ADD             R3, R1|11-68
+184|code|UXTB            R3, R3|219-178
+186|code|ADD.W           R1, ctx, R3|6-235-3-1
+190|code|LDRB            R5, [R1,#8]|13-122
+192|code|STRB            R5, [R4]|37-112
+194|code|STRB            R0, [R1,#8]|8-114
+196|code|BNE             loc_A6|239-209
+198|code|MOV             R0, SP; s|104-70
+200|code|MOVS            R1, #0; c|0-33
+202|code|LDR             R3, =memset|8-75
+204|code|MOVS            R4, #0|0-36
+206|code|BLX             R3; memset|152-71
+208|code|B               loc_D8|2-224
+210|code|MOVS            R4, #0x1C|28-36
+212|code|B               loc_D8|0-224
+214|code|MOVS            R4, #0xD|13-36
+216|code|MOV.W           R0, #0x12C|79-244-150-112
+220|code|LDR             R3, =_gcry_burn_stack|4-75
+222|code|BLX             R3; _gcry_burn_stack|152-71
+224|code|MOV             R0, R4|32-70
+226|code|ADD             SP, SP, #0x104|65-176
+228|code|POP.W           {R4-R9,PC}|189-232-240-131
+232|data|DCD initialized.6166|104-1-0-0
+236|data|DCD memset|124-1-0-0
+240|data|DCD _gcry_burn_stack|116-1-0-0
+244|data|DCD __aeabi_uidivmod|128-1-0-0
+248|code|PUSH            {R3,LR}|8-181
+250|code|LDR             mod, =_gcry_cipher_spec_arcfour|2-72
+252|code|LDR             R3, =grub_cipher_register|2-75
+254|code|BLX             R3; grub_cipher_register|152-71
+256|code|POP             {R3,PC}|8-189
+258|data|ALIGN 4|0-191
+260|data|DCD _gcry_cipher_spec_arcfour|40-1-0-0
+264|data|DCD grub_cipher_register|120-1-0-0
+268|code|PUSH            {R3,LR}|8-181
+270|code|LDR             R0, =_gcry_cipher_spec_arcfour|2-72
+272|code|LDR             R3, =grub_cipher_unregister|2-75
+274|code|BLX             R3; grub_cipher_unregister|152-71
+276|code|POP             {R3,PC}|8-189
+278|data|ALIGN 4|0-191
+280|data|DCD _gcry_cipher_spec_arcfour|40-1-0-0
+284|data|DCD grub_cipher_unregister|112-1-0-0
+288|data|DCB "ARCFOUR",0|65-82-67-70-79-85-82-0
+296|data|gcry_cipher_spec_t <aArcfour, 0, 0, 1, 0x80, 0x108, arcfour_setkey+1, \; "ARCFOUR"|32-1-0-0-0-0-0-0-0-0-0-0-1-0-0-0-128-0-0-0-8-1-0-0-81-0-0-0-0-0-0-0-0-0-0-0-1-0-0-0-1-0-0-0-0-0-0-0
+344|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+360|data|% 4|255-255-255-255

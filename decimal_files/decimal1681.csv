@@ -1,0 +1,1646 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|MOV             R4, R2|20-70
+6|code|MOV             R5, R1|13-70
+8|code|CBNZ            size, loc_16|43-185
+10|code|MOV             R4, outptr|4-70
+12|code|SUB.W           LR, in1ptr, #8|161-241-8-14
+16|code|SUB.W           R12, in2ptr, #8|162-241-8-12
+20|code|B               loc_36|15-224
+22|code|ORR.W           R6, in2ptr, in1ptr|66-234-1-6
+26|code|LSLS            R7, R6, #0x1D|119-7
+28|code|BEQ             loc_30|8-208
+30|code|LDRB            R6, [R4]|38-120
+32|code|ADDS            in1ptr, #1|1-49
+34|code|LDRB            R4, [in1ptr]|44-120
+36|code|ADDS            in2ptr, #1|1-50
+38|code|SUBS            size, #1|1-59
+40|code|EORS            R4, R6|116-64
+42|code|STRB.W          R4, [outptr],#1|0-248-1-75
+46|code|B               loc_4|233-231
+48|code|LSLS            R6, outptr, #0x1D|70-7
+50|code|BNE             loc_1E|244-209
+52|code|B               loc_A|233-231
+54|code|SUBS            R5, R3, outptr|29-26
+56|code|ADD             R5, R4|37-68
+58|code|CMP             R5, #7|7-45
+60|code|BLS             loc_54|10-217
+62|code|LDRD.W          R6, R7, [R12,#8]!|252-233-2-103
+66|code|LDRD.W          R8, R9, [LR,#8]!|254-233-2-137
+70|code|EOR.W           R6, R6, R8|134-234-8-6
+74|code|EOR.W           R7, R7, R9|135-234-9-7
+78|code|STRD.W          R6, R7, [outptr],#8|224-232-2-103
+82|code|B               loc_36|240-231
+84|code|BIC.W           R5, R3, #7|35-240-7-5
+88|code|AND.W           R3, R3, #7|3-240-7-3
+92|code|ADDS            outptr, R4, R5|96-25
+94|code|SUBS            R4, R5, #1|108-30
+96|code|ADD             R1, R4|33-68
+98|code|ADD             R2, R4|34-68
+100|code|ADD             R3, R0|3-68
+102|code|CMP             outptr, R3|152-66
+104|code|BEQ             locret_7A|7-208
+106|code|LDRB.W          R5, [R2,#1]!|18-248-1-95
+110|code|LDRB.W          R4, [R1,#1]!|17-248-1-79
+114|code|EORS            R4, R5|108-64
+116|code|STRB.W          R4, [outptr],#1|0-248-1-75
+120|code|B               loc_66|245-231
+122|code|POP.W           {R4-R9,PC}|189-232-240-131
+126|code|MOV             R3, d|3-70
+128|code|LDRB            R2, [R1]|10-120
+130|code|MOV             R0, d|24-70
+132|code|STRB.W          R2, [R3],#1|3-248-1-43
+136|code|LDRB.W          R2, [s],#1|17-248-1-43
+140|code|CMP             R2, #0|0-42
+142|code|BNE             loc_80|247-209
+144|code|BX              LR|112-71
+146|code|PUSH            {R3-R5,LR}|56-181
+148|code|MOVW            R1, #0x21E|64-242-30-33
+152|code|LDR             R5, [disk,#0x28]|133-106
+154|code|LDR             R4, =grub_real_dprintf|7-76
+156|code|LDR             disk, =aDiskCryptodisk; "disk/cryptodisk.c"|7-72
+158|code|LDR             R2, =aCryptodisk; "cryptodisk"|8-74
+160|code|LDR             R3, =aClosingDisk; "Closing disk\n"|8-75
+162|code|BLX             R4; grub_real_dprintf|160-71
+164|code|LDR             R4, [dev,#0x24]|108-106
+166|code|SUBS            R4, #1|1-60
+168|code|STR             R4, [dev,#0x24]|108-98
+170|code|CBNZ            R4, locret_B4|28-185
+172|code|LDR             R0, [dev,#0x20]|40-106
+174|code|LDR             R3, =grub_disk_close|6-75
+176|code|BLX             R3; grub_disk_close|152-71
+178|code|STR             R4, [dev,#0x20]|44-98
+180|code|POP             {R3-dev,PC}|56-189
+182|data|ALIGN 4|0-191
+184|data|DCD grub_real_dprintf|252-18-0-0
+188|data|DCD aDiskCryptodisk; "disk/cryptodisk.c"|252-15-0-0
+192|data|DCD aCryptodisk; "cryptodisk"|14-16-0-0
+196|data|DCD aClosingDisk; "Closing disk\n"|25-16-0-0
+200|data|DCD grub_disk_close|228-18-0-0
+204|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+208|code|MOV             R4, sec|4-70
+210|code|MOV             R7, dev|15-70
+212|code|MOV             R5, b|21-70
+214|code|MOVS            R6, #0|0-38
+216|code|LDRB.W          R3, [sec,#0x21]|148-248-33-48
+220|code|LSLS            R3, R3, #4; size|27-1
+222|code|CMP             i, R3|158-66
+224|code|BCS             loc_F2|7-210
+226|code|ADDS            R0, b, i; out|168-25
+228|code|MOV             R2, sec; in2|34-70
+230|code|MOVS            R3, #0x10; size|16-35
+232|code|ADDS            i, #0x10|16-54
+234|code|MOV             R1, R0; in1|1-70
+236|code|BL              grub_crypto_xor|255-247-136-255
+240|code|B               loc_D8|242-231
+242|code|LDRB.W          i, [sec,#0x20]|148-248-32-96
+246|code|MOV             R0, b; out|40-70
+248|code|LDR.W           R2, [dev,#0xB0]|215-248-176-32
+252|code|MOV             R1, b; in1|41-70
+254|code|ADD.W           R2, R2, R6,LSL#4; in2|2-235-6-18
+258|code|BL              grub_crypto_xor|255-247-125-255
+262|code|LDRB.W          R3, [sec,#0x20]|148-248-32-48
+266|code|CBZ             R3, locret_14A|243-177
+268|code|LDRB.W          R6, [sec,#0x21]|148-248-33-96
+272|code|ADD.W           R8, sec, #0x10|4-241-16-8
+276|code|LSLS            R6, R6, #4|54-1
+278|code|LDR.W           R3, [dev,#0x180]|215-248-128-49
+282|code|LSRS.W          R3, i, R3|54-250-3-243
+286|code|BNE             loc_130|7-209
+288|code|ADDS            R0, b, i; out|168-25
+290|code|MOV             R2, R8; in2|66-70
+292|code|MOVS            R3, #0x10; size|16-35
+294|code|ADDS            i, #0x10|16-54
+296|code|MOV             R1, R0; in1|1-70
+298|code|BL              grub_crypto_xor|255-247-105-255
+302|code|B               loc_116|242-231
+304|code|LDRB.W          R0, [sec,#0x21]|148-248-33-0
+308|code|LDRB.W          R3, [sec,#0x20]|148-248-32-48
+312|code|LDR.W           R2, [dev,#0xB0]|215-248-176-32
+316|code|ADD.W           R0, b, R0,LSL#4|5-235-0-16
+320|code|LSLS            R3, R3, #4|27-1
+322|code|MOV             R1, R0|1-70
+324|code|POP.W           {sec-R8,LR}|189-232-240-65
+328|code|B               grub_crypto_xor|90-231
+330|code|POP.W           {sec-R8,PC}|189-232-240-129
+334|code|PUSH            {R4-R7,LR}|240-181
+336|code|MOV             R5, hook|5-70
+338|code|SUB             SP, SP, #0x24|137-176
+340|code|MOV             R6, hook_data|14-70
+342|code|CBZ             pull, loc_15C|10-177
+344|code|MOVS            R0, #0|0-32
+346|code|B               loc_180|17-224
+348|code|LDR             R3, =cryptodisk_list|9-75
+350|code|LDR             R7, =grub_snprintf|10-79
+352|code|LDR             R4, [R3]|28-104
+354|code|CMP             i, #0|0-44
+356|code|BEQ             loc_158|248-208
+358|code|MOVS            R1, #0x1E|30-33
+360|code|MOV             R0, SP|104-70
+362|code|LDR             R2, =aCryptoLu; "crypto%lu"|8-74
+364|code|LDR             R3, [i,#0x4C]|227-108
+366|code|BLX             R7; grub_snprintf|184-71
+368|code|MOV             R0, SP|104-70
+370|code|MOV             R1, hook_data|49-70
+372|code|BLX             hook|168-71
+374|code|CBZ             R0, loc_17C|8-177
+376|code|MOVS            R0, #1|1-32
+378|code|B               loc_180|1-224
+380|code|LDR             i, [i]|36-104
+382|code|B               loc_162|240-231
+384|code|ADD             SP, SP, #0x24 ; '$'|9-176
+386|code|POP             {R4-R7,PC}|240-189
+388|data|DCD cryptodisk_list|140-18-0-0
+392|data|DCD grub_snprintf|196-18-0-0
+396|data|DCD aCryptoLu; "crypto%lu"|39-16-0-0
+400|code|PUSH            {R4-R7,LR}|240-181
+402|code|SUBS            R4, s1, #1|68-30
+404|code|LDRB.W          R0, [R4,#1]!|20-248-1-15
+408|code|MOV             R6, R1|14-70
+410|code|SUB.W           R2, R0, #0x41 ; 'A'|160-241-65-2
+414|code|CBZ             R0, loc_1BE|112-177
+416|code|LDRB.W          R3, [s2],#1|17-248-1-59
+420|code|CBZ             R3, loc_1BE|91-177
+422|code|CMP             R2, #0x19|25-42
+424|code|SUB.W           R7, R3, #0x41 ; 'A'|163-241-65-7
+428|code|MOV             R5, R0|5-70
+430|code|IT LS|152-191
+432|code|ADDLS.W         R5, R0, #0x20 ; ' '|0-241-32-5
+436|code|CMP             R7, #0x19|25-47
+438|code|IT LS|152-191
+440|code|ADDLS           R3, #0x20 ; ' '|32-51
+442|code|CMP             R5, R3|157-66
+444|code|BEQ             loc_194|234-208
+446|code|LDRB            R3, [s2]|51-120
+448|code|CMP             R2, #0x19|25-42
+450|code|IT LS|152-191
+452|code|ADDLS           R0, #0x20 ; ' '|32-48
+454|code|SUB.W           R2, R3, #0x41 ; 'A'|163-241-65-2
+458|code|CMP             R2, #0x19|25-42
+460|code|IT LS|152-191
+462|code|ADDLS           R3, #0x20 ; ' '|32-51
+464|code|SUBS            R0, R0, R3|192-26
+466|code|POP             {R4-R7,PC}|240-189
+468|code|PUSH            {name-R2,R4-R7,LR}|247-181
+470|code|MOV             R5, disk|13-70
+472|code|MOVS            R2, #6|6-34
+474|code|LDR             disk, =aCrypto; "crypto"|41-73
+476|code|LDR             R7, =grub_memcmp|41-79
+478|code|MOV             R6, name|6-70
+480|code|BLX             R7; grub_memcmp|184-71
+482|code|MOV             R4, R0|4-70
+484|code|CBNZ            R0, loc_22A|8-187
+486|code|MOV             R0, name|48-70
+488|code|LDR             R1, =aCryptouuid; "cryptouuid/"|39-73
+490|code|MOVS            R2, #0xB|11-34
+492|code|BLX             R7; grub_memcmp|184-71
+494|code|CBNZ            R0, loc_20A|96-185
+496|code|LDR             R3, =cryptodisk_list|38-75
+498|code|ADD.W           R7, name, #0xB|6-241-11-7
+502|code|LDR             R4, [R3]|28-104
+504|code|CBZ             dev, loc_22A|188-177
+506|code|MOV             R0, R7; s1|56-70
+508|code|ADD.W           R1, dev, #0x58 ; 'X'; s2|4-241-88-1
+512|code|BL              grub_strcasecmp|255-247-198-255
+516|code|CBZ             R0, loc_234|176-177
+518|code|LDR             dev, [dev]|36-104
+520|code|B               loc_1F8|246-231
+522|code|LDR             R3, =grub_strtoul|33-75
+524|code|ADDS            R0, name, #6|176-29
+526|code|MOV             R1, R4|33-70
+528|code|MOV             R2, R4|34-70
+530|code|BLX             R3; grub_strtoul|152-71
+532|code|LDR             R3, =grub_errno|31-75
+534|code|LDR             R3, [R3]|27-104
+536|code|CBNZ            R3, loc_22A|59-185
+538|code|LDR             R3, =cryptodisk_list|28-75
+540|code|LDR             R4, [R3]|28-104
+542|code|CBZ             dev, loc_22A|36-177
+544|code|LDR             R3, [dev,#0x4C]|227-108
+546|code|CMP             R3, id|131-66
+548|code|BEQ             loc_234|6-208
+550|code|LDR             dev, [dev]|36-104
+552|code|B               loc_21E|249-231
+554|code|LDR             R1, =aNoSuchDevice; "No such device"|27-73
+556|code|MOVS            R0, #0xC|12-32
+558|code|LDR             R3, =grub_error|27-75
+560|code|BLX             R3; grub_error|152-71
+562|code|B               loc_27A|34-224
+564|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+568|code|STR             R3, [disk,#0x10]|43-97
+570|code|LDR             R3, [dev,#0x20]|35-106
+572|code|CBNZ            R3, loc_25E|123-185
+574|code|STR             name, [SP,#0x20+var_20]|0-150
+576|code|MOVW            R1, #0x20B|64-242-11-33
+580|code|LDR             R0, =aDiskCryptodisk; "disk/cryptodisk.c"|22-72
+582|code|LDR             R2, =aCryptodisk; "cryptodisk"|23-74
+584|code|LDR             R3, =aOpeningDeviceS; "Opening device %s\n"|23-75
+586|code|LDR             name, =grub_real_dprintf|24-78
+588|code|BLX             R6; grub_real_dprintf|176-71
+590|code|LDR             R0, [dev,#8]|160-104
+592|code|LDR             R3, =grub_disk_open|23-75
+594|code|BLX             R3; grub_disk_open|152-71
+596|code|STR             R0, [dev,#0x20]|32-98
+598|code|CBNZ            R0, loc_25E|16-185
+600|code|LDR             R3, =grub_errno|14-75
+602|code|LDR             R0, [R3]|24-104
+604|code|B               loc_27A|13-224
+606|code|LDRD.W          R2, R3, [dev,#0x18]|212-233-6-35
+610|code|MOVS            R0, #0|0-32
+612|code|STR             dev, [disk,#0x28]|172-98
+614|code|STRD.W          R2, R3, [disk,#8]|197-233-2-35
+618|code|MOVW            R3, #0x7FFF|71-246-255-115
+622|code|STR             R3, [disk,#0x14]|107-97
+624|code|LDR             R3, [dev,#0x4C]|227-108
+626|code|STR             R3, [disk,#0x18]|171-97
+628|code|LDR             R3, [dev,#0x24]|99-106
+630|code|ADDS            R3, #1|1-51
+632|code|STR             R3, [dev,#0x24]|99-98
+634|code|ADD             SP, SP, #0xC|3-176
+636|code|POP             {R4-R7,PC}|240-189
+638|data|ALIGN 0x10|0-191
+640|data|DCD aCrypto; "crypto"|49-16-0-0
+644|data|DCD grub_memcmp|44-19-0-0
+648|data|DCD aCryptouuid; "cryptouuid/"|71-16-0-0
+652|data|DCD cryptodisk_list|140-18-0-0
+656|data|DCD grub_strtoul|48-19-0-0
+660|data|DCD grub_errno|212-18-0-0
+664|data|DCD aNoSuchDevice; "No such device"|56-16-0-0
+668|data|DCD grub_error|4-19-0-0
+672|data|DCD aDiskCryptodisk; "disk/cryptodisk.c"|252-15-0-0
+676|data|DCD aCryptodisk; "cryptodisk"|14-16-0-0
+680|data|DCD aOpeningDeviceS; "Opening device %s\n"|83-16-0-0
+684|data|DCD grub_real_dprintf|252-18-0-0
+688|data|DCD grub_disk_open|184-18-0-0
+692|code|PUSH.W          {sz,R1,R4-R10,LR}|45-233-243-71
+696|code|MOV             R6, sz|6-70
+698|code|LDR             R7, =cryptodisk_list|97-79
+700|code|MOVS            R5, #0|0-37
+702|code|LDR.W           R9, =grub_strcmp|223-248-140-145
+706|code|LDR.W           R8, =grub_strlen|223-248-192-129
+710|code|LDR             R4, [R7]|60-104
+712|code|STR             R5, [sz]|5-96
+714|code|CBZ             i, loc_302|212-177
+716|code|LDR.W           R0, [i,#0x17C]|212-248-124-1
+720|code|LDR             R1, =aLuks; "luks"|92-73
+722|code|BLX             R9; grub_strcmp|200-71
+724|code|CBNZ            R0, loc_2FE|152-185
+726|code|ADD.W           R0, i, #0x58 ; 'X'|4-241-88-0
+730|code|ADDS            R5, #0x42 ; 'B'|66-53
+732|code|BLX             R8; grub_strlen|192-71
+734|code|LDR             R3, [i,#0x28]|163-106
+736|code|LDR             R3, [R3]|27-104
+738|code|MOV             R10, R0|130-70
+740|code|LDR             R0, [R3]|24-104
+742|code|BLX             R8; grub_strlen|192-71
+744|code|LDR             R3, [i,#0x34]|99-107
+746|code|ADD             R5, R10|85-68
+748|code|ADD             R5, R0|5-68
+750|code|CBZ             R3, loc_2F6|19-177
+752|code|LDR             R0, [R3]|24-104
+754|code|BLX             R8; grub_strlen|192-71
+756|code|ADD             size, R0|5-68
+758|code|LDR.W           R3, [i,#0x178]|212-248-120-49
+762|code|ADD.W           size, size, R3,LSL#1|5-235-67-5
+766|code|LDR             i, [i]|36-104
+768|code|B               loc_2CA|227-231
+770|code|ADDS            R0, size, #1|104-28
+772|code|LDR             R3, =grub_malloc|80-75
+774|code|BLX             R3; grub_malloc|152-71
+776|code|MOV             size, ret|5-70
+778|code|CMP             ret, #0|0-40
+780|code|BEQ.W           loc_436|0-240-147-128
+784|code|LDR             i, [R7]|60-104
+786|code|MOV             R8, ret|128-70
+788|code|LDR             R7, =grub_strcmp|77-79
+790|code|CMP             i, #0|0-44
+792|code|BEQ.W           loc_428|0-240-134-128
+796|code|LDR.W           R0, [i,#0x17C]|212-248-124-1
+800|code|LDR             R1, =aLuks; "luks"|72-73
+802|code|BLX             R7; grub_strcmp|184-71
+804|code|CMP             R0, #0|0-40
+806|code|BNE             loc_424|125-209
+808|code|MOV             R0, ptr; dest|64-70
+810|code|LDR             R1, =aLuksMount; "luks_mount "|73-73
+812|code|BL              grub_stpcpy|255-247-167-254
+816|code|ADD.W           R1, i, #0x58 ; 'X'; src|4-241-88-1
+820|code|BL              grub_stpcpy|255-247-163-254
+824|code|MOVS            R3, #0x20 ; ' '|32-35
+826|code|MOVS            R1, #0x15|21-33
+828|code|STRB            R3, [ptr]|3-112
+830|code|ADD.W           R8, ptr, #1|0-241-1-8
+834|code|LDRD.W          R2, R3, [i,#0x10]|212-233-4-35
+838|code|MOV             R0, ptr|64-70
+840|code|STRD.W          R2, R3, [SP,#0x28+var_28]|205-233-0-35
+844|code|LDR             R2, =aLlu; "%llu "|65-74
+846|code|LDR             R3, =grub_snprintf|66-75
+848|code|BLX             R3; grub_snprintf|152-71
+850|code|MOV             R0, ptr|64-70
+852|code|MOV             R3, R0|3-70
+854|code|ADDS            ptr, #1|1-48
+856|code|LDRB            R2, [ptr]|26-120
+858|code|CMP             R2, #0|0-42
+860|code|BNE             loc_354|250-209
+862|code|LDR             R2, [i,#0x28]|162-106
+864|code|LDR             R2, [R2]|18-104
+866|code|LDR             R1, [R2]|17-104
+868|code|SUBS            R1, #1|1-57
+870|code|LDRB.W          R2, [R1,#1]!|17-248-1-47
+874|code|MOV             R0, R3|24-70
+876|code|CBZ             R2, loc_37E|58-177
+878|code|SUB.W           R0, R2, #0x41 ; 'A'|162-241-65-0
+882|code|CMP             R0, #0x19|25-40
+884|code|IT LS|152-191
+886|code|ADDLS           R2, #0x20 ; ' '|32-50
+888|code|STRB.W          R2, [R3],#1|3-248-1-43
+892|code|B               loc_366|243-231
+894|code|LDR             R2, [i,#0x40]|34-108
+896|code|CMP             R2, #4; switch 5 cases|4-42
+898|code|BHI             def_384; jumptable 00000384 default case|20-216
+900|code|TBB.W           [PC,R2]; switch jump|223-232-2-240
+904|data|DCB 3; jump table for switch statement|3
+905|data|DCB 6|6
+906|data|DCB 9|9
+907|data|DCB 0xC|12
+908|data|DCB 0xF|15
+909|data|ALIGN 2|0
+910|code|MOV             ptr, R3; jumptable 00000384 case 0|24-70
+912|code|LDR             R1, =aEcb; "-ecb"|50-73
+914|code|B               loc_3AA|10-224
+916|code|MOV             ptr, R3; jumptable 00000384 case 1|24-70
+918|code|LDR             R1, =aCbc; "-cbc"|50-73
+920|code|B               loc_3AA|7-224
+922|code|MOV             ptr, R3; jumptable 00000384 case 2|24-70
+924|code|LDR             R1, =aPcbc; "-pcbc"|49-73
+926|code|B               loc_3AA|4-224
+928|code|MOV             ptr, R3; jumptable 00000384 case 3|24-70
+930|code|LDR             R1, =aXts; "-xts"|49-73
+932|code|B               loc_3AA|1-224
+934|code|LDR             R1, =aLrw; jumptable 00000384 case 4|49-73
+936|code|MOV             ptr, R3; dest|24-70
+938|code|BL              grub_stpcpy|255-247-104-254
+942|code|LDR             R3, [i,#0x44]; jumptable 00000384 default case|99-108
+944|code|CMP             R3, #4; switch 5 cases|4-43
+946|code|BHI             def_3B4; jumptable 000003B4 default case|19-216
+948|code|TBB.W           [PC,R3]; switch jump|223-232-3-240
+952|data|DCB 3; jump table for switch statement|3
+953|data|DCB 5|5
+954|data|DCB 7|7
+955|data|DCB 0xB|11
+956|data|DCB 9|9
+957|data|ALIGN 2|0
+958|code|LDR             R1, =aNull; jumptable 000003B4 case 0|44-73
+960|code|B               loc_3D8|10-224
+962|code|LDR             R1, =aPlain; jumptable 000003B4 case 1|44-73
+964|code|B               loc_3D8|8-224
+966|code|LDR             R1, =aPlain64; jumptable 000003B4 case 2|44-73
+968|code|B               loc_3D8|6-224
+970|code|LDR             R1, =aBenbi; jumptable 000003B4 case 4|44-73
+972|code|B               loc_3D8|4-224
+974|code|LDR             R1, =aEssiv; jumptable 000003B4 case 3|44-73
+976|code|BL              grub_stpcpy|255-247-85-254
+980|code|LDR             R3, [i,#0x34]|99-107
+982|code|LDR             R1, [R3]; src|25-104
+984|code|BL              grub_stpcpy|255-247-81-254
+988|code|ADD.W           R1, i, #0xF8; jumptable 000003B4 default case|4-241-248-1
+992|code|ADDS            R2, ptr, #1|66-28
+994|code|MOVS            R3, #0x20 ; ' '|32-35
+996|code|STRB            R3, [R0]|3-112
+998|code|MOVS            R0, #0|0-32
+1000|code|LDR.W           R3, [i,#0x178]|212-248-120-49
+1004|code|CMP             j, R3|152-66
+1006|code|BCS             loc_41C|21-210
+1008|code|LDRB            R3, [R1]|11-120
+1010|code|MOV             LR, R1|142-70
+1012|code|ADDS            j, #1|1-48
+1014|code|ADDS            R1, #1|1-49
+1016|code|LSRS            R3, R3, #4|27-9
+1018|code|CMP             R3, #9|9-43
+1020|code|ITE LS|148-191
+1022|code|ADDLS           R3, #0x30 ; '0'|48-51
+1024|code|ADDHI           R3, #0x57 ; 'W'|87-51
+1026|code|STRB.W          R3, [R2],#2|2-248-2-59
+1030|code|LDRB.W          R3, [LR]|158-248-0-48
+1034|code|AND.W           R3, R3, #0xF|3-240-15-3
+1038|code|CMP             R3, #9|9-43
+1040|code|ITE LS|148-191
+1042|code|ADDLS           R3, #0x30 ; '0'|48-51
+1044|code|ADDHI           R3, #0x57 ; 'W'|87-51
+1046|code|STRB.W          R3, [ptr,#-1]|2-248-1-60
+1050|code|B               loc_3E8|229-231
+1052|code|ADD.W           R8, ptr, #1|2-241-1-8
+1056|code|MOVS            R3, #0xA|10-35
+1058|code|STRB            R3, [R2]|19-112
+1060|code|LDR             i, [i]|36-104
+1062|code|B               loc_316|118-231
+1064|code|STRB.W          i, [ptr]|136-248-0-64
+1068|code|RSB.W           R3, ret, ptr|197-235-8-3
+1072|code|MOV             R0, ret|40-70
+1074|code|STR             R3, [sz]|51-96
+1076|code|B               loc_438|0-224
+1078|code|MOV             ret, i|32-70
+1080|code|ADD             SP, SP, #8|2-176
+1082|code|POP.W           {i-R10,PC}|189-232-240-135
+1086|data|ALIGN 0x10|0-191
+1088|data|DCD cryptodisk_list|140-18-0-0
+1092|data|DCD aLuks; "luks"|102-16-0-0
+1096|data|DCD grub_malloc|248-18-0-0
+1100|data|DCD grub_strcmp|240-18-0-0
+1104|data|DCD aLuksMount; "luks_mount "|107-16-0-0
+1108|data|DCD aLlu; "%llu "|119-16-0-0
+1112|data|DCD grub_snprintf|196-18-0-0
+1116|data|DCD aEcb; "-ecb"|125-16-0-0
+1120|data|DCD aCbc; "-cbc"|130-16-0-0
+1124|data|DCD aPcbc; "-pcbc"|135-16-0-0
+1128|data|DCD aXts; "-xts"|141-16-0-0
+1132|data|DCD aLrw; "-lrw"|146-16-0-0
+1136|data|DCD aNull; "-null"|151-16-0-0
+1140|data|DCD aPlain; "-plain"|157-16-0-0
+1144|data|DCD aPlain64; "-plain64"|164-16-0-0
+1148|data|DCD aBenbi; "-benbi"|173-16-0-0
+1152|data|DCD aEssiv; "-essiv:"|180-16-0-0
+1156|data|DCD grub_strlen|172-18-0-0
+1160|code|PUSH.W          {o-R8,LR}|45-233-255-65
+1164|code|MOV             R4, b|20-70
+1166|code|LDR             R3, =grub_memset|25-75
+1168|code|MOVS            b, #0x10|16-34
+1170|code|MOV             R8, a|136-70
+1172|code|MOVS            a, #0|0-33
+1174|code|MOV             R7, o|7-70
+1176|code|BLX             R3; grub_memset|152-71
+1178|code|MOV             R1, b|33-70
+1180|code|MOV             R0, SP|104-70
+1182|code|MOVS            R2, #0x10|16-34
+1184|code|LDR             R3, =grub_memmove|21-75
+1186|code|BLX             R3; grub_memmove|152-71
+1188|code|MOV             R6, SP|110-70
+1190|code|MOVS            b, #0|0-36
+1192|code|SUB.W           R3, a, i,LSR#3|168-235-212-3
+1196|code|AND.W           R2, i, #7|4-240-7-2
+1200|code|LDRB            R3, [R3,#0xF]|219-123
+1202|code|ASRS            R3, R2|19-65
+1204|code|LSLS            R3, R3, #0x1F|219-7
+1206|code|BPL             loc_4C4|5-213
+1208|code|MOV             R0, o; out|56-70
+1210|code|MOV             R1, o; in1|57-70
+1212|code|MOV             R2, R6; in2|50-70
+1214|code|MOVS            R3, #0x10; size|16-35
+1216|code|BL              grub_crypto_xor|255-247-158-253
+1220|code|ADD             R5, SP, #0x28+var_18|4-173
+1222|code|MOVS            R3, #0|0-35
+1224|code|LDRB.W          R2, [R5,#-1]!|21-248-1-45
+1228|code|CMP             R5, R6|181-66
+1230|code|ORR.W           R3, R3, R2,LSL#1|67-234-66-3
+1234|code|STRB            R3, [R5]|43-112
+1236|code|MOV.W           R3, R2,LSR#7|79-234-210-19
+1240|code|BNE             loc_4C8|246-209
+1242|code|CBZ             R3, loc_4E8|43-177
+1244|code|LDRB.W          R3, [SP,#0x28+t+0xF]|157-248-15-48
+1248|code|EOR.W           R3, R3, #0x87|131-240-135-3
+1252|code|STRB.W          R3, [SP,#0x28+t+0xF]|141-248-15-48
+1256|code|ADDS            i, #1|1-52
+1258|code|CMP             i, #0x80|128-44
+1260|code|BNE             loc_4A8|220-209
+1262|code|ADD             SP, SP, #0x10|4-176
+1264|code|POP.W           {i-a,PC}|189-232-240-129
+1268|data|DCD grub_memset|216-18-0-0
+1272|data|DCD grub_memmove|188-18-0-0
+1276|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1280|code|MOV             R4, dev|4-70
+1282|code|LDR             dev, [dev,#0x28]|128-106
+1284|code|SUB             SP, SP, #0x5C|151-176
+1286|code|MOV             R6, data|14-70
+1288|code|STR             len_0, [SP,#0x80+len]|3-146
+1290|code|LDR             R3, [R0]|3-104
+1292|code|LDR             R3, [R3,#0xC]|219-104
+1294|code|CMP             R3, #0x10|16-43
+1296|code|BHI.W           loc_97E|0-242-53-130
+1300|code|LDR             R3, [dev,#0x40]|35-108
+1302|code|CBNZ            R3, loc_522|35-185
+1304|code|LDR.W           R3, [dev,#0x184]|212-248-132-49
+1308|code|CMP             R3, #0|0-43
+1310|code|BEQ.W           loc_96A|0-240-36-130
+1314|code|MOVS            R5, #0|0-37
+1316|code|LDR             R3, [SP,#0x80+len]|3-155
+1318|code|CMP             i, R3|157-66
+1320|code|BCS.W           loc_966|128-240-29-130
+1324|code|LDR             R3, [dev,#0x28]|163-106
+1326|code|LDR.W           R10, [dev,#0x184]|212-248-132-161
+1330|code|LDR             R3, [R3]|27-104
+1332|code|LDR             R7, [R3,#0xC]|223-104
+1334|code|CMP.W           R10, #0|186-241-0-15
+1338|code|BEQ             loc_56C|23-208
+1340|code|LDR.W           R2, [dev,#0x188]|212-248-136-33
+1344|code|MOV             R11, dev|163-70
+1346|code|LDR             R3, =__aeabi_llsr|150-75
+1348|code|LDRD.W          R0, R1, [SP,#0x80+sector]|221-233-32-1
+1352|code|BLX             R3; __aeabi_llsr|152-71
+1354|code|LDRD.W          R2, R3, [R11,#0x1D0]!|251-233-116-35
+1358|code|CMP             R1, R3|153-66
+1360|code|MOV             R8, R0|128-70
+1362|code|IT EQ|8-191
+1364|code|CMPEQ           R0, R2|144-66
+1366|code|MOV             R9, R1|137-70
+1368|code|BEQ             loc_56C|8-208
+1370|code|MOV             R0, dev|32-70
+1372|code|MOV             R2, R8|66-70
+1374|code|MOV             R3, R1|11-70
+1376|code|BLX             R10|208-71
+1378|code|CMP             err, #0|0-40
+1380|code|BNE.W           loc_980|64-240-12-130
+1384|code|STRD.W          R8, R9, [R11]|203-233-0-137
+1388|code|ADD.W           R8, SP, #0x80+iv|13-241-16-8
+1392|code|LDR             R3, =grub_memset|139-75
+1394|code|MOVS            R1, #0|0-33
+1396|code|MOVS            R2, #0x10|16-34
+1398|code|MOV             R0, R8|64-70
+1400|code|BLX             R3; grub_memset|152-71
+1402|code|LDR             R3, [dev,#0x44]|99-108
+1404|code|SUBS            R3, #1; switch 6 cases|1-59
+1406|code|CMP             R3, #5|5-43
+1408|code|BHI             def_582; jumptable 00000582 default case|114-216
+1410|code|TBB.W           [PC,R3]; switch jump|223-232-3-240
+1414|data|DCB 0x3A; jump table for switch statement|58
+1415|data|DCB 0x38|56
+1416|data|DCB 0x64|100
+1417|data|DCB 0x4D|77
+1418|data|DCB 0x3D|61
+1419|data|DCB 3|3
+1420|code|LDR             R3, [dev,#0x3C]; jumptable 00000582 case 6|227-107
+1422|code|LDR             R0, [R3,#0x24]|88-106
+1424|code|LDR             R3, =grub_zalloc|132-75
+1426|code|BLX             R3; grub_zalloc|152-71
+1428|code|MOV             R7, ctx|7-70
+1430|code|CBNZ            ctx, loc_59C|8-185
+1432|code|MOVS            ctx, #0x22 ; '"'|34-32
+1434|code|B               loc_980|241-225
+1436|code|LDR.W           R2, [dev,#0x180]|212-248-128-33
+1440|code|ADD.W           R9, SP, #0x80+var_28|13-241-88-9
+1444|code|LDRD.W          ctx, R1, [SP,#0x80+sector]|221-233-32-1
+1448|code|LDR             R3, =__aeabi_llsl|127-75
+1450|code|BLX             R3; __aeabi_llsl|152-71
+1452|code|LDR             R3, [dev,#0x3C]|227-107
+1454|code|LDR             R3, [R3,#0x14]|91-105
+1456|code|STRD.W          R0, R1, [R9,#-0x28]!|105-233-10-1
+1460|code|MOV             R0, ctx|56-70
+1462|code|BLX             R3|152-71
+1464|code|LDR             R3, [dev,#0x3C]|227-107
+1466|code|MOV             R0, ctx|56-70
+1468|code|ADD.W           R1, dev, #0xB4|4-241-180-1
+1472|code|LDR.W           R2, [dev,#0xF4]|212-248-244-32
+1476|code|LDR             R3, [R3,#0x18]|155-105
+1478|code|BLX             R3|152-71
+1480|code|LDR             R3, [dev,#0x3C]|227-107
+1482|code|MOV             R1, R9|73-70
+1484|code|MOVS            R2, #8|8-34
+1486|code|MOV             R0, ctx|56-70
+1488|code|LDR             R3, [R3,#0x18]|155-105
+1490|code|BLX             R3|152-71
+1492|code|LDR             R3, [dev,#0x3C]|227-107
+1494|code|MOV             R0, ctx|56-70
+1496|code|LDR             R3, [R3,#0x1C]|219-105
+1498|code|BLX             R3|152-71
+1500|code|LDR             R3, [dev,#0x3C]|227-107
+1502|code|MOV             R0, ctx|56-70
+1504|code|LDR             R3, [R3,#0x20]|27-106
+1506|code|BLX             R3|152-71
+1508|code|MOVS            R2, #0x10|16-34
+1510|code|LDR             R3, =grub_memmove|113-75
+1512|code|MOV             R1, R0|1-70
+1514|code|MOV             R0, R8|64-70
+1516|code|BLX             R3; grub_memmove|152-71
+1518|code|MOV             R0, ctx|56-70
+1520|code|LDR             R3, =grub_free|111-75
+1522|code|BLX             R3; grub_free|152-71
+1524|code|B               def_582; jumptable 00000582 default case|56-224
+1526|code|LDR             R3, [SP,#0x80+sector+4]; jumptable 00000582 case 2|33-155
+1528|code|STR             R3, [SP,#0x80+iv+4]|5-147
+1530|code|LDR             R3, [SP,#0x80+sector]; jumptable 00000582 case 1|32-155
+1532|code|STR             R3, [SP,#0x80+iv]|4-147
+1534|code|B               def_582; jumptable 00000582 default case|51-224
+1536|code|LDR.W           R7, [dev,#0x180]; jumptable 00000582 case 5|212-248-128-113
+1540|code|LDR             R3, =__aeabi_llsr|101-75
+1542|code|RSB.W           R2, R7, #0x20 ; ' '|199-241-32-2
+1546|code|LDRD.W          R0, R1, [SP,#0x80+sector]|221-233-32-1
+1550|code|BLX             R3; __aeabi_llsr|152-71
+1552|code|MOV             R2, R7|58-70
+1554|code|LDR             R3, =__aeabi_llsl|101-75
+1556|code|STR             R0, [SP,#0x80+iv+4]|5-144
+1558|code|LDRD.W          R0, R1, [SP,#0x80+sector]|221-233-32-1
+1562|code|BLX             R3; __aeabi_llsl|152-71
+1564|code|STR             R0, [SP,#0x80+iv]|4-144
+1566|code|B               def_582; jumptable 00000582 default case|35-224
+1568|code|LDR             R2, [dev,#0x48]; jumptable 00000582 case 4|162-108
+1570|code|ADDS            R7, #3|3-55
+1572|code|LDR             R3, =__aeabi_llsl|96-75
+1574|code|LDRD.W          R0, R1, [SP,#0x80+sector]|221-233-32-1
+1578|code|LSRS            R7, R7, #2|191-8
+1580|code|BLX             R3; __aeabi_llsl|152-71
+1582|code|ADD             R3, SP, #0x80+var_28|22-171
+1584|code|ADD.W           R3, R3, R7,LSL#2|3-235-135-3
+1588|code|ADDS            R0, #1|1-48
+1590|code|ADC.W           R1, R1, #0|65-241-0-1
+1594|code|REV             R0, R0|0-186
+1596|code|REV             R2, R1|10-186
+1598|code|STR.W           R2, [R3,#-0x50]|67-248-80-44
+1602|code|ADD             R3, SP, #0x80+var_28|22-171
+1604|code|ADD.W           R7, R3, R7,LSL#2|3-235-135-7
+1608|code|STR.W           R0, [R7,#-0x4C]|71-248-76-12
+1612|code|B               def_582; jumptable 00000582 default case|12-224
+1614|code|LDR             R3, [SP,#0x80+sector]; jumptable 00000582 case 3|32-155
+1616|code|MOV             R1, R8|65-70
+1618|code|LDR             R0, [dev,#0x30]|32-107
+1620|code|MOV             R2, R8|66-70
+1622|code|LDR             R7, =grub_crypto_ecb_encrypt|87-79
+1624|code|STR             R3, [SP,#0x80+iv]|4-147
+1626|code|LDR             R3, [dev,#0x28]|163-106
+1628|code|LDR             R3, [R3]|27-104
+1630|code|LDR             R3, [R3,#0xC]|219-104
+1632|code|BLX             R7; grub_crypto_ecb_encrypt|184-71
+1634|code|CMP             err, #0|0-40
+1636|code|BNE.W           loc_980|64-240-140-129
+1640|code|LDR             R3, [dev,#0x40]; jumptable 00000582 default case|35-108
+1642|code|CMP             R3, #4; switch 5 cases|4-43
+1644|code|BHI.W           def_670; jumptable 00000670 default case|0-242-121-129
+1648|code|TBH.W           [PC,R3,LSL#1]; switch jump|223-232-19-240
+1652|data|DCW 0x15B; jump table for switch statement|91-1
+1654|data|DCW 5|5-0
+1656|data|DCW 0x1A|26-0
+1658|data|DCW 0xA8|168-0
+1660|data|DCW 0xF8|248-0
+1662|code|LDR             R2, [SP,#0x80+do_encrypt]; jumptable 00000670 case 1|34-154
+1664|code|ADDS            R1, data, i|113-25
+1666|code|LDR.W           R7, [dev,#0x180]|212-248-128-113
+1670|code|MOVS            R3, #1|1-35
+1672|code|STR.W           R8, [SP,#0x80+var_80]|205-248-0-128
+1676|code|LDR             R0, [dev,#0x28]|160-106
+1678|code|CBZ             R2, loc_698|26-177
+1680|code|LSLS            R3, R7|187-64
+1682|code|MOV             R2, R1|10-70
+1684|code|LDR             R7, =grub_crypto_cbc_encrypt|72-79
+1686|code|B               loc_69E|2-224
+1688|code|LSLS            R3, R7|187-64
+1690|code|LDR             R7, =grub_crypto_cbc_decrypt|72-79
+1692|code|MOV             R2, R1|10-70
+1694|code|BLX             R7; grub_crypto_cbc_decrypt|184-71
+1696|code|CMP             err, #0|0-40
+1698|code|BEQ.W           loc_948|0-240-81-129
+1702|code|B               loc_980|107-225
+1704|code|LDR             R2, [SP,#0x80+do_encrypt]; jumptable 00000670 case 2|34-154
+1706|code|LDR             R7, [dev,#0x28]|167-106
+1708|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+1712|code|CMP             R2, #0|0-42
+1714|code|BEQ             loc_724|55-208
+1716|code|LDR             R2, [R7]|58-104
+1718|code|LDR             R1, [R2,#0xC]|209-104
+1720|code|CMP             R1, #0x10|16-41
+1722|code|BHI.W           loc_97E|0-242-96-129
+1726|code|LDR             R2, [R2,#0x20]|18-106
+1728|code|CMP             R2, #0|0-42
+1730|code|BEQ             loc_796|104-208
+1732|code|MOV.W           R10, #1|79-240-1-10
+1736|code|LSL.W           R10, R10, R3|10-250-3-250
+1740|code|LDR             R3, =__aeabi_uidivmod|60-75
+1742|code|MOV             R0, R10|80-70
+1744|code|BLX             R3; __aeabi_uidivmod|152-71
+1746|code|CMP             R1, #0|0-41
+1748|code|BNE.W           loc_97E|64-240-83-129
+1752|code|ADD.W           R8, data, i|6-235-5-8
+1756|code|LDR.W           R9, =grub_memmove|223-248-204-144
+1760|code|ADD             R10, R8|194-68
+1762|code|CMP             R8, R10|208-69
+1764|code|BCS.W           loc_948|128-240-48-129
+1768|code|LDR             R3, [R7]|59-104
+1770|code|MOV             R1, R8|65-70
+1772|code|ADD             R0, SP, #0x80+tmp|12-168
+1774|code|LDR             R2, [R3,#0xC]|218-104
+1776|code|BLX             R9; grub_memmove|200-71
+1778|code|LDR             R3, [R7]|59-104
+1780|code|MOV             R0, R8; out|64-70
+1782|code|MOV             R1, R8; in1|65-70
+1784|code|ADD             R2, SP, #0x80+iv; in2|4-170
+1786|code|LDR             R3, [R3,#0xC]; size|219-104
+1788|code|BL              grub_crypto_xor|255-247-128-252
+1792|code|MOV             R0, R7|56-70
+1794|code|LDR.W           R3, [R0],#4|80-248-4-59
+1798|code|MOV             R1, R8|65-70
+1800|code|MOV             R2, R8|66-70
+1802|code|LDR             R3, [R3,#0x1C]|219-105
+1804|code|BLX             R3|152-71
+1806|code|LDR             R3, [R7]|59-104
+1808|code|MOV             R2, R8; in2|66-70
+1810|code|ADD             R0, SP, #0x80+iv; out|4-168
+1812|code|ADD             R1, SP, #0x80+tmp; in1|12-169
+1814|code|LDR             R3, [R3,#0xC]; size|219-104
+1816|code|BL              grub_crypto_xor|255-247-114-252
+1820|code|LDR             R3, [R7]|59-104
+1822|code|LDR             R3, [R3,#0xC]|219-104
+1824|code|ADD             R8, R3|152-68
+1826|code|B               loc_6E2|222-231
+1828|code|LDR             R2, [R7]|58-104
+1830|code|LDR             R1, [R2,#0xC]|209-104
+1832|code|CMP             R1, #0x10|16-41
+1834|code|BHI.W           loc_97E|0-242-40-129
+1838|code|LDR             R2, [R2,#0x20]|18-106
+1840|code|CMP             R2, #0|0-42
+1842|code|BEQ             loc_796|48-208
+1844|code|MOV.W           R11, #1|79-240-1-11
+1848|code|LSL.W           R11, R11, R3|11-250-3-251
+1852|code|LDR             R3, =__aeabi_uidivmod|32-75
+1854|code|MOV             R0, R11|88-70
+1856|code|BLX             R3; __aeabi_uidivmod|152-71
+1858|code|CMP             R1, #0|0-41
+1860|code|BNE.W           loc_97E|64-240-27-129
+1864|code|ADD.W           R8, data, i|6-235-5-8
+1868|code|LDR.W           R9, =grub_memmove|223-248-92-144
+1872|code|ADD             R11, R8|195-68
+1874|code|ADD.W           R10, R7, #4|7-241-4-10
+1878|code|CMP             R8, R11|216-69
+1880|code|BCS.W           loc_948|128-240-246-128
+1884|code|LDR             R3, [R7]|59-104
+1886|code|MOV             R1, R8|65-70
+1888|code|ADD             R0, SP, #0x80+tmp|12-168
+1890|code|LDR             R2, [R3,#0xC]|218-104
+1892|code|BLX             R9; grub_memmove|200-71
+1894|code|LDR             R3, [R7]|59-104
+1896|code|MOV             R1, R8|65-70
+1898|code|MOV             R2, R8|66-70
+1900|code|MOV             R0, R10|80-70
+1902|code|LDR             R3, [R3,#0x20]|27-106
+1904|code|BLX             R3|152-71
+1906|code|LDR             R3, [R7]|59-104
+1908|code|MOV             R0, R8; out|64-70
+1910|code|MOV             R1, R8; in1|65-70
+1912|code|ADD             R2, SP, #0x80+iv; in2|4-170
+1914|code|LDR             R3, [R3,#0xC]; size|219-104
+1916|code|BL              grub_crypto_xor|255-247-64-252
+1920|code|LDR             R3, [R7]|59-104
+1922|code|MOV             R2, R8; in2|66-70
+1924|code|ADD             R0, SP, #0x80+iv; out|4-168
+1926|code|ADD             R1, SP, #0x80+tmp; in1|12-169
+1928|code|LDR             R3, [R3,#0xC]; size|219-104
+1930|code|BL              grub_crypto_xor|255-247-57-252
+1934|code|LDR             R3, [R7]|59-104
+1936|code|LDR             R3, [R3,#0xC]|219-104
+1938|code|ADD             R8, R3|152-68
+1940|code|B               loc_756|223-231
+1942|code|MOVS            R0, #0x19|25-32
+1944|code|B               loc_980|242-224
+1946|data|ALIGN 4|0-191
+1948|data|DCD __aeabi_llsr|176-18-0-0
+1952|data|DCD grub_memset|216-18-0-0
+1956|data|DCD grub_zalloc|236-18-0-0
+1960|data|DCD __aeabi_llsl|8-19-0-0
+1964|data|DCD grub_memmove|188-18-0-0
+1968|data|DCD grub_free|20-19-0-0
+1972|data|DCD grub_crypto_ecb_encrypt|168-18-0-0
+1976|data|DCD grub_crypto_cbc_encrypt|220-18-0-0
+1980|data|DCD grub_crypto_cbc_decrypt|244-18-0-0
+1984|data|DCD __aeabi_uidivmod|12-19-0-0
+1988|code|LDR             R3, [dev,#0x28]; jumptable 00000670 case 3|163-106
+1990|code|MOV             R1, R8|65-70
+1992|code|LDR             R0, [dev,#0x2C]|224-106
+1994|code|MOV             R2, R8|66-70
+1996|code|LDR             R7, =grub_crypto_ecb_encrypt|110-79
+1998|code|LDR             R3, [R3]|27-104
+2000|code|LDR             R3, [R3,#0xC]|219-104
+2002|code|BLX             R7; grub_crypto_ecb_encrypt|184-71
+2004|code|CMP             err, #0|0-40
+2006|code|BNE.W           loc_980|64-240-211-128
+2010|code|MOV             R9, err|129-70
+2012|code|MOV             R10, R7|186-70
+2014|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+2018|code|LSRS.W          R3, j, R3|57-250-3-243
+2022|code|BNE.W           loc_948|64-240-175-128
+2026|code|LDR             R3, [dev,#0x28]|163-106
+2028|code|ADD.W           R11, j, i|9-235-5-11
+2032|code|ADD             R11, data|179-68
+2034|code|MOV             R2, R8; in2|66-70
+2036|code|LDR             R3, [R3]|27-104
+2038|code|MOV             R0, R11; out|88-70
+2040|code|MOV             R1, R11; in1|89-70
+2042|code|LDR             R3, [R3,#0xC]; size|219-104
+2044|code|BL              grub_crypto_xor|255-247-0-252
+2048|code|LDR             R3, [SP,#0x80+do_encrypt]|34-155
+2050|code|LDR             R0, [dev,#0x28]|160-106
+2052|code|CBZ             R3, loc_812|43-177
+2054|code|LDR             R3, [R0]|3-104
+2056|code|MOV             R1, R11|89-70
+2058|code|MOV             R2, R11|90-70
+2060|code|LDR             R3, [R3,#0xC]|219-104
+2062|code|BLX             R10; grub_crypto_ecb_encrypt|208-71
+2064|code|B               loc_81E|5-224
+2066|code|LDR             R3, [R0]|3-104
+2068|code|MOV             R1, R11|89-70
+2070|code|MOV             R2, R11|90-70
+2072|code|LDR             R7, =grub_crypto_ecb_decrypt|92-79
+2074|code|LDR             R3, [R3,#0xC]|219-104
+2076|code|BLX             R7; grub_crypto_ecb_decrypt|184-71
+2078|code|MOV             R7, R0|7-70
+2080|code|CMP             err, #0|0-40
+2082|code|BNE.W           loc_980|64-240-173-128
+2086|code|LDR             R3, [dev,#0x28]|163-106
+2088|code|MOV             err, R11; out|88-70
+2090|code|MOV             R1, R11; in1|89-70
+2092|code|MOV             R2, R8; in2|66-70
+2094|code|LDR             R3, [R3]|27-104
+2096|code|LDR             R3, [R3,#0xC]; size|219-104
+2098|code|BL              grub_crypto_xor|255-247-229-251
+2102|code|MOV             R3, err|59-70
+2104|code|LDRB.W          R2, [R8,R3]|24-248-3-32
+2108|code|ORR.W           R7, R7, R2,LSL#1|71-234-66-7
+2112|code|STRB.W          R7, [R8,R3]|8-248-3-112
+2116|code|ADDS            R3, #1|1-51
+2118|code|LSRS            R7, R2, #7|215-9
+2120|code|CMP             R3, #0x10|16-43
+2122|code|BNE             loc_838|245-209
+2124|code|CBZ             R7, loc_85A|47-177
+2126|code|LDRB.W          R3, [SP,#0x80+iv]|157-248-16-48
+2130|code|EOR.W           R3, R3, #0x87|131-240-135-3
+2134|code|STRB.W          R3, [SP,#0x80+iv]|141-248-16-48
+2138|code|LDR             R3, [dev,#0x28]|163-106
+2140|code|LDR             R3, [R3]|27-104
+2142|code|LDR             R3, [R3,#0xC]|219-104
+2144|code|ADD             j, R3|153-68
+2146|code|B               loc_7DE|188-231
+2148|code|ADD.W           R9, SP, #0x80+var_60; jumptable 00000670 case 4|13-241-32-9
+2152|code|MOV             R1, R8|65-70
+2154|code|MOVS            R2, #0x10|16-34
+2156|code|LDR             R3, =grub_memmove|72-75
+2158|code|MOV             R0, R9|72-70
+2160|code|MOVS            R7, #1|1-39
+2162|code|BLX             R3; grub_memmove|152-71
+2164|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+2168|code|LDRB.W          R1, [SP,#0x80+var_51]|157-248-47-16
+2172|code|ADD.W           R8, dev, #0xA0|4-241-160-8
+2176|code|SUBS            R3, #4|4-59
+2178|code|LSL.W           R2, R7, R3|7-250-3-242
+2182|code|SUBS            R3, R2, #1|83-30
+2184|code|NEGS            R2, R2|82-66
+2186|code|UXTB            R3, R3|219-178
+2188|code|AND.W           R0, R3, R1|3-234-1-0
+2192|code|ANDS            R1, R2|17-64
+2194|code|STRB.W          R0, [SP,#0x80+var_30]|141-248-80-0
+2198|code|BIC.W           R3, R3, R0|35-234-0-3
+2202|code|STRB.W          R1, [SP,#0x80+var_51]|141-248-47-16
+2206|code|ADD             R0, SP, #0x80+tmp; o|12-168
+2208|code|MOV             R1, R8; a|65-70
+2210|code|MOV             R2, R9; b|74-70
+2212|code|ADD             R3, R7|59-68
+2214|code|STRB.W          R3, [SP,#0x80+var_2F]|141-248-81-48
+2218|code|BL              gf_mul_be|255-247-237-253
+2222|code|LDRB.W          R3, [SP,#0x80+var_30]|157-248-80-48
+2226|code|CBZ             R3, loc_8F0|235-177
+2228|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+2232|code|SUBS            R3, #4|4-59
+2234|code|LSLS            R7, R3|159-64
+2236|code|LDRB.W          R3, [SP,#0x80+var_51]|157-248-47-48
+2240|code|ADD             R7, R3|31-68
+2242|code|UXTH            R7, R7|191-178
+2244|code|LSLS            R3, R7, #0x17|251-5
+2246|code|BMI             loc_8D8|7-212
+2248|code|ADD             R0, SP, #0x80+o; o|16-168
+2250|code|MOV             R1, R8; a|65-70
+2252|code|MOV             R2, R9; b|74-70
+2254|code|STRB.W          R7, [SP,#0x80+var_51]|141-248-47-112
+2258|code|BL              gf_mul_be|255-247-217-253
+2262|code|B               loc_8F0|11-224
+2264|code|ADD.W           R2, SP, #0x80+var_51|13-241-47-2
+2268|code|LDRB.W          R3, [R2,#-1]!|18-248-1-61
+2272|code|ADDS            R3, #1|1-51
+2274|code|UXTB            R3, R3|219-178
+2276|code|STRB            R3, [R2]|19-112
+2278|code|CMP             R3, #0|0-43
+2280|code|BNE             loc_8C8|238-209
+2282|code|CMP             R2, R9|74-69
+2284|code|BNE             loc_8DC|246-209
+2286|code|B               loc_8C8|235-231
+2288|code|ADD.W           R8, data, i|6-235-5-8
+2292|code|ADD             R0, SP, #0x80+tmp; sec|12-168
+2294|code|MOV             R1, dev; dev|33-70
+2296|code|MOV             R2, R8; b|66-70
+2298|code|BL              lrw_xor|255-247-231-251
+2302|code|LDR             R2, [SP,#0x80+do_encrypt]|34-154
+2304|code|LDR.W           R7, [dev,#0x180]|212-248-128-113
+2308|code|MOVS            R3, #1|1-35
+2310|code|LDR             R0, [dev,#0x28]|160-106
+2312|code|MOV             R1, R8|65-70
+2314|code|CBZ             R2, loc_914|26-177
+2316|code|LSLS            R3, R7|187-64
+2318|code|MOV             R2, R8|66-70
+2320|code|LDR             R7, =grub_crypto_ecb_encrypt|29-79
+2322|code|B               loc_91A|2-224
+2324|code|LSLS            R3, R7|187-64
+2326|code|LDR             R7, =grub_crypto_ecb_decrypt|29-79
+2328|code|MOV             R2, R8|66-70
+2330|code|BLX             R7; grub_crypto_ecb_decrypt|184-71
+2332|code|CBNZ            err, loc_980|128-187
+2334|code|ADD             err, SP, #0x80+tmp; sec|12-168
+2336|code|MOV             R1, dev; dev|33-70
+2338|code|MOV             R2, R8; b|66-70
+2340|code|BL              lrw_xor|255-247-210-251
+2344|code|B               loc_948|14-224
+2346|code|LDR             R2, [SP,#0x80+do_encrypt]; jumptable 00000670 case 0|34-154
+2348|code|ADDS            R1, data, i|113-25
+2350|code|LDR.W           R7, [dev,#0x180]|212-248-128-113
+2354|code|MOVS            R3, #1|1-35
+2356|code|LDR             R0, [dev,#0x28]|160-106
+2358|code|CBZ             R2, loc_940|26-177
+2360|code|LSLS            R3, R7|187-64
+2362|code|MOV             R2, R1|10-70
+2364|code|LDR             R7, =grub_crypto_ecb_encrypt|18-79
+2366|code|B               loc_946|2-224
+2368|code|LSLS            R3, R7|187-64
+2370|code|LDR             R7, =grub_crypto_ecb_decrypt|18-79
+2372|code|MOV             R2, R1|10-70
+2374|code|BLX             R7; grub_crypto_ecb_decrypt|184-71
+2376|code|LDRD.W          R2, R3, [SP,#0x80+sector]|221-233-32-35
+2380|code|ADDS            R2, #1|1-50
+2382|code|ADC.W           R3, R3, #0|67-241-0-3
+2386|code|STRD.W          R2, R3, [SP,#0x80+sector]|205-233-32-35
+2390|code|LDR.W           R2, [dev,#0x180]|212-248-128-33
+2394|code|MOVS            R3, #1|1-35
+2396|code|LSLS            R3, R2|147-64
+2398|code|ADD             i, R3|29-68
+2400|code|B               loc_524|224-229
+2402|code|MOVS            R0, #0x18; jumptable 00000670 default case|24-32
+2404|code|B               loc_980|12-224
+2406|code|MOVS            R0, #0|0-32
+2408|code|B               loc_980|10-224
+2410|code|LDR             R3, [SP,#0x80+do_encrypt]|34-155
+2412|code|MOV             len_0, data|10-70
+2414|code|CBZ             R3, loc_976|19-177
+2416|code|LDR             R3, [SP,#0x80+len]|3-155
+2418|code|LDR             dev, =grub_crypto_ecb_encrypt|5-76
+2420|code|B               loc_97A|1-224
+2422|code|LDR             R3, [SP,#0x80+len]|3-155
+2424|code|LDR             dev, =grub_crypto_ecb_decrypt|4-76
+2426|code|BLX             R4; grub_crypto_ecb_decrypt|160-71
+2428|code|B               loc_980|0-224
+2430|code|MOVS            R0, #0xA|10-32
+2432|code|ADD             SP, SP, #0x5C ; '\'|23-176
+2434|code|POP.W           {R4-R11,PC}|189-232-240-143
+2438|data|ALIGN 4|0-191
+2440|data|DCD grub_crypto_ecb_encrypt|168-18-0-0
+2444|data|DCD grub_crypto_ecb_decrypt|40-19-0-0
+2448|data|DCD grub_memmove|188-18-0-0
+2452|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2456|code|SUB             SP, SP, #0x1C|135-176
+2458|code|MOV             R9, R3|153-70
+2460|code|LDR             R3, [disk,#0x10]|3-105
+2462|code|LDR             R4, [SP,#0x40+size]|16-156
+2464|code|MOV             R11, disk|131-70
+2466|code|LDR             R6, [disk,#0x28]|134-106
+2468|code|MOV             R8, R2|144-70
+2470|code|LSL.W           disk, R4, R3|4-250-3-240
+2474|code|LDR             R3, =grub_malloc|45-75
+2476|code|BLX             R3; grub_malloc|152-71
+2478|code|MOV             R5, tmp|5-70
+2480|code|CBNZ            tmp, loc_9B8|16-185
+2482|code|LDR             R3, =grub_errno|44-75
+2484|code|LDR             tmp, [R3]|24-104
+2486|code|B               loc_A58|79-224
+2488|code|LDR.W           R3, [disk,#0x10]|219-248-16-48
+2492|code|LDR             R1, [SP,#0x40+buf]|17-153
+2494|code|LSL.W           R2, R4, R3|4-250-3-242
+2498|code|LDR             R3, =grub_memmove|41-75
+2500|code|BLX             R3; grub_memmove|152-71
+2502|code|STR             R4, [SP,#0x40+sector]|0-148
+2504|code|STRD.W          R8, R9, [SP,#0x40+do_encrypt]|205-233-2-137
+2508|code|MOV.W           R1, #0x27C|79-244-31-113
+2512|code|LDRD.W          R2, R3, [dev,#0x10]|214-233-4-35
+2516|code|LDR             R0, =aDiskCryptodisk; "disk/cryptodisk.c"|37-72
+2518|code|LDR             R7, =grub_real_dprintf|38-79
+2520|code|STRD.W          R2, R3, [SP,#0x40+var_30]|205-233-4-35
+2524|code|LDR             R2, =aCryptodisk; "cryptodisk"|37-74
+2526|code|LDR             R3, =aWritingUSector; "Writing %u sectors to sector 0x%llx wit"...|38-75
+2528|code|BLX             R7; grub_real_dprintf|184-71
+2530|code|LDR.W           R3, [disk,#0x10]|219-248-16-48
+2534|code|MOVS            R2, #1|1-34
+2536|code|STRD.W          R8, R9, [SP,#0x40+sector]; sector|205-233-0-137
+2540|code|STR             R2, [SP,#0x40+do_encrypt]; do_encrypt|2-146
+2542|code|MOV             R0, dev; dev|48-70
+2544|code|MOV             R1, tmp; data|41-70
+2546|code|LSL.W           R2, R4, R3; len|4-250-3-242
+2550|code|BL              grub_cryptodisk_endecrypt|255-247-129-253
+2554|code|LDR             R7, =grub_free|32-79
+2556|code|MOV             R10, gcry_err|130-70
+2558|code|CBZ             gcry_err, loc_A0C|40-177
+2560|code|MOV             gcry_err, tmp|40-70
+2562|code|BLX             R7; grub_free|184-71
+2564|code|MOV             R0, gcry_err|80-70
+2566|code|LDR             R3, =grub_crypto_gcry_error|30-75
+2568|code|BLX             R3; grub_crypto_gcry_error|152-71
+2570|code|B               loc_A58|37-224
+2572|code|LDR             R3, =grub_disk_write_weak|29-75
+2574|code|LDR.W           R10, [R3]|211-248-0-160
+2578|code|CMP.W           R10, #0|186-241-0-15
+2582|code|BEQ             loc_A48|23-208
+2584|code|LDR.W           disk, [disk,#0x10]|219-248-16-176
+2588|code|MOV             gcry_err, R8|64-70
+2590|code|MOV             R1, R9|73-70
+2592|code|LDR             R3, =__aeabi_llsl|25-75
+2594|code|SUB.W           R2, R11, #9|171-241-9-2
+2598|code|LSL.W           R4, R4, R11|4-250-11-244
+2602|code|BLX             R3; __aeabi_llsl|152-71
+2604|code|LDRD.W          R2, R3, [dev,#0x10]|214-233-4-35
+2608|code|STR             R4, [SP,#0x40+do_encrypt]|2-148
+2610|code|STR             tmp, [SP,#0x40+var_34]|3-149
+2612|code|ADDS            R2, R2, R0|18-24
+2614|code|MOV.W           R0, #0|79-240-0-0
+2618|code|ADCS            R3, R1|75-65
+2620|code|MOVS            R1, #0|0-33
+2622|code|STRD.W          R0, R1, [SP,#0x40+sector]|205-233-0-1
+2626|code|LDR             R0, [dev,#0x20]|48-106
+2628|code|BLX             R10|208-71
+2630|code|B               loc_A50|3-224
+2632|code|MOVS            gcry_err, #0x26 ; '&'|38-32
+2634|code|LDR             R1, =aDiskModNotLoad; "disk.mod not loaded"|16-73
+2636|code|LDR             R3, =grub_error|16-75
+2638|code|BLX             R3; grub_error|152-71
+2640|code|MOV             R4, R0|4-70
+2642|code|MOV             err, tmp|40-70
+2644|code|BLX             R7; grub_free|184-71
+2646|code|MOV             R0, err|32-70
+2648|code|ADD             SP, SP, #0x1C|7-176
+2650|code|POP.W           {R4-R11,PC}|189-232-240-143
+2654|data|ALIGN 0x10|0-191
+2656|data|DCD grub_malloc|248-18-0-0
+2660|data|DCD grub_errno|212-18-0-0
+2664|data|DCD grub_memmove|188-18-0-0
+2668|data|DCD aDiskCryptodisk; "disk/cryptodisk.c"|252-15-0-0
+2672|data|DCD grub_real_dprintf|252-18-0-0
+2676|data|DCD aCryptodisk; "cryptodisk"|14-16-0-0
+2680|data|DCD aWritingUSector; "Writing %u sectors to sector 0x%llx wit"...|188-16-0-0
+2684|data|DCD grub_free|20-19-0-0
+2688|data|DCD grub_crypto_gcry_error|224-18-0-0
+2692|data|DCD grub_disk_write_weak|204-18-0-0
+2696|data|DCD __aeabi_llsl|8-19-0-0
+2700|data|DCD aDiskModNotLoad; "disk.mod not loaded"|245-16-0-0
+2704|data|DCD grub_error|4-19-0-0
+2708|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2712|code|SUB             SP, SP, #0x1C|135-176
+2714|code|LDR             R4, [disk,#0x28]|132-106
+2716|code|MOV             R6, R2|22-70
+2718|code|LDR             R5, [SP,#0x40+size]|16-157
+2720|code|MOV             R7, R3|31-70
+2722|code|STRD.W          R6, R7, [SP,#0x40+do_encrypt]|205-233-2-103
+2726|code|MOV             R8, disk|128-70
+2728|code|MOVW            R1, #0x24A|64-242-74-33
+2732|code|LDR             disk, =aDiskCryptodisk; "disk/cryptodisk.c"|32-72
+2734|code|STR             R5, [SP,#0x40+sector]|0-149
+2736|code|LDRD.W          R2, R3, [dev,#0x10]|212-233-4-35
+2740|code|LDR.W           R9, =grub_real_dprintf|223-248-148-144
+2744|code|LDR.W           R11, [SP,#0x40+buf]|221-248-68-176
+2748|code|STRD.W          R2, R3, [SP,#0x40+var_30]|205-233-4-35
+2752|code|LDR             R2, =aCryptodisk; "cryptodisk"|28-74
+2754|code|LDR             R3, =aReadingUSector; "Reading %u sectors from sector 0x%llx w"...|29-75
+2756|code|BLX             R9; grub_real_dprintf|200-71
+2758|code|LDR.W           R10, [disk,#0x10]|216-248-16-160
+2762|code|LDR             R3, =__aeabi_llsl|28-75
+2764|code|MOV             R0, R6|48-70
+2766|code|SUB.W           R2, R10, #9|170-241-9-2
+2770|code|MOV             R1, R7|57-70
+2772|code|BLX             R3; __aeabi_llsl|152-71
+2774|code|LDRD.W          R2, R3, [dev,#0x10]|212-233-4-35
+2778|code|STR.W           R11, [SP,#0x40+var_34]|205-248-12-176
+2782|code|ADDS            R2, R2, R0|18-24
+2784|code|MOV.W           R0, #0|79-240-0-0
+2788|code|ADCS            R3, R1|75-65
+2790|code|MOVS            R1, #0|0-33
+2792|code|STRD.W          R0, R1, [SP,#0x40+sector]|205-233-0-1
+2796|code|LSL.W           R1, R5, R10|5-250-10-241
+2800|code|STR             R1, [SP,#0x40+do_encrypt]|2-145
+2802|code|LDR             R1, =grub_disk_read|19-73
+2804|code|LDR             R0, [dev,#0x20]|32-106
+2806|code|BLX             R1; grub_disk_read|136-71
+2808|code|MOV             R10, err|130-70
+2810|code|CBZ             err, loc_B0E|64-177
+2812|code|STR             err, [SP,#0x40+sector]|0-144
+2814|code|MOVW            R1, #0x252|64-242-82-33
+2818|code|LDR             err, =aDiskCryptodisk; "disk/cryptodisk.c"|11-72
+2820|code|LDR             R2, =aCryptodisk; "cryptodisk"|11-74
+2822|code|LDR             R3, =aGrubDiskReadFa; "grub_disk_read failed with error %d\n"|15-75
+2824|code|BLX             R9; grub_real_dprintf|200-71
+2826|code|MOV             R0, err|80-70
+2828|code|B               loc_B28|12-224
+2830|code|LDR.W           R3, [disk,#0x10]|216-248-16-48
+2834|code|MOV             R1, R11; data|89-70
+2836|code|STR             R0, [SP,#0x40+do_encrypt]; do_encrypt|2-144
+2838|code|MOV             R0, dev; dev|32-70
+2840|code|LSL.W           R2, R5, R3; len|5-250-3-242
+2844|code|STRD.W          R6, R7, [SP,#0x40+sector]; sector|205-233-0-103
+2848|code|BL              grub_cryptodisk_endecrypt|255-247-236-252
+2852|code|LDR             R3, =grub_crypto_gcry_error|8-75
+2854|code|BLX             R3; grub_crypto_gcry_error|152-71
+2856|code|ADD             SP, SP, #0x1C|7-176
+2858|code|POP.W           {dev-R11,PC}|189-232-240-143
+2862|data|ALIGN 0x10|0-191
+2864|data|DCD aDiskCryptodisk; "disk/cryptodisk.c"|252-15-0-0
+2868|data|DCD aCryptodisk; "cryptodisk"|14-16-0-0
+2872|data|DCD aReadingUSector; "Reading %u sectors from sector 0x%llx w"...|9-17-0-0
+2876|data|DCD __aeabi_llsl|8-19-0-0
+2880|data|DCD grub_disk_read|208-18-0-0
+2884|data|DCD aGrubDiskReadFa; "grub_disk_read failed with error %d\n"|68-17-0-0
+2888|data|DCD grub_crypto_gcry_error|224-18-0-0
+2892|data|DCD grub_real_dprintf|252-18-0-0
+2896|code|PUSH            {R4,R5,LR}|48-181
+2898|code|SUB             SP, SP, #0x14|133-176
+2900|code|MOVS            R3, #0|0-35
+2902|code|LDRD.W          R4, R5, [SP,#0x20+sector]|221-233-8-69
+2906|code|STR             R3, [SP,#0x20+do_encrypt]; do_encrypt|2-147
+2908|code|STRD.W          R4, R5, [SP,#0x20+var_20]; sector|205-233-0-69
+2912|code|BL              grub_cryptodisk_endecrypt|255-247-204-252
+2916|code|ADD             SP, SP, #0x14|5-176
+2918|code|POP             {R4,R5,PC}|48-189
+2920|code|LDR             R3, [dev,#0x40]|3-108
+2922|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2926|code|CMP             R3, #3|3-43
+2928|code|SUB             SP, SP, #0x44|145-176
+2930|code|MOV             R4, dev|4-70
+2932|code|MOV             R7, key|15-70
+2934|code|MOV             R6, keysize|22-70
+2936|code|MOV             R5, keysize|21-70
+2938|code|BNE             loc_B84|3-209
+2940|code|ADD.W           R5, real_keysize, real_keysize,LSR#31|2-235-210-117
+2944|code|ASRS            R5, R5, #1|109-16
+2946|code|B               loc_B90|5-224
+2948|code|CMP             R3, #4|4-43
+2950|code|ITTTT EQ|1-191
+2952|code|LDREQ           R3, [dev,#0x28]|131-106
+2954|code|LDREQ           R3, [R3]|27-104
+2956|code|LDREQ           R5, [R3,#0xC]|221-104
+2958|code|SUBEQ           R5, real_keysize, R5|85-27
+2960|code|LDR.W           R10, =grub_crypto_cipher_set_key|223-248-220-160
+2964|code|MOV             key, R7|57-70
+2966|code|LDR             dev, [R4,#0x28]|160-106
+2968|code|MOV             keysize, real_keysize|42-70
+2970|code|BLX             R10; grub_crypto_cipher_set_key|208-71
+2972|code|MOV             R9, R10|209-70
+2974|code|CMP             err, #0|0-40
+2976|code|BNE             loc_C5C|92-209
+2978|code|ADD.W           err, dev, #0xF8|4-241-248-0
+2982|code|MOV             R1, key|57-70
+2984|code|MOV             R2, keysize|50-70
+2986|code|LDR.W           R8, =grub_memmove|223-248-200-128
+2990|code|BLX             R8; grub_memmove|192-71
+2992|code|LDR             R3, [dev,#0x44]|99-108
+2994|code|STR.W           keysize, [dev,#0x178]|196-248-120-97
+2998|code|CMP             R3, #3|3-43
+3000|code|BNE             loc_BE2|19-209
+3002|code|LDR             R0, [dev,#0x34]|96-107
+3004|code|LDR.W           R11, [R0,#0x10]|208-248-16-176
+3008|code|CMP.W           essiv_keysize, #0x40 ; '@'|187-241-64-15
+3012|code|BHI             loc_BDE|11-216
+3014|code|MOV             R1, SP|105-70
+3016|code|MOV             R2, key|58-70
+3018|code|MOV             R3, keysize|51-70
+3020|code|LDR.W           R12, =grub_crypto_hash|223-248-168-192
+3024|code|BLX             R12; grub_crypto_hash|224-71
+3026|code|LDR             R0, [dev,#0x30]|32-107
+3028|code|MOV             R1, SP|105-70
+3030|code|MOV             R2, essiv_keysize|90-70
+3032|code|BLX             R10; grub_crypto_cipher_set_key|208-71
+3034|code|CBZ             err, loc_BE2|16-177
+3036|code|B               loc_C5C|62-224
+3038|code|MOVS            R0, #0xA|10-32
+3040|code|B               loc_C5C|60-224
+3042|code|LDR             R3, [dev,#0x40]|35-108
+3044|code|CMP             R3, #3|3-43
+3046|code|BEQ             loc_BF0|3-208
+3048|code|LDR             R3, [dev,#0x40]|35-108
+3050|code|CMP             R3, #4|4-43
+3052|code|BNE             loc_C5A|53-209
+3054|code|B               loc_BFE|6-224
+3056|code|LDR             R0, [dev,#0x2C]|224-106
+3058|code|ADDS            R1, key, real_keysize|121-25
+3060|code|LSRS            R2, keysize, #1|114-8
+3062|code|BLX             R9; grub_crypto_cipher_set_key|200-71
+3064|code|CMP             err, #0|0-40
+3066|code|BEQ             loc_BE8|245-208
+3068|code|B               loc_C5C|46-224
+3070|code|LDR.W           R0, [dev,#0xB0]|212-248-176-0
+3074|code|ADD.W           keysize, dev, #0xA0|4-241-160-6
+3078|code|LDR             R3, =grub_free|23-75
+3080|code|BLX             R3; grub_free|152-71
+3082|code|LDR             R3, [dev,#0x28]|163-106
+3084|code|ADDS            R1, key, real_keysize|121-25
+3086|code|MOV             R0, R6|48-70
+3088|code|LDR             R3, [R3]|27-104
+3090|code|LDR             R2, [R3,#0xC]|218-104
+3092|code|BLX             R8; grub_memmove|192-71
+3094|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+3098|code|MOVS            R0, #1|1-32
+3100|code|LSLS            R0, R3|152-64
+3102|code|LDR             R3, =grub_malloc|18-75
+3104|code|BLX             R3; grub_malloc|152-71
+3106|code|STR.W           R0, [dev,#0xB0]|196-248-176-0
+3110|code|CBNZ            R0, loc_C2C|8-185
+3112|code|MOVS            R0, #0x22 ; '"'|34-32
+3114|code|B               loc_C5C|23-224
+3116|code|MOV             R0, SP|104-70
+3118|code|MOVS            R1, #0|0-33
+3120|code|MOVS            R2, #0x10|16-34
+3122|code|LDR             R3, =grub_memset|14-75
+3124|code|BLX             R3; grub_memset|152-71
+3126|code|MOVS            real_keysize, #0|0-37
+3128|code|LDR.W           R3, [dev,#0x180]|212-248-128-49
+3132|code|LSRS.W          R3, i, R3|53-250-3-243
+3136|code|BNE             loc_C5A|11-209
+3138|code|LDR.W           R0, [dev,#0xB0]|212-248-176-0
+3142|code|MOV             R1, SP; a|105-70
+3144|code|MOV             R2, R6; b|50-70
+3146|code|LSRS            R3, i, #4|43-9
+3148|code|ADD             R0, i; o|40-68
+3150|code|STRB.W          R3, [SP,#0x68+idx+0xF]|141-248-15-48
+3154|code|ADDS            i, #0x10|16-53
+3156|code|BL              gf_mul_be|255-247-24-252
+3160|code|B               loc_C38|238-231
+3162|code|MOVS            R0, #0|0-32
+3164|code|ADD             SP, SP, #0x44 ; 'D'|17-176
+3166|code|POP.W           {dev-R11,PC}|189-232-240-143
+3170|data|ALIGN 4|0-191
+3172|data|DCD grub_free|20-19-0-0
+3176|data|DCD grub_malloc|248-18-0-0
+3180|data|DCD grub_memset|216-18-0-0
+3184|data|DCD grub_crypto_cipher_set_key|52-19-0-0
+3188|data|DCD grub_memmove|188-18-0-0
+3192|data|DCD grub_crypto_hash|0-19-0-0
+3196|code|PUSH            {R3-R5,LR}|56-181
+3198|code|MOV             R4, newdev|4-70
+3200|code|LDR             R3, =grub_strdup|13-75
+3202|code|MOV             newdev, name|8-70
+3204|code|MOV             R5, source|21-70
+3206|code|BLX             R3; grub_strdup|152-71
+3208|code|STR             R0, [newdev,#8]|160-96
+3210|code|CBNZ            R0, loc_C98|40-185
+3212|code|MOV             R0, newdev|32-70
+3214|code|LDR             R3, =grub_free|11-75
+3216|code|BLX             R3; grub_free|152-71
+3218|code|LDR             R3, =grub_errno|11-75
+3220|code|LDR             R0, [R3]|24-104
+3222|code|POP             {R3-source,PC}|56-189
+3224|code|LDR             R3, =cryptodisk_list|10-75
+3226|code|MOVS            R0, #0|0-32
+3228|code|LDRB            R2, [R3,#(last_cryptodisk_id - 0x128C)]|26-121
+3230|code|ADDS            R1, R2, #1|81-28
+3232|code|STRB            R1, [R3,#(last_cryptodisk_id - 0x128C)]|25-113
+3234|code|STR             R2, [newdev,#0x4C]|226-100
+3236|code|LDR             R2, [source,#0x18]|170-105
+3238|code|STR             R2, [newdev,#0x50]|34-101
+3240|code|LDR             R2, [source,#4]|106-104
+3242|code|LDR             R2, [R2,#4]|82-104
+3244|code|STR             R2, [newdev,#0x54]|98-101
+3246|code|LDR             R2, [R3]|26-104
+3248|code|STR             newdev, [R3]|28-96
+3250|code|STR             R2, [newdev]|34-96
+3252|code|POP             {R3-source,PC}|56-189
+3254|data|ALIGN 4|0-191
+3256|data|DCD grub_strdup|192-18-0-0
+3260|data|DCD grub_free|20-19-0-0
+3264|data|DCD grub_errno|212-18-0-0
+3268|data|DCD cryptodisk_list|140-18-0-0
+3272|code|LDR             R3, =grub_cryptodisk_list|27-75
+3274|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+3278|code|MOV             R9, name|129-70
+3280|code|LDR             R5, [R3]|29-104
+3282|code|MOV             R7, source|15-70
+3284|code|LDR.W           R8, =cryptodisk_list|223-248-104-128
+3288|code|LDR.W           R10, =grub_errno|223-248-104-160
+3292|code|CBZ             cr, loc_D2E|61-179
+3294|code|LDR             R3, [cr,#8]|171-104
+3296|code|MOV             R0, source|56-70
+3298|code|LDR.W           R1, [R8,#(search_uuid - 0x128C)]|216-248-8-16
+3302|code|LDR.W           R2, [R8,#(check_boot - 0x128C)]|216-248-12-32
+3306|code|BLX             R3|152-71
+3308|code|LDR.W           R6, [R10]|218-248-0-96
+3312|code|MOV             R4, R0|4-70
+3314|code|CBNZ            R6, loc_D30|238-185
+3316|code|CBNZ            dev, loc_CFA|8-185
+3318|code|LDR             cr, [cr]|45-104
+3320|code|B               loc_CDC|240-231
+3322|code|LDR             R3, [cr,#0xC]|235-104
+3324|code|MOV             dev, source|56-70
+3326|code|MOV             R1, dev|33-70
+3328|code|BLX             R3|152-71
+3330|code|MOV             R8, err|128-70
+3332|code|CBZ             err, loc_D1C|80-177
+3334|code|LDR             cr, =grub_free|13-77
+3336|code|MOV             R6, R8|70-70
+3338|code|LDR             err, [dev,#0x28]|160-106
+3340|code|BLX             R5; grub_free|168-71
+3342|code|LDR             R0, [dev,#0x2C]|224-106
+3344|code|BLX             R5; grub_free|168-71
+3346|code|LDR             R0, [dev,#0x30]|32-107
+3348|code|BLX             R5; grub_free|168-71
+3350|code|MOV             R0, dev|32-70
+3352|code|BLX             R5; grub_free|168-71
+3354|code|B               loc_D30|9-224
+3356|code|MOV             R2, source; source|58-70
+3358|code|MOV             err, dev; newdev|32-70
+3360|code|MOV             R1, name; name|73-70
+3362|code|BL              grub_cryptodisk_insert|255-247-171-255
+3366|code|LDR             R3, =cryptodisk_list|6-75
+3368|code|MOVS            R2, #1|1-34
+3370|code|STR             R2, [R3,#(have_it - 0x128C)]|26-97
+3372|code|B               loc_D30|0-224
+3374|code|MOV             R6, cr|46-70
+3376|code|MOV             R0, R6|48-70
+3378|code|POP.W           {R4-R10,PC}|189-232-240-135
+3382|data|ALIGN 4|0-191
+3384|data|DCD grub_cryptodisk_list|164-18-0-0
+3388|data|DCD grub_free|20-19-0-0
+3392|data|DCD cryptodisk_list|140-18-0-0
+3396|data|DCD grub_errno|212-18-0-0
+3400|code|PUSH            {R3-R5,LR}|56-181
+3402|code|MOV             R5, uuid|5-70
+3404|code|LDR             R3, =cryptodisk_list|6-75
+3406|code|LDR             R4, [R3]|28-104
+3408|code|CBZ             dev, loc_D62|60-177
+3410|code|ADD.W           R0, dev, #0x58 ; 'X'; s1|4-241-88-0
+3414|code|MOV             R1, uuid; s2|41-70
+3416|code|BL              grub_strcasecmp|255-247-26-250
+3420|code|CBZ             R0, loc_D62|8-177
+3422|code|LDR             dev, [dev]|36-104
+3424|code|B               loc_D50|246-231
+3426|code|MOV             R0, dev|32-70
+3428|code|POP             {R3-uuid,PC}|56-189
+3430|data|ALIGN 4|0-191
+3432|data|DCD cryptodisk_list|140-18-0-0
+3436|code|LDR             dev, =cryptodisk_list|6-75
+3438|code|LDR             dev, [dev]|27-104
+3440|code|CBZ             dev, loc_D84|67-177
+3442|code|LDR             R1, [dev,#0x50]|25-109
+3444|code|LDR             R2, [disk,#0x18]|130-105
+3446|code|CMP             R1, R2|145-66
+3448|code|BNE             loc_D6E|249-209
+3450|code|LDR             R2, [disk,#4]|66-104
+3452|code|LDR             R1, [dev,#0x54]|89-109
+3454|code|LDR             R2, [R2,#4]|82-104
+3456|code|CMP             R1, R2|145-66
+3458|code|BNE             loc_D6E|244-209
+3460|code|MOV             disk, dev|24-70
+3462|code|BX              LR|112-71
+3464|data|DCD cryptodisk_list|140-18-0-0
+3468|code|PUSH            {R3-R5,LR}|56-181
+3470|code|MOV             R5, name|5-70
+3472|code|LDR             R3, =grub_disk_open|15-75
+3474|code|BLX             R3; grub_disk_open|152-71
+3476|code|MOV             R4, source|4-70
+3478|code|CBNZ            source, loc_DA0|24-185
+3480|code|LDR             R3, =grub_print_error|14-75
+3482|code|BLX             R3; grub_print_error|152-71
+3484|code|MOV             R0, source|32-70
+3486|code|POP             {R3-name,PC}|56-189
+3488|code|BL              grub_cryptodisk_get_by_source_disk|255-247-228-255
+3492|code|CBNZ            R0, loc_DB2|40-185
+3494|code|MOV             R0, name; name|40-70
+3496|code|MOV             R1, source; source|33-70
+3498|code|BL              grub_cryptodisk_scan_device_real|255-247-141-255
+3502|code|MOV             name, R0|5-70
+3504|code|B               loc_DB4|0-224
+3506|code|MOVS            name, #0|0-37
+3508|code|MOV             R0, source|32-70
+3510|code|LDR             R3, =grub_disk_close|8-75
+3512|code|BLX             R3; grub_disk_close|152-71
+3514|code|CBZ             R5, loc_DC0|13-177
+3516|code|LDR             R3, =grub_print_error|5-75
+3518|code|BLX             R3; grub_print_error|152-71
+3520|code|LDR             R3, =cryptodisk_list|6-75
+3522|code|LDR             R0, [R3,#(have_it - 0x128C)]|24-105
+3524|code|CBZ             R0, locret_DCE|24-177
+3526|code|LDR             R0, [R3,#(search_uuid - 0x128C)]|152-104
+3528|code|ADDS            R0, #0|0-48
+3530|code|IT NE|24-191
+3532|code|MOVNE           R0, #1|1-32
+3534|code|POP             {R3-R5,PC}|56-189
+3536|data|DCD grub_disk_open|184-18-0-0
+3540|data|DCD grub_print_error|232-18-0-0
+3544|data|DCD grub_disk_close|228-18-0-0
+3548|data|DCD cryptodisk_list|140-18-0-0
+3552|code|PUSH.W          {ctxt-args,R4-R9,LR}|45-233-247-67
+3556|code|CMP             argc, #0|0-41
+3558|code|MOV             R8, args|144-70
+3560|code|LDR             R5, [ctxt,#4]|69-104
+3562|code|BGT             loc_DFA|6-220
+3564|code|LDR             R3, [state,#8]|171-104
+3566|code|CBNZ            R3, loc_DFA|35-185
+3568|code|LDR             R3, [state,#0x10]|43-105
+3570|code|CBNZ            R3, loc_DFA|19-185
+3572|code|MOVS            ctxt, #0x12|18-32
+3574|code|LDR             argc, =aDeviceNameRequ; "device name required"|60-73
+3576|code|B               loc_E48|38-224
+3578|code|LDR             R6, =cryptodisk_list|60-78
+3580|code|MOV.W           R9, #0|79-240-0-9
+3584|code|LDR             R3, [state]|43-104
+3586|code|STR.W           R9, [R6,#(have_it - 0x128C)]|198-248-16-144
+3590|code|MOV             R7, R6|55-70
+3592|code|CBZ             R3, loc_E50|19-179
+3594|code|LDR.W           R7, [R8]|216-248-0-112
+3598|code|MOV             ctxt, R7; uuid|56-70
+3600|code|BL              grub_cryptodisk_get_by_uuid|255-247-154-255
+3604|code|MOV             R4, dev|4-70
+3606|code|CBZ             dev, loc_E2E|80-177
+3608|code|LDR             R3, [dev,#0x4C]|195-108
+3610|code|MOV.W           R1, #0x3A4|79-244-105-113
+3614|code|LDR             R4, =grub_real_dprintf|52-76
+3616|code|LDR             dev, =aDiskCryptodisk; "disk/cryptodisk.c"|52-72
+3618|code|STR             R3, [SP,#0x28+var_28]|0-147
+3620|code|LDR             R2, =aCryptodisk; "cryptodisk"|52-74
+3622|code|LDR             R3, =aAlreadyMounted; "already mounted as crypto%lu\n"|53-75
+3624|code|BLX             R4; grub_real_dprintf|160-71
+3626|code|MOV             R4, R9|76-70
+3628|code|B               loc_EE0|88-224
+3630|code|LDR             R3, [state,#0x10]|43-105
+3632|code|MOV             R1, R4|33-70
+3634|code|LDR             dev, =(grub_cryptodisk_scan_device+1)|51-72
+3636|code|STR             R7, [R6,#(search_uuid - 0x128C)]|183-96
+3638|code|STR             R3, [R6,#(check_boot - 0x128C)]|243-96
+3640|code|LDR             R3, =grub_device_iterate|50-75
+3642|code|BLX             R3; grub_device_iterate|152-71
+3644|code|LDR             R3, [R6,#(have_it - 0x128C)]|51-105
+3646|code|STR             dev, [R6,#(search_uuid - 0x128C)]|180-96
+3648|code|CMP             R3, #0|0-43
+3650|code|BNE             loc_EE0|77-209
+3652|code|LDR             R1, =aNoSuchCryptodi; "no such cryptodisk found"|48-73
+3654|code|MOVS            R0, #0x12|18-32
+3656|code|LDR             R3, =grub_error|48-75
+3658|code|BLX             R3; grub_error|152-71
+3660|code|MOV             R4, R0|4-70
+3662|code|B               loc_EE0|71-224
+3664|code|LDR             args, [state,#8]|170-104
+3666|code|LDR             R3, [state,#0x10]|43-105
+3668|code|CBNZ            R2, loc_E5A|10-185
+3670|code|CBNZ            argc, loc_E6C|73-185
+3672|code|CBZ             R3, loc_E6C|67-177
+3674|code|MOVS            R4, #0|0-36
+3676|code|STR             R3, [R7,#(check_boot - 0x128C)]|251-96
+3678|code|LDR             ctxt, =(grub_cryptodisk_scan_device+1)|40-72
+3680|code|MOV             argc, R4|33-70
+3682|code|LDR             R3, =grub_device_iterate|40-75
+3684|code|STR             R4, [R7,#(search_uuid - 0x128C)]|188-96
+3686|code|BLX             R3; grub_device_iterate|152-71
+3688|code|STR             R4, [R7,#(search_uuid - 0x128C)]|188-96
+3690|code|B               loc_EE0|57-224
+3692|code|LDR.W           R4, [args]|216-248-0-64
+3696|code|MOV.W           R9, #0|79-240-0-9
+3700|code|STR             R3, [R7,#(check_boot - 0x128C)]|251-96
+3702|code|STR.W           R9, [R7,#(search_uuid - 0x128C)]|199-248-8-144
+3706|code|LDRB            R3, [diskname]|35-120
+3708|code|LDR             state, =grub_disk_open|36-77
+3710|code|CMP             R3, #0x28 ; '('|40-43
+3712|code|BNE             loc_E9E|13-209
+3714|code|MOV             ctxt, diskname|32-70
+3716|code|LDR             R3, =grub_strlen|35-75
+3718|code|BLX             R3; grub_strlen|152-71
+3720|code|SUBS            R6, R0, #1|70-30
+3722|code|LDRB            R7, [diskname,R6]|167-93
+3724|code|CMP             R7, #0x29 ; ')'|41-47
+3726|code|BNE             loc_E9E|6-209
+3728|code|STRB.W          R9, [diskname,R6]|4-248-6-144
+3732|code|ADDS            R0, diskname, #1|96-28
+3734|code|BLX             R5; grub_disk_open|168-71
+3736|code|STRB            R7, [diskname,R6]|167-85
+3738|code|MOV             R5, R0|5-70
+3740|code|B               loc_EA4|2-224
+3742|code|MOV             R0, diskname|32-70
+3744|code|BLX             R5; grub_disk_open|168-71
+3746|code|MOV             R5, R0|5-70
+3748|code|CBNZ            R5, loc_EAC|21-185
+3750|code|LDR             R3, =grub_errno|28-75
+3752|code|LDR             diskname, [R3]|28-104
+3754|code|B               loc_EE0|25-224
+3756|code|MOV             disk, R5; disk|40-70
+3758|code|LDR             R6, =grub_disk_close|27-78
+3760|code|BL              grub_cryptodisk_get_by_source_disk|255-247-92-255
+3764|code|CBZ             dev, loc_ED0|96-177
+3766|code|LDR             R3, [dev,#0x4C]|195-108
+3768|code|MOVW            R1, #0x3D2|64-242-210-49
+3772|code|LDR             dev, =aDiskCryptodisk; "disk/cryptodisk.c"|13-72
+3774|code|LDR             R2, =aCryptodisk; "cryptodisk"|14-74
+3776|code|STR             R3, [SP,#0x28+var_28]|0-147
+3778|code|LDR             diskname, =grub_real_dprintf|11-76
+3780|code|LDR             R3, =aAlreadyMounted; "already mounted as crypto%lu\n"|13-75
+3782|code|BLX             R4; grub_real_dprintf|160-71
+3784|code|MOV             R0, disk|40-70
+3786|code|BLX             R6; grub_disk_close|176-71
+3788|code|MOVS            R4, #0|0-36
+3790|code|B               loc_EE0|7-224
+3792|code|LDR.W           dev, [args]; name|216-248-0-0
+3796|code|MOV             R1, disk; source|41-70
+3798|code|BL              grub_cryptodisk_scan_device_real|255-247-247-254
+3802|code|MOV             diskname, R0|4-70
+3804|code|MOV             R0, disk|40-70
+3806|code|BLX             R6; grub_disk_close|176-71
+3808|code|MOV             R0, R4|32-70
+3810|code|ADD             SP, SP, #0xC|3-176
+3812|code|POP.W           {R4-R9,PC}|189-232-240-131
+3816|data|DCD aDeviceNameRequ; "device name required"|105-17-0-0
+3820|data|DCD cryptodisk_list|140-18-0-0
+3824|data|DCD grub_real_dprintf|252-18-0-0
+3828|data|DCD aDiskCryptodisk; "disk/cryptodisk.c"|252-15-0-0
+3832|data|DCD aCryptodisk; "cryptodisk"|14-16-0-0
+3836|data|DCD aAlreadyMounted; "already mounted as crypto%lu\n"|126-17-0-0
+3840|data|DCD grub_cryptodisk_scan_device+1|141-13-0-0
+3844|data|DCD grub_device_iterate|32-19-0-0
+3848|data|DCD aNoSuchCryptodi; "no such cryptodisk found"|156-17-0-0
+3852|data|DCD grub_error|4-19-0-0
+3856|data|DCD grub_disk_open|184-18-0-0
+3860|data|DCD grub_strlen|172-18-0-0
+3864|data|DCD grub_errno|212-18-0-0
+3868|data|DCD grub_disk_close|228-18-0-0
+3872|code|PUSH            {mod-R2,R4,R5,LR}|55-181
+3874|code|LDR             R4, =grub_cryptodisk_dev_0|11-76
+3876|code|LDR             R3, =grub_disk_dev_register|11-75
+3878|code|LDR             R5, =grub_register_extcmd|12-77
+3880|code|MOV             mod, R4|32-70
+3882|code|BLX             R3; grub_disk_dev_register|152-71
+3884|code|LDR             R3, =aMountACryptoDe; "Mount a crypto device."|11-75
+3886|code|MOVS            R2, #0|0-34
+3888|code|LDR             R1, =(grub_cmd_cryptomount+1)|11-73
+3890|code|LDR             R0, =aCryptomount; "cryptomount"|12-72
+3892|code|STR             R3, [SP,#0x18+var_18]|0-147
+3894|code|LDR             R3, =options|12-75
+3896|code|STR             R3, [SP,#0x18+var_14]|1-147
+3898|code|LDR             R3, =aSourceUUuidAB; "SOURCE|-u UUID|-a|-b"|12-75
+3900|code|BLX             R5; grub_register_extcmd|168-71
+3902|code|LDR             R3, =cryptodisk_list|12-75
+3904|code|ADD.W           R1, R4, #0x20 ; ' '|4-241-32-1
+3908|code|STR             R0, [R3,#(cmd - 0x128C)]|88-97
+3910|code|LDR             R0, =grub_procfs_entries|11-72
+3912|code|LDR             R3, =grub_list_push|11-75
+3914|code|BLX             R3; grub_list_push|152-71
+3916|code|ADD             SP, SP, #0xC|3-176
+3918|code|POP             {R4,R5,PC}|48-189
+3920|data|DCD grub_cryptodisk_dev_0|76-18-0-0
+3924|data|DCD grub_disk_dev_register|200-18-0-0
+3928|data|DCD grub_register_extcmd|28-19-0-0
+3932|data|DCD aMountACryptoDe; "Mount a crypto device."|214-17-0-0
+3936|data|DCD grub_cmd_cryptomount+1|225-13-0-0
+3940|data|DCD aCryptomount; "cryptomount"|181-17-0-0
+3944|data|DCD options|156-15-0-0
+3948|data|DCD aSourceUUuidAB; "SOURCE|-u UUID|-a|-b"|193-17-0-0
+3952|data|DCD cryptodisk_list|140-18-0-0
+3956|data|DCD grub_procfs_entries|180-18-0-0
+3960|data|DCD grub_list_push|36-19-0-0
+3964|code|PUSH            {R4,LR}|16-181
+3966|code|LDR             R4, =grub_cryptodisk_dev_0|4-76
+3968|code|LDR             R3, =grub_disk_dev_unregister|4-75
+3970|code|MOV             R0, R4|32-70
+3972|code|BLX             R3; grub_disk_dev_unregister|152-71
+3974|code|ADD.W           R0, R4, #0x20 ; ' '|4-241-32-0
+3978|code|LDR             R3, =grub_list_remove|3-75
+3980|code|BLX             R3; grub_list_remove|152-71
+3982|code|POP             {R4,PC}|16-189
+3984|data|DCD grub_cryptodisk_dev_0|76-18-0-0
+3988|data|DCD grub_disk_dev_unregister|24-19-0-0
+3992|data|DCD grub_list_remove|16-19-0-0
+3996|data|grub_arg_option <aUuid, 0x75, 0, aMountByUuid, 0, ARG_TYPE_NONE>; "uuid" ...|249-17-0-0-117-0-0-0-0-0-0-0-254-17-0-0-0-0-0-0-0-0-0-0-13-18-0-0-97-0-0-0-0-0-0-0-17-18-0-0-0-0-0-0-0-0-0-0-28-18-0-0-98-0-0-0-0-0-0-0-33-18-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+4092|data|DCB "disk/cryptodisk.c",0|100-105-115-107-47-99-114-121-112-116-111-100-105-115-107-46-99-0
+4110|data|DCB "cryptodisk",0|99-114-121-112-116-111-100-105-115-107-0
+4121|data|DCB "Closing disk",0xA,0|67-108-111-115-105-110-103-32-100-105-115-107-10-0
+4135|data|DCB "crypto%lu",0|99-114-121-112-116-111-37-108-117-0
+4145|data|DCB "crypto",0|99-114-121-112-116-111-0
+4152|data|DCB "No such device",0|78-111-32-115-117-99-104-32-100-101-118-105-99-101-0
+4167|data|DCB "cryptouuid/",0|99-114-121-112-116-111-117-117-105-100-47-0
+4179|data|DCB "Opening device %s",0xA,0|79-112-101-110-105-110-103-32-100-101-118-105-99-101-32-37-115-10-0
+4198|data|DCB "luks",0|108-117-107-115-0
+4203|data|DCB "luks_mount ",0|108-117-107-115-95-109-111-117-110-116-32-0
+4215|data|DCB "%llu ",0|37-108-108-117-32-0
+4221|data|DCB "-ecb",0|45-101-99-98-0
+4226|data|DCB "-cbc",0|45-99-98-99-0
+4231|data|DCB "-pcbc",0|45-112-99-98-99-0
+4237|data|DCB "-xts",0|45-120-116-115-0
+4242|data|DCB "-lrw",0|45-108-114-119-0
+4247|data|DCB "-null",0|45-110-117-108-108-0
+4253|data|DCB "-plain",0|45-112-108-97-105-110-0
+4260|data|DCB "-plain64",0|45-112-108-97-105-110-54-52-0
+4269|data|DCB "-benbi",0|45-98-101-110-98-105-0
+4276|data|DCB "-essiv:",0|45-101-115-115-105-118-58-0
+4284|data|DCB "Writing %u sectors to sector 0x%llx with offset of %llu",0xA,0|87-114-105-116-105-110-103-32-37-117-32-115-101-99-116-111-114-115-32-116-111-32-115-101-99-116-111-114-32-48-120-37-108-108-120-32-119-105-116-104-32-111-102-102-115-101-116-32-111-102-32-37-108-108-117-10-0
+4341|data|DCB "disk.mod not loaded",0|100-105-115-107-46-109-111-100-32-110-111-116-32-108-111-97-100-101-100-0
+4361|data|DCB "Reading %u sectors from sector 0x%llx with offset of %llu",0xA,0|82-101-97-100-105-110-103-32-37-117-32-115-101-99-116-111-114-115-32-102-114-111-109-32-115-101-99-116-111-114-32-48-120-37-108-108-120-32-119-105-116-104-32-111-102-102-115-101-116-32-111-102-32-37-108-108-117-10-0
+4420|data|DCB "grub_disk_read failed with error %d",0xA,0|103-114-117-98-95-100-105-115-107-95-114-101-97-100-32-102-97-105-108-101-100-32-119-105-116-104-32-101-114-114-111-114-32-37-100-10-0
+4457|data|DCB "device name required",0|100-101-118-105-99-101-32-110-97-109-101-32-114-101-113-117-105-114-101-100-0
+4478|data|DCB "already mounted as crypto%lu",0xA,0|97-108-114-101-97-100-121-32-109-111-117-110-116-101-100-32-97-115-32-99-114-121-112-116-111-37-108-117-10-0
+4508|data|DCB "no such cryptodisk found",0|110-111-32-115-117-99-104-32-99-114-121-112-116-111-100-105-115-107-32-102-111-117-110-100-0
+4533|data|DCB "cryptomount",0|99-114-121-112-116-111-109-111-117-110-116-0
+4545|data|DCB "SOURCE|-u UUID|-a|-b",0|83-79-85-82-67-69-124-45-117-32-85-85-73-68-124-45-97-124-45-98-0
+4566|data|DCB "Mount a crypto device.",0|77-111-117-110-116-32-97-32-99-114-121-112-116-111-32-100-101-118-105-99-101-46-0
+4589|data|DCB "luks_script",0|108-117-107-115-95-115-99-114-105-112-116-0
+4601|data|DCB "uuid",0|117-117-105-100-0
+4606|data|DCB "Mount by UUID.",0|77-111-117-110-116-32-98-121-32-85-85-73-68-46-0
+4621|data|DCB "all",0|97-108-108-0
+4625|data|DCB "Mount all.",0|77-111-117-110-116-32-97-108-108-46-0
+4636|data|DCB "boot",0|98-111-111-116-0
+4641|data|DCB "Mount all volumes with `boot' flag set.",0|77-111-117-110-116-32-97-108-108-32-118-111-108-117-109-101-115-32-119-105-116-104-32-96-98-111-111-116-39-32-102-108-97-103-32-115-101-116-46-0
+4684|data|grub_disk_dev <aCryptodisk, GRUB_DISK_DEVICE_CRYPTODISK_ID, \; "cryptodisk"|14-16-0-0-10-0-0-0-79-1-0-0-213-1-0-0-147-0-0-0-149-10-0-0-149-9-0-0-0-0-0-0
+4716|data|grub_procfs_entry <0, 0, aLuksScript, luks_script_get+1>; "luks_script"|0-0-0-0-0-0-0-0-237-17-0-0-181-2-0-0
+4732|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+4748|data|% 4|255-255-255-255
+4752|data|% 1|255
+4753|data|ALIGN 4|255-255-255
+4756|data|% 4|255-255-255-255
+4760|data|% 4|255-255-255-255
+4764|data|% 4|255-255-255-255
+4768|data|% 4|255-255-255-255

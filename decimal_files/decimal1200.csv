@@ -1,0 +1,644 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R7,LR}|248-181
+2|code|CBZ             dst, loc_6|0-177
+4|code|CBNZ            src, loc_C|17-185
+6|code|MOVS            dst, #0x26 ; '&'|38-32
+8|code|LDR             src, =aNullBitmapInSc; "null bitmap in scale function"|42-73
+10|code|B               loc_A8|77-224
+12|code|LDR             R7, [dst,#0x28]|135-106
+14|code|LSLS            R2, R7, #0x1D|122-7
+16|code|BNE             loc_28|10-209
+18|code|LDR.W           R12, [dst,#0x30]|208-248-48-192
+22|code|TST.W           R12, #7|28-240-7-15
+26|code|BNE             loc_28|5-209
+28|code|LDR             R5, [dst,#0x38]|133-107
+30|code|LSLS            R3, R5, #0x1D|107-7
+32|code|BNE             loc_28|2-209
+34|code|LDR             R2, [dst,#0x40]|2-108
+36|code|LSLS            R6, R2, #0x1D|86-7
+38|code|BEQ             loc_2E|2-208
+40|code|MOVS            dst, #0x26 ; '&'|38-32
+42|code|LDR             src, =aDstFormatNotSu; "dst format not supported"|35-73
+44|code|B               loc_A8|60-224
+46|code|LDR             R6, [src,#0x28]|142-106
+48|code|LSLS            R4, R6, #0x1D|116-7
+50|code|BNE             loc_4C|11-209
+52|code|LDR.W           LR, [src,#0x30]|209-248-48-224
+56|code|TST.W           LR, #7|30-240-7-15
+60|code|BNE             loc_4C|6-209
+62|code|LDR             R4, [src,#0x38]|140-107
+64|code|LSLS            R3, R4, #0x1D|99-7
+66|code|BNE             loc_4C|3-209
+68|code|LDR             R3, [src,#0x40]|11-108
+70|code|TST.W           R3, #7|19-240-7-15
+74|code|BEQ             loc_52|2-208
+76|code|MOVS            dst, #0x26 ; '&'|38-32
+78|code|LDR             src, =aSrcFormatNotSu; "src format not supported"|27-73
+80|code|B               loc_A8|42-224
+82|code|CMP             R7, R6|183-66
+84|code|BNE             loc_82|21-209
+86|code|LDR             R7, [dst,#0x24]|71-106
+88|code|LDR             R6, [src,#0x24]|78-106
+90|code|CMP             R7, R6|183-66
+92|code|BNE             loc_82|17-209
+94|code|CMP             R12, LR|244-69
+96|code|BNE             loc_82|15-209
+98|code|LDR             R7, [dst,#0x2C]|199-106
+100|code|LDR             R6, [src,#0x2C]|206-106
+102|code|CMP             R7, R6|183-66
+104|code|BNE             loc_82|11-209
+106|code|CMP             R5, R4|165-66
+108|code|BNE             loc_82|9-209
+110|code|LDR             R5, [dst,#0x34]|69-107
+112|code|LDR             R4, [src,#0x34]|76-107
+114|code|CMP             R5, R4|165-66
+116|code|BNE             loc_82|5-209
+118|code|CMP             R2, R3|154-66
+120|code|BNE             loc_82|3-209
+122|code|LDR             R2, [dst,#0x3C]|194-107
+124|code|LDR             R3, [src,#0x3C]|203-107
+126|code|CMP             R2, R3|154-66
+128|code|BEQ             loc_86|1-208
+130|code|MOVS            dst, #0x26 ; '&'|38-32
+132|code|B               loc_90|4-224
+134|code|LDR             R2, [dst,#0x10]|2-105
+136|code|LDR             R3, [src,#0x10]|11-105
+138|code|CMP             R2, R3|154-66
+140|code|BEQ             loc_94|2-208
+142|code|MOVS            dst, #0x18|24-32
+144|code|LDR             src, =aDstAndSrcNotCo; "dst and src not compatible"|11-73
+146|code|B               loc_A8|9-224
+148|code|LDR             R3, [dst]|3-104
+150|code|CBZ             R3, loc_A4|43-177
+152|code|LDR             R3, [dst,#4]|67-104
+154|code|CBZ             R3, loc_A4|27-177
+156|code|LDR             R3, [src]|11-104
+158|code|CBZ             R3, loc_A4|11-177
+160|code|LDR             R3, [src,#4]|75-104
+162|code|CBNZ            R3, loc_AE|35-185
+164|code|LDR             src, =aBitmapHasAZero; "bitmap has a zero dimension"|7-73
+166|code|MOVS            dst, #0x26 ; '&'|38-32
+168|code|LDR             R3, =grub_error|7-75
+170|code|BLX             R3; grub_error|152-71
+172|code|POP             {R3-R7,PC}|248-189
+174|code|MOVS            dst, #0|0-32
+176|code|POP             {R3-R7,PC}|248-189
+178|data|ALIGN 4|0-191
+180|data|DCD aNullBitmapInSc; "null bitmap in scale function"|180-5-0-0
+184|data|DCD aDstFormatNotSu; "dst format not supported"|210-5-0-0
+188|data|DCD aSrcFormatNotSu; "src format not supported"|235-5-0-0
+192|data|DCD aDstAndSrcNotCo; "dst and src not compatible"|4-6-0-0
+196|data|DCD aBitmapHasAZero; "bitmap has a zero dimension"|31-6-0-0
+200|data|DCD grub_error|152-7-0-0
+204|code|PUSH            {v_align-R7,LR}|248-181
+206|code|MOV             R7, y|7-70
+208|code|LDR             R4, [h]|12-104
+210|code|MOV             R6, h|14-70
+212|code|MOV             R5, new_h|21-70
+214|code|CMP             new_h, R4|162-66
+216|code|BCC             loc_E0|2-211
+218|code|MOVS            y, #0|0-32
+220|code|STR             R0, [y]|56-96
+222|code|B               loc_106|18-224
+224|code|CMP             v_align, #1|1-43
+226|code|BEQ             loc_F4|7-208
+228|code|BCC             loc_EE|3-211
+230|code|CMP             v_align, #2|2-43
+232|code|BNE             loc_FE|9-209
+234|code|SUBS            R4, R4, new_h|164-26
+236|code|B               loc_F8|4-224
+238|code|MOVS            v_align, #0|0-35
+240|code|STR             R3, [y]|3-96
+242|code|B               loc_FA|2-224
+244|code|SUBS            R4, R4, new_h|164-26
+246|code|LSRS            R4, R4, #1|100-8
+248|code|STR             R4, [R7]|60-96
+250|code|MOVS            y, #0|0-32
+252|code|B               loc_106|3-224
+254|code|MOVS            y, #0x26 ; '&'|38-32
+256|code|LDR             h, =aInvalidVAlignV; "Invalid v_align value"|2-73
+258|code|LDR             v_align, =grub_error|3-75
+260|code|BLX             R3; grub_error|152-71
+262|code|STR             new_h, [h]|53-96
+264|code|POP             {R3-y,PC}|248-189
+266|data|ALIGN 4|0-191
+268|data|DCD aInvalidVAlignV; "Invalid v_align value"|59-6-0-0
+272|data|DCD grub_error|152-7-0-0
+276|code|PUSH            {h_align-R7,LR}|248-181
+278|code|MOV             R7, x|7-70
+280|code|LDR             R4, [w]|12-104
+282|code|MOV             R6, w|14-70
+284|code|MOV             R5, new_w|21-70
+286|code|CMP             new_w, R4|162-66
+288|code|BCC             loc_128|2-211
+290|code|MOVS            x, #0|0-32
+292|code|STR             R0, [x]|56-96
+294|code|B               loc_14E|18-224
+296|code|CMP             h_align, #1|1-43
+298|code|BEQ             loc_13C|7-208
+300|code|BCC             loc_136|3-211
+302|code|CMP             h_align, #2|2-43
+304|code|BNE             loc_146|9-209
+306|code|SUBS            R4, R4, new_w|164-26
+308|code|B               loc_140|4-224
+310|code|MOVS            h_align, #0|0-35
+312|code|STR             R3, [x]|3-96
+314|code|B               loc_142|2-224
+316|code|SUBS            R4, R4, new_w|164-26
+318|code|LSRS            R4, R4, #1|100-8
+320|code|STR             R4, [R7]|60-96
+322|code|MOVS            x, #0|0-32
+324|code|B               loc_14E|3-224
+326|code|MOVS            x, #0x26 ; '&'|38-32
+328|code|LDR             w, =aInvalidHAlignV; "Invalid h_align value"|2-73
+330|code|LDR             h_align, =grub_error|3-75
+332|code|BLX             R3; grub_error|152-71
+334|code|STR             new_w, [w]|53-96
+336|code|POP             {R3-x,PC}|248-189
+338|data|ALIGN 4|0-191
+340|data|DCD aInvalidHAlignV; "Invalid h_align value"|81-6-0-0
+344|data|DCD grub_error|152-7-0-0
+348|code|PUSH            {R3,LR}|8-181
+350|code|CBNZ            src, loc_166|16-185
+352|code|MOVS            src, #0x26 ; '&'|38-32
+354|code|LDR             R1, =aNullSrcBitmapI; "null src bitmap in grub_video_bitmap_cr"...|18-73
+356|code|B               loc_1A2|29-224
+358|code|LDR             R3, [src,#0x28]|131-106
+360|code|LSLS            R1, R3, #0x1D|89-7
+362|code|BNE             loc_180|9-209
+364|code|LDR             R3, [src,#0x30]|3-107
+366|code|LSLS            R2, R3, #0x1D|90-7
+368|code|BNE             loc_180|6-209
+370|code|LDR             R3, [src,#0x38]|131-107
+372|code|LSLS            R3, R3, #0x1D|91-7
+374|code|BNE             loc_180|3-209
+376|code|LDR             R3, [src,#0x40]|3-108
+378|code|ANDS.W          R3, R3, #7|19-240-7-3
+382|code|BEQ             loc_186|2-208
+384|code|MOVS            src, #0x26 ; '&'|38-32
+386|code|LDR             R1, =aSrcFormatNotSu_0; "src format not supported for scale"|11-73
+388|code|B               loc_1A2|13-224
+390|code|LDR             R2, [src]|2-104
+392|code|CBZ             R2, loc_18E|10-177
+394|code|LDR             R2, [src,#4]|66-104
+396|code|CBNZ            R2, loc_194|18-185
+398|code|MOVS            src, #0x26 ; '&'|38-32
+400|code|LDR             R1, =aSourceBitmapHa; "source bitmap has a zero dimension"|8-73
+402|code|B               loc_1A2|6-224
+404|code|LDR             R1, [src,#0x10]|1-105
+406|code|LDR             R2, [src,#0xC]|194-104
+408|code|CMP.W           R2, R1,LSL#3|178-235-193-15
+412|code|BEQ             loc_1A8|4-208
+414|code|LDR             R1, =aBitmapToScaleH; "bitmap to scale has inconsistent Bpp an"...|6-73
+416|code|MOVS            src, #0x26 ; '&'|38-32
+418|code|LDR             R3, =grub_error|6-75
+420|code|BLX             R3; grub_error|152-71
+422|code|POP             {R3,PC}|8-189
+424|code|MOV             src, R3|24-70
+426|code|POP             {R3,PC}|8-189
+428|data|DCD aNullSrcBitmapI; "null src bitmap in grub_video_bitmap_cr"...|103-6-0-0
+432|data|DCD aSrcFormatNotSu_0; "src format not supported for scale"|154-6-0-0
+436|data|DCD aSourceBitmapHa; "source bitmap has a zero dimension"|189-6-0-0
+440|data|DCD aBitmapToScaleH; "bitmap to scale has inconsistent Bpp an"...|224-6-0-0
+444|data|DCD grub_error|152-7-0-0
+448|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+452|code|MOV             R5, dst|5-70
+454|code|SUB             SP, SP, #0x44|145-176
+456|code|MOV             R6, src|14-70
+458|code|CMP             scale_method, #3; switch 4 cases|3-42
+460|code|BHI.W           def_1D0; jumptable 000001D0 default case|0-242-232-128
+464|code|TBB.W           [PC,scale_method]; switch jump|223-232-2-240
+468|data|DCB 2; jump table for switch statement|2
+469|data|DCB 0x4D|77
+470|data|DCB 2|2
+471|data|DCB 0x4D|77
+472|code|BL              verify_bitmaps; jumptable 000001D0 cases 0,2|255-247-18-255
+476|code|CMP             R0, #0|0-40
+478|code|BNE.W           loc_3A8|64-240-227-128
+482|code|LDR             R3, [src,#0x4C]|243-108
+484|code|MOV             R4, R0|4-70
+486|code|LDR.W           R12, [dst]|213-248-0-192
+490|code|MOV             R7, R0|7-70
+492|code|LDR.W           R10, [dst,#4]|213-248-4-160
+496|code|STR             R3, [SP,#0x68+var_64]|1-147
+498|code|LDR             R3, [src]|51-104
+500|code|LDR.W           R8, [dst,#0x10]|213-248-16-128
+504|code|LDR.W           R9, [dst,#0x4C]|213-248-76-144
+508|code|STR             R3, [SP,#0x68+var_60]|2-147
+510|code|LDR             R3, [src,#4]|115-104
+512|code|LDR.W           R11, =__aeabi_uidiv|223-248-172-177
+516|code|STR             R3, [SP,#0x68+var_5C]|3-147
+518|code|LDR             R3, [dst,#0x14]|107-105
+520|code|STR             R3, [SP,#0x68+var_58]|4-147
+522|code|LDR             R3, [src,#0x14]|115-105
+524|code|STR             R3, [SP,#0x68+var_54]|5-147
+526|code|CMP             R7, R10|87-69
+528|code|BEQ             loc_26A|43-208
+530|code|MOVS            R6, #0|0-38
+532|code|MOV             R2, R9|74-70
+534|code|MOV             R3, R6|51-70
+536|code|CMP             R3, R12|99-69
+538|code|BEQ             loc_25E|32-208
+540|code|MOV             R1, R12|97-70
+542|code|STR             R2, [SP,#0x68+var_48]|8-146
+544|code|STR             R3, [SP,#0x68+var_4C]|7-147
+546|code|MOV             R0, R6|48-70
+548|code|STR.W           R12, [SP,#0x68+var_50]|205-248-24-192
+552|code|BLX             R11; __aeabi_uidiv|216-71
+554|code|MOV             R1, R10|81-70
+556|code|MUL.W           R5, R8, R0|8-251-0-245
+560|code|MOV             R0, R4|32-70
+562|code|BLX             R11; __aeabi_uidiv|216-71
+564|code|LDR             R3, [SP,#0x68+var_54]|5-155
+566|code|LDR.W           R12, [SP,#0x68+var_50]|221-248-24-192
+570|code|MOVS            R1, #0|0-33
+572|code|LDR             R2, [SP,#0x68+var_48]|8-154
+574|code|MLA.W           R0, R3, R0, R5|3-251-0-80
+578|code|LDR             R3, [SP,#0x68+var_64]|1-155
+580|code|ADD             R0, R3|24-68
+582|code|LDR             R3, [SP,#0x68+var_4C]|7-155
+584|code|CMP             R1, R8|65-69
+586|code|BEQ             loc_254|3-208
+588|code|LDRB            R5, [R0,R1]|69-92
+590|code|STRB            R5, [R2,R1]|85-84
+592|code|ADDS            R1, #1|1-49
+594|code|B               loc_248|249-231
+596|code|LDR             R1, [SP,#0x68+var_60]; src|2-153
+598|code|ADDS            R3, #1|1-51
+600|code|ADD             R2, R8|66-68
+602|code|ADD             R6, R1|14-68
+604|code|B               loc_218|220-231
+606|code|LDR             R3, [SP,#0x68+var_58]|4-155
+608|code|ADDS            R7, #1|1-55
+610|code|ADD             R9, R3|153-68
+612|code|LDR             R3, [SP,#0x68+var_5C]|3-155
+614|code|ADD             R4, R3|28-68
+616|code|B               loc_20E|209-231
+618|code|MOVS            R0, #0; dst|0-32
+620|code|B               loc_3A8|156-224
+622|code|BL              verify_bitmaps; jumptable 000001D0 cases 1,3|255-247-199-254
+626|code|CMP             R0, #0|0-40
+628|code|BNE.W           loc_3A8|64-240-152-128
+632|code|LDR             R3, [src,#0x4C]|243-108
+634|code|MOV             R4, R0|4-70
+636|code|LDR             R7, [dst,#0x10]|47-105
+638|code|STR             R0, [SP,#0x68+var_58]|4-144
+640|code|STR             R3, [SP,#0x68+var_48]|8-147
+642|code|LDR             R3, [dst]|43-104
+644|code|STR             R3, [SP,#0x68+var_64]|1-147
+646|code|LDR             R3, [dst,#4]|107-104
+648|code|STR             R3, [SP,#0x68+var_60]|2-147
+650|code|LDR             R3, [src]|51-104
+652|code|STR             R3, [SP,#0x68+var_50]|6-147
+654|code|LDR             R3, [src,#4]|115-104
+656|code|STR             R3, [SP,#0x68+var_4C]|7-147
+658|code|LDR             R3, [dst,#0x14]|107-105
+660|code|STR             R3, [SP,#0x68+var_44]|9-147
+662|code|LDR             R3, [src,#0x14]|115-105
+664|code|STR             R3, [SP,#0x68+var_5C]|3-147
+666|code|LDR             R3, [dst,#0x4C]|235-108
+668|code|STR             R3, [SP,#0x68+var_54]|5-147
+670|code|LDR             R3, [SP,#0x68+var_50]|6-155
+672|code|SUBS            R3, #1|1-59
+674|code|STR             R3, [SP,#0x68+var_30]|14-147
+676|code|LDR             R3, [SP,#0x68+var_5C]|3-155
+678|code|ADDS            R3, R7, R3|251-24
+680|code|STR             R3, [SP,#0x68+var_2C]|15-147
+682|code|LDR             R3, [SP,#0x68+var_58]|4-155
+684|code|LDR             R2, [SP,#0x68+var_60]|2-154
+686|code|CMP             R3, R2|147-66
+688|code|BEQ             loc_26A|219-208
+690|code|LDR.W           R10, [SP,#0x68+var_54]|221-248-20-160
+694|code|LSLS            R3, R4, #8|35-2
+696|code|MOV.W           R8, #0|79-240-0-8
+700|code|STR             R3, [SP,#0x68+var_40]|10-147
+702|code|LDR             R3, [SP,#0x68+var_4C]|7-155
+704|code|MOV             R11, R8|195-70
+706|code|SUBS            R3, #1|1-59
+708|code|STR             R3, [SP,#0x68+var_34]|13-147
+710|code|LDR             R3, [SP,#0x68+var_64]|1-155
+712|code|CMP             R11, R3|155-69
+714|code|BEQ             loc_38C|95-208
+716|code|LDR             R1, [SP,#0x68+var_64]|1-153
+718|code|MOV             R0, R8|64-70
+720|code|LDR             R3, =__aeabi_uidiv|55-75
+722|code|BLX             R3; __aeabi_uidiv|152-71
+724|code|LDR             R3, =__aeabi_uidiv|54-75
+726|code|LDR             R1, [SP,#0x68+var_60]|2-153
+728|code|MOV             R6, R0|6-70
+730|code|MOV             R0, R4|32-70
+732|code|BLX             R3; __aeabi_uidiv|152-71
+734|code|LDR             R3, [SP,#0x68+var_5C]|3-155
+736|code|MUL.W           R5, R3, R0|3-251-0-245
+740|code|LDR             R3, [SP,#0x68+var_48]|8-155
+742|code|MLA.W           R5, R7, R6, R5|7-251-6-85
+746|code|MOV             R9, R0|129-70
+748|code|ADD             R5, R3|29-68
+750|code|LDR             R3, [SP,#0x68+var_30]|14-155
+752|code|CMP             R6, R3|158-66
+754|code|BCS             loc_370|61-210
+756|code|LDR             R3, [SP,#0x68+var_34]|13-155
+758|code|CMP             R0, R3|152-66
+760|code|BCS             loc_370|58-210
+762|code|LDR             R1, [SP,#0x68+var_64]|1-153
+764|code|MOV.W           R0, R8,LSL#8|79-234-8-32
+768|code|LDR             R3, =__aeabi_uidiv|43-75
+770|code|BLX             R3; __aeabi_uidiv|152-71
+772|code|LDR             R1, [SP,#0x68+var_60]|2-153
+774|code|LDR             R3, =__aeabi_uidiv|42-75
+776|code|SUB.W           R6, R0, R6,LSL#8|160-235-6-38
+780|code|LDR             R0, [SP,#0x68+var_40]|10-152
+782|code|BLX             R3; __aeabi_uidiv|152-71
+784|code|RSB.W           R12, R6, #0x100|198-245-128-124
+788|code|LDR             R3, [SP,#0x68+var_5C]|3-155
+790|code|MOVS            R1, #0|0-33
+792|code|SUB.W           R0, R0, R9,LSL#8|160-235-9-32
+796|code|RSB.W           LR, R0, #0x100|192-245-128-126
+800|code|MUL.W           R2, R0, R6|0-251-6-242
+804|code|MUL.W           R9, LR, R12|14-251-12-249
+808|code|MUL.W           LR, LR, R6|14-251-6-254
+812|code|MUL.W           R12, R0, R12|0-251-12-252
+816|code|ADDS            R0, R5, R3|232-24
+818|code|ADDS            R3, R5, R7|235-25
+820|code|STR             R3, [SP,#0x68+var_3C]|11-147
+822|code|LDR             R3, [SP,#0x68+var_2C]|15-155
+824|code|ADDS            R3, R5, R3|235-24
+826|code|STR             R3, [SP,#0x68+var_38]|12-147
+828|code|CMP             R1, R7|185-66
+830|code|BGE             loc_380|31-218
+832|code|LDRB            R3, [R0,R1]|67-92
+834|code|LDRB            R6, [R5,R1]|110-92
+836|code|MUL.W           R3, R3, R12|3-251-12-243
+840|code|MLA.W           R3, R6, R9, R3|6-251-9-51
+844|code|LDR             R6, [SP,#0x68+var_3C]|11-158
+846|code|LDRB            R6, [R6,R1]|118-92
+848|code|MLA.W           R6, R6, LR, R3|6-251-14-54
+852|code|LDR             R3, [SP,#0x68+var_38]|12-155
+854|code|LDRB            R3, [R3,R1]|91-92
+856|code|MLA.W           R3, R3, R2, R6|3-251-2-99
+860|code|CMP             R3, #0|0-43
+862|code|ITT LT|188-191
+864|code|ADDLT.W         R3, R3, #0xFF00|3-245-127-67
+868|code|ADDLT           R3, #0xFF|255-51
+870|code|ASRS            R3, R3, #0x10|27-20
+872|code|STRB.W          R3, [R10,R1]|10-248-1-48
+876|code|ADDS            R1, #1|1-49
+878|code|B               loc_33C|229-231
+880|code|MOVS            R3, #0|0-35
+882|code|CMP             R3, R7|187-66
+884|code|BGE             loc_380|4-218
+886|code|LDRB            R2, [R5,R3]|234-92
+888|code|STRB.W          R2, [R10,R3]|10-248-3-32
+892|code|ADDS            R3, #1|1-51
+894|code|B               loc_372|248-231
+896|code|LDR             R3, [SP,#0x68+var_50]|6-155
+898|code|ADD.W           R11, R11, #1|11-241-1-11
+902|code|ADD             R10, R7|186-68
+904|code|ADD             R8, R3|152-68
+906|code|B               loc_2C6|156-231
+908|code|LDR             R3, [SP,#0x68+var_58]|4-155
+910|code|LDR             R2, [SP,#0x68+var_44]|9-154
+912|code|ADDS            R3, #1|1-51
+914|code|STR             R3, [SP,#0x68+var_58]|4-147
+916|code|LDR             R3, [SP,#0x68+var_54]|5-155
+918|code|ADD             R3, R2|19-68
+920|code|STR             R3, [SP,#0x68+var_54]|5-147
+922|code|LDR             R3, [SP,#0x68+var_4C]|7-155
+924|code|ADD             R4, R3|28-68
+926|code|B               loc_2AA|132-231
+928|code|MOVS            dst, #0x26 ; '&'; jumptable 000001D0 default case|38-32
+930|code|LDR             src, =aInvalidScaleMe; "Invalid scale_method value"|4-73
+932|code|LDR             R3, =grub_error|4-75
+934|code|BLX             R3; grub_error|152-71
+936|code|ADD             SP, SP, #0x44 ; 'D'|17-176
+938|code|POP.W           {R4-R11,PC}|189-232-240-143
+942|data|ALIGN 0x10|0-191
+944|data|DCD __aeabi_uidiv|148-7-0-0
+948|data|DCD aInvalidScaleMe; "Invalid scale_method value"|13-7-0-0
+952|data|DCD grub_error|152-7-0-0
+956|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+960|code|MOV             R7, src|31-70
+962|code|MOV             R5, dst|5-70
+964|code|MOVS            src, #0|0-35
+966|code|STR             R3, [dst]|3-96
+968|code|MOV             dst, src; src|56-70
+970|code|MOV             R8, dst_width|136-70
+972|code|MOV             R6, dst_height|22-70
+974|code|BL              verify_source_bitmap|255-247-197-254
+978|code|CBNZ            err, locret_418|8-187
+980|code|CMP.W           dst_width, #0|184-241-0-15
+984|code|BLE             loc_3DE|1-221
+986|code|CMP             dst_height, #0|0-46
+988|code|BGT             loc_3EA|5-220
+990|code|LDR             R1, =aRequestedToSca; "requested to scale to a size w/ a zero "...|15-73
+992|code|MOVS            err, #0x26 ; '&'|38-32
+994|code|LDR             R3, =grub_error|15-75
+996|code|BLX             R3; grub_error|152-71
+998|code|POP.W           {R4-dst_width,PC}|189-232-240-129
+1002|code|MOV             R2, dst_height|50-70
+1004|code|MOV             err, dst|40-70
+1006|code|MOV             R1, dst_width|65-70
+1008|code|LDR             R3, [src,#0x20]|59-106
+1010|code|LDR             R4, =grub_video_bitmap_create|12-76
+1012|code|BLX             R4; grub_video_bitmap_create|160-71
+1014|code|MOV             dst_height, ret|6-70
+1016|code|CBNZ            ret, locret_412|88-185
+1018|code|LDR             ret, [dst]; dst|40-104
+1020|code|MOV             R1, src; src|57-70
+1022|code|LDR             R2, [SP,#0x18+scale_method]; scale_method|6-154
+1024|code|BL              grub_video_bitmap_scale|255-247-222-254
+1028|code|MOV             R4, ret|4-70
+1030|code|CBZ             ret, loc_416|48-177
+1032|code|LDR             ret, [dst]|40-104
+1034|code|LDR             R3, =grub_video_bitmap_destroy|7-75
+1036|code|BLX             R3; grub_video_bitmap_destroy|152-71
+1038|code|STR             R6, [dst]|46-96
+1040|code|B               loc_416|1-224
+1042|code|POP.W           {R4-dst_width,PC}|189-232-240-129
+1046|code|MOV             R0, ret|32-70
+1048|code|POP.W           {R4-dst_width,PC}|189-232-240-129
+1052|data|DCD aRequestedToSca; "requested to scale to a size w/ a zero "...|40-7-0-0
+1056|data|DCD grub_error|152-7-0-0
+1060|data|DCD grub_video_bitmap_create|140-7-0-0
+1064|data|DCD grub_video_bitmap_destroy|144-7-0-0
+1068|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1072|code|MOV             R4, src|28-70
+1074|code|SUB             SP, SP, #0x24|137-176
+1076|code|MOV             R5, dst|5-70
+1078|code|MOVS            src, #0|0-35
+1080|code|STR             R3, [dst]|3-96
+1082|code|MOV             dst, src; src|32-70
+1084|code|MOV             R7, dst_width_0|15-70
+1086|code|MOV             R6, dst_height|22-70
+1088|code|BL              verify_source_bitmap|255-247-140-254
+1092|code|CMP             ret, #0|0-40
+1094|code|BNE.W           loc_596|64-240-166-128
+1098|code|CMP             dst_width_0, #0|0-47
+1100|code|BLE             loc_452|1-221
+1102|code|CMP             dst_height, #0|0-46
+1104|code|BGT             loc_45C|4-220
+1106|code|LDR             R1, =aRequestedToSca; "requested to scale to a size w/ a zero "...|82-73
+1108|code|MOVS            ret, #0x26 ; '&'|38-32
+1110|code|LDR             R3, =grub_error|82-75
+1112|code|BLX             R3; grub_error|152-71
+1114|code|B               loc_596|156-224
+1116|code|MOV             ret, dst|40-70
+1118|code|MOV             R1, dst_width_0|57-70
+1120|code|MOV             R2, dst_height|50-70
+1122|code|LDR             R3, [src,#0x20]|35-106
+1124|code|LDR.W           R12, =grub_video_bitmap_create|223-248-72-193
+1128|code|BLX             R12; grub_video_bitmap_create|224-71
+1130|code|CMP             ret, #0|0-40
+1132|code|BNE.W           loc_596|64-240-147-128
+1136|code|LDR             R1, [src]|33-104
+1138|code|LDR             R3, [src,#4]|99-104
+1140|code|LDR             R2, [SP,#0x48+selection_method]|19-154
+1142|code|STR             ret, [SP,#0x48+dx0]|0-144
+1144|code|SUBS            R2, #1; switch 4 cases|1-58
+1146|code|STR             ret, [SP,#0x48+dy0]|1-144
+1148|code|STR             dst_width_0, [SP,#0x48+dw]|2-151
+1150|code|STR             dst_height, [SP,#0x48+dh]|3-150
+1152|code|STR             ret, [SP,#0x48+sx0]|4-144
+1154|code|STR             ret, [SP,#0x48+sy0]|5-144
+1156|code|STR             R1, [SP,#0x48+sw]|6-145
+1158|code|STR             R3, [SP,#0x48+sh]|7-147
+1160|code|CMP             R2, #3|3-42
+1162|code|BHI             def_48C; jumptable 0000048C default case|62-216
+1164|code|TBB.W           [PC,R2]; switch jump|223-232-2-240
+1168|data|DCB 2; jump table for switch statement|2
+1169|data|DCB 0xA|10
+1170|data|DCB 0x19|25
+1171|data|DCB 0x27|39
+1172|code|MUL.W           R0, R1, dst_height; jumptable 0000048C case 1|1-251-6-240
+1176|code|LDR             R2, =__aeabi_uidiv|66-74
+1178|code|MULS            R3, dst_width_0|123-67
+1180|code|CMP             R0, R3|152-66
+1182|code|BCC             loc_4CE|22-211
+1184|code|MOV             R0, R3|24-70
+1186|code|B               loc_4F8|41-224
+1188|code|MUL.W           R0, R1, dst_height; jumptable 0000048C case 2|1-251-6-240
+1192|code|LDR             R2, =__aeabi_uidiv|62-74
+1194|code|MULS            dst_width_0, R3|95-67
+1196|code|CMP             R0, R7|184-66
+1198|code|BCC             loc_4EA|28-211
+1200|code|MOV             R0, R7|56-70
+1202|code|BLX             R2; __aeabi_uidiv|144-71
+1204|code|ADD             R1, SP, #0x48+dh; h|3-169
+1206|code|MOV             R2, R0; new_h|2-70
+1208|code|ADD             R0, SP, #0x48+dy0; y|1-168
+1210|code|LDR             R3, [SP,#0x48+v_align]; v_align|20-155
+1212|code|BL              make_v_align|255-247-6-254
+1216|code|B               loc_512|39-224
+1218|code|MUL.W           R0, R1, dst_height; jumptable 0000048C case 3|1-251-6-240
+1222|code|LDR             R2, =__aeabi_uidiv|55-74
+1224|code|MULS            R3, dst_width_0|123-67
+1226|code|CMP             R0, R3|152-66
+1228|code|BCS             loc_4DA|5-210
+1230|code|MOV             R1, dst_width_0|57-70
+1232|code|BLX             R2; __aeabi_uidiv|144-71
+1234|code|ADD             R1, SP, #0x48+sh|7-169
+1236|code|MOV             R2, R0|2-70
+1238|code|ADD             R0, SP, #0x48+sy0|5-168
+1240|code|B               loc_4BA|239-231
+1242|code|MOV             R0, R3|24-70
+1244|code|B               loc_4B2|233-231
+1246|code|MUL.W           R0, R1, dst_height; jumptable 0000048C case 4|1-251-6-240
+1250|code|LDR             R2, =__aeabi_uidiv|48-74
+1252|code|MULS            dst_width_0, R3|95-67
+1254|code|CMP             R0, R7|184-66
+1256|code|BCS             loc_4F6|5-210
+1258|code|MOV             R1, R3|25-70
+1260|code|BLX             R2; __aeabi_uidiv|144-71
+1262|code|ADD             R1, SP, #0x48+dw|2-169
+1264|code|MOV             R2, R0|2-70
+1266|code|MOV             R0, SP|104-70
+1268|code|B               loc_502|5-224
+1270|code|MOV             R0, R7|56-70
+1272|code|MOV             R1, dst_height|49-70
+1274|code|BLX             R2; __aeabi_uidiv|144-71
+1276|code|ADD             R1, SP, #0x48+sw; w|6-169
+1278|code|MOV             R2, R0; new_w|2-70
+1280|code|ADD             R0, SP, #0x48+sx0; x|4-168
+1282|code|LDR             R3, [SP,#0x48+h_align]; h_align|21-155
+1284|code|BL              make_h_align|255-247-6-254
+1288|code|B               loc_512|3-224
+1290|code|MOVS            R0, #0x26 ; '&'; jumptable 0000048C default case|38-32
+1292|code|LDR             R1, =aInvalidSelecti; "Invalid selection_method value"|38-73
+1294|code|LDR             R3, =grub_error|36-75
+1296|code|BLX             R3; grub_error|152-71
+1298|code|MOV             dst_height, R0|6-70
+1300|code|CMP             ret, #0|0-40
+1302|code|BNE             loc_58A|56-209
+1304|code|LDR             R3, [dst]|43-104
+1306|code|LDR             R2, [SP,#0x48+sw]|6-154
+1308|code|LDR.W           R10, [src]|212-248-0-160
+1312|code|LDR             R6, [R3,#0x4C]|222-108
+1314|code|LDR.W           R8, [R3]|211-248-0-128
+1318|code|LDR             R7, [R3,#4]|95-104
+1320|code|LDR.W           LR, [R3,#0x14]|211-248-20-224
+1324|code|STR             R2, [src]|34-96
+1326|code|LDR             R2, [SP,#0x48+sh]|7-154
+1328|code|LDR.W           R9, [src,#4]|212-248-4-144
+1332|code|LDR             R1, [src,#0x10]|33-105
+1334|code|STR             R2, [src,#4]|98-96
+1336|code|LDR             R2, [SP,#0x48+sx0]|4-154
+1338|code|LDR             ret, [src,#0x14]|96-105
+1340|code|LDR             R3, [SP,#0x48+sy0]|5-155
+1342|code|MULS            R2, R1|74-67
+1344|code|LDR.W           R11, [src,#0x4C]|212-248-76-176
+1348|code|MLA.W           sstride, R3, sstride, R2|3-251-0-32
+1352|code|LDR             R2, [SP,#0x48+dw]|2-154
+1354|code|ADD             R0, src_data_orig|88-68
+1356|code|STR             R0, [src,#0x4C]|224-100
+1358|code|LDR             R0, [dst]|40-104
+1360|code|STR             R2, [R0]|2-96
+1362|code|LDR             R2, [SP,#0x48+dh]|3-154
+1364|code|STR             R2, [R0,#4]|66-96
+1366|code|LDR             R2, [SP,#0x48+dx0]|0-154
+1368|code|MULS            bytes_per_pixel, R2|81-67
+1370|code|LDR             R2, [SP,#0x48+dy0]|1-154
+1372|code|MLA.W           R3, R2, LR, R1|2-251-14-19
+1376|code|LDR             R2, [R0,#0x4C]|194-108
+1378|code|MOV             R1, src; src|33-70
+1380|code|ADD             R3, R2|19-68
+1382|code|LDR             R2, [SP,#0x48+scale_method]; scale_method|18-154
+1384|code|STR             R3, [R0,#0x4C]|195-100
+1386|code|LDR             R0, [dst]; dst|40-104
+1388|code|BL              grub_video_bitmap_scale|255-247-40-254
+1392|code|STR.W           src_data_orig, [src,#0x4C]|196-248-76-176
+1396|code|LDR             R3, [dst]|43-104
+1398|code|STR.W           src_width_orig, [src]|196-248-0-160
+1402|code|STR.W           src_height_orig, [src,#4]|196-248-4-144
+1406|code|STR             dst_data_orig, [R3,#0x4C]|222-100
+1408|code|STR.W           dst_width_orig, [R3]|195-248-0-128
+1412|code|STR             dst_height_orig, [R3,#4]|95-96
+1414|code|MOV             dst_data_orig, ret|6-70
+1416|code|CBZ             ret, loc_594|32-177
+1418|code|LDR             R3, =grub_video_bitmap_destroy|8-75
+1420|code|LDR             ret, [dst]|40-104
+1422|code|BLX             R3; grub_video_bitmap_destroy|152-71
+1424|code|MOVS            R3, #0|0-35
+1426|code|STR             R3, [dst]|43-96
+1428|code|MOV             R0, ret|48-70
+1430|code|ADD             SP, SP, #0x24 ; '$'|9-176
+1432|code|POP.W           {src-R11,PC}|189-232-240-143
+1436|data|DCD aRequestedToSca; "requested to scale to a size w/ a zero "...|40-7-0-0
+1440|data|DCD grub_error|152-7-0-0
+1444|data|DCD __aeabi_uidiv|148-7-0-0
+1448|data|DCD aInvalidSelecti; "Invalid selection_method value"|89-7-0-0
+1452|data|DCD grub_video_bitmap_destroy|144-7-0-0
+1456|data|DCD grub_video_bitmap_create|140-7-0-0
+1460|data|DCB "null bitmap in scale function",0|110-117-108-108-32-98-105-116-109-97-112-32-105-110-32-115-99-97-108-101-32-102-117-110-99-116-105-111-110-0
+1490|data|DCB "dst format not supported",0|100-115-116-32-102-111-114-109-97-116-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+1515|data|DCB "src format not supported",0|115-114-99-32-102-111-114-109-97-116-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+1540|data|DCB "dst and src not compatible",0|100-115-116-32-97-110-100-32-115-114-99-32-110-111-116-32-99-111-109-112-97-116-105-98-108-101-0
+1567|data|DCB "bitmap has a zero dimension",0|98-105-116-109-97-112-32-104-97-115-32-97-32-122-101-114-111-32-100-105-109-101-110-115-105-111-110-0
+1595|data|DCB "Invalid v_align value",0|73-110-118-97-108-105-100-32-118-95-97-108-105-103-110-32-118-97-108-117-101-0
+1617|data|DCB "Invalid h_align value",0|73-110-118-97-108-105-100-32-104-95-97-108-105-103-110-32-118-97-108-117-101-0
+1639|data|DCB "null src bitmap in grub_video_bitmap_create_scaled",0|110-117-108-108-32-115-114-99-32-98-105-116-109-97-112-32-105-110-32-103-114-117-98-95-118-105-100-101-111-95-98-105-116-109-97-112-95-99-114-101-97-116-101-95-115-99-97-108-101-100-0
+1690|data|DCB "src format not supported for scale",0|115-114-99-32-102-111-114-109-97-116-32-110-111-116-32-115-117-112-112-111-114-116-101-100-32-102-111-114-32-115-99-97-108-101-0
+1725|data|DCB "source bitmap has a zero dimension",0|115-111-117-114-99-101-32-98-105-116-109-97-112-32-104-97-115-32-97-32-122-101-114-111-32-100-105-109-101-110-115-105-111-110-0
+1760|data|DCB "bitmap to scale has inconsistent Bpp and bpp",0|98-105-116-109-97-112-32-116-111-32-115-99-97-108-101-32-104-97-115-32-105-110-99-111-110-115-105-115-116-101-110-116-32-66-112-112-32-97-110-100-32-98-112-112-0
+1805|data|DCB "Invalid scale_method value",0|73-110-118-97-108-105-100-32-115-99-97-108-101-95-109-101-116-104-111-100-32-118-97-108-117-101-0
+1832|data|DCB "requested to scale to a size w/ a zero dimension",0|114-101-113-117-101-115-116-101-100-32-116-111-32-115-99-97-108-101-32-116-111-32-97-32-115-105-122-101-32-119-47-32-97-32-122-101-114-111-32-100-105-109-101-110-115-105-111-110-0
+1881|data|DCB "Invalid selection_method value",0|73-110-118-97-108-105-100-32-115-101-108-101-99-116-105-111-110-95-109-101-116-104-111-100-32-118-97-108-117-101-0

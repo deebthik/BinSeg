@@ -1,0 +1,832 @@
+address|type|disassembly|bytes
+0|data|DCD 0x464C457F; File format: \x7FELF|127-69-76-70
+4|data|DCB 1; File class: 32-bit|1
+5|data|DCB 1; Data encoding: little-endian|1
+6|data|DCB 1; File version|1
+7|data|DCB 0; OS/ABI: UNIX System V ABI|0
+8|data|DCB 0; ABI Version|0
+9|data|DCB 0, 0, 0, 0, 0, 0, 0; Padding|0-0-0-0-0-0-0
+16|data|DCW 3; File type: Shared object|3-0
+18|data|DCW 0x28; Machine: ARM|40-0
+20|data|DCD 1; File version|1-0-0-0
+24|data|DCD start+1; Entry point|77-12-0-0
+28|data|DCD 0x34; PHT file offset|52-0-0-0
+32|data|DCD 0x2130; SHT file offset|48-33-0-0
+36|data|DCD 0x5000402; Processor-specific flags|2-4-0-5
+40|data|DCW 0x34; ELF header size|52-0
+42|data|DCW 0x20; PHT entry size|32-0
+44|data|DCW 9; Number of entries in PHT|9-0
+46|data|DCW 0x28; SHT entry size|40-0
+48|data|DCW 0x1B; Number of entries in SHT|27-0
+50|data|DCW 0x1A; SHT entry index for string table|26-0
+52|data|DCD 0x70000001; Type: EXIDX|1-0-0-112
+56|data|DCD 0x1004; File offset|4-16-0-0
+60|data|DCD unk_1004; Virtual address|4-16-0-0
+64|data|DCD 0x1004; Physical address|4-16-0-0
+68|data|DCD 8; Size in file image|8-0-0-0
+72|data|DCD 8; Size in memory image|8-0-0-0
+76|data|DCD 4; Flags|4-0-0-0
+80|data|DCD 4; Alignment|4-0-0-0
+84|data|DCD 6; Type: PHDR|6-0-0-0
+88|data|DCD 0x34; File offset|52-0-0-0
+92|data|DCD dword_34; Virtual address|52-0-0-0
+96|data|DCD 0x34; Physical address|52-0-0-0
+100|data|DCD 0x120; Size in file image|32-1-0-0
+104|data|DCD 0x120; Size in memory image|32-1-0-0
+108|data|DCD 5; Flags|5-0-0-0
+112|data|DCD 4; Alignment|4-0-0-0
+116|data|DCD 3; Type: INTERP|3-0-0-0
+120|data|DCD 0x154; File offset|84-1-0-0
+124|data|DCD aLibLdLinuxArmh; Virtual address|84-1-0-0
+128|data|DCD 0x154; Physical address|84-1-0-0
+132|data|DCD 0x19; Size in file image|25-0-0-0
+136|data|DCD 0x19; Size in memory image|25-0-0-0
+140|data|DCD 4; Flags|4-0-0-0
+144|data|DCD 1; Alignment|1-0-0-0
+148|data|DCD 1; Type: LOAD|1-0-0-0
+152|data|DCD 0; File offset|0-0-0-0
+156|data|DCD 0; Virtual address|0-0-0-0
+160|data|DCD 0; Physical address|0-0-0-0
+164|data|DCD 0x1010; Size in file image|16-16-0-0
+168|data|DCD 0x1010; Size in memory image|16-16-0-0
+172|data|DCD 5; Flags|5-0-0-0
+176|data|DCD 0x10000; Alignment|0-0-1-0
+180|data|DCD 1; Type: LOAD|1-0-0-0
+184|data|DCD 0x1E1C; File offset|28-30-0-0
+188|data|DCD off_11E1C; Virtual address|28-30-1-0
+192|data|DCD 0x11E1C; Physical address|28-30-1-0
+196|data|DCD 0x1EC; Size in file image|236-1-0-0
+200|data|DCD 0x1F0; Size in memory image|240-1-0-0
+204|data|DCD 6; Flags|6-0-0-0
+208|data|DCD 0x10000; Alignment|0-0-1-0
+212|data|DCD 2; Type: DYNAMIC|2-0-0-0
+216|data|DCD 0x1E28; File offset|40-30-0-0
+220|data|DCD stru_11E28; Virtual address|40-30-1-0
+224|data|DCD 0x11E28; Physical address|40-30-1-0
+228|data|DCD 0x148; Size in file image|72-1-0-0
+232|data|DCD 0x148; Size in memory image|72-1-0-0
+236|data|DCD 6; Flags|6-0-0-0
+240|data|DCD 4; Alignment|4-0-0-0
+244|data|DCD 4; Type: NOTE|4-0-0-0
+248|data|DCD 0x170; File offset|112-1-0-0
+252|data|DCD dword_170; Virtual address|112-1-0-0
+256|data|DCD 0x170; Physical address|112-1-0-0
+260|data|DCD 0x44; Size in file image|68-0-0-0
+264|data|DCD 0x44; Size in memory image|68-0-0-0
+268|data|DCD 4; Flags|4-0-0-0
+272|data|DCD 4; Alignment|4-0-0-0
+276|data|DCD 0x6474E551; Type: STACK|81-229-116-100
+280|data|DCD 0; File offset|0-0-0-0
+284|data|DCD 0; Virtual address|0-0-0-0
+288|data|DCD 0; Physical address|0-0-0-0
+292|data|DCD 0; Size in file image|0-0-0-0
+296|data|DCD 0; Size in memory image|0-0-0-0
+300|data|DCD 6; Flags|6-0-0-0
+304|data|DCD 0x10; Alignment|16-0-0-0
+308|data|DCD 0x6474E552; Type: RO-AFTER|82-229-116-100
+312|data|DCD 0x1E1C; File offset|28-30-0-0
+316|data|DCD off_11E1C; Virtual address|28-30-1-0
+320|data|DCD 0x11E1C; Physical address|28-30-1-0
+324|data|DCD 0x1E4; Size in file image|228-1-0-0
+328|data|DCD 0x1E4; Size in memory image|228-1-0-0
+332|data|DCD 4; Flags|4-0-0-0
+336|data|DCD 1; Alignment|1-0-0-0
+340|data|DCB "/lib/ld-linux-armhf.so.3",0|47-108-105-98-47-108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+365|data|DCB 0, 0, 0|0-0-0
+368|data|DCD 4; Name Size|4-0-0-0
+372|data|DCD 0x10; Desc Size|16-0-0-0
+376|data|DCD 1; Type: NT_GNU_ABI_TAG|1-0-0-0
+380|data|DCB "GNU",0; Name|71-78-85-0
+384|data|DCD 0, 2, 6, 0x20; ABI: Linux 2.6.32|0-0-0-0-2-0-0-0-6-0-0-0-32-0-0-0
+400|data|DCD 4; Name Size|4-0-0-0
+404|data|DCD 0x14; Desc Size|20-0-0-0
+408|data|DCD 3; Type: NT_GNU_BUILD_ID|3-0-0-0
+412|data|DCB "GNU",0; Name|71-78-85-0
+416|data|DCB 0x59, 0x51, 0x77, 5, 0x78, 0xE, 0x48, 0x15, 0xD4, 0xEC; Desc|89-81-119-5-120-14-72-21-212-236-227-84-235-148-141-79-32-168-107-222
+436|data|DCD 3|3-0-0-0
+440|data|DCD 0x1F|31-0-0-0
+444|data|DCD 4|4-0-0-0
+448|data|DCD 7|7-0-0-0
+452|data|DCD 0x40001101, 0x89200080, 0x4D000408, 0x40440580|1-17-0-64-128-0-32-137-8-4-0-77-128-5-68-64
+468|data|DCD 0x1F, 0x23, 0x28|31-0-0-0-35-0-0-0-40-0-0-0
+480|data|DCD 0xD643096A, 0xE834AF00, 0x7C92E3BA, 0xECD54543, 0x9EE3CDDA|106-9-67-214-0-175-52-232-186-227-146-124-67-69-213-236-218-205-227-158-190-218-87-27-216-113-88-28-106-127-154-124-185-141-241-14-12-20-226-158-234-211-239-14-118-84-60-148-89-239-151-121
+532|data|Elf32_Sym <0>|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+548|data|Elf32_Sym <byte_4D4 - byte_4D4, aLibLdLinuxArmh, 0, 3, 0, 1>; "/lib/ld-linux-armhf.so.3"|0-0-0-0-84-1-0-0-0-0-0-0-3-0-1-0
+564|data|Elf32_Sym <byte_4D4 - byte_4D4, dword_11E24, 0, 3, 0, 0x14>|0-0-0-0-36-30-1-0-0-0-0-0-3-0-20-0
+580|data|Elf32_Sym <aOpen - byte_4D4, dword_0, 0, 0x12, 0, 0>; "open"|32-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+596|data|Elf32_Sym <aAbort - byte_4D4, dword_0, 0, 0x12, 0, 0>; "abort"|208-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+612|data|Elf32_Sym <aLibcStartMain - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__libc_start_main"|98-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+628|data|Elf32_Sym <aGmonStart - byte_4D4, dword_0, 0, 0x20, 0, 0>; "__gmon_start__"|17-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+644|data|Elf32_Sym <aJvRegisterclas - byte_4D4, dword_0, 0, 0x20, 0, 0>; "_Jv_RegisterClasses"|32-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+660|data|Elf32_Sym <aPrintfChk - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__printf_chk"|168-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+676|data|Elf32_Sym <aStrrchr - byte_4D4, dword_0, 0, 0x12, 0, 0>; "strrchr"|193-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+692|data|Elf32_Sym <aPerror - byte_4D4, dword_0, 0, 0x12, 0, 0>; "perror"|201-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+708|data|Elf32_Sym <aItmDeregistert - byte_4D4, dword_0, 0, 0x20, 0, 0>; "_ITM_deregisterTMCloneTable"|52-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+724|data|Elf32_Sym <aOptind - byte_4D4, dword_0, 0, 0x11, 0, 0>; "optind"|186-0-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+740|data|Elf32_Sym <aWrite - byte_4D4, dword_0, 0, 0x12, 0, 0>; "write"|116-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+756|data|Elf32_Sym <aScanf - byte_4D4, dword_0, 0, 0x12, 0, 0>; "scanf"|92-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+772|data|Elf32_Sym <aItmRegistertmc - byte_4D4, dword_0, 0, 0x20, 0, 0>; "_ITM_registerTMCloneTable"|80-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+788|data|Elf32_Sym <aFflush - byte_4D4, dword_0, 0, 0x12, 0, 0>; "fflush"|161-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+804|data|Elf32_Sym <aStrdown - byte_4D4, dword_0, 0, 0x12, 0, 0>; "strdown"|106-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+820|data|Elf32_Sym <aGetopt - byte_4D4, dword_0, 0, 0x12, 0, 0>; "getopt"|231-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+836|data|Elf32_Sym <aCtypeTolowerLo - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__ctype_tolower_loc"|43-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+852|data|Elf32_Sym <aStackChkGuard - byte_4D4, dword_0, 0, 0x11, 0, 0>; "__stack_chk_guard"|142-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+868|data|Elf32_Sym <aSnprintfChk - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__snprintf_chk"|17-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+884|data|Elf32_Sym <aFprintfChk - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__fprintf_chk"|238-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+900|data|Elf32_Sym <aSleep - byte_4D4, dword_0, 0, 0x12, 0, 0>; "sleep"|37-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+916|data|Elf32_Sym <aStdout - byte_4D4, dword_0, 0, 0x11, 0, 0>; "stdout"|252-0-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+932|data|Elf32_Sym <aStderr - byte_4D4, dword_0, 0, 0x11, 0, 0>; "stderr"|10-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+948|data|Elf32_Sym <aOptarg - byte_4D4, dword_0, 0, 0x11, 0, 0>; "optarg"|3-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+964|data|Elf32_Sym <aSprintfChk - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__sprintf_chk"|78-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+980|data|Elf32_Sym <aExit - byte_4D4, dword_0, 0, 0x12, 0, 0>; "exit"|181-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+996|data|Elf32_Sym <aErrnoLocation - byte_4D4, dword_0, 0, 0x12, 0, 0>; "__errno_location"|214-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+1012|data|Elf32_Sym <aCxaFinalize - byte_4D4, dword_0, 0, 0x22, 0, 0>; "__cxa_finalize"|63-1-0-0-0-0-0-0-0-0-0-0-34-0-0-0
+1028|data|Elf32_Sym <aDataStart - byte_4D4, __data_start, 0, 0x10, 0, 0x17>; "__data_start"|225-1-0-0-0-32-1-0-0-0-0-0-16-0-23-0
+1044|data|Elf32_Sym <aBssEnd+1 - byte_4D4, _end, 0, 0x10, 0, 0x18>; "_bss_end__"|16-2-0-0-12-32-1-0-0-0-0-0-16-0-24-0
+1060|data|Elf32_Sym <aEnd_0 - byte_4D4, _end, 0, 0x10, 0, 0x18>; "_end"|35-2-0-0-12-32-1-0-0-0-0-0-16-0-24-0
+1076|data|Elf32_Sym <aEdata - byte_4D4, __bss_start__, 0, 0x10, 0, 0x17>; "_edata"|238-1-0-0-8-32-1-0-0-0-0-0-16-0-23-0
+1092|data|Elf32_Sym <aLibcCsuInit - byte_4D4, __libc_csu_init+1, 0x40, 0x12, 0, \; "__libc_csu_init"|56-2-0-0-197-13-0-0-64-0-0-0-18-0-13-0
+1108|data|Elf32_Sym <aBssEnd - byte_4D4, _end, 0, 0x10, 0, 0x18>; "__bss_end__"|15-2-0-0-12-32-1-0-0-0-0-0-16-0-24-0
+1124|data|Elf32_Sym <aBssStart - byte_4D4, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start"|245-1-0-0-8-32-1-0-0-0-0-0-16-0-24-0
+1140|data|Elf32_Sym <aLibcStartMain+0xD - byte_4D4, main+1, 0x25C, 0x12, 0, 0xD>; "main"|111-1-0-0-241-9-0-0-92-2-0-0-18-0-13-0
+1156|data|Elf32_Sym <aLibcCsuInit+0xA - byte_4D4, .init_proc, 0, 0x12, 0, 0xB>; "_init"|66-2-0-0-224-8-0-0-0-0-0-0-18-0-11-0
+1172|data|Elf32_Sym <aLibcCsuFini - byte_4D4, __libc_csu_fini+1, 2, 0x12, 0, \; "__libc_csu_fini"|40-2-0-0-5-14-0-0-2-0-0-0-18-0-13-0
+1188|data|Elf32_Sym <aLibcCsuFini+0xA - byte_4D4, .term_proc, 0, 0x12, 0, 0xE>; "_fini"|50-2-0-0-8-14-0-0-0-0-0-0-18-0-14-0
+1204|data|Elf32_Sym <aBssStart_0 - byte_4D4, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start__"|1-2-0-0-8-32-1-0-0-0-0-0-16-0-24-0
+1220|data|Elf32_Sym <aEnd - byte_4D4, _end, 0, 0x10, 0, 0x18>; "__end__"|27-2-0-0-12-32-1-0-0-0-0-0-16-0-24-0
+1236|data|DCB 0|0
+1237|data|DCB "libstonith.so.1",0|108-105-98-115-116-111-110-105-116-104-46-115-111-46-49-0
+1253|data|DCB "__gmon_start__",0|95-95-103-109-111-110-95-115-116-97-114-116-95-95-0
+1268|data|DCB "_Jv_RegisterClasses",0|95-74-118-95-82-101-103-105-115-116-101-114-67-108-97-115-115-101-115-0
+1288|data|DCB "_ITM_deregisterTMCloneTable",0|95-73-84-77-95-100-101-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+1316|data|DCB "_ITM_registerTMCloneTable",0|95-73-84-77-95-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+1342|data|DCB "strdown",0|115-116-114-100-111-119-110-0
+1350|data|DCB "libbz2.so.1.0",0|108-105-98-98-122-50-46-115-111-46-49-46-48-0
+1364|data|DCB "libz.so.1",0|108-105-98-122-46-115-111-46-49-0
+1374|data|DCB "libxml2.so.2",0|108-105-98-120-109-108-50-46-115-111-46-50-0
+1387|data|DCB "libc.so.6",0|108-105-98-99-46-115-111-46-54-0
+1397|data|DCB "fflush",0|102-102-108-117-115-104-0
+1404|data|DCB "__printf_chk",0|95-95-112-114-105-110-116-102-95-99-104-107-0
+1417|data|DCB "exit",0|101-120-105-116-0
+1422|data|DCB "optind",0|111-112-116-105-110-100-0
+1429|data|DCB "strrchr",0|115-116-114-114-99-104-114-0
+1437|data|DCB "perror",0|112-101-114-114-111-114-0
+1444|data|DCB "abort",0|97-98-111-114-116-0
+1450|data|DCB "__errno_location",0|95-95-101-114-114-110-111-95-108-111-99-97-116-105-111-110-0
+1467|data|DCB "getopt",0|103-101-116-111-112-116-0
+1474|data|DCB "__fprintf_chk",0|95-95-102-112-114-105-110-116-102-95-99-104-107-0
+1488|data|DCB "stdout",0|115-116-100-111-117-116-0
+1495|data|DCB "optarg",0|111-112-116-97-114-103-0
+1502|data|DCB "stderr",0|115-116-100-101-114-114-0
+1509|data|DCB "__snprintf_chk",0|95-95-115-110-112-114-105-110-116-102-95-99-104-107-0
+1524|data|DCB "open",0|111-112-101-110-0
+1529|data|DCB "sleep",0|115-108-101-101-112-0
+1535|data|DCB "__ctype_tolower_loc",0|95-95-99-116-121-112-101-95-116-111-108-111-119-101-114-95-108-111-99-0
+1555|data|DCB "__cxa_finalize",0|95-95-99-120-97-95-102-105-110-97-108-105-122-101-0
+1570|data|DCB "__sprintf_chk",0|95-95-115-112-114-105-110-116-102-95-99-104-107-0
+1584|data|DCB "scanf",0|115-99-97-110-102-0
+1590|data|DCB "__libc_start_main",0|95-95-108-105-98-99-95-115-116-97-114-116-95-109-97-105-110-0
+1608|data|DCB "write",0|119-114-105-116-101-0
+1614|data|DCB "ld-linux-armhf.so.3",0|108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+1634|data|DCB "__stack_chk_guard",0|95-95-115-116-97-99-107-95-99-104-107-95-103-117-97-114-100-0
+1652|data|DCB "libuuid.so.1",0|108-105-98-117-117-105-100-46-115-111-46-49-0
+1665|data|DCB "librt.so.1",0|108-105-98-114-116-46-115-111-46-49-0
+1676|data|DCB "libdl.so.2",0|108-105-98-100-108-46-115-111-46-50-0
+1687|data|DCB "libglib-2.0.so.0",0|108-105-98-103-108-105-98-45-50-46-48-46-115-111-46-48-0
+1704|data|DCB "libltdl.so.7",0|108-105-98-108-116-100-108-46-115-111-46-55-0
+1717|data|DCB "__data_start",0|95-95-100-97-116-97-95-115-116-97-114-116-0
+1730|data|DCB "_edata",0|95-101-100-97-116-97-0
+1737|data|DCB "__bss_start",0|95-95-98-115-115-95-115-116-97-114-116-0
+1749|data|DCB "__bss_start__",0|95-95-98-115-115-95-115-116-97-114-116-95-95-0
+1763|data|DCB "__bss_end__",0|95-95-98-115-115-95-101-110-100-95-95-0
+1775|data|DCB "__end__",0|95-95-101-110-100-95-95-0
+1783|data|DCB "_end",0|95-101-110-100-0
+1788|data|DCB "__libc_csu_fini",0|95-95-108-105-98-99-95-99-115-117-95-102-105-110-105-0
+1804|data|DCB "__libc_csu_init",0|95-95-108-105-98-99-95-99-115-117-95-105-110-105-116-0
+1820|data|DCB "GLIBC_2.4",0|71-76-73-66-67-95-50-46-52-0
+1830|data|DCW 0|0-0
+1832|data|DCW 0|0-0
+1834|data|DCW 0|0-0
+1836|data|DCW 2; open@@GLIBC_2.4|2-0
+1838|data|DCW 2; abort@@GLIBC_2.4|2-0
+1840|data|DCW 2; __libc_start_main@@GLIBC_2.4|2-0
+1842|data|DCW 0; local  symbol: __gmon_start__|0-0
+1844|data|DCW 0; local  symbol: _Jv_RegisterClasses|0-0
+1846|data|DCW 2; __printf_chk@@GLIBC_2.4|2-0
+1848|data|DCW 2; strrchr@@GLIBC_2.4|2-0
+1850|data|DCW 2; perror@@GLIBC_2.4|2-0
+1852|data|DCW 0; local  symbol: _ITM_deregisterTMCloneTable|0-0
+1854|data|DCW 2; optind@@GLIBC_2.4|2-0
+1856|data|DCW 2; write@@GLIBC_2.4|2-0
+1858|data|DCW 2; scanf@@GLIBC_2.4|2-0
+1860|data|DCW 0; local  symbol: _ITM_registerTMCloneTable|0-0
+1862|data|DCW 2; fflush@@GLIBC_2.4|2-0
+1864|data|DCW 0; local  symbol: strdown|0-0
+1866|data|DCW 2; getopt@@GLIBC_2.4|2-0
+1868|data|DCW 2; __ctype_tolower_loc@@GLIBC_2.4|2-0
+1870|data|DCW 3; __stack_chk_guard@@GLIBC_2.4|3-0
+1872|data|DCW 2; __snprintf_chk@@GLIBC_2.4|2-0
+1874|data|DCW 2; __fprintf_chk@@GLIBC_2.4|2-0
+1876|data|DCW 2; sleep@@GLIBC_2.4|2-0
+1878|data|DCW 2; stdout@@GLIBC_2.4|2-0
+1880|data|DCW 2; stderr@@GLIBC_2.4|2-0
+1882|data|DCW 2; optarg@@GLIBC_2.4|2-0
+1884|data|DCW 2; __sprintf_chk@@GLIBC_2.4|2-0
+1886|data|DCW 2; exit@@GLIBC_2.4|2-0
+1888|data|DCW 2; __errno_location@@GLIBC_2.4|2-0
+1890|data|DCW 2; __cxa_finalize@@GLIBC_2.4|2-0
+1892|data|DCW 1; global symbol: __data_start|1-0
+1894|data|DCW 1; global symbol: _bss_end__|1-0
+1896|data|DCW 1; global symbol: _end|1-0
+1898|data|DCW 1; global symbol: _edata|1-0
+1900|data|DCW 1; global symbol: __libc_csu_init|1-0
+1902|data|DCW 1; global symbol: __bss_end__|1-0
+1904|data|DCW 1; global symbol: __bss_start|1-0
+1906|data|DCW 1; global symbol: main|1-0
+1908|data|DCW 1; global symbol: _init|1-0
+1910|data|DCW 1; global symbol: __libc_csu_fini|1-0
+1912|data|DCW 1; global symbol: _fini|1-0
+1914|data|DCW 1; global symbol: __bss_start__|1-0
+1916|data|DCW 1; global symbol: __end__|1-0
+1918|data|DCW 0|0-0
+1920|data|Elf32_Verneed <1, 1, aLdLinuxArmhfSo - byte_4D4, 0x10, 0x20>; "ld-linux-armhf.so.3"|1-0-1-0-122-1-0-0-16-0-0-0-32-0-0-0
+1936|data|Elf32_Vernaux <0xD696914, 0, 3, aGlibc24 - byte_4D4, 0>; "GLIBC_2.4"|20-105-105-13-0-0-3-0-72-2-0-0-0-0-0-0
+1952|data|Elf32_Verneed <1, 1, aLibcSo6 - byte_4D4, 0x10, 0>; "libc.so.6"|1-0-1-0-151-0-0-0-16-0-0-0-0-0-0-0
+1968|data|Elf32_Vernaux <0xD696914, 0, 2, aGlibc24 - byte_4D4, 0>; "GLIBC_2.4"|20-105-105-13-0-0-2-0-72-2-0-0-0-0-0-0
+1984|data|Elf32_Rel <0x11E1C, 0x17>; R_ARM_RELATIVE|28-30-1-0-23-0-0-0
+1992|data|Elf32_Rel <0x11E20, 0x17>; R_ARM_RELATIVE|32-30-1-0-23-0-0-0
+2000|data|Elf32_Rel <0x11FCC, 0x17>; R_ARM_RELATIVE|204-31-1-0-23-0-0-0
+2008|data|Elf32_Rel <0x11FE4, 0x17>; R_ARM_RELATIVE|228-31-1-0-23-0-0-0
+2016|data|Elf32_Rel <0x11FFC, 0x17>; R_ARM_RELATIVE|252-31-1-0-23-0-0-0
+2024|data|Elf32_Rel <0x12004, 0x17>; R_ARM_RELATIVE|4-32-1-0-23-0-0-0
+2032|data|Elf32_Rel <0x11FD0, 0x615>; R_ARM_GLOB_DAT __gmon_start__|208-31-1-0-21-6-0-0
+2040|data|Elf32_Rel <0x11FD4, 0x715>; R_ARM_GLOB_DAT _Jv_RegisterClasses|212-31-1-0-21-7-0-0
+2048|data|Elf32_Rel <0x11FD8, 0xB15>; R_ARM_GLOB_DAT _ITM_deregisterTMCloneTable|216-31-1-0-21-11-0-0
+2056|data|Elf32_Rel <0x11FDC, 0xC15>; R_ARM_GLOB_DAT optind|220-31-1-0-21-12-0-0
+2064|data|Elf32_Rel <0x11FE0, 0xF15>; R_ARM_GLOB_DAT _ITM_registerTMCloneTable|224-31-1-0-21-15-0-0
+2072|data|Elf32_Rel <0x11FE8, 0x1415>; R_ARM_GLOB_DAT __stack_chk_guard|232-31-1-0-21-20-0-0
+2080|data|Elf32_Rel <0x11FEC, 0x1815>; R_ARM_GLOB_DAT stdout|236-31-1-0-21-24-0-0
+2088|data|Elf32_Rel <0x11FF0, 0x1915>; R_ARM_GLOB_DAT stderr|240-31-1-0-21-25-0-0
+2096|data|Elf32_Rel <0x11FF4, 0x1A15>; R_ARM_GLOB_DAT optarg|244-31-1-0-21-26-0-0
+2104|data|Elf32_Rel <0x11FF8, 0x1E15>; R_ARM_GLOB_DAT __cxa_finalize|248-31-1-0-21-30-0-0
+2112|data|Elf32_Rel <0x11F7C, 0x316>; R_ARM_JUMP_SLOT open|124-31-1-0-22-3-0-0
+2120|data|Elf32_Rel <0x11F80, 0x416>; R_ARM_JUMP_SLOT abort|128-31-1-0-22-4-0-0
+2128|data|Elf32_Rel <0x11F84, 0x516>; R_ARM_JUMP_SLOT __libc_start_main|132-31-1-0-22-5-0-0
+2136|data|Elf32_Rel <0x11F88, 0x616>; R_ARM_JUMP_SLOT __gmon_start__|136-31-1-0-22-6-0-0
+2144|data|Elf32_Rel <0x11F8C, 0x816>; R_ARM_JUMP_SLOT __printf_chk|140-31-1-0-22-8-0-0
+2152|data|Elf32_Rel <0x11F90, 0x916>; R_ARM_JUMP_SLOT strrchr|144-31-1-0-22-9-0-0
+2160|data|Elf32_Rel <0x11F94, 0xA16>; R_ARM_JUMP_SLOT perror|148-31-1-0-22-10-0-0
+2168|data|Elf32_Rel <0x11F98, 0xD16>; R_ARM_JUMP_SLOT write|152-31-1-0-22-13-0-0
+2176|data|Elf32_Rel <0x11F9C, 0xE16>; R_ARM_JUMP_SLOT scanf|156-31-1-0-22-14-0-0
+2184|data|Elf32_Rel <0x11FA0, 0x1016>; R_ARM_JUMP_SLOT fflush|160-31-1-0-22-16-0-0
+2192|data|Elf32_Rel <0x11FA4, 0x1116>; R_ARM_JUMP_SLOT strdown|164-31-1-0-22-17-0-0
+2200|data|Elf32_Rel <0x11FA8, 0x1216>; R_ARM_JUMP_SLOT getopt|168-31-1-0-22-18-0-0
+2208|data|Elf32_Rel <0x11FAC, 0x1316>; R_ARM_JUMP_SLOT __ctype_tolower_loc|172-31-1-0-22-19-0-0
+2216|data|Elf32_Rel <0x11FB0, 0x1516>; R_ARM_JUMP_SLOT __snprintf_chk|176-31-1-0-22-21-0-0
+2224|data|Elf32_Rel <0x11FB4, 0x1616>; R_ARM_JUMP_SLOT __fprintf_chk|180-31-1-0-22-22-0-0
+2232|data|Elf32_Rel <0x11FB8, 0x1716>; R_ARM_JUMP_SLOT sleep|184-31-1-0-22-23-0-0
+2240|data|Elf32_Rel <0x11FBC, 0x1B16>; R_ARM_JUMP_SLOT __sprintf_chk|188-31-1-0-22-27-0-0
+2248|data|Elf32_Rel <0x11FC0, 0x1C16>; R_ARM_JUMP_SLOT exit|192-31-1-0-22-28-0-0
+2256|data|Elf32_Rel <0x11FC4, 0x1D16>; R_ARM_JUMP_SLOT __errno_location|196-31-1-0-22-29-0-0
+2264|data|Elf32_Rel <0x11FC8, 0x1E16>; R_ARM_JUMP_SLOT __cxa_finalize|200-31-1-0-22-30-0-0
+2272|code|PUSH            {R3,LR}; _init|8-64-45-233
+2276|code|BL              sub_C94|234-0-0-235
+2280|code|POP             {R3,PC}|8-128-189-232
+2284|code|PUSH            {LR}|4-224-45-229
+2288|code|LDR             LR, =(_GLOBAL_OFFSET_TABLE_ - 0x8FC)|4-224-159-229
+2292|code|ADD             LR, PC, LR; _GLOBAL_OFFSET_TABLE_|14-224-143-224
+2296|code|LDR             PC, [LR,#8]!; dword_0|8-240-190-229
+2300|data|DCD _GLOBAL_OFFSET_TABLE_ - 0x8FC|116-22-1-0
+2304|code|ADR             R12, 0x908|0-198-143-226
+2308|code|ADD             R12, R12, #0x11000|17-202-140-226
+2312|code|LDR             PC, [R12,#(open_ptr - 0x11908)]!; __imp_open|116-246-188-229
+2316|code|ADR             R12, 0x914|0-198-143-226
+2320|code|ADD             R12, R12, #0x11000|17-202-140-226
+2324|code|LDR             PC, [R12,#(abort_ptr - 0x11914)]!; __imp_abort|108-246-188-229
+2328|code|ADR             R12, 0x920|0-198-143-226
+2332|code|ADD             R12, R12, #0x11000|17-202-140-226
+2336|code|LDR             PC, [R12,#(__libc_start_main_ptr - 0x11920)]!; __imp___libc_start_main|100-246-188-229
+2340|code|ADR             R12, 0x92C|0-198-143-226
+2344|code|ADD             R12, R12, #0x11000|17-202-140-226
+2348|code|LDR             PC, [R12,#(__gmon_start___ptr - 0x1192C)]!; __imp___gmon_start__|92-246-188-229
+2352|code|ADR             R12, 0x938|0-198-143-226
+2356|code|ADD             R12, R12, #0x11000|17-202-140-226
+2360|code|LDR             PC, [R12,#(__printf_chk_ptr - 0x11938)]!; __imp___printf_chk|84-246-188-229
+2364|code|ADR             R12, 0x944|0-198-143-226
+2368|code|ADD             R12, R12, #0x11000|17-202-140-226
+2372|code|LDR             PC, [R12,#(strrchr_ptr - 0x11944)]!; __imp_strrchr|76-246-188-229
+2376|code|ADR             R12, 0x950|0-198-143-226
+2380|code|ADD             R12, R12, #0x11000|17-202-140-226
+2384|code|LDR             PC, [R12,#(perror_ptr - 0x11950)]!; __imp_perror|68-246-188-229
+2388|code|ADR             R12, 0x95C|0-198-143-226
+2392|code|ADD             R12, R12, #0x11000|17-202-140-226
+2396|code|LDR             PC, [R12,#(write_ptr - 0x1195C)]!; __imp_write|60-246-188-229
+2400|code|ADR             R12, 0x968|0-198-143-226
+2404|code|ADD             R12, R12, #0x11000|17-202-140-226
+2408|code|LDR             PC, [R12,#(scanf_ptr - 0x11968)]!; __imp_scanf|52-246-188-229
+2412|code|ADR             R12, 0x974|0-198-143-226
+2416|code|ADD             R12, R12, #0x11000|17-202-140-226
+2420|code|LDR             PC, [R12,#(fflush_ptr - 0x11974)]!; __imp_fflush|44-246-188-229
+2424|code|ADR             R12, 0x980|0-198-143-226
+2428|code|ADD             R12, R12, #0x11000|17-202-140-226
+2432|code|LDR             PC, [R12,#(strdown_ptr - 0x11980)]!; __imp_strdown|36-246-188-229
+2436|code|ADR             R12, 0x98C|0-198-143-226
+2440|code|ADD             R12, R12, #0x11000|17-202-140-226
+2444|code|LDR             PC, [R12,#(getopt_ptr - 0x1198C)]!; __imp_getopt|28-246-188-229
+2448|code|ADR             R12, 0x998|0-198-143-226
+2452|code|ADD             R12, R12, #0x11000|17-202-140-226
+2456|code|LDR             PC, [R12,#(__ctype_tolower_loc_ptr - 0x11998)]!; __imp___ctype_tolower_loc|20-246-188-229
+2460|code|ADR             R12, 0x9A4|0-198-143-226
+2464|code|ADD             R12, R12, #0x11000|17-202-140-226
+2468|code|LDR             PC, [R12,#(__snprintf_chk_ptr - 0x119A4)]!; __imp___snprintf_chk|12-246-188-229
+2472|code|ADR             R12, 0x9B0|0-198-143-226
+2476|code|ADD             R12, R12, #0x11000|17-202-140-226
+2480|code|LDR             PC, [R12,#(__fprintf_chk_ptr - 0x119B0)]!; __imp___fprintf_chk|4-246-188-229
+2484|code|ADR             R12, 0x9BC|0-198-143-226
+2488|code|ADD             R12, R12, #0x11000|17-202-140-226
+2492|code|LDR             PC, [R12,#(sleep_ptr - 0x119BC)]!; __imp_sleep|252-245-188-229
+2496|code|ADR             R12, 0x9C8|0-198-143-226
+2500|code|ADD             R12, R12, #0x11000|17-202-140-226
+2504|code|LDR             PC, [R12,#(__sprintf_chk_ptr - 0x119C8)]!; __imp___sprintf_chk|244-245-188-229
+2508|code|ADR             R12, 0x9D4|0-198-143-226
+2512|code|ADD             R12, R12, #0x11000|17-202-140-226
+2516|code|LDR             PC, [R12,#(exit_ptr - 0x119D4)]!; __imp_exit|236-245-188-229
+2520|code|ADR             R12, 0x9E0|0-198-143-226
+2524|code|ADD             R12, R12, #0x11000|17-202-140-226
+2528|code|LDR             PC, [R12,#(__errno_location_ptr - 0x119E0)]!; __imp___errno_location|228-245-188-229
+2532|code|ADR             R12, 0x9EC|0-198-143-226
+2536|code|ADD             R12, R12, #0x11000|17-202-140-226
+2540|code|LDR             PC, [R12,#(__cxa_finalize_ptr - 0x119EC)]!; __imp___cxa_finalize|220-245-188-229
+2544|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2548|code|SUB.W           SP, SP, #0x224|173-245-9-125
+2552|code|LDR.W           R9, =(_GLOBAL_OFFSET_TABLE_ - 0xA08)|223-248-0-146
+2556|code|MOV             R6, R1|14-70
+2558|code|LDR             R2, [R1]|10-104
+2560|code|MOV             R5, R0|5-70
+2562|code|LDR             R3, =(__stack_chk_guard_ptr - 0x11F70)|127-75
+2564|code|ADD             R9, PC; _GLOBAL_OFFSET_TABLE_|249-68
+2566|code|MOVS            R1, #0x2F ; '/'; c|47-33
+2568|code|STR             R2, [SP,#0x248+var_234]|5-146
+2570|code|MOV             R0, R2; s|16-70
+2572|code|LDR.W           R3, [R9,R3]; __stack_chk_guard|89-248-3-48
+2576|code|LDR             R3, [R3]|27-104
+2578|code|STR             R3, [SP,#0x248+var_2C]|135-147
+2580|code|BLX             strrchr|255-247-146-239
+2584|code|CBZ             R0, loc_A1E|8-177
+2586|code|ADDS            R3, R0, #1|67-28
+2588|code|STR             R3, [SP,#0x248+var_234]|5-147
+2590|code|LDR             R7, =(aCW - 0xA2A); "c:w"|121-79
+2592|code|MOVS            R4, #0|0-36
+2594|code|MOV             R8, R4|160-70
+2596|code|MOV             R10, R4|162-70
+2598|code|ADD             R7, PC; "c:w"|127-68
+2600|code|MOV             R11, R4|163-70
+2602|code|MOV             R0, R5; argc|40-70
+2604|code|MOV             R1, R6; argv|49-70
+2606|code|MOV             R2, R7; shortopts|58-70
+2608|code|BLX             getopt|255-247-168-239
+2612|code|ADDS            R3, R0, #1|67-28
+2614|code|BEQ             loc_A56|14-208
+2616|code|CMP             R0, #0x63 ; 'c'|99-40
+2618|code|BEQ             loc_B34|123-208
+2620|code|CMP             R0, #0x77 ; 'w'|119-40
+2622|code|IT EQ|8-191
+2624|code|ADDEQ.W         R8, R8, #1|8-241-1-8
+2628|code|BEQ             loc_A2A|241-208
+2630|code|MOV             R0, R5; argc|40-70
+2632|code|MOV             R1, R6; argv|49-70
+2634|code|MOV             R2, R7; shortopts|58-70
+2636|code|ADDS            R4, #1|1-52
+2638|code|BLX             getopt|255-247-154-239
+2642|code|ADDS            R3, R0, #1|67-28
+2644|code|BNE             loc_A38|240-209
+2646|code|LDR             R3, =(optind_ptr - 0x11F70)|108-75
+2648|code|ADDS            R4, #0|0-52
+2650|code|IT NE|24-191
+2652|code|MOVNE           R4, #1|1-36
+2654|code|CMP.W           R11, #0|187-241-0-15
+2658|code|IT EQ|8-191
+2660|code|ORREQ.W         R4, R4, #1|68-240-1-4
+2664|code|LDR.W           R3, [R9,R3]; optind|89-248-3-48
+2668|code|LDR             R3, [R3]|27-104
+2670|code|CMP             R5, R3|157-66
+2672|code|ITE EQ|12-191
+2674|code|MOVEQ           R5, R4|37-70
+2676|code|ORRNE.W         R5, R4, #1|68-240-1-5
+2680|code|CMP             R5, #0|0-45
+2682|code|BNE             loc_B44|99-209
+2684|code|MOV             R0, R11|88-70
+2686|code|BLX             strdown|255-247-124-239
+2690|code|CMP.W           R10, #0|186-241-0-15
+2694|code|BEQ             loc_B7A|120-208
+2696|code|LDR             R3, =(aSS - 0xA98); "%s.%s"|96-75
+2698|code|ADD             R4, SP, #0x248+var_12C|71-172
+2700|code|LDR             R2, =(aVarRunMeatware - 0xA9A); "/var/run/meatware"|96-74
+2702|code|MOV.W           R1, #0x100|79-244-128-113
+2706|code|LDR             R6, =(asc_E64 - 0xAAA); "."|96-78
+2708|code|ADD             R3, PC; "%s.%s"|123-68
+2710|code|ADD             R2, PC; "/var/run/meatware"|122-68
+2712|code|STR             R3, [SP,#0x248+var_248]|0-147
+2714|code|STR             R2, [SP,#0x248+var_244]|1-146
+2716|code|MOV             R0, R4|32-70
+2718|code|STR.W           R11, [SP,#0x248+var_240]|205-248-8-176
+2722|code|MOV             R3, R1|11-70
+2724|code|MOVS            R2, #1|1-34
+2726|code|ADD             R6, PC; "."|126-68
+2728|code|BLX             __snprintf_chk|255-247-120-239
+2732|code|B               loc_ADE|23-224
+2734|code|CMP.W           R8, #0|184-241-0-15
+2738|code|BEQ             loc_B80|101-208
+2740|code|BLX             __errno_location|255-247-144-239
+2744|code|LDR             R3, [R0]|3-104
+2746|code|BIC.W           R3, R3, #4|35-240-4-3
+2750|code|CMP             R3, #2|2-43
+2752|code|BNE             loc_B80|94-209
+2754|code|MOV             R1, R6|49-70
+2756|code|MOVS            R0, #1|1-32
+2758|code|BLX             __printf_chk|255-247-52-239
+2762|code|LDR             R3, =(stdout_ptr - 0x11F70)|83-75
+2764|code|MOVS            R5, #1|1-37
+2766|code|LDR.W           R3, [R9,R3]; stdout|89-248-3-48
+2770|code|LDR             R0, [R3]; stream|24-104
+2772|code|BLX             fflush|255-247-74-239
+2776|code|MOV             R0, R5; seconds|40-70
+2778|code|BLX             sleep|255-247-108-239
+2782|code|MOV             R0, R4; file|32-70
+2784|code|MOVW            R1, #0x801; oflag|64-246-1-1
+2788|code|BLX             open|255-247-12-239
+2792|code|SUBS            R7, R0, #0|7-30
+2794|code|BLT             loc_AAE|224-219
+2796|code|CMP             R5, #0|0-45
+2798|code|BNE             loc_BB2|96-209
+2800|code|LDR             R1, =(aWarningIfNodeS - 0xAFC); "\nWARNING!\n\nIf node \"%s\" has not be"...|74-73
+2802|code|MOV             R2, R11|90-70
+2804|code|MOVS            R0, #1|1-32
+2806|code|ADD             R5, SP, #0x248+var_230|6-173
+2808|code|ADD             R1, PC; "\nWARNING!\n\nIf node \"%s\" has not be"...|121-68
+2810|code|BLX             __printf_chk|255-247-26-239
+2814|code|LDR             R0, =(aS - 0xB06); "%s"|72-72
+2816|code|MOV             R1, R5|41-70
+2818|code|ADD             R0, PC; "%s"|120-68
+2820|code|BLX             scanf|255-247-44-239
+2824|code|ADDS            R0, #1|1-48
+2826|code|CMP             R0, #1|1-40
+2828|code|BLS             loc_B24|10-217
+2830|code|LDRB            R3, [R5]|43-120
+2832|code|SUBS.W          R5, R3, #0x79 ; 'y'|179-241-121-5
+2836|code|IT NE|24-191
+2838|code|MOVNE           R5, #1|1-37
+2840|code|BLX             __ctype_tolower_loc|255-247-58-239
+2844|code|LDR             R3, [R0]|3-104
+2846|code|LDR.W           R3, [R3,R5,LSL#2]|83-248-37-48
+2850|code|CBZ             R3, loc_B4A|147-177
+2852|code|LDR             R1, =(aMeatwareClient - 0xB2C); "Meatware_client: operation canceled.\n"|63-73
+2854|code|MOVS            R0, #1|1-32
+2856|code|ADD             R1, PC; "Meatware_client: operation canceled.\n"|121-68
+2858|code|BLX             __printf_chk|255-247-2-239
+2862|code|MOVS            R0, #3; status|3-32
+2864|code|BLX             exit|255-247-76-239
+2868|code|LDR             R3, =(optarg_ptr - 0x11F70)|60-75
+2870|code|ADD.W           R10, R10, #1|10-241-1-10
+2874|code|LDR.W           R3, [R9,R3]; optarg|89-248-3-48
+2878|code|LDR.W           R11, [R3]|211-248-0-176
+2882|code|B               loc_A2A|114-231
+2884|code|LDR             R0, [SP,#0x248+var_234]|5-152
+2886|code|BL              sub_D88|0-240-31-249
+2890|code|ADD             R5, SP, #0x248+var_22C|7-173
+2892|code|LDR             R3, =(aMeatwareReplyS - 0xB58); "meatware reply %s"|55-75
+2894|code|MOVS            R1, #1|1-33
+2896|code|MOV.W           R2, #0x100|79-244-128-114
+2900|code|ADD             R3, PC; "meatware reply %s"|123-68
+2902|code|STR.W           R11, [SP,#0x248+var_248]|205-248-0-176
+2906|code|MOV             R0, R5|40-70
+2908|code|BLX             __sprintf_chk|255-247-48-239
+2912|code|MOV             R0, R7; fd|56-70
+2914|code|MOV             R1, R5; buf|41-70
+2916|code|MOV.W           R2, #0x100; n|79-244-128-114
+2920|code|BLX             write|255-247-244-238
+2924|code|CMP             R0, #0|0-40
+2926|code|BLT             loc_BDC|53-219
+2928|code|LDR             R1, =(aMeatwareClient_0 - 0xB78); "Meatware_client: reset confirmed.\n"|47-73
+2930|code|MOVS            R0, #1|1-32
+2932|code|ADD             R1, PC; "Meatware_client: reset confirmed.\n"|121-68
+2934|code|BLX             __printf_chk|255-247-220-238
+2938|code|MOVS            R0, #0; status|0-32
+2940|code|BLX             exit|255-247-38-239
+2944|code|CBNZ            R5, loc_BA6|141-185
+2946|code|STR             R4, [SP,#0x248+var_244]|1-148
+2948|code|ADD             R4, SP, #0x248+var_22C|7-172
+2950|code|LDR             R2, =(aMeatwareIpcFai - 0xB94); "Meatware_IPC failed: %s"|43-74
+2952|code|MOV.W           R1, #0x100|79-244-128-113
+2956|code|MOV             R3, R1|11-70
+2958|code|MOV             R0, R4|32-70
+2960|code|ADD             R2, PC; "Meatware_IPC failed: %s"|122-68
+2962|code|STR             R2, [SP,#0x248+var_248]|0-146
+2964|code|MOVS            R2, #1|1-34
+2966|code|BLX             __snprintf_chk|255-247-2-239
+2970|code|MOV             R0, R4; s|32-70
+2972|code|BLX             perror|255-247-212-238
+2976|code|MOVS            R0, #4; status|4-32
+2978|code|BLX             exit|255-247-20-239
+2982|code|LDR             R1, =(aMeatwareClient+0x24 - 0xBAE); "\n"|36-73
+2984|code|MOVS            R0, #1|1-32
+2986|code|ADD             R1, PC; "\n"|121-68
+2988|code|BLX             __printf_chk|255-247-192-238
+2992|code|B               loc_B82|231-231
+2994|code|LDR             R1, =(aMeatwareClient+0x24 - 0xBBC); "\n"|34-73
+2996|code|MOVS            R0, #1|1-32
+2998|code|ADD             R5, SP, #0x248+var_230|6-173
+3000|code|ADD             R1, PC; "\n"|121-68
+3002|code|BLX             __printf_chk|255-247-186-238
+3006|code|LDR             R1, =(aWarningIfNodeS - 0xBC8); "\nWARNING!\n\nIf node \"%s\" has not be"...|32-73
+3008|code|MOV             R2, R11|90-70
+3010|code|MOVS            R0, #1|1-32
+3012|code|ADD             R1, PC; "\nWARNING!\n\nIf node \"%s\" has not be"...|121-68
+3014|code|BLX             __printf_chk|255-247-180-238
+3018|code|LDR             R0, =(aS - 0xBD2); "%s"|30-72
+3020|code|MOV             R1, R5|41-70
+3022|code|ADD             R0, PC; "%s"|120-68
+3024|code|BLX             scanf|255-247-198-238
+3028|code|ADDS            R0, #1|1-48
+3030|code|CMP             R0, #1|1-40
+3032|code|BHI             loc_B0E|153-216
+3034|code|B               loc_B24|163-231
+3036|code|LDR             R3, =(aMeatwareIpcFai - 0xBEA); "Meatware_IPC failed: %s"|26-75
+3038|code|MOVS            R1, #1|1-33
+3040|code|MOV.W           R2, #0x100|79-244-128-114
+3044|code|STR             R4, [SP,#0x248+var_248]|0-148
+3046|code|ADD             R3, PC; "Meatware_IPC failed: %s"|123-68
+3048|code|MOV             R0, R5|40-70
+3050|code|BLX             __sprintf_chk|255-247-234-238
+3054|code|MOV             R0, R5; s|40-70
+3056|code|BLX             perror|255-247-170-238
+3060|code|MOVS            R0, #8; status|8-32
+3062|code|BLX             exit|255-247-234-238
+3066|data|ALIGN 4|0-191
+3068|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xA08|104-21-1-0
+3072|data|DCD __stack_chk_guard_ptr - 0x11F70|120-0-0-0
+3076|data|DCD aCW - 0xA2A; "c:w"|2-4-0-0
+3080|data|DCD optind_ptr - 0x11F70|108-0-0-0
+3084|data|DCD aSS - 0xA98; "%s.%s"|152-3-0-0
+3088|data|DCD aVarRunMeatware - 0xA9A; "/var/run/meatware"|158-3-0-0
+3092|data|DCD asc_E64 - 0xAAA; "."|186-3-0-0
+3096|data|DCD stdout_ptr - 0x11F70|124-0-0-0
+3100|data|DCD aWarningIfNodeS - 0xAFC; "\nWARNING!\n\nIf node \"%s\" has not be"...|108-3-0-0
+3104|data|DCD aS - 0xB06; "%s"|154-4-0-0
+3108|data|DCD aMeatwareClient - 0xB2C; "Meatware_client: operation canceled.\n"|120-4-0-0
+3112|data|DCD optarg_ptr - 0x11F70|132-0-0-0
+3116|data|DCD aMeatwareReplyS - 0xB58; "meatware reply %s"|116-4-0-0
+3120|data|DCD aMeatwareClient_0 - 0xB78; "Meatware_client: reset confirmed.\n"|104-4-0-0
+3124|data|DCD aMeatwareIpcFai - 0xB94; "Meatware_IPC failed: %s"|184-2-0-0
+3128|data|DCD aMeatwareClient+0x24 - 0xBAE; "\n"|26-4-0-0
+3132|data|DCD aMeatwareClient+0x24 - 0xBBC; "\n"|12-4-0-0
+3136|data|DCD aWarningIfNodeS - 0xBC8; "\nWARNING!\n\nIf node \"%s\" has not be"...|160-2-0-0
+3140|data|DCD aS - 0xBD2; "%s"|206-3-0-0
+3144|data|DCD aMeatwareIpcFai - 0xBEA; "Meatware_IPC failed: %s"|98-2-0-0
+3148|code|MOV.W           R11, #0|79-240-0-11
+3152|code|MOV.W           LR, #0|79-240-0-14
+3156|code|POP             {R1}; argc|2-188
+3158|code|MOV             R2, SP; ubp_av|106-70
+3160|code|PUSH            {R2}; stack_end|4-180
+3162|code|PUSH            {R0}; rtld_fini|1-180
+3164|code|LDR.W           R10, =(_GLOBAL_OFFSET_TABLE_ - 0xC84)|223-248-36-160
+3168|code|ADR             R3, off_C84|8-163
+3170|code|ADD             R10, R3; _GLOBAL_OFFSET_TABLE_|154-68
+3172|code|LDR.W           R12, =(__libc_csu_fini_ptr - 0x11F70)|223-248-32-192
+3176|code|LDR.W           R12, [R10,R12]; __libc_csu_fini|90-248-12-192
+3180|code|PUSH.W          {R12}; fini|77-248-4-205
+3184|code|LDR             R3, =(__libc_csu_init_ptr - 0x11F70)|6-75
+3186|code|LDR.W           R3, [R10,R3]; __libc_csu_init ; init|90-248-3-48
+3190|code|LDR             R0, =(main_ptr - 0x11F70)|6-72
+3192|code|LDR.W           R0, [R10,R0]; main ; main|90-248-0-0
+3196|code|BLX             __libc_start_main|255-247-76-238
+3200|code|BLX             abort|255-247-68-238
+3204|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xC84|236-18-1-0
+3208|data|DCD __libc_csu_fini_ptr - 0x11F70|92-0-0-0
+3212|data|DCD __libc_csu_init_ptr - 0x11F70|116-0-0-0
+3216|data|DCD main_ptr - 0x11F70|140-0-0-0
+3220|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xCA4)|20-48-159-229
+3224|code|LDR             R2, =(__gmon_start___ptr_0 - 0x11F70)|20-32-159-229
+3228|code|ADD             R3, PC, R3; _GLOBAL_OFFSET_TABLE_|3-48-143-224
+3232|code|LDR             R2, [R3,R2]; __imp___gmon_start__|2-32-147-231
+3236|code|CMP             R2, #0|0-0-82-227
+3240|code|BXEQ            LR|30-255-47-1
+3244|code|B               __gmon_start__|28-255-255-234
+3248|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xCA4|204-18-1-0
+3252|data|DCD __gmon_start___ptr_0 - 0x11F70|96-0-0-0
+3256|code|LDR             R3, =(__bss_start__ - 0xCC0)|7-75
+3258|code|LDR             R0, =(__bss_start__ - 0xCC4)|8-72
+3260|code|ADD             R3, PC; __bss_start__|123-68
+3262|code|LDR             R2, =(_GLOBAL_OFFSET_TABLE_ - 0xCCA)|8-74
+3264|code|ADD             R0, PC; __bss_start__|120-68
+3266|code|ADDS            R3, #3|3-51
+3268|code|SUBS            R3, R3, R0|27-26
+3270|code|ADD             R2, PC; _GLOBAL_OFFSET_TABLE_|122-68
+3272|code|CMP             R3, #6|6-43
+3274|code|BLS             locret_CD4|3-217
+3276|code|LDR             R3, =(_ITM_deregisterTMCloneTable_ptr - 0x11F70)|5-75
+3278|code|LDR             R3, [R2,R3]; _ITM_deregisterTMCloneTable|211-88
+3280|code|CBZ             R3, locret_CD4|3-177
+3282|code|BX              R3; _ITM_deregisterTMCloneTable|24-71
+3284|code|BX              LR|112-71
+3286|data|ALIGN 4|0-191
+3288|data|DCD __bss_start__ - 0xCC0|72-19-1-0
+3292|data|DCD __bss_start__ - 0xCC4|68-19-1-0
+3296|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xCCA|166-18-1-0
+3300|data|DCD _ITM_deregisterTMCloneTable_ptr - 0x11F70|104-0-0-0
+3304|code|LDR             R1, =(__bss_start__ - 0xCF0)|8-73
+3306|code|LDR             R0, =(__bss_start__ - 0xCF4)|9-72
+3308|code|ADD             R1, PC; __bss_start__|121-68
+3310|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xCF8)|9-75
+3312|code|ADD             R0, PC; __bss_start__|120-68
+3314|code|SUBS            R1, R1, R0|9-26
+3316|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3318|code|ASRS            R1, R1, #2|137-16
+3320|code|ADD.W           R1, R1, R1,LSR#31|1-235-209-113
+3324|code|ASRS            R1, R1, #1|73-16
+3326|code|BEQ             locret_D08|3-208
+3328|code|LDR             R2, =(_ITM_registerTMCloneTable_ptr - 0x11F70)|5-74
+3330|code|LDR             R3, [R3,R2]; _ITM_registerTMCloneTable|155-88
+3332|code|CBZ             R3, locret_D08|3-177
+3334|code|BX              R3; _ITM_registerTMCloneTable|24-71
+3336|code|BX              LR|112-71
+3338|data|ALIGN 4|0-191
+3340|data|DCD __bss_start__ - 0xCF0|24-19-1-0
+3344|data|DCD __bss_start__ - 0xCF4|20-19-1-0
+3348|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xCF8|120-18-1-0
+3352|data|DCD _ITM_registerTMCloneTable_ptr - 0x11F70|112-0-0-0
+3356|code|PUSH            {R3,LR}|8-181
+3358|code|LDR             R3, =(__bss_start__ - 0xD26)|10-75
+3360|code|LDR             R2, =(_GLOBAL_OFFSET_TABLE_ - 0xD28)|10-74
+3362|code|ADD             R3, PC; __bss_start__|123-68
+3364|code|ADD             R2, PC; _GLOBAL_OFFSET_TABLE_|122-68
+3366|code|LDRB            R3, [R3]|27-120
+3368|code|CBNZ            R3, locret_D46|107-185
+3370|code|LDR             R3, =(__cxa_finalize_ptr_0 - 0x11F70)|9-75
+3372|code|LDR             R3, [R2,R3]; __imp___cxa_finalize|211-88
+3374|code|CBZ             R3, loc_D3A|35-177
+3376|code|LDR             R3, =(off_12004 - 0xD36)|8-75
+3378|code|ADD             R3, PC; off_12004|123-68
+3380|code|LDR             R0, [R3]; off_12004 ; void *|24-104
+3382|code|BLX             __cxa_finalize|255-247-86-238
+3386|code|BL              sub_CB8|255-247-189-255
+3390|code|LDR             R3, =(__bss_start__ - 0xD46)|6-75
+3392|code|MOVS            R2, #1|1-34
+3394|code|ADD             R3, PC; __bss_start__|123-68
+3396|code|STRB            R2, [R3]|26-112
+3398|code|POP             {R3,PC}|8-189
+3400|data|DCD __bss_start__ - 0xD26|226-18-1-0
+3404|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD28|72-18-1-0
+3408|data|DCD __cxa_finalize_ptr_0 - 0x11F70|136-0-0-0
+3412|data|DCD off_12004 - 0xD36|206-18-1-0
+3416|data|DCD __bss_start__ - 0xD46|194-18-1-0
+3420|code|LDR             R0, =(dword_11E24 - 0xD64)|7-72
+3422|code|PUSH            {R3,LR}|8-181
+3424|code|ADD             R0, PC; dword_11E24|120-68
+3426|code|LDR             R2, [R0]|2-104
+3428|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xD6A)|6-75
+3430|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3432|code|CBNZ            R2, loc_D70|18-185
+3434|code|POP.W           {R3,LR}|189-232-8-64
+3438|code|B               sub_CE8|187-231
+3440|code|LDR             R2, =(_Jv_RegisterClasses_ptr - 0x11F70)|4-74
+3442|code|LDR             R3, [R3,R2]; _Jv_RegisterClasses|155-88
+3444|code|CMP             R3, #0|0-43
+3446|code|BEQ             loc_D6A|248-208
+3448|code|BLX             R3; _Jv_RegisterClasses|152-71
+3450|code|B               loc_D6A|246-231
+3452|data|DCD dword_11E24 - 0xD64|192-16-1-0
+3456|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD6A|6-18-1-0
+3460|data|DCD _Jv_RegisterClasses_ptr - 0x11F70|100-0-0-0
+3464|code|LDR             R4, =(_GLOBAL_OFFSET_TABLE_ - 0xD94)|10-76
+3466|code|MOV             R3, R0|3-70
+3468|code|LDR             R6, =(__stack_chk_guard_ptr - 0x11F70)|10-78
+3470|code|MOVS            R1, #1|1-33
+3472|code|ADD             R4, PC; _GLOBAL_OFFSET_TABLE_|124-68
+3474|code|LDR             R5, =(stderr_ptr - 0x11F70)|10-77
+3476|code|PUSH            {LR}|0-181
+3478|code|MOV             R0, R4|32-70
+3480|code|LDR             R4, [R0,R6]; __stack_chk_guard|132-89
+3482|code|SUB             SP, SP, #0xC|131-176
+3484|code|LDR             R2, =(aUsageSCNodeW - 0xDA4); "usage: %s -c node [-w]\n"|8-74
+3486|code|LDR             R4, [R4]|36-104
+3488|code|ADD             R2, PC; "usage: %s -c node [-w]\n"|122-68
+3490|code|STR             R4, [SP,#0x10+var_C]|1-148
+3492|code|LDR             R0, [R0,R5]; stderr|64-89
+3494|code|LDR             R0, [R0]|0-104
+3496|code|BLX             __fprintf_chk|255-247-254-237
+3500|code|MOVS            R0, #3; status|3-32
+3502|code|BLX             exit|255-247-14-238
+3506|data|ALIGN 4|0-191
+3508|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD94|220-17-1-0
+3512|data|DCD __stack_chk_guard_ptr - 0x11F70|120-0-0-0
+3516|data|DCD stderr_ptr - 0x11F70|128-0-0-0
+3520|data|DCD aUsageSCNodeW - 0xDA4; "usage: %s -c node [-w]\n"|112-0-0-0
+3524|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+3528|code|MOV             R7, R0|7-70
+3530|code|LDR             R6, =(off_11E20 - 0xDD6)|12-78
+3532|code|MOV             R8, R1|136-70
+3534|code|LDR             R5, =(off_11E1C - 0xDDC)|12-77
+3536|code|MOV             R9, R2|145-70
+3538|code|ADD             R6, PC; off_11E20|126-68
+3540|code|BLX             .init_proc|255-247-132-237
+3544|code|ADD             R5, PC; off_11E1C|125-68
+3546|code|SUBS            R6, R6, R5|118-27
+3548|code|ASRS            R6, R6, #2|182-16
+3550|code|BEQ             locret_DF6|10-208
+3552|code|SUBS            R5, #4|4-61
+3554|code|MOVS            R4, #0|0-36
+3556|code|ADDS            R4, #1|1-52
+3558|code|LDR.W           R3, [R5,#4]!|85-248-4-63
+3562|code|MOV             R0, R7|56-70
+3564|code|MOV             R1, R8|65-70
+3566|code|MOV             R2, R9|74-70
+3568|code|BLX             R3|152-71
+3570|code|CMP             R4, R6|180-66
+3572|code|BNE             loc_DE4|246-209
+3574|code|POP.W           {R3-R9,PC}|189-232-248-131
+3578|data|ALIGN 4|0-191
+3580|data|DCD off_11E20 - 0xDD6|74-16-1-0
+3584|data|DCD off_11E1C - 0xDDC|64-16-1-0
+3588|code|BX              LR|112-71
+3590|data|ALIGN 4|0-191
+3592|code|PUSH            {R3,LR}; _fini|8-64-45-233
+3596|code|POP             {R3,PC}|8-128-189-232
+4108|data|ALIGN 0x10|0-0-0-0
+73244|data|DCD sub_D5C+1|93-13-0-0
+73248|data|DCD sub_D1C+1|29-13-0-0
+73252|data|DCD 0|0-0-0-0
+73256|data|Elf32_Dyn <1, <1>>; DT_NEEDED libstonith.so.1|1-0-0-0-1-0-0-0
+73264|data|Elf32_Dyn <1, <0x72>>; DT_NEEDED libbz2.so.1.0|1-0-0-0-114-0-0-0
+73272|data|Elf32_Dyn <1, <0x80>>; DT_NEEDED libz.so.1|1-0-0-0-128-0-0-0
+73280|data|Elf32_Dyn <1, <0x8A>>; DT_NEEDED libxml2.so.2|1-0-0-0-138-0-0-0
+73288|data|Elf32_Dyn <1, <0x97>>; DT_NEEDED libc.so.6|1-0-0-0-151-0-0-0
+73296|data|Elf32_Dyn <1, <0x17A>>; DT_NEEDED ld-linux-armhf.so.3|1-0-0-0-122-1-0-0
+73304|data|Elf32_Dyn <1, <0x1A0>>; DT_NEEDED libuuid.so.1|1-0-0-0-160-1-0-0
+73312|data|Elf32_Dyn <1, <0x1AD>>; DT_NEEDED librt.so.1|1-0-0-0-173-1-0-0
+73320|data|Elf32_Dyn <1, <0x1B8>>; DT_NEEDED libdl.so.2|1-0-0-0-184-1-0-0
+73328|data|Elf32_Dyn <1, <0x1C3>>; DT_NEEDED libglib-2.0.so.0|1-0-0-0-195-1-0-0
+73336|data|Elf32_Dyn <1, <0x1D4>>; DT_NEEDED libltdl.so.7|1-0-0-0-212-1-0-0
+73344|data|Elf32_Dyn <0xC, <0x8E0>>; DT_INIT|12-0-0-0-224-8-0-0
+73352|data|Elf32_Dyn <0xD, <0xE08>>; DT_FINI|13-0-0-0-8-14-0-0
+73360|data|Elf32_Dyn <0x19, <0x11E1C>>; DT_INIT_ARRAY|25-0-0-0-28-30-1-0
+73368|data|Elf32_Dyn <0x1B, <4>>; DT_INIT_ARRAYSZ|27-0-0-0-4-0-0-0
+73376|data|Elf32_Dyn <0x1A, <0x11E20>>; DT_FINI_ARRAY|26-0-0-0-32-30-1-0
+73384|data|Elf32_Dyn <0x1C, <4>>; DT_FINI_ARRAYSZ|28-0-0-0-4-0-0-0
+73392|data|Elf32_Dyn <0x6FFFFEF5, <0x1B4>>; DT_GNU_HASH|245-254-255-111-180-1-0-0
+73400|data|Elf32_Dyn <5, <0x4D4>>; DT_STRTAB|5-0-0-0-212-4-0-0
+73408|data|Elf32_Dyn <6, <0x214>>; DT_SYMTAB|6-0-0-0-20-2-0-0
+73416|data|Elf32_Dyn <0xA, <0x252>>; DT_STRSZ|10-0-0-0-82-2-0-0
+73424|data|Elf32_Dyn <0xB, <0x10>>; DT_SYMENT|11-0-0-0-16-0-0-0
+73432|data|Elf32_Dyn <0x15, <0>>; DT_DEBUG|21-0-0-0-0-0-0-0
+73440|data|Elf32_Dyn <3, <0x11F70>>; DT_PLTGOT|3-0-0-0-112-31-1-0
+73448|data|Elf32_Dyn <2, <0xA0>>; DT_PLTRELSZ|2-0-0-0-160-0-0-0
+73456|data|Elf32_Dyn <0x14, <0x11>>; DT_PLTREL|20-0-0-0-17-0-0-0
+73464|data|Elf32_Dyn <0x17, <0x840>>; DT_JMPREL|23-0-0-0-64-8-0-0
+73472|data|Elf32_Dyn <0x11, <0x7C0>>; DT_REL|17-0-0-0-192-7-0-0
+73480|data|Elf32_Dyn <0x12, <0x80>>; DT_RELSZ|18-0-0-0-128-0-0-0
+73488|data|Elf32_Dyn <0x13, <8>>; DT_RELENT|19-0-0-0-8-0-0-0
+73496|data|Elf32_Dyn <0x18, <0>>; DT_BIND_NOW|24-0-0-0-0-0-0-0
+73504|data|Elf32_Dyn <0x6FFFFFFB, <1>>; DT_FLAGS_1|251-255-255-111-1-0-0-0
+73512|data|Elf32_Dyn <0x6FFFFFFE, <0x780>>; DT_VERNEED|254-255-255-111-128-7-0-0
+73520|data|Elf32_Dyn <0x6FFFFFFF, <2>>; DT_VERNEEDNUM|255-255-255-111-2-0-0-0
+73528|data|Elf32_Dyn <0x6FFFFFF0, <0x726>>; DT_VERSYM|240-255-255-111-38-7-0-0
+73536|data|Elf32_Dyn <0x6FFFFFFA, <6>>; DT_RELCOUNT|250-255-255-111-6-0-0-0
+73544|data|Elf32_Dyn <0>; DT_NULL|0-0-0-0-0-0-0-0
+73584|data|DCD stru_11E28|40-30-1-0
+73588|data|DCD 0|0-0-0-0
+73592|data|DCD dword_0|0-0-0-0
+73596|data|DCD __imp_open|16-32-1-0
+73600|data|DCD __imp_abort|20-32-1-0
+73604|data|DCD __imp___libc_start_main|24-32-1-0
+73608|data|DCD __imp___gmon_start__|112-32-1-0
+73612|data|DCD __imp___printf_chk|28-32-1-0
+73616|data|DCD __imp_strrchr|32-32-1-0
+73620|data|DCD __imp_perror|36-32-1-0
+73624|data|DCD __imp_write|44-32-1-0
+73628|data|DCD __imp_scanf|48-32-1-0
+73632|data|DCD __imp_fflush|52-32-1-0
+73636|data|DCD __imp_strdown|56-32-1-0
+73640|data|DCD __imp_getopt|60-32-1-0
+73644|data|DCD __imp___ctype_tolower_loc|64-32-1-0
+73648|data|DCD __imp___snprintf_chk|72-32-1-0
+73652|data|DCD __imp___fprintf_chk|76-32-1-0
+73656|data|DCD __imp_sleep|80-32-1-0
+73660|data|DCD __imp___sprintf_chk|96-32-1-0
+73664|data|DCD __imp_exit|100-32-1-0
+73668|data|DCD __imp___errno_location|104-32-1-0
+73672|data|DCD __imp___cxa_finalize|108-32-1-0
+73676|data|DCD __libc_csu_fini+1|5-14-0-0
+73680|data|DCD __imp___gmon_start__|112-32-1-0
+73684|data|DCD _Jv_RegisterClasses|116-32-1-0
+73688|data|DCD _ITM_deregisterTMCloneTable|120-32-1-0
+73692|data|DCD optind|40-32-1-0
+73696|data|DCD _ITM_registerTMCloneTable|124-32-1-0
+73700|data|DCD __libc_csu_init+1|197-13-0-0
+73704|data|DCD __stack_chk_guard|68-32-1-0
+73708|data|DCD stdout|84-32-1-0
+73712|data|DCD stderr|88-32-1-0
+73716|data|DCD optarg|92-32-1-0
+73720|data|DCD __imp___cxa_finalize|108-32-1-0
+73724|data|DCD main+1|241-9-0-0
+73736|data|% 1; Alternative name is '__bss_start'|255

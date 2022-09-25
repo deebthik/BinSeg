@@ -1,0 +1,309 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R7,LR}|240-181
+2|code|MOV             R7, user|7-70
+4|code|SUB             SP, SP, #0x14|133-176
+6|code|LDR             user, [pass,#0x10]|16-105
+8|code|LDR             R3, =grub_malloc|24-75
+10|code|MOV             R6, entered|14-70
+12|code|MOV             R4, pass|20-70
+14|code|BLX             R3; grub_malloc|152-71
+16|code|MOV             R5, buf|5-70
+18|code|CBNZ            buf, loc_18|8-185
+20|code|MOVS            buf, #0x22 ; '"'|34-32
+22|code|B               loc_44|21-224
+24|code|MOV             buf, entered|48-70
+26|code|LDR             R3, =grub_strlen|21-75
+28|code|BLX             R3; grub_strlen|152-71
+30|code|LDR             R3, [pass,#4]|99-104
+32|code|MOV             R1, entered|49-70
+34|code|LDR             entered, =grub_crypto_pbkdf2|20-78
+36|code|STR             R3, [SP,#0x28+var_28]|0-147
+38|code|LDR             R3, [pass,#8]|163-104
+40|code|STR             buf, [SP,#0x28+var_20]|2-149
+42|code|STR             R3, [SP,#0x28+var_24]|1-147
+44|code|LDR             R3, [pass,#0x10]|35-105
+46|code|STR             R3, [SP,#0x28+var_1C]|3-147
+48|code|LDR             R3, [pass]|35-104
+50|code|MOV             R2, R0|2-70
+52|code|LDR             R0, =_gcry_digest_spec_sha512|16-72
+54|code|BLX             R6; grub_crypto_pbkdf2|176-71
+56|code|MOV             R6, err|6-70
+58|code|MOV             err, buf|40-70
+60|code|CBZ             err, loc_4A|46-177
+62|code|LDR             R3, =grub_free|15-75
+64|code|BLX             R3; grub_free|152-71
+66|code|MOV             R0, err|48-70
+68|code|LDR             R3, =grub_crypto_gcry_error|14-75
+70|code|BLX             R3; grub_crypto_gcry_error|152-71
+72|code|B               loc_68|14-224
+74|code|LDR             R1, [pass,#0xC]|225-104
+76|code|LDR             R2, [pass,#0x10]|34-105
+78|code|LDR             R3, =grub_crypto_memcmp|13-75
+80|code|BLX             R3; grub_crypto_memcmp|152-71
+82|code|MOV             pass, R0|4-70
+84|code|CBZ             R0, loc_60|32-177
+86|code|LDR             R1, =aAccessDenied; "access denied"|12-73
+88|code|MOVS            R0, #0x1E|30-32
+90|code|LDR             R3, =grub_error|12-75
+92|code|BLX             R3; grub_error|152-71
+94|code|B               loc_68|3-224
+96|code|MOV             R0, user|56-70
+98|code|LDR             R3, =grub_auth_authenticate|11-75
+100|code|BLX             R3; grub_auth_authenticate|152-71
+102|code|MOV             R0, R4|32-70
+104|code|ADD             SP, SP, #0x14|5-176
+106|code|POP             {R4-user,PC}|240-189
+108|data|DCD grub_malloc|168-3-0-0
+112|data|DCD grub_strlen|128-3-0-0
+116|data|DCD grub_crypto_pbkdf2|132-3-0-0
+120|data|DCD _gcry_digest_spec_sha512|184-3-0-0
+124|data|DCD grub_free|176-3-0-0
+128|data|DCD grub_crypto_gcry_error|148-3-0-0
+132|data|DCD grub_crypto_memcmp|160-3-0-0
+136|data|DCD aAccessDenied; "access denied"|212-2-0-0
+140|data|DCD grub_error|172-3-0-0
+144|data|DCD grub_auth_authenticate|140-3-0-0
+148|code|SUB.W           R3, hex, #0x30 ; '0'|160-241-48-3
+152|code|UXTB            R2, R3|218-178
+154|code|CMP             R2, #9|9-42
+156|code|BHI             loc_A2|1-216
+158|code|MOV             hex, R3|24-70
+160|code|BX              LR|112-71
+162|code|SUB.W           R3, hex, #0x61 ; 'a'|160-241-97-3
+166|code|CMP             R3, #5|5-43
+168|code|BHI             loc_AE|1-216
+170|code|SUBS            hex, #0x57 ; 'W'|87-56
+172|code|BX              LR|112-71
+174|code|SUB.W           R3, hex, #0x41 ; 'A'|160-241-65-3
+178|code|CMP             R3, #5|5-43
+180|code|ITE LS|148-191
+182|code|SUBLS           hex, #0x37 ; '7'|55-56
+184|code|MOVHI.W         R0, #0xFFFFFFFF|79-240-255-48
+188|code|BX              LR|112-71
+190|code|CMP             argc, #2|2-41
+192|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+196|code|MOV             R8, args|144-70
+198|code|SUB             SP, SP, #0x1C|135-176
+200|code|BEQ             loc_D0|2-208
+202|code|MOVS            cmd, #0x12|18-32
+204|code|LDR             argc, =aTwoArgumentsEx; "two arguments expected"|96-73
+206|code|B               loc_21C|165-224
+208|code|LDR             cmd, [args,#4]|80-104
+210|code|MOVS            args, #0x13|19-34
+212|code|LDR             argc, =aGrubPbkdf2Sha5; "grub.pbkdf2.sha512."|95-73
+214|code|LDR             R3, =grub_memcmp|96-75
+216|code|BLX             R3; grub_memcmp|152-71
+218|code|MOV             R5, R0|5-70
+220|code|CMP             R0, #0|0-40
+222|code|BNE.W           loc_218|64-240-155-128
+226|code|LDR.W           R3, [args,#4]|216-248-4-48
+230|code|MOVS            R0, #0x14|20-32
+232|code|LDR.W           R10, =grub_malloc|223-248-128-161
+236|code|ADDS            R3, #0x13|19-51
+238|code|STR             R3, [SP,#0x40+ptr]|5-147
+240|code|BLX             R10; grub_malloc|208-71
+242|code|LDR             R7, =grub_errno|90-79
+244|code|MOV             R4, pass|4-70
+246|code|CMP             pass, #0|0-40
+248|code|BEQ             loc_1C4|100-208
+250|code|MOV             R2, R5|42-70
+252|code|LDR             pass, [SP,#0x40+ptr]|5-152
+254|code|ADD             R1, SP, #0x40+ptr|5-169
+256|code|LDR             R3, =grub_strtoul|87-75
+258|code|BLX             R3; grub_strtoul|152-71
+260|code|LDR             R5, [R7]|61-104
+262|code|STR             R0, [pass,#8]|160-96
+264|code|CMP             R5, #0|0-45
+266|code|BNE.W           loc_246|64-240-156-128
+270|code|LDR             R0, [SP,#0x40+ptr]|5-152
+272|code|LDRB            R1, [R0]|1-120
+274|code|CMP             R1, #0x2E ; '.'|46-41
+276|code|BNE             loc_122|5-209
+278|code|ADDS            R0, #1|1-48
+280|code|LDR             R3, =grub_strchr|82-75
+282|code|STR             R0, [SP,#0x40+ptr]|5-144
+284|code|BLX             R3; grub_strchr|152-71
+286|code|MOV             R6, ptr2|6-70
+288|code|CBNZ            ptr2, loc_12A|24-185
+290|code|MOV             R0, pass|32-70
+292|code|LDR             R3, =grub_free|80-75
+294|code|BLX             R3; grub_free|152-71
+296|code|B               loc_218|118-224
+298|code|LDR             R3, [SP,#0x40+ptr]|5-155
+300|code|SUBS            R3, ptr2, R3|195-26
+302|code|LSLS            R2, R3, #0x1F|218-7
+304|code|BMI             loc_122|247-212
+306|code|ADD.W           R9, ptr2, #1|0-241-1-9
+310|code|LDR.W           R11, =grub_strlen|223-248-56-177
+314|code|MOV             ptr2, R9|72-70
+316|code|BLX             R11; grub_strlen|216-71
+318|code|LSLS            R3, R0, #0x1F|195-7
+320|code|BMI             loc_122|239-212
+322|code|LDR             R3, [SP,#0x40+ptr]|5-155
+324|code|MOV             R0, R9|72-70
+326|code|SUBS            R3, ptr2, R3|243-26
+328|code|ASRS            R3, R3, #1|91-16
+330|code|STR             R3, [pass,#4]|99-96
+332|code|BLX             R11; grub_strlen|216-71
+334|code|LSRS            R0, R0, #1|64-8
+336|code|STR             R0, [pass,#0x10]|32-97
+338|code|LDR             R0, [pass,#4]|96-104
+340|code|BLX             R10; grub_malloc|208-71
+342|code|MOV             R3, R0|3-70
+344|code|STR             R0, [pass]|32-96
+346|code|CBNZ            ptro_0, loc_19E|0-187
+348|code|MOV             ptro_0, pass|32-70
+350|code|LDR             ptro_0, =grub_free|66-75
+352|code|BLX             R3; grub_free|152-71
+354|code|B               loc_1C4|47-224
+356|code|MOV             R2, R10|82-70
+358|code|STR             ptro_0, [SP,#0x40+ptro]|2-147
+360|code|LDRB.W          R0, [R2],#1; hex|18-248-1-11
+364|code|STR             R2, [SP,#0x40+var_3C]|1-146
+366|code|STR             R2, [SP,#0x40+var_34]|3-146
+368|code|BL              hex2val|255-247-144-255
+372|code|LDR             R2, [SP,#0x40+var_3C]|1-154
+374|code|STR             R2, [SP,#0x40+ptr]|5-146
+376|code|MOV             R11, R0|131-70
+378|code|LDRB.W          hex1, [R10,#1]; hex|154-248-1-0
+382|code|BL              hex2val|255-247-137-255
+386|code|CMP.W           hex1, #0|187-241-0-15
+390|code|MOV             R2, R0|2-70
+392|code|ADD.W           hex2, R10, #2|10-241-2-0
+396|code|STR             R0, [SP,#0x40+ptr]|5-144
+398|code|BLT             loc_1A8|11-219
+400|code|CMP             hex2, #0|0-42
+402|code|LDR             R3, [SP,#0x40+ptro]|2-155
+404|code|BLT             loc_1A8|8-219
+406|code|ORR.W           hex2, hex2, hex1,LSL#4|66-234-11-18
+410|code|STRB.W          R2, [R3],#1|3-248-1-43
+414|code|LDR.W           R10, [SP,#0x40+ptr]|221-248-20-160
+418|code|CMP             R10, ptr2|178-69
+420|code|BCC             loc_164|222-211
+422|code|B               loc_1AE|2-224
+424|code|LDR             R0, [pass]|32-104
+426|code|LDR             R5, =grub_free|47-77
+428|code|B               loc_212|49-224
+430|code|LDR             R0, [pass,#0x10]|32-105
+432|code|LDR             ptro_0, =grub_malloc|46-75
+434|code|BLX             R3; grub_malloc|152-71
+436|code|MOV             R10, R0|130-70
+438|code|STR             R0, [pass,#0xC]|224-96
+440|code|CBNZ            ptro_0, loc_1C8|48-185
+442|code|LDR             ptro_0, [pass]|32-104
+444|code|LDR             R5, =grub_free|42-77
+446|code|BLX             R5; grub_free|168-71
+448|code|MOV             R0, pass|32-70
+450|code|BLX             R5; grub_free|168-71
+452|code|LDR             R5, [R7]|61-104
+454|code|B               loc_246|62-224
+456|code|MOV             ptro_0, ptr2|48-70
+458|code|LDR             R3, =grub_strlen|41-75
+460|code|STR.W           R9, [SP,#0x40+ptr]|205-248-20-144
+464|code|BLX             R3; grub_strlen|152-71
+466|code|ADD             ptr2, R0|6-68
+468|code|B               loc_1E2|5-224
+470|code|CMP             hex2, #0|0-40
+472|code|BLT             loc_20A|23-219
+474|code|ORR.W           R3, hex2, hex1,LSL#4|64-234-11-19
+478|code|STRB.W          R3, [ptro_0],#1|10-248-1-59
+482|code|LDR             R7, [SP,#0x40+ptr]|5-159
+484|code|CMP             R7, ptr2|183-66
+486|code|BCS             loc_224|29-210
+488|code|MOV             R9, R7|185-70
+490|code|ADDS            R7, #2|2-55
+492|code|LDRB.W          R0, [R9],#1; hex|25-248-1-11
+496|code|BL              hex2val|255-247-80-255
+500|code|STR.W           R9, [SP,#0x40+ptr]|205-248-20-144
+504|code|MOV             R11, R0|131-70
+506|code|LDRB.W          hex1, [R7,#-1]; hex|23-248-1-12
+510|code|BL              hex2val|255-247-73-255
+514|code|CMP.W           hex1, #0|187-241-0-15
+518|code|STR             R7, [SP,#0x40+ptr]|5-151
+520|code|BGE             loc_1D6|229-218
+522|code|LDR             hex2, [pass,#0xC]|224-104
+524|code|LDR             R5, =grub_free|22-77
+526|code|BLX             R5; grub_free|168-71
+528|code|LDR             R0, [pass]|32-104
+530|code|BLX             R5; grub_free|168-71
+532|code|MOV             R0, pass|32-70
+534|code|BLX             R5; grub_free|168-71
+536|code|LDR             R1, =aInvalidPbkdf2P; "invalid PBKDF2 password"|22-73
+538|code|MOVS            R0, #0x12|18-32
+540|code|LDR             R3, =grub_error|22-75
+542|code|BLX             R3; grub_error|152-71
+544|code|MOV             R5, R0|5-70
+546|code|B               loc_246|16-224
+548|code|LDR.W           R0, [args]|216-248-0-0
+552|code|MOV             R2, pass|34-70
+554|code|LDR             R1, =(check_password+1)|20-73
+556|code|LDR             R3, =grub_auth_register_authentication|20-75
+558|code|BLX             R3; grub_auth_register_authentication|152-71
+560|code|MOV             ptr2, err|6-70
+562|code|CBZ             err, loc_23E|32-177
+564|code|MOV             err, pass|32-70
+566|code|LDR             R3, =grub_free|12-75
+568|code|BLX             R3; grub_free|152-71
+570|code|MOV             R5, err|53-70
+572|code|B               loc_246|3-224
+574|code|LDR             R3, =my_mod|17-75
+576|code|LDR             err, [R3]|24-104
+578|code|LDR             R3, =grub_dl_ref|17-75
+580|code|BLX             R3; grub_dl_ref|152-71
+582|code|MOV             R0, R5|40-70
+584|code|ADD             SP, SP, #0x1C|7-176
+586|code|POP.W           {R4-R11,PC}|189-232-240-143
+590|data|ALIGN 0x10|0-191
+592|data|DCD aTwoArgumentsEx; "two arguments expected"|226-2-0-0
+596|data|DCD aGrubPbkdf2Sha5; "grub.pbkdf2.sha512."|249-2-0-0
+600|data|DCD grub_memcmp|188-3-0-0
+604|data|DCD grub_errno|144-3-0-0
+608|data|DCD grub_strtoul|192-3-0-0
+612|data|DCD grub_strchr|164-3-0-0
+616|data|DCD grub_free|176-3-0-0
+620|data|DCD grub_malloc|168-3-0-0
+624|data|DCD grub_strlen|128-3-0-0
+628|data|DCD aInvalidPbkdf2P; "invalid PBKDF2 password"|13-3-0-0
+632|data|DCD grub_error|172-3-0-0
+636|data|DCD check_password+1|1-0-0-0
+640|data|DCD grub_auth_register_authentication|180-3-0-0
+644|data|DCD my_mod|120-3-0-0
+648|data|DCD grub_dl_ref|136-3-0-0
+652|code|PUSH            {mod-R2,R4,R5,LR}|55-181
+654|code|MOVS            R3, #0|0-35
+656|code|LDR             R4, =my_mod|5-76
+658|code|STR             R3, [SP,#0x18+var_18]|0-147
+660|code|LDR             R1, =(grub_cmd_password+1)|5-73
+662|code|STR             mod, [R4]|32-96
+664|code|LDR             R2, =aUserPbkdf2Pass; "USER PBKDF2_PASSWORD"|5-74
+666|code|LDR             R3, =aSetUserPasswor; "Set user password (PBKDF2). "|6-75
+668|code|LDR             R5, =grub_register_command_prio|6-77
+670|code|LDR             mod, =aPasswordPbkdf2; "password_pbkdf2"|7-72
+672|code|BLX             R5; grub_register_command_prio|168-71
+674|code|STR             R0, [R4,#(cmd - 0x378)]|96-96
+676|code|ADD             SP, SP, #0xC|3-176
+678|code|POP             {R4,R5,PC}|48-189
+680|data|DCD my_mod|120-3-0-0
+684|data|DCD grub_cmd_password+1|191-0-0-0
+688|data|DCD aUserPbkdf2Pass; "USER PBKDF2_PASSWORD"|53-3-0-0
+692|data|DCD aSetUserPasswor; "Set user password (PBKDF2). "|74-3-0-0
+696|data|DCD grub_register_command_prio|152-3-0-0
+700|data|DCD aPasswordPbkdf2; "password_pbkdf2"|37-3-0-0
+704|code|PUSH            {R3,LR}|8-181
+706|code|LDR             R3, =my_mod|2-75
+708|code|LDR             R0, [R3,#(cmd - 0x378)]|88-104
+710|code|LDR             R3, =grub_unregister_command|2-75
+712|code|BLX             R3; grub_unregister_command|152-71
+714|code|POP             {R3,PC}|8-189
+716|data|DCD my_mod|120-3-0-0
+720|data|DCD grub_unregister_command|156-3-0-0
+724|data|DCB "access denied",0|97-99-99-101-115-115-32-100-101-110-105-101-100-0
+738|data|DCB "two arguments expected",0|116-119-111-32-97-114-103-117-109-101-110-116-115-32-101-120-112-101-99-116-101-100-0
+761|data|DCB "grub.pbkdf2.sha512.",0|103-114-117-98-46-112-98-107-100-102-50-46-115-104-97-53-49-50-46-0
+781|data|DCB "invalid PBKDF2 password",0|105-110-118-97-108-105-100-32-80-66-75-68-70-50-32-112-97-115-115-119-111-114-100-0
+805|data|DCB "password_pbkdf2",0|112-97-115-115-119-111-114-100-95-112-98-107-100-102-50-0
+821|data|DCB "USER PBKDF2_PASSWORD",0|85-83-69-82-32-80-66-75-68-70-50-95-80-65-83-83-87-79-82-68-0
+842|data|DCB "Set user password (PBKDF2). ",0|83-101-116-32-117-115-101-114-32-112-97-115-115-119-111-114-100-32-40-80-66-75-68-70-50-41-46-32-0
+871|data||255
+872|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+888|data|% 4|255-255-255-255

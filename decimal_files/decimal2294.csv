@@ -1,0 +1,91 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+4|code|MOV             R5, args|21-70
+6|code|MOV             R8, argc|136-70
+8|code|CBNZ            argc, loc_16|41-185
+10|code|LDR             argc, =aNoCommandIsSpe; "no command is specified"|23-73
+12|code|MOVS            ctxt, #0x12|18-32
+14|code|LDR             R3, =grub_error|23-75
+16|code|BLX             R3; grub_error|152-71
+18|code|POP.W           {R4-argc,PC}|189-232-240-129
+22|code|LDR             R3, =grub_command_list|22-75
+24|code|LDR             argc, [args]|17-104
+26|code|LDR             ctxt, [R3]|24-104
+28|code|LDR             R3, =grub_named_list_find|21-75
+30|code|BLX             R3; grub_named_list_find|152-71
+32|code|MOV             R6, R0|6-70
+34|code|CBNZ            R0, loc_32|48-185
+36|code|LDR             R1, =aCanTFindComman; "can't find command `%s'"|20-73
+38|code|MOVS            R0, #0x10|16-32
+40|code|LDR             R2, [args]|42-104
+42|code|LDR             R3, =grub_error|16-75
+44|code|BLX             R3; grub_error|152-71
+46|code|POP.W           {R4-argc,PC}|189-232-240-129
+50|code|LDR             R7, =grub_get_time_ms|18-79
+52|code|BLX             R7; grub_get_time_ms|184-71
+54|code|LDR             R3, [R6,#0x10]|51-105
+56|code|ADDS            R2, args, #4|42-29
+58|code|ADD.W           R1, argc, #0xFFFFFFFF|8-241-255-49
+62|code|MOV             R4, R0|4-70
+64|code|MOV             start, R6|48-70
+66|code|BLX             R3|152-71
+68|code|BLX             R7; grub_get_time_ms|184-71
+70|code|MOV.W           R2, #0x3E8|79-244-122-114
+74|code|SUBS            R3, end, start|3-27
+76|code|LDR             end, =0x10624DD3|12-72
+78|code|UMULL.W         R0, R1, R3, R0|163-251-0-1
+82|code|LDR             R0, =aElapsedTimeD03; "Elapsed time: %d.%03d seconds \n"|12-72
+84|code|LSRS            R1, R1, #6|137-9
+86|code|MLS.W           R2, R2, R1, R3|2-251-17-50
+90|code|LDR             R3, =grub_printf_|11-75
+92|code|BLX             R3; grub_printf_|152-71
+94|code|LDR             R3, =grub_errno|11-75
+96|code|LDR             R0, [R3]|24-104
+98|code|POP.W           {start-argc,PC}|189-232-240-129
+102|data|ALIGN 4|0-191
+104|data|DCD aNoCommandIsSpe; "no command is specified"|216-0-0-0
+108|data|DCD grub_error|132-1-0-0
+112|data|DCD grub_command_list|112-1-0-0
+116|data|DCD grub_named_list_find|136-1-0-0
+120|data|DCD aCanTFindComman; "can't find command `%s'"|240-0-0-0
+124|data|DCD grub_get_time_ms|128-1-0-0
+128|data|DCD 0x10624DD3|211-77-98-16
+132|data|DCD aElapsedTimeD03; "Elapsed time: %d.%03d seconds \n"|8-1-0-0
+136|data|DCD grub_printf_|140-1-0-0
+140|data|DCD grub_errno|116-1-0-0
+144|code|PUSH            {mod,R1,R4,LR}|19-181
+146|code|MOVS            R3, #0|0-35
+148|code|LDR             R1, =(grub_cmd_time+1)|5-73
+150|code|STR             R3, [SP,#0x10+var_10]|0-147
+152|code|LDR             R2, =aCommandArgs; "COMMAND [ARGS]"|5-74
+154|code|LDR             R3, =aMeasureTimeUse; "Measure time used by COMMAND"|6-75
+156|code|LDR             R4, =grub_register_command_prio|6-76
+158|code|LDR             mod, =aTime; "time"|7-72
+160|code|BLX             R4; grub_register_command_prio|160-71
+162|code|LDR             R3, =cmd|7-75
+164|code|STR             R0, [R3]|24-96
+166|code|ADD             SP, SP, #8|2-176
+168|code|POP             {R4,PC}|16-189
+170|data|ALIGN 4|0-191
+172|data|DCD grub_cmd_time+1|1-0-0-0
+176|data|DCD aCommandArgs; "COMMAND [ARGS]"|45-1-0-0
+180|data|DCD aMeasureTimeUse; "Measure time used by COMMAND"|60-1-0-0
+184|data|DCD grub_register_command_prio|120-1-0-0
+188|data|DCD aTime; "time"|40-1-0-0
+192|data|DCD cmd|108-1-0-0
+196|code|PUSH            {R3,LR}|8-181
+198|code|LDR             R3, =cmd|2-75
+200|code|LDR             R0, [R3]|24-104
+202|code|LDR             R3, =grub_unregister_command|2-75
+204|code|BLX             R3; grub_unregister_command|152-71
+206|code|POP             {R3,PC}|8-189
+208|data|DCD cmd|108-1-0-0
+212|data|DCD grub_unregister_command|124-1-0-0
+216|data|DCB "no command is specified",0|110-111-32-99-111-109-109-97-110-100-32-105-115-32-115-112-101-99-105-102-105-101-100-0
+240|data|DCB "can't find command `%s'",0|99-97-110-39-116-32-102-105-110-100-32-99-111-109-109-97-110-100-32-96-37-115-39-0
+264|data|DCB "Elapsed time: %d.%03d seconds ",0xA,0|69-108-97-112-115-101-100-32-116-105-109-101-58-32-37-100-46-37-48-51-100-32-115-101-99-111-110-100-115-32-10-0
+296|data|DCB "time",0|116-105-109-101-0
+301|data|DCB "COMMAND [ARGS]",0|67-79-77-77-65-78-68-32-91-65-82-71-83-93-0
+316|data|DCB "Measure time used by COMMAND",0|77-101-97-115-117-114-101-32-116-105-109-101-32-117-115-101-100-32-98-121-32-67-79-77-77-65-78-68-0
+345|data||255
+346|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

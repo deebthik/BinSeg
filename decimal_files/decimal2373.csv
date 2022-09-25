@@ -1,0 +1,1085 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|MOVS            R5, #1|1-37
+4|code|LDR             R4, =grub_dl_load|22-76
+6|code|LDR             ctxt, =aLegacyPassword; "legacy_password_test"|23-72
+8|code|BLX             R4; grub_dl_load|160-71
+10|code|LDR             R3, =grub_errno|23-75
+12|code|LDR             R0, =aExfctest; "exfctest"|23-72
+14|code|MOVS            R2, #0|0-34
+16|code|LDR             R6, =(grub_test_run+1)|23-78
+18|code|STR             R2, [R3]|26-96
+20|code|BLX             R4; grub_dl_load|160-71
+22|code|LDR             R0, =aVideotestCheck; "videotest_checksum"|23-72
+24|code|BLX             R4; grub_dl_load|160-71
+26|code|LDR             R0, =aGfxtermMenu; "gfxterm_menu"|23-72
+28|code|BLX             R4; grub_dl_load|160-71
+30|code|LDR             R0, =aSetjmpTest; "setjmp_test"|23-72
+32|code|BLX             R4; grub_dl_load|160-71
+34|code|LDR             R0, =aCmdlineCatTest; "cmdline_cat_test"|23-72
+36|code|BLX             R4; grub_dl_load|160-71
+38|code|LDR             R0, =aDivTest; "div_test"|23-72
+40|code|BLX             R4; grub_dl_load|160-71
+42|code|LDR             R0, =aXnuUuidTest; "xnu_uuid_test"|23-72
+44|code|BLX             R4; grub_dl_load|160-71
+46|code|LDR             R0, =aPbkdf2Test; "pbkdf2_test"|23-72
+48|code|BLX             R4; grub_dl_load|160-71
+50|code|LDR             R0, =aSignatureTest; "signature_test"|23-72
+52|code|BLX             R4; grub_dl_load|160-71
+54|code|LDR             R0, =aSleepTest; "sleep_test"|23-72
+56|code|BLX             R4; grub_dl_load|160-71
+58|code|LDR             R3, =grub_test_list|23-75
+60|code|LDR             R4, [R3]|28-104
+62|code|CBZ             test, loc_4E|52-177
+64|code|MOV             R0, test; test|32-70
+66|code|BLX             R6; grub_test_run|176-71
+68|code|LDR             test, [test]|36-104
+70|code|CMP             R0, #0|0-40
+72|code|IT NE|24-191
+74|code|MOVNE           ok, #0|0-37
+76|code|B               loc_3E|247-231
+78|code|LDR             R3, =grub_printf|19-75
+80|code|CBZ             ok, loc_56|13-177
+82|code|LDR             R0, =aAllTestsPassed; "ALL TESTS PASSED\n"|19-72
+84|code|B               loc_58|0-224
+86|code|LDR             R0, =aTestFailure; "TEST FAILURE\n"|19-72
+88|code|BLX             R3; grub_printf|152-71
+90|code|MOVS            R0, #0|0-32
+92|code|POP             {test-R6,PC}|112-189
+94|data|ALIGN 0x10|0-191
+96|data|DCD grub_dl_load|88-41-1-0
+100|data|DCD aLegacyPassword; "legacy_password_test"|88-133-0-0
+104|data|DCD grub_errno|144-41-1-0
+108|data|DCD aExfctest; "exfctest"|109-133-0-0
+112|data|DCD grub_test_run+1|1-3-0-0
+116|data|DCD aVideotestCheck; "videotest_checksum"|118-133-0-0
+120|data|DCD aGfxtermMenu; "gfxterm_menu"|137-133-0-0
+124|data|DCD aSetjmpTest; "setjmp_test"|150-133-0-0
+128|data|DCD aCmdlineCatTest; "cmdline_cat_test"|162-133-0-0
+132|data|DCD aDivTest; "div_test"|179-133-0-0
+136|data|DCD aXnuUuidTest; "xnu_uuid_test"|188-133-0-0
+140|data|DCD aPbkdf2Test; "pbkdf2_test"|202-133-0-0
+144|data|DCD aSignatureTest; "signature_test"|214-133-0-0
+148|data|DCD aSleepTest; "sleep_test"|229-133-0-0
+152|data|DCD grub_test_list|52-41-1-0
+156|data|DCD grub_printf|168-41-1-0
+160|data|DCD aAllTestsPassed; "ALL TESTS PASSED\n"|240-133-0-0
+164|data|DCD aTestFailure; "TEST FAILURE\n"|2-134-0-0
+168|code|PUSH            {R3-R7,LR}|248-181
+170|code|MOVS            ctxt, #1|1-32
+172|code|LDR             R3, =grub_test_list|12-75
+174|code|LDR             R5, =grub_errno|13-77
+176|code|LDR             R7, =(grub_test_run+1)|13-79
+178|code|LDR             R4, [R3]|28-104
+180|code|MOV             R6, R5|46-70
+182|code|CBZ             test, loc_D0|92-177
+184|code|MOVS            R2, #0|0-34
+186|code|STR             R2, [R5]|42-96
+188|code|CBZ             ok, loc_C8|32-177
+190|code|MOV             ok, test; test|32-70
+192|code|BLX             R7; grub_test_run|184-71
+194|code|CLZ.W           R0, R0|176-250-128-240
+198|code|LSRS            R0, R0, #5|64-9
+200|code|MOVS            R2, #0|0-34
+202|code|LDR             test, [test]|36-104
+204|code|STR             R2, [R6]|50-96
+206|code|B               loc_B6|242-231
+208|code|LDR             R2, =grub_printf|6-74
+210|code|CBZ             ok, loc_D8|8-177
+212|code|LDR             ok, =aAllTestsPassed; "ALL TESTS PASSED\n"|6-72
+214|code|B               loc_DA|0-224
+216|code|LDR             ok, =aTestFailure; "TEST FAILURE\n"|6-72
+218|code|BLX             R2; grub_printf|144-71
+220|code|MOVS            R0, #0|0-32
+222|code|POP             {R3-R7,PC}|248-189
+224|data|DCD grub_test_list|52-41-1-0
+228|data|DCD grub_errno|144-41-1-0
+232|data|DCD grub_test_run+1|1-3-0-0
+236|data|DCD grub_printf|168-41-1-0
+240|data|DCD aAllTestsPassed; "ALL TESTS PASSED\n"|240-133-0-0
+244|data|DCD aTestFailure; "TEST FAILURE\n"|2-134-0-0
+248|code|LDR             R3, =aRunAllLoadedFu; "Run all loaded functional tests."|11-75
+250|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+252|code|MOVS            R4, #0|0-36
+254|code|STR             R3, [SP,#0x18+var_18]|0-147
+256|code|MOV             R2, R4|34-70
+258|code|MOV             R3, R4|35-70
+260|code|LDR             R6, =grub_register_extcmd|9-78
+262|code|STR             R4, [SP,#0x18+var_14]|1-148
+264|code|LDR             R1, =(grub_functional_test+1)|9-73
+266|code|LDR             mod, =aFunctionalTest; "functional_test"|10-72
+268|code|BLX             R6; grub_register_extcmd|176-71
+270|code|LDR             R5, =cmd|10-77
+272|code|LDR             R3, =aRunAllFunction; "Run all functional tests."|10-75
+274|code|MOV             R2, R4|34-70
+276|code|LDR             R1, =(grub_functional_all_tests+1)|10-73
+278|code|STMEA.W         SP, {R3,R4}|141-232-24-0
+282|code|MOV             R3, R4|35-70
+284|code|STR             R0, [R5]|40-96
+286|code|LDR             R0, =aAllFunctionalT; "all_functional_test"|9-72
+288|code|BLX             R6; grub_register_extcmd|176-71
+290|code|STR             R0, [R5]|40-96
+292|code|ADD             SP, SP, #8|2-176
+294|code|POP             {R4-R6,PC}|112-189
+296|data|DCD aRunAllLoadedFu; "Run all loaded functional tests."|32-134-0-0
+300|data|DCD grub_register_extcmd|240-41-1-0
+304|data|DCD grub_functional_test+1|169-0-0-0
+308|data|DCD aFunctionalTest; "functional_test"|16-134-0-0
+312|data|DCD cmd|224-39-1-0
+316|data|DCD aRunAllFunction; "Run all functional tests."|85-134-0-0
+320|data|DCD grub_functional_all_tests+1|1-0-0-0
+324|data|DCD aAllFunctionalT; "all_functional_test"|65-134-0-0
+328|code|PUSH            {R3,LR}|8-181
+330|code|LDR             R3, =cmd|2-75
+332|code|LDR             R0, [R3]|24-104
+334|code|LDR             R3, =grub_unregister_extcmd|2-75
+336|code|BLX             R3; grub_unregister_extcmd|152-71
+338|code|POP             {R3,PC}|8-189
+340|data|DCD cmd|224-39-1-0
+344|data|DCD grub_unregister_extcmd|140-41-1-0
+348|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+352|code|MOV             R5, file|5-70
+354|code|LDR             R3, =grub_malloc|21-75
+356|code|MOVS            file, #0x18|24-32
+358|code|MOV             R7, funp|15-70
+360|code|MOV             R8, line|144-70
+362|code|BLX             R3; grub_malloc|152-71
+364|code|MOV             R4, failure|4-70
+366|code|CBZ             failure, loc_1B2|0-179
+368|code|LDR             failure, =aUnknownFile; "<unknown_file>"|18-72
+370|code|LDR             R6, =grub_strdup|19-78
+372|code|CMP             file, #0|0-45
+374|code|IT NE|24-191
+376|code|MOVNE           R0, file|40-70
+378|code|BLX             R6; grub_strdup|176-71
+380|code|MOV             file, R0|5-70
+382|code|STR             R0, [failure,#8]|160-96
+384|code|CBNZ            R0, loc_18A|24-185
+386|code|MOV             R0, failure|32-70
+388|code|LDR             R3, =grub_free|15-75
+390|code|BLX             R3; grub_free|152-71
+392|code|B               loc_1A4|12-224
+394|code|LDR             R0, =aUnknownFunctio; "<unknown_function>"|15-72
+396|code|CMP             funp, #0|0-47
+398|code|IT NE|24-191
+400|code|MOVNE           R0, funp|56-70
+402|code|BLX             R6; grub_strdup|176-71
+404|code|MOV             R5, R0|5-70
+406|code|STR             R0, [failure,#0xC]|224-96
+408|code|CBNZ            R0, loc_1AA|56-185
+410|code|LDR             R0, [failure,#8]|160-104
+412|code|LDR             R6, =grub_free|9-78
+414|code|BLX             R6; grub_free|176-71
+416|code|MOV             R0, failure|32-70
+418|code|BLX             R6; grub_free|176-71
+420|code|MOV             R0, R5|40-70
+422|code|POP.W           {failure-line,PC}|189-232-240-129
+426|code|MOVS            R3, #0|0-35
+428|code|STR.W           line, [failure,#0x10]|196-248-16-128
+432|code|STR             R3, [failure,#0x14]|99-97
+434|code|MOV             R0, failure|32-70
+436|code|POP.W           {failure-line,PC}|189-232-240-129
+440|data|DCD grub_malloc|196-41-1-0
+444|data|DCD aUnknownFile; "<unknown_file>"|111-134-0-0
+448|data|DCD grub_strdup|124-41-1-0
+452|data|DCD grub_free|220-41-1-0
+456|data|DCD aUnknownFunctio; "<unknown_function>"|126-134-0-0
+460|code|PUSH            {R4-R6,LR}|112-181
+462|code|MOV             R4, R0|4-70
+464|code|LDR             R3, =grub_xvasprintf|10-75
+466|code|MOV             R0, fmt|8-70
+468|code|MOV             fmt, args|17-70
+470|code|BLX             R3; grub_xvasprintf|152-71
+472|code|LDR             R6, [R4]|38-104
+474|code|MOV             R5, R0|5-70
+476|code|CBZ             R6, loc_1F6|94-177
+478|code|MOV             R1, oldmsg|49-70
+480|code|MOV             R2, R5|42-70
+482|code|LDR             R3, =grub_xasprintf|7-75
+484|code|LDR             msg, =aSS; "%s%s"|7-72
+486|code|BLX             R3; grub_xasprintf|152-71
+488|code|STR             R0, [R4]|32-96
+490|code|MOV             R0, oldmsg|48-70
+492|code|LDR             R4, =grub_free|6-76
+494|code|BLX             R4; grub_free|160-71
+496|code|MOV             R0, msg|40-70
+498|code|BLX             R4; grub_free|160-71
+500|code|POP             {R4-oldmsg,PC}|112-189
+502|code|STR             msg, [R4]|32-96
+504|code|POP             {R4-R6,PC}|112-189
+506|data|ALIGN 4|0-191
+508|data|DCD grub_xvasprintf|96-41-1-0
+512|data|DCD grub_xasprintf|104-41-1-0
+516|data|DCD aSS; "%s%s"|145-134-0-0
+520|data|DCD grub_free|220-41-1-0
+524|code|PUSH            {R1-R3}|14-180
+526|code|PUSH            {failure,R1,LR}|3-181
+528|code|ADD             R2, SP, #0x18+fmt|3-170
+530|code|ADDS            failure, #0x14; failure|20-48
+532|code|LDR.W           R1, [R2],#4; args|82-248-4-27
+536|code|STR             R2, [SP,#0x18+args]|1-146
+538|code|BL              failure_append_vtext|255-247-215-255
+542|code|ADD             SP, SP, #8|2-176
+544|code|POP.W           {LR}|93-248-4-235
+548|code|ADD             SP, SP, #0xC|3-176
+550|code|BX              LR|112-71
+552|code|PUSH            {cond-funp,R4,R5,LR}; fmt|55-181
+554|code|CBNZ            cond, loc_24C|120-185
+556|code|MOV             cond, file; file|8-70
+558|code|MOV             file, funp; funp|17-70
+560|code|MOV             funp, line; line|26-70
+562|code|ADD             R4, SP, #0x18+arg_4|7-172
+564|code|STR             R4, [SP,#0x18+ap]|1-148
+566|code|BL              failure_start|255-247-145-255
+570|code|LDR             R1, [SP,#0x18+fmt]|6-153
+572|code|MOV             R2, R4|34-70
+574|code|MOV             R5, R0|5-70
+576|code|BL              failure_append_text|255-247-228-255
+580|code|LDR             R0, =failure_list|2-72
+582|code|MOV             R1, R5|41-70
+584|code|LDR             R3, =grub_list_push|2-75
+586|code|BLX             R3; grub_list_push|152-71
+588|code|ADD             SP, SP, #0xC|3-176
+590|code|POP             {R4,R5,PC}|48-189
+592|data|DCD failure_list|228-39-1-0
+596|data|DCD grub_list_push|244-41-1-0
+600|code|PUSH            {cond,file,R4,LR}; fmt|19-181
+602|code|CBNZ            cond, loc_286|160-185
+604|code|MOV             cond, file; file|8-70
+606|code|MOV             file, funp; funp|17-70
+608|code|MOV             funp, line; line|26-70
+610|code|BL              failure_start|255-247-123-255
+614|code|LDR             R1, =aAssertFailedS; "assert failed: %s "|9-73
+616|code|LDR             R2, [SP,#0x10+condstr]|4-154
+618|code|MOV             R4, R0|4-70
+620|code|BL              failure_append_text|255-247-206-255
+624|code|ADD             R2, SP, #0x10+arg_8; args|6-170
+626|code|ADD.W           R0, failure, #0x14; failure|4-241-20-0
+630|code|LDR             R1, [SP,#0x10+fmt]; fmt|5-153
+632|code|STR             R2, [SP,#0x10+ap]|1-146
+634|code|BL              failure_append_vtext|255-247-167-255
+638|code|LDR             R0, =failure_list|4-72
+640|code|MOV             R1, failure|33-70
+642|code|LDR             R3, =grub_list_push|4-75
+644|code|BLX             R3; grub_list_push|152-71
+646|code|ADD             SP, SP, #8|2-176
+648|code|POP             {R4,PC}|16-189
+650|data|ALIGN 4|0-191
+652|data|DCD aAssertFailedS; "assert failed: %s "|150-134-0-0
+656|data|DCD failure_list|228-39-1-0
+660|data|DCD grub_list_push|244-41-1-0
+664|code|PUSH            {R4-R6,LR}|112-181
+666|code|MOV             R6, name|6-70
+668|code|LDR             R3, =grub_malloc|7-75
+670|code|MOVS            name, #0x10|16-32
+672|code|MOV             R5, test_main|13-70
+674|code|BLX             R3; grub_malloc|152-71
+676|code|MOV             R4, test|4-70
+678|code|CBZ             test, locret_2BA|64-177
+680|code|LDR             R3, =grub_strdup|5-75
+682|code|MOV             test, name|48-70
+684|code|BLX             R3; grub_strdup|152-71
+686|code|STR             test_main, [test,#0xC]|229-96
+688|code|MOV             R1, test|33-70
+690|code|LDR             R3, =grub_list_push|4-75
+692|code|STR             R0, [test,#8]|160-96
+694|code|LDR             R0, =grub_test_list|4-72
+696|code|BLX             R3; grub_list_push|152-71
+698|code|POP             {test-name,PC}|112-189
+700|data|DCD grub_malloc|196-41-1-0
+704|data|DCD grub_strdup|124-41-1-0
+708|data|DCD grub_list_push|244-41-1-0
+712|data|DCD grub_test_list|52-41-1-0
+716|code|PUSH            {R3-R5,LR}|56-181
+718|code|MOV             R1, name|1-70
+720|code|LDR             R3, =grub_test_list|7-75
+722|code|LDR             name, [R3]|24-104
+724|code|LDR             R3, =grub_named_list_find|7-75
+726|code|BLX             R3; grub_named_list_find|152-71
+728|code|MOV             R5, test|5-70
+730|code|CBZ             test, locret_2EC|56-177
+732|code|LDR             R3, =grub_list_remove|6-75
+734|code|BLX             R3; grub_list_remove|152-71
+736|code|LDR             R0, [test,#8]|168-104
+738|code|LDR             R4, =grub_free|6-76
+740|code|CBZ             R0, loc_2E8|0-177
+742|code|BLX             R4; grub_free|160-71
+744|code|MOV             R0, test|40-70
+746|code|BLX             R4; grub_free|160-71
+748|code|POP             {R3-test,PC}|56-189
+750|data|ALIGN 0x10|0-191
+752|data|DCD grub_test_list|52-41-1-0
+756|data|DCD grub_named_list_find|224-41-1-0
+760|data|DCD grub_list_remove|216-41-1-0
+764|data|DCD grub_free|220-41-1-0
+768|code|PUSH.W          {test,R1,R4-R10,LR}|45-233-243-71
+772|code|MOV             R7, test|7-70
+774|code|LDR             R6, =failure_list|32-78
+776|code|LDR             R3, [test,#0xC]|195-104
+778|code|BLX             R3|152-71
+780|code|LDR             R5, =grub_printf|31-77
+782|code|LDR             R0, =aS; "%s:\n"|32-72
+784|code|LDR             R1, [test,#8]|185-104
+786|code|BLX             R5; grub_printf|168-71
+788|code|LDR.W           R8, =aUnknownFile; "<unknown_file>"|223-248-140-128
+792|code|LDR             R4, [R6]|52-104
+794|code|LDR.W           R9, =aUnknownFunctio; "<unknown_function>"|223-248-140-144
+798|code|LDR.W           R10, =aNoMessage; "<no message>"|223-248-140-160
+802|code|CBZ             failure, loc_348|140-177
+804|code|ADD.W           R1, failure, #8|4-241-8-1
+808|code|LDR             R0, [failure,#0x14]|96-105
+810|code|LDM             R1, {R1-R3}|14-201
+812|code|CMP             R0, #0|0-40
+814|code|IT EQ|8-191
+816|code|MOVEQ           R0, R10|80-70
+818|code|STR             R0, [SP,#0x28+var_28]|0-144
+820|code|LDR             R0, =aSSUS; " %s:%s:%u: %s\n"|23-72
+822|code|CMP             R1, #0|0-41
+824|code|IT EQ|8-191
+826|code|MOVEQ           R1, R8|65-70
+828|code|CMP             R2, #0|0-42
+830|code|IT EQ|8-191
+832|code|MOVEQ           R2, R9|74-70
+834|code|BLX             R5; grub_printf|168-71
+836|code|LDR             failure, [failure]|36-104
+838|code|B               loc_322|236-231
+840|code|LDR             R3, [R6]|51-104
+842|code|CBNZ            R3, loc_356|35-185
+844|code|LDR             R0, =aSPass; "%s: PASS\n"|18-72
+846|code|LDR             R1, [test,#8]|185-104
+848|code|BLX             R5; grub_printf|168-71
+850|code|MOV             R0, failure|32-70
+852|code|B               loc_382|21-224
+854|code|LDR             R1, [test,#8]|185-104
+856|code|LDR             R0, =aSFail; "%s: FAIL\n"|16-72
+858|code|BLX             R5; grub_printf|168-71
+860|code|LDR             test, =failure_list|10-79
+862|code|LDR             R5, =grub_free|16-77
+864|code|LDR             R4, [R6]|52-104
+866|code|CBZ             R4, loc_380|108-177
+868|code|LDR             R3, [R4]|35-104
+870|code|LDR             R0, [R4,#0x14]|96-105
+872|code|STR             R3, [R7]|59-96
+874|code|CBZ             R0, loc_36E|0-177
+876|code|BLX             R5; grub_free|168-71
+878|code|LDR             R0, [R4,#0xC]|224-104
+880|code|CBZ             R0, loc_374|0-177
+882|code|BLX             R5; grub_free|168-71
+884|code|LDR             R0, [R4,#8]|160-104
+886|code|CBZ             R0, loc_37A|0-177
+888|code|BLX             R5; grub_free|168-71
+890|code|MOV             R0, R4|32-70
+892|code|BLX             R5; grub_free|168-71
+894|code|B               loc_360|239-231
+896|code|MOVS            R0, #1|1-32
+898|code|ADD             SP, SP, #8|2-176
+900|code|POP.W           {R4-R10,PC}|189-232-240-135
+904|data|DCD failure_list|228-39-1-0
+908|data|DCD grub_printf|168-41-1-0
+912|data|DCD aS; "%s:\n"|182-134-0-0
+916|data|DCD aSSUS; " %s:%s:%u: %s\n"|187-134-0-0
+920|data|DCD aSPass; "%s: PASS\n"|202-134-0-0
+924|data|DCD aSFail; "%s: FAIL\n"|212-134-0-0
+928|data|DCD grub_free|220-41-1-0
+932|data|DCD aUnknownFile; "<unknown_file>"|111-134-0-0
+936|data|DCD aUnknownFunctio; "<unknown_function>"|126-134-0-0
+940|data|DCD aNoMessage; "<no message>"|169-134-0-0
+944|code|PUSH            {R0-R4,LR}|31-181
+946|code|LDR             R3, =capt_mode_info|21-75
+948|code|LDR             R4, =grub_snprintf|21-76
+950|code|LDR             R2, [R3,#(capt_mode_info.mode_type - 0x127E8)]|154-104
+952|code|TST.W           R2, #2|18-240-2-15
+956|code|BEQ             loc_3CC|6-208
+958|code|ADD.W           R0, R3, #0x4C ; 'L'|3-241-76-0
+962|code|MOVS            R1, #0x28 ; '('|40-33
+964|code|LDR             R2, =aID; "i%d"|18-74
+966|code|LDR             R3, [R3,#(capt_mode_info.number_of_colors - 0x127E8)]|155-105
+968|code|BLX             R4; grub_snprintf|160-71
+970|code|B               loc_400|25-224
+972|code|LDR             R2, [R3,#(capt_mode_info.red_field_pos - 0x127E8)]|154-106
+974|code|CBNZ            R2, loc_3E8|90-185
+976|code|LDR             R2, [R3,#(capt_mode_info.green_mask_size - 0x127E8)]|218-106
+978|code|ADD.W           R0, R3, #0x4C ; 'L'|3-241-76-0
+982|code|MOVS            R1, #0x28 ; '('|40-33
+984|code|STR             R2, [SP,#0x18+var_18]|0-146
+986|code|LDR             R2, [R3,#(capt_mode_info.red_mask_size - 0x127E8)]|90-106
+988|code|STR             R2, [SP,#0x18+var_14]|1-146
+990|code|LDR             R2, [R3,#(capt_mode_info.reserved_mask_size - 0x127E8)]|218-107
+992|code|STR             R2, [SP,#0x18+var_10]|2-146
+994|code|LDR             R2, =aBgraDDDD; "bgra%d%d%d%d"|12-74
+996|code|LDR             R3, [R3,#(capt_mode_info.blue_mask_size - 0x127E8)]|91-107
+998|code|B               loc_3FE|10-224
+1000|code|LDR             R2, [R3,#(capt_mode_info.green_mask_size - 0x127E8)]|218-106
+1002|code|ADD.W           R0, R3, #0x4C ; 'L'|3-241-76-0
+1006|code|MOVS            R1, #0x28 ; '('|40-33
+1008|code|STR             R2, [SP,#0x18+var_18]|0-146
+1010|code|LDR             R2, [R3,#(capt_mode_info.blue_mask_size - 0x127E8)]|90-107
+1012|code|STR             R2, [SP,#0x18+var_14]|1-146
+1014|code|LDR             R2, [R3,#(capt_mode_info.reserved_mask_size - 0x127E8)]|218-107
+1016|code|STR             R2, [SP,#0x18+var_10]|2-146
+1018|code|LDR             R2, =aRgbaDDDD; "rgba%d%d%d%d"|7-74
+1020|code|LDR             R3, [R3,#(capt_mode_info.red_mask_size - 0x127E8)]|91-106
+1022|code|BLX             R4; grub_snprintf|160-71
+1024|code|LDR             R0, =buf.5519|6-72
+1026|code|ADD             SP, SP, #0x10|4-176
+1028|code|POP             {R4,PC}|16-189
+1030|data|ALIGN 4|0-191
+1032|data|DCD capt_mode_info|232-39-1-0
+1036|data|DCD grub_snprintf|132-41-1-0
+1040|data|DCD aID; "i%d"|222-134-0-0
+1044|data|DCD aBgraDDDD; "bgra%d%d%d%d"|226-134-0-0
+1048|data|DCD aRgbaDDDD; "rgba%d%d%d%d"|239-134-0-0
+1052|data|DCD buf.5519|52-40-1-0
+1056|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1060|code|SUB             SP, SP, #0x28|138-176
+1062|code|LDR             R3, =(grub_video_capture_get_framebuffer+1)|43-75
+1064|code|BLX             R3; grub_video_capture_get_framebuffer|152-71
+1066|code|LDR             R5, =capt_mode_info|43-77
+1068|code|LDR             R3, [R5,#(capt_mode_info.height - 0x127E8)]|107-104
+1070|code|MOV             R4, R5|44-70
+1072|code|LDR             R2, [R5,#(capt_mode_info.pitch - 0x127E8)]|106-105
+1074|code|MULS            R2, R3|90-67
+1076|code|LDR             R3, =grub_getcrc32c|41-75
+1078|code|MOV             R1, R0|1-70
+1080|code|MOVS            ptr, #0|0-32
+1082|code|BLX             R3; grub_getcrc32c|152-71
+1084|code|LDR             R2, [R5,#(checksums - 0x127E8)]|106-111
+1086|code|MOV             R6, R0|6-70
+1088|code|CBZ             R2, loc_44A|26-177
+1090|code|LDR             R3, [R5,#(ctr - 0x127E8)]|171-111
+1092|code|LDR             R1, [R5,#(nchk - 0x127E8)]|233-111
+1094|code|CMP             R3, R1|139-66
+1096|code|BLT             loc_47E|25-219
+1098|code|LDR             R5, [R4,#(capt_mode_info.height - 0x127E8)]|101-104
+1100|code|LDR.W           R8, [R4,#(basename - 0x127E8)]|212-248-128-128
+1104|code|LDR             R7, [R4]|39-104
+1106|code|BL              grub_video_checksum_get_modename|255-247-173-255
+1110|code|LDR             R3, =a0; "0"|34-75
+1112|code|STR             R5, [SP,#0x40+var_30]|4-149
+1114|code|STR.W           R8, [SP,#0x40+var_38]|205-248-8-128
+1118|code|STR             R3, [SP,#0x40+condstr]; condstr|0-147
+1120|code|LDR             R3, =aUnexpectedChec; "Unexpected checksum %s_%dx%dx%s:%d: 0x%"...|32-75
+1122|code|STR             R7, [SP,#0x40+var_34]|3-151
+1124|code|LDR             R1, =aTestsVideoChec; "tests/video_checksum.c"|32-73
+1126|code|STR             R3, [SP,#0x40+fmt]; fmt|1-147
+1128|code|LDR             R2, =__FUNCTION__.5543; "checksum"|32-74
+1130|code|LDR             R5, =(grub_test_assert_helper+1)|33-77
+1132|code|STR             R0, [SP,#0x40+var_2C]|5-144
+1134|code|MOVS            R0, #0; cond|0-32
+1136|code|LDR             R3, [R4,#(ctr - 0x127E8)]|163-111
+1138|code|STR             crc, [SP,#0x40+var_24]|7-150
+1140|code|STR             R3, [SP,#0x40+var_28]|6-147
+1142|code|MOVW            R3, #0x263; line|64-242-99-35
+1146|code|BLX             R5; grub_test_assert_helper|168-71
+1148|code|B               loc_4C8|36-224
+1150|code|LDR.W           R2, [R2,R3,LSL#2]|82-248-35-32
+1154|code|CMP             crc, R2|144-66
+1156|code|BEQ             loc_4C2|29-208
+1158|code|LDR.W           R8, [R5,#(basename - 0x127E8)]|213-248-128-128
+1162|code|LDR             R7, [R5]|47-104
+1164|code|LDR             R5, [R5,#(capt_mode_info.height - 0x127E8)]|109-104
+1166|code|BL              grub_video_checksum_get_modename|255-247-143-255
+1170|code|LDR             R2, =a0; "0"|19-74
+1172|code|LDR             R3, [R4,#(ctr - 0x127E8)]|163-111
+1174|code|STR             R5, [SP,#0x40+var_30]|4-149
+1176|code|STR             R2, [SP,#0x40+condstr]; condstr|0-146
+1178|code|LDR             R2, =aChecksumSDxDxS; "Checksum %s_%dx%dx%s:%d failed: 0x%x vs"...|22-74
+1180|code|STR.W           R8, [SP,#0x40+var_38]|205-248-8-128
+1184|code|STR             R7, [SP,#0x40+var_34]|3-151
+1186|code|STR             R2, [SP,#0x40+fmt]; fmt|1-146
+1188|code|STR             R3, [SP,#0x40+var_28]|6-147
+1190|code|STR             crc, [SP,#0x40+var_24]|7-150
+1192|code|LDR             R1, =aTestsVideoChec; "tests/video_checksum.c"|15-73
+1194|code|LDR             R5, =(grub_test_assert_helper+1)|17-77
+1196|code|STR             R0, [SP,#0x40+var_2C]|5-144
+1198|code|MOVS            R0, #0; cond|0-32
+1200|code|LDR             R2, [R4,#(checksums - 0x127E8)]|98-111
+1202|code|LDR.W           R3, [R2,R3,LSL#2]|82-248-35-48
+1206|code|LDR             R2, =__FUNCTION__.5543; "checksum"|13-74
+1208|code|STR             R3, [SP,#0x40+var_20]|8-147
+1210|code|MOV.W           R3, #0x26C; line|79-244-27-115
+1214|code|BLX             R5; grub_test_assert_helper|168-71
+1216|code|B               loc_4C8|2-224
+1218|code|ADDS            R3, #1|1-51
+1220|code|STR             R3, [R5,#(ctr - 0x127E8)]|171-103
+1222|code|B               loc_4CE|2-224
+1224|code|LDR             R3, [R4,#(ctr - 0x127E8)]|163-111
+1226|code|ADDS            R3, #1|1-51
+1228|code|STR             R3, [R4,#(ctr - 0x127E8)]|163-103
+1230|code|ADD             SP, SP, #0x28 ; '('|10-176
+1232|code|POP.W           {R4-R8,PC}|189-232-240-129
+1236|data|DCD grub_video_capture_get_framebuffer+1|61-9-0-0
+1240|data|DCD capt_mode_info|232-39-1-0
+1244|data|DCD grub_getcrc32c|176-41-1-0
+1248|data|DCD a0; "0"|19-135-0-0
+1252|data|DCD aUnexpectedChec; "Unexpected checksum %s_%dx%dx%s:%d: 0x%"...|21-135-0-0
+1256|data|DCD aTestsVideoChec; "tests/video_checksum.c"|252-134-0-0
+1260|data|DCD __FUNCTION__.5543; "checksum"|152-9-0-0
+1264|data|DCD grub_test_assert_helper+1|89-2-0-0
+1268|data|DCD aChecksumSDxDxS; "Checksum %s_%dx%dx%s:%d failed: 0x%x vs"...|62-135-0-0
+1272|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+1276|code|MOV             R9, basename_in|129-70
+1278|code|LDR             R6, =capt_mode_info|52-78
+1280|code|MOVW            R8, #0x1D1|64-242-209-24
+1284|code|LDR             R3, =grub_video_get_info|51-75
+1286|code|LDR             R4, =checksum_table.width|52-76
+1288|code|MOV             basename_in, R6|48-70
+1290|code|LDR.W           R10, =grub_strcmp|223-248-224-160
+1294|code|BLX             R3; grub_video_get_info|152-71
+1296|code|LDR             R3, =grub_strdup|50-75
+1298|code|MOV             R0, basename_in|72-70
+1300|code|MOV             R5, R6|53-70
+1302|code|BLX             R3; grub_strdup|152-71
+1304|code|MOVS            R3, #0|0-35
+1306|code|STR             R3, [R6,#(nchk - 0x127E8)]|243-103
+1308|code|STR             R3, [R6,#(checksums - 0x127E8)]|115-103
+1310|code|STR.W           R0, [R6,#(basename - 0x127E8)]|198-248-128-0
+1314|code|RSB.W           R7, R8, #0x1D0|200-245-232-119
+1318|code|LDR.W           R0, [R4,#-4]|84-248-4-12
+1322|code|MOV             R1, basename_in|73-70
+1324|code|ADDS            R7, #1|1-55
+1326|code|BLX             R10; grub_strcmp|208-71
+1328|code|CMP             R0, #0|0-40
+1330|code|BNE             loc_5B8|65-209
+1332|code|LDR             R2, [R6]|50-104
+1334|code|LDR             R3, [R4]|35-104
+1336|code|CMP             R2, R3|154-66
+1338|code|BNE             loc_5B8|61-209
+1340|code|LDR             R2, [R5,#(capt_mode_info.height - 0x127E8)]|106-104
+1342|code|LDR             R3, [R4,#4]|99-104
+1344|code|CMP             R2, R3|154-66
+1346|code|BNE             loc_5B8|57-209
+1348|code|LDR             R2, [R5,#(capt_mode_info.mode_type - 0x127E8)]|170-104
+1350|code|LDR             R3, [R4,#8]|163-104
+1352|code|CMP             R2, R3|154-66
+1354|code|BNE             loc_5B8|53-209
+1356|code|LDR             R2, [R5,#(capt_mode_info.number_of_colors - 0x127E8)]|170-105
+1358|code|LDR             R3, [R4,#0xC]|227-104
+1360|code|CMP             R2, R3|154-66
+1362|code|BNE             loc_5B8|49-209
+1364|code|LDR             R2, [R5,#(capt_mode_info.bpp - 0x127E8)]|234-104
+1366|code|LDR             R3, [R4,#0x10]|35-105
+1368|code|CMP             R2, R3|154-66
+1370|code|BNE             loc_5B8|45-209
+1372|code|LDR             R2, [R5,#(capt_mode_info.bytes_per_pixel - 0x127E8)]|42-105
+1374|code|LDR             R3, [R4,#0x14]|99-105
+1376|code|CMP             R2, R3|154-66
+1378|code|BNE             loc_5B8|41-209
+1380|code|LDR             R2, [R5,#(capt_mode_info.red_field_pos - 0x127E8)]|170-106
+1382|code|LDR             R3, [R4,#0x18]|163-105
+1384|code|CMP             R2, R3|154-66
+1386|code|BNE             loc_5B8|37-209
+1388|code|LDR             R2, [R5,#(capt_mode_info.red_mask_size - 0x127E8)]|106-106
+1390|code|LDR             R3, [R4,#0x1C]|227-105
+1392|code|CMP             R2, R3|154-66
+1394|code|BNE             loc_5B8|33-209
+1396|code|LDR             R2, [R5,#(capt_mode_info.green_field_pos - 0x127E8)]|42-107
+1398|code|LDR             R3, [R4,#0x20]|35-106
+1400|code|CMP             R2, R3|154-66
+1402|code|BNE             loc_5B8|29-209
+1404|code|LDR             R2, [R6,#(capt_mode_info.green_mask_size - 0x127E8)]|242-106
+1406|code|LDR             R3, [R4,#0x24]|99-106
+1408|code|LDR             R1, =capt_mode_info|19-73
+1410|code|CMP             R2, R3|154-66
+1412|code|BNE             loc_5B8|24-209
+1414|code|LDR             R2, [R5,#(capt_mode_info.blue_field_pos - 0x127E8)]|170-107
+1416|code|LDR             R3, [R4,#0x28]|163-106
+1418|code|CMP             R2, R3|154-66
+1420|code|BNE             loc_5B8|20-209
+1422|code|LDR             R2, [R5,#(capt_mode_info.blue_mask_size - 0x127E8)]|106-107
+1424|code|LDR             R3, [R4,#0x2C]|227-106
+1426|code|CMP             R2, R3|154-66
+1428|code|BNE             loc_5B8|16-209
+1430|code|LDR             R2, [R5,#(capt_mode_info.reserved_field_pos - 0x127E8)]|42-108
+1432|code|LDR             R3, [R4,#0x30]|35-107
+1434|code|CMP             R2, R3|154-66
+1436|code|BNE             loc_5B8|12-209
+1438|code|LDR             R2, [R5,#(capt_mode_info.reserved_mask_size - 0x127E8)]|234-107
+1440|code|LDR             R3, [R4,#0x34]|99-107
+1442|code|CMP             R2, R3|154-66
+1444|code|BNE             loc_5B8|8-209
+1446|code|LDR             R3, =__FUNCTION__.5543; "checksum"|14-75
+1448|code|MOVS            R2, #0x44 ; 'D'|68-34
+1450|code|MLA.W           i, R2, i, R3|2-251-7-55
+1454|code|LDR             R3, [R7,#0x4C]|251-108
+1456|code|STR             R3, [R1,#(nchk - 0x127E8)]|203-103
+1458|code|LDR             R3, [R7,#0x48]|187-108
+1460|code|STR             R3, [R1,#(checksums - 0x127E8)]|75-103
+1462|code|B               loc_5C2|4-224
+1464|code|SUBS.W          R8, R8, #1|184-241-1-8
+1468|code|ADD.W           R4, R4, #0x44 ; 'D'|4-241-68-4
+1472|code|BNE             loc_522|175-209
+1474|code|MOVS            R3, #0|0-35
+1476|code|LDR             R2, =(checksum+1)|7-74
+1478|code|STR             R3, [R6,#(ctr - 0x127E8)]|179-103
+1480|code|LDR             R3, =grub_video_capture_refresh_cb|7-75
+1482|code|STR             R2, [R3]|26-96
+1484|code|POP.W           {R4-R10,PC}|189-232-240-135
+1488|data|DCD capt_mode_info|232-39-1-0
+1492|data|DCD grub_video_get_info|232-41-1-0
+1496|data|DCD checksum_table.width|168-9-0-0
+1500|data|DCD grub_strdup|124-41-1-0
+1504|data|DCD __FUNCTION__.5543; "checksum"|152-9-0-0
+1508|data|DCD checksum+1|33-4-0-0
+1512|data|DCD grub_video_capture_refresh_cb|56-41-1-0
+1516|data|DCD grub_strcmp|192-41-1-0
+1520|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1524|code|SUB             SP, SP, #0x20|136-176
+1526|code|LDR             R4, =capt_mode_info|23-76
+1528|code|LDR             R5, [R4,#(nchk - 0x127E8)]|229-111
+1530|code|LDR             R3, [R4,#(ctr - 0x127E8)]|163-111
+1532|code|LDR.W           R8, [R4,#(basename - 0x127E8)]|212-248-128-128
+1536|code|SUBS            R3, R3, R5|91-27
+1538|code|LDR             R7, [R4]|39-104
+1540|code|NEGS            R5, R3|93-66
+1542|code|LDR             R6, [R4,#(capt_mode_info.height - 0x127E8)]|102-104
+1544|code|ADCS            R5, R3|93-65
+1546|code|BL              grub_video_checksum_get_modename|255-247-209-254
+1550|code|LDR             R3, =aCtrNchk; "ctr == nchk"|18-75
+1552|code|LDR             R1, =aTestsVideoChec; "tests/video_checksum.c"|18-73
+1554|code|LDR             R2, =__FUNCTION__.6038; "grub_video_checksum_end"|19-74
+1556|code|STR             R3, [SP,#0x38+condstr]; condstr|0-147
+1558|code|LDR             R3, =aNotEnoughCheck; "Not enough checksums %s_%dx%dx%s: %d vs"...|19-75
+1560|code|STR.W           R8, [SP,#0x38+var_30]|205-248-8-128
+1564|code|STR             R7, [SP,#0x38+var_2C]|3-151
+1566|code|STR             R3, [SP,#0x38+fmt]; fmt|1-147
+1568|code|LDR             R3, [R4,#(ctr - 0x127E8)]|163-111
+1570|code|STR             R6, [SP,#0x38+var_28]|4-150
+1572|code|STR             R3, [SP,#0x38+var_20]|6-147
+1574|code|LDR             R3, [R4,#(nchk - 0x127E8)]|227-111
+1576|code|STR             R3, [SP,#0x38+var_1C]|7-147
+1578|code|MOV.W           R3, #0x2F4; line|79-244-61-115
+1582|code|STR             R0, [SP,#0x38+var_24]|5-144
+1584|code|MOV             R0, R5; cond|40-70
+1586|code|LDR             R5, =(grub_test_assert_helper+1)|13-77
+1588|code|BLX             R5; grub_test_assert_helper|168-71
+1590|code|LDR.W           R0, [R4,#(basename - 0x127E8)]|212-248-128-0
+1594|code|LDR             R3, =grub_free|12-75
+1596|code|BLX             R3; grub_free|152-71
+1598|code|LDR             R2, =grub_video_capture_refresh_cb|12-74
+1600|code|MOVS            R3, #0|0-35
+1602|code|STR.W           R3, [R4,#(basename - 0x127E8)]|196-248-128-48
+1606|code|STR             R3, [R4,#(nchk - 0x127E8)]|227-103
+1608|code|STR             R3, [R4,#(checksums - 0x127E8)]|99-103
+1610|code|STR             R3, [R4,#(ctr - 0x127E8)]|163-103
+1612|code|STR             R3, [R2]|19-96
+1614|code|ADD             SP, SP, #0x20 ; ' '|8-176
+1616|code|POP.W           {R4-R8,PC}|189-232-240-129
+1620|data|DCD capt_mode_info|232-39-1-0
+1624|data|DCD aCtrNchk; "ctr == nchk"|107-135-0-0
+1628|data|DCD aTestsVideoChec; "tests/video_checksum.c"|252-134-0-0
+1632|data|DCD __FUNCTION__.6038; "grub_video_checksum_end"|40-133-0-0
+1636|data|DCD aNotEnoughCheck; "Not enough checksums %s_%dx%dx%s: %d vs"...|119-135-0-0
+1640|data|DCD grub_test_assert_helper+1|89-2-0-0
+1644|data|DCD grub_free|220-41-1-0
+1648|data|DCD grub_video_capture_refresh_cb|56-41-1-0
+1652|code|PUSH            {R4-R7,LR}|240-181
+1654|code|SUB             SP, SP, #0x14|133-176
+1656|code|LDR             R5, =grub_term_outputs|47-77
+1658|code|LDR             R4, =capt_mode_info|48-76
+1660|code|LDR             R7, =grub_strcmp|48-79
+1662|code|LDR             R3, [R5]|43-104
+1664|code|MOV             R6, R4|38-70
+1666|code|STR.W           R3, [R4,#(gfxterm - 0x127E8)]|196-248-132-48
+1670|code|LDR.W           R3, [R4,#(gfxterm - 0x127E8)]|212-248-132-48
+1674|code|CBZ             R3, loc_694|27-177
+1676|code|LDR             R0, [R3,#8]|152-104
+1678|code|LDR             R1, =aGfxterm; "gfxterm"|45-73
+1680|code|BLX             R7; grub_strcmp|184-71
+1682|code|CBNZ            R0, loc_69E|32-185
+1684|code|LDR.W           R3, [R4,#(gfxterm - 0x127E8)]|212-248-132-48
+1688|code|LDR             R6, =capt_mode_info|40-78
+1690|code|CBNZ            R3, loc_6BA|115-185
+1692|code|B               loc_6AA|5-224
+1694|code|LDR.W           R3, [R6,#(gfxterm - 0x127E8)]|214-248-132-48
+1698|code|LDR             R3, [R3]|27-104
+1700|code|STR.W           R3, [R6,#(gfxterm - 0x127E8)]|198-248-132-48
+1704|code|B               loc_686|237-231
+1706|code|LDR             R3, =grub_term_outputs_disabled|39-75
+1708|code|LDR             R7, =grub_strcmp|36-79
+1710|code|LDR             R3, [R3]|27-104
+1712|code|STR.W           R3, [R6,#(gfxterm - 0x127E8)]|198-248-132-48
+1716|code|LDR.W           R3, [R4,#(gfxterm - 0x127E8)]|212-248-132-48
+1720|code|CBNZ            R3, loc_6DC|131-185
+1722|code|LDR.W           R0, [R4,#(gfxterm - 0x127E8)]; cond|212-248-132-0
+1726|code|LDR             R6, =capt_mode_info|31-78
+1728|code|CBNZ            R0, loc_6F2|184-185
+1730|code|LDR             R3, =a0; "0"|34-75
+1732|code|LDR             R1, =aTestsVideoChec; "tests/video_checksum.c"|34-73
+1734|code|LDR             R2, =__FUNCTION__.6052; "grub_test_use_gfxterm"|35-74
+1736|code|STR             R3, [SP,#0x28+condstr]; condstr|0-147
+1738|code|LDR             R3, =aTerminalSIsnTF; "terminal `%s' isn't found"|35-75
+1740|code|LDR             R4, =(grub_test_assert_helper+1)|35-76
+1742|code|STR             R3, [SP,#0x28+fmt]; fmt|1-147
+1744|code|LDR             R3, =aGfxterm; "gfxterm"|28-75
+1746|code|STR             R3, [SP,#0x28+var_20]|2-147
+1748|code|MOVW            R3, #0x30F; line|64-242-15-51
+1752|code|BLX             R4; grub_test_assert_helper|160-71
+1754|code|B               loc_716|28-224
+1756|code|LDR             R0, [R3,#8]|152-104
+1758|code|LDR             R1, =aGfxterm; "gfxterm"|25-73
+1760|code|BLX             R7; grub_strcmp|184-71
+1762|code|CMP             R0, #0|0-40
+1764|code|BEQ             loc_6BA|233-208
+1766|code|LDR.W           R3, [R6,#(gfxterm - 0x127E8)]|214-248-132-48
+1770|code|LDR             R3, [R3]|27-104
+1772|code|STR.W           R3, [R6,#(gfxterm - 0x127E8)]|198-248-132-48
+1776|code|B               loc_6B4|224-231
+1778|code|LDR             R3, [R0,#0xC]|195-104
+1780|code|BLX             R3|152-71
+1782|code|CBZ             R0, loc_71A|128-177
+1784|code|LDR             R3, =a0; "0"|20-75
+1786|code|MOVS            R0, #0; cond|0-32
+1788|code|LDR             R1, =aTestsVideoChec; "tests/video_checksum.c"|20-73
+1790|code|LDR             R2, =__FUNCTION__.6052; "grub_test_use_gfxterm"|21-74
+1792|code|STR             R3, [SP,#0x28+condstr]; condstr|0-147
+1794|code|LDR             R3, =aTerminalSFaile; "terminal `%s' failed: %s"|23-75
+1796|code|LDR             R4, =(grub_test_assert_helper+1)|21-76
+1798|code|STR             R3, [SP,#0x28+fmt]; fmt|1-147
+1800|code|LDR             R3, =aGfxterm; "gfxterm"|14-75
+1802|code|STR             R3, [SP,#0x28+var_20]|2-147
+1804|code|LDR             R3, =grub_errmsg|21-75
+1806|code|STR             R3, [SP,#0x28+var_1C]|3-147
+1808|code|MOVW            R3, #0x315; line|64-242-21-51
+1812|code|BLX             R4; grub_test_assert_helper|160-71
+1814|code|MOVS            R0, #1|1-32
+1816|code|B               loc_734|12-224
+1818|code|LDR             R3, [R5]|43-104
+1820|code|STR.W           R3, [R6,#(saved_outputs - 0x127E8)]|198-248-136-48
+1824|code|LDR.W           R3, [R6,#(gfxterm - 0x127E8)]|214-248-132-48
+1828|code|LDR             R2, [R3]|26-104
+1830|code|STR             R3, [R5]|43-96
+1832|code|STR             R0, [R3]|24-96
+1834|code|MOVS            R3, #1|1-35
+1836|code|STR.W           R2, [R6,#(saved_gfxnext - 0x127E8)]|198-248-140-32
+1840|code|STR.W           R3, [R6,#(use_gfxterm - 0x127E8)]|198-248-144-48
+1844|code|ADD             SP, SP, #0x14|5-176
+1846|code|POP             {R4-R7,PC}|240-189
+1848|data|DCD grub_term_outputs|188-41-1-0
+1852|data|DCD capt_mode_info|232-39-1-0
+1856|data|DCD grub_strcmp|192-41-1-0
+1860|data|DCD aGfxterm; "gfxterm"|162-135-0-0
+1864|data|DCD grub_term_outputs_disabled|152-41-1-0
+1868|data|DCD a0; "0"|19-135-0-0
+1872|data|DCD aTestsVideoChec; "tests/video_checksum.c"|252-134-0-0
+1876|data|DCD __FUNCTION__.6052; "grub_test_use_gfxterm"|64-133-0-0
+1880|data|DCD aTerminalSIsnTF; "terminal `%s' isn't found"|170-135-0-0
+1884|data|DCD grub_test_assert_helper+1|89-2-0-0
+1888|data|DCD aTerminalSFaile; "terminal `%s' failed: %s"|196-135-0-0
+1892|data|DCD grub_errmsg|72-41-1-0
+1896|code|PUSH            {R3-R5,LR}|56-181
+1898|code|LDR             R4, =capt_mode_info|12-76
+1900|code|LDR.W           R3, [R4,#(use_gfxterm - 0x127E8)]|212-248-144-48
+1904|code|CBZ             R3, locret_79A|155-177
+1906|code|LDR.W           R0, [R4,#(gfxterm - 0x127E8)]|212-248-132-0
+1910|code|MOVS            R5, #0|0-37
+1912|code|STR.W           R5, [R4,#(use_gfxterm - 0x127E8)]|196-248-144-80
+1916|code|LDR             R3, [R0,#0x10]|3-105
+1918|code|BLX             R3|152-71
+1920|code|LDR.W           R2, [R4,#(saved_gfxnext - 0x127E8)]|212-248-140-32
+1924|code|LDR.W           R3, [R4,#(gfxterm - 0x127E8)]|212-248-132-48
+1928|code|STR.W           R5, [R4,#(saved_gfxnext - 0x127E8)]|196-248-140-80
+1932|code|STR             R2, [R3]|26-96
+1934|code|LDR.W           R2, [R4,#(saved_outputs - 0x127E8)]|212-248-136-32
+1938|code|LDR             R3, =grub_term_outputs|3-75
+1940|code|STR.W           R5, [R4,#(saved_outputs - 0x127E8)]|196-248-136-80
+1944|code|STR             R2, [R3]|26-96
+1946|code|POP             {R3-R5,PC}|56-189
+1948|data|DCD capt_mode_info|232-39-1-0
+1952|data|DCD grub_term_outputs|188-41-1-0
+1956|code|LDR             R3, =seq|7-75
+1958|code|LDR             R1, [R3]|25-104
+1960|code|CBZ             R1, loc_7BC|65-177
+1962|code|LDR             R2, [R3,#(seqptr - 0x1287C)]|90-104
+1964|code|LDR             term, [R3,#(nseq - 0x1287C)]|152-104
+1966|code|CMP             R2, R0|130-66
+1968|code|BGE             loc_7BC|4-218
+1970|code|ADDS            R0, R2, #1|80-28
+1972|code|STR             R0, [R3,#(seqptr - 0x1287C)]|88-96
+1974|code|LDR.W           R0, [R1,R2,LSL#2]|81-248-34-0
+1978|code|BX              LR|112-71
+1980|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+1984|code|BX              LR|112-71
+1986|data|ALIGN 4|0-191
+1988|data|DCD seq|124-40-1-0
+1992|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1996|code|MOV             R8, seq_in|128-70
+1998|code|LDR             R4, =seq|16-76
+2000|code|MOV             R6, nseq_in|14-70
+2002|code|LDR             R3, [R4,#(fake_input - 0x1287C)]|227-104
+2004|code|CBNZ            R3, loc_7DC|19-185
+2006|code|LDR             R3, =grub_term_inputs|15-75
+2008|code|LDR             R3, [R3]|27-104
+2010|code|STR             R3, [R4,#(saved - 0x1287C)]|35-97
+2012|code|LDR             seq_in, [R4]|32-104
+2014|code|CBZ             R0, loc_7E4|8-177
+2016|code|LDR             R3, =grub_free|13-75
+2018|code|BLX             R3; grub_free|152-71
+2020|code|LSLS            R7, nseq_in, #2|183-0
+2022|code|LDR             R3, =grub_malloc|13-75
+2024|code|LDR             R5, =seq|9-77
+2026|code|MOV             R0, R7|56-70
+2028|code|BLX             R3; grub_malloc|152-71
+2030|code|STR             R0, [R4]|32-96
+2032|code|CBZ             R0, locret_80A|88-177
+2034|code|LDR             R2, =fake_input_term|11-74
+2036|code|MOV             R1, seq_in|65-70
+2038|code|LDR             R3, =grub_term_inputs|7-75
+2040|code|STR             R2, [R3]|26-96
+2042|code|MOV             R2, R7|58-70
+2044|code|LDR             R3, =grub_memmove|9-75
+2046|code|BLX             R3; grub_memmove|152-71
+2048|code|MOVS            R3, #0|0-35
+2050|code|STR             nseq_in, [R5,#(nseq - 0x1287C)]|174-96
+2052|code|STR             R3, [R5,#(seqptr - 0x1287C)]|107-96
+2054|code|MOVS            R3, #1|1-35
+2056|code|STR             R3, [R5,#(fake_input - 0x1287C)]|235-96
+2058|code|POP.W           {R4-seq_in,PC}|189-232-240-129
+2062|data|ALIGN 0x10|0-191
+2064|data|DCD seq|124-40-1-0
+2068|data|DCD grub_term_inputs|156-41-1-0
+2072|data|DCD grub_free|220-41-1-0
+2076|data|DCD grub_malloc|196-41-1-0
+2080|data|DCD fake_input_term|8-39-1-0
+2084|data|DCD grub_memmove|116-41-1-0
+2088|code|PUSH            {R3-R5,LR}|56-181
+2090|code|LDR             R4, =seq|7-76
+2092|code|LDR             R3, [R4,#(fake_input - 0x1287C)]|227-104
+2094|code|CBZ             R3, locret_846|83-177
+2096|code|LDR             R2, [R4,#(saved - 0x1287C)]|34-105
+2098|code|MOVS            R5, #0|0-37
+2100|code|LDR             R3, =grub_term_inputs|5-75
+2102|code|LDR             R0, [R4]|32-104
+2104|code|STR             R5, [R4,#(fake_input - 0x1287C)]|229-96
+2106|code|STR             R2, [R3]|26-96
+2108|code|LDR             R3, =grub_free|4-75
+2110|code|BLX             R3; grub_free|152-71
+2112|code|STR             R5, [R4]|37-96
+2114|code|STR             R5, [R4,#(nseq - 0x1287C)]|165-96
+2116|code|STR             R5, [R4,#(seqptr - 0x1287C)]|101-96
+2118|code|POP             {R3-R5,PC}|56-189
+2120|data|DCD seq|124-40-1-0
+2124|data|DCD grub_term_inputs|156-41-1-0
+2128|data|DCD grub_free|220-41-1-0
+2132|code|PUSH            {R3,LR}|8-181
+2134|code|LDR             R3, =grub_video_capture_refresh_cb|3-75
+2136|code|LDR             R3, [R3]|27-104
+2138|code|CBZ             R3, loc_85E|3-177
+2140|code|BLX             R3|152-71
+2142|code|MOVS            R0, #0|0-32
+2144|code|POP             {R3,PC}|8-189
+2146|data|ALIGN 4|0-191
+2148|data|DCD grub_video_capture_refresh_cb|56-41-1-0
+2152|code|MOVS            R0, #0|0-32
+2154|code|BX              LR|112-71
+2156|code|PUSH            {R3,LR}|8-181
+2158|code|CBNZ            target, loc_874|8-185
+2160|code|LDR             R3, =framebuffer|2-75
+2162|code|LDR             target, [R3,#(framebuffer.render_target - 0x12890)]|216-108
+2164|code|LDR             R3, =grub_video_fb_set_active_render_target|2-75
+2166|code|BLX             R3; grub_video_fb_set_active_render_target|152-71
+2168|code|POP             {R3,PC}|8-189
+2170|data|ALIGN 4|0-191
+2172|data|DCD framebuffer|144-40-1-0
+2176|data|DCD grub_video_fb_set_active_render_target|200-41-1-0
+2180|code|PUSH            {R3-R7,LR}|248-181
+2182|code|MOV             R7, mode_info|7-70
+2184|code|LDR             R4, =framebuffer|31-76
+2186|code|MOV             R5, palette|13-70
+2188|code|LDR             R3, =grub_memset|31-75
+2190|code|MOVS            palette, #0|0-33
+2192|code|MOV             R6, palette_size|22-70
+2194|code|MOVS            palette_size, #0x54 ; 'T'|84-34
+2196|code|MOV             mode_info, R4|32-70
+2198|code|BLX             R3; grub_memset|152-71
+2200|code|LDR             R3, =grub_video_fb_init|29-75
+2202|code|BLX             R3; grub_video_fb_init|152-71
+2204|code|MOVS            R2, #0x4C ; 'L'; n|76-34
+2206|code|MOV             R1, mode_info; src|57-70
+2208|code|LDR             R3, =memcpy|28-75
+2210|code|MOV             R0, R4; dest|32-70
+2212|code|BLX             R3; memcpy|152-71
+2214|code|LDR             R3, =grub_video_get_blit_format|28-75
+2216|code|MOV             R0, R4|32-70
+2218|code|BLX             R3; grub_video_get_blit_format|152-71
+2220|code|LDR             R3, [R4,#(framebuffer.mode_info.pitch - 0x12890)]|99-105
+2222|code|STR             R0, [R4,#(framebuffer.mode_info.blit_format - 0x12890)]|32-98
+2224|code|LDR             R0, [R4,#(framebuffer.mode_info.height - 0x12890)]|96-104
+2226|code|MULS            R0, R3|88-67
+2228|code|LDR             R3, =grub_malloc|25-75
+2230|code|BLX             R3; grub_malloc|152-71
+2232|code|MOV             R2, R0|2-70
+2234|code|STR             R0, [R4,#(framebuffer.ptr - 0x12890)]|32-101
+2236|code|CBNZ            R0, loc_8C4|16-185
+2238|code|LDR             R3, =grub_errno|24-75
+2240|code|LDR             R0, [R3]|24-104
+2242|code|POP             {R3-mode_info,PC}|248-189
+2244|code|ADD.W           R0, R4, #0x4C ; 'L'|4-241-76-0
+2248|code|MOV             R1, R4|33-70
+2250|code|LDR             R3, =grub_video_fb_create_render_target_from_pointer|22-75
+2252|code|BLX             R3; grub_video_fb_create_render_target_from_pointer|152-71
+2254|code|CBNZ            err, locret_904|200-185
+2256|code|LDR             err, [R4,#(framebuffer.render_target - 0x12890)]|224-108
+2258|code|LDR             R3, =grub_video_fb_set_active_render_target|21-75
+2260|code|BLX             R3; grub_video_fb_set_active_render_target|152-71
+2262|code|CBNZ            err, locret_904|168-185
+2264|code|MOV             R1, palette_size|49-70
+2266|code|MOV             R2, palette|42-70
+2268|code|LDR             R3, =grub_video_fb_set_palette|19-75
+2270|code|BLX             R3; grub_video_fb_set_palette|152-71
+2272|code|CBNZ            err, locret_904|128-185
+2274|code|LDR             R3, =grub_video_adapter_active|19-75
+2276|code|LDR             R2, [R3]|26-104
+2278|code|MOV             palette, R3|29-70
+2280|code|STR             R2, [R4,#(saved_0 - 0x12890)]|98-101
+2282|code|CBZ             R2, loc_8FC|58-177
+2284|code|LDR             R3, =grub_video_get_info|17-75
+2286|code|ADD.W           err, R4, #0x58 ; 'X'|4-241-88-0
+2290|code|BLX             R3; grub_video_get_info|152-71
+2292|code|LDR             R3, [R4,#(saved_0 - 0x12890)]|99-109
+2294|code|LDR             R3, [R3,#0x18]|155-105
+2296|code|CBZ             R3, loc_8FC|3-177
+2298|code|BLX             R3|152-71
+2300|code|LDR             R3, =grub_video_capture_adapter|14-75
+2302|code|MOVS            R0, #0|0-32
+2304|code|STR             R3, [R5]|43-96
+2306|code|POP             {R3-mode_info,PC}|248-189
+2308|code|POP             {R3-mode_info,PC}|248-189
+2310|data|ALIGN 4|0-191
+2312|data|DCD framebuffer|144-40-1-0
+2316|data|DCD grub_memset|148-41-1-0
+2320|data|DCD grub_video_fb_init|180-41-1-0
+2324|data|DCD memcpy|108-41-1-0
+2328|data|DCD grub_video_get_blit_format|68-41-1-0
+2332|data|DCD grub_malloc|196-41-1-0
+2336|data|DCD grub_errno|144-41-1-0
+2340|data|DCD grub_video_fb_create_render_target_from_pointer|80-41-1-0
+2344|data|DCD grub_video_fb_set_active_render_target|200-41-1-0
+2348|data|DCD grub_video_fb_set_palette|164-41-1-0
+2352|data|DCD grub_video_adapter_active|136-41-1-0
+2356|data|DCD grub_video_get_info|232-41-1-0
+2360|data|DCD grub_video_capture_adapter|40-39-1-0
+2364|code|LDR             R3, =framebuffer|1-75
+2366|code|LDR             R0, [R3,#(framebuffer.ptr - 0x12890)]|24-109
+2368|code|BX              LR|112-71
+2370|data|ALIGN 4|0-191
+2372|data|DCD framebuffer|144-40-1-0
+2376|code|PUSH            {R4,LR}|16-181
+2378|code|LDR             R4, =framebuffer|14-76
+2380|code|LDR             R3, =grub_video_fb_delete_render_target|14-75
+2382|code|LDR             R0, [R4,#(framebuffer.render_target - 0x12890)]|224-108
+2384|code|BLX             R3; grub_video_fb_delete_render_target|152-71
+2386|code|LDR             R0, [R4,#(framebuffer.ptr - 0x12890)]|32-109
+2388|code|LDR             R3, =grub_free|13-75
+2390|code|BLX             R3; grub_free|152-71
+2392|code|LDR             R3, =grub_video_fb_fini|13-75
+2394|code|BLX             R3; grub_video_fb_fini|152-71
+2396|code|LDR             R3, [R4,#(saved_0 - 0x12890)]|99-109
+2398|code|LDR             R2, =grub_video_adapter_active|13-74
+2400|code|STR             R3, [R2]|19-96
+2402|code|CBZ             R3, locret_982|115-177
+2404|code|LDR             R3, [R3,#0x14]|91-105
+2406|code|CBZ             R3, loc_96A|3-177
+2408|code|BLX             R3|152-71
+2410|code|LDR             R2, [R4,#(saved_0 - 0x12890)]|98-109
+2412|code|LDR             R3, =framebuffer|5-75
+2414|code|LDR             R4, [R2,#0x1C]|212-105
+2416|code|CBZ             R4, locret_982|60-177
+2418|code|MOVS            R2, #0|0-34
+2420|code|LDR             R0, [R3,#(saved_mode_info - 0x12890)]|152-109
+2422|code|LDR             R1, [R3,#(saved_mode_info.height - 0x12890)]|217-109
+2424|code|MOV             R12, R4|164-70
+2426|code|MOV             R3, R2|19-70
+2428|code|POP.W           {R4,LR}|189-232-16-64
+2432|code|BX              R12|96-71
+2434|code|POP             {R4,PC}|16-189
+2436|data|DCD framebuffer|144-40-1-0
+2440|data|DCD grub_video_fb_delete_render_target|212-41-1-0
+2444|data|DCD grub_free|220-41-1-0
+2448|data|DCD grub_video_fb_fini|64-41-1-0
+2452|data|DCD grub_video_adapter_active|136-41-1-0
+2456|data|DCB "checksum",0|99-104-101-99-107-115-117-109-0
+2465|data|ALIGN 4|0-0-0
+2468|data|checksum_desc <aCmdlineCat, 0x280, 0x1E0, 2, 0x10, 8, 1, 0, 0, 0, 0, \; "cmdline_cat" ...|221-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-32-29-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-108-28-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-184-27-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-4-27-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-80-26-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-156-25-1-0-45-0-0-0-221-135-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-232-24-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-52-24-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-128-23-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-204-22-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-24-22-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-100-21-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-20-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-252-19-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-72-19-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-148-18-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-224-17-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-44-17-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-120-16-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-196-15-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-15-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-92-14-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-168-13-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-244-12-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-12-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-140-11-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-216-10-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-36-10-1-0-45-0-0-0-221-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-112-9-1-0-45-0-0-0-221-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-188-8-1-0-45-0-0-0-221-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-8-8-1-0-45-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-184-7-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-104-7-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-24-7-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-200-6-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-120-6-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-40-6-1-0-20-0-0-0-233-135-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-216-5-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-136-5-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-56-5-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-232-4-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-152-4-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-72-4-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-248-3-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-168-3-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-88-3-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-8-3-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-184-2-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-104-2-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-24-2-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-200-1-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-120-1-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-40-1-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-216-0-1-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-136-0-1-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-56-0-1-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-232-255-0-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-152-255-0-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-72-255-0-0-20-0-0-0-233-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-248-254-0-0-20-0-0-0-233-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-168-254-0-0-20-0-0-0-233-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-88-254-0-0-20-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-16-254-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-200-253-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-128-253-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-56-253-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-240-252-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-168-252-0-0-18-0-0-0-246-135-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-252-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-24-252-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-208-251-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-136-251-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-251-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-248-250-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-250-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-104-250-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-250-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-216-249-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-144-249-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-72-249-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-0-249-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-184-248-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-248-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-40-248-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-247-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-152-247-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-247-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-8-247-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-192-246-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-120-246-0-0-18-0-0-0-246-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-48-246-0-0-18-0-0-0-246-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-232-245-0-0-18-0-0-0-246-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-160-245-0-0-18-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-80-245-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-245-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-176-244-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-244-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-16-244-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-192-243-0-0-20-0-0-0-254-135-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-112-243-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-32-243-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-208-242-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-128-242-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-242-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-241-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-241-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-241-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-240-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-240-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-80-240-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-0-240-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-176-239-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-239-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-239-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-238-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-238-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-238-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-237-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-128-237-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-48-237-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-224-236-0-0-20-0-0-0-254-135-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-236-0-0-20-0-0-0-254-135-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-64-236-0-0-20-0-0-0-254-135-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-240-235-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-160-235-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-80-235-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-235-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-176-234-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-234-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-16-234-0-0-20-0-0-0-9-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-192-233-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-112-233-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-32-233-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-208-232-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-232-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-232-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-231-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-231-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-231-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-230-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-160-230-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-80-230-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-0-230-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-229-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-229-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-229-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-228-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-228-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-228-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-208-227-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-128-227-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-48-227-0-0-20-0-0-0-9-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-224-226-0-0-20-0-0-0-9-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-226-0-0-20-0-0-0-9-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-64-226-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-240-225-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-160-225-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-80-225-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-0-225-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-176-224-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-224-0-0-20-0-0-0-21-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-16-224-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-192-223-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-112-223-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-32-223-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-222-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-222-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-222-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-221-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-221-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-221-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-240-220-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-160-220-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-80-220-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-220-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-219-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-219-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-219-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-218-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-218-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-32-218-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-208-217-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-128-217-0-0-20-0-0-0-21-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-48-217-0-0-20-0-0-0-21-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-224-216-0-0-20-0-0-0-21-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-216-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-64-216-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-240-215-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-160-215-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-80-215-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-0-215-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-176-214-0-0-20-0-0-0-33-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-214-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-16-214-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-192-213-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-112-213-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-213-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-212-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-212-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-212-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-211-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-211-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-64-211-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-240-210-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-160-210-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-210-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-210-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-209-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-209-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-209-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-208-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-112-208-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-32-208-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-208-207-0-0-20-0-0-0-33-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-128-207-0-0-20-0-0-0-33-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-48-207-0-0-20-0-0-0-33-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-224-206-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-144-206-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-64-206-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-240-205-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-160-205-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-80-205-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-0-205-0-0-20-0-0-0-45-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-176-204-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-96-204-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-16-204-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-192-203-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-203-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-203-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-202-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-202-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-202-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-201-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-144-201-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-64-201-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-240-200-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-200-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-200-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-200-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-199-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-199-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-199-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-192-198-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-112-198-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-32-198-0-0-20-0-0-0-45-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-208-197-0-0-20-0-0-0-45-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-128-197-0-0-20-0-0-0-45-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-48-197-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-224-196-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-144-196-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-64-196-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-240-195-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-160-195-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-80-195-0-0-20-0-0-0-56-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-0-195-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-176-194-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-96-194-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-16-194-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-193-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-193-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-193-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-192-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-192-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-192-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-224-191-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-144-191-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-64-191-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-190-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-190-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-190-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-190-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-189-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-189-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-16-189-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-192-188-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-112-188-0-0-20-0-0-0-56-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-32-188-0-0-20-0-0-0-56-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-208-187-0-0-20-0-0-0-56-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-128-187-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-48-187-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-224-186-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-144-186-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-64-186-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-240-185-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-160-185-0-0-20-0-0-0-67-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-80-185-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-185-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-176-184-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-96-184-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-184-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-183-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-183-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-183-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-182-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-182-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-48-182-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-224-181-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-144-181-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-181-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-180-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-180-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-180-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-180-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-179-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-96-179-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-16-179-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-192-178-0-0-20-0-0-0-67-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-112-178-0-0-20-0-0-0-67-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-32-178-0-0-20-0-0-0-67-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-208-177-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-128-177-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-48-177-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-224-176-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-176-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-64-176-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-240-175-0-0-20-0-0-0-80-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-160-175-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-80-175-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-175-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-176-174-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-174-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-174-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-173-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-173-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-173-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-172-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-128-172-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-48-172-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-224-171-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-171-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-171-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-170-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-170-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-170-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-170-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-176-169-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-96-169-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-16-169-0-0-20-0-0-0-80-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-192-168-0-0-20-0-0-0-80-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-112-168-0-0-20-0-0-0-80-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-32-168-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-208-167-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-128-167-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-48-167-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-224-166-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-166-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-64-166-0-0-20-0-0-0-97-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-240-165-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-160-165-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-80-165-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-165-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-164-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-164-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-164-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-163-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-163-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-163-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-208-162-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-128-162-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-48-162-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-161-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-161-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-161-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-160-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-160-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-160-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-0-160-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-176-159-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-96-159-0-0-20-0-0-0-97-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-16-159-0-0-20-0-0-0-97-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-192-158-0-0-20-0-0-0-97-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-112-158-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-32-158-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-208-157-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-128-157-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-48-157-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-224-156-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-156-0-0-20-0-0-0-108-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-64-156-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-240-155-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-160-155-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-80-155-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-155-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-154-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-154-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-154-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-153-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-112-153-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-32-153-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-208-152-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-128-152-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-152-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-151-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-151-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-151-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-150-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-160-150-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-80-150-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-0-150-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-176-149-0-0-20-0-0-0-108-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-149-0-0-20-0-0-0-108-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-16-149-0-0-20-0-0-0-108-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-192-148-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-112-148-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-32-148-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-208-147-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-128-147-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-48-147-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-224-146-0-0-20-0-0-0-120-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-144-146-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-64-146-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-240-145-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-160-145-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-80-145-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-0-145-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-176-144-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-96-144-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-16-144-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-192-143-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-112-143-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-32-143-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-208-142-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-142-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-142-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-224-141-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-144-141-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-64-141-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-240-140-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-160-140-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-80-140-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-0-140-0-0-20-0-0-0-120-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-176-139-0-0-20-0-0-0-120-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-96-139-0-0-20-0-0-0-120-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-16-139-0-0-20-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-252-138-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-232-138-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-16-0-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-212-138-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-192-138-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-172-138-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-152-138-0-0-5-0-0-0-133-136-0-0-0-10-0-0-160-5-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-132-138-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-112-138-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-92-138-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-2-0-0-0-0-1-0-0-8-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-72-138-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-52-138-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-32-138-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-10-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-12-138-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-248-137-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-228-137-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-11-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-0-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-208-137-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-188-137-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-168-137-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-16-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-0-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-148-137-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-128-137-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-108-137-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-15-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-5-0-0-0-10-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-88-137-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-68-137-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-48-137-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-16-0-0-0-2-0-0-0-0-0-0-0-5-0-0-0-5-0-0-0-6-0-0-0-11-0-0-0-5-0-0-0-0-0-0-0-0-0-0-0-28-137-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-8-137-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-244-136-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-24-0-0-0-3-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-0-0-0-0-0-0-0-0-224-136-0-0-5-0-0-0-133-136-0-0-128-2-0-0-224-1-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-204-136-0-0-5-0-0-0-133-136-0-0-32-3-0-0-88-2-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-184-136-0-0-5-0-0-0-133-136-0-0-0-4-0-0-0-3-0-0-1-0-0-0-0-1-0-0-32-0-0-0-4-0-0-0-0-0-0-0-8-0-0-0-8-0-0-0-8-0-0-0-16-0-0-0-8-0-0-0-24-0-0-0-8-0-0-0-164-136-0-0-5-0-0-0
+34088|data|DCB "grub_video_checksum_end",0|103-114-117-98-95-118-105-100-101-111-95-99-104-101-99-107-115-117-109-95-101-110-100-0
+34112|data|DCB "grub_test_use_gfxterm",0|103-114-117-98-95-116-101-115-116-95-117-115-101-95-103-102-120-116-101-114-109-0
+34134|data|ALIGN 4|0-0
+34136|data|DCB "legacy_password_test",0|108-101-103-97-99-121-95-112-97-115-115-119-111-114-100-95-116-101-115-116-0
+34157|data|DCB "exfctest",0|101-120-102-99-116-101-115-116-0
+34166|data|DCB "videotest_checksum",0|118-105-100-101-111-116-101-115-116-95-99-104-101-99-107-115-117-109-0
+34185|data|DCB "gfxterm_menu",0|103-102-120-116-101-114-109-95-109-101-110-117-0
+34198|data|DCB "setjmp_test",0|115-101-116-106-109-112-95-116-101-115-116-0
+34210|data|DCB "cmdline_cat_test",0|99-109-100-108-105-110-101-95-99-97-116-95-116-101-115-116-0
+34227|data|DCB "div_test",0|100-105-118-95-116-101-115-116-0
+34236|data|DCB "xnu_uuid_test",0|120-110-117-95-117-117-105-100-95-116-101-115-116-0
+34250|data|DCB "pbkdf2_test",0|112-98-107-100-102-50-95-116-101-115-116-0
+34262|data|DCB "signature_test",0|115-105-103-110-97-116-117-114-101-95-116-101-115-116-0
+34277|data|DCB "sleep_test",0|115-108-101-101-112-95-116-101-115-116-0
+34288|data|DCB "ALL TESTS PASSED",0xA,0|65-76-76-32-84-69-83-84-83-32-80-65-83-83-69-68-10-0
+34306|data|DCB "TEST FAILURE",0xA,0|84-69-83-84-32-70-65-73-76-85-82-69-10-0
+34320|data|DCB "functional_test",0|102-117-110-99-116-105-111-110-97-108-95-116-101-115-116-0
+34336|data|DCB "Run all loaded functional tests.",0|82-117-110-32-97-108-108-32-108-111-97-100-101-100-32-102-117-110-99-116-105-111-110-97-108-32-116-101-115-116-115-46-0
+34369|data|DCB "all_functional_test",0|97-108-108-95-102-117-110-99-116-105-111-110-97-108-95-116-101-115-116-0
+34389|data|DCB "Run all functional tests.",0|82-117-110-32-97-108-108-32-102-117-110-99-116-105-111-110-97-108-32-116-101-115-116-115-46-0
+34415|data|DCB "<unknown_file>",0|60-117-110-107-110-111-119-110-95-102-105-108-101-62-0
+34430|data|DCB "<unknown_function>",0|60-117-110-107-110-111-119-110-95-102-117-110-99-116-105-111-110-62-0
+34449|data|DCB "%s%s",0|37-115-37-115-0
+34454|data|DCB "assert failed: %s ",0|97-115-115-101-114-116-32-102-97-105-108-101-100-58-32-37-115-32-0
+34473|data|DCB "<no message>",0|60-110-111-32-109-101-115-115-97-103-101-62-0
+34486|data|DCB "%s:",0xA,0|37-115-58-10-0
+34491|data|DCB " %s:%s:%u: %s",0xA,0|32-37-115-58-37-115-58-37-117-58-32-37-115-10-0
+34506|data|DCB "%s: PASS",0xA,0|37-115-58-32-80-65-83-83-10-0
+34516|data|DCB "%s: FAIL",0xA,0|37-115-58-32-70-65-73-76-10-0
+34526|data|DCB "i%d",0|105-37-100-0
+34530|data|DCB "bgra%d%d%d%d",0|98-103-114-97-37-100-37-100-37-100-37-100-0
+34543|data|DCB "rgba%d%d%d%d",0|114-103-98-97-37-100-37-100-37-100-37-100-0
+34556|data|DCB "tests/video_checksum.c",0|116-101-115-116-115-47-118-105-100-101-111-95-99-104-101-99-107-115-117-109-46-99-0
+34579|data|DCB "0",0|48-0
+34581|data|DCB "Unexpected checksum %s_%dx%dx%s:%d: 0x%x",0|85-110-101-120-112-101-99-116-101-100-32-99-104-101-99-107-115-117-109-32-37-115-95-37-100-120-37-100-120-37-115-58-37-100-58-32-48-120-37-120-0
+34622|data|DCB "Checksum %s_%dx%dx%s:%d failed: 0x%x vs 0x%x",0|67-104-101-99-107-115-117-109-32-37-115-95-37-100-120-37-100-120-37-115-58-37-100-32-102-97-105-108-101-100-58-32-48-120-37-120-32-118-115-32-48-120-37-120-0
+34667|data|DCB "ctr == nchk",0|99-116-114-32-61-61-32-110-99-104-107-0
+34679|data|DCB "Not enough checksums %s_%dx%dx%s: %d vs %d",0|78-111-116-32-101-110-111-117-103-104-32-99-104-101-99-107-115-117-109-115-32-37-115-95-37-100-120-37-100-120-37-115-58-32-37-100-32-118-115-32-37-100-0
+34722|data|DCB "gfxterm",0|103-102-120-116-101-114-109-0
+34730|data|DCB "terminal `%s' isn't found",0|116-101-114-109-105-110-97-108-32-96-37-115-39-32-105-115-110-39-116-32-102-111-117-110-100-0
+34756|data|DCB "terminal `%s' failed: %s",0|116-101-114-109-105-110-97-108-32-96-37-115-39-32-102-97-105-108-101-100-58-32-37-115-0
+34781|data|DCB "cmdline_cat",0|99-109-100-108-105-110-101-95-99-97-116-0
+34793|data|DCB "gfxterm_menu",0|103-102-120-116-101-114-109-95-109-101-110-117-0
+34806|data|DCB "gfxmenu",0|103-102-120-109-101-110-117-0
+34814|data|DCB "gfxterm_ar",0|103-102-120-116-101-114-109-95-97-114-0
+34825|data|DCB "gfxterm_cyr",0|103-102-120-116-101-114-109-95-99-121-114-0
+34837|data|DCB "gfxterm_heb",0|103-102-120-116-101-114-109-95-104-101-98-0
+34849|data|DCB "gfxterm_gre",0|103-102-120-116-101-114-109-95-103-114-101-0
+34861|data|DCB "gfxterm_ru",0|103-102-120-116-101-114-109-95-114-117-0
+34872|data|DCB "gfxterm_fr",0|103-102-120-116-101-114-109-95-102-114-0
+34883|data|DCB "gfxterm_quot",0|103-102-120-116-101-114-109-95-113-117-111-116-0
+34896|data|DCB "gfxterm_piglatin",0|103-102-120-116-101-114-109-95-112-105-103-108-97-116-105-110-0
+34913|data|DCB "gfxterm_ch",0|103-102-120-116-101-114-109-95-99-104-0
+34924|data|DCB "gfxterm_red",0|103-102-120-116-101-114-109-95-114-101-100-0
+34936|data|DCB "gfxterm_high",0|103-102-120-116-101-114-109-95-104-105-103-104-0
+34949|data|DCB "videotest",0|118-105-100-101-111-116-101-115-116-0
+34959|data|DCB "fake",0|102-97-107-101-0
+34964|data|DCB "Render capture",0|82-101-110-100-101-114-32-99-97-112-116-117-114-101-0
+75696|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+75711|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+75726|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+75744|data|% 4|255-255-255-255
+75748|data|% 4|255-255-255-255
+75752|data|grub_video_mode_info <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+75828|data|% 0x28|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+75868|data|% 4|255-255-255-255
+75872|data|% 4|255-255-255-255
+75876|data|% 4|255-255-255-255
+75880|data|% 4|255-255-255-255
+75884|data|% 4|255-255-255-255
+75888|data|% 4|255-255-255-255
+75892|data|% 4|255-255-255-255
+75896|data|% 4|255-255-255-255
+75900|data|% 4|255-255-255-255
+75904|data|% 4|255-255-255-255
+75908|data|% 4|255-255-255-255
+75912|data|% 4|255-255-255-255
+75916|data|% 4|255-255-255-255
+75920|data|$5377D2E613D35731379543B0E60A0ECC <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+76004|data|% 4|255-255-255-255
+76008|data|grub_video_mode_info <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+76084|data|% 4|255-255-255-255

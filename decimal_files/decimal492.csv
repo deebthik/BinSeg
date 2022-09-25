@@ -1,0 +1,19 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|MOVS            datetime, #0x11|17-32
+4|code|LDR             R1, =aCanTGetDatetim; "can't get datetime using U-Boot"|1-73
+6|code|LDR             R3, =grub_error|2-75
+8|code|BLX             R3; grub_error|152-71
+10|code|POP             {R3,PC}|8-189
+12|data|DCD aCanTGetDatetim; "can't get datetime using U-Boot"|40-0-0-0
+16|data|DCD grub_error|124-0-0-0
+20|code|PUSH            {R3,LR}|8-181
+22|code|MOVS            datetime, #0x11|17-32
+24|code|LDR             R1, =aCanTSetDatetim; "can't set datetime using U-Boot"|1-73
+26|code|LDR             R3, =grub_error|2-75
+28|code|BLX             R3; grub_error|152-71
+30|code|POP             {R3,PC}|8-189
+32|data|DCD aCanTSetDatetim; "can't set datetime using U-Boot"|72-0-0-0
+36|data|DCD grub_error|124-0-0-0
+40|data|DCB "can't get datetime using U-Boot",0|99-97-110-39-116-32-103-101-116-32-100-97-116-101-116-105-109-101-32-117-115-105-110-103-32-85-45-66-111-111-116-0
+72|data|DCB "can't set datetime using U-Boot",0|99-97-110-39-116-32-115-101-116-32-100-97-116-101-116-105-109-101-32-117-115-105-110-103-32-85-45-66-111-111-116-0

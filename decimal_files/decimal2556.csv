@@ -1,0 +1,98 @@
+address|type|disassembly|bytes
+0|code|LDR             R0, =expected|30-72
+2|code|MOVS            R3, #0|0-35
+4|code|PUSH            {R4,R5,LR}|48-181
+6|code|ADDS            R0, #8|8-48
+8|code|STR.W           R3, [R0,#(expected - 0x16C)]|64-248-8-60
+12|code|SUB             SP, SP, #0x14|133-176
+14|code|STR.W           R3, [R0,#(ctr - 0x16C)]|64-248-4-60
+18|code|LDR             R3, =grub_setjmp|27-75
+20|code|BLX             R3; grub_setjmp|152-71
+22|code|LDR             R4, =expected|25-76
+24|code|LDR             R2, =aValExpected; "val == expected"|26-74
+26|code|LDR             R1, =aTestsSetjmpTes; "tests/setjmp_test.c"|27-73
+28|code|LDR             R3, [R4]|35-104
+30|code|LDR             R5, =grub_test_assert_helper|27-77
+32|code|STR             R2, [SP,#0x20+var_20]|0-146
+34|code|LDR             R2, =aSetjmpReturned; "setjmp returned %d instead of %d"|27-74
+36|code|STR             R3, [SP,#0x20+var_14]|3-147
+38|code|SUBS            R3, val_0, R3|195-26
+40|code|STR             val_0, [SP,#0x20+val]|2-144
+42|code|NEGS            val_0, R3|88-66
+44|code|STR             R2, [SP,#0x20+var_1C]|1-146
+46|code|ADCS            R0, R3|88-65
+48|code|LDR             R2, =__FUNCTION__.5125; "setjmp_test"|24-74
+50|code|MOVS            R3, #0x3A ; ':'|58-35
+52|code|BLX             R5; grub_test_assert_helper|168-71
+54|code|LDR             R3, [R4,#(ctr - 0x164)]|99-104
+56|code|ADDS            R2, R3, #1|90-28
+58|code|STR             R2, [R4,#(ctr - 0x164)]|98-96
+60|code|CMP             R3, #3; switch 4 cases|3-43
+62|code|BHI             def_40; jumptable 00000040 default case|17-216
+64|code|TBB.W           [PC,R3]; switch jump|223-232-3-240
+68|data|DCB 2; jump table for switch statement|2
+69|data|DCB 8|8
+70|data|DCB 0xE|14
+71|data|DCB 0x1A|26
+72|code|LDR             R0, =expected; jumptable 00000040 case 0|12-72
+74|code|MOVS            R3, #1|1-35
+76|code|MOVS            R1, #0|0-33
+78|code|STR.W           R3, [R0],#8|64-248-8-59
+82|code|B               loc_5C|3-224
+84|code|MOVS            R1, #1; jumptable 00000040 case 1|1-33
+86|code|LDR             R0, =expected|9-72
+88|code|STR.W           R1, [R0],#8|64-248-8-27
+92|code|LDR             R3, =grub_longjmp|14-75
+94|code|BLX             R3; grub_longjmp|152-71
+96|code|MOVS            R1, #2; jumptable 00000040 case 2|2-33
+98|code|B               loc_56|248-231
+100|code|LDR             R3, =a0; jumptable 00000040 default case|13-75
+102|code|MOVS            R0, #0|0-32
+104|code|LDR             R1, =aTestsSetjmpTes; "tests/setjmp_test.c"|7-73
+106|code|LDR             R2, =__FUNCTION__.5125; "setjmp_test"|10-74
+108|code|STR             R3, [SP,#0x20+var_20]|0-147
+110|code|LDR             R3, =aSetjmpDidnTRet; "setjmp didn't return enough times"|12-75
+112|code|LDR             R4, =grub_test_assert_helper|6-76
+114|code|STR             R3, [SP,#0x20+var_1C]|1-147
+116|code|MOVS            R3, #0x49 ; 'I'|73-35
+118|code|BLX             R4; grub_test_assert_helper|160-71
+120|code|ADD             SP, SP, #0x14; jumptable 00000040 case 3|5-176
+122|code|POP             {R4,R5,PC}|48-189
+124|data|DCD expected|100-1-0-0
+128|data|DCD grub_setjmp|164-1-0-0
+132|data|DCD aValExpected; "val == expected"|240-0-0-0
+136|data|DCD aTestsSetjmpTes; "tests/setjmp_test.c"|220-0-0-0
+140|data|DCD grub_test_assert_helper|160-1-0-0
+144|data|DCD aSetjmpReturned; "setjmp returned %d instead of %d"|0-1-0-0
+148|data|DCD __FUNCTION__.5125; "setjmp_test"|208-0-0-0
+152|data|DCD grub_longjmp|156-1-0-0
+156|data|DCD a0; "0"|33-1-0-0
+160|data|DCD aSetjmpDidnTRet; "setjmp didn't return enough times"|35-1-0-0
+164|code|PUSH            {R3,LR}|8-181
+166|code|LDR             mod, =aSetjmpTest; "setjmp_test"|2-72
+168|code|LDR             R1, =(setjmp_test+1)|2-73
+170|code|LDR             R3, =grub_test_register|3-75
+172|code|BLX             R3; grub_test_register|152-71
+174|code|POP             {R3,PC}|8-189
+176|data|DCD aSetjmpTest; "setjmp_test"|69-1-0-0
+180|data|DCD setjmp_test+1|1-0-0-0
+184|data|DCD grub_test_register|148-1-0-0
+188|code|PUSH            {R3,LR}|8-181
+190|code|LDR             R0, =aSetjmpTest; "setjmp_test"|2-72
+192|code|LDR             R3, =grub_test_unregister|2-75
+194|code|BLX             R3; grub_test_unregister|152-71
+196|code|POP             {R3,PC}|8-189
+198|data|ALIGN 4|0-191
+200|data|DCD aSetjmpTest; "setjmp_test"|69-1-0-0
+204|data|DCD grub_test_unregister|152-1-0-0
+208|data|DCB "setjmp_test",0|115-101-116-106-109-112-95-116-101-115-116-0
+220|data|DCB "tests/setjmp_test.c",0|116-101-115-116-115-47-115-101-116-106-109-112-95-116-101-115-116-46-99-0
+240|data|DCB "val == expected",0|118-97-108-32-61-61-32-101-120-112-101-99-116-101-100-0
+256|data|DCB "setjmp returned %d instead of %d",0|115-101-116-106-109-112-32-114-101-116-117-114-110-101-100-32-37-100-32-105-110-115-116-101-97-100-32-111-102-32-37-100-0
+289|data|DCB "0",0|48-0
+291|data|DCB "setjmp didn't return enough times",0|115-101-116-106-109-112-32-100-105-100-110-39-116-32-114-101-116-117-114-110-32-101-110-111-117-103-104-32-116-105-109-101-115-0
+325|data|DCB "setjmp_test",0|115-101-116-106-109-112-95-116-101-115-116-0
+337|data||255
+338|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+356|data|% 4|255-255-255-255
+360|data|% 4|255-255-255-255

@@ -1,0 +1,251 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R5,LR}|56-181
+2|code|MOV             R4, file|4-70
+4|code|LDR             R5, [file,#0x44]|69-108
+6|code|LDR             R3, =grub_file_close|5-75
+8|code|LDR             file, [bufio]|40-104
+10|code|BLX             R3; grub_file_close|152-71
+12|code|MOV             R0, bufio|40-70
+14|code|LDR             R3, =grub_free|4-75
+16|code|BLX             R3; grub_free|152-71
+18|code|MOVS            R3, #0|0-35
+20|code|STR             R3, [file,#4]|99-96
+22|code|LDR             R3, =grub_errno|3-75
+24|code|LDR             R0, [R3]|24-104
+26|code|POP             {R3-bufio,PC}|56-189
+28|data|DCD grub_file_close|216-2-0-0
+32|data|DCD grub_free|224-2-0-0
+36|data|DCD grub_errno|204-2-0-0
+40|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+44|code|MOV             R10, len|146-70
+46|code|LDRD.W          len, R3, [file,#0x38]|208-233-14-35
+50|code|SUB             SP, SP, #0x14|133-176
+52|code|LDR             R5, [file,#0x44]|69-108
+54|code|MOV             R6, file|6-70
+56|code|ADDS            R3, #1|1-51
+58|code|MOV             R7, buf|15-70
+60|code|IT EQ|8-191
+62|code|CMPEQ.W         R2, #0xFFFFFFFF|178-241-255-63
+66|code|LDRD.W          R8, R9, [bufio,#0x10]|213-233-4-137
+70|code|ITTT EQ|2-191
+72|code|LDREQ           R3, [bufio]|43-104
+74|code|LDRDEQ.W        R2, R3, [R3,#0x38]|211-233-14-35
+78|code|STRDEQ.W        R2, R3, [file,#0x38]|192-233-14-35
+82|code|LDRD.W          R2, R3, [file,#0x10]|208-233-4-35
+86|code|CMP             R3, R9|75-69
+88|code|IT EQ|8-191
+90|code|CMPEQ           R2, R8|66-69
+92|code|BCC             loc_92|25-211
+94|code|LDR             R4, [bufio,#8]|172-104
+96|code|ADDS.W          file, R8, R4|24-235-4-0
+100|code|ADC.W           buf, R9, #0|73-241-0-1
+104|code|CMP             R3, R1|139-66
+106|code|IT EQ|8-191
+108|code|CMPEQ           R2, R0|130-66
+110|code|BCS             loc_92|16-210
+112|code|SUBS.W          R2, R2, R8|178-235-8-2
+116|code|MOV             R0, buf|56-70
+118|code|SUBS            R4, R4, R2|164-26
+120|code|ADD.W           R1, R2, #0x18|2-241-24-1
+124|code|CMP             n, len|84-69
+126|code|ADD             R1, bufio|41-68
+128|code|LDR             R3, =grub_memmove|80-75
+130|code|IT CS|40-191
+132|code|MOVCS           n, len|84-70
+134|code|RSB.W           len, n, len|196-235-10-10
+138|code|MOV             R2, n|34-70
+140|code|ADD             buf, n|39-68
+142|code|BLX             R3; grub_memmove|152-71
+144|code|B               loc_94|0-224
+146|code|MOVS            R4, #0|0-36
+148|code|CMP.W           len, #0|186-241-0-15
+152|code|BEQ             loc_15E|97-208
+154|code|LDRD.W          R2, R3, [file,#0x10]|214-233-4-35
+158|code|MOVS            R1, #0|0-33
+160|code|LDR.W           R12, =grub_file_seek|223-248-40-193
+164|code|STRD.W          R2, R3, [SP,#0x38+var_38]|205-233-0-35
+168|code|ADDS            R2, R2, res|18-25
+170|code|ADC.W           R3, R3, #0|67-241-0-3
+174|code|ADDS.W          R8, len, #0xFFFFFFFF|26-241-255-56
+178|code|ADC.W           R9, R1, #0xFFFFFFFF|65-241-255-57
+182|code|ADDS.W          R0, R8, R2|24-235-2-0
+186|code|ADC.W           R1, R9, R3|73-235-3-1
+190|code|STRD.W          R0, R1, [SP,#0x38+var_30]|205-233-2-1
+194|code|LDR             R1, [bufio,#4]|105-104
+196|code|RSBS.W          R8, R1, #0|209-241-0-8
+200|code|LDRD.W          R0, R1, [SP,#0x38+var_30]|221-233-2-1
+204|code|SBC.W           R9, R9, R9|105-235-9-9
+208|code|AND.W           R1, R1, R9|1-234-9-1
+212|code|AND.W           R0, R0, R8|0-234-8-0
+216|code|CMP             R3, R1|139-66
+218|code|IT EQ|8-191
+220|code|CMPEQ           R2, R0|130-66
+222|code|MOV             R8, R0|128-70
+224|code|MOV             R9, R1|137-70
+226|code|BCS             loc_162|62-210
+228|code|LDR             R1, [SP,#0x38+var_38]|0-153
+230|code|STR.W           R12, [SP,#0x38+var_38]|205-248-0-192
+234|code|ADD             R1, res|33-68
+236|code|RSB.W           R11, R1, R0|193-235-0-11
+240|code|LDR             R0, [bufio]|40-104
+242|code|BLX             R12; grub_file_seek|224-71
+244|code|LDR             R0, [bufio]|40-104
+246|code|MOV             R1, buf|57-70
+248|code|MOV             R2, read_now|90-70
+250|code|LDR             R3, =grub_file_read|51-75
+252|code|BLX             R3; grub_file_read|152-71
+254|code|LDR.W           R12, [SP,#0x38+var_38]|221-248-0-192
+258|code|CMP             really_read, #0|0-40
+260|code|BGE             loc_10C|2-218
+262|code|MOV.W           really_read, #0xFFFFFFFF|79-240-255-48
+266|code|B               loc_1BC|87-224
+268|code|LDRD.W          R2, R3, [file,#0x38]|214-233-14-35
+272|code|ADD             buf, really_read|7-68
+274|code|ADD             res, really_read|4-68
+276|code|ADDS            R3, #1|1-51
+278|code|ITTTT EQ|1-191
+280|code|CMPEQ.W         R2, #0xFFFFFFFF|178-241-255-63
+284|code|LDREQ           R3, [bufio]|43-104
+286|code|LDRDEQ.W        R2, R3, [R3,#0x38]|211-233-14-35
+290|code|STRDEQ.W        R2, R3, [file,#0x38]|198-233-14-35
+294|code|CMP             really_read, read_now|88-69
+296|code|BNE             loc_130|2-209
+298|code|RSB.W           R10, really_read, R10|192-235-10-10
+302|code|B               loc_162|24-224
+304|code|LDR             R3, [bufio,#4]|107-104
+306|code|STR             really_read, [bufio,#8]|168-96
+308|code|CMP             really_read, R3|152-66
+310|code|LDRD.W          really_read, R1, [file,#0x10]|214-233-4-1
+314|code|IT HI|136-191
+316|code|STRHI           R3, [bufio,#8]|171-96
+318|code|LDR             R2, [bufio,#8]|170-104
+320|code|LDR             R3, =grub_memmove|32-75
+322|code|SUBS.W          R8, R0, R2|176-235-2-8
+326|code|SBC.W           R9, R1, #0|97-241-0-9
+330|code|ADDS.W          R0, R8, res|24-235-4-0
+334|code|ADC.W           R1, R9, #0|73-241-0-1
+338|code|STRD.W          R0, R1, [bufio,#0x10]|197-233-4-1
+342|code|ADD.W           R0, bufio, #0x18|5-241-24-0
+346|code|SUBS            R1, buf, R2|185-26
+348|code|BLX             R3; grub_memmove|152-71
+350|code|MOV             R0, res|32-70
+352|code|B               loc_1BC|44-224
+354|code|MOV             R11, bufio|171-70
+356|code|MOV             R2, R8|66-70
+358|code|LDR.W           R0, [R11],#0x18|91-248-24-11
+362|code|MOV             R3, R9|75-70
+364|code|BLX             R12; grub_file_seek|224-71
+366|code|LDR             R0, [bufio]|40-104
+368|code|LDR             R2, [bufio,#4]|106-104
+370|code|MOV             R1, R11|89-70
+372|code|LDR             R3, =grub_file_read|20-75
+374|code|BLX             R3; grub_file_read|152-71
+376|code|CMP             really_read, #0|0-40
+378|code|BLT             loc_106|196-219
+380|code|LDRD.W          R2, R3, [file,#0x38]|214-233-14-35
+384|code|STRD.W          R8, R9, [bufio,#0x10]|197-233-4-137
+388|code|ADDS            R3, #1|1-51
+390|code|STR             really_read, [bufio,#8]|168-96
+392|code|ITTTT EQ|1-191
+394|code|CMPEQ.W         R2, #0xFFFFFFFF|178-241-255-63
+398|code|LDREQ           R3, [bufio]|43-104
+400|code|LDRDEQ.W        R2, R3, [R3,#0x38]|211-233-14-35
+404|code|STRDEQ.W        R2, R3, [file,#0x38]|198-233-14-35
+408|code|CMP             len, really_read|130-69
+410|code|LDRD.W          R2, R3, [file,#0x10]|214-233-4-35
+414|code|IT CS|40-191
+416|code|MOVCS           len, really_read|130-70
+418|code|LDR             R3, =grub_memmove|8-75
+420|code|SUBS.W          R2, R2, R8|178-235-8-2
+424|code|MOV             really_read, buf|56-70
+426|code|ADDS.W          R8, R2, res|18-235-4-8
+430|code|MOV             R2, len|82-70
+432|code|ADD.W           R1, R8, #0x18|8-241-24-1
+436|code|ADD             R1, bufio|41-68
+438|code|BLX             R3; grub_memmove|152-71
+440|code|ADD.W           R0, len, R4|10-235-4-0
+444|code|ADD             SP, SP, #0x14|5-176
+446|code|POP.W           {R4-R11,PC}|189-232-240-143
+450|data|ALIGN 4|0-191
+452|data|DCD grub_memmove|196-2-0-0
+456|data|DCD grub_file_read|208-2-0-0
+460|data|DCD grub_file_seek|200-2-0-0
+464|code|PUSH            {R3-R7,LR}|248-181
+466|code|MOV             R6, io|6-70
+468|code|LDR             R7, =grub_zalloc|29-79
+470|code|MOVS            io, #0x50 ; 'P'|80-32
+472|code|MOV             R5, size|13-70
+474|code|BLX             R7; grub_zalloc|184-71
+476|code|MOV             R4, file|4-70
+478|code|CBZ             file, loc_23A|96-179
+480|code|LDRD.W          R2, R3, [io,#0x38]|214-233-14-35
+484|code|CBZ             size, loc_23E|93-179
+486|code|CMP.W           size, #0x100000|181-245-128-31
+490|code|BGT             loc_244|43-220
+492|code|CMP             size, #0|0-45
+494|code|BLT             loc_1FA|4-219
+496|code|ASRS            R1, size, #0x1F|233-23
+498|code|CMP             R3, R1|139-66
+500|code|IT EQ|8-191
+502|code|CMPEQ           R2, size|170-66
+504|code|BCS             loc_20C|8-210
+506|code|MOVS            R1, #0|0-33
+508|code|CMP             R1, R3|153-66
+510|code|MOV.W           file, #0x100000|79-244-128-16
+514|code|IT EQ|8-191
+516|code|CMPEQ           R0, R2|144-66
+518|code|IT CC|56-191
+520|code|MOVCC           R2, R0|2-70
+522|code|MOV             size, R2|21-70
+524|code|ADD.W           R0, size, #0x18|5-241-24-0
+528|code|BLX             R7; grub_zalloc|184-71
+530|code|MOV             R7, bufio|7-70
+532|code|CBNZ            bufio, loc_220|32-185
+534|code|MOV             bufio, file|32-70
+536|code|LDR             R3, =grub_free|13-75
+538|code|BLX             R3; grub_free|152-71
+540|code|MOV             R0, bufio|56-70
+542|code|POP             {R3-bufio,PC}|248-189
+544|code|LDR             R3, [io,#4]|115-104
+546|code|STR             io, [bufio]|6-96
+548|code|STR             size, [bufio,#4]|69-96
+550|code|STR             R3, [file,#4]|99-96
+552|code|LDRD.W          R2, R3, [io,#0x38]|214-233-14-35
+556|code|STR             bufio, [file,#0x44]|96-100
+558|code|STRD.W          R2, R3, [file,#0x38]|196-233-14-35
+562|code|LDR             R3, =grub_bufio_fs|8-75
+564|code|STR             R3, [file,#8]|163-96
+566|code|LDR             R3, [io,#0x40]|51-108
+568|code|STR             R3, [file,#0x40]|35-100
+570|code|MOV             R0, file|32-70
+572|code|POP             {R3-R7,PC}|248-189
+574|code|MOV.W           size, #0x2000|79-244-0-85
+578|code|B               loc_1F0|213-231
+580|code|MOV.W           size, #0x100000|79-244-128-21
+584|code|B               loc_1F0|210-231
+586|data|ALIGN 4|0-191
+588|data|DCD grub_zalloc|212-2-0-0
+592|data|DCD grub_free|224-2-0-0
+596|data|DCD grub_bufio_fs|140-2-0-0
+600|code|PUSH            {R3-R5,LR}|56-181
+602|code|MOV             R4, size|12-70
+604|code|LDR             R3, =grub_file_open|7-75
+606|code|BLX             R3; grub_file_open|152-71
+608|code|MOV             R5, io|5-70
+610|code|CBZ             io, locret_276|64-177
+612|code|MOV             R1, size; size|33-70
+614|code|BL              grub_bufio_open|255-247-179-255
+618|code|MOV             size, file|4-70
+620|code|CBNZ            file, loc_278|32-185
+622|code|MOV             file, io|40-70
+624|code|LDR             R3, =grub_file_close|3-75
+626|code|BLX             R3; grub_file_close|152-71
+628|code|B               loc_278|0-224
+630|code|POP             {R3-R5,PC}|56-189
+632|code|MOV             R0, file|32-70
+634|code|POP             {R3-io,PC}|56-189
+636|data|DCD grub_file_open|220-2-0-0
+640|data|DCD grub_file_close|216-2-0-0
+644|data|DCB "bufio",0|98-117-102-105-111-0
+652|data|grub_fs <0, 0, aBufio, 0, 0, grub_bufio_read+1, grub_bufio_close+1, 0,\; "bufio"|0-0-0-0-0-0-0-0-132-2-0-0-0-0-0-0-0-0-0-0-41-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+692|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

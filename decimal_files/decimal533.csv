@@ -1,0 +1,146 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0xAC|171-176
+6|code|LDR             R6, [md,#0x10]|6-105
+8|code|MOV             R8, md|128-70
+10|code|MOV             R9, P|137-70
+12|code|MOV             R10, Plen|146-70
+14|code|CMP             hLen, #0x40 ; '@'|64-46
+16|code|MOV             R7, S|31-70
+18|code|LDR             R4, [SP,#0xD0+dkLen]|55-156
+20|code|BHI.W           loc_12E|0-242-139-128
+24|code|LDR             S, [SP,#0xD0+c]|53-155
+26|code|CMP             R3, #0|0-43
+28|code|BEQ.W           loc_12E|0-240-135-128
+32|code|CMP             R4, #0|0-44
+34|code|BEQ.W           loc_12E|0-240-132-128
+38|code|LDR             R3, [SP,#0xD0+Slen]|52-155
+40|code|ADDS            R3, #4|4-51
+42|code|STR             tmplen_0, [SP,#0xD0+tmplen]|2-147
+44|code|MOV             md, tmplen_0|24-70
+46|code|LDR             tmplen_0, =grub_malloc|67-75
+48|code|BLX             R3; grub_malloc|152-71
+50|code|MOV             R5, tmp|5-70
+52|code|CMP             tmp, #0|0-40
+54|code|BEQ             loc_132|124-208
+56|code|SUBS            tmp, R4, #1|96-30
+58|code|MOV             R1, hLen|49-70
+60|code|LDR             R3, =__aeabi_uidiv|64-75
+62|code|BLX             R3; __aeabi_uidiv|152-71
+64|code|MOV             R1, S|57-70
+66|code|LDR             R2, [SP,#0xD0+Slen]|52-154
+68|code|ADDS            R3, R0, #1|67-28
+70|code|STR             R3, [SP,#0xD0+var_C4]|3-147
+72|code|MLS.W           R3, hLen, R0, R4|6-251-16-67
+76|code|MOV             R11, R0|131-70
+78|code|MOV             R0, tmp|40-70
+80|code|MOVS            R4, #1|1-36
+82|code|STR             R3, [SP,#0xD0+var_C0]|4-147
+84|code|LDR             R3, =grub_memmove|59-75
+86|code|BLX             R3; grub_memmove|152-71
+88|code|ADD.W           R3, R11, #2|11-241-2-3
+92|code|LDR             S, [SP,#0xD0+DK]|54-159
+94|code|LDR.W           R11, =grub_crypto_hmac_buffer|223-248-240-176
+98|code|STR             R3, [SP,#0xD0+var_BC]|5-147
+100|code|LDR             R3, =grub_memset|56-75
+102|code|ADD             R0, SP, #0xD0+T|26-168
+104|code|MOVS            R1, #0|0-33
+106|code|MOV             R2, hLen|50-70
+108|code|BLX             R3; grub_memset|152-71
+110|code|LSRS            R3, i, #0x18|35-14
+112|code|STR             R3, [SP,#0xD0+k]|6-147
+114|code|UBFX.W          R3, i, #0x10, #8|196-243-7-67
+118|code|STR             R3, [SP,#0xD0+var_B4]|7-147
+120|code|UBFX.W          R3, i, #8, #8|196-243-7-35
+124|code|STR             R3, [SP,#0xD0+var_B0]|8-147
+126|code|LDR             R3, [SP,#0xD0+Slen]|52-155
+128|code|MOV             R0, md|64-70
+130|code|MOV             R1, P|73-70
+132|code|MOV             R2, R3|26-70
+134|code|LDRB.W          R3, [SP,#0xD0+k]|157-248-24-48
+138|code|STRB            R3, [tmp,R2]|171-84
+140|code|ADDS            R3, tmp, R2|171-24
+142|code|LDRB.W          R2, [SP,#0xD0+var_B4]|157-248-28-32
+146|code|STRB            i, [R3,#3]|220-112
+148|code|STRB            R2, [R3,#1]|90-112
+150|code|LDRB.W          R2, [SP,#0xD0+var_B0]|157-248-32-32
+154|code|STRB            R2, [R3,#2]|154-112
+156|code|MOV             R2, Plen|82-70
+158|code|LDR             R3, [SP,#0xD0+tmplen]|2-155
+160|code|STR             R3, [SP,#0xD0+var_D0]|0-147
+162|code|ADD             R3, SP, #0xD0+U|10-171
+164|code|STR             R3, [SP,#0xD0+var_CC]|1-147
+166|code|MOV             R3, tmp|43-70
+168|code|BLX             R11; grub_crypto_hmac_buffer|216-71
+170|code|MOV.W           R12, #0|79-240-0-12
+174|code|MOV             R3, R0|3-70
+176|code|CBZ             R3, loc_C0|51-177
+178|code|MOV             rc_0, tmp|40-70
+180|code|LDR             R2, =grub_free|37-74
+182|code|STR             rc_0, [SP,#0xD0+tmplen]|2-147
+184|code|BLX             R2; grub_free|144-71
+186|code|LDR             R3, [SP,#0xD0+tmplen]|2-155
+188|code|MOV             R0, R3|24-70
+190|code|B               loc_134|57-224
+192|code|CMP             k_0, hLen|179-66
+194|code|BEQ             loc_D4|7-208
+196|code|ADD             R1, SP, #0xD0+T|26-169
+198|code|ADD             R2, SP, #0xD0+U|10-170
+200|code|LDRB            R0, [k_0,R2]|152-92
+202|code|LDRB            R2, [k_0,R1]|90-92
+204|code|EORS            R2, R0|66-64
+206|code|STRB            R2, [k_0,R1]|90-84
+208|code|ADDS            k_0, #1|1-51
+210|code|B               loc_C0|245-231
+212|code|LDR             R2, [SP,#0xD0+c]|53-154
+214|code|ADD.W           R12, R12, #1|12-241-1-12
+218|code|CMP             u_0, R2|148-69
+220|code|BEQ             loc_FE|15-208
+222|code|CMP.W           u_0, #0|188-241-0-15
+226|code|BEQ             loc_7E|204-208
+228|code|ADD             k_0, SP, #0xD0+U|10-171
+230|code|STR             hLen, [SP,#0xD0+var_D0]|0-150
+232|code|STR             R3, [SP,#0xD0+var_CC]|1-147
+234|code|MOV             R0, md|64-70
+236|code|MOV             R1, P|73-70
+238|code|MOV             R2, Plen|82-70
+240|code|STR.W           u_0, [SP,#0xD0+u]|205-248-36-192
+244|code|BLX             R11; grub_crypto_hmac_buffer|216-71
+246|code|LDR.W           R12, [SP,#0xD0+u]|221-248-36-192
+250|code|MOV             R3, R0|3-70
+252|code|B               loc_B0|216-231
+254|code|LDR             R2, [SP,#0xD0+var_C0]|4-154
+256|code|MOV             R0, R7|56-70
+258|code|ADD             R1, SP, #0xD0+T|26-169
+260|code|LDR.W           u_0, =grub_memmove|223-248-60-192
+264|code|STR             k_0, [SP,#0xD0+k]|6-147
+266|code|MOV             LR, R2|150-70
+268|code|LDR             R2, [SP,#0xD0+var_C4]|3-154
+270|code|CMP             i, R2|148-66
+272|code|IT NE|24-191
+274|code|MOVNE           LR, k_0|158-70
+276|code|ADDS            i, #1|1-52
+278|code|MOV             R2, LR|114-70
+280|code|BLX             R12; grub_memmove|224-71
+282|code|LDR             R3, [SP,#0xD0+k]|6-155
+284|code|ADD             R7, R3|31-68
+286|code|LDR             R3, [SP,#0xD0+var_BC]|5-155
+288|code|CMP             i, R3|156-66
+290|code|BNE             loc_64|159-209
+292|code|MOV             R0, tmp|40-70
+294|code|LDR             R3, =grub_free|9-75
+296|code|BLX             R3; grub_free|152-71
+298|code|MOVS            R0, #0|0-32
+300|code|B               loc_134|2-224
+302|code|MOVS            md, #0xA|10-32
+304|code|B               loc_134|0-224
+306|code|MOVS            tmp, #0x22 ; '"'|34-32
+308|code|ADD             SP, SP, #0xAC|43-176
+310|code|POP.W           {R4-R11,PC}|189-232-240-143
+314|data|ALIGN 4|0-191
+316|data|DCD grub_malloc|112-1-0-0
+320|data|DCD __aeabi_uidiv|116-1-0-0
+324|data|DCD grub_memmove|104-1-0-0
+328|data|DCD grub_memset|108-1-0-0
+332|data|DCD grub_free|120-1-0-0
+336|data|DCD grub_crypto_hmac_buffer|124-1-0-0

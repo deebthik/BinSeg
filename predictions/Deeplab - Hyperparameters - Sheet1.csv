@@ -1,0 +1,67 @@
+Name,,Iterations,Steps/Iteration,Learning rate,Train batch size,Fine tuning,Output stride,Model Variant,Pretrained Model,Traversal,Dataset Size (Train),Dataset Size (Test),Dimensions,Global Accuracy (Whole Images),Global Accuracy (Sliced Images),Notes,,Folder Path (custom_datasets/) (Visualization folder => Corresponding suffixed serial number)
+,,,,,,,,,,,,,,,,,,
+Aizaz1,,100,30000,0.0001,4,FALSE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128x128,78.70%,,,,
+Aizaz2,,100,30000,0.0001,8,FALSE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128x128,79.40%,,Increased batch size increases accuracy,,
+Aizaz3,,100,30000,0.0001,4,FALSE,8,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,76.00%,,Decreased output stride decreases accuracy,,
+Aizaz4,,100,30000,0.001,4,FALSE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,84.30%,,Increasing learning rate increases accuracy,,
+Aizaz5,,100,30000,0.001,4,FALSE,16,xception_71,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,57.20%,,xception_71 has poor performance,,
+Aizaz6,,100,30000,0.001,16,FALSE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,85.80%,,high learning rate and train batch size give better accuracy,,
+Aizaz7,,100,30000,0.001,16,FALSE,32,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,84.80%,,increasing output stride reduces accuracy,,
+Aizaz8,,100,30000,0.001,8,FALSE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,85.25%,,,,
+Aizaz9,,100,30000,0.001,32,FALSE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,618,128*128,Killed:9,,,,
+Aizaz10,,100,30000,0.001,16,FALSE,16,xception_65,deeplabv3_pascal_train_aug,Snake,618,618,128*128,83.70%,,default pre trained model is the best,,
+Aizaz11,,100,30000,0.001,4,FALSE,16,xception_65,deeplabv3_pascal_trainval,Snake,618,618,128*128,83.40%,,,,
+Aizaz12,,100,30000,0.001,4,FALSE,16,xception_65,deeplab_v3_xception_ade20k_train,Snake,618,618,70*70,81.10%,,downsampling reduces accuracy,,
+Aizaz13,,100,30000,0.001,4,FALSE,16,xception_65,deeplab_v3_xception_ade20k_train,Hilbert,9805,889,128*128 (cropped),88.90%,,cropping increases accuracy,,
+Aizaz14,,100,30000,0.001,4,FALSE,16,xception_65,deeplab_v3_xception_ade20k_train,Hilbert,39579,5748,64*64 (cropped),88.70%,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Deebthik_1,,100,,0.0001,4,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,,128x128,66.54%,,Faulty SegmentationClassRaw,,
+Deebthik_2,,1000,,0.0001,4,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,618,,128x128,40.59%,,Faulty SegmentationClassRaw,,
+,,,,,,,,,,,,,,,,,,
+Deebthik_3,,500,,0.0001,4,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,80.29%,,,,bag_dataset_2/training_checkpoint_files_1
+Deebthik_4,,1000,,0.0001,4,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,82.34%,,,,bag_dataset_2/training_checkpoint_files_2
+Deebthik_5,,500,,0.001,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,85.90%,,,,bag_dataset_2/training_checkpoint_files_3
+Deebthik_6,,500,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,89.22%,,,,bag_dataset_2/training_checkpoint_files_4
+Deebthik_7,,1000,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,86.53%,,Accuracy drop despite increase in iterations,,bag_dataset_2/training_checkpoint_files_5
+Deebthik_8,,500,,0.1,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,54.08%,,"Learning rate probably too high, green overweighs red in predictions",,bag_dataset_2/training_checkpoint_files_6
+Deebthik_9,,500,,0.01,12,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1999,304,256x256,89.14%,,Accuracy slightly lower than when batch size was 8,,bag_dataset_2/training_checkpoint_files_7
+Deebthik_10,,500,,0.01,8,TRUE,16,xception_65,bag_dataset_2/training_checkpoint_files_4 (Deebthik_6),Snake,1999,304,256x256,88.96%,,,,bag_dataset_2/training_checkpoint_files_8
+Deebthik_11,,500,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Hilbert,1999,304,256x256,88.64%,,,,bag_dataset_3/training_checkpoint_files_1
+Deebthik_12,,1000,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Hilbert,1999,304,256x256,89.11%,,"Accuracy increases with increase in iterations, as opposed to the snake traversal",,bag_dataset_3/training_checkpoint_files_2
+Deebthik_13,,2000,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Hilbert,1999,304,256x256,89.68%,,"Although it's a small jump, accuracy still increases further with increase in iterations",,bag_dataset_3/training_checkpoint_files_3
+Deebthik_14,,500,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,1000,236,Varied dimensions (<128x128),84.02%,,,,bag_dataset_4/training_checkpoint_files_1
+Deebthik_15,,1000,,0.01,8,TRUE,16,xception_65,bag_dataset_3/training_checkpoint_files_3 (Deebthik_13),Hilbert,1999,304,256x256,90.27%,,,,bag_dataset_3/training_checkpoint_files_4
+Deebthik_16,,500,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Snake,2700,221,Varied dimensions (<512x512),89.28%,,,,bag_dataset_5/training_checkpoint_files_1
+Deebthik_17,,500,,0.01,8,TRUE,16,xception_65,bag_dataset_3/training_checkpoint_files_4 (Deebthik_15),Hilbert,1999,304,256x256,90.49%,,,,bag_dataset_3/training_checkpoint_files_5
+Deebthik_18,,1500,,0.01,8,TRUE,16,xception_65,bag_dataset_5/training_checkpoint_files_1 (Deebthik_16),Snake,2700,221,Varied dimensions (<512x512),89.92%,,,,bag_dataset_5/training_checkpoint_files_2
+Deebthik_19,,1500,,0.01,8,TRUE,16,xception_65,bag_dataset_3/training_checkpoint_files_5 (Deebthik_17),Hilbert,1999,304,256x256,91.49%,,,,bag_dataset_3/training_checkpoint_files_6
+Deebthik_20,,1000,,0.01,8,TRUE,16,xception_65,bag_dataset_3/training_checkpoint_files_6 (Deebthik_19),Hilbert,1999,304,256x256,91.91%,,,,bag_dataset_3/training_checkpoint_files_7
+Deebthik_21,,500,,0.01,8,TRUE,16,xception_65,bag_dataset_3/training_checkpoint_files_7 (Deebthik_20),Hilbert,3300,275,Varied dimensions (ALL BINARIES),87.88%,,Probably because the pretrained model was extensively trained only for 256x256 images,,bag_dataset_6/training_checkpoint_files_1
+Deebthik_22,,1000,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Hilbert,3300,275,Varied dimensions (ALL BINARIES),86.44%,,"<88.64, probably because of the big range of varied dimensions",,bag_dataset_6/training_checkpoint_files_2
+Deebthik_23,,1500,,0.01,8,TRUE,16,xception_65,bag_dataset_6/training_checkpoint_files_1 (Deebthik_21),Hilbert,3300,275,Varied dimensions (ALL BINARIES),89.03%,,,,bag_dataset_6/training_checkpoint_files_3
+Deebthik_24,,2000,,0.01,8,TRUE,16,xception_65,bag_dataset_6/training_checkpoint_files_3 (Deebthik_23),Hilbert,2860,715,Varied dimensions (ALL BINARIES),90.55%,,The ratio of the dataset size changed to => train:test = 2860:715 (80:20),,bag_dataset_6/training_checkpoint_files_4
+Deebthik_25,,1500,,0.01,8,TRUE,16,xception_65,bag_dataset_6/training_checkpoint_files_4 (Deebthik_24),Hilbert,2860,715,Varied dimensions (ALL BINARIES),91.40%,,,,bag_dataset_6/training_checkpoint_files_5
+Deebthik_26,,500,,0.01,8,TRUE,16,xception_65,bag_dataset_6/training_checkpoint_files_5 (Deebthik_25),Hilbert,14300,3575,Varied dimensions (ALL BINARIES) + Sliced(1/4th) images,88.99%,88.82%,,,bag_dataset_7/training_checkpoint_files_1
+Deebthik_27,,1000,,0.01,8,TRUE,16,xception_65,bag_dataset_6/training_checkpoint_files_5 (Deebthik_25),Hilbert,2860,715,Varied dimensions (ALL BINARIES),91.82%,,,,bag_dataset_6/training_checkpoint_files_6
+Deebthik_28,,500,,0.01,8,TRUE,16,xception_65,deeplabv3_xception_ade20k_train,Hilbert,40712,10177,Varied dimensions (ALL BINARIES) sliced into 64*64 sections,-,-,"All the prediction images look the same, mostly filled with green and a little bit of red at the top. Probably because the learning rate is too high for 64x64 images.",,bag_dataset_9/training_checkpoint_files_1
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+PLC_BINARIES,,,,,,,,,,,,,,,,,,
+,Training Checkpoint,Traversal,Global Accuracy (All Images),Global Accuracy (Images <=512*512),Global Accuracy (Images <=256*256),Notes,,,,,,,,,,,,Folder Path (custom_datasets/) (No training checkpoint folders)
+Deebthik_PLC_1,bag_dataset_6/training_checkpoint_files_5 (Deebthik_25),Hilbert,77.74%,78.25%,-,,,,,,,,,,,,,plc_binaries_dataset_1/visualization_1
+Deebthik_PLC_2,bag_dataset_5/training_checkpoint_files_2 (Deebthik_18),Snake,59.94%,-,-,,,,,,,,,,,,,plc_binaries_dataset_2/visualization_1
+Deebthik_PLC_3,bag_dataset_6/training_checkpoint_files_6 (Deebthik_27),Hilbert,72.30%,-,-,"The accuracy has decreased despite the pretrained model having a higher accuracy, so maybe the predictions are random. Overfitting could also be a reason.",,,,,,,,,,,,plc_binaries_dataset_1/visualization_2
+Deebthik_PLC_4,bag_dataset_6/training_checkpoint_files_1 (Deebthik_21),Hilbert,77.52%,-,-,,,,,,,,,,,,,plc_binaries_dataset_1/visualization_3
+Aizaz_PLC_1,Aizaz14,Hilbert,68.30%,-,-,"Trained on 64*64 arm binaries, tested on 64*64 plc binaries",,,,,,,,,,,,
+Deebthik_PLC_5,bag_dataset_3/training_checkpoint_files_4 (Deebthik_15),Hilbert,-,78.24%,81.75%,,,,,,,,,,,,,plc_binaries_dataset_1/visualization_4
+Aizaz_PLC_2,Aizaz4,Snake,-,-,67.10%,,,,,,,,,,,,,
+Aizaz_PLC_3,Aizaz6,Snake,-,-,68.10%,,,,,,,,,,,,,
+Deebthik_PLC_6,bag_dataset_3/training_checkpoint_files_1 (Deebthik_11),Hilbert,-,-,80.76%,,,,,,,,,,,,,plc_binaries_dataset_1/visualization_5

@@ -1,0 +1,2439 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|MOV             R6, args|22-70
+6|code|SUB.W           SP, SP, #0x28C|173-245-35-125
+10|code|CBNZ            argc, loc_12|17-185
+12|code|MOVS            ctxt, #0x12|18-32
+14|code|LDR             argc, =aFilenameExpect; "filename expected"|173-73
+16|code|B               loc_3A|19-224
+18|code|LDR             args, [ctxt,#4]|66-104
+20|code|MOVS            R3, #0|0-35
+22|code|MOV.W           R4, #0xFFFFFFFF|79-240-255-52
+26|code|LDR.W           R1, [R2,i,LSL#3]|82-248-51-16
+30|code|CBZ             R1, loc_2C|41-177
+32|code|ADDS            type, #1|1-52
+34|code|BEQ             loc_2A|2-208
+36|code|MOVS            ctxt, #0x12|18-32
+38|code|LDR             R1, =aMultipleTypesS; "multiple types specified"|168-73
+40|code|B               loc_3A|7-224
+42|code|MOV             R4, i|28-70
+44|code|ADDS            i, #1|1-51
+46|code|CMP             i, #0x1E|30-43
+48|code|BNE             loc_1A|243-209
+50|code|ADDS            R1, type, #1|97-28
+52|code|BNE             loc_40|4-209
+54|code|LDR             R1, =aNoTypeSpecifie; "no type specified"|165-73
+56|code|MOVS            ctxt, #0x12|18-32
+58|code|LDR             R3, =grub_error|165-75
+60|code|BLX             R3; grub_error|152-71
+62|code|B               loc_68A|36-227
+64|code|LDR             ctxt, [args]|48-104
+66|code|LDR             i, =grub_file_open|164-75
+68|code|BLX             R3; grub_file_open|152-71
+70|code|MOV             R5, file|5-70
+72|code|CMP             file, #0|0-40
+74|code|BEQ.W           loc_672|0-240-18-131
+78|code|CMP             type, #0x1D; switch 30 cases|29-44
+80|code|BHI.W           def_54; jumptable 00000054 default case|0-242-1-131
+84|code|TBH.W           [PC,type,LSL#1]; switch jump|223-232-20-240
+88|data|DCW 0x18D; jump table for switch statement|141-1
+90|data|DCW 0x18D|141-1
+92|data|DCW 0x18D|141-1
+94|data|DCW 0x1AB|171-1
+96|data|DCW 0x1AB|171-1
+98|data|DCW 0x156|86-1
+100|data|DCW 0x178|120-1
+102|data|DCW 0x3E|62-0
+104|data|DCW 0xA5|165-0
+106|data|DCW 0x11D|29-1
+108|data|DCW 0x5D|93-0
+110|data|DCW 0x7C|124-0
+112|data|DCW 0x1EF|239-1
+114|data|DCW 0x1EF|239-1
+116|data|DCW 0xEB|235-0
+118|data|DCW 0xEB|235-0
+120|data|DCW 0xEB|235-0
+122|data|DCW 0xC2|194-0
+124|data|DCW 0xC2|194-0
+126|data|DCW 0xC2|194-0
+128|data|DCW 0x253|83-2
+130|data|DCW 0x253|83-2
+132|data|DCW 0x253|83-2
+134|data|DCW 0x253|83-2
+136|data|DCW 0x253|83-2
+138|data|DCW 0x220|32-2
+140|data|DCW 0x238|56-2
+142|data|DCW 0x238|56-2
+144|data|DCW 0x243|67-2
+146|data|DCW 0x1E|30-0
+148|code|LDRD.W          R2, R3, [file,#0x38]; jumptable 00000054 case 29|208-233-14-35
+152|code|CMP             R3, #0|0-43
+154|code|IT EQ|8-191
+156|code|CMPEQ.W         R2, #0x200|178-245-0-127
+160|code|BNE.W           def_54; jumptable 00000054 default case|64-240-217-130
+164|code|MOV.W           R2, #0x1FE|79-244-255-114
+168|code|MOVS            R3, #0|0-35
+170|code|LDR             R1, =grub_file_seek|139-73
+172|code|BLX             R1; grub_file_seek|136-71
+174|code|CMP             R1, #0|0-41
+176|code|IT EQ|8-191
+178|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+182|code|BEQ.W           def_54; jumptable 00000054 default case|0-240-206-130
+186|code|MOV             R0, file|40-70
+188|code|ADD             R1, SP, #0x2A8+o32|8-169
+190|code|MOVS            R2, #2|2-34
+192|code|LDR             R3, =grub_file_read|134-75
+194|code|BLX             R3; grub_file_read|152-71
+196|code|CMP             R0, #2|2-40
+198|code|BNE.W           def_54; jumptable 00000054 default case|64-240-198-130
+202|code|LDRH.W          R3, [SP,#0x2A8+o32]|189-248-32-48
+206|code|MOVW            type, #0xAA55|74-246-85-36
+210|code|B               loc_4F4|15-226
+212|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 7|8-169
+214|code|MOVS            R2, #0x40 ; '@'|64-34
+216|code|LDR             R3, =grub_file_read|128-75
+218|code|BLX             R3; grub_file_read|152-71
+220|code|CMP             R0, #0x40 ; '@'|64-40
+222|code|BNE.W           def_54; jumptable 00000054 default case|64-240-186-130
+226|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+228|code|LDR             R3, =0x464C457F|126-75
+230|code|CMP             R2, R3|154-66
+232|code|BNE.W           def_54; jumptable 00000054 default case|64-240-181-130
+236|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+2]|157-248-38-48
+240|code|CMP             R3, #1|1-43
+242|code|BNE.W           def_54; jumptable 00000054 default case|64-240-176-130
+246|code|LDR             R3, [SP,#0x2A8+o32.code_base]|13-155
+248|code|CMP             R3, #1|1-43
+250|code|BNE.W           def_54; jumptable 00000054 default case|64-240-172-130
+254|code|LDRH.W          R3, [SP,#0x2A8+o32.code_size]|189-248-36-48
+258|code|CMP.W           R3, #0x102|179-245-129-127
+262|code|BNE.W           def_54; jumptable 00000054 default case|64-240-166-130
+266|code|LDRH.W          type, [SP,#0x2A8+o32.entry_addr+2]|189-248-50-64
+270|code|CMP             R4, #0x32 ; '2'|50-44
+272|code|B               loc_4F6|241-225
+274|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 10|8-169
+276|code|MOVS            R2, #0x40 ; '@'|64-34
+278|code|LDR             R3, =grub_file_read|113-75
+280|code|BLX             R3; grub_file_read|152-71
+282|code|CMP             R0, #0x40 ; '@'|64-40
+284|code|BNE.W           def_54; jumptable 00000054 default case|64-240-155-130
+288|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+290|code|LDR             R3, =0x464C457F|111-75
+292|code|CMP             R2, R3|154-66
+294|code|BNE.W           def_54; jumptable 00000054 default case|64-240-150-130
+298|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+2]|157-248-38-48
+302|code|CMP             R3, #1|1-43
+304|code|BNE.W           def_54; jumptable 00000054 default case|64-240-145-130
+308|code|LDR             R3, [SP,#0x2A8+o32.code_base]|13-155
+310|code|CMP             R3, #1|1-43
+312|code|BNE.W           def_54; jumptable 00000054 default case|64-240-141-130
+316|code|LDRH.W          R2, [SP,#0x2A8+o32.code_size]|189-248-36-32
+320|code|MOVW            R3, #0x202|64-242-2-35
+324|code|CMP             R2, R3|154-66
+326|code|BNE.W           def_54; jumptable 00000054 default case|64-240-134-130
+330|code|LDR             R3, [SP,#0x2A8+o32.entry_addr]|12-155
+332|code|LDR             type, =0x2B0200|101-76
+334|code|B               loc_4F4|209-225
+336|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 11|8-169
+338|code|MOVS            R2, #0x34 ; '4'|52-34
+340|code|LDR             R3, =grub_file_read|97-75
+342|code|BLX             R3; grub_file_read|152-71
+344|code|CMP             R0, #0x34 ; '4'|52-40
+346|code|BNE.W           def_54; jumptable 00000054 default case|64-240-124-130
+350|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+352|code|LDR             R3, =0x464C457F|95-75
+354|code|CMP             R2, R3|154-66
+356|code|BNE.W           def_54; jumptable 00000054 default case|64-240-119-130
+360|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+2]|157-248-38-48
+364|code|CMP             R3, #1|1-43
+366|code|BNE.W           def_54; jumptable 00000054 default case|64-240-114-130
+370|code|LDR             R3, [SP,#0x2A8+o32.code_base]|13-155
+372|code|CMP             R3, #1|1-43
+374|code|BNE.W           def_54; jumptable 00000054 default case|64-240-110-130
+378|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+1]|157-248-37-48
+382|code|CMP             R3, #2|2-43
+384|code|BNE.W           def_54; jumptable 00000054 default case|64-240-105-130
+388|code|LDRH.W          R3, [SP,#0x2A8+o32.entry_addr+2]|189-248-50-48
+392|code|SUBS            R3, #0x14|20-59
+394|code|UXTH            R3, R3|155-178
+396|code|CMP             R3, #1|1-43
+398|code|BHI.W           def_54; jumptable 00000054 default case|0-242-98-130
+402|code|LDRH.W          type, [SP,#0x2A8+o32.entry_addr]|189-248-48-64
+406|code|BIC.W           R4, R4, #0x100|36-244-128-116
+410|code|UXTH            R4, R4|164-178
+412|code|CMP.W           R4, #0x200|180-245-0-127
+416|code|B               loc_4F6|169-225
+418|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 8|8-169
+420|code|MOVS            R2, #0x34 ; '4'|52-34
+422|code|LDR             R3, =grub_file_read|77-75
+424|code|BLX             R3; grub_file_read|152-71
+426|code|CMP             R0, #0x34 ; '4'|52-40
+428|code|BNE.W           def_54; jumptable 00000054 default case|64-240-83-130
+432|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+434|code|LDR             R3, =0x464C457F|75-75
+436|code|CMP             R2, R3|154-66
+438|code|BNE.W           def_54; jumptable 00000054 default case|64-240-78-130
+442|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+2]|157-248-38-48
+446|code|CMP             R3, #1|1-43
+448|code|BNE.W           def_54; jumptable 00000054 default case|64-240-73-130
+452|code|LDR             R3, [SP,#0x2A8+o32.code_base]|13-155
+454|code|CMP             R3, #1|1-43
+456|code|BNE.W           def_54; jumptable 00000054 default case|64-240-69-130
+460|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+1]|157-248-37-48
+464|code|CMP             R3, #2|2-43
+466|code|BNE.W           def_54; jumptable 00000054 default case|64-240-64-130
+470|code|LDR             R3, [SP,#0x2A8+o32.entry_addr]|12-155
+472|code|LDR             type, =0x8000200|67-76
+474|code|B               loc_4F4|139-225
+476|code|LDR             R3, =grub_elf_file_0; jumptable 00000054 cases 17-19|67-75
+478|code|LDR             R1, [file]|1-104
+480|code|BLX             R3; grub_elf_file_0|152-71
+482|code|LDRH            R3, [R0,#0x18]|3-139
+484|code|MOV             args, R0|6-70
+486|code|CMP             R3, #2|2-43
+488|code|BNE.W           loc_64A|64-240-47-130
+492|code|LDRB            R3, [elf,#0xD]|67-123
+494|code|CMP             R3, #1|1-43
+496|code|BNE.W           loc_64A|64-240-43-130
+500|code|LDR             R3, =grub_elf_is_elf32|62-75
+502|code|BLX             R3; grub_elf_is_elf32|152-71
+504|code|LDR             R3, =grub_elf_is_elf64|62-75
+506|code|MOV             file, R0|5-70
+508|code|MOV             is32, elf|48-70
+510|code|BLX             R3; grub_elf_is_elf64|152-71
+512|code|CBNZ            is32, loc_20E|45-185
+514|code|CMP             is64, #0|0-40
+516|code|BEQ.W           loc_64A|0-240-33-130
+520|code|CMP             type, #0x12|18-44
+522|code|BNE             loc_216|4-209
+524|code|B               loc_64A|29-226
+526|code|CBNZ            is64, loc_216|16-185
+528|code|CMP             type, #0x13|19-44
+530|code|BNE             loc_224|7-209
+532|code|B               loc_64A|25-226
+534|code|MOV             is64, elf; elf|48-70
+536|code|LDR             R3, =(grub_file_check_netbsd64+1)|55-75
+538|code|BLX             R3; grub_file_check_netbsd64|152-71
+540|code|MOV             type, R0|4-70
+542|code|CMP             is32, #0|0-45
+544|code|BEQ.W           loc_64C|0-240-20-130
+548|code|MOV             R0, elf; elf|48-70
+550|code|LDR             R3, =(grub_file_check_netbsd32+1)|53-75
+552|code|BLX             R3; grub_file_check_netbsd32|152-71
+554|code|MOV             R4, R0|4-70
+556|code|B               loc_64C|14-226
+558|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 cases 14-16|8-169
+560|code|MOVS            R2, #0x34 ; '4'|52-34
+562|code|LDR             R3, =grub_file_read|42-75
+564|code|BLX             R3; grub_file_read|152-71
+566|code|CMP             R0, #0x34 ; '4'|52-40
+568|code|BNE.W           def_54; jumptable 00000054 default case|64-240-13-130
+572|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+574|code|LDR             R3, =0x464C457F|40-75
+576|code|CMP             R2, R3|154-66
+578|code|BNE.W           def_54; jumptable 00000054 default case|64-240-8-130
+582|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+2]|157-248-38-48
+586|code|CMP             R3, #1|1-43
+588|code|BNE.W           def_54; jumptable 00000054 default case|64-240-3-130
+592|code|LDR             R3, [SP,#0x2A8+o32.code_base]|13-155
+594|code|CMP             R3, #1|1-43
+596|code|BNE.W           def_54; jumptable 00000054 default case|64-240-255-129
+600|code|LDRH.W          R3, [SP,#0x2A8+o32.entry_addr]|189-248-48-48
+604|code|CMP             R3, #2|2-43
+606|code|BNE.W           def_54; jumptable 00000054 default case|64-240-250-129
+610|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+1]|157-248-37-48
+614|code|CMP             R3, #1|1-43
+616|code|BNE.W           def_54; jumptable 00000054 default case|64-240-245-129
+620|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+3]|157-248-39-48
+624|code|CMP             R3, #9|9-43
+626|code|BNE.W           def_54; jumptable 00000054 default case|64-240-240-129
+630|code|LDRH.W          R3, [SP,#0x2A8+o32.entry_addr+2]|189-248-50-48
+634|code|CMP             R3, #3|3-43
+636|code|BNE.W           loc_652|64-240-233-129
+640|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size]|157-248-36-48
+644|code|CMP             R3, #1|1-43
+646|code|BNE.W           def_54; jumptable 00000054 default case|64-240-230-129
+650|code|SUBS            type, #0x10|16-60
+652|code|IT NE|24-191
+654|code|MOVNE           R4, #1|1-36
+656|code|B               loc_658|226-225
+658|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 9|8-169
+660|code|MOVS            R2, #0x34 ; '4'|52-34
+662|code|LDR             R3, =grub_file_read|17-75
+664|code|BLX             R3; grub_file_read|152-71
+666|code|CMP             R0, #0x34 ; '4'|52-40
+668|code|BNE.W           def_54; jumptable 00000054 default case|64-240-219-129
+672|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+674|code|LDR             R3, =0x464C457F|15-75
+676|code|CMP             R2, R3|154-66
+678|code|BNE.W           def_54; jumptable 00000054 default case|64-240-214-129
+682|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size+2]|157-248-38-48
+686|code|CMP             R3, #1|1-43
+688|code|BNE.W           def_54; jumptable 00000054 default case|64-240-209-129
+692|code|LDR             R3, [SP,#0x2A8+o32.code_base]|13-155
+694|code|CMP             R3, #1|1-43
+696|code|BNE.W           def_54; jumptable 00000054 default case|64-240-205-129
+700|code|LDR             R3, [SP,#0x2A8+o32.entry_addr]|12-155
+702|code|LDR             type, =0x80002|16-76
+704|code|B               loc_4F4|24-225
+706|data|ALIGN 4|0-191
+708|data|DCD aFilenameExpect; "filename expected"|36-25-0-0
+712|data|DCD aMultipleTypesS; "multiple types specified"|54-25-0-0
+716|data|DCD aNoTypeSpecifie; "no type specified"|79-25-0-0
+720|data|DCD grub_error|116-36-0-0
+724|data|DCD grub_file_open|104-36-0-0
+728|data|DCD grub_file_seek|64-36-0-0
+732|data|DCD grub_file_read|84-36-0-0
+736|data|DCD 0x464C457F|127-69-76-70
+740|data|DCD 0x2B0200|0-2-43-0
+744|data|DCD 0x8000200|0-2-0-8
+748|data|DCD grub_elf_file_0|52-36-0-0
+752|data|DCD grub_elf_is_elf32|44-36-0-0
+756|data|DCD grub_elf_is_elf64|80-36-0-0
+760|data|DCD grub_file_check_netbsd64+1|225-7-0-0
+764|data|DCD grub_file_check_netbsd32+1|253-6-0-0
+768|data|DCD 0x80002|2-0-8-0
+772|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 5|8-169
+774|code|MOVS            R2, #4|4-34
+776|code|LDR             type, =grub_file_read|173-76
+778|code|BLX             R4; grub_file_read|160-71
+780|code|CMP             R0, #4|4-40
+782|code|MOV             args, R0|6-70
+784|code|BNE.W           def_54; jumptable 00000054 default case|64-240-161-129
+788|code|LDR             R2, [SP,#0x2A8+o32]|8-154
+790|code|LDR             R3, =0xEA000006|171-75
+792|code|CMP             R2, R3|154-66
+794|code|BEQ.W           loc_4C4|0-240-211-128
+798|code|MOV             R0, file|40-70
+800|code|MOVS            R2, #0x24 ; '$'|36-34
+802|code|MOVS            R3, #0|0-35
+804|code|LDR             R1, =grub_file_seek|168-73
+806|code|BLX             R1; grub_file_seek|136-71
+808|code|CMP             R1, #0|0-41
+810|code|IT EQ|8-191
+812|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+816|code|BEQ.W           def_54; jumptable 00000054 default case|0-240-145-129
+820|code|MOV             R0, file|40-70
+822|code|ADD             R1, SP, #0x2A8+coff_head|3-169
+824|code|MOV             R2, R6|50-70
+826|code|BLX             R4; grub_file_read|160-71
+828|code|CMP             R0, #4|4-40
+830|code|BNE.W           def_54; jumptable 00000054 default case|64-240-138-129
+834|code|LDR             R3, [SP,#0x2A8+coff_head]|3-155
+836|code|LDR             R4, =0x16F2818|161-76
+838|code|B               loc_4F4|213-224
+840|code|MOVS            R2, #0x38 ; '8'; jumptable 00000054 case 6|56-34
+842|code|MOVS            R3, #0|0-35
+844|code|LDR             R1, =grub_file_seek|158-73
+846|code|BLX             R1; grub_file_seek|136-71
+848|code|CMP             R1, #0|0-41
+850|code|IT EQ|8-191
+852|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+856|code|BEQ.W           def_54; jumptable 00000054 default case|0-240-125-129
+860|code|MOV             R0, file|40-70
+862|code|ADD             R1, SP, #0x2A8+o32|8-169
+864|code|MOVS            R2, #4|4-34
+866|code|LDR             R3, =grub_file_read|151-75
+868|code|BLX             R3; grub_file_read|152-71
+870|code|CMP             R0, #4|4-40
+872|code|BNE.W           def_54; jumptable 00000054 default case|64-240-117-129
+876|code|LDR             R3, [SP,#0x2A8+o32]|8-155
+878|code|LDR             type, =0x644D5241|152-76
+880|code|B               loc_4F4|192-224
+882|code|LDR             R3, =(grub_xen_file+1); jumptable 00000054 cases 0-2|152-75
+884|code|BLX             R3; grub_xen_file|152-71
+886|code|MOV             args, elf|6-70
+888|code|CBNZ            elf, loc_37E|8-185
+890|code|MOVS            type, #0|0-36
+892|code|B               loc_3A6|19-224
+894|code|ADD             R1, SP, #0x2A8+o32; xi|8-169
+896|code|LDR             R3, =(grub_xen_get_info+1)|149-75
+898|code|BLX             R3; grub_xen_get_info|152-71
+900|code|CMP             err, #0|0-40
+902|code|BNE             loc_37A|248-209
+904|code|CMP             type, #2|2-44
+906|code|BEQ             loc_3A4|11-208
+908|code|LDR             R3, [SP,#0x2A8+o32.checksum]|24-155
+910|code|CBNZ            type, loc_39C|44-185
+912|code|SUBS            type, R3, #2|156-30
+914|code|CMP             R4, #1|1-44
+916|code|ITE HI|140-191
+918|code|MOVHI           R4, #0|0-36
+920|code|MOVLS           R4, #1|1-36
+922|code|B               loc_3A6|4-224
+924|code|SUBS            R2, R3, #4|26-31
+926|code|NEGS            type, R2|84-66
+928|code|ADCS            R4, R2|84-65
+930|code|B               loc_3A6|0-224
+932|code|MOVS            type, #1|1-36
+934|code|CMP             elf, #0|0-46
+936|code|BNE.W           loc_64C|64-240-80-129
+940|code|B               loc_658|84-225
+942|code|CMP             type, #4; jumptable 00000054 cases 3,4|4-44
+944|code|LDR             R3, =0x1BADB002|138-75
+946|code|LDR             R7, =0xE85250D6|139-79
+948|code|ITEE EQ|14-191
+950|code|MOVEQ.W         R9, #0x8000|79-244-0-73
+954|code|MOVNE.W         R9, #0x2000|79-244-0-89
+958|code|MOVNE           R7, R3|31-70
+960|code|MOV             file, R9|72-70
+962|code|LDR             R3, =grub_malloc|136-75
+964|code|ITE EQ|12-191
+966|code|MOVEQ.W         R8, #2|79-240-2-8
+970|code|MOVNE.W         R8, #1|79-240-1-8
+974|code|BLX             R3; grub_malloc|152-71
+976|code|MOV             args, buffer|6-70
+978|code|CMP             buffer, #0|0-40
+980|code|BEQ.W           def_54; jumptable 00000054 default case|0-240-63-129
+984|code|MOV             buffer, file|40-70
+986|code|MOV             R1, buffer|49-70
+988|code|MOV             R2, search_size|74-70
+990|code|LDR             R3, =grub_file_read|120-75
+992|code|BLX             R3; grub_file_read|152-71
+994|code|CMP             len, #0x1F|31-40
+996|code|BLE             loc_3FA|9-221
+998|code|CMP             type, #4|4-44
+1000|code|MOV.W           LR, step,LSL#2|79-234-136-14
+1004|code|ITE EQ|12-191
+1006|code|MOVEQ           R3, #0x10|16-35
+1008|code|MOVNE           R3, #0xC|12-35
+1010|code|SUBS            len, len, R3|192-26
+1012|code|MOV             R3, buffer|51-70
+1014|code|ADD             R0, buffer|48-68
+1016|code|B               loc_40A|7-224
+1018|code|MOV             len, buffer|48-70
+1020|code|LDR             R3, =grub_free|122-75
+1022|code|BLX             R3; grub_free|152-71
+1024|code|B               def_54; jumptable 00000054 default case|41-225
+1026|code|LDR             R2, [header]|26-104
+1028|code|CMP             R2, magic|186-66
+1030|code|BEQ             loc_410|3-208
+1032|code|ADD             header, LR|115-68
+1034|code|CMP             header, R0|131-66
+1036|code|BLS             loc_402|249-217
+1038|code|B               loc_428|11-224
+1040|code|LDR             R1, [header,#4]|89-104
+1042|code|CMP             type, #4|4-44
+1044|code|LDR             R2, [header,#8]|154-104
+1046|code|ADD             R2, R1|10-68
+1048|code|IT EQ|8-191
+1050|code|LDREQ           R1, [header,#0xC]|217-104
+1052|code|ADD             R2, magic|58-68
+1054|code|IT NE|24-191
+1056|code|MOVNE           R1, #0|0-33
+1058|code|CMN             R2, R1|202-66
+1060|code|BNE             loc_408|240-209
+1062|code|B               loc_42C|1-224
+1064|code|MOVS            type, #0|0-36
+1066|code|B               loc_42E|0-224
+1068|code|MOVS            type, #1|1-36
+1070|code|MOV             R0, buffer|48-70
+1072|code|LDR             header, =grub_free|109-75
+1074|code|BLX             R3; grub_free|152-71
+1076|code|B               loc_658|16-225
+1078|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 cases 12,13|8-169
+1080|code|MOV.W           R2, #0x268|79-244-26-114
+1084|code|LDR             R3, =grub_file_read|96-75
+1086|code|BLX             R3; grub_file_read|152-71
+1088|code|CMP.W           R0, #0x268|176-245-26-127
+1092|code|BNE.W           def_54; jumptable 00000054 default case|64-240-7-129
+1096|code|LDRH.W          R2, [SP,#0x2A8+var_8A]|189-248-30-34
+1100|code|MOVW            R3, #0xAA55|74-246-85-35
+1104|code|CMP             R2, R3|154-66
+1106|code|BNE.W           def_54; jumptable 00000054 default case|64-240-0-129
+1110|code|LDRB.W          R3, [SP,#0x2A8+var_97]|157-248-17-50
+1114|code|CMP             R3, #0x40 ; '@'|64-43
+1116|code|BHI.W           def_54; jumptable 00000054 default case|0-242-251-128
+1120|code|LDRH.W          R2, [SP,#0x2A8+var_84]|189-248-36-34
+1124|code|LDRH.W          R3, [SP,#0x2A8+var_86]|189-248-34-50
+1128|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+1132|code|LDR             R2, =0x53726448|95-74
+1134|code|CMP             R3, R2|147-66
+1136|code|BNE.W           def_54; jumptable 00000054 default case|64-240-241-128
+1140|code|LDRH.W          R3, [SP,#0x2A8+var_82]|189-248-38-50
+1144|code|CMP.W           R3, #0x200|179-245-0-127
+1148|code|BCC.W           def_54; jumptable 00000054 default case|192-240-235-128
+1152|code|CMP             type, #0xC|12-44
+1154|code|BEQ             loc_4C4|31-208
+1156|code|MOVW            R2, #0x202|64-242-2-34
+1160|code|CMP             R3, R2|147-66
+1162|code|BLS.W           def_54; jumptable 00000054 default case|64-242-228-128
+1166|code|LDRB.W          type, [SP,#0x2A8+var_77]|157-248-49-66
+1170|code|AND.W           R4, R4, #1|4-240-1-4
+1174|code|B               loc_658|223-224
+1176|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 25|8-169
+1178|code|MOVS            R2, #4|4-34
+1180|code|LDR             R3, =grub_file_read|72-75
+1182|code|BLX             R3; grub_file_read|152-71
+1184|code|CMP             R0, #4|4-40
+1186|code|MOV             type, R0|4-70
+1188|code|BNE.W           def_54; jumptable 00000054 default case|64-240-215-128
+1192|code|LDR             R0, =aHibr; "hibr"|81-72
+1194|code|ADD             R1, SP, #0x2A8+o32|8-169
+1196|code|MOV             R2, R4|34-70
+1198|code|LDR             args, =grub_memcmp|81-78
+1200|code|BLX             R6; grub_memcmp|176-71
+1202|code|CBZ             R0, loc_4C4|56-177
+1204|code|MOV             R2, R4|34-70
+1206|code|LDR             R0, =aHibr_0; "HIBR"|80-72
+1208|code|ADD             R1, SP, #0x2A8+o32|8-169
+1210|code|BLX             R6; grub_memcmp|176-71
+1212|code|CLZ.W           R4, R0|176-250-128-244
+1216|code|LSRS            R4, R4, #5|100-9
+1218|code|B               loc_658|201-224
+1220|code|MOVS            R4, #1|1-36
+1222|code|B               loc_658|199-224
+1224|code|SUB.W           R3, type, #0x1A; jumptable 00000054 cases 26,27|164-241-26-3
+1228|code|LDR             file, [args]|48-104
+1230|code|NEGS            R1, R3|89-66
+1232|code|ADCS            R1, R3|89-65
+1234|code|LDR             R3, =grub_macho_open|74-75
+1236|code|BLX             R3; grub_macho_open|152-71
+1238|code|CMP             macho, #0|0-40
+1240|code|BNE.W           loc_684|64-240-212-128
+1244|code|B               def_54; jumptable 00000054 default case|187-224
+1246|code|ADD             R1, SP, #0x2A8+o32; jumptable 00000054 case 28|8-169
+1248|code|MOV.W           R2, #0x1E0|79-244-240-114
+1252|code|LDR             R3, =grub_file_read|54-75
+1254|code|BLX             R3; grub_file_read|152-71
+1256|code|CMP.W           R0, #0x1E0|176-245-240-127
+1260|code|BNE.W           def_54; jumptable 00000054 default case|64-240-179-128
+1264|code|LDR             R3, [SP,#0x2A8+o32.stack_commit_size]|27-155
+1266|code|LDR             type, =0x73696D65|67-76
+1268|code|CMP             R3, R4|163-66
+1270|code|ITE NE|20-191
+1272|code|MOVNE           R4, #0|0-36
+1274|code|MOVEQ           R4, #1|1-36
+1276|code|B               loc_658|172-224
+1278|code|ADD             R1, SP, #0x2A8+signature; jumptable 00000054 cases 20-24|1-169
+1280|code|MOVS            R2, #2|2-34
+1282|code|LDR             args, =grub_file_read|47-78
+1284|code|BLX             R6; grub_file_read|176-71
+1286|code|CMP             R0, #2|2-40
+1288|code|BNE.W           def_54; jumptable 00000054 default case|64-240-165-128
+1292|code|LDRB.W          R3, [SP,#0x2A8+signature]|157-248-4-48
+1296|code|CMP             R3, #0x4D ; 'M'|77-43
+1298|code|BNE.W           def_54; jumptable 00000054 default case|64-240-160-128
+1302|code|LDRB.W          R3, [SP,#0x2A8+signature+1]|157-248-5-48
+1306|code|CMP             R3, #0x5A ; 'Z'|90-43
+1308|code|BNE.W           def_54; jumptable 00000054 default case|64-240-155-128
+1312|code|MOV             R0, file|40-70
+1314|code|MOVS            R2, #0x3C ; '<'|60-34
+1316|code|MOVS            R3, #0|0-35
+1318|code|LDR.W           R8, =grub_file_seek|223-248-160-128
+1322|code|BLX             R8; grub_file_seek|192-71
+1324|code|ADDS            R0, #1|1-48
+1326|code|BEQ.W           def_54; jumptable 00000054 default case|0-240-146-128
+1330|code|MOV             R0, file|40-70
+1332|code|ADD             R1, SP, #0x2A8+pe_offset|2-169
+1334|code|MOVS            R2, #4|4-34
+1336|code|BLX             R6; grub_file_read|176-71
+1338|code|CMP             R0, #4|4-40
+1340|code|MOV             R7, R0|7-70
+1342|code|BNE.W           def_54; jumptable 00000054 default case|64-240-138-128
+1346|code|MOV             R0, file|40-70
+1348|code|LDR             R2, [SP,#0x2A8+pe_offset]|2-154
+1350|code|MOVS            R3, #0|0-35
+1352|code|BLX             R8; grub_file_seek|192-71
+1354|code|ADDS            R0, #1|1-48
+1356|code|BEQ.W           def_54; jumptable 00000054 default case|0-240-131-128
+1360|code|MOV             R0, file|40-70
+1362|code|ADD             R1, SP, #0x2A8+signature|1-169
+1364|code|MOV             R2, R7|58-70
+1366|code|BLX             R6; grub_file_read|176-71
+1368|code|CMP             R0, #4|4-40
+1370|code|BNE             def_54; jumptable 00000054 default case|124-209
+1372|code|LDRB.W          R3, [SP,#0x2A8+signature]|157-248-4-48
+1376|code|CMP             R3, #0x50 ; 'P'|80-43
+1378|code|BNE             def_54; jumptable 00000054 default case|120-209
+1380|code|LDRB.W          R3, [SP,#0x2A8+signature+1]|157-248-5-48
+1384|code|CMP             R3, #0x45 ; 'E'|69-43
+1386|code|BNE             def_54; jumptable 00000054 default case|116-209
+1388|code|LDRB.W          R3, [SP,#0x2A8+signature+2]|157-248-6-48
+1392|code|CMP             R3, #0|0-43
+1394|code|BNE             def_54; jumptable 00000054 default case|112-209
+1396|code|LDRB.W          R3, [SP,#0x2A8+signature+3]|157-248-7-48
+1400|code|CMP             R3, #0|0-43
+1402|code|BNE             def_54; jumptable 00000054 default case|108-209
+1404|code|MOV             R0, file|40-70
+1406|code|ADD             R1, SP, #0x2A8+coff_head|3-169
+1408|code|MOVS            R2, #0x14|20-34
+1410|code|BLX             R6; grub_file_read|176-71
+1412|code|CMP             R0, #0x14|20-40
+1414|code|BNE             def_54; jumptable 00000054 default case|102-209
+1416|code|CMP             type, #0x14|20-44
+1418|code|LDRH.W          R3, [SP,#0x2A8+coff_head]|189-248-12-48
+1422|code|BNE             loc_596|2-209
+1424|code|CMP.W           R3, #0x14C|179-245-166-127
+1428|code|B               loc_5A0|4-224
+1430|code|CMP             type, #0x15|21-44
+1432|code|BNE             loc_5A4|4-209
+1434|code|MOVW            R2, #0x8664|72-242-100-98
+1438|code|CMP             R3, R2|147-66
+1440|code|BNE             def_54; jumptable 00000054 default case|89-209
+1442|code|B               loc_604|47-224
+1444|code|CMP             type, #0x16|22-44
+1446|code|BNE             loc_5AE|2-209
+1448|code|CMP.W           R3, #0x200|179-245-0-127
+1452|code|B               loc_5A0|248-231
+1454|code|CMP             type, #0x17|23-44
+1456|code|BNE             loc_5B8|2-209
+1458|code|MOVW            R2, #0xAA64|74-246-100-34
+1462|code|B               loc_59E|242-231
+1464|code|CMP.W           R3, #0x1C2|179-245-225-127
+1468|code|B               loc_5A0|240-231
+1470|data|ALIGN 0x10|0-191
+1472|data|DCD grub_file_read|84-36-0-0
+1476|data|DCD 0xEA000006|6-0-0-234
+1480|data|DCD grub_file_seek|64-36-0-0
+1484|data|DCD 0x16F2818|24-40-111-1
+1488|data|DCD 0x644D5241|65-82-77-100
+1492|data|DCD grub_xen_file+1|201-8-0-0
+1496|data|DCD grub_xen_get_info+1|241-9-0-0
+1500|data|DCD 0x1BADB002|2-176-173-27
+1504|data|DCD 0xE85250D6|214-80-82-232
+1508|data|DCD grub_malloc|96-36-0-0
+1512|data|DCD grub_free|120-36-0-0
+1516|data|DCD 0x53726448|72-100-114-83
+1520|data|DCD aHibr; "hibr"|97-25-0-0
+1524|data|DCD grub_memcmp|132-36-0-0
+1528|data|DCD aHibr_0; "HIBR"|102-25-0-0
+1532|data|DCD grub_macho_open|56-36-0-0
+1536|data|DCD 0x73696D65|101-109-105-115
+1540|code|SUB.W           R3, type, #0x15|164-241-21-3
+1544|code|CMP             R3, #2|2-43
+1546|code|BHI             loc_622|10-216
+1548|code|MOV             R0, file|40-70
+1550|code|ADD             R1, SP, #0x2A8+o32|8-169
+1552|code|MOVS            R2, #0xF0|240-34
+1554|code|BLX             R6; grub_file_read|176-71
+1556|code|CMP             R0, #0xF0|240-40
+1558|code|BNE             def_54; jumptable 00000054 default case|30-209
+1560|code|LDRH.W          R2, [SP,#0x2A8+o32]|189-248-32-32
+1564|code|MOVW            R3, #0x20B|64-242-11-35
+1568|code|B               loc_63E|13-224
+1570|code|CMP             type, #0x14|20-44
+1572|code|BEQ             loc_62A|1-208
+1574|code|CMP             type, #0x18|24-44
+1576|code|BNE             def_54; jumptable 00000054 default case|21-209
+1578|code|MOV             R0, file|40-70
+1580|code|ADD             R1, SP, #0x2A8+o32|8-169
+1582|code|MOVS            R2, #0xE0|224-34
+1584|code|BLX             R6; grub_file_read|176-71
+1586|code|CMP             R0, #0xE0|224-40
+1588|code|BNE             def_54; jumptable 00000054 default case|15-209
+1590|code|LDRH.W          R2, [SP,#0x2A8+o32]|189-248-32-32
+1594|code|MOVW            R3, #0x10B|64-242-11-19
+1598|code|CMP             R2, R3|154-66
+1600|code|BNE             def_54; jumptable 00000054 default case|9-209
+1602|code|LDRH.W          type, [SP,#0x2A8+o32.subsystem]|189-248-100-64
+1606|code|CMP             R4, #0xA|10-44
+1608|code|B               loc_4F6|85-231
+1610|code|MOVS            type, #0|0-36
+1612|code|MOV             R0, elf|48-70
+1614|code|LDR             R3, =grub_elf_close|17-75
+1616|code|B               loc_65C|4-224
+1618|code|CMP             R3, #0x3E ; '>'|62-43
+1620|code|BEQ             loc_678|16-208
+1622|code|MOVS            R4, #0; jumptable 00000054 default case|0-36
+1624|code|LDR             R3, =grub_file_close|15-75
+1626|code|MOV             R0, file|40-70
+1628|code|BLX             R3; grub_file_close|152-71
+1630|code|CBNZ            ret, loc_672|68-185
+1632|code|LDR             R3, =grub_errno|14-75
+1634|code|LDR             R3, [R3]|27-104
+1636|code|CMP             R3, #0x15|21-43
+1638|code|BEQ             loc_66A|0-208
+1640|code|CBNZ            R3, loc_672|27-185
+1642|code|MOVS            R0, #1|1-32
+1644|code|LDR             R1, =aFalse; "false"|12-73
+1646|code|LDR             R3, =grub_error|13-75
+1648|code|BLX             R3; grub_error|152-71
+1650|code|LDR             R3, =grub_errno|10-75
+1652|code|LDR             R0, [R3]|24-104
+1654|code|B               loc_68A|8-224
+1656|code|LDRB.W          R3, [SP,#0x2A8+o32.code_size]|157-248-36-48
+1660|code|CMP             R3, #2|2-43
+1662|code|BNE             def_54; jumptable 00000054 default case|234-209
+1664|code|SUBS            type, #0xF|15-60
+1666|code|B               loc_28C|3-230
+1668|code|LDR             R3, =grub_macho_close|8-75
+1670|code|BLX             R3; grub_macho_close|152-71
+1672|code|B               loc_672|243-231
+1674|code|ADD.W           SP, SP, #0x28C|13-245-35-125
+1678|code|POP.W           {R4-R9,PC}|189-232-240-131
+1682|data|ALIGN 4|0-191
+1684|data|DCD grub_elf_close|88-36-0-0
+1688|data|DCD grub_file_close|100-36-0-0
+1692|data|DCD grub_errno|68-36-0-0
+1696|data|DCD aFalse; "false"|107-25-0-0
+1700|data|DCD grub_error|116-36-0-0
+1704|data|DCD grub_macho_close|32-36-0-0
+1708|code|LDR             R3, =aCheckIfFileIsO; "Check if FILE is of specified type."|7-75
+1710|code|MOVS            R2, #0|0-34
+1712|code|PUSH            {mod,R1,R4,LR}|19-181
+1714|code|STR             R3, [SP,#0x10+var_10]|0-147
+1716|code|LDR             R3, =options|6-75
+1718|code|LDR             R1, =(grub_cmd_file+1)|7-73
+1720|code|LDR             R4, =grub_register_extcmd|7-76
+1722|code|STR             R3, [SP,#0x10+var_C]|1-147
+1724|code|LDR             mod, =aFile; "file"|7-72
+1726|code|LDR             R3, =aOptionsFile; "OPTIONS FILE"|8-75
+1728|code|BLX             R4; grub_register_extcmd|160-71
+1730|code|LDR             R3, =cmd|8-75
+1732|code|STR             R0, [R3]|24-96
+1734|code|ADD             SP, SP, #8|2-176
+1736|code|POP             {R4,PC}|16-189
+1738|data|ALIGN 4|0-191
+1740|data|DCD aCheckIfFileIsO; "Check if FILE is of specified type."|131-25-0-0
+1744|data|DCD options|60-22-0-0
+1748|data|DCD grub_cmd_file+1|1-0-0-0
+1752|data|DCD grub_register_extcmd|124-36-0-0
+1756|data|DCD aFile; "file"|113-25-0-0
+1760|data|DCD aOptionsFile; "OPTIONS FILE"|118-25-0-0
+1764|data|DCD cmd|28-36-0-0
+1768|code|PUSH            {R3,LR}|8-181
+1770|code|LDR             R3, =cmd|2-75
+1772|code|LDR             R0, [R3]|24-104
+1774|code|LDR             R3, =grub_unregister_extcmd|2-75
+1776|code|BLX             R3; grub_unregister_extcmd|152-71
+1778|code|POP             {R3,PC}|8-189
+1780|data|DCD cmd|28-36-0-0
+1784|data|DCD grub_unregister_extcmd|60-36-0-0
+1788|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1792|code|MOV             R4, elf|4-70
+1794|code|LDRH            R5, [elf,#0x38]|5-143
+1796|code|SUB             SP, SP, #0x2C|139-176
+1798|code|LDRH.W          R8, [elf,#0x36]|176-248-54-128
+1802|code|CBNZ            shnum, loc_710|13-185
+1804|code|MOVS            R0, #0|0-32
+1806|code|B               loc_7BE|86-224
+1808|code|CMP.W           R8, #0|184-241-0-15
+1812|code|BEQ             loc_70C|250-208
+1814|code|MUL.W           shnum, shnum, R8|5-251-8-245
+1818|code|LDR             R3, =grub_malloc|42-75
+1820|code|MOV             elf, R5|40-70
+1822|code|BLX             R3; grub_malloc|152-71
+1824|code|MOV             R6, s0|6-70
+1826|code|CMP             s0, #0|0-40
+1828|code|BEQ             loc_70C|242-208
+1830|code|LDR             R7, =grub_file_seek|40-79
+1832|code|MOVS            R3, #0|0-35
+1834|code|LDR             s0, [elf]|32-104
+1836|code|LDR             R2, [elf,#0x28]|162-106
+1838|code|BLX             R7; grub_file_seek|184-71
+1840|code|STR             R7, [SP,#0x50+var_44]|3-151
+1842|code|ADDS            R1, #1|1-49
+1844|code|IT EQ|8-191
+1846|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+1850|code|BEQ             loc_70C|231-208
+1852|code|LDR             R7, =grub_file_read|35-79
+1854|code|MOV             R1, s0|49-70
+1856|code|LDR             R0, [elf]|32-104
+1858|code|MOV             R2, R5|42-70
+1860|code|BLX             R7; grub_file_read|184-71
+1862|code|MOV             R9, R7|185-70
+1864|code|CMP             R0, R5|168-66
+1866|code|BNE             loc_70C|223-209
+1868|code|LDRH            R3, [elf,#0x3A]|99-143
+1870|code|MOV             R7, s0|55-70
+1872|code|MOVS            R1, #0|0-33
+1874|code|MLA.W           R3, R8, R3, s0|8-251-3-99
+1878|code|LDR             R3, [R3,#0x10]|27-105
+1880|code|MOV             R0, R3|24-70
+1882|code|STRD.W          R0, R1, [SP,#0x50+var_50]|205-233-0-1
+1886|code|ADDS            R3, s0, R5|115-25
+1888|code|CMP             s, R3|159-66
+1890|code|BCS             loc_70C|211-210
+1892|code|MOVS            R1, #0|0-33
+1894|code|MOVS            R2, #0x13|19-34
+1896|code|LDR             R3, =grub_memset|25-75
+1898|code|ADD             R0, SP, #0x50+name|5-168
+1900|code|BLX             R3; grub_memset|152-71
+1902|code|LDR             R2, [s]|58-104
+1904|code|LDRD.W          R10, R11, [SP,#0x50+var_50]|221-233-0-171
+1908|code|LDR             R0, [elf]|32-104
+1910|code|ADDS.W          R10, R10, R2|26-235-2-10
+1914|code|LDR             R1, [SP,#0x50+var_44]|3-153
+1916|code|ADC.W           R11, R11, #0|75-241-0-11
+1920|code|MOV             R2, R10|82-70
+1922|code|MOV             R3, R11|91-70
+1924|code|BLX             R1|136-71
+1926|code|ADDS            R1, #1|1-49
+1928|code|IT EQ|8-191
+1930|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+1934|code|BNE             loc_796|2-209
+1936|code|LDR             R3, =grub_errno|16-75
+1938|code|LDR             R0, [R3]|24-104
+1940|code|B               loc_7BE|19-224
+1942|code|MOVS            R2, #0x13|19-34
+1944|code|LDR             R0, [elf]|32-104
+1946|code|ADD             R1, SP, #0x50+name|5-169
+1948|code|BLX             R9; grub_file_read|200-71
+1950|code|CMP             R0, #0x13|19-40
+1952|code|MOV             R2, R0|2-70
+1954|code|BEQ             loc_7AC|3-208
+1956|code|LDR             R3, =grub_errno|11-75
+1958|code|LDR             R0, [R3]|24-104
+1960|code|CBZ             R0, loc_7BA|56-177
+1962|code|B               loc_7BE|8-224
+1964|code|ADD             R0, SP, #0x50+name|5-168
+1966|code|LDR             R1, =aNoteNetbsdIden; ".note.netbsd.ident"|10-73
+1968|code|LDR             R3, =grub_memcmp|10-75
+1970|code|BLX             R3; grub_memcmp|152-71
+1972|code|CBNZ            R0, loc_7BA|8-185
+1974|code|MOVS            R0, #1|1-32
+1976|code|B               loc_7BE|1-224
+1978|code|ADD             s, R8|71-68
+1980|code|B               loc_75E|207-231
+1982|code|ADD             SP, SP, #0x2C ; ','|11-176
+1984|code|POP.W           {elf-R11,PC}|189-232-240-143
+1988|data|DCD grub_malloc|96-36-0-0
+1992|data|DCD grub_file_seek|64-36-0-0
+1996|data|DCD grub_file_read|84-36-0-0
+2000|data|DCD grub_memset|72-36-0-0
+2004|data|DCD grub_errno|68-36-0-0
+2008|data|DCD aNoteNetbsdIden; ".note.netbsd.ident"|3-32-0-0
+2012|data|DCD grub_memcmp|132-36-0-0
+2016|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2020|code|MOV             R4, elf|4-70
+2022|code|LDRH.W          R5, [elf,#0x44]|176-248-68-80
+2026|code|SUB             SP, SP, #0x2C|139-176
+2028|code|LDRH.W          R8, [elf,#0x42]|176-248-66-128
+2032|code|CBNZ            shnum, loc_7F6|13-185
+2034|code|MOVS            R0, #0|0-32
+2036|code|B               loc_8A4|86-224
+2038|code|CMP.W           R8, #0|184-241-0-15
+2042|code|BEQ             loc_7F2|250-208
+2044|code|MUL.W           shnum, shnum, R8|5-251-8-245
+2048|code|LDR             R3, =grub_malloc|42-75
+2050|code|MOV             elf, R5|40-70
+2052|code|BLX             R3; grub_malloc|152-71
+2054|code|MOV             R6, s0|6-70
+2056|code|CMP             s0, #0|0-40
+2058|code|BEQ             loc_7F2|242-208
+2060|code|LDR             R7, =grub_file_seek|40-79
+2062|code|LDR             s0, [elf]|32-104
+2064|code|LDRD.W          R2, R3, [elf,#0x30]|212-233-12-35
+2068|code|BLX             R7; grub_file_seek|184-71
+2070|code|STR             R7, [SP,#0x50+var_44]|3-151
+2072|code|ADDS            R1, #1|1-49
+2074|code|IT EQ|8-191
+2076|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+2080|code|BEQ             loc_7F2|231-208
+2082|code|LDR             R7, =grub_file_read|36-79
+2084|code|MOV             R1, s0|49-70
+2086|code|LDR             R0, [elf]|32-104
+2088|code|MOV             R2, R5|42-70
+2090|code|BLX             R7; grub_file_read|184-71
+2092|code|MOV             R9, R7|185-70
+2094|code|CMP             R0, R5|168-66
+2096|code|BNE             loc_7F2|223-209
+2098|code|LDRH.W          R3, [elf,#0x46]|180-248-70-48
+2102|code|MOV             R7, s0|55-70
+2104|code|MLA.W           R3, R8, R3, s0|8-251-3-99
+2108|code|LDRD.W          R2, R3, [R3,#0x18]|211-233-6-35
+2112|code|STRD.W          R2, R3, [SP,#0x50+var_50]|205-233-0-35
+2116|code|ADDS            R3, s0, R5|115-25
+2118|code|CMP             s, R3|159-66
+2120|code|BCS             loc_7F2|211-210
+2122|code|MOVS            R1, #0|0-33
+2124|code|MOVS            R2, #0x13|19-34
+2126|code|LDR             R3, =grub_memset|26-75
+2128|code|ADD             R0, SP, #0x50+name|5-168
+2130|code|BLX             R3; grub_memset|152-71
+2132|code|LDR             R2, [s]|58-104
+2134|code|LDRD.W          R10, R11, [SP,#0x50+var_50]|221-233-0-171
+2138|code|LDR             R0, [elf]|32-104
+2140|code|ADDS.W          R10, R10, R2|26-235-2-10
+2144|code|LDR             R1, [SP,#0x50+var_44]|3-153
+2146|code|ADC.W           R11, R11, #0|75-241-0-11
+2150|code|MOV             R2, R10|82-70
+2152|code|MOV             R3, R11|91-70
+2154|code|BLX             R1|136-71
+2156|code|ADDS            R1, #1|1-49
+2158|code|IT EQ|8-191
+2160|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+2164|code|BNE             loc_87C|2-209
+2166|code|LDR             R3, =grub_errno|17-75
+2168|code|LDR             R0, [R3]|24-104
+2170|code|B               loc_8A4|19-224
+2172|code|MOVS            R2, #0x13|19-34
+2174|code|LDR             R0, [elf]|32-104
+2176|code|ADD             R1, SP, #0x50+name|5-169
+2178|code|BLX             R9; grub_file_read|200-71
+2180|code|CMP             R0, #0x13|19-40
+2182|code|MOV             R2, R0|2-70
+2184|code|BEQ             loc_892|3-208
+2186|code|LDR             R3, =grub_errno|12-75
+2188|code|LDR             R0, [R3]|24-104
+2190|code|CBZ             R0, loc_8A0|56-177
+2192|code|B               loc_8A4|8-224
+2194|code|ADD             R0, SP, #0x50+name|5-168
+2196|code|LDR             R1, =aNoteNetbsdIden_0; ".note.netbsd.ident"|10-73
+2198|code|LDR             R3, =grub_memcmp|11-75
+2200|code|BLX             R3; grub_memcmp|152-71
+2202|code|CBNZ            R0, loc_8A0|8-185
+2204|code|MOVS            R0, #1|1-32
+2206|code|B               loc_8A4|1-224
+2208|code|ADD             s, R8|71-68
+2210|code|B               loc_844|207-231
+2212|code|ADD             SP, SP, #0x2C ; ','|11-176
+2214|code|POP.W           {elf-R11,PC}|189-232-240-143
+2218|data|ALIGN 4|0-191
+2220|data|DCD grub_malloc|96-36-0-0
+2224|data|DCD grub_file_seek|64-36-0-0
+2228|data|DCD grub_file_read|84-36-0-0
+2232|data|DCD grub_memset|72-36-0-0
+2236|data|DCD grub_errno|68-36-0-0
+2240|data|DCD aNoteNetbsdIden_0; ".note.netbsd.ident"|22-32-0-0
+2244|data|DCD grub_memcmp|132-36-0-0
+2248|code|PUSH            {R4-R7,LR}|240-181
+2250|code|SUB.W           SP, SP, #0x27C|173-245-31-125
+2254|code|LDR             R1, [file]|1-104
+2256|code|MOV             R5, file|5-70
+2258|code|LDR             R6, =grub_elf_file_0|56-78
+2260|code|BLX             R6; grub_elf_file_0|176-71
+2262|code|MOV             R4, elf|4-70
+2264|code|CMP             elf, #0|0-40
+2266|code|BNE             loc_9AC|103-209
+2268|code|LDR             R3, =grub_errno|54-75
+2270|code|MOVS            R2, #0|0-34
+2272|code|LDR             R1, =grub_file_seek|54-73
+2274|code|STR             elf, [R3]|24-96
+2276|code|MOV             elf, file|40-70
+2278|code|MOVS            R3, #0|0-35
+2280|code|BLX             R1; grub_file_seek|136-71
+2282|code|ADDS            R1, #1|1-49
+2284|code|IT EQ|8-191
+2286|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+2290|code|BEQ             fail|85-208
+2292|code|MOV             R0, file|40-70
+2294|code|ADD             R1, SP, #0x290+lh|4-169
+2296|code|MOV.W           R2, #0x268|79-244-26-114
+2300|code|LDR             R3, =grub_file_read|48-75
+2302|code|BLX             R3; grub_file_read|152-71
+2304|code|CMP.W           R0, #0x268|176-245-26-127
+2308|code|BNE             fail|76-209
+2310|code|LDRH.W          R2, [SP,#0x290+lh.boot_flag]|189-248-14-34
+2314|code|MOVW            R3, #0xAA55|74-246-85-35
+2318|code|CMP             R2, R3|154-66
+2320|code|BNE             loc_92E|13-209
+2322|code|LDRH.W          R2, [SP,#0x290+lh.header+2]|189-248-20-34
+2326|code|LDRH.W          R3, [SP,#0x290+lh.header]|189-248-18-50
+2330|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+2334|code|LDR             R2, =0x53726448|41-74
+2336|code|CMP             R3, R2|147-66
+2338|code|BNE             loc_92E|4-209
+2340|code|LDRH.W          R3, [SP,#0x290+lh.version]|189-248-22-50
+2344|code|CMP.W           R3, #0x208|179-245-2-127
+2348|code|BCS             loc_934|2-210
+2350|code|MOVS            R0, #0x15|21-32
+2352|code|LDR             R1, =aVersionTooOldF; "version too old for xen boot"|37-73
+2354|code|B               loc_9A4|55-224
+2356|code|LDR             R2, [SP,#0x290+lh.payload_length]|151-154
+2358|code|CMP             R2, #3|3-42
+2360|code|BHI             loc_944|4-216
+2362|code|LDR             R1, =aPayloadTooShor; "payload too short"|36-73
+2364|code|MOVS            R0, #0x15|21-32
+2366|code|LDR             R3, =grub_error|36-75
+2368|code|BLX             R3; grub_error|152-71
+2370|code|B               loc_9AC|51-224
+2372|code|LDRB.W          R3, [SP,#0x290+lh.setup_sects]|157-248-1-50
+2376|code|MOV.W           R7, #0x200|79-244-0-119
+2380|code|LDR             R0, [SP,#0x290+lh.payload_offset]|150-152
+2382|code|MOVS            R1, #0|0-33
+2384|code|ADDS            R3, #1|1-51
+2386|code|SUBS            R2, #4|4-58
+2388|code|SMLAL.W         R0, R1, R7, R3|199-251-3-1
+2392|code|LDR             R7, =grub_real_dprintf|30-79
+2394|code|MOV.W           R3, #0|79-240-0-3
+2398|code|ADC.W           R3, R3, #0xFFFFFFFF|67-241-255-51
+2402|code|STRD.W          R2, R3, [SP,#0x290+var_288]|205-233-2-35
+2406|code|LDR             R2, =aXen_3; "xen"|28-74
+2408|code|LDR             R3, =aFoundBzimagePa; "found bzimage payload 0x%llx-0x%llx\n"|28-75
+2410|code|STRD.W          R0, R1, [SP,#0x290+var_290]|205-233-0-1
+2414|code|MOVS            R1, #0x39 ; '9'|57-33
+2416|code|LDR             R0, =aLoaderI386XenF; "loader/i386/xen_file.c"|27-72
+2418|code|BLX             R7; grub_real_dprintf|184-71
+2420|code|LDRB.W          R3, [SP,#0x290+lh.setup_sects]|157-248-1-50
+2424|code|LDR             R2, [SP,#0x290+lh.payload_offset]|150-154
+2426|code|MOV             R0, file|40-70
+2428|code|ADDS            R3, #1|1-51
+2430|code|LDR             R1, [SP,#0x290+lh.payload_length]|151-153
+2432|code|ADD.W           R2, R2, R3,LSL#9|2-235-67-34
+2436|code|SUBS            R1, #4|4-57
+2438|code|MOV             R3, elf|35-70
+2440|code|STMEA.W         SP, {R1,elf}|141-232-18-0
+2444|code|LDR             R1, =grub_file_offset_open|21-73
+2446|code|BLX             R1; grub_file_offset_open|136-71
+2448|code|MOV             R7, R0|7-70
+2450|code|CBZ             R0, fail|40-177
+2452|code|LDR             R1, [file]|41-104
+2454|code|BLX             R6; grub_elf_file_0|176-71
+2456|code|CBNZ            elf, loc_9AE|72-185
+2458|code|MOV             elf, R7|56-70
+2460|code|LDR             R3, =grub_file_offset_close|18-75
+2462|code|BLX             R3; grub_file_offset_close|152-71
+2464|code|LDR             R1, =aNotXenImage; "not xen image"|18-73
+2466|code|MOVS            R0, #0x15|21-32
+2468|code|LDR             R3, =grub_error|10-75
+2470|code|BLX             R3; grub_error|152-71
+2472|code|MOVS            R0, #0|0-32
+2474|code|B               loc_9AE|0-224
+2476|code|MOV             R0, elf|32-70
+2478|code|ADD.W           SP, SP, #0x27C|13-245-31-125
+2482|code|POP             {R4-R7,PC}|240-189
+2484|data|DCD grub_elf_file_0|52-36-0-0
+2488|data|DCD grub_errno|68-36-0-0
+2492|data|DCD grub_file_seek|64-36-0-0
+2496|data|DCD grub_file_read|84-36-0-0
+2500|data|DCD 0x53726448|72-100-114-83
+2504|data|DCD aVersionTooOldF; "version too old for xen boot"|41-32-0-0
+2508|data|DCD aPayloadTooShor; "payload too short"|70-32-0-0
+2512|data|DCD grub_error|116-36-0-0
+2516|data|DCD grub_real_dprintf|108-36-0-0
+2520|data|DCD aXen_3; "xen"|111-32-0-0
+2524|data|DCD aFoundBzimagePa; "found bzimage payload 0x%llx-0x%llx\n"|115-32-0-0
+2528|data|DCD aLoaderI386XenF; "loader/i386/xen_file.c"|88-32-0-0
+2532|data|DCD grub_file_offset_open|128-36-0-0
+2536|data|DCD grub_file_offset_close|76-36-0-0
+2540|data|DCD aNotXenImage; "not xen image"|152-32-0-0
+2544|code|PUSH            {R3-R5,LR}|56-181
+2546|code|MOVS            R2, #0x48 ; 'H'|72-34
+2548|code|MOV             R4, elf|4-70
+2550|code|LDR             R3, =grub_memset|20-75
+2552|code|MOV             elf, xi|8-70
+2554|code|MOV             R5, xi|13-70
+2556|code|MOVS            xi, #0|0-33
+2558|code|BLX             R3; grub_memset|152-71
+2560|code|MOV             R0, elf|32-70
+2562|code|LDR             R3, =grub_elf_is_elf64|18-75
+2564|code|BLX             R3; grub_elf_is_elf64|152-71
+2566|code|CBZ             R0, loc_A20|88-177
+2568|code|LDRH            R3, [elf,#0x1A]|99-139
+2570|code|CMP             R3, #0x3E ; '>'|62-43
+2572|code|BNE             loc_A20|8-209
+2574|code|LDRB            R3, [elf,#0xD]|99-123
+2576|code|CMP             R3, #1|1-43
+2578|code|BNE             loc_A20|5-209
+2580|code|MOVS            R3, #4|4-35
+2582|code|MOV             R0, elf|32-70
+2584|code|STR             R3, [xi,#0x40]|43-100
+2586|code|MOV             R1, xi|41-70
+2588|code|LDR             R3, =(grub_xen_get_info64+1)|12-75
+2590|code|B               loc_A44|17-224
+2592|code|MOV             R0, elf|32-70
+2594|code|LDR             R3, =grub_elf_is_elf32|12-75
+2596|code|BLX             R3; grub_elf_is_elf32|152-71
+2598|code|CBZ             R0, loc_A3E|80-177
+2600|code|LDRH            R3, [elf,#0x1A]|99-139
+2602|code|CMP             R3, #3|3-43
+2604|code|BNE             loc_A3E|7-209
+2606|code|LDRB            R3, [elf,#0xD]|99-123
+2608|code|CMP             R3, #1|1-43
+2610|code|BNE             loc_A3E|4-209
+2612|code|STR             R3, [xi,#0x40]|43-100
+2614|code|MOV             R0, elf|32-70
+2616|code|MOV             R1, xi|41-70
+2618|code|LDR             R3, =(grub_xen_get_info32+1)|7-75
+2620|code|B               loc_A44|2-224
+2622|code|LDR             R1, =aUnknownElfType; "unknown ELF type"|7-73
+2624|code|MOVS            R0, #0x15|21-32
+2626|code|LDR             R3, =grub_error|7-75
+2628|code|BLX             R3; grub_error|152-71
+2630|code|POP             {R3-xi,PC}|56-189
+2632|data|DCD grub_memset|72-36-0-0
+2636|data|DCD grub_elf_is_elf64|80-36-0-0
+2640|data|DCD grub_xen_get_info64+1|73-16-0-0
+2644|data|DCD grub_elf_is_elf32|44-36-0-0
+2648|data|DCD grub_xen_get_info32+1|101-10-0-0
+2652|data|DCD aUnknownElfType; "unknown ELF type"|166-32-0-0
+2656|data|DCD grub_error|116-36-0-0
+2660|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2664|code|SUB             SP, SP, #0x44|145-176
+2666|code|LDRH            R3, [err,#0x38]|3-143
+2668|code|MOVS            R2, #0|0-34
+2670|code|MOV             R5, err|5-70
+2672|code|MOV             R4, xi|12-70
+2674|code|LDR.W           R11, =grub_memcmp|223-248-196-178
+2678|code|STR             R3, [SP,#0x68+s0]|5-147
+2680|code|LDRH            R3, [err,#0x36]|195-142
+2682|code|STR             R3, [SP,#0x68+var_48]|8-147
+2684|code|MOVS            R3, #0|0-35
+2686|code|STRD.W          R2, R3, [xi,#8]|193-233-2-35
+2690|code|MOV.W           R2, #0xFFFFFFFF|79-240-255-50
+2694|code|MOV.W           R3, #0xFFFFFFFF|79-240-255-51
+2698|code|STRD.W          R2, R3, [xi]|193-233-0-35
+2702|code|LDR             R3, [err,#0x20]|3-106
+2704|code|STR             R3, [xi,#0x18]|139-97
+2706|code|MOVS            R3, #0|0-35
+2708|code|STR             R3, [xi,#0x1C]|203-97
+2710|code|LDR             R3, =grub_elf32_load_phdrs|153-75
+2712|code|BLX             R3; grub_elf32_load_phdrs|152-71
+2714|code|LDR             R7, [elf,#0x48]|175-108
+2716|code|CMP             phdr, #0|0-47
+2718|code|BEQ.W           loc_CE6|0-240-34-129
+2722|code|LDRH            R2, [elf,#0x34]|170-142
+2724|code|LDR             R3, [elf,#0x48]|171-108
+2726|code|ADD.W           R3, R3, R2,LSL#5|3-235-66-19
+2730|code|CMP             phdr, R3|159-66
+2732|code|BCS.W           loc_CE6|128-240-27-129
+2736|code|LDR             R3, [phdr]|59-104
+2738|code|CMP             R3, #4|4-43
+2740|code|BNE.W           loc_CAE|64-240-251-128
+2744|code|LDR             err, [elf]|40-104
+2746|code|MOVS            R3, #0|0-35
+2748|code|LDR             R2, [phdr,#4]|122-104
+2750|code|LDR             R1, =grub_file_seek|144-73
+2752|code|LDR             R6, [phdr,#0x10]|62-105
+2754|code|BLX             R1; grub_file_seek|136-71
+2756|code|ADDS            R1, #1|1-49
+2758|code|IT EQ|8-191
+2760|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+2764|code|BEQ             loc_AD8|4-208
+2766|code|MOV             err, R6|48-70
+2768|code|LDR             R3, =grub_malloc|140-75
+2770|code|BLX             R3; grub_malloc|152-71
+2772|code|MOV             R10, err|130-70
+2774|code|CBNZ            err, loc_ADE|16-185
+2776|code|LDR             R3, =grub_errno|139-75
+2778|code|LDR             err, [R3]|24-104
+2780|code|B               loc_CA8|228-224
+2782|code|LDR             err, [elf]|40-104
+2784|code|MOV             R1, R10|81-70
+2786|code|MOV             R2, R6|50-70
+2788|code|LDR             R3, =grub_file_read|137-75
+2790|code|BLX             R3; grub_file_read|152-71
+2792|code|CMP             err, R6|176-66
+2794|code|BNE             loc_AF4|3-209
+2796|code|LSRS            R3, err, #2|131-8
+2798|code|STR             R3, [SP,#0x68+var_44]|9-147
+2800|code|MOV             R3, R10|83-70
+2802|code|B               loc_B30|29-224
+2804|code|LDR             R3, =grub_errno|132-75
+2806|code|LDR             err, [R3]|24-104
+2808|code|CMP             err, #0|0-40
+2810|code|BNE.W           loc_1038|64-240-157-130
+2814|code|LDR             R3, [elf]|43-104
+2816|code|MOVS            err, #0x15|21-32
+2818|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|131-73
+2820|code|LDR             R2, [R3]|26-104
+2822|code|LDR             R3, =grub_error|131-75
+2824|code|BLX             R3; grub_error|152-71
+2826|code|B               loc_CA8|205-224
+2828|code|LDM.W           R3, {R2,R6}|147-232-68-0
+2832|code|ADD.W           R12, R3, #0xC|3-241-12-12
+2836|code|ADD.W           R9, R2, #3|2-241-3-9
+2840|code|ADDS            R1, R6, #3|241-28
+2842|code|CMP             R2, #2|2-42
+2844|code|BIC.W           R1, R1, #3|33-240-3-1
+2848|code|MOV.W           R9, R9,LSR#2|79-234-153-9
+2852|code|ADD.W           R8, R12, R9,LSL#2|12-235-137-8
+2856|code|ADD             R1, R8|65-68
+2858|code|STR             R1, [SP,#0x68+stroff]|6-145
+2860|code|BHI             loc_B3E|7-216
+2862|code|LDR             R3, [SP,#0x68+stroff]|6-155
+2864|code|RSB.W           R2, R10, R3|202-235-3-2
+2868|code|LDR             R1, [SP,#0x68+var_44]|9-153
+2870|code|CMP.W           R1, R2,ASR#2|177-235-162-15
+2874|code|BGT             loc_B0C|231-220
+2876|code|B               loc_CAE|183-224
+2878|code|CMP             R2, #3|3-42
+2880|code|MOV             err, R12|96-70
+2882|code|LDR             R1, =aXen; "Xen"|117-73
+2884|code|ITE EQ|12-191
+2886|code|MOVEQ           R2, #3|3-34
+2888|code|MOVNE           R2, #4|4-34
+2890|code|STR             R3, [SP,#0x68+var_3C]|11-147
+2892|code|STR.W           R12, [SP,#0x68+var_40]|205-248-40-192
+2896|code|BLX             R11; grub_memcmp|216-71
+2898|code|LDR.W           R12, [SP,#0x68+var_40]|221-248-40-192
+2902|code|LDR             R3, [SP,#0x68+var_3C]|11-155
+2904|code|CMP             err, #0|0-40
+2906|code|BNE             loc_B2E|232-209
+2908|code|MOVS            R2, #1|1-34
+2910|code|STR             R2, [xi,#0x34]|98-99
+2912|code|LDR             R2, [R3,#8]|154-104
+2914|code|SUBS            R3, R2, #1; switch 9 cases|83-30
+2916|code|CMP             R3, #8|8-43
+2918|code|BHI.W           def_B6A; jumptable 00000B6A default case|0-242-150-128
+2922|code|TBB.W           [PC,R3]; switch jump|223-232-3-240
+2926|data|DCB 5; jump table for switch statement|5
+2927|data|DCB 0xB|11
+2928|data|DCB 0x13|19
+2929|data|DCB 0x19|25
+2930|data|DCB 0x1F|31
+2931|data|DCB 0x26|38
+2932|data|DCB 0x2D|45
+2933|data|DCB 0x34|52
+2934|data|DCB 0x45|69
+2935|data|ALIGN 2|0
+2936|code|LDR.W           R3, [R12,R9,LSL#2]; jumptable 00000B6A case 1|92-248-41-48
+2940|code|STR             R3, [xi,#0x18]|163-97
+2942|code|MOVS            R3, #0|0-35
+2944|code|STR             R3, [xi,#0x1C]|227-97
+2946|code|B               loc_B2E|212-231
+2948|code|LDR.W           R3, [R12,R9,LSL#2]; jumptable 00000B6A case 2|92-248-41-48
+2952|code|STR             R3, [xi,#0x20]|35-98
+2954|code|MOVS            R3, #0|0-35
+2956|code|STR             R3, [xi,#0x24]|99-98
+2958|code|MOVS            R3, #1|1-35
+2960|code|STR             R3, [xi,#0x30]|35-99
+2962|code|B               loc_B2E|204-231
+2964|code|LDR.W           R3, [R12,R9,LSL#2]; jumptable 00000B6A case 3|92-248-41-48
+2968|code|STR             R3, [xi,#0x10]|35-97
+2970|code|MOVS            R3, #0|0-35
+2972|code|STR             R3, [xi,#0x14]|99-97
+2974|code|B               loc_B2E|198-231
+2976|code|LDR.W           R3, [R12,R9,LSL#2]; jumptable 00000B6A case 4|92-248-41-48
+2980|code|STR             R3, [xi,#0x28]|163-98
+2982|code|MOVS            R3, #0|0-35
+2984|code|STR             R3, [xi,#0x2C]|227-98
+2986|code|B               loc_B2E|192-231
+2988|code|STR.W           R8, [SP,#0x68+var_68]; jumptable 00000B6A case 5|205-248-0-128
+2992|code|MOVS            R1, #0xD4|212-33
+2994|code|LDR             err, =aLoaderI386XenF_0; "loader/i386/xen_file32.c"|90-72
+2996|code|LDR             R2, =aXen_0; "xen"|90-74
+2998|code|LDR             R3, =aXenversionS; "xenversion = `%s'\n"|91-75
+3000|code|B               loc_CA2|115-224
+3002|code|STR.W           R8, [SP,#0x68+var_68]; jumptable 00000B6A case 6|205-248-0-128
+3006|code|MOVS            R1, #0xD7|215-33
+3008|code|LDR             err, =aLoaderI386XenF_0; "loader/i386/xen_file32.c"|86-72
+3010|code|LDR             R2, =aXen_0; "xen"|87-74
+3012|code|LDR             R3, =aNameS; "name = `%s'\n"|88-75
+3014|code|B               loc_CA2|108-224
+3016|code|STR.W           R8, [SP,#0x68+var_68]; jumptable 00000B6A case 7|205-248-0-128
+3020|code|MOVS            R1, #0xDA|218-33
+3022|code|LDR             err, =aLoaderI386XenF_0; "loader/i386/xen_file32.c"|83-72
+3024|code|LDR             R2, =aXen_0; "xen"|83-74
+3026|code|LDR             R3, =aVersionS; "version = `%s'\n"|86-75
+3028|code|B               loc_CA2|101-224
+3030|code|CMP             R6, #6; jumptable 00000B6A case 8|6-46
+3032|code|BHI             loc_BE4|4-216
+3034|code|LDR             R1, =aInvalidLoader; "invalid loader"|85-73
+3036|code|MOVS            err, #0x15|21-32
+3038|code|LDR             R3, =grub_error|77-75
+3040|code|BLX             R3; grub_error|152-71
+3042|code|B               loc_CA8|97-224
+3044|code|CMP             R6, #7|7-46
+3046|code|MOV             err, R8|64-70
+3048|code|LDR             R1, =aGeneric; "generic"|82-73
+3050|code|IT EQ|8-191
+3052|code|MOVEQ           R2, #7|7-34
+3054|code|LDR             R3, =grub_memcmp|82-75
+3056|code|BLX             R3; grub_memcmp|152-71
+3058|code|CMP             err, #0|0-40
+3060|code|BEQ             loc_B2E|155-208
+3062|code|B               loc_BDA|240-231
+3064|code|LDR             R3, [xi,#0x40]; jumptable 00000B6A case 9|35-108
+3066|code|MOVS            R1, #0xE4|228-33
+3068|code|STR.W           R8, [SP,#0x68+var_68]|205-248-0-128
+3072|code|STR             R6, [SP,#0x68+var_60]|2-150
+3074|code|STR             R3, [SP,#0x68+var_64]|1-147
+3076|code|LDR             err, =aLoaderI386XenF_0; "loader/i386/xen_file32.c"|69-72
+3078|code|LDR             R3, =aPaeSDD; "pae = `%s', %d, %d\n"|77-75
+3080|code|LDR             R2, =aXen_0; "xen"|69-74
+3082|code|LDR.W           R12, =grub_real_dprintf|223-248-72-193
+3086|code|BLX             R12; grub_real_dprintf|224-71
+3088|code|LDR             R3, [xi,#0x40]|35-108
+3090|code|SUBS            R3, #1|1-59
+3092|code|CMP             R3, #2|2-43
+3094|code|BHI             loc_B2E|138-216
+3096|code|CMP             R6, #2|2-46
+3098|code|BLS             loc_C76|44-217
+3100|code|CMP             R6, #3|3-46
+3102|code|MOV             err, R8|64-70
+3104|code|LDR             R1, =aYes; "yes"|71-73
+3106|code|ITE EQ|12-191
+3108|code|MOVEQ           R2, #3|3-34
+3110|code|MOVNE           R2, #4|4-34
+3112|code|BLX             R11; grub_memcmp|216-71
+3114|code|CBNZ            err, loc_C34|24-185
+3116|code|MOVS            R3, #1|1-35
+3118|code|STR             R3, [xi,#0x3C]|227-99
+3120|code|MOVS            R3, #2|2-35
+3122|code|STR             R3, [xi,#0x40]|35-100
+3124|code|CMP             R6, #6|6-46
+3126|code|BLS             loc_C76|30-217
+3128|code|CMP             R6, #7|7-46
+3130|code|MOV             err, R8|64-70
+3132|code|LDR             R1, =aBimodal; "bimodal"|65-73
+3134|code|ITE EQ|12-191
+3136|code|MOVEQ           R2, #7|7-34
+3138|code|MOVNE           R2, #8|8-34
+3140|code|LDR             R3, =grub_memcmp|60-75
+3142|code|BLX             R3; grub_memcmp|152-71
+3144|code|CBNZ            err, loc_C52|24-185
+3146|code|MOVS            R3, #1|1-35
+3148|code|STR             R3, [xi,#0x3C]|227-99
+3150|code|MOVS            R3, #3|3-35
+3152|code|STR             R3, [xi,#0x40]|35-100
+3154|code|CMP             R6, #0xA|10-46
+3156|code|BLS             loc_C7C|18-217
+3158|code|CMP             R6, #0xB|11-46
+3160|code|MOV             err, R8|64-70
+3162|code|LDR             R1, =aYesBimodal; "yes,bimodal"|59-73
+3164|code|ITE EQ|12-191
+3166|code|MOVEQ           R2, #0xB|11-34
+3168|code|MOVNE           R2, #0xC|12-34
+3170|code|LDR             R3, =grub_memcmp|53-75
+3172|code|BLX             R3; grub_memcmp|152-71
+3174|code|CMP             err, #0|0-40
+3176|code|BNE.W           loc_1034|64-240-228-129
+3180|code|MOVS            R3, #1|1-35
+3182|code|STR             R3, [xi,#0x3C]|227-99
+3184|code|MOVS            R3, #3|3-35
+3186|code|STR             R3, [xi,#0x40]|35-100
+3188|code|B               loc_1034|222-225
+3190|code|CMP             R6, #1|1-46
+3192|code|BLS.W           loc_B2E|127-246-89-175
+3196|code|CMP             R6, #2|2-46
+3198|code|ITE EQ|12-191
+3200|code|MOVEQ           R2, #2|2-34
+3202|code|MOVNE           R2, #3|3-34
+3204|code|MOV             err, R8|64-70
+3206|code|LDR             R1, =aNo; "no"|49-73
+3208|code|BLX             R11; grub_memcmp|216-71
+3210|code|CMP             err, #0|0-40
+3212|code|BNE.W           loc_B2E|127-244-79-175
+3216|code|MOVS            R3, #1|1-35
+3218|code|STR             R3, [xi,#0x40]|35-100
+3220|code|B               loc_B2E|75-231
+3222|code|STR             R2, [SP,#0x68+var_68]; jumptable 00000B6A default case|0-146
+3224|code|MOV.W           R1, #0x100|79-244-128-113
+3228|code|LDR             err, =aLoaderI386XenF_0; "loader/i386/xen_file32.c"|31-72
+3230|code|LDR             R2, =aXen_0; "xen"|32-74
+3232|code|LDR             R3, =aUnknownNoteTyp; "unknown note type %d\n"|43-75
+3234|code|LDR             R6, =grub_real_dprintf|44-78
+3236|code|BLX             R6; grub_real_dprintf|176-71
+3238|code|B               loc_B2E|66-231
+3240|code|CMP             err, #0|0-40
+3242|code|BNE.W           loc_1038|64-240-197-129
+3246|code|LDR             R3, [phdr]|59-104
+3248|code|CMP             R3, #1|1-43
+3250|code|BNE             loc_CE2|22-209
+3252|code|LDRD.W          R2, R3, [xi]|212-233-0-35
+3256|code|MOV.W           R9, #0|79-240-0-9
+3260|code|LDR             err, [phdr,#0xC]|248-104
+3262|code|MOVS            R1, #0|0-33
+3264|code|CMP             R9, R3|153-69
+3266|code|LDR             R3, [phdr,#0x14]|123-105
+3268|code|IT EQ|8-191
+3270|code|CMPEQ           paddr, R2|144-66
+3272|code|MOV             R8, paddr|128-70
+3274|code|ADD             paddr, R3|24-68
+3276|code|LDRD.W          R2, R3, [xi,#8]|212-233-2-35
+3280|code|IT CC|56-191
+3282|code|STRDCC.W        paddr, R9, [xi]|196-233-0-137
+3286|code|CMP             R3, R1|139-66
+3288|code|IT EQ|8-191
+3290|code|CMPEQ           R2, err|130-66
+3292|code|IT CC|56-191
+3294|code|STRDCC.W        err, R1, [xi,#8]|196-233-2-1
+3298|code|ADDS            phdr, #0x20 ; ' '|32-55
+3300|code|B               loc_A9C|218-230
+3302|code|LDR             R6, [xi,#0x34]|102-107
+3304|code|CMP             R6, #0|0-46
+3306|code|BNE.W           loc_1030|64-240-161-129
+3310|code|LDR             R3, [SP,#0x68+s0]|5-155
+3312|code|CBZ             R3, loc_CF6|11-177
+3314|code|LDR             R3, [SP,#0x68+var_48]|8-155
+3316|code|CBNZ            R3, loc_D5C|147-187
+3318|code|MOVS            err, #0x15|21-32
+3320|code|LDR             R1, =aNoXenNote; "no XEN note"|23-73
+3322|code|B               loc_102A|150-225
+3324|data|DCD grub_elf32_load_phdrs|48-36-0-0
+3328|data|DCD grub_file_seek|64-36-0-0
+3332|data|DCD grub_malloc|96-36-0-0
+3336|data|DCD grub_errno|68-36-0-0
+3340|data|DCD grub_file_read|84-36-0-0
+3344|data|DCD aPrematureEndOf; "premature end of file %s"|183-32-0-0
+3348|data|DCD grub_error|116-36-0-0
+3352|data|DCD aXen; "Xen"|208-32-0-0
+3356|data|DCD aLoaderI386XenF_0; "loader/i386/xen_file32.c"|212-32-0-0
+3360|data|DCD aXen_0; "xen"|237-32-0-0
+3364|data|DCD aXenversionS; "xenversion = `%s'\n"|241-32-0-0
+3368|data|DCD aNameS; "name = `%s'\n"|4-33-0-0
+3372|data|DCD aVersionS; "version = `%s'\n"|17-33-0-0
+3376|data|DCD aInvalidLoader; "invalid loader"|33-33-0-0
+3380|data|DCD aGeneric; "generic"|48-33-0-0
+3384|data|DCD grub_memcmp|132-36-0-0
+3388|data|DCD aPaeSDD; "pae = `%s', %d, %d\n"|56-33-0-0
+3392|data|DCD aYes; "yes"|76-33-0-0
+3396|data|DCD aBimodal; "bimodal"|80-33-0-0
+3400|data|DCD aYesBimodal; "yes,bimodal"|88-33-0-0
+3404|data|DCD aNo; "no"|100-33-0-0
+3408|data|DCD aUnknownNoteTyp; "unknown note type %d\n"|103-33-0-0
+3412|data|DCD grub_real_dprintf|108-36-0-0
+3416|data|DCD aNoXenNote; "no XEN note"|125-33-0-0
+3420|code|LDR             R3, [SP,#0x68+s0]|5-155
+3422|code|LDR             R2, [SP,#0x68+var_48]|8-154
+3424|code|MUL.W           R8, R3, R2|3-251-2-248
+3428|code|LDR             R3, =grub_malloc|149-75
+3430|code|MOV             err, R8|64-70
+3432|code|BLX             R3; grub_malloc|152-71
+3434|code|STR             err, [SP,#0x68+s0]|5-144
+3436|code|CMP             err, #0|0-40
+3438|code|BEQ             loc_E00|71-208
+3440|code|MOV             R3, R6|51-70
+3442|code|LDR             err, [elf]|40-104
+3444|code|LDR             R2, [elf,#0x28]|170-106
+3446|code|LDR             R6, =grub_file_seek|146-78
+3448|code|BLX             R6; grub_file_seek|176-71
+3450|code|ADDS            R1, #1|1-49
+3452|code|IT EQ|8-191
+3454|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+3458|code|BEQ             loc_E00|61-208
+3460|code|LDR             err, [elf]|40-104
+3462|code|MOV             R2, R8|66-70
+3464|code|LDR             R1, [SP,#0x68+s0]|5-153
+3466|code|LDR.W           R10, =grub_file_read|223-248-80-162
+3470|code|BLX             R10; grub_file_read|208-71
+3472|code|CMP             err, R8|64-69
+3474|code|BNE             loc_E06|56-209
+3476|code|LDR             R1, [SP,#0x68+s0]|5-153
+3478|code|MOV             R9, R6|177-70
+3480|code|LDRH            R3, [elf,#0x3A]|107-143
+3482|code|LDR             R2, [SP,#0x68+var_48]|8-154
+3484|code|LDR.W           R11, [SP,#0x68+s0]|221-248-20-176
+3488|code|MLA.W           R3, R2, R3, R1|2-251-3-19
+3492|code|MOVS            R1, #0|0-33
+3494|code|LDR             R3, [R3,#0x10]|27-105
+3496|code|MOV             err, R3|24-70
+3498|code|STRD.W          err, R1, [SP,#0x68+stroff]|205-233-6-1
+3502|code|B               loc_DCC|13-224
+3504|code|MOVS            R2, #0xC|12-34
+3506|code|LDR             err, [elf]|40-104
+3508|code|ADD             R1, SP, #0x68+name|13-169
+3510|code|BLX             R10; grub_file_read|208-71
+3512|code|CMP             err, #0xC|12-40
+3514|code|MOV             R2, err|2-70
+3516|code|BEQ             loc_E1E|47-208
+3518|code|LDR             R3, =grub_errno|129-75
+3520|code|LDR             err, [R3]|24-104
+3522|code|CMP             err, #0|0-40
+3524|code|BNE.W           loc_1038|64-240-56-129
+3528|code|LDR             R3, [SP,#0x68+var_48]|8-155
+3530|code|ADD             s_0, R3|155-68
+3532|code|LDR             R3, [SP,#0x68+s0]|5-155
+3534|code|ADD             R3, R8|67-68
+3536|code|CMP             s_0, R3|155-69
+3538|code|BCS.W           loc_1026|128-240-40-129
+3542|code|MOVS            R1, #0|0-33
+3544|code|MOVS            R2, #0xC|12-34
+3546|code|LDR             R3, =grub_memset|123-75
+3548|code|ADD             err, SP, #0x68+name|13-168
+3550|code|BLX             R3; grub_memset|152-71
+3552|code|LDR.W           R2, [s_0]|219-248-0-32
+3556|code|LDRD.W          R6, R7, [SP,#0x68+stroff]|221-233-6-103
+3560|code|LDR             err, [elf]|40-104
+3562|code|ADDS            R6, R6, R2|182-24
+3564|code|ADC.W           R7, R7, #0|71-241-0-7
+3568|code|MOV             R2, R6|50-70
+3570|code|MOV             R3, R7|59-70
+3572|code|BLX             R9; grub_file_seek|200-71
+3574|code|ADDS            R1, #1|1-49
+3576|code|IT EQ|8-191
+3578|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+3582|code|BNE             loc_DB0|215-209
+3584|code|LDR             R3, =grub_errno|112-75
+3586|code|LDR             err, [R3]|24-104
+3588|code|B               loc_1038|24-225
+3590|code|LDR             R3, =grub_errno|111-75
+3592|code|LDR             err, [R3]|24-104
+3594|code|CMP             err, #0|0-40
+3596|code|BNE.W           loc_1038|64-240-20-129
+3600|code|LDR             R3, [elf]|43-104
+3602|code|MOVS            err, #0x15|21-32
+3604|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|109-73
+3606|code|LDR             R2, [R3]|26-104
+3608|code|LDR             R3, =grub_error|109-75
+3610|code|BLX             R3; grub_error|152-71
+3612|code|B               loc_1038|12-225
+3614|code|ADD             err, SP, #0x68+name|13-168
+3616|code|LDR             R1, =aXenGuest; "__xen_guest"|108-73
+3618|code|LDR             R3, =grub_memcmp|109-75
+3620|code|BLX             R3; grub_memcmp|152-71
+3622|code|MOV             R6, err|6-70
+3624|code|CMP             err, #0|0-40
+3626|code|BNE             loc_DC8|205-209
+3628|code|LDR             err, [elf]|40-104
+3630|code|MOV             R3, R6|51-70
+3632|code|LDR.W           R2, [s_0,#0x10]|219-248-16-32
+3636|code|LDR             R1, =grub_file_seek|98-73
+3638|code|LDR.W           R9, [s_0,#0x14]|219-248-20-144
+3642|code|BLX             R1; grub_file_seek|136-71
+3644|code|ADDS            R1, #1|1-49
+3646|code|IT EQ|8-191
+3648|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+3652|code|BEQ             loc_E00|220-208
+3654|code|MOV             err, R9|72-70
+3656|code|LDR             R3, =grub_malloc|92-75
+3658|code|BLX             R3; grub_malloc|152-71
+3660|code|MOV             R7, err|7-70
+3662|code|CMP             err, #0|0-40
+3664|code|BEQ             loc_E00|214-208
+3666|code|LDR             err, [elf]|40-104
+3668|code|MOV             R1, R7|57-70
+3670|code|MOV             R2, R9|74-70
+3672|code|LDR             R3, =grub_file_read|96-75
+3674|code|BLX             R3; grub_file_read|152-71
+3676|code|CMP             err, R9|72-69
+3678|code|MOV             R8, err|128-70
+3680|code|BNE             loc_E06|209-209
+3682|code|LDR             elf, =grub_strncmp|95-77
+3684|code|MOVS            R3, #1|1-35
+3686|code|STR             R7, [SP,#0x68+var_38]|12-151
+3688|code|STR             R3, [xi,#0x38]|163-99
+3690|code|MOV             R9, R5|169-70
+3692|code|LDR             err, [SP,#0x68+var_38]|12-152
+3694|code|CBNZ            err, loc_E92|128-185
+3696|code|LDR             R3, [xi,#0x30]|35-107
+3698|code|CMP             R3, #0|0-43
+3700|code|BEQ.W           loc_1018|0-240-208-128
+3704|code|LDR             err, [xi,#0x24]|96-106
+3706|code|LDR             R1, [xi,#0x20]|33-106
+3708|code|LSLS            R3, err, #0xC|3-3
+3710|code|ORR.W           R3, R3, R1,LSR#20|67-234-17-83
+3714|code|LSLS            R2, R1, #0xC|10-3
+3716|code|LDRD.W          err, R1, [xi,#0x10]|212-233-4-1
+3720|code|ADDS            R2, R2, err|18-24
+3722|code|ADCS            R3, R1|75-65
+3724|code|STRD.W          R2, R3, [xi,#0x20]|196-233-8-35
+3728|code|B               loc_1018|194-224
+3730|code|SUBS            R3, err, R7|195-27
+3732|code|CMP             R3, R8|67-69
+3734|code|BGE             loc_E70|235-218
+3736|code|LDR             R1, =aPaeNo; "PAE=no,"|82-73
+3738|code|MOVS            R2, #7|7-34
+3740|code|BLX             R5; grub_strncmp|168-71
+3742|code|CBNZ            err, loc_EAE|48-185
+3744|code|LDR             R3, [xi,#0x40]|35-108
+3746|code|SUBS            R3, #1|1-59
+3748|code|CMP             R3, #2|2-43
+3750|code|BHI.W           loc_FAC|0-242-129-128
+3754|code|MOVS            R3, #1|1-35
+3756|code|B               loc_EC2|9-224
+3758|code|LDR             err, [SP,#0x68+var_38]|12-152
+3760|code|MOVS            R2, #8|8-34
+3762|code|LDR             R1, =aPaeYes; "PAE=yes,"|77-73
+3764|code|BLX             R5; grub_strncmp|168-71
+3766|code|CBNZ            err, loc_EC6|48-185
+3768|code|LDR             R3, [xi,#0x40]|35-108
+3770|code|SUBS            R3, #1|1-59
+3772|code|CMP             R3, #2|2-43
+3774|code|BHI             loc_FAC|117-216
+3776|code|MOVS            R3, #2|2-35
+3778|code|STR             R3, [xi,#0x40]|35-100
+3780|code|B               loc_FAC|114-224
+3782|code|LDR             err, [SP,#0x68+var_38]|12-152
+3784|code|MOVS            R2, #0x16|22-34
+3786|code|LDR             R1, =aPaeYesExtended; "PAE=yes[extended-cr3],"|72-73
+3788|code|BLX             R5; grub_strncmp|168-71
+3790|code|CBNZ            err, loc_EDC|40-185
+3792|code|LDR             R3, [xi,#0x40]|35-108
+3794|code|SUBS            R3, #1|1-59
+3796|code|CMP             R3, #2|2-43
+3798|code|BHI             loc_FAC|105-216
+3800|code|MOVS            R3, #2|2-35
+3802|code|B               loc_F1A|30-224
+3804|code|LDR             err, [SP,#0x68+var_38]|12-152
+3806|code|MOVS            R2, #0xC|12-34
+3808|code|LDR             R1, =aPaeBimodal; "PAE=bimodal,"|67-73
+3810|code|BLX             R5; grub_strncmp|168-71
+3812|code|CBZ             err, loc_EFA|72-177
+3814|code|LDR             err, [SP,#0x68+var_38]|12-152
+3816|code|MOVS            R2, #0x1A|26-34
+3818|code|LDR             R1, =aPaeBimodalExte; "PAE=bimodal[extended-cr3],"|66-73
+3820|code|BLX             R5; grub_strncmp|168-71
+3822|code|CBZ             err, loc_F10|120-177
+3824|code|LDR             err, [SP,#0x68+var_38]|12-152
+3826|code|MOVS            R2, #0x10|16-34
+3828|code|LDR             R1, =aPaeYesBimodal; "PAE=yes,bimodal,"|64-73
+3830|code|BLX             R5; grub_strncmp|168-71
+3832|code|CBNZ            err, loc_F06|40-185
+3834|code|LDR             R3, [xi,#0x40]|35-108
+3836|code|SUBS            R3, #1|1-59
+3838|code|CMP             R3, #2|2-43
+3840|code|BHI             loc_FAC|84-216
+3842|code|MOVS            R3, #3|3-35
+3844|code|B               loc_EC2|221-231
+3846|code|LDR             err, [SP,#0x68+var_38]|12-152
+3848|code|MOVS            R2, #0x1E|30-34
+3850|code|LDR             R1, =aPaeYesExtended_0; "PAE=yes[extended-cr3],bimodal,"|60-73
+3852|code|BLX             R5; grub_strncmp|168-71
+3854|code|CBNZ            err, loc_F22|64-185
+3856|code|LDR             R3, [xi,#0x40]|35-108
+3858|code|SUBS            R3, #1|1-59
+3860|code|CMP             R3, #2|2-43
+3862|code|BHI             loc_FAC|73-216
+3864|code|MOVS            R3, #3|3-35
+3866|code|STR             R3, [xi,#0x40]|35-100
+3868|code|MOVS            R3, #1|1-35
+3870|code|STR             R3, [xi,#0x3C]|227-99
+3872|code|B               loc_FAC|68-224
+3874|code|LDR             err, [SP,#0x68+var_38]|12-152
+3876|code|MOVS            R2, #0xA|10-34
+3878|code|LDR             R1, =aVirtBase; "VIRT_BASE="|54-73
+3880|code|BLX             R5; grub_strncmp|168-71
+3882|code|CBNZ            err, loc_F40|72-185
+3884|code|ADD             R1, SP, #0x68+var_28|16-169
+3886|code|MOVS            R2, #0x10|16-34
+3888|code|LDR             R3, =grub_strtoull|52-75
+3890|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+3894|code|ADDS            err, #0xA|10-48
+3896|code|BLX             R3; grub_strtoull|152-71
+3898|code|STRD.W          err, R1, [xi,#0x10]|196-233-4-1
+3902|code|B               loc_F7E|30-224
+3904|code|LDR             err, [SP,#0x68+var_38]|12-152
+3906|code|MOVS            R2, #0xB|11-34
+3908|code|LDR             R1, =aVirtEntry; "VIRT_ENTRY="|48-73
+3910|code|BLX             R9; grub_strncmp|200-71
+3912|code|CBNZ            err, loc_F5E|72-185
+3914|code|ADD             R1, SP, #0x68+var_28|16-169
+3916|code|MOVS            R2, #0x10|16-34
+3918|code|LDR             R3, =grub_strtoull|45-75
+3920|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+3924|code|ADDS            err, #0xB|11-48
+3926|code|BLX             R3; grub_strtoull|152-71
+3928|code|STRD.W          err, R1, [xi,#0x18]|196-233-6-1
+3932|code|B               loc_F7E|15-224
+3934|code|LDR             err, [SP,#0x68+var_38]|12-152
+3936|code|MOVS            R2, #0xF|15-34
+3938|code|LDR             R1, =aHypercallPage; "HYPERCALL_PAGE="|42-73
+3940|code|BLX             R5; grub_strncmp|168-71
+3942|code|CBNZ            err, loc_F86|112-185
+3944|code|ADD             R1, SP, #0x68+var_28|16-169
+3946|code|LDR             R3, =grub_strtoull|38-75
+3948|code|MOVS            R2, #0x10|16-34
+3950|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+3954|code|ADDS            err, #0xF|15-48
+3956|code|BLX             R3; grub_strtoull|152-71
+3958|code|MOVS            R3, #1|1-35
+3960|code|STR             R3, [xi,#0x30]|35-99
+3962|code|STRD.W          err, R1, [xi,#0x20]|196-233-8-1
+3966|code|LDR             R3, =grub_errno|17-75
+3968|code|LDR             err, [R3]|24-104
+3970|code|CBZ             err, loc_FAC|152-177
+3972|code|B               loc_1038|88-224
+3974|code|LDR             err, [SP,#0x68+var_38]|12-152
+3976|code|MOVS            R2, #0x11|17-34
+3978|code|LDR             R1, =aElfPaddrOffset; "ELF_PADDR_OFFSET="|33-73
+3980|code|BLX             R5; grub_strncmp|168-71
+3982|code|CBNZ            err, loc_FAC|104-185
+3984|code|ADD             R1, SP, #0x68+var_28|16-169
+3986|code|LDR             R3, =grub_strtoull|28-75
+3988|code|MOVS            R2, #0x10|16-34
+3990|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+3994|code|ADDS            err, #0x11|17-48
+3996|code|BLX             R3; grub_strtoull|152-71
+3998|code|LDR             R3, =grub_errno|9-75
+4000|code|STRD.W          err, R1, [xi,#0x28]|196-233-10-1
+4004|code|LDR             err, [R3]|24-104
+4006|code|CMP             err, #0|0-40
+4008|code|BNE             loc_1038|70-209
+4010|code|MOVS            R6, #1|1-38
+4012|code|LDR             err, [SP,#0x68+var_38]|12-152
+4014|code|MOVS            R1, #0x2C ; ','|44-33
+4016|code|LDR             R3, =grub_strchr|24-75
+4018|code|BLX             R3; grub_strchr|152-71
+4020|code|CBZ             err, loc_FB8|0-177
+4022|code|ADDS            err, #1|1-48
+4024|code|STR             err, [SP,#0x68+var_38]|12-144
+4026|code|B               loc_E6C|87-231
+4028|data|DCD grub_malloc|96-36-0-0
+4032|data|DCD grub_file_seek|64-36-0-0
+4036|data|DCD grub_errno|68-36-0-0
+4040|data|DCD grub_memset|72-36-0-0
+4044|data|DCD aPrematureEndOf; "premature end of file %s"|183-32-0-0
+4048|data|DCD grub_error|116-36-0-0
+4052|data|DCD aXenGuest; "__xen_guest"|137-33-0-0
+4056|data|DCD grub_memcmp|132-36-0-0
+4060|data|DCD grub_file_read|84-36-0-0
+4064|data|DCD grub_strncmp|36-36-0-0
+4068|data|DCD aPaeNo; "PAE=no,"|149-33-0-0
+4072|data|DCD aPaeYes; "PAE=yes,"|157-33-0-0
+4076|data|DCD aPaeYesExtended; "PAE=yes[extended-cr3],"|166-33-0-0
+4080|data|DCD aPaeBimodal; "PAE=bimodal,"|189-33-0-0
+4084|data|DCD aPaeBimodalExte; "PAE=bimodal[extended-cr3],"|202-33-0-0
+4088|data|DCD aPaeYesBimodal; "PAE=yes,bimodal,"|229-33-0-0
+4092|data|DCD aPaeYesExtended_0; "PAE=yes[extended-cr3],bimodal,"|246-33-0-0
+4096|data|DCD aVirtBase; "VIRT_BASE="|21-34-0-0
+4100|data|DCD grub_strtoull|40-36-0-0
+4104|data|DCD aVirtEntry; "VIRT_ENTRY="|32-34-0-0
+4108|data|DCD aHypercallPage; "HYPERCALL_PAGE="|44-34-0-0
+4112|data|DCD aElfPaddrOffset; "ELF_PADDR_OFFSET="|60-34-0-0
+4116|data|DCD grub_strchr|92-36-0-0
+4120|code|CBNZ            R6, loc_1030|86-185
+4122|code|LDRD.W          R2, R3, [xi,#0x10]|212-233-4-35
+4126|code|MOV             err, R6|48-70
+4128|code|STRD.W          R2, R3, [xi,#0x28]|196-233-10-35
+4132|code|B               loc_1038|8-224
+4134|code|LDR             R1, =aNoXenNoteFound; "no XEN note found"|6-73
+4136|code|MOVS            err, #0x15|21-32
+4138|code|LDR             R3, =grub_error|6-75
+4140|code|BLX             R3; grub_error|152-71
+4142|code|B               loc_1038|3-224
+4144|code|MOVS            err, #0|0-32
+4146|code|B               loc_1038|1-224
+4148|code|MOVS            R2, #3|3-34
+4150|code|B               loc_C84|37-230
+4152|code|ADD             SP, SP, #0x44 ; 'D'|17-176
+4154|code|POP.W           {xi-R11,PC}|189-232-240-143
+4158|data|ALIGN 0x10|0-191
+4160|data|DCD aNoXenNoteFound; "no XEN note found"|78-34-0-0
+4164|data|DCD grub_error|116-36-0-0
+4168|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4172|code|SUB             SP, SP, #0x3C|143-176
+4174|code|LDRH.W          R3, [err,#0x44]|176-248-68-48
+4178|code|MOVS            R2, #0|0-34
+4180|code|MOV             R5, err|5-70
+4182|code|MOV             R4, xi|12-70
+4184|code|LDR             R7, =grub_memcmp|166-79
+4186|code|STR             R3, [SP,#0x60+s0]|4-147
+4188|code|LDRH.W          R3, [err,#0x42]|176-248-66-48
+4192|code|MOV             R11, R7|187-70
+4194|code|STR             R3, [SP,#0x60+var_4C]|5-147
+4196|code|MOVS            R3, #0|0-35
+4198|code|STRD.W          R2, R3, [xi,#8]|193-233-2-35
+4202|code|MOV.W           R2, #0xFFFFFFFF|79-240-255-50
+4206|code|MOV.W           R3, #0xFFFFFFFF|79-240-255-51
+4210|code|STRD.W          R2, R3, [xi]|193-233-0-35
+4214|code|LDRD.W          R2, R3, [err,#0x20]|208-233-8-35
+4218|code|STRD.W          R2, R3, [xi,#0x18]|193-233-6-35
+4222|code|LDR             R3, =grub_elf64_load_phdrs|158-75
+4224|code|BLX             R3; grub_elf64_load_phdrs|152-71
+4226|code|LDR             R6, [elf,#0x48]|174-108
+4228|code|ADDS            R6, #0x38 ; '8'|56-54
+4230|code|SUBS.W          R1, R6, #0x38 ; '8'|182-241-56-1
+4234|code|BEQ.W           loc_12DC|0-240-39-129
+4238|code|LDRH.W          R2, [elf,#0x40]|181-248-64-32
+4242|code|MOVS            err, #0x38 ; '8'|56-32
+4244|code|LDR             R3, [elf,#0x48]|171-108
+4246|code|MLA.W           R3, err, R2, R3|0-251-2-51
+4250|code|CMP             phdr, R3|153-66
+4252|code|BCS.W           loc_12DC|128-240-30-129
+4256|code|LDR.W           R3, [R6,#-0x38]|86-248-56-60
+4260|code|CMP             R3, #4|4-43
+4262|code|BNE.W           loc_12A0|64-240-251-128
+4266|code|LDR             err, [elf]|40-104
+4268|code|LDRD.W          R2, R3, [R6,#-0x30]|86-233-12-35
+4272|code|LDR             phdr, =grub_file_seek|146-73
+4274|code|LDR.W           R8, [R6,#-0x18]|86-248-24-140
+4278|code|BLX             R1; grub_file_seek|136-71
+4280|code|ADDS            R1, #1|1-49
+4282|code|IT EQ|8-191
+4284|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+4288|code|BEQ             loc_10CC|4-208
+4290|code|MOV             err, R8|64-70
+4292|code|LDR             R3, =grub_malloc|142-75
+4294|code|BLX             R3; grub_malloc|152-71
+4296|code|MOV             R10, err|130-70
+4298|code|CBNZ            err, loc_10D2|16-185
+4300|code|LDR             R3, =grub_errno|141-75
+4302|code|LDR             err, [R3]|24-104
+4304|code|B               loc_129A|227-224
+4306|code|LDR             err, [elf]|40-104
+4308|code|MOV             R1, R10|81-70
+4310|code|MOV             R2, R8|66-70
+4312|code|LDR             R3, =grub_file_read|139-75
+4314|code|BLX             R3; grub_file_read|152-71
+4316|code|CMP             err, R8|64-69
+4318|code|BNE             loc_10E8|3-209
+4320|code|LSRS            R3, err, #2|131-8
+4322|code|STR             R3, [SP,#0x60+var_40]|8-147
+4324|code|MOV             R3, R10|83-70
+4326|code|B               loc_1124|29-224
+4328|code|LDR             R3, =grub_errno|134-75
+4330|code|LDR             err, [R3]|24-104
+4332|code|CMP             err, #0|0-40
+4334|code|BNE.W           loc_162E|64-240-158-130
+4338|code|LDR             R3, [elf]|43-104
+4340|code|MOVS            err, #0x15|21-32
+4342|code|LDR             R1, =aPrematureEndOf_0; "premature end of file %s"|133-73
+4344|code|LDR             R2, [R3]|26-104
+4346|code|LDR             R3, =grub_error|133-75
+4348|code|BLX             R3; grub_error|152-71
+4350|code|B               loc_129A|204-224
+4352|code|LDM.W           R3, {R2,R9}|147-232-4-2
+4356|code|ADD.W           err, R3, #0xC|3-241-12-0
+4360|code|ADD.W           R8, R2, #3|2-241-3-8
+4364|code|ADD.W           R1, R9, #3|9-241-3-1
+4368|code|BIC.W           R8, R8, #3|40-240-3-8
+4372|code|CMP             R2, #2|2-42
+4374|code|ADD             R8, err|128-68
+4376|code|BIC.W           R1, R1, #3|33-240-3-1
+4380|code|ADD             R1, R8|65-68
+4382|code|STR             R1, [SP,#0x60+stroff]|6-145
+4384|code|BHI             loc_1132|7-216
+4386|code|LDR             R3, [SP,#0x60+stroff]|6-155
+4388|code|RSB.W           R2, R10, R3|202-235-3-2
+4392|code|LDR             R1, [SP,#0x60+var_40]|8-153
+4394|code|CMP.W           R1, R2,ASR#2|177-235-162-15
+4398|code|BGT             loc_1100|231-220
+4400|code|B               loc_12A0|182-224
+4402|code|CMP             R2, #3|3-42
+4404|code|LDR             R1, =aXen_1; "Xen"|119-73
+4406|code|STR             R3, [SP,#0x60+var_3C]|9-147
+4408|code|ITE EQ|12-191
+4410|code|MOVEQ           R2, #3|3-34
+4412|code|MOVNE           R2, #4|4-34
+4414|code|BLX             R7; grub_memcmp|184-71
+4416|code|LDR             R3, [SP,#0x60+var_3C]|9-155
+4418|code|CMP             err, #0|0-40
+4420|code|BNE             loc_1122|237-209
+4422|code|LDR             R2, [R3,#8]|154-104
+4424|code|MOVS            R1, #1|1-33
+4426|code|STR             R1, [xi,#0x34]|97-99
+4428|code|SUBS            R3, R2, #1; switch 9 cases|83-30
+4430|code|CMP             R3, #8|8-43
+4432|code|BHI.W           def_1154; jumptable 00001154 default case|0-242-153-128
+4436|code|TBB.W           [PC,R3]; switch jump|223-232-3-240
+4440|data|DCB 5; jump table for switch statement|5
+4441|data|DCB 0xA|10
+4442|data|DCB 0x10|16
+4443|data|DCB 0x15|21
+4444|data|DCB 0x1A|26
+4445|data|DCB 0x21|33
+4446|data|DCB 0x28|40
+4447|data|DCB 0x2F|47
+4448|data|DCB 0x41|65
+4449|data|ALIGN 2|0
+4450|code|LDRD.W          R2, R3, [R8]; jumptable 00001154 case 1|216-233-0-35
+4454|code|STRD.W          R2, R3, [xi,#0x18]|196-233-6-35
+4458|code|B               loc_1122|218-231
+4460|code|LDRD.W          R2, R3, [R8]; jumptable 00001154 case 2|216-233-0-35
+4464|code|STR             R1, [xi,#0x30]|33-99
+4466|code|STRD.W          R2, R3, [xi,#0x20]|196-233-8-35
+4470|code|B               loc_1122|212-231
+4472|code|LDRD.W          R2, R3, [R8]; jumptable 00001154 case 3|216-233-0-35
+4476|code|STRD.W          R2, R3, [xi,#0x10]|196-233-4-35
+4480|code|B               loc_1122|207-231
+4482|code|LDRD.W          R2, R3, [R8]; jumptable 00001154 case 4|216-233-0-35
+4486|code|STRD.W          R2, R3, [xi,#0x28]|196-233-10-35
+4490|code|B               loc_1122|202-231
+4492|code|STR.W           R8, [SP,#0x60+var_60]; jumptable 00001154 case 5|205-248-0-128
+4496|code|MOVS            R1, #0xD4|212-33
+4498|code|LDR             err, =aLoaderI386XenF_1; "loader/i386/xen_file64.c"|97-72
+4500|code|LDR             R2, =aXen_2; "xen"|97-74
+4502|code|LDR             R3, =aXenversionS_0; "xenversion = `%s'\n"|98-75
+4504|code|B               loc_1292|123-224
+4506|code|STR.W           R8, [SP,#0x60+var_60]; jumptable 00001154 case 6|205-248-0-128
+4510|code|MOVS            R1, #0xD7|215-33
+4512|code|LDR             err, =aLoaderI386XenF_1; "loader/i386/xen_file64.c"|93-72
+4514|code|LDR             R2, =aXen_2; "xen"|94-74
+4516|code|LDR             R3, =aNameS_0; "name = `%s'\n"|95-75
+4518|code|B               loc_1292|116-224
+4520|code|STR.W           R8, [SP,#0x60+var_60]; jumptable 00001154 case 7|205-248-0-128
+4524|code|MOVS            R1, #0xDA|218-33
+4526|code|LDR             err, =aLoaderI386XenF_1; "loader/i386/xen_file64.c"|90-72
+4528|code|LDR             R2, =aXen_2; "xen"|90-74
+4530|code|LDR             R3, =aVersionS_0; "version = `%s'\n"|93-75
+4532|code|B               loc_1292|109-224
+4534|code|CMP.W           R9, #6; jumptable 00001154 case 8|185-241-6-15
+4538|code|BHI             loc_11C6|4-216
+4540|code|LDR             R1, =aInvalidLoader_0; "invalid loader"|91-73
+4542|code|MOVS            err, #0x15|21-32
+4544|code|LDR             R3, =grub_error|83-75
+4546|code|BLX             R3; grub_error|152-71
+4548|code|B               loc_129A|105-224
+4550|code|CMP.W           R9, #7|185-241-7-15
+4554|code|MOV             err, R8|64-70
+4556|code|LDR             R1, =aGeneric_0; "generic"|88-73
+4558|code|IT EQ|8-191
+4560|code|MOVEQ           R2, #7|7-34
+4562|code|BLX             R11; grub_memcmp|216-71
+4564|code|CMP             err, #0|0-40
+4566|code|BEQ             loc_1122|164-208
+4568|code|B               loc_11BC|240-231
+4570|code|LDR             R3, [xi,#0x40]; jumptable 00001154 case 9|35-108
+4572|code|MOVS            R1, #0xE4|228-33
+4574|code|STR.W           R8, [SP,#0x60+var_60]|205-248-0-128
+4578|code|STR.W           R9, [SP,#0x60+var_58]|205-248-8-144
+4582|code|STR             R3, [SP,#0x60+var_5C]|1-147
+4584|code|LDR             err, =aLoaderI386XenF_1; "loader/i386/xen_file64.c"|75-72
+4586|code|LDR             R3, =aPaeSDD_0; "pae = `%s', %d, %d\n"|82-75
+4588|code|LDR             R2, =aXen_2; "xen"|75-74
+4590|code|LDR.W           R12, =grub_real_dprintf|223-248-96-193
+4594|code|BLX             R12; grub_real_dprintf|224-71
+4596|code|LDR             R3, [xi,#0x40]|35-108
+4598|code|SUBS            R3, #1|1-59
+4600|code|CMP             R3, #2|2-43
+4602|code|BHI             loc_1122|146-216
+4604|code|CMP.W           R9, #2|185-241-2-15
+4608|code|BLS             loc_1262|47-217
+4610|code|CMP.W           R9, #3|185-241-3-15
+4614|code|MOV             err, R8|64-70
+4616|code|LDR             R1, =aYes_0; "yes"|75-73
+4618|code|ITE EQ|12-191
+4620|code|MOVEQ           R2, #3|3-34
+4622|code|MOVNE           R2, #4|4-34
+4624|code|BLX             R7; grub_memcmp|184-71
+4626|code|CBNZ            err, loc_121C|24-185
+4628|code|MOVS            R3, #1|1-35
+4630|code|STR             R3, [xi,#0x3C]|227-99
+4632|code|MOVS            R3, #2|2-35
+4634|code|STR             R3, [xi,#0x40]|35-100
+4636|code|CMP.W           R9, #6|185-241-6-15
+4640|code|BLS             loc_1262|31-217
+4642|code|CMP.W           R9, #7|185-241-7-15
+4646|code|MOV             err, R8|64-70
+4648|code|LDR             R1, =aBimodal_0; "bimodal"|68-73
+4650|code|ITE EQ|12-191
+4652|code|MOVEQ           R2, #7|7-34
+4654|code|MOVNE           R2, #8|8-34
+4656|code|BLX             R11; grub_memcmp|216-71
+4658|code|CBNZ            err, loc_123C|24-185
+4660|code|MOVS            R3, #1|1-35
+4662|code|STR             R3, [xi,#0x3C]|227-99
+4664|code|MOVS            R3, #3|3-35
+4666|code|STR             R3, [xi,#0x40]|35-100
+4668|code|CMP.W           R9, #0xA|185-241-10-15
+4672|code|BLS             loc_126A|19-217
+4674|code|CMP.W           R9, #0xB|185-241-11-15
+4678|code|MOV             err, R8|64-70
+4680|code|LDR             R1, =aYesBimodal_0; "yes,bimodal"|61-73
+4682|code|ITE EQ|12-191
+4684|code|MOVEQ           R2, #0xB|11-34
+4686|code|MOVNE           R2, #0xC|12-34
+4688|code|BLX             R11; grub_memcmp|216-71
+4690|code|CMP             err, #0|0-40
+4692|code|BNE.W           loc_162A|64-240-233-129
+4696|code|MOVS            R3, #1|1-35
+4698|code|STR             R3, [xi,#0x3C]|227-99
+4700|code|MOVS            R3, #3|3-35
+4702|code|STR             R3, [xi,#0x40]|35-100
+4704|code|B               loc_162A|227-225
+4706|code|CMP.W           R9, #1|185-241-1-15
+4710|code|BLS.W           loc_1122|127-246-92-175
+4714|code|CMP.W           R9, #2|185-241-2-15
+4718|code|ITE EQ|12-191
+4720|code|MOVEQ           R2, #2|2-34
+4722|code|MOVNE           R2, #3|3-34
+4724|code|MOV             err, R8|64-70
+4726|code|LDR             R1, =aNo_0; "no"|51-73
+4728|code|BLX             R7; grub_memcmp|184-71
+4730|code|CMP             err, #0|0-40
+4732|code|BNE.W           loc_1122|127-244-81-175
+4736|code|MOVS            R3, #1|1-35
+4738|code|STR             R3, [xi,#0x40]|35-100
+4740|code|B               loc_1122|77-231
+4742|code|STR             R2, [SP,#0x60+var_60]; jumptable 00001154 default case|0-146
+4744|code|MOV.W           R1, #0x100|79-244-128-113
+4748|code|LDR             err, =aLoaderI386XenF_1; "loader/i386/xen_file64.c"|34-72
+4750|code|LDR             R2, =aXen_2; "xen"|35-74
+4752|code|LDR             R3, =aUnknownNoteTyp_0; "unknown note type %d\n"|45-75
+4754|code|LDR.W           R12, =grub_real_dprintf|223-248-188-192
+4758|code|BLX             R12; grub_real_dprintf|224-71
+4760|code|B               loc_1122|67-231
+4762|code|CMP             err, #0|0-40
+4764|code|BNE.W           loc_162E|64-240-199-129
+4768|code|LDR.W           R3, [R6,#-0x38]|86-248-56-60
+4772|code|CMP             R3, #1|1-43
+4774|code|BNE             loc_12D8|23-209
+4776|code|LDRD.W          R8, R9, [R6,#-0x20]|86-233-8-137
+4780|code|LDRD.W          err, R1, [xi]|212-233-0-1
+4784|code|CMP             R9, R1|137-69
+4786|code|IT EQ|8-191
+4788|code|CMPEQ           R8, err|128-69
+4790|code|IT CC|56-191
+4792|code|STRDCC.W        R8, R9, [xi]|196-233-0-137
+4796|code|LDRD.W          R2, R3, [R6,#-0x10]|86-233-4-35
+4800|code|LDRD.W          err, R1, [xi,#8]|212-233-2-1
+4804|code|ADDS.W          R2, R2, R8|18-235-8-2
+4808|code|ADC.W           R3, R3, R9|67-235-9-3
+4812|code|CMP             R1, R3|153-66
+4814|code|IT EQ|8-191
+4816|code|CMPEQ           err, R2|144-66
+4818|code|IT CC|56-191
+4820|code|STRDCC.W        R2, R3, [xi,#8]|196-233-2-35
+4824|code|ADDS            phdr, #0x38 ; '8'|56-54
+4826|code|B               loc_1086|212-230
+4828|code|LDR             R3, [xi,#0x34]|99-107
+4830|code|CMP             R3, #0|0-43
+4832|code|BNE.W           loc_1626|64-240-161-129
+4836|code|LDR             R3, [SP,#0x60+s0]|4-155
+4838|code|CBZ             R3, loc_12EC|11-177
+4840|code|LDR             R3, [SP,#0x60+var_4C]|5-155
+4842|code|CBNZ            R3, loc_1354|155-187
+4844|code|MOVS            err, #0x15|21-32
+4846|code|LDR             phdr, =aNoXenNote_0; "no XEN note"|23-73
+4848|code|B               loc_1620|150-225
+4850|data|ALIGN 4|0-191
+4852|data|DCD grub_memcmp|132-36-0-0
+4856|data|DCD grub_elf64_load_phdrs|112-36-0-0
+4860|data|DCD grub_file_seek|64-36-0-0
+4864|data|DCD grub_malloc|96-36-0-0
+4868|data|DCD grub_errno|68-36-0-0
+4872|data|DCD grub_file_read|84-36-0-0
+4876|data|DCD aPrematureEndOf_0; "premature end of file %s"|96-34-0-0
+4880|data|DCD grub_error|116-36-0-0
+4884|data|DCD aXen_1; "Xen"|121-34-0-0
+4888|data|DCD aLoaderI386XenF_1; "loader/i386/xen_file64.c"|125-34-0-0
+4892|data|DCD aXen_2; "xen"|150-34-0-0
+4896|data|DCD aXenversionS_0; "xenversion = `%s'\n"|154-34-0-0
+4900|data|DCD aNameS_0; "name = `%s'\n"|173-34-0-0
+4904|data|DCD aVersionS_0; "version = `%s'\n"|186-34-0-0
+4908|data|DCD aInvalidLoader_0; "invalid loader"|202-34-0-0
+4912|data|DCD aGeneric_0; "generic"|217-34-0-0
+4916|data|DCD aPaeSDD_0; "pae = `%s', %d, %d\n"|225-34-0-0
+4920|data|DCD aYes_0; "yes"|245-34-0-0
+4924|data|DCD aBimodal_0; "bimodal"|249-34-0-0
+4928|data|DCD aYesBimodal_0; "yes,bimodal"|1-35-0-0
+4932|data|DCD aNo_0; "no"|13-35-0-0
+4936|data|DCD aUnknownNoteTyp_0; "unknown note type %d\n"|16-35-0-0
+4940|data|DCD aNoXenNote_0; "no XEN note"|38-35-0-0
+4944|data|DCD grub_real_dprintf|108-36-0-0
+4948|code|LDR             R3, [SP,#0x60+s0]|4-155
+4950|code|LDR             R2, [SP,#0x60+var_4C]|5-154
+4952|code|MUL.W           R8, R3, R2|3-251-2-248
+4956|code|LDR             R3, =grub_malloc|152-75
+4958|code|MOV             err, R8|64-70
+4960|code|BLX             R3; grub_malloc|152-71
+4962|code|STR             err, [SP,#0x60+s0]|4-144
+4964|code|CMP             err, #0|0-40
+4966|code|BEQ             loc_13F6|70-208
+4968|code|LDR             err, [elf]|40-104
+4970|code|LDRD.W          R2, R3, [elf,#0x30]|213-233-12-35
+4974|code|LDR             R6, =grub_file_seek|149-78
+4976|code|BLX             R6; grub_file_seek|176-71
+4978|code|ADDS            R1, #1|1-49
+4980|code|IT EQ|8-191
+4982|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+4986|code|BEQ             loc_13F6|60-208
+4988|code|LDR             err, [elf]|40-104
+4990|code|MOV             R2, R8|66-70
+4992|code|LDR             R1, [SP,#0x60+s0]|4-153
+4994|code|LDR.W           R10, =grub_file_read|223-248-92-162
+4998|code|BLX             R10; grub_file_read|208-71
+5000|code|CMP             err, R8|64-69
+5002|code|BNE             loc_13FC|55-209
+5004|code|LDR             R2, [SP,#0x60+var_4C]|5-154
+5006|code|MOV             R9, R6|177-70
+5008|code|LDR             R1, [SP,#0x60+s0]|4-153
+5010|code|LDRH.W          R3, [elf,#0x46]|181-248-70-48
+5014|code|MOV             R11, R1|139-70
+5016|code|MLA.W           R3, R2, R3, R1|2-251-3-19
+5020|code|LDRD.W          R2, R3, [R3,#0x18]|211-233-6-35
+5024|code|STRD.W          R2, R3, [SP,#0x60+stroff]|205-233-6-35
+5028|code|B               loc_13C2|13-224
+5030|code|MOVS            R2, #0xC|12-34
+5032|code|LDR             err, [elf]|40-104
+5034|code|ADD             R1, SP, #0x60+name|11-169
+5036|code|BLX             R10; grub_file_read|208-71
+5038|code|CMP             err, #0xC|12-40
+5040|code|MOV             R2, err|2-70
+5042|code|BEQ             loc_1414|47-208
+5044|code|LDR             R3, =grub_errno|132-75
+5046|code|LDR             err, [R3]|24-104
+5048|code|CMP             err, #0|0-40
+5050|code|BNE.W           loc_162E|64-240-56-129
+5054|code|LDR             R3, [SP,#0x60+var_4C]|5-155
+5056|code|ADD             s_0, R3|155-68
+5058|code|LDR             R3, [SP,#0x60+s0]|4-155
+5060|code|ADD             R3, R8|67-68
+5062|code|CMP             s_0, R3|155-69
+5064|code|BCS.W           loc_161C|128-240-40-129
+5068|code|MOVS            R1, #0|0-33
+5070|code|MOVS            R2, #0xC|12-34
+5072|code|LDR             R3, =grub_memset|126-75
+5074|code|ADD             err, SP, #0x60+name|11-168
+5076|code|BLX             R3; grub_memset|152-71
+5078|code|LDR.W           R2, [s_0]|219-248-0-32
+5082|code|LDRD.W          R6, R7, [SP,#0x60+stroff]|221-233-6-103
+5086|code|LDR             err, [elf]|40-104
+5088|code|ADDS            R6, R6, R2|182-24
+5090|code|ADC.W           R7, R7, #0|71-241-0-7
+5094|code|MOV             R2, R6|50-70
+5096|code|MOV             R3, R7|59-70
+5098|code|BLX             R9; grub_file_seek|200-71
+5100|code|ADDS            R1, #1|1-49
+5102|code|IT EQ|8-191
+5104|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+5108|code|BNE             loc_13A6|215-209
+5110|code|LDR             R3, =grub_errno|116-75
+5112|code|LDR             err, [R3]|24-104
+5114|code|B               loc_162E|24-225
+5116|code|LDR             R3, =grub_errno|114-75
+5118|code|LDR             err, [R3]|24-104
+5120|code|CMP             err, #0|0-40
+5122|code|BNE.W           loc_162E|64-240-20-129
+5126|code|LDR             R3, [elf]|43-104
+5128|code|MOVS            err, #0x15|21-32
+5130|code|LDR             R1, =aPrematureEndOf_0; "premature end of file %s"|113-73
+5132|code|LDR             R2, [R3]|26-104
+5134|code|LDR             R3, =grub_error|113-75
+5136|code|BLX             R3; grub_error|152-71
+5138|code|B               loc_162E|12-225
+5140|code|ADD             err, SP, #0x60+name|11-168
+5142|code|LDR             R1, =aXenGuest_0; "__xen_guest"|112-73
+5144|code|LDR             R3, =grub_memcmp|112-75
+5146|code|BLX             R3; grub_memcmp|152-71
+5148|code|MOV             R6, err|6-70
+5150|code|CMP             err, #0|0-40
+5152|code|BNE             loc_13BE|205-209
+5154|code|LDR             err, [elf]|40-104
+5156|code|LDRD.W          R2, R3, [s_0,#0x18]|219-233-6-35
+5160|code|LDR             R1, =grub_file_seek|102-73
+5162|code|LDR.W           R9, [s_0,#0x20]|219-248-32-144
+5166|code|BLX             R1; grub_file_seek|136-71
+5168|code|ADDS            R1, #1|1-49
+5170|code|IT EQ|8-191
+5172|code|CMPEQ.W         err, #0xFFFFFFFF|176-241-255-63
+5176|code|BEQ             loc_13F6|221-208
+5178|code|MOV             err, R9|72-70
+5180|code|LDR             R3, =grub_malloc|96-75
+5182|code|BLX             R3; grub_malloc|152-71
+5184|code|MOV             R7, err|7-70
+5186|code|CMP             err, #0|0-40
+5188|code|BEQ             loc_13F6|215-208
+5190|code|LDR             err, [elf]|40-104
+5192|code|MOV             R1, R7|57-70
+5194|code|MOV             R2, R9|74-70
+5196|code|LDR             R3, =grub_file_read|100-75
+5198|code|BLX             R3; grub_file_read|152-71
+5200|code|CMP             err, R9|72-69
+5202|code|MOV             R8, err|128-70
+5204|code|BNE             loc_13FC|210-209
+5206|code|LDR             elf, =grub_strncmp|99-77
+5208|code|MOVS            R3, #1|1-35
+5210|code|STR             R7, [SP,#0x60+var_38]|10-151
+5212|code|STR             R3, [xi,#0x38]|163-99
+5214|code|MOV             R9, R5|169-70
+5216|code|LDR             err, [SP,#0x60+var_38]|10-152
+5218|code|CBNZ            err, loc_1486|128-185
+5220|code|LDR             R3, [xi,#0x30]|35-107
+5222|code|CMP             R3, #0|0-43
+5224|code|BEQ.W           loc_15B0|0-240-162-128
+5228|code|LDR             err, [xi,#0x24]|96-106
+5230|code|LDR             R1, [xi,#0x20]|33-106
+5232|code|LSLS            R3, err, #0xC|3-3
+5234|code|ORR.W           R3, R3, R1,LSR#20|67-234-17-83
+5238|code|LSLS            R2, R1, #0xC|10-3
+5240|code|LDRD.W          err, R1, [xi,#0x10]|212-233-4-1
+5244|code|ADDS            R2, R2, err|18-24
+5246|code|ADCS            R3, R1|75-65
+5248|code|STRD.W          R2, R3, [xi,#0x20]|196-233-8-35
+5252|code|B               loc_15B0|148-224
+5254|code|SUBS            R3, err, R7|195-27
+5256|code|CMP             R3, R8|67-69
+5258|code|BGE             loc_1464|235-218
+5260|code|LDR             R1, =aPaeNo_0; "PAE=no,"|86-73
+5262|code|MOVS            R2, #7|7-34
+5264|code|BLX             R5; grub_strncmp|168-71
+5266|code|CBNZ            err, loc_14A2|48-185
+5268|code|LDR             R3, [xi,#0x40]|35-108
+5270|code|SUBS            R3, #1|1-59
+5272|code|CMP             R3, #2|2-43
+5274|code|BHI.W           loc_15A0|0-242-129-128
+5278|code|MOVS            R3, #1|1-35
+5280|code|B               loc_14B6|9-224
+5282|code|LDR             err, [SP,#0x60+var_38]|10-152
+5284|code|MOVS            R2, #8|8-34
+5286|code|LDR             R1, =aPaeYes_0; "PAE=yes,"|81-73
+5288|code|BLX             R5; grub_strncmp|168-71
+5290|code|CBNZ            err, loc_14BA|48-185
+5292|code|LDR             R3, [xi,#0x40]|35-108
+5294|code|SUBS            R3, #1|1-59
+5296|code|CMP             R3, #2|2-43
+5298|code|BHI             loc_15A0|117-216
+5300|code|MOVS            R3, #2|2-35
+5302|code|STR             R3, [xi,#0x40]|35-100
+5304|code|B               loc_15A0|114-224
+5306|code|LDR             err, [SP,#0x60+var_38]|10-152
+5308|code|MOVS            R2, #0x16|22-34
+5310|code|LDR             R1, =aPaeYesExtended_1; "PAE=yes[extended-cr3],"|76-73
+5312|code|BLX             R5; grub_strncmp|168-71
+5314|code|CBNZ            err, loc_14D0|40-185
+5316|code|LDR             R3, [xi,#0x40]|35-108
+5318|code|SUBS            R3, #1|1-59
+5320|code|CMP             R3, #2|2-43
+5322|code|BHI             loc_15A0|105-216
+5324|code|MOVS            R3, #2|2-35
+5326|code|B               loc_150E|30-224
+5328|code|LDR             err, [SP,#0x60+var_38]|10-152
+5330|code|MOVS            R2, #0xC|12-34
+5332|code|LDR             R1, =aPaeBimodal_0; "PAE=bimodal,"|71-73
+5334|code|BLX             R5; grub_strncmp|168-71
+5336|code|CBZ             err, loc_14EE|72-177
+5338|code|LDR             err, [SP,#0x60+var_38]|10-152
+5340|code|MOVS            R2, #0x1A|26-34
+5342|code|LDR             R1, =aPaeBimodalExte_0; "PAE=bimodal[extended-cr3],"|70-73
+5344|code|BLX             R5; grub_strncmp|168-71
+5346|code|CBZ             err, loc_1504|120-177
+5348|code|LDR             err, [SP,#0x60+var_38]|10-152
+5350|code|MOVS            R2, #0x10|16-34
+5352|code|LDR             R1, =aPaeYesBimodal_0; "PAE=yes,bimodal,"|68-73
+5354|code|BLX             R5; grub_strncmp|168-71
+5356|code|CBNZ            err, loc_14FA|40-185
+5358|code|LDR             R3, [xi,#0x40]|35-108
+5360|code|SUBS            R3, #1|1-59
+5362|code|CMP             R3, #2|2-43
+5364|code|BHI             loc_15A0|84-216
+5366|code|MOVS            R3, #3|3-35
+5368|code|B               loc_14B6|221-231
+5370|code|LDR             err, [SP,#0x60+var_38]|10-152
+5372|code|MOVS            R2, #0x1E|30-34
+5374|code|LDR             R1, =aPaeYesExtended_2; "PAE=yes[extended-cr3],bimodal,"|64-73
+5376|code|BLX             R5; grub_strncmp|168-71
+5378|code|CBNZ            err, loc_1516|64-185
+5380|code|LDR             R3, [xi,#0x40]|35-108
+5382|code|SUBS            R3, #1|1-59
+5384|code|CMP             R3, #2|2-43
+5386|code|BHI             loc_15A0|73-216
+5388|code|MOVS            R3, #3|3-35
+5390|code|STR             R3, [xi,#0x40]|35-100
+5392|code|MOVS            R3, #1|1-35
+5394|code|STR             R3, [xi,#0x3C]|227-99
+5396|code|B               loc_15A0|68-224
+5398|code|LDR             err, [SP,#0x60+var_38]|10-152
+5400|code|MOVS            R2, #0xA|10-34
+5402|code|LDR             R1, =aVirtBase_0; "VIRT_BASE="|58-73
+5404|code|BLX             R5; grub_strncmp|168-71
+5406|code|CBNZ            err, loc_1534|72-185
+5408|code|ADD             R1, SP, #0x60+var_28|14-169
+5410|code|MOVS            R2, #0x10|16-34
+5412|code|LDR             R3, =grub_strtoull|56-75
+5414|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+5418|code|ADDS            err, #0xA|10-48
+5420|code|BLX             R3; grub_strtoull|152-71
+5422|code|STRD.W          err, R1, [xi,#0x10]|196-233-4-1
+5426|code|B               loc_1572|30-224
+5428|code|LDR             err, [SP,#0x60+var_38]|10-152
+5430|code|MOVS            R2, #0xB|11-34
+5432|code|LDR             R1, =aVirtEntry_0; "VIRT_ENTRY="|52-73
+5434|code|BLX             R9; grub_strncmp|200-71
+5436|code|CBNZ            err, loc_1552|72-185
+5438|code|ADD             R1, SP, #0x60+var_28|14-169
+5440|code|MOVS            R2, #0x10|16-34
+5442|code|LDR             R3, =grub_strtoull|49-75
+5444|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+5448|code|ADDS            err, #0xB|11-48
+5450|code|BLX             R3; grub_strtoull|152-71
+5452|code|STRD.W          err, R1, [xi,#0x18]|196-233-6-1
+5456|code|B               loc_1572|15-224
+5458|code|LDR             err, [SP,#0x60+var_38]|10-152
+5460|code|MOVS            R2, #0xF|15-34
+5462|code|LDR             R1, =aHypercallPage_0; "HYPERCALL_PAGE="|46-73
+5464|code|BLX             R5; grub_strncmp|168-71
+5466|code|CBNZ            err, loc_157A|112-185
+5468|code|ADD             R1, SP, #0x60+var_28|14-169
+5470|code|LDR             R3, =grub_strtoull|42-75
+5472|code|MOVS            R2, #0x10|16-34
+5474|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+5478|code|ADDS            err, #0xF|15-48
+5480|code|BLX             R3; grub_strtoull|152-71
+5482|code|MOVS            R3, #1|1-35
+5484|code|STR             R3, [xi,#0x30]|35-99
+5486|code|STRD.W          err, R1, [xi,#0x20]|196-233-8-1
+5490|code|LDR             R3, =grub_errno|21-75
+5492|code|LDR             err, [R3]|24-104
+5494|code|CBZ             err, loc_15A0|152-177
+5496|code|B               loc_162E|89-224
+5498|code|LDR             err, [SP,#0x60+var_38]|10-152
+5500|code|MOVS            R2, #0x11|17-34
+5502|code|LDR             R1, =aElfPaddrOffset_0; "ELF_PADDR_OFFSET="|37-73
+5504|code|BLX             R5; grub_strncmp|168-71
+5506|code|CBNZ            err, loc_15A0|104-185
+5508|code|ADD             R1, SP, #0x60+var_28|14-169
+5510|code|LDR             R3, =grub_strtoull|32-75
+5512|code|MOVS            R2, #0x10|16-34
+5514|code|LDR.W           err, [R1,#-0x10]!|81-248-16-13
+5518|code|ADDS            err, #0x11|17-48
+5520|code|BLX             R3; grub_strtoull|152-71
+5522|code|LDR             R3, =grub_errno|13-75
+5524|code|STRD.W          err, R1, [xi,#0x28]|196-233-10-1
+5528|code|LDR             err, [R3]|24-104
+5530|code|CMP             err, #0|0-40
+5532|code|BNE             loc_162E|71-209
+5534|code|MOVS            R6, #1|1-38
+5536|code|LDR             err, [SP,#0x60+var_38]|10-152
+5538|code|MOVS            R1, #0x2C ; ','|44-33
+5540|code|LDR             R3, =grub_strchr|28-75
+5542|code|BLX             R3; grub_strchr|152-71
+5544|code|CBZ             err, loc_15AC|0-177
+5546|code|ADDS            err, #1|1-48
+5548|code|STR             err, [SP,#0x60+var_38]|10-144
+5550|code|B               loc_1460|87-231
+5552|code|CBNZ            R6, loc_1626|206-187
+5554|code|LDRD.W          R2, R3, [xi,#0x10]|212-233-4-35
+5558|code|MOV             err, R6|48-70
+5560|code|STRD.W          R2, R3, [xi,#0x28]|196-233-10-35
+5564|code|B               loc_162E|55-224
+5566|data|ALIGN 0x10|0-191
+5568|data|DCD grub_malloc|96-36-0-0
+5572|data|DCD grub_file_seek|64-36-0-0
+5576|data|DCD grub_errno|68-36-0-0
+5580|data|DCD grub_memset|72-36-0-0
+5584|data|DCD aPrematureEndOf_0; "premature end of file %s"|96-34-0-0
+5588|data|DCD grub_error|116-36-0-0
+5592|data|DCD aXenGuest_0; "__xen_guest"|50-35-0-0
+5596|data|DCD grub_memcmp|132-36-0-0
+5600|data|DCD grub_file_read|84-36-0-0
+5604|data|DCD grub_strncmp|36-36-0-0
+5608|data|DCD aPaeNo_0; "PAE=no,"|62-35-0-0
+5612|data|DCD aPaeYes_0; "PAE=yes,"|70-35-0-0
+5616|data|DCD aPaeYesExtended_1; "PAE=yes[extended-cr3],"|79-35-0-0
+5620|data|DCD aPaeBimodal_0; "PAE=bimodal,"|102-35-0-0
+5624|data|DCD aPaeBimodalExte_0; "PAE=bimodal[extended-cr3],"|115-35-0-0
+5628|data|DCD aPaeYesBimodal_0; "PAE=yes,bimodal,"|142-35-0-0
+5632|data|DCD aPaeYesExtended_2; "PAE=yes[extended-cr3],bimodal,"|159-35-0-0
+5636|data|DCD aVirtBase_0; "VIRT_BASE="|190-35-0-0
+5640|data|DCD grub_strtoull|40-36-0-0
+5644|data|DCD aVirtEntry_0; "VIRT_ENTRY="|201-35-0-0
+5648|data|DCD aHypercallPage_0; "HYPERCALL_PAGE="|213-35-0-0
+5652|data|DCD aElfPaddrOffset_0; "ELF_PADDR_OFFSET="|229-35-0-0
+5656|data|DCD grub_strchr|92-36-0-0
+5660|code|LDR             R1, =aNoXenNoteFound_0; "no XEN note found"|5-73
+5662|code|MOVS            err, #0x15|21-32
+5664|code|LDR             R3, =grub_error|5-75
+5666|code|BLX             R3; grub_error|152-71
+5668|code|B               loc_162E|3-224
+5670|code|MOVS            err, #0|0-32
+5672|code|B               loc_162E|1-224
+5674|code|MOVS            R2, #3|3-34
+5676|code|B               loc_1274|34-230
+5678|code|ADD             SP, SP, #0x3C ; '<'|15-176
+5680|code|POP.W           {xi-R11,PC}|189-232-240-143
+5684|data|DCD aNoXenNoteFound_0; "no XEN note found"|247-35-0-0
+5688|data|DCD grub_error|116-36-0-0
+5692|data|grub_arg_option <aIsI386XenPaeDo, 0, 0, aCheckIfFileCan, 0, \; "is-i386-xen-pae-domu" ...|167-25-0-0-0-0-0-0-0-0-0-0-188-25-0-0-0-0-0-0-0-0-0-0-2-26-0-0-0-0-0-0-0-0-0-0-21-26-0-0-0-0-0-0-0-0-0-0-89-26-0-0-0-0-0-0-0-0-0-0-105-26-0-0-0-0-0-0-0-0-0-0-166-26-0-0-0-0-0-0-0-0-0-0-183-26-0-0-0-0-0-0-0-0-0-0-233-26-0-0-0-0-0-0-0-0-0-0-251-26-0-0-0-0-0-0-0-0-0-0-46-27-0-0-0-0-0-0-0-0-0-0-59-27-0-0-0-0-0-0-0-0-0-0-86-27-0-0-0-0-0-0-0-0-0-0-101-27-0-0-0-0-0-0-0-0-0-0-130-27-0-0-0-0-0-0-0-0-0-0-144-27-0-0-0-0-0-0-0-0-0-0-172-27-0-0-0-0-0-0-0-0-0-0-186-27-0-0-0-0-0-0-0-0-0-0-214-27-0-0-0-0-0-0-0-0-0-0-230-27-0-0-0-0-0-0-0-0-0-0-4-28-0-0-0-0-0-0-0-0-0-0-21-28-0-0-0-0-0-0-0-0-0-0-52-28-0-0-0-0-0-0-0-0-0-0-69-28-0-0-0-0-0-0-0-0-0-0-100-28-0-0-0-0-0-0-0-0-0-0-113-28-0-0-0-0-0-0-0-0-0-0-140-28-0-0-0-0-0-0-0-0-0-0-155-28-0-0-0-0-0-0-0-0-0-0-209-28-0-0-0-0-0-0-0-0-0-0-225-28-0-0-0-0-0-0-0-0-0-0-255-28-0-0-0-0-0-0-0-0-0-0-16-29-0-0-0-0-0-0-0-0-0-0-47-29-0-0-0-0-0-0-0-0-0-0-66-29-0-0-0-0-0-0-0-0-0-0-99-29-0-0-0-0-0-0-0-0-0-0-114-29-0-0-0-0-0-0-0-0-0-0-143-29-0-0-0-0-0-0-0-0-0-0-159-29-0-0-0-0-0-0-0-0-0-0-189-29-0-0-0-0-0-0-0-0-0-0-207-29-0-0-0-0-0-0-0-0-0-0-239-29-0-0-0-0-0-0-0-0-0-0-251-29-0-0-0-0-0-0-0-0-0-0-26-30-0-0-0-0-0-0-0-0-0-0-40-30-0-0-0-0-0-0-0-0-0-0-73-30-0-0-0-0-0-0-0-0-0-0-85-30-0-0-0-0-0-0-0-0-0-0-116-30-0-0-0-0-0-0-0-0-0-0-129-30-0-0-0-0-0-0-0-0-0-0-161-30-0-0-0-0-0-0-0-0-0-0-172-30-0-0-0-0-0-0-0-0-0-0-202-30-0-0-0-0-0-0-0-0-0-0-225-30-0-0-0-0-0-0-0-0-0-0-19-31-0-0-0-0-0-0-0-0-0-0-33-31-0-0-0-0-0-0-0-0-0-0-79-31-0-0-0-0-0-0-0-0-0-0-91-31-0-0-0-0-0-0-0-0-0-0-135-31-0-0-0-0-0-0-0-0-0-0-147-31-0-0-0-0-0-0-0-0-0-0-203-31-0-0-0-0-0-0-0-0-0-0-226-31-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+6436|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+6454|data|DCB "multiple types specified",0|109-117-108-116-105-112-108-101-32-116-121-112-101-115-32-115-112-101-99-105-102-105-101-100-0
+6479|data|DCB "no type specified",0|110-111-32-116-121-112-101-32-115-112-101-99-105-102-105-101-100-0
+6497|data|DCB "hibr",0|104-105-98-114-0
+6502|data|DCB "HIBR",0|72-73-66-82-0
+6507|data|DCB "false",0|102-97-108-115-101-0
+6513|data|DCB "file",0|102-105-108-101-0
+6518|data|DCB "OPTIONS FILE",0|79-80-84-73-79-78-83-32-70-73-76-69-0
+6531|data|DCB "Check if FILE is of specified type.",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-111-102-32-115-112-101-99-105-102-105-101-100-32-116-121-112-101-46-0
+6567|data|DCB "is-i386-xen-pae-domu",0|105-115-45-105-51-56-54-45-120-101-110-45-112-97-101-45-100-111-109-117-0
+6588|data|DCB "Check if FILE can be booted as i386 PAE Xen unprivileged guest k"|67-104-101-99-107-32-105-102-32-70-73-76-69-32-99-97-110-32-98-101-32-98-111-111-116-101-100-32-97-115-32-105-51-56-54-32-80-65-69-32-88-101-110-32-117-110-112-114-105-118-105-108-101-103-101-100-32-103-117-101-115-116-32-107-101-114-110-101-108-0
+6658|data|DCB "is-x86_64-xen-domu",0|105-115-45-120-56-54-95-54-52-45-120-101-110-45-100-111-109-117-0
+6677|data|DCB "Check if FILE can be booted as x86_64 Xen unprivileged guest ker"|67-104-101-99-107-32-105-102-32-70-73-76-69-32-99-97-110-32-98-101-32-98-111-111-116-101-100-32-97-115-32-120-56-54-95-54-52-32-88-101-110-32-117-110-112-114-105-118-105-108-101-103-101-100-32-103-117-101-115-116-32-107-101-114-110-101-108-0
+6745|data|DCB "is-x86-xen-dom0",0|105-115-45-120-56-54-45-120-101-110-45-100-111-109-48-0
+6761|data|DCB "Check if FILE can be used as Xen x86 privileged guest kernel",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-99-97-110-32-98-101-32-117-115-101-100-32-97-115-32-88-101-110-32-120-56-54-32-112-114-105-118-105-108-101-103-101-100-32-103-117-101-115-116-32-107-101-114-110-101-108-0
+6822|data|DCB "is-x86-multiboot",0|105-115-45-120-56-54-45-109-117-108-116-105-98-111-111-116-0
+6839|data|DCB "Check if FILE can be used as x86 multiboot kernel",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-99-97-110-32-98-101-32-117-115-101-100-32-97-115-32-120-56-54-32-109-117-108-116-105-98-111-111-116-32-107-101-114-110-101-108-0
+6889|data|DCB "is-x86-multiboot2",0|105-115-45-120-56-54-45-109-117-108-116-105-98-111-111-116-50-0
+6907|data|DCB "Check if FILE can be used as x86 multiboot2 kernel",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-99-97-110-32-98-101-32-117-115-101-100-32-97-115-32-120-56-54-32-109-117-108-116-105-98-111-111-116-50-32-107-101-114-110-101-108-0
+6958|data|DCB "is-arm-linux",0|105-115-45-97-114-109-45-108-105-110-117-120-0
+6971|data|DCB "Check if FILE is ARM Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-65-82-77-32-76-105-110-117-120-0
+6998|data|DCB "is-arm64-linux",0|105-115-45-97-114-109-54-52-45-108-105-110-117-120-0
+7013|data|DCB "Check if FILE is ARM64 Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-65-82-77-54-52-32-76-105-110-117-120-0
+7042|data|DCB "is-ia64-linux",0|105-115-45-105-97-54-52-45-108-105-110-117-120-0
+7056|data|DCB "Check if FILE is IA64 Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-73-65-54-52-32-76-105-110-117-120-0
+7084|data|DCB "is-mips-linux",0|105-115-45-109-105-112-115-45-108-105-110-117-120-0
+7098|data|DCB "Check if FILE is MIPS Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-77-73-80-83-32-76-105-110-117-120-0
+7126|data|DCB "is-mipsel-linux",0|105-115-45-109-105-112-115-101-108-45-108-105-110-117-120-0
+7142|data|DCB "Check if FILE is MIPSEL Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-77-73-80-83-69-76-32-76-105-110-117-120-0
+7172|data|DCB "is-sparc64-linux",0|105-115-45-115-112-97-114-99-54-52-45-108-105-110-117-120-0
+7189|data|DCB "Check if FILE is SPARC64 Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-83-80-65-82-67-54-52-32-76-105-110-117-120-0
+7220|data|DCB "is-powerpc-linux",0|105-115-45-112-111-119-101-114-112-99-45-108-105-110-117-120-0
+7237|data|DCB "Check if FILE is POWERPC Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-80-79-87-69-82-80-67-32-76-105-110-117-120-0
+7268|data|DCB "is-x86-linux",0|105-115-45-120-56-54-45-108-105-110-117-120-0
+7281|data|DCB "Check if FILE is x86 Linux",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-32-76-105-110-117-120-0
+7308|data|DCB "is-x86-linux32",0|105-115-45-120-56-54-45-108-105-110-117-120-51-50-0
+7323|data|DCB "Check if FILE is x86 Linux supporting 32-bit protocol",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-32-76-105-110-117-120-32-115-117-112-112-111-114-116-105-110-103-32-51-50-45-98-105-116-32-112-114-111-116-111-99-111-108-0
+7377|data|DCB "is-x86-kfreebsd",0|105-115-45-120-56-54-45-107-102-114-101-101-98-115-100-0
+7393|data|DCB "Check if FILE is x86 kFreeBSD",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-32-107-70-114-101-101-66-83-68-0
+7423|data|DCB "is-i386-kfreebsd",0|105-115-45-105-51-56-54-45-107-102-114-101-101-98-115-100-0
+7440|data|DCB "Check if FILE is i386 kFreeBSD",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-105-51-56-54-32-107-70-114-101-101-66-83-68-0
+7471|data|DCB "is-x86_64-kfreebsd",0|105-115-45-120-56-54-95-54-52-45-107-102-114-101-101-98-115-100-0
+7490|data|DCB "Check if FILE is x86_64 kFreeBSD",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-95-54-52-32-107-70-114-101-101-66-83-68-0
+7523|data|DCB "is-x86-knetbsd",0|105-115-45-120-56-54-45-107-110-101-116-98-115-100-0
+7538|data|DCB "Check if FILE is x86 kNetBSD",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-32-107-78-101-116-66-83-68-0
+7567|data|DCB "is-i386-knetbsd",0|105-115-45-105-51-56-54-45-107-110-101-116-98-115-100-0
+7583|data|DCB "Check if FILE is i386 kNetBSD",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-105-51-56-54-32-107-78-101-116-66-83-68-0
+7613|data|DCB "is-x86_64-knetbsd",0|105-115-45-120-56-54-95-54-52-45-107-110-101-116-98-115-100-0
+7631|data|DCB "Check if FILE is x86_64 kNetBSD",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-95-54-52-32-107-78-101-116-66-83-68-0
+7663|data|DCB "is-i386-efi",0|105-115-45-105-51-56-54-45-101-102-105-0
+7675|data|DCB "Check if FILE is i386 EFI file",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-105-51-56-54-32-69-70-73-32-102-105-108-101-0
+7706|data|DCB "is-x86_64-efi",0|105-115-45-120-56-54-95-54-52-45-101-102-105-0
+7720|data|DCB "Check if FILE is x86_64 EFI file",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-95-54-52-32-69-70-73-32-102-105-108-101-0
+7753|data|DCB "is-ia64-efi",0|105-115-45-105-97-54-52-45-101-102-105-0
+7765|data|DCB "Check if FILE is IA64 EFI file",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-73-65-54-52-32-69-70-73-32-102-105-108-101-0
+7796|data|DCB "is-arm64-efi",0|105-115-45-97-114-109-54-52-45-101-102-105-0
+7809|data|DCB "Check if FILE is ARM64 EFI file",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-65-82-77-54-52-32-69-70-73-32-102-105-108-101-0
+7841|data|DCB "is-arm-efi",0|105-115-45-97-114-109-45-101-102-105-0
+7852|data|DCB "Check if FILE is ARM EFI file",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-65-82-77-32-69-70-73-32-102-105-108-101-0
+7882|data|DCB "is-hibernated-hiberfil",0|105-115-45-104-105-98-101-114-110-97-116-101-100-45-104-105-98-101-114-102-105-108-0
+7905|data|DCB "Check if FILE is hiberfil.sys in hibernated state",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-104-105-98-101-114-102-105-108-46-115-121-115-32-105-110-32-104-105-98-101-114-110-97-116-101-100-32-115-116-97-116-101-0
+7955|data|DCB "is-x86_64-xnu",0|105-115-45-120-56-54-95-54-52-45-120-110-117-0
+7969|data|DCB "Check if FILE is x86_64 XNU (Mac OS X kernel)",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-120-56-54-95-54-52-32-88-78-85-32-40-77-97-99-32-79-83-32-88-32-107-101-114-110-101-108-41-0
+8015|data|DCB "is-i386-xnu",0|105-115-45-105-51-56-54-45-120-110-117-0
+8027|data|DCB "Check if FILE is i386 XNU (Mac OS X kernel)",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-105-51-56-54-32-88-78-85-32-40-77-97-99-32-79-83-32-88-32-107-101-114-110-101-108-41-0
+8071|data|DCB "is-xnu-hibr",0|105-115-45-120-110-117-45-104-105-98-114-0
+8083|data|DCB "Check if FILE is XNU (Mac OS X kernel) hibernated image",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-88-78-85-32-40-77-97-99-32-79-83-32-88-32-107-101-114-110-101-108-41-32-104-105-98-101-114-110-97-116-101-100-32-105-109-97-103-101-0
+8139|data|DCB "is-x86-bios-bootsector",0|105-115-45-120-56-54-45-98-105-111-115-45-98-111-111-116-115-101-99-116-111-114-0
+8162|data|DCB "Check if FILE is BIOS bootsector",0|67-104-101-99-107-32-105-102-32-70-73-76-69-32-105-115-32-66-73-79-83-32-98-111-111-116-115-101-99-116-111-114-0
+8195|data|DCB ".note.netbsd.ident",0|46-110-111-116-101-46-110-101-116-98-115-100-46-105-100-101-110-116-0
+8214|data|DCB ".note.netbsd.ident",0|46-110-111-116-101-46-110-101-116-98-115-100-46-105-100-101-110-116-0
+8233|data|DCB "version too old for xen boot",0|118-101-114-115-105-111-110-32-116-111-111-32-111-108-100-32-102-111-114-32-120-101-110-32-98-111-111-116-0
+8262|data|DCB "payload too short",0|112-97-121-108-111-97-100-32-116-111-111-32-115-104-111-114-116-0
+8280|data|DCB "loader/i386/xen_file.c",0|108-111-97-100-101-114-47-105-51-56-54-47-120-101-110-95-102-105-108-101-46-99-0
+8303|data|DCB "xen",0|120-101-110-0
+8307|data|DCB "found bzimage payload 0x%llx-0x%llx",0xA,0|102-111-117-110-100-32-98-122-105-109-97-103-101-32-112-97-121-108-111-97-100-32-48-120-37-108-108-120-45-48-120-37-108-108-120-10-0
+8344|data|DCB "not xen image",0|110-111-116-32-120-101-110-32-105-109-97-103-101-0
+8358|data|DCB "unknown ELF type",0|117-110-107-110-111-119-110-32-69-76-70-32-116-121-112-101-0
+8375|data|DCB "premature end of file %s",0|112-114-101-109-97-116-117-114-101-32-101-110-100-32-111-102-32-102-105-108-101-32-37-115-0
+8400|data|DCB "Xen",0|88-101-110-0
+8404|data|DCB "loader/i386/xen_file32.c",0|108-111-97-100-101-114-47-105-51-56-54-47-120-101-110-95-102-105-108-101-51-50-46-99-0
+8429|data|DCB "xen",0|120-101-110-0
+8433|data|DCB "xenversion = `%s'",0xA,0|120-101-110-118-101-114-115-105-111-110-32-61-32-96-37-115-39-10-0
+8452|data|DCB "name = `%s'",0xA,0|110-97-109-101-32-61-32-96-37-115-39-10-0
+8465|data|DCB "version = `%s'",0xA,0|118-101-114-115-105-111-110-32-61-32-96-37-115-39-10-0
+8481|data|DCB "invalid loader",0|105-110-118-97-108-105-100-32-108-111-97-100-101-114-0
+8496|data|DCB "generic",0|103-101-110-101-114-105-99-0
+8504|data|DCB "pae = `%s', %d, %d",0xA,0|112-97-101-32-61-32-96-37-115-39-44-32-37-100-44-32-37-100-10-0
+8524|data|DCB "yes",0|121-101-115-0
+8528|data|DCB "bimodal",0|98-105-109-111-100-97-108-0
+8536|data|DCB "yes,bimodal",0|121-101-115-44-98-105-109-111-100-97-108-0
+8548|data|DCB "no",0|110-111-0
+8551|data|DCB "unknown note type %d",0xA,0|117-110-107-110-111-119-110-32-110-111-116-101-32-116-121-112-101-32-37-100-10-0
+8573|data|DCB "no XEN note",0|110-111-32-88-69-78-32-110-111-116-101-0
+8585|data|DCB "__xen_guest",0|95-95-120-101-110-95-103-117-101-115-116-0
+8597|data|DCB "PAE=no,",0|80-65-69-61-110-111-44-0
+8605|data|DCB "PAE=yes,",0|80-65-69-61-121-101-115-44-0
+8614|data|DCB "PAE=yes[extended-cr3],",0|80-65-69-61-121-101-115-91-101-120-116-101-110-100-101-100-45-99-114-51-93-44-0
+8637|data|DCB "PAE=bimodal,",0|80-65-69-61-98-105-109-111-100-97-108-44-0
+8650|data|DCB "PAE=bimodal[extended-cr3],",0|80-65-69-61-98-105-109-111-100-97-108-91-101-120-116-101-110-100-101-100-45-99-114-51-93-44-0
+8677|data|DCB "PAE=yes,bimodal,",0|80-65-69-61-121-101-115-44-98-105-109-111-100-97-108-44-0
+8694|data|DCB "PAE=yes[extended-cr3],bimodal,",0|80-65-69-61-121-101-115-91-101-120-116-101-110-100-101-100-45-99-114-51-93-44-98-105-109-111-100-97-108-44-0
+8725|data|DCB "VIRT_BASE=",0|86-73-82-84-95-66-65-83-69-61-0
+8736|data|DCB "VIRT_ENTRY=",0|86-73-82-84-95-69-78-84-82-89-61-0
+8748|data|DCB "HYPERCALL_PAGE=",0|72-89-80-69-82-67-65-76-76-95-80-65-71-69-61-0
+8764|data|DCB "ELF_PADDR_OFFSET=",0|69-76-70-95-80-65-68-68-82-95-79-70-70-83-69-84-61-0
+8782|data|DCB "no XEN note found",0|110-111-32-88-69-78-32-110-111-116-101-32-102-111-117-110-100-0
+8800|data|DCB "premature end of file %s",0|112-114-101-109-97-116-117-114-101-32-101-110-100-32-111-102-32-102-105-108-101-32-37-115-0
+8825|data|DCB "Xen",0|88-101-110-0
+8829|data|DCB "loader/i386/xen_file64.c",0|108-111-97-100-101-114-47-105-51-56-54-47-120-101-110-95-102-105-108-101-54-52-46-99-0
+8854|data|DCB "xen",0|120-101-110-0
+8858|data|DCB "xenversion = `%s'",0xA,0|120-101-110-118-101-114-115-105-111-110-32-61-32-96-37-115-39-10-0
+8877|data|DCB "name = `%s'",0xA,0|110-97-109-101-32-61-32-96-37-115-39-10-0
+8890|data|DCB "version = `%s'",0xA,0|118-101-114-115-105-111-110-32-61-32-96-37-115-39-10-0
+8906|data|DCB "invalid loader",0|105-110-118-97-108-105-100-32-108-111-97-100-101-114-0
+8921|data|DCB "generic",0|103-101-110-101-114-105-99-0
+8929|data|DCB "pae = `%s', %d, %d",0xA,0|112-97-101-32-61-32-96-37-115-39-44-32-37-100-44-32-37-100-10-0
+8949|data|DCB "yes",0|121-101-115-0
+8953|data|DCB "bimodal",0|98-105-109-111-100-97-108-0
+8961|data|DCB "yes,bimodal",0|121-101-115-44-98-105-109-111-100-97-108-0
+8973|data|DCB "no",0|110-111-0
+8976|data|DCB "unknown note type %d",0xA,0|117-110-107-110-111-119-110-32-110-111-116-101-32-116-121-112-101-32-37-100-10-0
+8998|data|DCB "no XEN note",0|110-111-32-88-69-78-32-110-111-116-101-0
+9010|data|DCB "__xen_guest",0|95-95-120-101-110-95-103-117-101-115-116-0
+9022|data|DCB "PAE=no,",0|80-65-69-61-110-111-44-0
+9030|data|DCB "PAE=yes,",0|80-65-69-61-121-101-115-44-0
+9039|data|DCB "PAE=yes[extended-cr3],",0|80-65-69-61-121-101-115-91-101-120-116-101-110-100-101-100-45-99-114-51-93-44-0
+9062|data|DCB "PAE=bimodal,",0|80-65-69-61-98-105-109-111-100-97-108-44-0
+9075|data|DCB "PAE=bimodal[extended-cr3],",0|80-65-69-61-98-105-109-111-100-97-108-91-101-120-116-101-110-100-101-100-45-99-114-51-93-44-0
+9102|data|DCB "PAE=yes,bimodal,",0|80-65-69-61-121-101-115-44-98-105-109-111-100-97-108-44-0
+9119|data|DCB "PAE=yes[extended-cr3],bimodal,",0|80-65-69-61-121-101-115-91-101-120-116-101-110-100-101-100-45-99-114-51-93-44-98-105-109-111-100-97-108-44-0
+9150|data|DCB "VIRT_BASE=",0|86-73-82-84-95-66-65-83-69-61-0
+9161|data|DCB "VIRT_ENTRY=",0|86-73-82-84-95-69-78-84-82-89-61-0
+9173|data|DCB "HYPERCALL_PAGE=",0|72-89-80-69-82-67-65-76-76-95-80-65-71-69-61-0
+9189|data|DCB "ELF_PADDR_OFFSET=",0|69-76-70-95-80-65-68-68-82-95-79-70-70-83-69-84-61-0
+9207|data|DCB "no XEN note found",0|110-111-32-88-69-78-32-110-111-116-101-32-102-111-117-110-100-0
+9225|data||255
+9226|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

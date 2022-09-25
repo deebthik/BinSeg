@@ -1,0 +1,185 @@
+address|type|disassembly|bytes
+0|code|BX              LR|112-71
+2|code|MOVS            disk, #0xB|11-32
+4|code|BX              LR|112-71
+6|code|MOVS            disk, #0xB|11-32
+8|code|BX              LR|112-71
+10|code|PUSH            {R3,LR}|8-181
+12|code|LDR             file, [file,#0x44]|64-108
+14|code|LDR             R3, =grub_free|2-75
+16|code|BLX             R3; grub_free|152-71
+18|code|MOVS            R0, #0|0-32
+20|code|POP             {R3,PC}|8-189
+22|data|ALIGN 4|0-191
+24|data|DCD grub_free|92-2-0-0
+28|code|PUSH            {R3-R5,LR}|56-181
+30|code|MOV             R4, len|20-70
+32|code|LDR             R5, [file,#0x44]|69-108
+34|code|LDR             R3, [file,#0x10]|3-105
+36|code|MOV             file, buf|8-70
+38|code|ADDS            buf, R5, R3|233-24
+40|code|LDR             R3, =grub_memmove|1-75
+42|code|BLX             R3; grub_memmove|152-71
+44|code|MOV             R0, len|32-70
+46|code|POP             {R3-R5,PC}|56-189
+48|data|DCD grub_memmove|60-2-0-0
+52|code|MOV             R3, hook|3-70
+54|code|CBNZ            pull, loc_3C|10-185
+56|code|LDR             hook, =aProc; "proc"|1-72
+58|code|BX              hook|24-71
+60|code|MOVS            hook, #0|0-32
+62|code|BX              LR|112-71
+64|data|DCD aProc; "proc"|160-1-0-0
+68|code|PUSH.W          {file-R2,R4-R9,LR}|45-233-247-67
+72|code|MOV             R3, pathptr|11-70
+74|code|MOV             R7, file|7-70
+76|code|MOV             R8, pathptr|136-70
+78|code|MOV             R6, R3|30-70
+80|code|ADDS            pathptr, #1|1-51
+82|code|LDRB            R2, [pathptr]|50-120
+84|code|CMP             R2, #0x2F ; '/'|47-42
+86|code|BEQ             loc_4E|250-208
+88|code|LDR             R3, =grub_procfs_entries|16-75
+90|code|LDR.W           R9, =grub_strcmp|223-248-80-144
+94|code|LDR             R5, [R3]|29-104
+96|code|CBZ             entry, loc_8A|157-177
+98|code|MOV             R0, pathptr|48-70
+100|code|LDR             R1, [entry,#8]|169-104
+102|code|BLX             R9; grub_strcmp|200-71
+104|code|MOV             R4, R0|4-70
+106|code|CBNZ            R0, loc_86|96-185
+108|code|LDR             R3, [entry,#0xC]|235-104
+110|code|ADD             R0, SP, #0x28+sz|1-168
+112|code|BLX             R3|152-71
+114|code|STR             R0, [file,#0x44]|120-100
+116|code|CBNZ            R0, loc_7C|16-185
+118|code|LDR             R3, =grub_errno|10-75
+120|code|LDR             R0, [R3]|24-104
+122|code|B               loc_94|11-224
+124|code|LDR             R3, [SP,#0x28+sz]|1-155
+126|code|MOV             R0, R4|32-70
+128|code|STR             R4, [file,#0x3C]|252-99
+130|code|STR             R3, [file,#0x38]|187-99
+132|code|B               loc_94|6-224
+134|code|LDR             entry, [entry]|45-104
+136|code|B               loc_60|234-231
+138|code|MOVS            R0, #5|5-32
+140|code|LDR             R1, =aFileSNotFound; "file `%s' not found"|5-73
+142|code|MOV             R2, path|66-70
+144|code|LDR             R3, =grub_error|5-75
+146|code|BLX             R3; grub_error|152-71
+148|code|ADD             SP, SP, #0xC|3-176
+150|code|POP.W           {R4-R9,PC}|189-232-240-131
+154|data|ALIGN 4|0-191
+156|data|DCD grub_procfs_entries|56-2-0-0
+160|data|DCD grub_errno|68-2-0-0
+164|data|DCD aFileSNotFound; "file `%s' not found"|165-1-0-0
+168|data|DCD grub_error|84-2-0-0
+172|data|DCD grub_strcmp|80-2-0-0
+176|code|PUSH            {R4,LR}|16-181
+178|code|MOV             R4, disk|12-70
+180|code|LDR             R3, =grub_strcmp|7-75
+182|code|LDR             disk, =aProc; "proc"|8-73
+184|code|BLX             R3; grub_strcmp|152-71
+186|code|CBZ             R0, loc_C6|32-177
+188|code|LDR             R1, =aNotAProcfsDisk; "not a procfs disk"|7-73
+190|code|MOVS            R0, #0xC|12-32
+192|code|LDR             R3, =grub_error|7-75
+194|code|BLX             R3; grub_error|152-71
+196|code|POP             {disk,PC}|16-189
+198|code|MOVS            R2, #0|0-34
+200|code|MOVS            R3, #0|0-35
+202|code|STR             R0, [disk,#0x18]|160-97
+204|code|STRD.W          R2, R3, [disk,#8]|196-233-2-35
+208|code|STR             R0, [disk,#0x28]|160-98
+210|code|POP             {disk,PC}|16-189
+212|data|DCD grub_strcmp|80-2-0-0
+216|data|DCD aProc; "proc"|160-1-0-0
+220|data|DCD aNotAProcfsDisk; "not a procfs disk"|185-1-0-0
+224|data|DCD grub_error|84-2-0-0
+228|code|PUSH            {R4-R7,LR}|240-181
+230|code|SUB             SP, SP, #0x14|133-176
+232|code|MOV             R7, device|7-70
+234|code|MOV             R4, path|12-70
+236|code|MOV             R5, hook|21-70
+238|code|MOVS            path, #0|0-33
+240|code|MOV             R6, hook_data|30-70
+242|code|MOV             device, SP|104-70
+244|code|LDR             hook_data, =grub_memset|18-75
+246|code|MOVS            hook, #0x10|16-34
+248|code|BLX             R3; grub_memset|152-71
+250|code|LDR             R3, [device]|59-104
+252|code|LDR             R1, =aProc; "proc"|17-73
+254|code|LDR             R0, [R3]|24-104
+256|code|LDR             R3, =grub_strcmp|17-75
+258|code|BLX             R3; grub_strcmp|152-71
+260|code|CBNZ            R0, loc_10A|8-185
+262|code|SUBS            R1, path, #1|97-30
+264|code|B               loc_114|4-224
+266|code|LDR             R1, =aNotAProcfs; "not a procfs"|16-73
+268|code|MOVS            R0, #9|9-32
+270|code|LDR             R3, =grub_error|16-75
+272|code|BLX             R3; grub_error|152-71
+274|code|B               loc_13A|18-224
+276|code|LDRB.W          R0, [R1,#1]!|17-248-1-15
+280|code|CMP             R0, #0x2F ; '/'|47-40
+282|code|BEQ             loc_114|251-208
+284|code|CBZ             R0, loc_122|8-177
+286|code|MOVS            R0, #0|0-32
+288|code|B               loc_13A|11-224
+290|code|LDR             R3, =grub_procfs_entries|12-75
+292|code|LDR             path, [R3]|28-104
+294|code|CMP             entry, #0|0-44
+296|code|BEQ             loc_11E|249-208
+298|code|LDR             R0, [entry,#8]|160-104
+300|code|MOV             R1, SP|105-70
+302|code|MOV             R2, hook_data|50-70
+304|code|BLX             hook|168-71
+306|code|CMP             R0, #0|0-40
+308|code|BNE             loc_11E|243-209
+310|code|LDR             entry, [entry]|36-104
+312|code|B               loc_126|245-231
+314|code|ADD             SP, SP, #0x14|5-176
+316|code|POP             {R4-device,PC}|240-189
+318|data|ALIGN 0x10|0-191
+320|data|DCD grub_memset|72-2-0-0
+324|data|DCD aProc; "proc"|160-1-0-0
+328|data|DCD grub_strcmp|80-2-0-0
+332|data|DCD aNotAProcfs; "not a procfs"|203-1-0-0
+336|data|DCD grub_error|84-2-0-0
+340|data|DCD grub_procfs_entries|56-2-0-0
+344|code|PUSH            {R4,LR}|16-181
+346|code|LDR             R4, =grub_procfs_dev|5-76
+348|code|LDR             R3, =grub_disk_dev_register|5-75
+350|code|MOV             mod, R4|32-70
+352|code|BLX             R3; grub_disk_dev_register|152-71
+354|code|LDR             R0, =grub_fs_list|5-72
+356|code|ADD.W           R1, R4, #0x20 ; ' '|4-241-32-1
+360|code|LDR             R3, =grub_list_push|4-75
+362|code|BLX             R3; grub_list_push|152-71
+364|code|POP             {R4,PC}|16-189
+366|data|ALIGN 0x10|0-191
+368|data|DCD grub_procfs_dev|224-1-0-0
+372|data|DCD grub_disk_dev_register|64-2-0-0
+376|data|DCD grub_fs_list|76-2-0-0
+380|data|DCD grub_list_push|100-2-0-0
+384|code|PUSH            {R4,LR}|16-181
+386|code|LDR             R4, =grub_procfs_dev|4-76
+388|code|LDR             R3, =grub_disk_dev_unregister|4-75
+390|code|MOV             R0, R4|32-70
+392|code|BLX             R3; grub_disk_dev_unregister|152-71
+394|code|ADD.W           R0, R4, #0x20 ; ' '|4-241-32-0
+398|code|LDR             R3, =grub_list_remove|3-75
+400|code|BLX             R3; grub_list_remove|152-71
+402|code|POP             {R4,PC}|16-189
+404|data|DCD grub_procfs_dev|224-1-0-0
+408|data|DCD grub_disk_dev_unregister|96-2-0-0
+412|data|DCD grub_list_remove|88-2-0-0
+416|data|DCB "proc",0|112-114-111-99-0
+421|data|DCB "file `%s' not found",0|102-105-108-101-32-96-37-115-39-32-110-111-116-32-102-111-117-110-100-0
+441|data|DCB "not a procfs disk",0|110-111-116-32-97-32-112-114-111-99-102-115-32-100-105-115-107-0
+459|data|DCB "not a procfs",0|110-111-116-32-97-32-112-114-111-99-102-115-0
+472|data|DCB "procfs",0|112-114-111-99-102-115-0
+480|data|grub_disk_dev <aProc, GRUB_DISK_DEVICE_PROCFS_ID, \; "proc"|160-1-0-0-13-0-0-0-53-0-0-0-177-0-0-0-1-0-0-0-3-0-0-0-7-0-0-0-0-0-0-0
+512|data|grub_fs <0, 0, aProcfs, grub_procfs_dir+1, grub_procfs_open+1, \; "procfs"|0-0-0-0-0-0-0-0-216-1-0-0-229-0-0-0-69-0-0-0-29-0-0-0-11-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+552|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

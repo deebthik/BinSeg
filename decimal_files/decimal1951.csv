@@ -1,0 +1,246 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|MOV             R9, dev|129-70
+6|code|LDR             dev, [dev,#0x38]|128-107
+8|code|SUB             SP, SP, #0x1C|135-176
+10|code|LDR             R3, =grub_netbuff_alloc|36-75
+12|code|ADDS            R0, #0x42 ; 'B'|66-48
+14|code|BLX             R3; grub_netbuff_alloc|152-71
+16|code|MOV             R4, nb|4-70
+18|code|CMP             nb, #0|0-40
+20|code|BEQ             loc_92|61-208
+22|code|MOVS            R1, #2|2-33
+24|code|LDR             R3, =grub_netbuff_reserve|33-75
+26|code|LDR             R5, =grub_get_time_ms|34-77
+28|code|BLX             R3; grub_netbuff_reserve|152-71
+30|code|BLX             R5; grub_get_time_ms|168-71
+32|code|LDR.W           R10, =grub_uboot_dev_recv|223-248-152-160
+36|code|MOV             R6, R0|6-70
+38|code|MOV             R7, R1|15-70
+40|code|LDR.W           R2, [dev,#0x38]|217-248-56-32
+44|code|ADD             R3, SP, #0x40+actual|5-171
+46|code|LDR             R1, [nb,#4]|97-104
+48|code|ADDS            R2, #0x40 ; '@'|64-50
+50|code|LDR.W           R0, [dev,#0x5C]|217-248-92-0
+54|code|BLX             R10; grub_uboot_dev_recv|208-71
+56|code|LDR.W           R11, [SP,#0x40+actual]|221-248-20-176
+60|code|MOV             R8, R0|128-70
+62|code|BLX             R5; grub_get_time_ms|168-71
+64|code|LDR             R3, =aRcDActualDTime; "rc=%d, actual=%d, time=%lld\n"|25-75
+66|code|STMEA.W         SP, {rc,R11}|141-232-0-9
+70|code|LDR             R2, =aNet; "net"|25-74
+72|code|LDR.W           R12, =grub_real_dprintf|223-248-116-192
+76|code|SUBS            R0, R0, R6|128-27
+78|code|SBC.W           R1, R1, R7|97-235-7-1
+82|code|STRD.W          R0, R1, [SP,#0x40+var_38]|205-233-2-1
+86|code|LDR             R0, =aNetDriversUboo; "net/drivers/uboot/ubootnet.c"|22-72
+88|code|MOVS            R1, #0x56 ; 'V'|86-33
+90|code|BLX             R12; grub_real_dprintf|224-71
+92|code|LDR             R3, [SP,#0x40+actual]|5-155
+94|code|CMP             R3, #0|0-43
+96|code|BLE             loc_76|9-221
+98|code|CMP.W           rc, #0|184-241-0-15
+102|code|BLT             loc_76|6-219
+104|code|LDR             R1, [SP,#0x40+actual]|5-153
+106|code|CMP             R1, #0|0-41
+108|code|BLE             loc_88|12-221
+110|code|MOV             R0, nb|32-70
+112|code|LDR             R3, =grub_netbuff_put|16-75
+114|code|BLX             R3; grub_netbuff_put|152-71
+116|code|B               loc_92|13-224
+118|code|BLX             R5; grub_get_time_ms|168-71
+120|code|SUBS            R0, R0, R6|128-27
+122|code|SBC.W           R1, R1, R7|97-235-7-1
+126|code|CMP             R1, #0|0-41
+128|code|IT EQ|8-191
+130|code|CMPEQ           R0, #0xC8|200-40
+132|code|BCC             loc_28|208-211
+134|code|B               loc_68|239-231
+136|code|MOV             R0, nb|32-70
+138|code|LDR             R3, =grub_netbuff_free|11-75
+140|code|BLX             R3; grub_netbuff_free|152-71
+142|code|MOVS            R0, #0|0-32
+144|code|B               loc_94|0-224
+146|code|MOV             R0, nb|32-70
+148|code|ADD             SP, SP, #0x1C|7-176
+150|code|POP.W           {nb-R11,PC}|189-232-240-143
+154|data|ALIGN 4|0-191
+156|data|DCD grub_netbuff_alloc|28-3-0-0
+160|data|DCD grub_netbuff_reserve|76-3-0-0
+164|data|DCD grub_get_time_ms|44-3-0-0
+168|data|DCD aRcDActualDTime; "rc=%d, actual=%d, time=%lld\n"|101-2-0-0
+172|data|DCD aNet; "net"|97-2-0-0
+176|data|DCD aNetDriversUboo; "net/drivers/uboot/ubootnet.c"|68-2-0-0
+180|data|DCD grub_netbuff_put|72-3-0-0
+184|data|DCD grub_netbuff_free|248-2-0-0
+188|data|DCD grub_uboot_dev_recv|12-3-0-0
+192|data|DCD grub_real_dprintf|52-3-0-0
+196|code|PUSH            {R3,LR}|8-181
+198|code|LDR             R3, =grub_uboot_dev_close|2-75
+200|code|LDR             dev, [dev,#0x5C]|192-109
+202|code|BLX             R3; grub_uboot_dev_close|152-71
+204|code|POP             {R3,PC}|8-189
+206|data|ALIGN 0x10|0-191
+208|data|DCD grub_uboot_dev_close|56-3-0-0
+212|code|PUSH            {R3,LR}|8-181
+214|code|LDR             R3, =grub_uboot_dev_open|4-75
+216|code|LDR             dev, [dev,#0x5C]|192-109
+218|code|BLX             R3; grub_uboot_dev_open|152-71
+220|code|CBZ             status, locret_E6|24-177
+222|code|MOVS            status, #0x1D|29-32
+224|code|LDR             R1, =aCouldnTOpenNet; "Couldn't open network card."|2-73
+226|code|LDR             R3, =grub_error|3-75
+228|code|BLX             R3; grub_error|152-71
+230|code|POP             {R3,PC}|8-189
+232|data|DCD grub_uboot_dev_open|252-2-0-0
+236|data|DCD aCouldnTOpenNet; "Couldn't open network card."|130-2-0-0
+240|data|DCD grub_error|60-3-0-0
+244|code|PUSH            {R3-R5,LR}|56-181
+246|code|MOV             R5, dev|5-70
+248|code|LDR             R2, [pack,#4]|74-104
+250|code|LDR             R4, [pack,#8]|140-104
+252|code|LDR             R3, [dev,#0x38]|131-107
+254|code|SUBS            R4, R4, R2|164-26
+256|code|MOV             pack, R2|17-70
+258|code|CMP             len, R3|156-66
+260|code|LDR             dev, [dev,#0x48]|128-108
+262|code|IT CS|40-191
+264|code|MOVCS           len, R3|28-70
+266|code|LDR             R3, =grub_memmove|7-75
+268|code|MOV             R2, len|34-70
+270|code|BLX             R3; grub_memmove|152-71
+272|code|LDR             R0, [dev,#0x5C]|232-109
+274|code|LDR             R1, [dev,#0x48]|169-108
+276|code|MOV             R2, len|34-70
+278|code|LDR             R3, =grub_uboot_dev_send|5-75
+280|code|BLX             R3; grub_uboot_dev_send|152-71
+282|code|CBZ             status, locret_124|24-177
+284|code|MOVS            status, #0x1D|29-32
+286|code|LDR             R1, =aCouldnTSendNet; "couldn't send network packet"|4-73
+288|code|LDR             R3, =grub_error|4-75
+290|code|BLX             R3; grub_error|152-71
+292|code|POP             {R3-dev,PC}|56-189
+294|data|ALIGN 4|0-191
+296|data|DCD grub_memmove|8-3-0-0
+300|data|DCD grub_uboot_dev_send|16-3-0-0
+304|data|DCD aCouldnTSendNet; "couldn't send network packet"|158-2-0-0
+308|data|DCD grub_error|60-3-0-0
+312|code|PUSH.W          {mod-R2,R4-R11,LR}|45-233-247-79
+316|code|MOVS            R6, #0|0-38
+318|code|LDR             R3, =grub_uboot_dev_enum|37-75
+320|code|MOV             R5, R6|53-70
+322|code|BLX             R3; grub_uboot_dev_enum|152-71
+324|code|LDR.W           R9, =grub_uboot_dev_get|223-248-176-144
+328|code|LDR             R7, =grub_zalloc|35-79
+330|code|LDR.W           R10, =grub_memmove|223-248-176-160
+334|code|MOV             R8, R0|128-70
+336|code|CMP             i, devcount|69-69
+338|code|BGE             loc_1CC|59-218
+340|code|MOV             R0, i|40-70
+342|code|BLX             R9; grub_uboot_dev_get|200-71
+344|code|LDR             R3, [R0]|3-104
+346|code|MOV             R11, R0|131-70
+348|code|LSLS            R3, R3, #0x1F|219-7
+350|code|BPL             loc_1C8|51-213
+352|code|MOVS            devinfo, #0x60 ; '`'|96-32
+354|code|BLX             R7; grub_zalloc|184-71
+356|code|MOV             R4, card|4-70
+358|code|CBNZ            card, loc_16E|16-185
+360|code|LDR             R3, =grub_print_error|28-75
+362|code|BLX             R3; grub_print_error|152-71
+364|code|B               loc_1CC|46-224
+366|code|MOVW            R3, #0x5DC|64-242-220-83
+370|code|ADD.W           R1, devinfo, #8|11-241-8-1
+374|code|STR             R3, [card,#0x38]|131-99
+376|code|MOVS            R2, #6|6-34
+378|code|ADDS            card, #0x14|20-48
+380|code|BLX             R10; grub_memmove|208-71
+382|code|LDR             R3, [card,#0x38]|163-107
+384|code|MOVS            R2, #0|0-34
+386|code|STR             R2, [card,#0x10]|34-97
+388|code|ADDS            R3, #0x3F ; '?'|63-51
+390|code|STR             R2, [SP,#0x30+var_2C]|1-146
+392|code|BIC.W           R3, R3, #0x3F|35-240-63-3
+396|code|ADD.W           R0, R3, #0x100|3-245-128-112
+400|code|STR             R0, [card,#0x54]|96-101
+402|code|BLX             R7; grub_zalloc|184-71
+404|code|LDR             R2, [SP,#0x30+var_2C]|1-154
+406|code|STR             R0, [card,#0x48]|160-100
+408|code|CBNZ            R0, loc_1A6|40-185
+410|code|MOV             R0, card|32-70
+412|code|LDR             R3, =grub_free|16-75
+414|code|BLX             R3; grub_free|152-71
+416|code|LDR             R3, =grub_print_error|14-75
+418|code|BLX             R3; grub_print_error|152-71
+420|code|B               loc_1C8|16-224
+422|code|ADDS            nfound, #1|1-54
+424|code|LDR             R3, =grub_xasprintf|14-75
+426|code|STR.W           devinfo, [card,#0x5C]|196-248-92-176
+430|code|MOV             R1, nfound|49-70
+432|code|STR             R2, [card,#0x1C]|226-97
+434|code|LDR             R0, =aUbnetD; "ubnet_%d"|13-72
+436|code|BLX             R3; grub_xasprintf|152-71
+438|code|MOVS            R3, #0xA|10-35
+440|code|STR             R3, [card,#0x28]|163-98
+442|code|MOV             R1, card|33-70
+444|code|LDR             R3, =ubootnet|11-75
+446|code|STR             R3, [card,#0xC]|227-96
+448|code|LDR             R3, =grub_list_push|11-75
+450|code|STR             R0, [card,#8]|160-96
+452|code|LDR             R0, =grub_net_cards|11-72
+454|code|BLX             R3; grub_list_push|152-71
+456|code|ADDS            i, #1|1-53
+458|code|B               loc_150|193-231
+460|code|ADD             SP, SP, #0xC|3-176
+462|code|POP.W           {R4-R11,PC}|189-232-240-143
+466|data|ALIGN 4|0-191
+468|data|DCD grub_uboot_dev_enum|0-3-0-0
+472|data|DCD grub_zalloc|36-3-0-0
+476|data|DCD grub_print_error|32-3-0-0
+480|data|DCD grub_free|64-3-0-0
+484|data|DCD grub_xasprintf|4-3-0-0
+488|data|DCD aUbnetD; "ubnet_%d"|187-2-0-0
+492|data|DCD ubootnet|204-2-0-0
+496|data|DCD grub_list_push|68-3-0-0
+500|data|DCD grub_net_cards|24-3-0-0
+504|data|DCD grub_uboot_dev_get|20-3-0-0
+508|data|DCD grub_memmove|8-3-0-0
+512|code|PUSH            {R3-R7,LR}|248-181
+514|code|LDR             R3, =grub_net_cards|12-75
+516|code|LDR             R4, [R3]|28-104
+518|code|CBZ             card, loc_20C|12-177
+520|code|LDR             R5, [card]|37-104
+522|code|B               loc_20E|0-224
+524|code|MOV             R5, card|37-70
+526|code|LDR             R6, =grub_strcmp|10-78
+528|code|LDR             R7, =grub_net_card_unregister|10-79
+530|code|CBZ             card, locret_232|116-177
+532|code|LDR             R3, [card,#0xC]|227-104
+534|code|CBZ             R3, loc_224|43-177
+536|code|LDR             R0, [R3,#8]|152-104
+538|code|LDR             R1, =aUbnet; "ubnet"|9-73
+540|code|BLX             R6; grub_strcmp|176-71
+542|code|CBNZ            R0, loc_224|8-185
+544|code|MOV             R0, card|32-70
+546|code|BLX             R7; grub_net_card_unregister|184-71
+548|code|CBZ             next, loc_22A|13-177
+550|code|LDR             R3, [next]|43-104
+552|code|B               loc_22C|0-224
+554|code|MOV             R3, next|43-70
+556|code|MOV             R4, next|44-70
+558|code|MOV             next, R3|29-70
+560|code|B               loc_212|239-231
+562|code|POP             {R3-R7,PC}|248-189
+564|data|DCD grub_net_cards|24-3-0-0
+568|data|DCD grub_strcmp|40-3-0-0
+572|data|DCD grub_net_card_unregister|48-3-0-0
+576|data|DCD aUbnet; "ubnet"|196-2-0-0
+580|data|DCB "net/drivers/uboot/ubootnet.c",0|110-101-116-47-100-114-105-118-101-114-115-47-117-98-111-111-116-47-117-98-111-111-116-110-101-116-46-99-0
+609|data|DCB "net",0|110-101-116-0
+613|data|DCB "rc=%d, actual=%d, time=%lld",0xA,0|114-99-61-37-100-44-32-97-99-116-117-97-108-61-37-100-44-32-116-105-109-101-61-37-108-108-100-10-0
+642|data|DCB "Couldn't open network card.",0|67-111-117-108-100-110-39-116-32-111-112-101-110-32-110-101-116-119-111-114-107-32-99-97-114-100-46-0
+670|data|DCB "couldn't send network packet",0|99-111-117-108-100-110-39-116-32-115-101-110-100-32-110-101-116-119-111-114-107-32-112-97-99-107-101-116-0
+699|data|DCB "ubnet_%d",0|117-98-110-101-116-95-37-100-0
+708|data|DCB "ubnet",0|117-98-110-101-116-0
+716|data|grub_net_card_driver <0, 0, aUbnet, card_open+1, card_close+1, \; "ubnet"|0-0-0-0-0-0-0-0-196-2-0-0-213-0-0-0-197-0-0-0-245-0-0-0-1-0-0-0
+744|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

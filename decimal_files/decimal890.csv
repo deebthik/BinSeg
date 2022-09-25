@@ -1,0 +1,1895 @@
+address|type|disassembly|bytes
+0|code|MOV             R3, d|3-70
+2|code|LDRB            R2, [R1]|10-120
+4|code|MOV             R0, d|24-70
+6|code|STRB.W          R2, [R3],#1|3-248-1-43
+10|code|LDRB.W          R2, [s],#1|17-248-1-43
+14|code|CMP             R2, #0|0-42
+16|code|BNE             loc_2|247-209
+18|code|BX              LR|112-71
+20|code|PUSH.W          {target-dx,R4-R11,LR}|45-233-247-79
+24|code|MOVS            R7, #0|0-39
+26|code|LDRH            R4, [src,#6]|204-136
+28|code|STR             R4, [SP,#0x30+var_2C]|1-148
+30|code|LDR             R4, [SP,#0x30+var_2C]|1-156
+32|code|CMP             i, R4|167-66
+34|code|BCS             loc_96|56-210
+36|code|LDRH.W          R11, [src,#4]|177-248-4-176
+40|code|ADDS            R4, i, dy|252-24
+42|code|LDRH            R5, [target,#4]|133-136
+44|code|MOV.W           R9, #0|79-240-0-9
+48|code|MUL.W           R6, R11, i|11-251-7-246
+52|code|MLA.W           R4, R5, R4, dx|5-251-4-36
+56|code|AND.W           LR, R6, #7|6-240-7-14
+60|code|AND.W           R12, R4, #7|4-240-7-12
+64|code|LSRS            R6, R6, #3|246-8
+66|code|LSRS            R4, R4, #3|228-8
+68|code|CMP             j, R11|217-69
+70|code|BCS             loc_92|36-210
+72|code|ADDS            R5, src, src_byte|141-25
+74|code|ADD.W           R8, target, tgt_byte|0-235-4-8
+78|code|ADD.W           j, j, #1|9-241-1-9
+82|code|LDRB            R5, [R5,#0xE]|173-123
+84|code|LDRB.W          R10, [R8,#0xE]|152-248-14-160
+88|code|LSL.W           R5, R5, LR|5-250-14-245
+92|code|ADD.W           LR, LR, #1|14-241-1-14
+96|code|AND.W           R5, R5, #0x80|5-240-128-5
+100|code|CMP.W           LR, #8|190-241-8-15
+104|code|IT EQ|8-191
+106|code|ADDEQ           src_byte, #1|1-54
+108|code|ASR.W           R5, R5, tgt_bit|69-250-12-245
+112|code|ADD.W           tgt_bit, tgt_bit, #1|12-241-1-12
+116|code|IT EQ|8-191
+118|code|MOVEQ.W         LR, #0|79-240-0-14
+122|code|CMP.W           tgt_bit, #8|188-241-8-15
+126|code|ORR.W           R5, R5, R10|69-234-10-5
+130|code|IT EQ|8-191
+132|code|ADDEQ           tgt_byte, #1|1-52
+134|code|STRB.W          R5, [R8,#0xE]|136-248-14-80
+138|code|IT EQ|8-191
+140|code|MOVEQ.W         R12, #0|79-240-0-12
+144|code|B               loc_44|216-231
+146|code|ADDS            i, #1|1-55
+148|code|B               loc_1E|195-231
+150|code|ADD             SP, SP, #0xC|3-176
+152|code|POP.W           {R4-R11,PC}|189-232-240-143
+156|code|PUSH            {ctx-R7,LR}|248-181
+158|code|MOV             R7, src|7-70
+160|code|LDR             src, [ctx]; target|24-104
+162|code|MOV             R6, dx|14-70
+164|code|MOV             R5, dy|21-70
+166|code|MOV             R4, ctx|28-70
+168|code|CBZ             R0, loc_C0|80-177
+170|code|LDRH            dx, [R0,#6]|193-136
+172|code|LDRSH.W         ctx, [R0,#0xA]|176-249-10-48
+176|code|LDRSH.W         dy, [R0,#8]|176-249-8-32
+180|code|ADD             R3, R1|11-68
+182|code|MOV             R1, src; src|57-70
+184|code|SUBS            R2, dx, R2; dx|178-26
+186|code|ADD             R3, dy; dy|43-68
+188|code|BL              grub_font_blit_glyph|255-247-170-255
+192|code|LDR             R3, [ctx,#8]|163-104
+194|code|LDRH            R0, [src,#6]|248-136
+196|code|CMP             dx, R3|158-66
+198|code|LDR             R1, [ctx,#0xC]|225-104
+200|code|ITTTT LT|191-191
+202|code|SUBLT           R3, R3, dx|155-27
+204|code|STRLT           dx, [ctx,#8]|166-96
+206|code|LDRLT           R2, [ctx,#0x10]|34-105
+208|code|ADDLT           R3, R3, R2|155-24
+210|code|IT LT|184-191
+212|code|STRLT           R3, [ctx,#0x10]|35-97
+214|code|NEGS            R3, R0|67-66
+216|code|SUBS            R3, R3, dy|91-27
+218|code|CMP             R1, R3|153-66
+220|code|ITT GT|196-191
+222|code|STRGT           R3, [ctx,#0xC]|227-96
+224|code|ADDGT           R2, dy, R0|42-24
+226|code|ADD             R3, R0|3-68
+228|code|ITTTT GT|193-191
+230|code|ADDGT           R2, R2, R1|82-24
+232|code|LDRGT           R1, [ctx,#0x14]|97-105
+234|code|ADDGT           R2, R2, R1|82-24
+236|code|STRGT           R2, [ctx,#0x14]|98-97
+238|code|LDRH            R2, [src,#4]|186-136
+240|code|ADDS            R1, dx, R2|177-24
+242|code|LDR             R2, [ctx,#8]|162-104
+244|code|SUBS            R1, R1, R2|137-26
+246|code|LDR             R2, [ctx,#0x10]|34-105
+248|code|CMP             R1, R2|145-66
+250|code|LDR             R2, [ctx,#0xC]|226-104
+252|code|ITT GE|164-191
+254|code|ADDGE           R1, #1|1-49
+256|code|STRGE           R1, [ctx,#0x10]|33-97
+258|code|SUBS            R3, R3, R2|155-26
+260|code|LDR             R2, [ctx,#0x14]|98-105
+262|code|CMP             R2, R3|154-66
+264|code|IT LT|184-191
+266|code|STRLT           R3, [ctx,#0x14]|99-97
+268|code|POP             {R3-src,PC}|248-189
+270|code|LDR             R3, [ctx]|11-104
+272|code|CBZ             R3, loc_118|19-177
+274|code|LDRH            R2, [R3,#0xC]|154-137
+276|code|ADD             R2, val|2-68
+278|code|STRH            R2, [R3,#0xC]|154-129
+280|code|LDR             R3, [ctx,#4]|75-104
+282|code|CBZ             R3, locret_122|19-177
+284|code|LDR             R2, [R3]|26-104
+286|code|ADD             val, R2|16-68
+288|code|STR             R0, [R3]|24-96
+290|code|BX              LR|112-71
+292|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+296|code|SUB             SP, SP, #0x34|141-176
+298|code|MOV             R8, glyph|136-70
+300|code|MOV             R11, glyph_id|131-70
+302|code|STR             bounds_out_0, [SP,#0x58+bounds_out]|4-146
+304|code|MOV             R4, main_glyph|28-70
+306|code|ADD             glyph_id, SP, #0x58+ctx; s|6-168
+308|code|LDR             main_glyph, =memset|185-75
+310|code|MOVS            glyph, #0; c|0-33
+312|code|MOVS            bounds_out_0, #0x18; n|24-34
+314|code|BLX             R3; memset|152-71
+316|code|LDR             R3, [SP,#0x58+device_width]|23-155
+318|code|STR.W           glyph, [SP,#0x58+ctx]|205-248-24-128
+322|code|STR             R3, [SP,#0x58+ctx.device_width]|7-147
+324|code|CMP.W           glyph, #0|184-241-0-15
+328|code|BEQ             loc_150|2-208
+330|code|LDRH            R3, [main_glyph,#0xC]|163-137
+332|code|STRH.W          R3, [glyph,#0xC]|168-248-12-48
+336|code|LDR             R3, [SP,#0x58+device_width]|23-155
+338|code|CBZ             R3, loc_15A|19-177
+340|code|LDRH            R3, [main_glyph,#0xC]|163-137
+342|code|LDR             R2, [SP,#0x58+device_width]|23-154
+344|code|STR             R3, [R2]|19-96
+346|code|LDRSH.W         R3, [main_glyph,#0xA]|180-249-10-48
+350|code|LDRSH.W         above_leftx, [main_glyph,#8]|180-249-8-144
+354|code|LDRH            R7, [main_glyph,#4]|167-136
+356|code|STR             R3, [SP,#0x58+below_righty]|2-147
+358|code|STR             R3, [SP,#0x58+ctx.bounds.y]|9-147
+360|code|LDRH            R3, [main_glyph,#6]|227-136
+362|code|LDR             R2, [SP,#0x58+below_righty]|2-154
+364|code|STR             R7, [SP,#0x58+ctx.bounds.width]|10-151
+366|code|ADD             R7, above_leftx|79-68
+368|code|STR             R3, [SP,#0x58+ctx.bounds.height]|11-147
+370|code|ADDS            R3, R2, R3|211-24
+372|code|STR             R3, [SP,#0x58+above_lefty]|3-147
+374|code|LDRH.W          above_lefty_0, [glyph_id,#6]|187-248-6-48
+378|code|STR.W           above_leftx, [SP,#0x58+ctx.bounds]|205-248-32-144
+382|code|ANDS.W          R2, R3, #0x7F8|19-244-255-98
+386|code|STR             above_rightx, [SP,#0x58+below_rightx]|0-151
+388|code|BEQ             loc_19A|9-208
+390|code|UBFX.W          R3, R3, #3, #8|195-243-199-3
+394|code|CMP             R3, #1|1-43
+396|code|ITE LS|148-191
+398|code|ADDLS.W         R3, glyph_id, #0x10|11-241-16-3
+402|code|LDRHI.W         R3, [glyph_id,#0x10]|219-248-16-48
+406|code|STR             R3, [SP,#0x58+var_54]|1-147
+408|code|B               loc_19C|0-224
+410|code|STR             R2, [SP,#0x58+var_54]|1-146
+412|code|LDR             R6, [SP,#0x58+combining_glyphs]|22-158
+414|code|MOVS            R5, #0|0-37
+416|code|MOV             R10, R5|170-70
+418|code|SUBS            R6, #4|4-62
+420|code|LDRH.W          R3, [glyph_id,#6]|187-248-6-48
+424|code|UBFX.W          R3, R3, #3, #8|195-243-199-3
+428|code|CMP             i, R3|154-69
+430|code|BCS.W           loc_44A|128-240-76-129
+434|code|LDR.W           R0, [R6,#4]!; src|86-248-4-15
+438|code|CMP             R0, #0|0-40
+440|code|BEQ.W           loc_444|0-240-68-129
+444|code|LDR             R3, [SP,#0x58+ctx.bounds]|8-155
+446|code|MOVW            R1, #0x34F|64-242-79-49
+450|code|LDR.W           R12, [SP,#0x58+ctx.bounds.width]|221-248-40-192
+454|code|LDRH            R2, [R0,#4]|130-136
+456|code|STR             R3, [SP,#0x58+var_44]|5-147
+458|code|LDR             R3, [SP,#0x58+var_54]|1-155
+460|code|ADD.W           LR, R3, i,LSL#2|3-235-138-14
+464|code|LDR.W           R3, [R3,i,LSL#2]|83-248-42-48
+468|code|UBFX.W          R3, R3, #0, #0x15|195-243-20-3
+472|code|CMP             R3, R1|139-66
+474|code|BEQ.W           loc_444|0-240-51-129
+478|code|RSB.W           R3, R2, R12|194-235-12-3
+482|code|LDR             R1, [SP,#0x58+var_44]|5-153
+484|code|ADD.W           R1, R1, R3,LSR#1|1-235-83-1
+488|code|LDRH.W          R3, [LR,#2]|190-248-2-48
+492|code|UBFX.W          R3, R3, #5, #8|195-243-71-19
+496|code|UXTH            R1, R1|137-178
+498|code|CMP             R3, #0x1F|31-43
+500|code|BHI             loc_25E|51-216
+502|code|CMP             R3, #0x1E|30-43
+504|code|BCS.W           stacked_above|128-240-201-128
+508|code|CMP             R3, #0x16|22-43
+510|code|BEQ.W           stacked_below|0-240-245-128
+514|code|BHI             loc_234|23-216
+516|code|CMP             R3, #0x12|18-43
+518|code|BHI             loc_22A|16-216
+520|code|CMP             R3, #0xA|10-43
+522|code|BCS.W           stacked_below|128-240-239-128
+526|code|CMP             R3, #1|1-43
+528|code|BNE.W           loc_420|64-240-6-129
+532|code|LDR             R2, [SP,#0x58+ctx.bounds.height]|11-154
+534|code|SXTH            R1, R1|9-178
+536|code|LDRH.W          LR, [R0,#6]|176-248-6-224
+540|code|LDR             R3, [SP,#0x58+ctx.bounds.y]|9-155
+542|code|RSB.W           LR, LR, R2|206-235-2-14
+546|code|ADD             R2, R3|26-68
+548|code|RSB.W           R2, R2, LR,LSR#1|194-235-94-2
+552|code|B               loc_360|154-224
+554|code|CMP             R3, #0x14|20-43
+556|code|BEQ.W           stacked_below|0-240-222-128
+560|code|BLS             loc_2F4|96-217
+562|code|B               loc_3D6|208-224
+564|code|CMP             R3, #0x19|25-43
+566|code|BEQ             loc_310|107-208
+568|code|BHI             loc_250|10-216
+570|code|CMP             R3, #0x17|23-43
+572|code|BEQ.W           stacked_above|0-240-167-128
+576|code|CMP             R3, #0x18|24-43
+578|code|BNE.W           loc_420|64-240-237-128
+582|code|LDRH            R1, [main_glyph,#8]|33-137
+584|code|LDRH            R3, [main_glyph,#4]|163-136
+586|code|SUBS            R1, R1, R2|137-26
+588|code|ADD             R1, R3|25-68
+590|code|B               loc_316|98-224
+592|code|CMP             R3, #0x1B|27-43
+594|code|BCC.W           loc_420|192-240-229-128
+598|code|CMP             R3, #0x1C|28-43
+600|code|BHI.W           stacked_below|0-242-200-128
+604|code|B               stacked_above|151-224
+606|code|CMP             R3, #0xDC|220-43
+608|code|BEQ.W           stacked_below|0-240-196-128
+612|code|BHI             loc_286|15-216
+614|code|CMP             R3, #0x24 ; '$'|36-43
+616|code|BHI             loc_272|3-216
+618|code|CMP             R3, #0x21 ; '!'|33-43
+620|code|BCC.W           stacked_below|192-240-190-128
+624|code|B               stacked_above|141-224
+626|code|CMP             R3, #0xD6|214-43
+628|code|BEQ.W           loc_3C2|0-240-165-128
+632|code|CMP             R3, #0xD8|216-43
+634|code|BEQ             loc_2CA|38-208
+636|code|CMP             R3, #0xCA|202-43
+638|code|BNE.W           loc_420|64-240-207-128
+642|code|MOVS            R2, #0|0-34
+644|code|B               loc_412|197-224
+646|code|CMP             R3, #0xE6|230-43
+648|code|BEQ.W           stacked_above|0-240-129-128
+652|code|BHI             loc_2AE|15-216
+654|code|CMP             R3, #0xDE|222-43
+656|code|BEQ             loc_2DE|37-208
+658|code|CMP             R3, #0xE4|228-43
+660|code|BNE.W           loc_420|64-240-196-128
+664|code|RSB.W           above_leftx, R2, above_leftx|194-235-9-9
+668|code|LDR             R3, [SP,#0x58+above_lefty]|3-155
+670|code|LDRH            R2, [R0,#6]|194-136
+672|code|MOV             R1, above_leftx; dx|73-70
+674|code|ADD             R2, R3|26-68
+676|code|ADD             R3, SP, #0x58+ctx; ctx|6-171
+678|code|NEGS            R2, R2; dy|82-66
+680|code|BL              do_blit|255-247-248-254
+684|code|B               loc_444|202-224
+686|code|CMP             R3, #0xF0|240-43
+688|code|BEQ.W           stacked_below|0-240-156-128
+692|code|CMP             R3, #0xFF|255-43
+694|code|BEQ             loc_372|92-208
+696|code|CMP             R3, #0xE8|232-43
+698|code|BNE.W           loc_420|64-240-177-128
+702|code|LDRH            R2, [R0,#6]|194-136
+704|code|MOV             R1, above_rightx|57-70
+706|code|LDR             R3, [SP,#0x58+above_lefty]|3-155
+708|code|ADD             R2, R3|26-68
+710|code|NEGS            R2, R2|82-66
+712|code|B               loc_2D0|2-224
+714|code|LDR             R3, [SP,#0x58+above_lefty]|3-155
+716|code|MOV             R1, above_rightx; dx|57-70
+718|code|NEGS            R2, R3; dy|90-66
+720|code|ADD             R3, SP, #0x58+ctx; ctx|6-171
+722|code|BL              do_blit|255-247-227-254
+726|code|LDR             R3, [R6]|51-104
+728|code|LDRH            R3, [R3,#4]|155-136
+730|code|ADD             above_rightx, R3|31-68
+732|code|B               loc_444|178-224
+734|code|LDR             R2, [SP,#0x58+below_righty]; dy|2-154
+736|code|ADD             R3, SP, #0x58+ctx; ctx|6-171
+738|code|LDR             R1, [SP,#0x58+below_rightx]; dx|0-153
+740|code|BL              do_blit|255-247-218-254
+744|code|LDR             R3, [R6]|51-104
+746|code|LDR             R2, [SP,#0x58+below_rightx]|0-154
+748|code|LDRH            R3, [R3,#4]|155-136
+750|code|ADD             R2, R3|26-68
+752|code|STR             R2, [SP,#0x58+below_rightx]|0-146
+754|code|B               loc_444|167-224
+756|code|LDR.W           R3, [glyph_id]|219-248-0-48
+760|code|MOVW            LR, #0x5D5|64-242-213-94
+764|code|UBFX.W          R3, R3, #0, #0x17|195-243-22-3
+768|code|CMP             R3, LR|115-69
+770|code|BEQ             above_on_main|9-208
+772|code|LDRH            R1, [main_glyph,#8]|33-137
+774|code|SUBS            R3, R1, R2|139-26
+776|code|ADDS            R1, R2, #3|209-28
+778|code|SUB.W           R1, R3, R1,ASR#2|163-235-161-1
+782|code|B               loc_316|2-224
+784|code|LDRH            R1, [main_glyph,#8]|33-137
+786|code|ADD.W           R1, R1, R2,LSR#2|1-235-146-1
+790|code|UXTH            R1, R1|137-178
+792|code|LDRH            R3, [R0,#0xA]|67-137
+794|code|ADD.W           LR, R3, #0xFFFFFFFF|3-241-255-62
+798|code|LDR             R3, [R0]|3-104
+800|code|LDRSH.W         R3, [R3,#0x14]|179-249-20-48
+804|code|ADD.W           R3, R3, R3,LSR#31|3-235-211-115
+808|code|SUB.W           R3, LR, R3,ASR#1|174-235-99-3
+812|code|UXTH            R3, R3|155-178
+814|code|SXTH            R2, space|26-178
+816|code|CMP             R2, #0|0-42
+818|code|BGT             loc_34A|10-220
+820|code|LDR             space, [main_glyph]|35-104
+822|code|LDRSH.W         R3, [R3,#0x14]|179-249-20-48
+826|code|ADD.W           R3, R3, R3,LSR#31|3-235-211-115
+830|code|ASRS            R3, R3, #1|91-16
+832|code|IT MI|72-191
+834|code|ADDMI           R3, #7|7-51
+836|code|ASRS            R3, R3, #3|219-16
+838|code|ADDS            R3, #1|1-51
+840|code|UXTH            R3, R3|155-178
+842|code|LDRH.W          LR, [main_glyph,#6]|180-248-6-224
+846|code|LDRSH.W         R2, [main_glyph,#0xA]|180-249-10-32
+850|code|ADD             R2, LR|114-68
+852|code|SXTAH.W         space, R2, space|2-250-131-243
+856|code|LDRH            R2, [R0,#6]|194-136
+858|code|ADD             R2, R3|26-68
+860|code|SXTH            R1, R1; dx|9-178
+862|code|NEGS            R2, R2; dy|82-66
+864|code|ADD             R3, SP, #0x58+ctx; ctx|6-171
+866|code|BL              do_blit|255-247-155-254
+870|code|LDR             R3, [R6]|51-104
+872|code|LDRH            R3, [R3,#4]|155-136
+874|code|CMP             min_devwidth, R3|157-66
+876|code|IT LT|184-191
+878|code|MOVLT           min_devwidth, R3|29-70
+880|code|B               loc_444|104-224
+882|code|LDR.W           R3, [LR]|222-248-0-48
+886|code|UBFX.W          R3, R3, #0, #0x15|195-243-20-3
+890|code|SUBW            R3, R3, #0x7A6|163-242-166-115
+894|code|CMP             R3, #0xA|10-43
+896|code|BHI             loc_420|78-216
+898|code|MOVS            R2, #1|1-34
+900|code|LSLS            R2, R3|154-64
+902|code|MOVW            R3, #0x7F3|64-242-243-115
+906|code|ANDS            R3, R2|19-64
+908|code|CBZ             R3, loc_3E6|91-179
+910|code|LDRH            R3, [R0,#0xA]|67-137
+912|code|ADD.W           LR, R3, #0xFFFFFFFF|3-241-255-62
+916|code|LDR             R3, [R0]|3-104
+918|code|LDRSH.W         R3, [R3,#0x14]|179-249-20-48
+922|code|ADD.W           R3, R3, R3,LSR#31|3-235-211-115
+926|code|SUB.W           R3, LR, R3,ASR#1|174-235-99-3
+930|code|UXTH            R3, R3|155-178
+932|code|SXTH            R2, space|26-178
+934|code|CMP             R2, #0|0-42
+936|code|BGT             loc_3C4|12-220
+938|code|LDR             space, [main_glyph]|35-104
+940|code|LDRSH.W         R3, [R3,#0x14]|179-249-20-48
+944|code|ADD.W           R3, R3, R3,LSR#31|3-235-211-115
+948|code|ASRS            R3, R3, #1|91-16
+950|code|IT MI|72-191
+952|code|ADDMI           R3, #7|7-51
+954|code|ASRS            R3, R3, #3|219-16
+956|code|ADDS            R3, #1|1-51
+958|code|UXTH            R3, R3|155-178
+960|code|B               loc_3C4|0-224
+962|code|MOVS            R3, #0|0-35
+964|code|LDR             R2, [SP,#0x58+ctx.bounds.y]|9-154
+966|code|LDRH.W          LR, [R0,#6]|176-248-6-224
+970|code|ADD             LR, R2|150-68
+972|code|LDR             R2, [SP,#0x58+ctx.bounds.height]|11-154
+974|code|ADD             R2, LR|114-68
+976|code|SXTAH.W         R2, R2, space|2-250-131-242
+980|code|B               loc_35C|194-231
+982|code|LDR             R2, [SP,#0x58+ctx.bounds.height]|11-154
+984|code|LDR             R3, [SP,#0x58+ctx.bounds.y]|9-155
+986|code|ADD.W           R3, R3, R2,LSR#1|3-235-82-3
+990|code|LDRH            R2, [R0,#6]|194-136
+992|code|ADD.W           R2, R3, R2,LSR#1|3-235-82-2
+996|code|B               loc_35C|186-231
+998|code|TST.W           R2, #0xC|18-240-12-15
+1002|code|BEQ             loc_420|25-208
+1004|code|LDRH            R3, [R0,#6]|195-136
+1006|code|LDRH            R2, [R0,#0xA]|66-137
+1008|code|ADD             R2, R3|26-68
+1010|code|NEGS            R2, R2|82-66
+1012|code|UXTH            R2, R2|146-178
+1014|code|SXTH            R3, space|19-178
+1016|code|CMP             R3, #0|0-43
+1018|code|BGT             loc_412|10-220
+1020|code|LDR             R3, [main_glyph]|35-104
+1022|code|LDRSH.W         space, [R3,#0x14]|179-249-20-32
+1026|code|ADD.W           R2, R2, R2,LSR#31|2-235-210-114
+1030|code|ASRS            R2, R2, #1|82-16
+1032|code|IT MI|72-191
+1034|code|ADDMI           R2, #7|7-50
+1036|code|ASRS            R2, R2, #3|210-16
+1038|code|ADDS            R2, #1|1-50
+1040|code|UXTH            R2, R2|146-178
+1042|code|LDR             R3, [SP,#0x58+ctx.bounds.y]|9-155
+1044|code|SXTH            space, space|18-178
+1046|code|SXTH            R1, R1|9-178
+1048|code|SUBS            space, space, R3|210-26
+1050|code|B               loc_360|161-231
+1052|data|DCD memset|164-31-0-0
+1056|code|LDRSH.W         R3, [R0,#0xA]|176-249-10-48
+1060|code|LDRH            R2, [R0,#6]|194-136
+1062|code|LDRSH.W         R1, [R0,#8]|176-249-8-16
+1066|code|LDRH.W          LR, [main_glyph,#0xC]|180-248-12-224
+1070|code|ADD             R2, R3|26-68
+1072|code|NEGS            R2, R2; dy|82-66
+1074|code|ADD             R3, SP, #0x58+ctx; ctx|6-171
+1076|code|ADD             R1, LR; dx|113-68
+1078|code|BL              do_blit|255-247-49-254
+1082|code|LDR             R3, [R6]|51-104
+1084|code|ADD             R1, SP, #0x58+ctx; ctx|6-169
+1086|code|LDRH            R0, [R3,#0xC]; val|152-137
+1088|code|BL              add_device_width|255-247-101-254
+1092|code|ADD.W           i, i, #1|10-241-1-10
+1096|code|B               loc_1A4|172-230
+1098|code|LDRH            R3, [main_glyph,#4]|163-136
+1100|code|ADD             R1, SP, #0x58+ctx; ctx|6-169
+1102|code|LDRSH.W         R0, [main_glyph,#8]|180-249-8-0
+1106|code|ADD             R0, R3|24-68
+1108|code|LDR             R3, [SP,#0x58+below_rightx]|0-155
+1110|code|CMP             above_rightx, R3|159-66
+1112|code|ITE GE|172-191
+1114|code|RSBGE.W         R0, R0, above_rightx|192-235-7-0
+1118|code|RSBLT.W         R0, R0, R3; val|192-235-3-0
+1122|code|BL              add_device_width|255-247-84-254
+1126|code|LDRSH.W         R0, [main_glyph,#8]|180-249-8-0
+1130|code|ADD             R1, SP, #0x58+ctx; ctx|6-169
+1132|code|RSB.W           R0, R0, above_leftx; val|192-235-9-0
+1136|code|BL              add_device_width|255-247-77-254
+1140|code|CMP.W           glyph, #0|184-241-0-15
+1144|code|BEQ             loc_486|5-208
+1146|code|LDRH.W          R3, [glyph,#0xC]|184-248-12-48
+1150|code|CMP             R3, min_devwidth|171-66
+1152|code|IT LT|184-191
+1154|code|STRHLT.W        min_devwidth, [glyph,#0xC]|168-248-12-80
+1158|code|LDR             R3, [SP,#0x58+device_width]|23-155
+1160|code|CBZ             R3, loc_494|35-177
+1162|code|LDR             R3, [R3]|27-104
+1164|code|CMP             R3, min_devwidth|171-66
+1166|code|ITT LT|188-191
+1168|code|LDRLT           R3, [SP,#0x58+device_width]|23-155
+1170|code|STRLT           min_devwidth, [R3]|29-96
+1172|code|LDR             R3, [SP,#0x58+bounds_out]|4-155
+1174|code|CBZ             R3, loc_4A4|43-177
+1176|code|ADD             R3, SP, #0x58+var_28|12-171
+1178|code|LDR             main_glyph, [SP,#0x58+bounds_out]|4-156
+1180|code|LDMDB.W         R3, {R0-R3}|19-233-15-0
+1184|code|STM.W           R4, {R0-R3}|132-232-15-0
+1188|code|ADD             SP, SP, #0x34 ; '4'|13-176
+1190|code|POP.W           {R4-glyph_id,PC}|189-232-240-143
+1194|code|LDR             R2, =grub_font_list|8-74
+1196|code|PUSH            {R3,LR}|8-181
+1198|code|LDR             R3, [R2]|19-104
+1200|code|CBZ             cur, locret_4CA|91-177
+1202|code|LDR             R1, [cur,#4]|89-104
+1204|code|CMP             R1, font|129-66
+1206|code|BNE             loc_4C4|5-209
+1208|code|LDR             R1, [cur]|25-104
+1210|code|MOV             font, cur|24-70
+1212|code|LDR             cur, =grub_free|4-75
+1214|code|STR             R1, [R2]|17-96
+1216|code|BLX             R3; grub_free|152-71
+1218|code|POP             {R3,PC}|8-189
+1220|code|MOV             R2, cur|26-70
+1222|code|LDR             cur, [cur]|27-104
+1224|code|B               loc_4B0|242-231
+1226|code|POP             {cur,PC}|8-189
+1228|data|DCD grub_font_list|104-31-0-0
+1232|data|DCD grub_free|200-31-0-0
+1236|code|PUSH            {R3-R5,LR}|56-181
+1238|code|MOV             R5, section|5-70
+1240|code|LDR             section, [section,#8]|128-104
+1242|code|LDR             R3, =grub_malloc|12-75
+1244|code|ADDS            R0, #1|1-48
+1246|code|BLX             R3; grub_malloc|152-71
+1248|code|MOV             R4, str|4-70
+1250|code|CBZ             str, loc_4FE|96-177
+1252|code|LDR             str, [section]|40-104
+1254|code|MOV             R1, str|33-70
+1256|code|LDR             R2, [section,#8]|170-104
+1258|code|LDR             R3, =grub_file_read|9-75
+1260|code|BLX             R3; grub_file_read|152-71
+1262|code|CMP             ret, #0|0-40
+1264|code|BLT             loc_4F8|2-219
+1266|code|LDR             R3, [section,#8]|171-104
+1268|code|CMP             ret, R3|152-66
+1270|code|BEQ             loc_502|4-208
+1272|code|MOV             ret, str|32-70
+1274|code|LDR             R3, =grub_free|6-75
+1276|code|BLX             R3; grub_free|152-71
+1278|code|MOVS            R0, #0|0-32
+1280|code|POP             {R3-section,PC}|56-189
+1282|code|MOVS            R3, #0|0-35
+1284|code|STRB            R3, [str,ret]|35-84
+1286|code|MOV             ret, str|32-70
+1288|code|POP             {R3-section,PC}|56-189
+1290|data|ALIGN 4|0-191
+1292|data|DCD grub_malloc|176-31-0-0
+1296|data|DCD grub_file_read|160-31-0-0
+1300|data|DCD grub_free|200-31-0-0
+1304|code|PUSH            {R4,LR}|16-181
+1306|code|LDR             R4, =render_max_comb_glyphs|12-76
+1308|code|LDRH            R3, [glyph_id,#6]|195-136
+1310|code|LDR             R2, [R4]|34-104
+1312|code|UBFX.W          R3, R3, #3, #8|195-243-199-3
+1316|code|CMP             R3, R2|147-66
+1318|code|BLS             locret_548|15-217
+1320|code|LSLS            R3, R3, #1|91-0
+1322|code|LDR             glyph_id, [R4,#(render_combining_glyphs - 0x1D1C)]|96-104
+1324|code|CMP             R3, #7|7-43
+1326|code|IT LE|216-191
+1328|code|MOVLE           R3, #8|8-35
+1330|code|STR             R3, [R4]|35-96
+1332|code|LDR             R3, =grub_free|6-75
+1334|code|BLX             R3; grub_free|152-71
+1336|code|LDR             R0, [R4]|32-104
+1338|code|LDR             R3, =grub_malloc|6-75
+1340|code|LSLS            R0, R0, #2|128-0
+1342|code|BLX             R3; grub_malloc|152-71
+1344|code|STR             R0, [R4,#(render_combining_glyphs - 0x1D1C)]|96-96
+1346|code|CBNZ            R0, locret_548|8-185
+1348|code|LDR             R3, =grub_errno|4-75
+1350|code|STR             R0, [R3]|24-96
+1352|code|POP             {R4,PC}|16-189
+1354|data|ALIGN 4|0-191
+1356|data|DCD render_max_comb_glyphs|28-29-0-0
+1360|data|DCD grub_free|200-31-0-0
+1364|data|DCD grub_malloc|176-31-0-0
+1368|data|DCD grub_errno|140-31-0-0
+1372|code|LDR             R2, [section,#8]|130-104
+1374|code|PUSH            {R4,LR}|16-181
+1376|code|CMP             R2, #2|2-42
+1378|code|SUB             SP, SP, #0x18|134-176
+1380|code|MOV             R4, value|12-70
+1382|code|BEQ             loc_582|12-208
+1384|code|LDRB            value, [section,#6]|129-121
+1386|code|LDRB            value, [section,#4]|4-121
+1388|code|LDRB            R3, [section,#5]|67-121
+1390|code|STR             R1, [SP,#0x20+var_20]|0-145
+1392|code|LDRB            R1, [section,#7]|193-121
+1394|code|MOVS            section, #0x17|23-32
+1396|code|STR             R2, [SP,#0x20+var_18]|2-146
+1398|code|MOV             R2, R4|34-70
+1400|code|LDR             R4, =grub_error|10-76
+1402|code|STR             R1, [SP,#0x20+var_1C]|1-145
+1404|code|LDR             R1, =aFontFileFormat; "font file format error: section %c%c%c%"...|10-73
+1406|code|BLX             R4; grub_error|160-71
+1408|code|B               loc_59C|12-224
+1410|code|LDR             section, [section]|0-104
+1412|code|ADD.W           value, SP, #0x20+raw_value|13-241-22-1
+1416|code|LDR             R3, =grub_file_read|8-75
+1418|code|BLX             R3; grub_file_read|152-71
+1420|code|CMP             R0, #2|2-40
+1422|code|BNE             loc_59C|5-209
+1424|code|LDRH.W          R3, [SP,#0x20+raw_value]|189-248-22-48
+1428|code|MOVS            R0, #0|0-32
+1430|code|REV16           R3, R3|91-186
+1432|code|STRH            R3, [value]|35-128
+1434|code|B               loc_59E|0-224
+1436|code|MOVS            R0, #1|1-32
+1438|code|ADD             SP, SP, #0x18|6-176
+1440|code|POP             {R4,PC}|16-189
+1442|data|ALIGN 4|0-191
+1444|data|DCD grub_error|192-31-0-0
+1448|data|DCD aFontFileFormat; "font file format error: section %c%c%c%"...|60-18-0-0
+1452|data|DCD grub_file_read|160-31-0-0
+1456|code|PUSH            {R4,LR}|16-181
+1458|code|MOVS            R2, #2|2-34
+1460|code|LDR             R3, =grub_file_read|5-75
+1462|code|MOV             R4, value|12-70
+1464|code|BLX             R3; grub_file_read|152-71
+1466|code|CMP             R0, #2|2-40
+1468|code|BNE             loc_5C8|4-209
+1470|code|LDRH            R3, [value]|35-136
+1472|code|MOVS            R0, #0|0-32
+1474|code|REV16           R3, R3|91-186
+1476|code|STRH            R3, [value]|35-128
+1478|code|POP             {value,PC}|16-189
+1480|code|MOVS            R0, #1|1-32
+1482|code|POP             {value,PC}|16-189
+1484|data|DCD grub_file_read|160-31-0-0
+1488|code|CMP.W           code, #0x10000|177-245-128-63
+1492|code|PUSH.W          {font-R8,LR}|45-233-255-65
+1496|code|MOV             R7, font|7-70
+1498|code|LDR             R4, [font,#0x20]|4-106
+1500|code|BCS             loc_5F6|11-210
+1502|code|LDR             R3, [font,#0x24]|67-106
+1504|code|CBZ             R3, loc_5F6|75-177
+1506|code|LDRH.W          R8, [R3,code,LSL#1]|51-248-17-128
+1510|code|MOVW            R3, #0xFFFF|79-246-255-115
+1514|code|CMP             R8, R3|152-69
+1516|code|BEQ             loc_6D8|116-208
+1518|code|ADDS.W          R8, R4, R8,LSL#4|20-235-8-24
+1522|code|BNE             loc_620|21-209
+1524|code|B               loc_6D8|112-224
+1526|code|LDR             R3, [R7,#0x1C]|251-105
+1528|code|SUBS            R3, #1|1-59
+1530|code|CMP             R4, #0|0-44
+1532|code|BEQ             loc_6DA|109-208
+1534|code|MOVS            font, #0|0-32
+1536|code|SUBS            R2, R3, R0|26-26
+1538|code|ADD.W           R2, R0, R2,LSR#1|0-235-82-2
+1542|code|LSLS            R5, R2, #4|21-1
+1544|code|ADD.W           R8, R4, R5|4-235-5-8
+1548|code|LDR             R5, [R4,R5]|101-89
+1550|code|CMP             code, R5|169-66
+1552|code|BCS             loc_616|1-210
+1554|code|SUBS            R3, R2, #1|83-30
+1556|code|B               loc_61A|1-224
+1558|code|BLS             loc_620|3-217
+1560|code|ADDS            R0, R2, #1|80-28
+1562|code|CMP             R0, R3|152-66
+1564|code|BLS             loc_600|240-217
+1566|code|B               loc_6D8|91-224
+1568|code|LDR.W           R4, [R8,#0xC]|216-248-12-64
+1572|code|CMP             R4, #0|0-44
+1574|code|BNE             loc_6DA|88-209
+1576|code|LDR             R3, [font,#4]|123-104
+1578|code|CMP             R3, #0|0-43
+1580|code|BEQ             loc_6DA|85-208
+1582|code|LDR             R3, =grub_error_push|45-75
+1584|code|BLX             R3; grub_error_push|152-71
+1586|code|LDR             R0, [font,#4]|120-104
+1588|code|LDR.W           R2, [R8,#8]|216-248-8-32
+1592|code|MOV             R3, R4|35-70
+1594|code|LDR             R1, =grub_file_seek|43-73
+1596|code|BLX             R1; grub_file_seek|136-71
+1598|code|LDR             R0, [font,#4]; file|120-104
+1600|code|ADD.W           R1, SP, #0x28+width; value|13-241-6-1
+1604|code|BL              read_be_uint16|255-247-180-255
+1608|code|CBNZ            R0, loc_676|168-185
+1610|code|LDR             R0, [font,#4]; file|120-104
+1612|code|ADD             R1, SP, #0x28+height; value|2-169
+1614|code|BL              read_be_uint16|255-247-175-255
+1618|code|CBNZ            R0, loc_676|128-185
+1620|code|LDR             R0, [font,#4]; file|120-104
+1622|code|ADD.W           R1, SP, #0x28+xoff; value|13-241-10-1
+1626|code|BL              read_be_uint16|255-247-169-255
+1630|code|CBNZ            R0, loc_676|80-185
+1632|code|LDR             R0, [font,#4]; file|120-104
+1634|code|ADD             R1, SP, #0x28+yoff; value|3-169
+1636|code|BL              read_be_uint16|255-247-164-255
+1640|code|CBNZ            R0, loc_676|40-185
+1642|code|LDR             R0, [font,#4]; file|120-104
+1644|code|ADD.W           R1, SP, #0x28+dwidth; value|13-241-14-1
+1648|code|BL              read_be_uint16|255-247-158-255
+1652|code|CBZ             R0, loc_67E|24-177
+1654|code|MOV             R0, font; font|56-70
+1656|code|BL              remove_font|255-247-23-255
+1660|code|B               loc_6DA|45-224
+1662|code|LDRH.W          R3, [SP,#0x28+height]|189-248-8-48
+1666|code|LDRH.W          R6, [SP,#0x28+width]|189-248-6-96
+1670|code|MULS            R6, R3|94-67
+1672|code|LDR             R3, =grub_malloc|24-75
+1674|code|ADDS            R6, #7|7-54
+1676|code|ASRS            R6, R6, #3|246-16
+1678|code|ADD.W           R0, len, #0x10|6-241-16-0
+1682|code|BLX             R3; grub_malloc|152-71
+1684|code|MOV             R5, glyph|5-70
+1686|code|CMP             glyph, #0|0-40
+1688|code|BEQ             loc_676|237-208
+1690|code|LDRH.W          R3, [SP,#0x28+width]|189-248-6-48
+1694|code|STR             font, [glyph]|7-96
+1696|code|STRH            R3, [glyph,#4]|131-128
+1698|code|LDRH.W          R3, [SP,#0x28+height]|189-248-8-48
+1702|code|STRH            R3, [glyph,#6]|195-128
+1704|code|LDRH.W          R3, [SP,#0x28+xoff]|189-248-10-48
+1708|code|STRH            R3, [glyph,#8]|3-129
+1710|code|LDRH.W          R3, [SP,#0x28+yoff]|189-248-12-48
+1714|code|STRH            R3, [glyph,#0xA]|67-129
+1716|code|LDRH.W          R3, [SP,#0x28+dwidth]|189-248-14-48
+1720|code|STRH            R3, [glyph,#0xC]|131-129
+1722|code|CBZ             len, loc_6CC|62-177
+1724|code|LDR             glyph, [font,#4]|120-104
+1726|code|ADD.W           R1, glyph, #0xE|5-241-14-1
+1730|code|MOV             R2, len|50-70
+1732|code|LDR             R3, =grub_file_read|10-75
+1734|code|BLX             R3; grub_file_read|152-71
+1736|code|CMP             R0, len|176-66
+1738|code|BNE             loc_676|212-209
+1740|code|LDR             R3, =grub_error_pop|9-75
+1742|code|MOV             R4, glyph|44-70
+1744|code|BLX             R3; grub_error_pop|152-71
+1746|code|STR.W           glyph, [R8,#0xC]|200-248-12-80
+1750|code|B               loc_6DA|0-224
+1752|code|MOVS            R4, #0|0-36
+1754|code|MOV             R0, R4|32-70
+1756|code|ADD             SP, SP, #0x10|4-176
+1758|code|POP.W           {R4-R8,PC}|189-232-240-129
+1762|data|ALIGN 4|0-191
+1764|data|DCD grub_error_push|116-31-0-0
+1768|data|DCD grub_file_seek|136-31-0-0
+1772|data|DCD grub_malloc|176-31-0-0
+1776|data|DCD grub_file_read|160-31-0-0
+1780|data|DCD grub_error_pop|204-31-0-0
+1784|code|PUSH            {file-R2,R4-R7,LR}|247-181
+1786|code|MOV             R5, section|13-70
+1788|code|STR             file, [R5]|40-96
+1790|code|MOVS            R4, #0|0-36
+1792|code|ADDS            section, #4|4-49
+1794|code|STR             R4, [R1,#8]|140-96
+1796|code|MOVS            R2, #4|4-34
+1798|code|LDR             R6, =grub_file_read|13-78
+1800|code|MOV             R7, file|7-70
+1802|code|BLX             R6; grub_file_read|176-71
+1804|code|CMP             retval, #3|3-40
+1806|code|BLS             loc_720|7-217
+1808|code|CMP             retval, #0|0-40
+1810|code|BLT             loc_734|15-219
+1812|code|MOV             retval, file|56-70
+1814|code|ADD             R1, SP, #0x20+raw_length|1-169
+1816|code|MOVS            R2, #4|4-34
+1818|code|BLX             R6; grub_file_read|176-71
+1820|code|CMP             retval, #3|3-40
+1822|code|BHI             loc_726|2-216
+1824|code|MOVS            R0, #1|1-32
+1826|code|STR             R0, [section,#0xC]|232-96
+1828|code|B               loc_736|7-224
+1830|code|CMP             retval, #0|0-40
+1832|code|BLT             loc_734|4-219
+1834|code|LDR             R3, [SP,#0x20+raw_length]|1-155
+1836|code|MOV             retval, R4|32-70
+1838|code|REV             R3, R3|27-186
+1840|code|STR             R3, [section,#8]|171-96
+1842|code|B               loc_736|0-224
+1844|code|MOVS            R0, #1|1-32
+1846|code|ADD             SP, SP, #0xC|3-176
+1848|code|POP             {R4-file,PC}|240-189
+1850|data|ALIGN 4|0-191
+1852|data|DCD grub_file_read|160-31-0-0
+1856|code|CMP             code, #0x7F|127-40
+1858|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+1862|code|MOV             R6, code|6-70
+1864|code|BHI             loc_79C|40-216
+1866|code|LDR             R5, =render_max_comb_glyphs|22-77
+1868|code|LDR             R4, [R5,#(ascii_failback_initialized.5745 - 0x1D1C)]|172-104
+1870|code|CBNZ            R4, loc_792|4-187
+1872|code|LDR.W           R9, =grub_malloc|223-248-88-144
+1876|code|LDR.W           R8, =ascii_bitmaps|223-248-88-128
+1880|code|MOVS            R0, #0x20 ; ' '|32-32
+1882|code|LDR             R7, =render_max_comb_glyphs|18-79
+1884|code|BLX             R9; grub_malloc|200-71
+1886|code|MOVS            R1, #8|8-33
+1888|code|ADD.W           R3, R7, #0xC|7-241-12-3
+1892|code|MOVS            R2, #0x10|16-34
+1894|code|MOVW            LR, #0xFFFE|79-246-254-126
+1898|code|STR.W           R0, [R3,current,LSL#2]|67-248-36-0
+1902|code|MOVS            R3, #0|0-35
+1904|code|STRH            R1, [R0,#4]|129-128
+1906|code|STRH            R3, [R0,#8]|3-129
+1908|code|STRH            R1, [R0,#0xC]|129-129
+1910|code|ADD.W           R1, R8, current,LSL#4|8-235-4-17
+1914|code|STRH            R2, [R0,#6]|194-128
+1916|code|ADDS            current, #1|1-52
+1918|code|STRH.W          LR, [R0,#0xA]|160-248-10-224
+1922|code|STR.W           R3, [R0],#0xE|64-248-14-59
+1926|code|LDR             R3, =grub_memmove|8-75
+1928|code|BLX             R3; grub_memmove|152-71
+1930|code|CMP             current, #0x80|128-44
+1932|code|BNE             loc_758|228-209
+1934|code|MOVS            R3, #1|1-35
+1936|code|STR             R3, [R7,#(ascii_failback_initialized.5745 - 0x1D1C)]|187-96
+1938|code|ADD.W           R5, R5, code,LSL#2|5-235-134-5
+1942|code|LDR             R0, [R5,#0xC]|232-104
+1944|code|POP.W           {R3-R9,PC}|189-232-248-131
+1948|code|MOVS            code, #0|0-32
+1950|code|POP.W           {R3-R9,PC}|189-232-248-131
+1954|data|ALIGN 4|0-191
+1956|data|DCD render_max_comb_glyphs|28-29-0-0
+1960|data|DCD grub_memmove|124-31-0-0
+1964|data|DCD grub_malloc|176-31-0-0
+1968|data|DCD ascii_bitmaps|251-20-0-0
+1972|code|PUSH            {R3-R5,LR}|56-181
+1974|code|LDR             R4, =render_max_comb_glyphs|32-76
+1976|code|LDRB.W          R5, [R4,#(font_loader_initialized - 0x1D1C)]|148-248-12-82
+1980|code|CMP             R5, #0|0-45
+1982|code|BNE             locret_834|57-209
+1984|code|MOVS            R0, #0x20 ; ' '|32-32
+1986|code|LDR             R3, =grub_malloc|30-75
+1988|code|BLX             R3; grub_malloc|152-71
+1990|code|STR.W           R0, [R4,#(unknown_glyph - 0x1D1C)]|196-248-16-2
+1994|code|CBZ             R0, locret_834|152-179
+1996|code|MOVS            R3, #8|8-35
+1998|code|MOVS            R2, #0x10|16-34
+2000|code|STRH            R3, [R0,#4]|131-128
+2002|code|MOVW            R1, #0xFFFD|79-246-253-113
+2006|code|STRH            R2, [R0,#6]|194-128
+2008|code|ADDS            R0, #0xE|14-48
+2010|code|STRH.W          R1, [R0,#-4]|32-248-4-28
+2014|code|STRH.W          R3, [R0,#-2]|32-248-2-60
+2018|code|STRH.W          R5, [R0,#-6]|32-248-6-92
+2022|code|LDR             R1, =unknown_glyph_bitmap|22-73
+2024|code|LDR             R3, =grub_memmove|22-75
+2026|code|BLX             R3; grub_memmove|152-71
+2028|code|LDR             R2, =aNoFont; "<No Font>"|22-74
+2030|code|LDR.W           R1, [R4,#(unknown_glyph - 0x1D1C)]|212-248-16-18
+2034|code|MOVS            R3, #1|1-35
+2036|code|STR.W           R5, [R4,#(null_font.file - 0x1D1C)]|196-248-24-82
+2040|code|STR.W           R2, [R4,#(null_font - 0x1D1C)]|196-248-20-34
+2044|code|LDRH            R2, [R1,#6]|202-136
+2046|code|LDRH            R1, [R1,#4]|137-136
+2048|code|SUBS            R0, R2, #3|208-30
+2050|code|STR.W           R5, [R4,#(null_font.family - 0x1D1C)]|196-248-28-82
+2054|code|STRH.W          R0, [R4,#(null_font.ascent - 0x1D1C)]|164-248-40-2
+2058|code|MOVS            R0, #3|3-32
+2060|code|STRH.W          R5, [R4,#(null_font.point_size - 0x1D1C)]|164-248-32-82
+2064|code|STRH.W          R5, [R4,#(null_font.weight - 0x1D1C)]|164-248-34-82
+2068|code|STRH.W          R3, [R4,#(null_font.leading - 0x1D1C)]|164-248-44-50
+2072|code|STR.W           R5, [R4,#(null_font.num_chars - 0x1D1C)]|196-248-48-82
+2076|code|STR.W           R5, [R4,#(null_font.char_index - 0x1D1C)]|196-248-52-82
+2080|code|STR.W           R5, [R4,#(null_font.bmp_idx - 0x1D1C)]|196-248-56-82
+2084|code|STRH.W          R0, [R4,#(null_font.descent - 0x1D1C)]|164-248-42-2
+2088|code|STRH.W          R1, [R4,#(null_font.max_char_width - 0x1D1C)]|164-248-36-18
+2092|code|STRH.W          R2, [R4,#(null_font.max_char_height - 0x1D1C)]|164-248-38-34
+2096|code|STRB.W          R3, [R4,#(font_loader_initialized - 0x1D1C)]|132-248-12-50
+2100|code|POP             {R3-R5,PC}|56-189
+2102|data|ALIGN 4|0-191
+2104|data|DCD render_max_comb_glyphs|28-29-0-0
+2108|data|DCD grub_malloc|176-31-0-0
+2112|data|DCD unknown_glyph_bitmap|251-28-0-0
+2116|data|DCD grub_memmove|124-31-0-0
+2120|data|DCD aNoFont; "<No Font>"|130-18-0-0
+2124|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2128|code|MOV             R4, filename|4-70
+2130|code|LDRB            R3, [filename]|3-120
+2132|code|SUB             SP, SP, #0x2C|139-176
+2134|code|CMP             R3, #0x28 ; '('|40-43
+2136|code|BEQ             loc_862|3-208
+2138|code|AND.W           R3, R3, #0xFB|3-240-251-3
+2142|code|CMP             R3, #0x2B ; '+'|43-43
+2144|code|BNE             loc_870|6-209
+2146|code|MOV             filename, R4|32-70
+2148|code|MOV.W           R1, #0x400|79-244-128-97
+2152|code|LDR             R3, =grub_buffile_open|138-75
+2154|code|BLX             R3; grub_buffile_open|152-71
+2156|code|MOV             R5, R0|5-70
+2158|code|B               loc_8CE|46-224
+2160|code|LDR             filename, =aPrefix; "prefix"|137-72
+2162|code|LDR             R3, =grub_env_get|138-75
+2164|code|BLX             R3; grub_env_get|152-71
+2166|code|MOV             R7, prefix|7-70
+2168|code|CBNZ            prefix, loc_886|40-185
+2170|code|LDR             R1, =aVariableSIsnTS; "variable `%s' isn't set"|137-73
+2172|code|MOVS            prefix, #5|5-32
+2174|code|LDR             R2, =aPrefix; "prefix"|134-74
+2176|code|LDR             R3, =grub_error|136-75
+2178|code|BLX             R3; grub_error|152-71
+2180|code|B               loc_C46|223-225
+2182|code|LDR             R6, =grub_strlen|136-78
+2184|code|BLX             R6; grub_strlen|176-71
+2186|code|MOV             R5, R0|5-70
+2188|code|MOV             R0, filename|32-70
+2190|code|BLX             R6; grub_strlen|176-71
+2192|code|LDR             R3, =grub_malloc|134-75
+2194|code|ADD             R0, R5|40-68
+2196|code|ADDS            R0, #0xE|14-48
+2198|code|BLX             R3; grub_malloc|152-71
+2200|code|MOV             R6, fullname|6-70
+2202|code|CMP             fullname, #0|0-40
+2204|code|BEQ.W           loc_C46|0-240-211-129
+2208|code|MOV             R1, prefix; src|57-70
+2210|code|BL              grub_stpcpy|255-247-173-251
+2214|code|LDR             R1, =aFonts; "/fonts/"|130-73
+2216|code|BL              grub_stpcpy|255-247-170-251
+2220|code|MOV             R1, filename; src|33-70
+2222|code|BL              grub_stpcpy|255-247-167-251
+2226|code|LDR             R1, =aPf2; ".pf2"|128-73
+2228|code|BL              grub_stpcpy|255-247-164-251
+2232|code|MOVS            R3, #0|0-35
+2234|code|MOV.W           R1, #0x400|79-244-128-97
+2238|code|STRB            R3, [ptr]|3-112
+2240|code|MOV             ptr, fullname|48-70
+2242|code|LDR             R3, =grub_buffile_open|116-75
+2244|code|BLX             R3; grub_buffile_open|152-71
+2246|code|LDR             R3, =grub_free|124-75
+2248|code|MOV             R5, R0|5-70
+2250|code|MOV             file, fullname|48-70
+2252|code|BLX             R3; grub_free|152-71
+2254|code|CMP             file, #0|0-45
+2256|code|BEQ.W           loc_C46|0-240-185-129
+2260|code|MOV             R0, file; file|40-70
+2262|code|ADD             R1, SP, #0x50+section; section|6-169
+2264|code|BL              open_section|255-247-14-255
+2268|code|MOV             R7, R0|7-70
+2270|code|CMP             R0, #0|0-40
+2272|code|BNE.W           loc_C1A|64-240-155-129
+2276|code|ADD             R0, SP, #0x50+section.name|7-168
+2278|code|LDR             R1, =aFile; "FILE"|117-73
+2280|code|MOVS            R2, #4|4-34
+2282|code|LDR             R6, =grub_memcmp|117-78
+2284|code|BLX             R6; grub_memcmp|176-71
+2286|code|MOV             filename, R0|4-70
+2288|code|CBZ             R0, loc_8FE|40-177
+2290|code|MOVS            R0, #0x17|23-32
+2292|code|LDR             R1, =aFontFileFormat_0; "font file format error: 1st section mus"...|115-73
+2294|code|LDR             R3, =grub_error|107-75
+2296|code|MOV             R4, R7|60-70
+2298|code|BLX             R3; grub_error|152-71
+2300|code|B               loc_C1C|142-225
+2302|code|LDR             R2, [SP,#0x50+section.length]|8-154
+2304|code|CMP             R2, #4|4-42
+2306|code|BEQ             loc_90E|4-208
+2308|code|LDR             R1, =aFontFileFormat_1; "font file format error (file type ID le"...|112-73
+2310|code|MOVS            R0, #0x17|23-32
+2312|code|LDR             R3, =grub_error|102-75
+2314|code|BLX             R3; grub_error|152-71
+2316|code|B               loc_C1C|134-225
+2318|code|MOV             R0, file|40-70
+2320|code|ADD             R1, SP, #0x50+magic|5-169
+2322|code|LDR             R7, =grub_file_read|110-79
+2324|code|BLX             R7; grub_file_read|184-71
+2326|code|CMP             R0, #4|4-40
+2328|code|MOV             R2, R0|2-70
+2330|code|BNE.W           loc_C1A|64-240-126-129
+2334|code|ADD             R0, SP, #0x50+magic|5-168
+2336|code|LDR             R1, =aPff2; "PFF2"|107-73
+2338|code|BLX             R6; grub_memcmp|176-71
+2340|code|MOV             R6, R0|6-70
+2342|code|CBZ             R0, loc_946|112-177
+2344|code|LDRB.W          R1, [SP,#0x50+magic+2]|157-248-22-16
+2348|code|MOVS            R0, #0x17|23-32
+2350|code|LDRB.W          R2, [SP,#0x50+magic]|157-248-20-32
+2354|code|LDRB.W          R3, [SP,#0x50+magic+1]|157-248-21-48
+2358|code|STR             R1, [SP,#0x50+var_50]|0-145
+2360|code|LDRB.W          R1, [SP,#0x50+magic+3]|157-248-23-16
+2364|code|LDR             R6, =grub_error|89-78
+2366|code|STR             R1, [SP,#0x50+var_4C]|1-145
+2368|code|LDR             R1, =aInvalidFontMag; "invalid font magic %x %x %x %x"|100-73
+2370|code|BLX             R6; grub_error|176-71
+2372|code|B               loc_C1C|106-225
+2374|code|MOVS            R0, #0x28 ; '('|40-32
+2376|code|LDR             R3, =grub_zalloc|99-75
+2378|code|BLX             R3; grub_zalloc|152-71
+2380|code|MOV             R4, font|4-70
+2382|code|CMP             font, #0|0-40
+2384|code|BEQ.W           loc_C1A|0-240-99-129
+2388|code|MOVS            R3, #1|1-35
+2390|code|STR             R6, [font]|6-96
+2392|code|STR             R6, [font,#8]|134-96
+2394|code|STRH            R6, [font,#0xC]|134-129
+2396|code|STRH            R6, [font,#0xE]|198-129
+2398|code|STRH            R3, [font,#0x18]|3-131
+2400|code|STRH            R6, [font,#0x10]|6-130
+2402|code|STRH            R6, [font,#0x12]|70-130
+2404|code|STRH            R6, [font,#0x14]|134-130
+2406|code|STRH            R6, [font,#0x16]|198-130
+2408|code|STR             R6, [font,#0x1C]|198-97
+2410|code|STR             R6, [font,#0x20]|6-98
+2412|code|STR             R6, [font,#0x24]|70-98
+2414|code|STR             file, [font,#4]|69-96
+2416|code|MOV             R0, file; file|40-70
+2418|code|ADD             R1, SP, #0x50+section; section|6-169
+2420|code|BL              open_section|255-247-192-254
+2424|code|CBZ             R0, loc_984|32-177
+2426|code|LDR             R3, [SP,#0x50+section.eof]|9-155
+2428|code|CMP             R3, #0|0-43
+2430|code|BNE.W           loc_BC2|64-240-32-129
+2434|code|B               loc_C1C|75-225
+2436|code|ADD             R0, SP, #0x50+section.name|7-168
+2438|code|LDR             R1, =aName; "NAME"|85-73
+2440|code|MOVS            R2, #4|4-34
+2442|code|LDR             R6, =grub_memcmp|77-78
+2444|code|BLX             R6; grub_memcmp|176-71
+2446|code|CBNZ            R0, loc_99E|48-185
+2448|code|ADD             R0, SP, #0x50+section; section|6-168
+2450|code|BL              read_section_as_string|255-247-159-253
+2454|code|STR             R0, [font]|32-96
+2456|code|CMP             R0, #0|0-40
+2458|code|BNE             loc_970|233-209
+2460|code|B               loc_C1C|62-225
+2462|code|ADD             R0, SP, #0x50+section.name|7-168
+2464|code|LDR             R1, =aPtsz; "PTSZ"|79-73
+2466|code|MOVS            R2, #4|4-34
+2468|code|BLX             R6; grub_memcmp|176-71
+2470|code|CBNZ            R0, loc_9B0|24-185
+2472|code|ADD             R0, SP, #0x50+section|6-168
+2474|code|ADD.W           R1, font, #0xC|4-241-12-1
+2478|code|B               loc_A2E|62-224
+2480|code|ADD             R0, SP, #0x50+section.name|7-168
+2482|code|LDR             R1, =aWeig; "WEIG"|76-73
+2484|code|MOVS            R2, #4|4-34
+2486|code|BLX             R6; grub_memcmp|176-71
+2488|code|CBNZ            R0, loc_9E8|176-185
+2490|code|ADD             R0, SP, #0x50+section; section|6-168
+2492|code|BL              read_section_as_string|255-247-138-253
+2496|code|MOV             R6, wt|6-70
+2498|code|CMP             wt, #0|0-40
+2500|code|BEQ             loc_970|212-208
+2502|code|LDR             R1, =aNormal; "normal"|72-73
+2504|code|LDR.W           R8, =grub_strcmp|223-248-72-129
+2508|code|BLX             R8; grub_strcmp|192-71
+2510|code|CBNZ            R0, loc_9D4|8-185
+2512|code|MOVS            R3, #0x64 ; 'd'|100-35
+2514|code|B               loc_9DE|4-224
+2516|code|MOV             R0, wt|48-70
+2518|code|LDR             R1, =aBold; "bold"|69-73
+2520|code|BLX             R8; grub_strcmp|192-71
+2522|code|CBNZ            R0, loc_9E0|8-185
+2524|code|MOVS            R3, #0xC8|200-35
+2526|code|STRH            R3, [font,#0xE]|227-129
+2528|code|MOV             R0, wt|48-70
+2530|code|LDR             R3, =grub_free|53-75
+2532|code|BLX             R3; grub_free|152-71
+2534|code|B               loc_970|195-231
+2536|code|ADD             R0, SP, #0x50+section.name|7-168
+2538|code|LDR             R1, =aMaxw; "MAXW"|65-73
+2540|code|MOVS            R2, #4|4-34
+2542|code|BLX             R6; grub_memcmp|176-71
+2544|code|CBNZ            R0, loc_9FA|24-185
+2546|code|ADD             R0, SP, #0x50+section|6-168
+2548|code|ADD.W           R1, font, #0x10|4-241-16-1
+2552|code|B               loc_A2E|25-224
+2554|code|ADD             R0, SP, #0x50+section.name|7-168
+2556|code|LDR             R1, =aMaxh; "MAXH"|61-73
+2558|code|MOVS            R2, #4|4-34
+2560|code|BLX             R6; grub_memcmp|176-71
+2562|code|CBNZ            R0, loc_A0C|24-185
+2564|code|ADD             R0, SP, #0x50+section|6-168
+2566|code|ADD.W           R1, font, #0x12|4-241-18-1
+2570|code|B               loc_A2E|16-224
+2572|code|ADD             R0, SP, #0x50+section.name|7-168
+2574|code|LDR             R1, =aAsce; "ASCE"|58-73
+2576|code|MOVS            R2, #4|4-34
+2578|code|BLX             R6; grub_memcmp|176-71
+2580|code|CBNZ            R0, loc_A1E|24-185
+2582|code|ADD             R0, SP, #0x50+section|6-168
+2584|code|ADD.W           R1, font, #0x14|4-241-20-1
+2588|code|B               loc_A2E|7-224
+2590|code|ADD             R0, SP, #0x50+section.name|7-168
+2592|code|LDR             R1, =aDesc; "DESC"|54-73
+2594|code|MOVS            R2, #4|4-34
+2596|code|BLX             R6; grub_memcmp|176-71
+2598|code|CBNZ            R0, loc_A38|56-185
+2600|code|ADD             R0, SP, #0x50+section; section|6-168
+2602|code|ADD.W           R1, font, #0x16; value|4-241-22-1
+2606|code|BL              read_section_as_short|255-247-149-253
+2610|code|CMP             R0, #0|0-40
+2612|code|BEQ             loc_970|156-208
+2614|code|B               loc_C1C|241-224
+2616|code|ADD             R0, SP, #0x50+section.name|7-168
+2618|code|LDR             R1, =aChix; "CHIX"|49-73
+2620|code|MOVS            R2, #4|4-34
+2622|code|BLX             R6; grub_memcmp|176-71
+2624|code|CMP             R0, #0|0-40
+2626|code|BNE.W           loc_B9E|64-240-172-128
+2630|code|LDR             R6, [SP,#0x50+section.length]|8-158
+2632|code|MOVS            R1, #9|9-33
+2634|code|LDR             R3, =__aeabi_uidivmod|46-75
+2636|code|MOV             R0, R6|48-70
+2638|code|BLX             R3; __aeabi_uidivmod|152-71
+2640|code|CBZ             R1, loc_A5C|33-177
+2642|code|MOVS            R0, #0x17|23-32
+2644|code|LDR             R1, =aFontFileFormat_2; "font file format error: character index"...|44-73
+2646|code|MOV             R2, R6|50-70
+2648|code|MOVS            R3, #9|9-35
+2650|code|B               loc_B98|157-224
+2652|code|LDR             R3, =0x38E38E39|43-75
+2654|code|UMULL.W         R2, R3, R6, R3|166-251-3-35
+2658|code|LDR             R6, =grub_malloc|18-78
+2660|code|LSRS            R0, R3, #1|88-8
+2662|code|STR             R0, [font,#0x1C]|224-97
+2664|code|LSLS            R0, R0, #4|0-1
+2666|code|BLX             R6; grub_malloc|176-71
+2668|code|STR             R0, [font,#0x20]|32-98
+2670|code|CMP             R0, #0|0-40
+2672|code|BEQ.W           loc_C1C|0-240-212-128
+2676|code|MOV.W           R0, #0x20000|79-244-0-48
+2680|code|BLX             R6; grub_malloc|176-71
+2682|code|STR             R0, [font,#0x24]|96-98
+2684|code|CMP             R0, #0|0-40
+2686|code|BEQ.W           loc_C1C|0-240-205-128
+2690|code|MOVS            R1, #0xFF|255-33
+2692|code|MOV.W           R2, #0x20000|79-244-0-50
+2696|code|LDR             R3, =grub_memset|33-75
+2698|code|MOV.W           R10, #0|79-240-0-10
+2702|code|BLX             R3; grub_memset|152-71
+2704|code|MOV             R8, R10|208-70
+2706|code|B               loc_B5A|98-224
+2708|data|DCD grub_buffile_open|188-31-0-0
+2712|data|DCD aPrefix; "prefix"|140-18-0-0
+2716|data|DCD grub_env_get|212-31-0-0
+2720|data|DCD aVariableSIsnTS; "variable `%s' isn't set"|147-18-0-0
+2724|data|DCD grub_error|192-31-0-0
+2728|data|DCD grub_strlen|108-31-0-0
+2732|data|DCD grub_malloc|176-31-0-0
+2736|data|DCD aFonts; "/fonts/"|171-18-0-0
+2740|data|DCD aPf2; ".pf2"|179-18-0-0
+2744|data|DCD grub_free|200-31-0-0
+2748|data|DCD aFile; "FILE"|184-18-0-0
+2752|data|DCD grub_memcmp|208-31-0-0
+2756|data|DCD aFontFileFormat_0; "font file format error: 1st section mus"...|189-18-0-0
+2760|data|DCD aFontFileFormat_1; "font file format error (file type ID le"...|238-18-0-0
+2764|data|DCD grub_file_read|160-31-0-0
+2768|data|DCD aPff2; "PFF2"|49-19-0-0
+2772|data|DCD aInvalidFontMag; "invalid font magic %x %x %x %x"|54-19-0-0
+2776|data|DCD grub_zalloc|168-31-0-0
+2780|data|DCD aName; "NAME"|85-19-0-0
+2784|data|DCD aPtsz; "PTSZ"|90-19-0-0
+2788|data|DCD aWeig; "WEIG"|95-19-0-0
+2792|data|DCD aNormal; "normal"|100-19-0-0
+2796|data|DCD aBold; "bold"|107-19-0-0
+2800|data|DCD aMaxw; "MAXW"|112-19-0-0
+2804|data|DCD aMaxh; "MAXH"|117-19-0-0
+2808|data|DCD aAsce; "ASCE"|122-19-0-0
+2812|data|DCD aDesc; "DESC"|127-19-0-0
+2816|data|DCD aChix; "CHIX"|132-19-0-0
+2820|data|DCD __aeabi_uidivmod|196-31-0-0
+2824|data|DCD aFontFileFormat_2; "font file format error: character index"...|137-19-0-0
+2828|data|DCD 0x38E38E39|57-142-227-56
+2832|data|DCD grub_memset|144-31-0-0
+2836|data|DCD grub_strcmp|172-31-0-0
+2840|code|CMP.W           R6, #0x10000|182-245-128-63
+2844|code|MOV             R0, file|40-70
+2846|code|ADD.W           R1, R9, #4|9-241-4-1
+2850|code|MOV.W           R2, #1|79-240-1-2
+2854|code|ITT CC|60-191
+2856|code|LDRCC           R3, [font,#0x24]|99-106
+2858|code|STRHCC.W        R8, [R3,R6,LSL#1]|35-248-22-128
+2862|code|BLX             R7; grub_file_read|184-71
+2864|code|CMP             R0, #1|1-40
+2866|code|BNE             loc_C1C|115-209
+2868|code|MOV             R0, file|40-70
+2870|code|ADD.W           R1, R9, #8|9-241-8-1
+2874|code|MOVS            R2, #4|4-34
+2876|code|LDR             R3, =grub_file_read|68-75
+2878|code|BLX             R3; grub_file_read|152-71
+2880|code|CMP             R0, #4|4-40
+2882|code|BNE             loc_C1C|107-209
+2884|code|LDR.W           R3, [R9,#8]|217-248-8-48
+2888|code|ADD.W           R8, R8, #1|8-241-1-8
+2892|code|MOV             R10, R6|178-70
+2894|code|REV             R3, R3|27-186
+2896|code|STR.W           R3, [R9,#8]|201-248-8-48
+2900|code|MOVS            R3, #0|0-35
+2902|code|STR.W           R3, [R9,#0xC]|201-248-12-48
+2906|code|LDR             R3, [font,#0x1C]|227-105
+2908|code|CMP             R8, R3|152-69
+2910|code|BCS.W           loc_970|191-244-7-175
+2914|code|LDR             R3, [font,#0x20]|35-106
+2916|code|MOV.W           R11, R8,LSL#4|79-234-8-27
+2920|code|MOV             R0, file|40-70
+2922|code|MOVS            R2, #4|4-34
+2924|code|ADD.W           R9, R3, R11|3-235-11-9
+2928|code|STR             R3, [SP,#0x50+var_44]|3-147
+2930|code|MOV             R1, R9|73-70
+2932|code|BLX             R7; grub_file_read|184-71
+2934|code|CMP             R0, #4|4-40
+2936|code|BNE             loc_C1C|80-209
+2938|code|LDR             R3, [SP,#0x50+var_44]|3-155
+2940|code|LDR.W           R6, [R3,R11]|83-248-11-96
+2944|code|REV             R6, R6|54-186
+2946|code|STR.W           R6, [R3,R11]|67-248-11-96
+2950|code|CMP.W           R8, #0|184-241-0-15
+2954|code|BEQ             loc_B18|197-208
+2956|code|CMP             R6, R10|86-69
+2958|code|BHI             loc_B18|195-216
+2960|code|LDR             R1, =aFontCharacters; "font characters not in ascending order:"...|48-73
+2962|code|MOVS            R0, #0x17|23-32
+2964|code|MOV             R2, R6|50-70
+2966|code|MOV             R3, R10|83-70
+2968|code|LDR             R6, =grub_error|47-78
+2970|code|BLX             R6; grub_error|176-71
+2972|code|B               loc_C1C|62-224
+2974|code|ADD             R0, SP, #0x50+section.name|7-168
+2976|code|LDR             R1, =aData; "DATA"|46-73
+2978|code|MOVS            R2, #4|4-34
+2980|code|BLX             R6; grub_memcmp|176-71
+2982|code|CBZ             R0, loc_BC2|96-177
+2984|code|LDRD.W          R2, R3, [file,#0x10]|213-233-4-35
+2988|code|MOV             R0, file|40-70
+2990|code|LDR             R1, [SP,#0x50+section.length]|8-153
+2992|code|ADDS            R2, R2, R1|82-24
+2994|code|LDR             R1, =grub_file_seek|43-73
+2996|code|ADC.W           R3, R3, #0|67-241-0-3
+3000|code|BLX             R1; grub_file_seek|136-71
+3002|code|ADDS            R0, #1|1-48
+3004|code|BNE.W           loc_970|127-244-216-174
+3008|code|B               loc_C1C|44-224
+3010|code|LDR             R3, [font]|35-104
+3012|code|CBNZ            R3, loc_BDC|83-185
+3014|code|LDR             R0, =aFontFontC; "font/font.c"|39-72
+3016|code|MOVW            R1, #0x269|64-242-105-33
+3020|code|LDR             R2, =aFont; "font"|38-74
+3022|code|LDR             R3, =aFontHasNoName; "Font has no name.\n"|39-75
+3024|code|LDR             R6, =grub_real_dprintf|39-78
+3026|code|BLX             R6; grub_real_dprintf|176-71
+3028|code|LDR             R0, =aUnknown; "Unknown"|39-72
+3030|code|LDR             R3, =grub_strdup|40-75
+3032|code|BLX             R3; grub_strdup|152-71
+3034|code|STR             R0, [font]|32-96
+3036|code|LDRSH.W         R3, [font,#0x10]|180-249-16-48
+3040|code|CBZ             R3, loc_BFC|99-177
+3042|code|LDRSH.W         R3, [font,#0x12]|180-249-18-48
+3046|code|CBZ             R3, loc_BFC|75-177
+3048|code|LDR             R3, [font,#0x1C]|227-105
+3050|code|CBZ             R3, loc_BFC|59-177
+3052|code|LDR             R3, [font,#0x20]|35-106
+3054|code|CBZ             R3, loc_BFC|43-177
+3056|code|LDRSH.W         R3, [font,#0x14]|180-249-20-48
+3060|code|CBZ             R3, loc_BFC|19-177
+3062|code|LDRSH.W         R3, [font,#0x16]|180-249-22-48
+3066|code|CBNZ            R3, loc_C06|35-185
+3068|code|LDR             R1, =aInvalidFontFil; "invalid font file: missing some require"...|31-73
+3070|code|MOVS            R0, #0x17|23-32
+3072|code|LDR             R3, =grub_error|21-75
+3074|code|BLX             R3; grub_error|152-71
+3076|code|B               loc_C1C|10-224
+3078|code|MOVS            R0, #8|8-32
+3080|code|LDR             R3, =grub_malloc|29-75
+3082|code|BLX             R3; grub_malloc|152-71
+3084|code|CBZ             R0, loc_C1C|48-177
+3086|code|LDR             R3, =grub_font_list|29-75
+3088|code|STR             font, [R0,#4]|68-96
+3090|code|LDR             R2, [R3]|26-104
+3092|code|STR             R2, [R0]|2-96
+3094|code|STR             R0, [R3]|24-96
+3096|code|B               loc_C42|19-224
+3098|code|MOVS            R4, #0|0-36
+3100|code|MOV             R0, file|40-70
+3102|code|LDR             R3, =grub_file_close|26-75
+3104|code|BLX             R3; grub_file_close|152-71
+3106|code|MOVS            R6, #0|0-38
+3108|code|CBZ             font, loc_C42|108-177
+3110|code|LDR             file, =grub_free|25-77
+3112|code|LDR             R0, [font]|32-104
+3114|code|STR             R6, [font,#4]|102-96
+3116|code|BLX             R5; grub_free|168-71
+3118|code|LDR             R0, [font,#8]|160-104
+3120|code|BLX             R5; grub_free|168-71
+3122|code|LDR             R0, [font,#0x20]|32-106
+3124|code|BLX             R5; grub_free|168-71
+3126|code|LDR             R0, [font,#0x24]|96-106
+3128|code|BLX             R5; grub_free|168-71
+3130|code|MOV             R0, font|32-70
+3132|code|BLX             R5; grub_free|168-71
+3134|code|MOV             R0, R6|48-70
+3136|code|B               loc_C48|2-224
+3138|code|MOV             R0, font|32-70
+3140|code|B               loc_C48|0-224
+3142|code|MOVS            R0, #0|0-32
+3144|code|ADD             SP, SP, #0x2C ; ','|11-176
+3146|code|POP.W           {R4-R11,PC}|189-232-240-143
+3150|data|ALIGN 0x10|0-191
+3152|data|DCD grub_file_read|160-31-0-0
+3156|data|DCD aFontCharacters; "font characters not in ascending order:"...|226-19-0-0
+3160|data|DCD grub_error|192-31-0-0
+3164|data|DCD aData; "DATA"|19-20-0-0
+3168|data|DCD grub_file_seek|136-31-0-0
+3172|data|DCD aFontFontC; "font/font.c"|24-20-0-0
+3176|data|DCD aFont; "font"|36-20-0-0
+3180|data|DCD aFontHasNoName; "Font has no name.\n"|41-20-0-0
+3184|data|DCD grub_real_dprintf|184-31-0-0
+3188|data|DCD aUnknown; "Unknown"|60-20-0-0
+3192|data|DCD grub_strdup|132-31-0-0
+3196|data|DCD aInvalidFontFil; "invalid font file: missing some require"...|68-20-0-0
+3200|data|DCD grub_malloc|176-31-0-0
+3204|data|DCD grub_font_list|104-31-0-0
+3208|data|DCD grub_file_close|180-31-0-0
+3212|data|DCD grub_free|200-31-0-0
+3216|code|LDR             R3, =grub_font_list|15-75
+3218|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+3222|code|MOV             R7, font_name|7-70
+3224|code|LDR             R6, [R3]|30-104
+3226|code|MOV             R5, R3|29-70
+3228|code|LDR.W           R8, =grub_strcmp|223-248-56-128
+3232|code|CBZ             node, loc_CB0|54-177
+3234|code|LDR             R4, [node,#4]|116-104
+3236|code|MOV             R1, font_name|57-70
+3238|code|LDR             R0, [font]|32-104
+3240|code|BLX             R8; grub_strcmp|192-71
+3242|code|CBZ             R0, loc_CC2|80-177
+3244|code|LDR             node, [node]|54-104
+3246|code|B               loc_CA0|247-231
+3248|code|LDR             R3, [R5]|43-104
+3250|code|CBZ             R3, loc_CC8|75-177
+3252|code|LDR             R0, [R3,#4]|88-104
+3254|code|LDR             R3, =null_font|7-75
+3256|code|CMP             R0, #0|0-40
+3258|code|IT EQ|8-191
+3260|code|MOVEQ           R0, R3|24-70
+3262|code|POP.W           {R4-R8,PC}|189-232-240-129
+3266|code|MOV             R0, font|32-70
+3268|code|POP.W           {font-R8,PC}|189-232-240-129
+3272|code|LDR             R0, =null_font|2-72
+3274|code|POP.W           {R4-R8,PC}|189-232-240-129
+3278|data|ALIGN 0x10|0-191
+3280|data|DCD grub_font_list|104-31-0-0
+3284|data|DCD null_font|48-31-0-0
+3288|data|DCD grub_strcmp|172-31-0-0
+3292|code|LDR             font, [font]|0-104
+3294|code|BX              LR|112-71
+3296|code|LDRSH.W         font, [font,#0x10]|176-249-16-0
+3300|code|BX              LR|112-71
+3302|code|LDRSH.W         font, [font,#0x16]|176-249-22-0
+3306|code|BX              LR|112-71
+3308|code|LDRSH.W         font, [font,#0x14]|176-249-20-0
+3312|code|ADD.W           R0, R0, R0,LSR#31|0-235-208-112
+3316|code|ASRS            R0, R0, #1|64-16
+3318|code|BX              LR|112-71
+3320|code|LDRSH.W         font, [font,#0x18]|176-249-24-0
+3324|code|BX              LR|112-71
+3326|code|LDRSH.W         R2, [font,#0x14]|176-249-20-32
+3330|code|LDRSH.W         R3, [font,#0x16]|176-249-22-48
+3334|code|LDRSH.W         font, [font,#0x18]|176-249-24-0
+3338|code|ADD             R3, R2|19-68
+3340|code|ADD             R0, R3|24-68
+3342|code|BX              LR|112-71
+3344|code|PUSH            {R4,LR}|16-181
+3346|code|MOV             R4, code|12-70
+3348|code|CBNZ            font, loc_D1E|24-185
+3350|code|MOV             R0, code; font|32-70
+3352|code|POP.W           {code,LR}|189-232-16-64
+3356|code|B               ascii_glyph_lookup|16-229
+3358|code|BL              grub_font_get_glyph_internal|255-247-87-252
+3362|code|CMP             glyph, #0|0-40
+3364|code|BEQ             loc_D16|247-208
+3366|code|POP             {code,PC}|16-189
+3368|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+3372|code|MOV             R6, code|14-70
+3374|code|MOV             R5, font|5-70
+3376|code|CBNZ            font, loc_D40|48-185
+3378|code|LDR             R3, =grub_font_list|33-75
+3380|code|MOV.W           R8, #0|79-240-0-8
+3384|code|MOVW            R9, #0x2710|66-242-16-121
+3388|code|LDR             R4, [R3]|28-104
+3390|code|B               loc_D56|10-224
+3392|code|BL              grub_font_get_glyph_internal|255-247-70-252
+3396|code|CMP             glyph, #0|0-40
+3398|code|BNE             locret_DB2|52-209
+3400|code|B               loc_D32|243-231
+3402|code|LDM             node, {node,curfont}|144-204
+3404|code|MOV             R1, code; code|49-70
+3406|code|MOV             R0, curfont; font|56-70
+3408|code|BL              grub_font_get_glyph_internal|255-247-62-252
+3412|code|CBNZ            glyph, loc_D5C|16-185
+3414|code|CMP             node, #0|0-44
+3416|code|BNE             loc_D4A|247-209
+3418|code|B               loc_DB0|41-224
+3420|code|CBZ             font, locret_DB2|77-179
+3422|code|LDRH            R3, [curfont,#0x14]|187-138
+3424|code|CBZ             R3, loc_D76|75-177
+3426|code|LDRH            R2, [font,#0x14]|170-138
+3428|code|CBZ             R2, loc_D76|58-177
+3430|code|SXTH            R3, R3|27-178
+3432|code|SXTH            R2, R2|18-178
+3434|code|SUBS            R3, R3, R2|155-26
+3436|code|CMP             R3, #0|0-43
+3438|code|IT LT|184-191
+3440|code|NEGLT           R3, R3|91-66
+3442|code|LSLS            R3, R3, #3|219-0
+3444|code|B               loc_D78|0-224
+3446|code|MOVS            R3, #0x32 ; '2'|50-35
+3448|code|LDRH            R2, [curfont,#0x12]|122-138
+3450|code|CBZ             R2, loc_D92|82-177
+3452|code|LDRH            R1, [font,#0x12]|105-138
+3454|code|CBZ             R1, loc_D92|65-177
+3456|code|SXTH            R2, R2|18-178
+3458|code|SXTH            R1, R1|9-178
+3460|code|SUBS            R2, R2, R1|82-26
+3462|code|CMP             R2, #0|0-42
+3464|code|IT LT|184-191
+3466|code|NEGLT           R2, R2|82-66
+3468|code|ADD.W           R3, R3, R2,LSL#3|3-235-194-3
+3472|code|B               loc_D94|0-224
+3474|code|ADDS            R3, #0x32 ; '2'|50-51
+3476|code|LDRSH.W         R2, [curfont,#0xE]|183-249-14-32
+3480|code|LDRSH.W         R1, [font,#0xE]|181-249-14-16
+3484|code|CMP             R2, R1|138-66
+3486|code|ITE NE|20-191
+3488|code|MOVNE           R2, #5|5-34
+3490|code|MOVEQ           R2, #0|0-34
+3492|code|ADD             R3, R2|19-68
+3494|code|CMP             R3, best_diversity|75-69
+3496|code|ITT LT|188-191
+3498|code|MOVLT           R8, glyph|128-70
+3500|code|MOVLT           best_diversity, R3|153-70
+3502|code|B               loc_D56|210-231
+3504|code|MOV             R0, R8|64-70
+3506|code|POP.W           {R3-R9,PC}|189-232-248-131
+3510|data|ALIGN 4|0-191
+3512|data|DCD grub_font_list|104-31-0-0
+3516|code|PUSH.W          {hinted_font-bounds,R4-R11,LR}; combining_glyphs|45-233-247-79
+3520|code|MOV             R7, combining_glyphs|31-70
+3522|code|LDRB            combining_glyphs, [glyph_id,#4]|11-121
+3524|code|MOV             R10, glyph_id|138-70
+3526|code|LDR             R4, [glyph_id]|12-104
+3528|code|MOV             R11, hinted_font|131-70
+3530|code|AND.W           R3, R3, #0x1F|3-240-31-3
+3534|code|MOV             R9, bounds|145-70
+3536|code|TST.W           R3, #4|19-240-4-15
+3540|code|LDR.W           R8, [SP,#0x30+device_width]|221-248-48-128
+3544|code|UBFX.W          R4, R4, #0, #0x17|196-243-22-4
+3548|code|ITE EQ|12-191
+3550|code|MOVEQ           glyph_id, #0|0-33
+3552|code|MOVNE.W         R1, #0x80000000|79-240-0-65
+3556|code|LSLS            R3, R3, #0x1E|155-7
+3558|code|LDRH.W          R3, [glyph_id,#6]|186-248-6-48
+3562|code|IT MI|72-191
+3564|code|ORRMI.W         desired_attributes, desired_attributes, #0x40000000|65-240-128-65
+3568|code|ANDS.W          R6, R3, #0x7F8|19-244-255-102
+3572|code|BEQ             loc_E06|7-208
+3574|code|UBFX.W          bounds, R3, #3, #8|195-243-199-2
+3578|code|CMP             R2, #1|1-42
+3580|code|ITE LS|148-191
+3582|code|ADDLS.W         R6, glyph_id, #0x10|10-241-16-6
+3586|code|LDRHI.W         R6, [glyph_id,#0x10]|218-248-16-96
+3590|code|SUB.W           R2, base, #0x69 ; 'i'|164-241-105-2
+3594|code|CMP             R2, #1|1-42
+3596|code|BHI             loc_E3C|22-216
+3598|code|UBFX.W          R3, R3, #3, #8|195-243-199-3
+3602|code|MOVS            R2, #0|0-34
+3604|code|CMP             i, R3|154-66
+3606|code|BCS             loc_E3C|17-210
+3608|code|ADD.W           R0, R6, i,LSL#2|6-235-130-0
+3612|code|LDRH            R0, [R0,#2]|64-136
+3614|code|AND.W           R0, R0, #0x1FE0|0-244-255-80
+3618|code|CMP.W           R0, #0x1CC0|176-245-230-95
+3622|code|BEQ             loc_E2C|1-208
+3624|code|ADDS            i, #1|1-50
+3626|code|B               loc_E14|243-231
+3628|code|MOVW            R3, #0x237|64-242-55-35
+3632|code|MOVW            i, #0x131|64-242-49-18
+3636|code|CMP             base, #0x69 ; 'i'|105-44
+3638|code|ITE EQ|12-191
+3640|code|MOVEQ           base, R2|20-70
+3642|code|MOVNE           base, R3|28-70
+3644|code|MOV             R0, hinted_font; font|88-70
+3646|code|ORRS            desired_attributes, base; code|33-67
+3648|code|BL              grub_font_get_glyph_with_fallback|255-247-114-255
+3652|code|MOV             R5, main_glyph|5-70
+3654|code|CBNZ            main_glyph, loc_E5E|80-185
+3656|code|MOV             main_glyph, hinted_font; font|88-70
+3658|code|MOV             R1, base; code|33-70
+3660|code|BL              grub_font_get_glyph_with_fallback|255-247-108-255
+3664|code|MOV             R5, main_glyph|5-70
+3666|code|CBNZ            main_glyph, loc_E5E|32-185
+3668|code|MOV             main_glyph, base; code|32-70
+3670|code|BL              ascii_glyph_lookup|255-247-115-252
+3674|code|MOV             R5, main_glyph|5-70
+3676|code|CBZ             main_glyph, loc_EBA|104-179
+3678|code|CMP.W           R8, #0|184-241-0-15
+3682|code|BEQ             loc_E6A|2-208
+3684|code|LDRH            R3, [R5,#0xC]|171-137
+3686|code|STR.W           R3, [R8]|200-248-0-48
+3690|code|LDR.W           R2, [glyph_id,#4]|218-248-4-32
+3694|code|LDR             R3, =0x7F8001F|21-75
+3696|code|ANDS            R3, R2|19-64
+3698|code|CBZ             R3, loc_EBA|19-179
+3700|code|LDRH.W          base, [glyph_id,#6]|186-248-6-64
+3704|code|ANDS.W          R4, R4, #0x7F8|20-244-255-100
+3708|code|BEQ             loc_E88|4-208
+3710|code|CBNZ            combining_glyphs, loc_E86|23-185
+3712|code|LDR             R3, =grub_errno|17-75
+3714|code|STR             combining_glyphs, [R3]|31-96
+3716|code|B               loc_EBA|25-224
+3718|code|MOVS            R4, #0|0-36
+3720|code|LDRH.W          R3, [glyph_id,#6]|186-248-6-48
+3724|code|UBFX.W          R3, R3, #3, #8|195-243-199-3
+3728|code|CMP             i, R3|156-66
+3730|code|BCS             loc_EAA|10-210
+3732|code|LDR.W           R1, [R6,i,LSL#2]|86-248-36-16
+3736|code|LDR             R0, [main_glyph]; font|40-104
+3738|code|UBFX.W          R1, R1, #0, #0x15; code|193-243-20-1
+3742|code|BL              grub_font_get_glyph_with_fallback|255-247-67-255
+3746|code|STR.W           R0, [combining_glyphs,i,LSL#2]|71-248-36-0
+3750|code|ADDS            i, #1|1-52
+3752|code|B               loc_E88|238-231
+3754|code|STMEA.W         SP, {combining_glyphs,R8}|141-232-128-1
+3758|code|MOV             R0, glyph_id; glyph_id|80-70
+3760|code|MOVS            R1, #0; glyph|0-33
+3762|code|MOV             R2, bounds; bounds_out|74-70
+3764|code|MOV             R3, main_glyph; main_glyph|43-70
+3766|code|BL              blit_comb|255-247-53-249
+3770|code|MOV             R0, main_glyph|40-70
+3772|code|ADD             SP, SP, #0xC|3-176
+3774|code|POP.W           {R4-hinted_font,PC}|189-232-240-143
+3778|data|ALIGN 4|0-191
+3780|data|DCD 0x7F8001F|31-0-248-7
+3784|data|DCD grub_errno|140-31-0-0
+3788|code|PUSH            {hinted_font-R6,LR}|127-181
+3790|code|MOV             R6, hinted_font|6-70
+3792|code|LDR             R4, =render_max_comb_glyphs|10-76
+3794|code|MOV             hinted_font, glyph_id; glyph_id|8-70
+3796|code|MOV             R5, glyph_id|13-70
+3798|code|BL              ensure_comb_space|255-247-31-251
+3802|code|ADD             R3, SP, #0x20+ret|3-171
+3804|code|MOV             R0, hinted_font; hinted_font|48-70
+3806|code|STR             R3, [SP,#0x20+device_width]; device_width|0-147
+3808|code|MOV             R1, glyph_id; glyph_id|41-70
+3810|code|MOVS            R2, #0; bounds|0-34
+3812|code|LDR             R3, [R4,#(render_combining_glyphs - 0x1D1C)]; combining_glyphs|99-104
+3814|code|BL              grub_font_construct_dry_run|255-247-105-255
+3818|code|CBNZ            main_glyph, loc_EF4|24-185
+3820|code|LDR.W           R3, [R4,#(unknown_glyph - 0x1D1C)]|212-248-16-50
+3824|code|LDRH            main_glyph, [R3,#0xC]|152-137
+3826|code|B               loc_EF6|0-224
+3828|code|LDR             main_glyph, [SP,#0x20+ret]|3-152
+3830|code|ADD             SP, SP, #0x10|4-176
+3832|code|POP             {R4-hinted_font,PC}|112-189
+3834|data|ALIGN 4|0-191
+3836|data|DCD render_max_comb_glyphs|28-29-0-0
+3840|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+3844|code|SUB             SP, SP, #0x2C|139-176
+3846|code|LDR             R4, =render_max_comb_glyphs|100-76
+3848|code|MOV             R5, hinted_font|5-70
+3850|code|MOV             R8, glyph_id|136-70
+3852|code|MOV             hinted_font, glyph_id; glyph_id|8-70
+3854|code|BL              ensure_comb_space|255-247-3-251
+3858|code|MOVS            R3, #0|0-35
+3860|code|MOV             R0, hinted_font; hinted_font|40-70
+3862|code|STR             R3, [SP,#0x50+device_width]; device_width|0-147
+3864|code|MOV             R1, glyph_id; glyph_id|65-70
+3866|code|ADD             R2, SP, #0x50+bounds; bounds|6-170
+3868|code|LDR             R3, [R4,#(render_combining_glyphs - 0x1D1C)]; combining_glyphs|99-104
+3870|code|MOV             R6, R4|38-70
+3872|code|BL              grub_font_construct_dry_run|255-247-76-255
+3876|code|MOV             hinted_font, main_glyph|5-70
+3878|code|CBNZ            main_glyph, loc_F2E|16-185
+3880|code|LDR.W           R4, [R4,#(unknown_glyph - 0x1D1C)]|212-248-16-66
+3884|code|B               loc_108E|175-224
+3886|code|LDR             R3, [R4,#(render_combining_glyphs - 0x1D1C)]|99-104
+3888|code|CBNZ            R3, loc_F40|51-185
+3890|code|LDRH.W          R3, [glyph_id,#6]|184-248-6-48
+3894|code|AND.W           R3, R3, #0x7F8|3-244-255-99
+3898|code|CMP             R3, #0|0-43
+3900|code|BNE.W           loc_108C|64-240-166-128
+3904|code|LDR.W           R2, [glyph_id,#4]|216-248-4-32
+3908|code|LDR             R3, =0x7F8001F|85-75
+3910|code|ANDS            R3, R2|19-64
+3912|code|CMP             R3, #0|0-43
+3914|code|BEQ.W           loc_108C|0-240-159-128
+3918|code|LDR             R2, [SP,#0x50+bounds.height]|9-154
+3920|code|LDR             R3, [SP,#0x50+bounds.width]|8-155
+3922|code|LDR             R4, =render_max_comb_glyphs|81-76
+3924|code|MULS            R3, R2|83-67
+3926|code|LDR.W           R2, [R6,#(max_glyph_size.6058 - 0x1D1C)]|214-248-60-34
+3930|code|ADDS            R3, #7|7-51
+3932|code|LSRS            R3, R3, #3|219-8
+3934|code|ADDS            R3, #0x10|16-51
+3936|code|CMP             R2, R3|154-66
+3938|code|BCS             loc_F86|16-210
+3940|code|LDR.W           main_glyph, [R4,#(glyph.6057 - 0x1D1C)]|212-248-64-2
+3944|code|LDR             R3, =grub_free|77-75
+3946|code|BLX             R3; grub_free|152-71
+3948|code|LDR             R3, [SP,#0x50+bounds.width]|8-155
+3950|code|LDR             R0, [SP,#0x50+bounds.height]|9-152
+3952|code|MULS            R0, R3|88-67
+3954|code|LDR             R3, =grub_malloc|76-75
+3956|code|ADDS            R0, #7|7-48
+3958|code|LSRS            R0, R0, #3|192-8
+3960|code|ADDS            R0, #0x10|16-48
+3962|code|LSLS            R0, R0, #1|64-0
+3964|code|STR.W           R0, [R4,#(max_glyph_size.6058 - 0x1D1C)]|196-248-60-2
+3968|code|BLX             R3; grub_malloc|152-71
+3970|code|STR.W           R0, [R4,#(glyph.6057 - 0x1D1C)]|196-248-64-2
+3974|code|LDR.W           R0, [R6,#(glyph.6057 - 0x1D1C)]|214-248-64-2
+3978|code|CBNZ            R0, loc_F92|16-185
+3980|code|LDR             R3, =grub_errno|70-75
+3982|code|STR             R0, [R3]|24-96
+3984|code|B               loc_108C|124-224
+3986|code|LDR             R3, [SP,#0x50+bounds.width]|8-155
+3988|code|MOVS            R1, #0|0-33
+3990|code|LDR             R2, [SP,#0x50+bounds.height]|9-154
+3992|code|MULS            R2, R3|90-67
+3994|code|LDR             R3, =grub_memset|68-75
+3996|code|ADDS            R2, #7|7-50
+3998|code|LSRS            R2, R2, #3|210-8
+4000|code|ADDS            R2, #0x10|16-50
+4002|code|BLX             R3; grub_memset|152-71
+4004|code|LDR             R3, =render_max_comb_glyphs|60-75
+4006|code|LDR             R7, [SP,#0x50+bounds.width]|8-159
+4008|code|LDR             R6, [SP,#0x50+bounds.height]|9-158
+4010|code|LDR.W           R4, [R3,#(glyph.6057 - 0x1D1C)]|211-248-64-66
+4014|code|LDR             R3, [main_glyph]|43-104
+4016|code|LDRH.W          R2, [SP,#0x50+bounds]|189-248-24-32
+4020|code|LDRH.W          R1, [SP,#0x50+bounds.y]|189-248-28-16
+4024|code|STR             R3, [R4]|35-96
+4026|code|LDRB.W          R3, [glyph_id,#4]|152-248-4-48
+4030|code|STRH            R6, [R4,#6]|230-128
+4032|code|UXTH            R6, R6|182-178
+4034|code|TST.W           R3, #1|19-240-1-15
+4038|code|STRH            R2, [R4,#8]|34-129
+4040|code|STRH            R1, [R4,#0xA]|97-129
+4042|code|SXTH            R2, R2|18-178
+4044|code|STRH            R7, [R4,#4]|167-128
+4046|code|SXTH            R1, R1|9-178
+4048|code|LDRSH.W         LR, [main_glyph,#8]|181-249-8-224
+4052|code|LDRH.W          R9, [main_glyph,#6]|181-248-6-144
+4056|code|LDRSH.W         R0, [main_glyph,#0xA]|181-249-10-0
+4060|code|BEQ             loc_1062|65-208
+4062|code|ADD             R1, R6|49-68
+4064|code|ADD.W           R6, R9, R0|9-235-0-6
+4068|code|SUBS            R6, R1, R6|142-27
+4070|code|MOVS            R1, #0|0-33
+4072|code|RSB.W           R3, R2, LR|194-235-14-3
+4076|code|STR             R3, [SP,#0x50+var_44]|3-147
+4078|code|SUBS            R3, R6, #1|115-30
+4080|code|STR             R3, [SP,#0x50+var_40]|4-147
+4082|code|UXTH            R3, R7|187-178
+4084|code|STR             R3, [SP,#0x50+var_3C]|5-147
+4086|code|CMP             R1, R9|73-69
+4088|code|BCS             loc_1076|61-210
+4090|code|LDR             R3, [SP,#0x50+var_40]|4-155
+4092|code|ADDS            R1, #1|1-49
+4094|code|LDRH.W          R11, [main_glyph,#4]|181-248-4-176
+4098|code|ADDS            R2, R3, R1|90-24
+4100|code|LDR             R7, [SP,#0x50+var_44]|3-159
+4102|code|LDR             R3, [SP,#0x50+var_3C]|5-155
+4104|code|MUL.W           R6, R11, R1|11-251-1-246
+4108|code|MLA.W           R2, R3, R2, R7|3-251-2-114
+4112|code|MOVS            R3, #0|0-35
+4114|code|SUBS            R6, #1|1-62
+4116|code|AND.W           R0, R6, #7|6-240-7-0
+4120|code|AND.W           LR, R2, #7|2-240-7-14
+4124|code|LSRS            R6, R6, #3|246-8
+4126|code|LSRS            R2, R2, #3|210-8
+4128|code|CMP             R3, R11|91-69
+4130|code|BCS             loc_FF6|232-210
+4132|code|ADDS            R7, main_glyph, R6|175-25
+4134|code|ADD.W           R12, R4, R2|4-235-2-12
+4138|code|ADDS            R3, #1|1-51
+4140|code|LDRB            R7, [R7,#0xE]|191-123
+4142|code|LDRB.W          R10, [R12,#0xE]|156-248-14-160
+4146|code|LSLS            R7, R0|135-64
+4148|code|SUBS            R0, #1|1-56
+4150|code|AND.W           R7, R7, #0x80|7-240-128-7
+4154|code|ASR.W           R7, R7, LR|71-250-14-247
+4158|code|ADD.W           LR, LR, #1|14-241-1-14
+4162|code|ORR.W           R7, R7, R10|71-234-10-7
+4166|code|STRB.W          R7, [R12,#0xE]|140-248-14-112
+4170|code|ADDS            R7, R0, #1|71-28
+4172|code|ITT EQ|4-191
+4174|code|ADDEQ.W         R6, R6, #0xFFFFFFFF|6-241-255-54
+4178|code|MOVEQ           R0, #7|7-32
+4180|code|CMP.W           LR, #8|190-241-8-15
+4184|code|ITT EQ|4-191
+4186|code|ADDEQ           R2, #1|1-50
+4188|code|MOVEQ.W         LR, #0|79-240-0-14
+4192|code|B               loc_1020|222-231
+4194|code|ADD             R6, R1|14-68
+4196|code|ADD.W           R3, R9, R0|9-235-0-3
+4200|code|MOV             R1, main_glyph; src|41-70
+4202|code|MOV             R0, R4; target|32-70
+4204|code|RSB.W           R2, R2, LR; dx|194-235-14-2
+4208|code|SUBS            R3, R6, R3; dy|243-26
+4210|code|BL              grub_font_blit_glyph|254-247-207-255
+4214|code|LDR             R3, =render_max_comb_glyphs|8-75
+4216|code|MOVS            R2, #0; bounds_out|0-34
+4218|code|MOV             R0, glyph_id; glyph_id|64-70
+4220|code|MOV             R1, R4; glyph|33-70
+4222|code|LDR             R3, [R3,#(render_combining_glyphs - 0x1D1C)]|91-104
+4224|code|STR             R2, [SP,#0x50+var_4C]; device_width|1-146
+4226|code|STR             R3, [SP,#0x50+device_width]; combining_glyphs|0-147
+4228|code|MOV             R3, main_glyph; main_glyph|43-70
+4230|code|BL              blit_comb|255-247-77-248
+4234|code|B               loc_108E|0-224
+4236|code|MOV             R4, main_glyph|44-70
+4238|code|MOV             R0, R4|32-70
+4240|code|ADD             SP, SP, #0x2C ; ','|11-176
+4242|code|POP.W           {R4-R11,PC}|189-232-240-143
+4246|data|ALIGN 4|0-191
+4248|data|DCD render_max_comb_glyphs|28-29-0-0
+4252|data|DCD 0x7F8001F|31-0-248-7
+4256|data|DCD grub_free|200-31-0-0
+4260|data|DCD grub_malloc|176-31-0-0
+4264|data|DCD grub_errno|140-31-0-0
+4268|data|DCD grub_memset|144-31-0-0
+4272|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4276|code|MOV             R5, glyph|5-70
+4278|code|LDRH            R6, [glyph,#4]|134-136
+4280|code|SUB             SP, SP, #0x64|153-176
+4282|code|MOV             R9, left_x|145-70
+4284|code|MOV             R7, baseline_y|31-70
+4286|code|CMP             R6, #0|0-46
+4288|code|BEQ             loc_1138|58-208
+4290|code|LDRH            R4, [glyph,#6]|196-136
+4292|code|CMP             R4, #0|0-44
+4294|code|BEQ             loc_113C|57-208
+4296|code|STR             R6, [SP,#0x80+glyph_bitmap]|4-150
+4298|code|ADD.W           left_x, SP, #0x80+glyph_bitmap.mode_info.fg_green|13-241-89-2
+4302|code|STR             R6, [SP,#0x80+glyph_bitmap.mode_info.pitch]|9-150
+4304|code|MOV.W           baseline_y, #0x104|79-244-130-115
+4308|code|MOV             glyph, color|8-70
+4310|code|STR             R3, [SP,#0x80+glyph_bitmap.mode_info.mode_type]|6-147
+4312|code|ADD             color, SP, #0x80+glyph_bitmap.mode_info.fg_red|22-169
+4314|code|MOVS            R3, #0xA|10-35
+4316|code|LDR             R6, =grub_video_unmap_color|25-78
+4318|code|MOV.W           R8, #1|79-240-1-8
+4322|code|STR             R3, [SP,#0x80+glyph_bitmap.mode_info.blit_format]|12-147
+4324|code|MOVS            R3, #2|2-35
+4326|code|STR             R3, [SP,#0x80+glyph_bitmap.mode_info.number_of_colors]|10-147
+4328|code|ADD.W           R3, SP, #0x80+glyph_bitmap.mode_info.fg_alpha|13-241-91-3
+4332|code|STR             R3, [SP,#0x80+var_80]|0-147
+4334|code|ADD.W           R3, SP, #0x80+glyph_bitmap.mode_info.fg_blue|13-241-90-3
+4338|code|STR             R4, [SP,#0x80+glyph_bitmap.mode_info.height]|5-148
+4340|code|MOVS            R4, #0|0-36
+4342|code|STR.W           R8, [SP,#0x80+glyph_bitmap.mode_info.bpp]|205-248-28-128
+4346|code|STR             R4, [SP,#0x80+glyph_bitmap.mode_info.bytes_per_pixel]|8-148
+4348|code|STRB.W          R4, [SP,#0x80+glyph_bitmap.mode_info.bg_red]|141-248-84-64
+4352|code|STRB.W          R4, [SP,#0x80+glyph_bitmap.mode_info.bg_green]|141-248-85-64
+4356|code|STRB.W          R4, [SP,#0x80+glyph_bitmap.mode_info.bg_blue]|141-248-86-64
+4360|code|STRB.W          R4, [SP,#0x80+glyph_bitmap.mode_info.bg_alpha]|141-248-87-64
+4364|code|BLX             R6; grub_video_unmap_color|176-71
+4366|code|LDRSH.W         R1, [glyph,#0xA]|181-249-10-16
+4370|code|ADD.W           R3, glyph, #0xE|5-241-14-3
+4374|code|STR             R3, [SP,#0x80+glyph_bitmap.data]|23-147
+4376|code|ADD             R0, SP, #0x80+glyph_bitmap|4-168
+4378|code|LDRH            R3, [glyph,#6]|235-136
+4380|code|SUBS            baseline_y, baseline_y, R1|127-26
+4382|code|LDRH            R1, [glyph,#4]|169-136
+4384|code|LDRSH.W         R2, [glyph,#8]|181-249-8-32
+4388|code|STR             R4, [SP,#0x80+var_80]|0-148
+4390|code|STR             R4, [SP,#0x80+var_7C]|1-148
+4392|code|ADD             R2, left_x|74-68
+4394|code|STR             R1, [SP,#0x80+var_78]|2-145
+4396|code|MOV             R1, R8|65-70
+4398|code|STR             R3, [SP,#0x80+var_74]|3-147
+4400|code|SUBS            R3, bitmap_bottom, R3|251-26
+4402|code|LDR             R4, =grub_video_blit_bitmap|5-76
+4404|code|BLX             R4; grub_video_blit_bitmap|160-71
+4406|code|B               loc_113E|2-224
+4408|code|MOV             glyph, R6|48-70
+4410|code|B               loc_113E|0-224
+4412|code|MOV             glyph, R4|32-70
+4414|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+4416|code|POP.W           {R4-left_x,PC}|189-232-240-131
+4420|data|DCD grub_video_unmap_color|128-31-0-0
+4424|data|DCD grub_video_blit_bitmap|120-31-0-0
+4428|code|PUSH            {R4-R6,LR}|112-181
+4430|code|LDR             R3, =grub_puts_|8-75
+4432|code|LDR             cmd, =aLoadedFonts; "Loaded fonts:"|8-72
+4434|code|BLX             R3; grub_puts_|152-71
+4436|code|LDR             R3, =grub_font_list|8-75
+4438|code|LDR             R5, =(grub_font_get_name+1)|9-77
+4440|code|LDR             R6, =grub_printf|9-78
+4442|code|LDR             R4, [R3]|28-104
+4444|code|CBZ             node, loc_116C|52-177
+4446|code|LDR             R0, [node,#4]; font|96-104
+4448|code|BLX             R5; grub_font_get_name|168-71
+4450|code|MOV             R1, R0|1-70
+4452|code|LDR             R0, =aS; "%s\n"|7-72
+4454|code|BLX             R6; grub_printf|176-71
+4456|code|LDR             node, [node]|36-104
+4458|code|B               loc_115C|247-231
+4460|code|MOV             R0, node|32-70
+4462|code|POP             {node-R6,PC}|112-189
+4464|data|DCD grub_puts_|112-31-0-0
+4468|data|DCD aLoadedFonts; "Loaded fonts:"|114-20-0-0
+4472|data|DCD grub_font_list|104-31-0-0
+4476|data|DCD grub_font_get_name+1|221-12-0-0
+4480|data|DCD grub_printf|152-31-0-0
+4484|data|DCD aS; "%s\n"|128-20-0-0
+4488|code|PUSH            {R4-R6,LR}|112-181
+4490|code|MOV             R5, args|21-70
+4492|code|CBNZ            argc, loc_1194|17-185
+4494|code|MOVS            cmd, #0x12|18-32
+4496|code|LDR             argc, =aFilenameExpect; "filename expected"|10-73
+4498|code|B               loc_11AC|11-224
+4500|code|LDR             R6, =(grub_font_load+1)|10-78
+4502|code|MOV             R4, argc|12-70
+4504|code|LDR.W           R0, [R5],#4; filename|85-248-4-11
+4508|code|SUBS            R4, #1|1-60
+4510|code|BLX             R6; grub_font_load|176-71
+4512|code|CBNZ            R0, loc_11B2|56-185
+4514|code|LDR             R3, =grub_errno|8-75
+4516|code|LDR             R0, [R3]|24-104
+4518|code|CBNZ            R0, locret_11B8|56-185
+4520|code|LDR             R1, =aInvalidFont; "invalid font"|7-73
+4522|code|MOVS            R0, #0x17|23-32
+4524|code|LDR             R3, =grub_error|7-75
+4526|code|BLX             R3; grub_error|152-71
+4528|code|POP             {R4-R6,PC}|112-189
+4530|code|CMP             R4, #0|0-44
+4532|code|BNE             loc_1198|240-209
+4534|code|MOV             R0, R4|32-70
+4536|code|POP             {R4-R6,PC}|112-189
+4538|data|ALIGN 4|0-191
+4540|data|DCD aFilenameExpect; "filename expected"|132-20-0-0
+4544|data|DCD grub_font_load+1|77-8-0-0
+4548|data|DCD grub_errno|140-31-0-0
+4552|data|DCD aInvalidFont; "invalid font"|150-20-0-0
+4556|data|DCD grub_error|192-31-0-0
+4560|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+4562|code|MOVS            R4, #0|0-36
+4564|code|LDR             R3, =(grub_font_loader_init+1)|9-75
+4566|code|BLX             R3; grub_font_loader_init|152-71
+4568|code|LDR             R6, =grub_register_command_prio|9-78
+4570|code|STR             R4, [SP,#0x18+var_18]|0-148
+4572|code|LDR             R1, =(loadfont_command+1)|9-73
+4574|code|LDR             R2, =aFile_0; "FILE..."|10-74
+4576|code|LDR             R3, =aSpecifyOneOrMo; "Specify one or more font files to load."|10-75
+4578|code|LDR             R0, =aLoadfont; "loadfont"|11-72
+4580|code|BLX             R6; grub_register_command_prio|176-71
+4582|code|LDR             R5, =cmd_loadfont|11-77
+4584|code|STR             R4, [SP,#0x18+var_18]|0-148
+4586|code|MOV             R2, R4|34-70
+4588|code|LDR             R1, =(lsfonts_command+1)|10-73
+4590|code|LDR             R3, =aListTheLoadedF; "List the loaded fonts."|11-75
+4592|code|STR             R0, [R5]|40-96
+4594|code|LDR             R0, =aLsfonts; "lsfonts"|11-72
+4596|code|BLX             R6; grub_register_command_prio|176-71
+4598|code|STR             R0, [R5,#(cmd_lsfonts - 0x1F60)]|104-96
+4600|code|ADD             SP, SP, #8|2-176
+4602|code|POP             {R4-R6,PC}|112-189
+4604|data|DCD grub_font_loader_init+1|181-7-0-0
+4608|data|DCD grub_register_command_prio|148-31-0-0
+4612|data|DCD loadfont_command+1|137-17-0-0
+4616|data|DCD aFile_0; "FILE..."|172-20-0-0
+4620|data|DCD aSpecifyOneOrMo; "Specify one or more font files to load."|180-20-0-0
+4624|data|DCD aLoadfont; "loadfont"|163-20-0-0
+4628|data|DCD cmd_loadfont|96-31-0-0
+4632|data|DCD lsfonts_command+1|77-17-0-0
+4636|data|DCD aListTheLoadedF; "List the loaded fonts."|228-20-0-0
+4640|data|DCD aLsfonts; "lsfonts"|220-20-0-0
+4644|code|PUSH            {R3-R5,LR}|56-181
+4646|code|LDR             R5, =cmd_loadfont|3-77
+4648|code|LDR             R4, =grub_unregister_command|3-76
+4650|code|LDR             R0, [R5]|40-104
+4652|code|BLX             R4; grub_unregister_command|160-71
+4654|code|LDR             R0, [R5,#(cmd_lsfonts - 0x1F60)]|104-104
+4656|code|BLX             R4; grub_unregister_command|160-71
+4658|code|POP             {R3-R5,PC}|56-189
+4660|data|DCD cmd_loadfont|96-31-0-0
+4664|data|DCD grub_unregister_command|156-31-0-0
+4668|data|DCB "font file format error: section %c%c%c%c length is %d but should"|102-111-110-116-32-102-105-108-101-32-102-111-114-109-97-116-32-101-114-114-111-114-58-32-115-101-99-116-105-111-110-32-37-99-37-99-37-99-37-99-32-108-101-110-103-116-104-32-105-115-32-37-100-32-98-117-116-32-115-104-111-117-108-100-32-98-101-32-50-0
+4738|data|DCB "<No Font>",0|60-78-111-32-70-111-110-116-62-0
+4748|data|DCB "prefix",0|112-114-101-102-105-120-0
+4755|data|DCB "variable `%s' isn't set",0|118-97-114-105-97-98-108-101-32-96-37-115-39-32-105-115-110-39-116-32-115-101-116-0
+4779|data|DCB "/fonts/",0|47-102-111-110-116-115-47-0
+4787|data|DCB ".pf2",0|46-112-102-50-0
+4792|data|DCB "FILE",0|70-73-76-69-0
+4797|data|DCB "font file format error: 1st section must be FILE",0|102-111-110-116-32-102-105-108-101-32-102-111-114-109-97-116-32-101-114-114-111-114-58-32-49-115-116-32-115-101-99-116-105-111-110-32-109-117-115-116-32-98-101-32-70-73-76-69-0
+4846|data|DCB "font file format error (file type ID length is %d but should be "|102-111-110-116-32-102-105-108-101-32-102-111-114-109-97-116-32-101-114-114-111-114-32-40-102-105-108-101-32-116-121-112-101-32-73-68-32-108-101-110-103-116-104-32-105-115-32-37-100-32-98-117-116-32-115-104-111-117-108-100-32-98-101-32-52-41-0
+4913|data|DCB "PFF2",0|80-70-70-50-0
+4918|data|DCB "invalid font magic %x %x %x %x",0|105-110-118-97-108-105-100-32-102-111-110-116-32-109-97-103-105-99-32-37-120-32-37-120-32-37-120-32-37-120-0
+4949|data|DCB "NAME",0|78-65-77-69-0
+4954|data|DCB "PTSZ",0|80-84-83-90-0
+4959|data|DCB "WEIG",0|87-69-73-71-0
+4964|data|DCB "normal",0|110-111-114-109-97-108-0
+4971|data|DCB "bold",0|98-111-108-100-0
+4976|data|DCB "MAXW",0|77-65-88-87-0
+4981|data|DCB "MAXH",0|77-65-88-72-0
+4986|data|DCB "ASCE",0|65-83-67-69-0
+4991|data|DCB "DESC",0|68-69-83-67-0
+4996|data|DCB "CHIX",0|67-72-73-88-0
+5001|data|DCB "font file format error: character index length %d is not a multi"|102-111-110-116-32-102-105-108-101-32-102-111-114-109-97-116-32-101-114-114-111-114-58-32-99-104-97-114-97-99-116-101-114-32-105-110-100-101-120-32-108-101-110-103-116-104-32-37-100-32-105-115-32-110-111-116-32-97-32-109-117-108-116-105-112-108-101-32-111-102-32-116-104-101-32-101-110-116-114-121-32-115-105-122-101-32-37-100-0
+5090|data|DCB "font characters not in ascending order: %u <= %u",0|102-111-110-116-32-99-104-97-114-97-99-116-101-114-115-32-110-111-116-32-105-110-32-97-115-99-101-110-100-105-110-103-32-111-114-100-101-114-58-32-37-117-32-60-61-32-37-117-0
+5139|data|DCB "DATA",0|68-65-84-65-0
+5144|data|DCB "font/font.c",0|102-111-110-116-47-102-111-110-116-46-99-0
+5156|data|DCB "font",0|102-111-110-116-0
+5161|data|DCB "Font has no name.",0xA,0|70-111-110-116-32-104-97-115-32-110-111-32-110-97-109-101-46-10-0
+5180|data|DCB "Unknown",0|85-110-107-110-111-119-110-0
+5188|data|DCB "invalid font file: missing some required data",0|105-110-118-97-108-105-100-32-102-111-110-116-32-102-105-108-101-58-32-109-105-115-115-105-110-103-32-115-111-109-101-32-114-101-113-117-105-114-101-100-32-100-97-116-97-0
+5234|data|DCB "Loaded fonts:",0|76-111-97-100-101-100-32-102-111-110-116-115-58-0
+5248|data|DCB "%s",0xA,0|37-115-10-0
+5252|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+5270|data|DCB "invalid font",0|105-110-118-97-108-105-100-32-102-111-110-116-0
+5283|data|DCB "loadfont",0|108-111-97-100-102-111-110-116-0
+5292|data|DCB "FILE...",0|70-73-76-69-46-46-46-0
+5300|data|DCB "Specify one or more font files to load.",0|83-112-101-99-105-102-121-32-111-110-101-32-111-114-32-109-111-114-101-32-102-111-110-116-32-102-105-108-101-115-32-116-111-32-108-111-97-100-46-0
+5340|data|DCB "lsfonts",0|108-115-102-111-110-116-115-0
+5348|data|DCB "List the loaded fonts.",0|76-105-115-116-32-116-104-101-32-108-111-97-100-101-100-32-102-111-110-116-115-46-0
+5371|data|DCB 0x80, 0, 0x80, 0x4A, 0xEA, 0x5A, 0xC9, 0, 0x80, 0|128-0-128-74-234-90-201-0-128-0-128-0-128-85-0-0-128-0-128-57-194-50-138-113-128-0-128-0-128-85-0-0-128-0-128-59-193-49-137-113-128-0-128-0-128-85-0-0-128-0-128-123-193-121-193-121-128-0-128-0-128-85-0-0-128-0-128-121-194-122-194-121-128-0-128-0-128-85-0-0-128-0-128-122-194-123-194-122-128-0-128-0-128-85-0-0-128-0-128-49-202-122-202-73-128-0-128-0-128-85-0-0-128-0-128-115-202-115-202-115-128-0-128-0-128-85-0-0-128-0-128-30-145-30-145-30-128-0-128-0-128-85-0-0-128-0-128-34-162-62-162-34-128-0-128-0-128-85-0-0-128-0-128-32-160-32-160-62-128-0-128-0-128-85-0-0-128-0-128-34-162-34-148-8-128-0-128-0-128-85-0-0-128-0-128-62-160-62-160-32-128-0-128-0-128-85-0-0-128-0-128-30-160-32-160-30-128-0-128-0-128-85-0-0-128-0-128-30-160-28-130-60-128-0-128-0-128-85-0-0-128-0-128-30-160-28-130-60-128-0-128-0-128-85-0-0-128-0-128-57-165-37-165-57-128-0-128-0-128-85-0-0-128-0-128-113-202-74-202-113-128-0-128-0-128-85-0-0-128-0-128-113-202-74-202-113-128-0-128-0-128-85-0-0-128-0-128-113-202-74-202-113-128-0-128-0-128-85-0-0-128-0-128-113-202-74-202-113-128-0-128-0-128-85-0-0-128-0-128-73-234-106-219-74-128-0-128-0-128-85-0-0-128-0-128-52-194-49-137-113-128-0-128-0-128-85-0-0-128-0-128-123-193-121-193-121-128-0-128-0-128-85-0-0-128-0-128-51-196-71-196-52-128-0-128-0-128-85-0-0-128-0-128-62-160-62-160-62-128-0-128-0-128-85-0-0-128-0-128-58-194-50-138-113-128-0-128-0-128-85-0-0-128-0-128-121-194-121-192-123-128-0-128-0-128-85-0-0-128-0-128-30-144-30-144-16-128-0-128-0-128-85-0-0-128-0-128-14-144-22-146-14-128-0-128-0-128-85-0-0-128-0-128-28-146-28-148-18-128-0-128-0-128-85-0-0-128-0-128-18-146-18-146-12-128-0-128-0-128-85-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-8-8-8-8-8-8-8-0-8-8-0-0-0-0-34-34-34-34-0-0-0-0-0-0-0-0-0-0-0-0-0-0-18-18-18-126-36-36-126-72-72-72-0-0-0-0-0-0-8-62-73-72-56-14-9-73-62-8-0-0-0-0-0-0-49-74-74-52-8-8-22-41-41-70-0-0-0-0-0-0-28-34-34-20-24-41-69-66-70-57-0-0-0-0-8-8-8-8-0-0-0-0-0-0-0-0-0-0-0-0-0-4-8-8-16-16-16-16-16-16-8-8-4-0-0-0-0-32-16-16-8-8-8-8-8-8-16-16-32-0-0-0-0-0-0-0-8-73-42-28-42-73-8-0-0-0-0-0-0-0-0-0-8-8-8-127-8-8-8-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-24-8-8-16-0-0-0-0-0-0-0-0-0-60-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-24-24-0-0-0-0-0-0-2-2-4-8-8-16-16-32-64-64-0-0-0-0-0-0-24-36-66-66-66-66-66-66-36-24-0-0-0-0-0-0-8-24-40-8-8-8-8-8-8-62-0-0-0-0-0-0-60-66-66-2-12-16-32-64-64-126-0-0-0-0-0-0-60-66-66-2-28-2-2-66-66-60-0-0-0-0-0-0-4-12-20-36-68-68-126-4-4-4-0-0-0-0-0-0-126-64-64-64-124-2-2-2-66-60-0-0-0-0-0-0-28-32-64-64-124-66-66-66-66-60-0-0-0-0-0-0-126-2-2-4-4-4-8-8-8-8-0-0-0-0-0-0-60-66-66-66-60-66-66-66-66-60-0-0-0-0-0-0-60-66-66-66-62-2-2-2-4-56-0-0-0-0-0-0-0-0-24-24-0-0-0-24-24-0-0-0-0-0-0-0-0-0-24-24-0-0-0-24-8-8-16-0-0-0-0-0-0-2-4-8-16-32-16-8-4-2-0-0-0-0-0-0-0-0-0-126-0-0-0-126-0-0-0-0-0-0-0-0-0-64-32-16-8-4-8-16-32-64-0-0-0-0-0-0-60-66-66-2-4-8-8-0-8-8-0-0-0-0-0-0-28-34-74-86-82-82-82-78-32-30-0-0-0-0-0-0-24-36-36-66-66-126-66-66-66-66-0-0-0-0-0-0-124-66-66-66-124-66-66-66-66-124-0-0-0-0-0-0-60-66-66-64-64-64-64-66-66-60-0-0-0-0-0-0-120-68-66-66-66-66-66-66-68-120-0-0-0-0-0-0-126-64-64-64-124-64-64-64-64-126-0-0-0-0-0-0-126-64-64-64-124-64-64-64-64-64-0-0-0-0-0-0-60-66-66-64-64-78-66-66-70-58-0-0-0-0-0-0-66-66-66-66-126-66-66-66-66-66-0-0-0-0-0-0-62-8-8-8-8-8-8-8-8-62-0-0-0-0-0-0-31-4-4-4-4-4-4-68-68-56-0-0-0-0-0-0-66-68-72-80-96-96-80-72-68-66-0-0-0-0-0-0-64-64-64-64-64-64-64-64-64-126-0-0-0-0-0-0-66-66-102-102-90-90-66-66-66-66-0-0-0-0-0-0-66-98-98-82-82-74-74-70-70-66-0-0-0-0-0-0-60-66-66-66-66-66-66-66-66-60-0-0-0-0-0-0-124-66-66-66-124-64-64-64-64-64-0-0-0-0-0-0-60-66-66-66-66-66-66-90-102-60-3-0-0-0-0-0-124-66-66-66-124-72-68-68-66-66-0-0-0-0-0-0-60-66-66-64-48-12-2-66-66-60-0-0-0-0-0-0-127-8-8-8-8-8-8-8-8-8-0-0-0-0-0-0-66-66-66-66-66-66-66-66-66-60-0-0-0-0-0-0-65-65-65-34-34-34-20-20-8-8-0-0-0-0-0-0-66-66-66-66-90-90-102-102-66-66-0-0-0-0-0-0-66-66-36-36-24-24-36-36-66-66-0-0-0-0-0-0-65-65-34-34-20-8-8-8-8-8-0-0-0-0-0-0-126-2-2-4-8-16-32-64-64-126-0-0-0-0-0-14-8-8-8-8-8-8-8-8-8-8-14-0-0-0-0-0-64-64-32-16-16-8-8-4-2-2-0-0-0-0-0-112-16-16-16-16-16-16-16-16-16-16-112-0-0-0-24-36-66-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-127-0-0-0-16-8-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-60-66-2-62-66-66-70-58-0-0-0-0-0-64-64-64-92-98-66-66-66-66-98-92-0-0-0-0-0-0-0-0-60-66-64-64-64-64-66-60-0-0-0-0-0-2-2-2-58-70-66-66-66-66-70-58-0-0-0-0-0-0-0-0-60-66-66-126-64-64-66-60-0-0-0-0-0-12-16-16-16-124-16-16-16-16-16-16-0-0-0-0-0-0-0-2-58-68-68-68-56-32-60-66-66-60-0-0-0-64-64-64-92-98-66-66-66-66-66-66-0-0-0-0-0-8-8-0-24-8-8-8-8-8-8-62-0-0-0-0-0-4-4-0-12-4-4-4-4-4-4-4-72-48-0-0-0-64-64-64-68-72-80-96-80-72-68-66-0-0-0-0-0-24-8-8-8-8-8-8-8-8-8-62-0-0-0-0-0-0-0-0-118-73-73-73-73-73-73-73-0-0-0-0-0-0-0-0-92-98-66-66-66-66-66-66-0-0-0-0-0-0-0-0-60-66-66-66-66-66-66-60-0-0-0-0-0-0-0-0-92-98-66-66-66-66-98-92-64-64-0-0-0-0-0-0-58-70-66-66-66-66-70-58-2-2-0-0-0-0-0-0-92-98-66-64-64-64-64-64-0-0-0-0-0-0-0-0-60-66-64-48-12-2-66-60-0-0-0-0-0-0-16-16-16-124-16-16-16-16-16-12-0-0-0-0-0-0-0-0-66-66-66-66-66-66-70-58-0-0-0-0-0-0-0-0-66-66-66-36-36-36-24-24-0-0-0-0-0-0-0-0-65-73-73-73-73-73-73-54-0-0-0-0-0-0-0-0-66-66-36-24-24-36-66-66-0-0-0-0-0-0-0-0-66-66-66-66-66-38-26-2-2-60-0-0-0-0-0-0-126-2-4-8-16-32-64-126-0-0-0-0-0-12-16-16-8-8-16-16-8-8-16-16-12-0-0-0-8-8-8-8-8-8-8-8-8-8-8-8-8-8-0-0-0-48-8-8-16-16-8-8-16-16-8-8-48-0-0-0-0-49-73-70-0-0-0-0-0-0-0-0-0-0-0-0-128-0-128-115-202-75-202-115-128-0-128-0-128-85-0-0
+7419|data|DCB 0x7C, 0x82, 0xBA, 0xAA, 0xAA, 0x8A, 0x9A, 0x92, 0x92|124-130-186-170-170-138-154-146-146-146-146-130-146-130-124-0
+7435|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+7452|data|% 4|255-255-255-255
+7456|data|% 4|255-255-255-255
+7460|data|% 4|255-255-255-255
+7464|data|% 0x200|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+7976|data|% 1|255
+7977|data|ALIGN 4|255-255-255
+7980|data|% 4|255-255-255-255
+7984|data|grub_font <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+8024|data|% 4|255-255-255-255
+8028|data|% 4|255-255-255-255
+8032|data|% 4|255-255-255-255
+8036|data|% 4|255-255-255-255

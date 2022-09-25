@@ -1,0 +1,72 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R0-R6,LR}|127-181
+2|code|MOVS            R0, #1|1-32
+4|code|LDR             R3, =a11; "1 == 1"|16-75
+6|code|LDR             R6, =aTestsExampleFu; "tests/example_functional_test.c"|17-78
+8|code|LDR             R5, =__FUNCTION__.5106; "example_test"|17-77
+10|code|STR             R3, [SP,#0x20+var_20]|0-147
+12|code|LDR             R3, =a1Equal1Expecte; "1 equal 1 expected"|17-75
+14|code|MOV             R1, R6|49-70
+16|code|LDR             R4, =grub_test_assert_helper|17-76
+18|code|MOV             R2, R5|42-70
+20|code|STR             R3, [SP,#0x20+var_1C]|1-147
+22|code|MOVS            R3, #0x1E|30-35
+24|code|BLX             R4; grub_test_assert_helper|160-71
+26|code|LDR             R3, =a22; "2 == 2"|16-75
+28|code|MOV             R1, R6|49-70
+30|code|MOV             R2, R5|42-70
+32|code|MOVS            R0, #1|1-32
+34|code|STR             R3, [SP,#0x20+var_20]|0-147
+36|code|LDR             R3, =a2Equal2Expecte; "2 equal 2 expected"|14-75
+38|code|STR             R3, [SP,#0x20+var_1C]|1-147
+40|code|MOVS            R3, #0x21 ; '!'|33-35
+42|code|BLX             R4; grub_test_assert_helper|160-71
+44|code|LDR             R3, =a23; "2 != 3"|13-75
+46|code|MOVS            R0, #1|1-32
+48|code|MOV             R1, R6|49-70
+50|code|MOV             R2, R5|42-70
+52|code|STR             R3, [SP,#0x20+var_20]|0-147
+54|code|LDR             R3, =a2MatchesD; "2 matches %d"|12-75
+56|code|STR             R3, [SP,#0x20+var_1C]|1-147
+58|code|MOVS            R3, #3|3-35
+60|code|STR             R3, [SP,#0x20+var_18]|2-147
+62|code|MOVS            R3, #0x22 ; '"'|34-35
+64|code|BLX             R4; grub_test_assert_helper|160-71
+66|code|ADD             SP, SP, #0x10|4-176
+68|code|POP             {R4-R6,PC}|112-189
+70|data|ALIGN 4|0-191
+72|data|DCD a11; "1 == 1"|197-0-0-0
+76|data|DCD aTestsExampleFu; "tests/example_functional_test.c"|165-0-0-0
+80|data|DCD __FUNCTION__.5106; "example_test"|152-0-0-0
+84|data|DCD a1Equal1Expecte; "1 equal 1 expected"|204-0-0-0
+88|data|DCD grub_test_assert_helper|48-1-0-0
+92|data|DCD a22; "2 == 2"|223-0-0-0
+96|data|DCD a2Equal2Expecte; "2 equal 2 expected"|230-0-0-0
+100|data|DCD a23; "2 != 3"|249-0-0-0
+104|data|DCD a2MatchesD; "2 matches %d"|0-1-0-0
+108|code|PUSH            {R3,LR}|8-181
+110|code|LDR             mod, =aExfctest; "exfctest"|2-72
+112|code|LDR             R1, =(example_test+1)|2-73
+114|code|LDR             R3, =grub_test_register|3-75
+116|code|BLX             R3; grub_test_register|152-71
+118|code|POP             {R3,PC}|8-189
+120|data|DCD aExfctest; "exfctest"|13-1-0-0
+124|data|DCD example_test+1|1-0-0-0
+128|data|DCD grub_test_register|40-1-0-0
+132|code|PUSH            {R3,LR}|8-181
+134|code|LDR             R0, =aExfctest; "exfctest"|2-72
+136|code|LDR             R3, =grub_test_unregister|2-75
+138|code|BLX             R3; grub_test_unregister|152-71
+140|code|POP             {R3,PC}|8-189
+142|data|ALIGN 0x10|0-191
+144|data|DCD aExfctest; "exfctest"|13-1-0-0
+148|data|DCD grub_test_unregister|44-1-0-0
+152|data|DCB "example_test",0|101-120-97-109-112-108-101-95-116-101-115-116-0
+165|data|DCB "tests/example_functional_test.c",0|116-101-115-116-115-47-101-120-97-109-112-108-101-95-102-117-110-99-116-105-111-110-97-108-95-116-101-115-116-46-99-0
+197|data|DCB "1 == 1",0|49-32-61-61-32-49-0
+204|data|DCB "1 equal 1 expected",0|49-32-101-113-117-97-108-32-49-32-101-120-112-101-99-116-101-100-0
+223|data|DCB "2 == 2",0|50-32-61-61-32-50-0
+230|data|DCB "2 equal 2 expected",0|50-32-101-113-117-97-108-32-50-32-101-120-112-101-99-116-101-100-0
+249|data|DCB "2 != 3",0|50-32-33-61-32-51-0
+256|data|DCB "2 matches %d",0|50-32-109-97-116-99-104-101-115-32-37-100-0
+269|data|DCB "exfctest",0|101-120-102-99-116-101-115-116-0

@@ -1,0 +1,122 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R5,LR}|56-181
+2|code|MOV             R5, user|5-70
+4|code|LDR             R3, =grub_crypto_memcmp|8-75
+6|code|MOV             user, entered|8-70
+8|code|MOV             entered, password|17-70
+10|code|MOV.W           password, #0x400|79-244-128-98
+14|code|BLX             R3; grub_crypto_memcmp|152-71
+16|code|MOV             R4, R0|4-70
+18|code|CBZ             R0, loc_1E|32-177
+20|code|LDR             R1, =aAccessDenied; "access denied"|5-73
+22|code|MOVS            R0, #0x1E|30-32
+24|code|LDR             R3, =grub_error|5-75
+26|code|BLX             R3; grub_error|152-71
+28|code|POP             {R3-user,PC}|56-189
+30|code|MOV             R0, user|40-70
+32|code|LDR             R3, =grub_auth_authenticate|4-75
+34|code|BLX             R3; grub_auth_authenticate|152-71
+36|code|MOV             R0, R4|32-70
+38|code|POP             {R3-user,PC}|56-189
+40|data|DCD grub_crypto_memcmp|200-1-0-0
+44|data|DCD aAccessDenied; "access denied"|28-1-0-0
+48|data|DCD grub_error|208-1-0-0
+52|data|DCD grub_auth_authenticate|184-1-0-0
+56|code|PUSH            {R4-R6,LR}|112-181
+58|code|MOV             R6, user|6-70
+60|code|LDR             R3, =grub_zalloc|19-75
+62|code|MOV.W           user, #0x400|79-244-128-96
+66|code|MOV             R4, password|12-70
+68|code|BLX             R3; grub_zalloc|152-71
+70|code|MOV             R5, pass|5-70
+72|code|CBNZ            pass, loc_50|16-185
+74|code|LDR             R3, =grub_errno|17-75
+76|code|LDR             pass, [R3]|24-104
+78|code|POP             {password-user,PC}|112-189
+80|code|MOV             pass, password|32-70
+82|code|LDR             R3, =grub_strlen|16-75
+84|code|BLX             R3; grub_strlen|152-71
+86|code|MOVW            R2, #0x3FF|64-242-255-50
+90|code|MOV             R1, password|33-70
+92|code|LDR             R3, =grub_memmove|14-75
+94|code|CMP             R2, R0|130-66
+96|code|IT GE|168-191
+98|code|MOVGE           R2, R0|2-70
+100|code|MOV             R0, pass|40-70
+102|code|BLX             R3; grub_memmove|152-71
+104|code|MOV             R0, user|48-70
+106|code|LDR             R1, =(check_password+1)|12-73
+108|code|MOV             R2, pass|42-70
+110|code|LDR             R3, =grub_auth_register_authentication|12-75
+112|code|BLX             R3; grub_auth_register_authentication|152-71
+114|code|MOV             password, err|4-70
+116|code|CBZ             err, loc_7E|24-177
+118|code|MOV             err, pass|40-70
+120|code|LDR             R3, =grub_free|10-75
+122|code|BLX             R3; grub_free|152-71
+124|code|B               loc_86|3-224
+126|code|LDR             R3, =my_mod|10-75
+128|code|LDR             err, [R3]|24-104
+130|code|LDR             R3, =grub_dl_ref|10-75
+132|code|BLX             R3; grub_dl_ref|152-71
+134|code|MOV             R0, err|32-70
+136|code|POP             {err-user,PC}|112-189
+138|data|ALIGN 4|0-191
+140|data|DCD grub_zalloc|204-1-0-0
+144|data|DCD grub_errno|188-1-0-0
+148|data|DCD grub_strlen|172-1-0-0
+152|data|DCD grub_memmove|176-1-0-0
+156|data|DCD check_password+1|1-0-0-0
+160|data|DCD grub_auth_register_authentication|216-1-0-0
+164|data|DCD grub_free|212-1-0-0
+168|data|DCD my_mod|164-1-0-0
+172|data|DCD grub_dl_ref|180-1-0-0
+176|code|CMP             argc, #2|2-41
+178|code|PUSH            {R3,LR}|8-181
+180|code|BEQ             loc_C0|4-208
+182|code|LDR             argc, =aTwoArgumentsEx; "two arguments expected"|5-73
+184|code|MOVS            cmd, #0x12|18-32
+186|code|LDR             R3, =grub_error|5-75
+188|code|BLX             R3; grub_error|152-71
+190|code|POP             {R3,PC}|8-189
+192|code|LDM.W           args, {cmd,argc}|146-232-3-0
+196|code|POP.W           {R3,LR}|189-232-8-64
+200|code|B.W             grub_normal_set_password|255-247-182-191
+204|data|DCD aTwoArgumentsEx; "two arguments expected"|42-1-0-0
+208|data|DCD grub_error|208-1-0-0
+212|code|PUSH            {mod-R2,R4,R5,LR}|55-181
+214|code|MOVS            R3, #0|0-35
+216|code|LDR             R4, =my_mod|5-76
+218|code|STR             R3, [SP,#0x18+var_18]|0-147
+220|code|LDR             R1, =(grub_cmd_password+1)|5-73
+222|code|STR             mod, [R4]|32-96
+224|code|LDR             R2, =aUserPassword; "USER PASSWORD"|5-74
+226|code|LDR             R3, =aSetUserPasswor; "Set user password (plaintext). Unrecomm"...|6-75
+228|code|LDR             R5, =grub_register_command_prio|6-77
+230|code|LDR             mod, =aPassword; "password"|7-72
+232|code|BLX             R5; grub_register_command_prio|168-71
+234|code|STR             R0, [R4,#(cmd - 0x1A4)]|96-96
+236|code|ADD             SP, SP, #0xC|3-176
+238|code|POP             {R4,R5,PC}|48-189
+240|data|DCD my_mod|164-1-0-0
+244|data|DCD grub_cmd_password+1|177-0-0-0
+248|data|DCD aUserPassword; "USER PASSWORD"|74-1-0-0
+252|data|DCD aSetUserPasswor; "Set user password (plaintext). Unrecomm"...|88-1-0-0
+256|data|DCD grub_register_command_prio|192-1-0-0
+260|data|DCD aPassword; "password"|65-1-0-0
+264|code|PUSH            {R3,LR}|8-181
+266|code|LDR             R3, =my_mod|2-75
+268|code|LDR             R0, [R3,#(cmd - 0x1A4)]|88-104
+270|code|LDR             R3, =grub_unregister_command|2-75
+272|code|BLX             R3; grub_unregister_command|152-71
+274|code|POP             {R3,PC}|8-189
+276|data|DCD my_mod|164-1-0-0
+280|data|DCD grub_unregister_command|196-1-0-0
+284|data|DCB "access denied",0|97-99-99-101-115-115-32-100-101-110-105-101-100-0
+298|data|DCB "two arguments expected",0|116-119-111-32-97-114-103-117-109-101-110-116-115-32-101-120-112-101-99-116-101-100-0
+321|data|DCB "password",0|112-97-115-115-119-111-114-100-0
+330|data|DCB "USER PASSWORD",0|85-83-69-82-32-80-65-83-83-87-79-82-68-0
+344|data|DCB "Set user password (plaintext). Unrecommended and insecure.",0|83-101-116-32-117-115-101-114-32-112-97-115-115-119-111-114-100-32-40-112-108-97-105-110-116-101-120-116-41-46-32-85-110-114-101-99-111-109-109-101-110-100-101-100-32-97-110-100-32-105-110-115-101-99-117-114-101-46-0
+403|data||255
+404|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+420|data|% 4|255-255-255-255

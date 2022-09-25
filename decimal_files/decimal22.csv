@@ -1,0 +1,176 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R3-R11,LR}|45-233-248-79
+4|code|MOV             R9, ctxt|129-70
+6|code|LDR             R3, [ctxt,#4]|67-104
+8|code|MOV             R10, argc|138-70
+10|code|MOV             R7, args|23-70
+12|code|LDR             iptr, [R3]|28-104
+14|code|CBZ             iptr, loc_1E|52-177
+16|code|LDR.W           R8, [R3,#4]|211-248-4-128
+20|code|LDR             R3, =grub_env_get|57-75
+22|code|MOV             ctxt, var|64-70
+24|code|BLX             R3; grub_env_get|152-71
+26|code|MOV             iptr, R0|4-70
+28|code|B               loc_20|0-224
+30|code|MOV             R8, iptr|160-70
+32|code|LDR.W           R3, [ctxt,#4]|217-248-4-48
+36|code|LDR             R5, [R3,#8]|157-104
+38|code|CBZ             R5, loc_2E|21-177
+40|code|LDR             R5, =aAbcdefghijklmn; "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|53-77
+42|code|LDR             R6, =aAbcdefghijklmn_0; "abcdefghijklmnopqrstuvwxyz"|54-78
+44|code|B               loc_30|0-224
+46|code|MOV             R6, R5|46-70
+48|code|LDR             R3, [R3,#0x10]|27-105
+50|code|CMP             R3, #0|0-43
+52|code|LDR             R3, =aAbcdefghijklmn_0; "abcdefghijklmnopqrstuvwxyz"|51-75
+54|code|IT NE|24-191
+56|code|MOVNE           s2, R3|29-70
+58|code|LDR             R3, =aAbcdefghijklmn; "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|49-75
+60|code|IT NE|24-191
+62|code|MOVNE           s1, R3|30-70
+64|code|CMP.W           argc, #1|186-241-1-15
+68|code|BNE             loc_4A|1-209
+70|code|LDR             iptr, [args]|60-104
+72|code|B               loc_7E|25-224
+74|code|CMP.W           argc, #2|186-241-2-15
+78|code|BNE             loc_56|2-209
+80|code|LDR             s1, [args]|62-104
+82|code|LDR             s2, [args,#4]|125-104
+84|code|B               loc_7E|19-224
+86|code|CMP.W           argc, #3|186-241-3-15
+90|code|BNE             loc_64|3-209
+92|code|LDR             s1, [args]|62-104
+94|code|LDR             s2, [args,#4]|125-104
+96|code|LDR             iptr, [args,#8]|188-104
+98|code|B               loc_7E|12-224
+100|code|BLE             loc_6C|2-221
+102|code|MOVS            R0, #0x12|18-32
+104|code|LDR             R1, =aTooManyParamet; "too many parameters"|39-73
+106|code|B               loc_76|4-224
+108|code|CBZ             s1, loc_72|14-177
+110|code|CBZ             s2, loc_72|5-177
+112|code|CBNZ            iptr, loc_7E|44-185
+114|code|LDR             R1, =aMissingParamet; "missing parameters"|38-73
+116|code|MOVS            R0, #0x12|18-32
+118|code|LDR             R3, =grub_error|38-75
+120|code|BLX             R3; grub_error|152-71
+122|code|POP.W           {R3-R11,PC}|189-232-248-143
+126|code|LDR             args, =grub_strlen|37-79
+128|code|MOV             R0, s1|48-70
+130|code|BLX             R7; grub_strlen|184-71
+132|code|MOV             argc, R0|130-70
+134|code|MOV             R0, s2|40-70
+136|code|BLX             R7; grub_strlen|184-71
+138|code|CMP             R10, R0|130-69
+140|code|BEQ             loc_94|2-208
+142|code|MOVS            R0, #0x12|18-32
+144|code|LDR             R1, =aSetSizesDidNot; "set sizes did not match"|33-73
+146|code|B               loc_76|240-231
+148|code|MOV             R0, iptr|32-70
+150|code|BLX             R7; grub_strlen|184-71
+152|code|LDR             R3, =grub_malloc|32-75
+154|code|ADDS            R0, #1|1-48
+156|code|BLX             R3; grub_malloc|152-71
+158|code|MOV             R7, output|7-70
+160|code|CBZ             output, loc_AC|32-177
+162|code|MOV             R10, output|130-70
+164|code|SUBS            iptr, #1|1-60
+166|code|LDR.W           R11, =grub_strchr|223-248-140-176
+170|code|B               loc_C6|12-224
+172|code|LDR             R3, =grub_errno|28-75
+174|code|LDR             output, [R3]|24-104
+176|code|POP.W           {R3-R11,PC}|189-232-248-143
+180|code|MOV             R0, s1|48-70
+182|code|BLX             R11; grub_strchr|216-71
+184|code|CBZ             p, loc_D0|80-177
+186|code|SUBS            p, p, s1|128-27
+188|code|LDRB            R3, [s2,R0]|43-92
+190|code|STRB.W          R3, [R10]|138-248-0-48
+194|code|ADD.W           R10, R10, #1|10-241-1-10
+198|code|LDRB.W          R1, [iptr,#1]!|20-248-1-31
+202|code|CMP             R1, #0|0-41
+204|code|BNE             loc_B4|242-209
+206|code|B               loc_D4|1-224
+208|code|LDRB            R3, [iptr]|35-120
+210|code|B               loc_BE|244-231
+212|code|STRB.W          R1, [optr]|138-248-0-16
+216|code|LDR.W           R3, [ctxt,#4]|217-248-4-48
+220|code|LDR             R3, [R3]|27-104
+222|code|CBZ             R3, loc_E8|27-177
+224|code|MOV             R0, var|64-70
+226|code|MOV             R1, output|57-70
+228|code|LDR             R3, =grub_env_set|15-75
+230|code|B               loc_EE|2-224
+232|code|LDR             R0, =aS; "%s\n"|15-72
+234|code|MOV             R1, output|57-70
+236|code|LDR             R3, =grub_printf|15-75
+238|code|BLX             R3; grub_env_set|152-71
+240|code|MOV             R0, output|56-70
+242|code|LDR             R3, =grub_free|15-75
+244|code|BLX             R3; grub_free|152-71
+246|code|MOVS            R0, #0|0-32
+248|code|POP.W           {R3-R11,PC}|189-232-248-143
+252|data|DCD grub_env_get|92-3-0-0
+256|data|DCD aAbcdefghijklmn; "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|232-1-0-0
+260|data|DCD aAbcdefghijklmn_0; "abcdefghijklmnopqrstuvwxyz"|3-2-0-0
+264|data|DCD aTooManyParamet; "too many parameters"|30-2-0-0
+268|data|DCD aMissingParamet; "missing parameters"|50-2-0-0
+272|data|DCD grub_error|76-3-0-0
+276|data|DCD grub_strlen|52-3-0-0
+280|data|DCD aSetSizesDidNot; "set sizes did not match"|69-2-0-0
+284|data|DCD grub_malloc|72-3-0-0
+288|data|DCD grub_errno|60-3-0-0
+292|data|DCD grub_env_set|88-3-0-0
+296|data|DCD aS; "%s\n"|93-2-0-0
+300|data|DCD grub_printf|64-3-0-0
+304|data|DCD grub_free|80-3-0-0
+308|data|DCD grub_strchr|68-3-0-0
+312|code|LDR             R3, =aTranslateSet1C; "Translate SET1 characters to SET2 in ST"...|7-75
+314|code|MOVS            R2, #0|0-34
+316|code|PUSH            {mod,R1,R4,LR}|19-181
+318|code|STR             R3, [SP,#0x10+var_10]|0-147
+320|code|LDR             R3, =options|6-75
+322|code|LDR             R1, =(grub_cmd_tr+1)|7-73
+324|code|LDR             R4, =grub_register_extcmd|7-76
+326|code|STR             R3, [SP,#0x10+var_C]|1-147
+328|code|LDR             mod, =aTr; "tr"|7-72
+330|code|LDR             R3, =aOptionsSet1Set; "[OPTIONS] [SET1] [SET2] [STRING]"|8-75
+332|code|BLX             R4; grub_register_extcmd|160-71
+334|code|LDR             R3, =cmd|8-75
+336|code|STR             R0, [R3]|24-96
+338|code|ADD             SP, SP, #8|2-176
+340|code|POP             {R4,PC}|16-189
+342|data|ALIGN 4|0-191
+344|data|DCD aTranslateSet1C; "Translate SET1 characters to SET2 in ST"...|133-2-0-0
+348|data|DCD options|136-1-0-0
+352|data|DCD grub_cmd_tr+1|1-0-0-0
+356|data|DCD grub_register_extcmd|84-3-0-0
+360|data|DCD aTr; "tr"|97-2-0-0
+364|data|DCD aOptionsSet1Set; "[OPTIONS] [SET1] [SET2] [STRING]"|100-2-0-0
+368|data|DCD cmd|48-3-0-0
+372|code|PUSH            {R3,LR}|8-181
+374|code|LDR             R3, =cmd|2-75
+376|code|LDR             R0, [R3]|24-104
+378|code|LDR             R3, =grub_unregister_extcmd|2-75
+380|code|BLX             R3; grub_unregister_extcmd|152-71
+382|code|POP             {R3,PC}|8-189
+384|data|DCD cmd|48-3-0-0
+388|data|DCD grub_unregister_extcmd|56-3-0-0
+392|data|grub_arg_option <aSet, 0x73, 0, aSetAVariableTo, aVarname, \; "set" ...|178-2-0-0-115-0-0-0-0-0-0-0-182-2-0-0-214-2-0-0-1-0-0-0-222-2-0-0-85-0-0-0-0-0-0-0-229-2-0-0-0-0-0-0-0-0-0-0-254-2-0-0-68-0-0-0-0-0-0-0-7-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+488|data|DCB "ABCDEFGHIJKLMNOPQRSTUVWXYZ",0|65-66-67-68-69-70-71-72-73-74-75-76-77-78-79-80-81-82-83-84-85-86-87-88-89-90-0
+515|data|DCB "abcdefghijklmnopqrstuvwxyz",0|97-98-99-100-101-102-103-104-105-106-107-108-109-110-111-112-113-114-115-116-117-118-119-120-121-122-0
+542|data|DCB "too many parameters",0|116-111-111-32-109-97-110-121-32-112-97-114-97-109-101-116-101-114-115-0
+562|data|DCB "missing parameters",0|109-105-115-115-105-110-103-32-112-97-114-97-109-101-116-101-114-115-0
+581|data|DCB "set sizes did not match",0|115-101-116-32-115-105-122-101-115-32-100-105-100-32-110-111-116-32-109-97-116-99-104-0
+605|data|DCB "%s",0xA,0|37-115-10-0
+609|data|DCB "tr",0|116-114-0
+612|data|DCB "[OPTIONS] [SET1] [SET2] [STRING]",0|91-79-80-84-73-79-78-83-93-32-91-83-69-84-49-93-32-91-83-69-84-50-93-32-91-83-84-82-73-78-71-93-0
+645|data|DCB "Translate SET1 characters to SET2 in STRING.",0|84-114-97-110-115-108-97-116-101-32-83-69-84-49-32-99-104-97-114-97-99-116-101-114-115-32-116-111-32-83-69-84-50-32-105-110-32-83-84-82-73-78-71-46-0
+690|data|DCB "set",0|115-101-116-0
+694|data|DCB "Set a variable to return value.",0|83-101-116-32-97-32-118-97-114-105-97-98-108-101-32-116-111-32-114-101-116-117-114-110-32-118-97-108-117-101-46-0
+726|data|DCB "VARNAME",0|86-65-82-78-65-77-69-0
+734|data|DCB "upcase",0|117-112-99-97-115-101-0
+741|data|DCB "Translate to upper case.",0|84-114-97-110-115-108-97-116-101-32-116-111-32-117-112-112-101-114-32-99-97-115-101-46-0
+766|data|DCB "downcase",0|100-111-119-110-99-97-115-101-0
+775|data|DCB "Translate to lower case.",0|84-114-97-110-115-108-97-116-101-32-116-111-32-108-111-119-101-114-32-99-97-115-101-46-0
+801|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

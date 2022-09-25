@@ -1,0 +1,408 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+4|code|SUB             SP, SP, #0xE8|186-176
+6|code|MOV             R7, args|23-70
+8|code|MOVS            args, #0|0-34
+10|code|STR             R2, [SP,#0x108+ctx.depth]|5-146
+12|code|STR             R2, [SP,#0x108+ctx.width]|4-146
+14|code|STR             R2, [SP,#0x108+ctx]|3-146
+16|code|CMP             argc, #0|0-41
+18|code|BEQ             loc_6C|43-208
+20|code|LDR             cmd, [args]|56-104
+22|code|ADD             R4, SP, #0x108+var_20|58-172
+24|code|LDR             R6, =grub_strtoul|77-78
+26|code|LDR             R5, =grub_errno|78-77
+28|code|STR.W           R0, [R4,#-0x80]!|68-248-128-13
+32|code|MOV             argc, R4|33-70
+34|code|BLX             R6; grub_strtoul|176-71
+36|code|LDR             R2, [R5]|42-104
+38|code|STR             R0, [SP,#0x108+ctx.width]|4-144
+40|code|CMP             R2, #0|0-42
+42|code|BNE.W           loc_146|64-240-140-128
+46|code|LDR             R0, [SP,#0x108+edid_info]|26-152
+48|code|LDRB            R3, [R0]|3-120
+50|code|CMP             R3, #0x78 ; 'x'|120-43
+52|code|BEQ             loc_44|6-208
+54|code|LDR             R2, [args]|58-104
+56|code|MOVS            R0, #0x12|18-32
+58|code|LDR             R1, =aInvalidVideoMo; "invalid video mode specification `%s'"|71-73
+60|code|LDR             R3, =grub_error|71-75
+62|code|BLX             R3; grub_error|152-71
+64|code|MOV             R2, R0|2-70
+66|code|B               loc_146|128-224
+68|code|ADDS            R0, #1|1-48
+70|code|MOV             R1, R4|33-70
+72|code|STR             R0, [SP,#0x108+edid_info]|26-144
+74|code|BLX             R6; grub_strtoul|176-71
+76|code|LDR             R2, [R5]|42-104
+78|code|STR             R0, [SP,#0x108+ctx]|3-144
+80|code|CMP             R2, #0|0-42
+82|code|BNE             loc_146|120-209
+84|code|LDR             R0, [SP,#0x108+edid_info]|26-152
+86|code|LDRB            R3, [R0]|3-120
+88|code|CMP             R3, #0x78 ; 'x'|120-43
+90|code|BNE             loc_6C|7-209
+92|code|ADDS            R0, #1|1-48
+94|code|MOV             R1, R4|33-70
+96|code|STR             R0, [SP,#0x108+edid_info]|26-144
+98|code|BLX             R6; grub_strtoul|176-71
+100|code|LDR             R2, [R5]|42-104
+102|code|STR             R0, [SP,#0x108+ctx.depth]|5-144
+104|code|CMP             R2, #0|0-42
+106|code|BNE             loc_146|108-209
+108|code|LDR             R3, =grub_video_get_driver_id|60-75
+110|code|BLX             R3; grub_video_get_driver_id|152-71
+112|code|LDR             R5, =grub_puts_|60-77
+114|code|LDR             args, =grub_printf_|61-79
+116|code|MOV             R9, R7|185-70
+118|code|MOV             R8, R0|128-70
+120|code|LDR             id, =aListOfSupporte; "List of supported video modes:"|60-72
+122|code|BLX             R5; grub_puts_|168-71
+124|code|LDR             R0, =aLegendMaskPosi; "Legend: mask/position=red/green/blue/re"...|60-72
+126|code|BLX             R5; grub_puts_|168-71
+128|code|LDR             R3, =grub_video_adapter_list|60-75
+130|code|LDR             R4, [R3]|28-104
+132|code|CMP             adapter, #0|0-44
+134|code|BEQ             loc_144|93-208
+136|code|LDR             R0, =aAdapterS; "Adapter `%s':\n"|59-72
+138|code|LDR             R1, [adapter,#8]|161-104
+140|code|BLX             R7; grub_printf_|184-71
+142|code|LDR             R3, [adapter,#0x7C]|227-111
+144|code|CBNZ            R3, loc_98|19-185
+146|code|LDR             R0, =aNoInfoAvailabl; "  No info available"|58-72
+148|code|BLX             R5; grub_puts_|168-71
+150|code|B               loc_140|83-224
+152|code|LDR             R3, [adapter,#0xC]|227-104
+154|code|MOVS            R6, #0|0-38
+156|code|STR             R6, [SP,#0x108+ctx.current_mode]|6-150
+158|code|CMP             R3, id|67-69
+160|code|BNE             loc_BA|11-209
+162|code|ADD.W           R10, SP, #0x108+info|13-241-28-10
+166|code|LDR             R3, =grub_video_get_info|54-75
+168|code|MOV             R0, R10|80-70
+170|code|BLX             R3; grub_video_get_info|152-71
+172|code|CBNZ            R0, loc_B4|16-185
+174|code|STR.W           R10, [SP,#0x108+ctx.current_mode]|205-248-24-160
+178|code|B               loc_C6|8-224
+180|code|LDR             R3, =grub_errno|39-75
+182|code|STR             R6, [R3]|30-96
+184|code|B               loc_C6|5-224
+186|code|LDR             R3, [adapter,#0x14]|99-105
+188|code|BLX             R3|152-71
+190|code|CBZ             R0, loc_C6|16-177
+192|code|LDR             R0, =aFailedToInitia; "  Failed to initialize video adapter"|48-72
+194|code|BLX             R5; grub_puts_|168-71
+196|code|B               loc_13C|58-224
+198|code|LDR.W           R3, [adapter,#0x84]|212-248-132-48
+202|code|CBZ             R3, loc_CE|3-177
+204|code|BLX             R3|152-71
+206|code|LDR             R3, [adapter,#0x7C]|227-111
+208|code|ADD             R1, SP, #0x108+ctx|3-169
+210|code|LDR             R0, =(hook+1)|45-72
+212|code|BLX             R3|152-71
+214|code|LDR.W           R3, [adapter,#0x80]|212-248-128-48
+218|code|CBZ             R3, loc_126|35-179
+220|code|ADD             R0, SP, #0x108+edid_info|26-168
+222|code|BLX             R3|152-71
+224|code|MOV             R10, R0|130-70
+226|code|CBNZ            R0, loc_126|0-187
+228|code|ADD             R0, SP, #0x108+edid_info|26-168
+230|code|LDR             R3, =grub_video_edid_checksum|41-75
+232|code|BLX             R3; grub_video_edid_checksum|152-71
+234|code|MOV             R6, R0|6-70
+236|code|CBZ             R0, loc_FA|40-177
+238|code|LDR             R0, =aEdidChecksumIn; "  EDID checksum invalid"|40-72
+240|code|BLX             R5; grub_puts_|168-71
+242|code|LDR             R3, =grub_errno|24-75
+244|code|STR.W           R10, [R3]|195-248-0-160
+248|code|B               loc_12C|24-224
+250|code|LDRB.W          R1, [SP,#0x108+edid_info.version]|157-248-122-16
+254|code|LDRB.W          R2, [SP,#0x108+edid_info.revision]|157-248-123-32
+258|code|LDR             R0, =aEdidVersionUU; "  EDID version: %u.%u\n"|36-72
+260|code|BLX             R9; grub_printf_|200-71
+262|code|ADD             R0, SP, #0x108+edid_info|26-168
+264|code|ADD             R1, SP, #0x108+var_104|1-169
+266|code|ADD             R2, SP, #0x108+var_100|2-170
+268|code|LDR             R3, =grub_video_edid_preferred_mode|34-75
+270|code|BLX             R3; grub_video_edid_preferred_mode|152-71
+272|code|CBNZ            R0, loc_11C|32-185
+274|code|LDR             R1, [SP,#0x108+var_104]|1-153
+276|code|LDR             R2, [SP,#0x108+var_100]|2-154
+278|code|LDR             R0, =aPreferredModeU; "    Preferred mode: %ux%u\n"|33-72
+280|code|BLX             R7; grub_printf_|184-71
+282|code|B               loc_12C|7-224
+284|code|LDR             R0, =aNoPreferredMod; "    No preferred mode available\n"|32-72
+286|code|BLX             R7; grub_printf_|184-71
+288|code|LDR             R3, =grub_errno|12-75
+290|code|STR             R6, [R3]|30-96
+292|code|B               loc_12C|2-224
+294|code|LDR             R3, =grub_errno|11-75
+296|code|MOVS            R2, #0|0-34
+298|code|STR             R2, [R3]|26-96
+300|code|LDR             R3, [adapter,#0xC]|227-104
+302|code|MOVS            R6, #0|0-38
+304|code|STR             R6, [SP,#0x108+ctx.current_mode]|6-150
+306|code|CMP             R3, id|67-69
+308|code|BEQ             loc_140|4-208
+310|code|LDR             R3, [adapter,#0x18]|163-105
+312|code|BLX             R3|152-71
+314|code|CBZ             R0, loc_140|8-177
+316|code|LDR             R3, =grub_errno|5-75
+318|code|STR             R6, [R3]|30-96
+320|code|LDR             adapter, [adapter]|36-104
+322|code|B               loc_84|159-231
+324|code|MOV             R2, adapter|34-70
+326|code|MOV             R0, R2|16-70
+328|code|ADD             SP, SP, #0xE8|58-176
+330|code|POP.W           {R4-R10,PC}|189-232-240-135
+334|data|ALIGN 0x10|0-191
+336|data|DCD grub_strtoul|12-6-0-0
+340|data|DCD grub_errno|220-5-0-0
+344|data|DCD aInvalidVideoMo; "invalid video mode specification `%s'"|116-3-0-0
+348|data|DCD grub_error|248-5-0-0
+352|data|DCD grub_video_get_driver_id|236-5-0-0
+356|data|DCD grub_puts_|212-5-0-0
+360|data|DCD grub_printf_|0-6-0-0
+364|data|DCD aListOfSupporte; "List of supported video modes:"|154-3-0-0
+368|data|DCD aLegendMaskPosi; "Legend: mask/position=red/green/blue/re"...|185-3-0-0
+372|data|DCD grub_video_adapter_list|224-5-0-0
+376|data|DCD aAdapterS; "Adapter `%s':\n"|231-3-0-0
+380|data|DCD aNoInfoAvailabl; "  No info available"|246-3-0-0
+384|data|DCD grub_video_get_info|252-5-0-0
+388|data|DCD aFailedToInitia; "  Failed to initialize video adapter"|10-4-0-0
+392|data|DCD hook+1|165-1-0-0
+396|data|DCD grub_video_edid_checksum|228-5-0-0
+400|data|DCD aEdidChecksumIn; "  EDID checksum invalid"|47-4-0-0
+404|data|DCD aEdidVersionUU; "  EDID version: %u.%u\n"|71-4-0-0
+408|data|DCD grub_video_edid_preferred_mode|4-6-0-0
+412|data|DCD aPreferredModeU; "    Preferred mode: %ux%u\n"|94-4-0-0
+416|data|DCD aNoPreferredMod; "    No preferred mode available\n"|121-4-0-0
+420|code|LDR             R3, [ctx]|11-104
+422|code|PUSH            {R4-R6,LR}|112-181
+424|code|MOV             R4, info|4-70
+426|code|SUB             SP, SP, #0x18|134-176
+428|code|CBZ             R3, loc_1C2|75-177
+430|code|LDR             R2, [ctx,#4]|74-104
+432|code|CBZ             R2, loc_1C2|58-177
+434|code|LDR             info, [info]|0-104
+436|code|CMP             R0, R2|144-66
+438|code|BNE.W           loc_2D4|64-240-141-128
+442|code|LDR             R2, [info,#4]|98-104
+444|code|CMP             R2, R3|154-66
+446|code|BNE.W           loc_2D4|64-240-137-128
+450|code|LDR             R3, [ctx,#8]|139-104
+452|code|CBZ             R3, loc_1CE|27-177
+454|code|LDR             R2, [info,#0xC]|226-104
+456|code|CMP             R2, R3|154-66
+458|code|BNE.W           loc_2D4|64-240-131-128
+462|code|LDR             R3, [info,#0x1C]|227-105
+464|code|ADDS            R5, R3, #1|93-28
+466|code|LDR             R5, =grub_printf|66-77
+468|code|BNE             loc_1DC|2-209
+470|code|LDR             R0, =asc_49A; "        "|66-72
+472|code|BLX             R5; grub_printf|168-71
+474|code|B               loc_1F4|11-224
+476|code|LDR             R2, [ctx,#0xC]|202-104
+478|code|CBZ             R2, loc_1EA|34-177
+480|code|LDR             R2, [R2,#0x1C]|210-105
+482|code|CMP             R3, R2|147-66
+484|code|BNE             loc_1EA|1-209
+486|code|LDR             R0, =asc_4A3; "*"|63-72
+488|code|B               loc_1EC|0-224
+490|code|LDR             R0, =asc_4A5; " "|63-72
+492|code|BLX             R5; grub_printf|168-71
+494|code|LDR             R0, =a0x03x; " 0x%03x "|63-72
+496|code|LDR             R1, [info,#0x1C]|225-105
+498|code|BLX             R5; grub_printf|168-71
+500|code|LDR             R3, [info,#0x14]|99-105
+502|code|LDR             R0, =a4dX4dX2d4d; "%4d x %4d x %2d (%4d)  "|62-72
+504|code|STR             R3, [SP,#0x28+var_28]|0-147
+506|code|LDR             R3, [info,#0xC]|227-104
+508|code|LDM.W           info, {R1,R2}|148-232-6-0
+512|code|BLX             R5; grub_printf|168-71
+514|code|LDR             R3, [info,#8]|163-104
+516|code|LDR             R5, =grub_xputs|59-77
+518|code|TST.W           R3, #0x40|19-240-64-15
+522|code|BEQ             loc_218|5-208
+524|code|LDR             R3, =grub_gettext|58-75
+526|code|LDR             R0, =aTextOnly; "Text-only "|59-72
+528|code|LDR             R6, [R5]|46-104
+530|code|LDR             R3, [R3]|27-104
+532|code|BLX             R3|152-71
+534|code|BLX             R6|176-71
+536|code|LDR             R3, [info,#8]|163-104
+538|code|LSLS            R0, R3, #0x1F|216-7
+540|code|BPL             loc_23E|15-213
+542|code|LDR             R3, [info,#0x3C]|227-107
+544|code|LDR             R0, =aDirectColorMas; "Direct color, mask: %d/%d/%d/%d  pos: %"...|55-72
+546|code|LDR             R6, =grub_printf_|56-78
+548|code|STR             R3, [SP,#0x28+var_28]|0-147
+550|code|LDR             R3, [info,#0x28]|163-106
+552|code|STR             R3, [SP,#0x28+var_24]|1-147
+554|code|LDR             R3, [info,#0x30]|35-107
+556|code|STR             R3, [SP,#0x28+var_20]|2-147
+558|code|LDR             R3, [info,#0x38]|163-107
+560|code|STR             R3, [SP,#0x28+var_1C]|3-147
+562|code|LDR             R3, [info,#0x40]|35-108
+564|code|STR             R3, [SP,#0x28+var_18]|4-147
+566|code|LDR             R1, [info,#0x24]|97-106
+568|code|LDR             R2, [info,#0x2C]|226-106
+570|code|LDR             R3, [info,#0x34]|99-107
+572|code|BLX             R6; grub_printf_|176-71
+574|code|LDR             R3, [info,#8]|163-104
+576|code|LSLS            R1, R3, #0x1E|153-7
+578|code|BPL             loc_250|5-213
+580|code|LDR             R3, =grub_gettext|44-75
+582|code|LDR             R0, =aPaletted; "Paletted "|48-72
+584|code|LDR             R6, [R5]|46-104
+586|code|LDR             R3, [R3]|27-104
+588|code|BLX             R3|152-71
+590|code|BLX             R6|176-71
+592|code|LDR             R3, [info,#8]|163-104
+594|code|LSLS            R2, R3, #0x1C|26-7
+596|code|BPL             loc_262|5-213
+598|code|LDR             R3, =grub_gettext|40-75
+600|code|LDR             R0, =aYuv; "YUV "|44-72
+602|code|LDR             R6, [R5]|46-104
+604|code|LDR             R3, [R3]|27-104
+606|code|BLX             R3|152-71
+608|code|BLX             R6|176-71
+610|code|LDR             R3, [info,#8]|163-104
+612|code|LSLS            R3, R3, #0xD|91-3
+614|code|BPL             loc_274|5-213
+616|code|LDR             R3, =grub_gettext|35-75
+618|code|LDR             R0, =aPlanar; "Planar "|41-72
+620|code|LDR             R6, [R5]|46-104
+622|code|LDR             R3, [R3]|27-104
+624|code|BLX             R3|152-71
+626|code|BLX             R6|176-71
+628|code|LDR             R3, [info,#8]|163-104
+630|code|LSLS            R6, R3, #0xE|158-3
+632|code|BPL             loc_286|5-213
+634|code|LDR             R3, =grub_gettext|31-75
+636|code|LDR             R0, =aHercules; "Hercules "|37-72
+638|code|LDR             R6, [R5]|46-104
+640|code|LDR             R3, [R3]|27-104
+642|code|BLX             R3|152-71
+644|code|BLX             R6|176-71
+646|code|LDR             R3, [info,#8]|163-104
+648|code|LSLS            R0, R3, #0xB|216-2
+650|code|BPL             loc_298|5-213
+652|code|LDR             R3, =grub_gettext|26-75
+654|code|LDR             R0, =aCga; "CGA "|34-72
+656|code|LDR             R6, [R5]|46-104
+658|code|LDR             R3, [R3]|27-104
+660|code|BLX             R3|152-71
+662|code|BLX             R6|176-71
+664|code|LDR             R3, [info,#8]|163-104
+666|code|LSLS            R1, R3, #0xC|25-3
+668|code|BPL             loc_2AA|5-213
+670|code|LDR             R3, =grub_gettext|22-75
+672|code|LDR             R0, =aNonChain4; "Non-chain 4 "|30-72
+674|code|LDR             R6, [R5]|46-104
+676|code|LDR             R3, [R3]|27-104
+678|code|BLX             R3|152-71
+680|code|BLX             R6|176-71
+682|code|LDR             R3, [info,#8]|163-104
+684|code|LSLS            R2, R3, #0x1D|90-7
+686|code|BPL             loc_2BC|5-213
+688|code|LDR             R3, =grub_gettext|17-75
+690|code|LDR             R0, =aMonochrome; "Monochrome "|27-72
+692|code|LDR             R6, [R5]|46-104
+694|code|LDR             R3, [R3]|27-104
+696|code|BLX             R3|152-71
+698|code|BLX             R6|176-71
+700|code|LDR             R3, [info,#8]|163-104
+702|code|LSLS            R3, R3, #0xF|219-3
+704|code|BPL             loc_2CE|5-213
+706|code|LDR             R3, =grub_gettext|13-75
+708|code|LDR             R0, =aUnknownVideoMo; "Unknown video mode "|23-72
+710|code|LDR             info, [R5]|44-104
+712|code|LDR             R3, [R3]|27-104
+714|code|BLX             R3|152-71
+716|code|BLX             R4|160-71
+718|code|LDR             R3, [R5]|43-104
+720|code|LDR             R0, =asc_558; "\n"|21-72
+722|code|BLX             R3|152-71
+724|code|MOVS            R0, #0|0-32
+726|code|ADD             SP, SP, #0x18|6-176
+728|code|POP             {R4-R6,PC}|112-189
+730|data|ALIGN 4|0-191
+732|data|DCD grub_printf|240-5-0-0
+736|data|DCD asc_49A; "        "|154-4-0-0
+740|data|DCD asc_4A3; "*"|163-4-0-0
+744|data|DCD asc_4A5; " "|165-4-0-0
+748|data|DCD a0x03x; " 0x%03x "|167-4-0-0
+752|data|DCD a4dX4dX2d4d; "%4d x %4d x %2d (%4d)  "|176-4-0-0
+756|data|DCD grub_xputs|216-5-0-0
+760|data|DCD grub_gettext|8-6-0-0
+764|data|DCD aTextOnly; "Text-only "|200-4-0-0
+768|data|DCD aDirectColorMas; "Direct color, mask: %d/%d/%d/%d  pos: %"...|211-4-0-0
+772|data|DCD grub_printf_|0-6-0-0
+776|data|DCD aPaletted; "Paletted "|5-5-0-0
+780|data|DCD aYuv; "YUV "|15-5-0-0
+784|data|DCD aPlanar; "Planar "|20-5-0-0
+788|data|DCD aHercules; "Hercules "|28-5-0-0
+792|data|DCD aCga; "CGA "|38-5-0-0
+796|data|DCD aNonChain4; "Non-chain 4 "|43-5-0-0
+800|data|DCD aMonochrome; "Monochrome "|56-5-0-0
+804|data|DCD aUnknownVideoMo; "Unknown video mode "|68-5-0-0
+808|data|DCD asc_558; "\n"|88-5-0-0
+812|code|PUSH            {mod,R1,R4,LR}|19-181
+814|code|MOVS            R3, #0|0-35
+816|code|LDR             R1, =(grub_cmd_videoinfo+1)|5-73
+818|code|STR             R3, [SP,#0x10+var_10]|0-147
+820|code|LDR             R2, =aWxhXd; "[WxH[xD]]"|5-74
+822|code|LDR             R3, =aListAvailableV; "List available video modes. If resoluti"...|6-75
+824|code|LDR             R4, =grub_register_command_prio|6-76
+826|code|LDR             mod, =aVideoinfo; "videoinfo"|7-72
+828|code|BLX             R4; grub_register_command_prio|160-71
+830|code|LDR             R3, =cmd|7-75
+832|code|STR             R0, [R3]|24-96
+834|code|ADD             SP, SP, #8|2-176
+836|code|POP             {R4,PC}|16-189
+838|data|ALIGN 4|0-191
+840|data|DCD grub_cmd_videoinfo+1|1-0-0-0
+844|data|DCD aWxhXd; "[WxH[xD]]"|100-5-0-0
+848|data|DCD aListAvailableV; "List available video modes. If resoluti"...|110-5-0-0
+852|data|DCD grub_register_command_prio|232-5-0-0
+856|data|DCD aVideoinfo; "videoinfo"|90-5-0-0
+860|data|DCD cmd|208-5-0-0
+864|code|PUSH            {R3,LR}|8-181
+866|code|LDR             R3, =cmd|2-75
+868|code|LDR             R0, [R3]|24-104
+870|code|LDR             R3, =grub_unregister_command|2-75
+872|code|BLX             R3; grub_unregister_command|152-71
+874|code|POP             {R3,PC}|8-189
+876|data|DCD cmd|208-5-0-0
+880|data|DCD grub_unregister_command|244-5-0-0
+884|data|DCB "invalid video mode specification `%s'",0|105-110-118-97-108-105-100-32-118-105-100-101-111-32-109-111-100-101-32-115-112-101-99-105-102-105-99-97-116-105-111-110-32-96-37-115-39-0
+922|data|DCB "List of supported video modes:",0|76-105-115-116-32-111-102-32-115-117-112-112-111-114-116-101-100-32-118-105-100-101-111-32-109-111-100-101-115-58-0
+953|data|DCB "Legend: mask/position=red/green/blue/reserved",0|76-101-103-101-110-100-58-32-109-97-115-107-47-112-111-115-105-116-105-111-110-61-114-101-100-47-103-114-101-101-110-47-98-108-117-101-47-114-101-115-101-114-118-101-100-0
+999|data|DCB "Adapter `%s':",0xA,0|65-100-97-112-116-101-114-32-96-37-115-39-58-10-0
+1014|data|DCB "  No info available",0|32-32-78-111-32-105-110-102-111-32-97-118-97-105-108-97-98-108-101-0
+1034|data|DCB "  Failed to initialize video adapter",0|32-32-70-97-105-108-101-100-32-116-111-32-105-110-105-116-105-97-108-105-122-101-32-118-105-100-101-111-32-97-100-97-112-116-101-114-0
+1071|data|DCB "  EDID checksum invalid",0|32-32-69-68-73-68-32-99-104-101-99-107-115-117-109-32-105-110-118-97-108-105-100-0
+1095|data|DCB "  EDID version: %u.%u",0xA,0|32-32-69-68-73-68-32-118-101-114-115-105-111-110-58-32-37-117-46-37-117-10-0
+1118|data|DCB "    Preferred mode: %ux%u",0xA,0|32-32-32-32-80-114-101-102-101-114-114-101-100-32-109-111-100-101-58-32-37-117-120-37-117-10-0
+1145|data|DCB "    No preferred mode available",0xA,0|32-32-32-32-78-111-32-112-114-101-102-101-114-114-101-100-32-109-111-100-101-32-97-118-97-105-108-97-98-108-101-10-0
+1178|data|DCB "        ",0|32-32-32-32-32-32-32-32-0
+1187|data|DCB "*",0|42-0
+1189|data|DCB " ",0|32-0
+1191|data|DCB " 0x%03x ",0|32-48-120-37-48-51-120-32-0
+1200|data|DCB "%4d x %4d x %2d (%4d)  ",0|37-52-100-32-120-32-37-52-100-32-120-32-37-50-100-32-40-37-52-100-41-32-32-0
+1224|data|DCB "Text-only ",0|84-101-120-116-45-111-110-108-121-32-0
+1235|data|DCB "Direct color, mask: %d/%d/%d/%d  pos: %d/%d/%d/%d",0|68-105-114-101-99-116-32-99-111-108-111-114-44-32-109-97-115-107-58-32-37-100-47-37-100-47-37-100-47-37-100-32-32-112-111-115-58-32-37-100-47-37-100-47-37-100-47-37-100-0
+1285|data|DCB "Paletted ",0|80-97-108-101-116-116-101-100-32-0
+1295|data|DCB "YUV ",0|89-85-86-32-0
+1300|data|DCB "Planar ",0|80-108-97-110-97-114-32-0
+1308|data|DCB "Hercules ",0|72-101-114-99-117-108-101-115-32-0
+1318|data|DCB "CGA ",0|67-71-65-32-0
+1323|data|DCB "Non-chain 4 ",0|78-111-110-45-99-104-97-105-110-32-52-32-0
+1336|data|DCB "Monochrome ",0|77-111-110-111-99-104-114-111-109-101-32-0
+1348|data|DCB "Unknown video mode ",0|85-110-107-110-111-119-110-32-118-105-100-101-111-32-109-111-100-101-32-0
+1368|data|DCB 0xA,0|10-0
+1370|data|DCB "videoinfo",0|118-105-100-101-111-105-110-102-111-0
+1380|data|DCB "[WxH[xD]]",0|91-87-120-72-91-120-68-93-93-0
+1390|data|DCB "List available video modes. If resolution is given show only mod"|76-105-115-116-32-97-118-97-105-108-97-98-108-101-32-118-105-100-101-111-32-109-111-100-101-115-46-32-73-102-32-114-101-115-111-108-117-116-105-111-110-32-105-115-32-103-105-118-101-110-32-115-104-111-119-32-111-110-108-121-32-109-111-100-101-115-32-109-97-116-99-104-105-110-103-32-105-116-46-0
+1471|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

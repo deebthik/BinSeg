@@ -1,0 +1,70 @@
+address|type|disassembly|bytes
+0|code|MOVS            R3, #1|1-35
+2|code|STRH            R3, [ctx]|3-128
+4|code|MOVS            R3, #0|0-35
+6|code|STRH            R3, [ctx,#2]|67-128
+8|code|BX              LR|112-71
+10|code|BX              LR|112-71
+12|code|LDRH            R1, [ctx]|1-136
+14|code|MOVW            R3, #0xFFF1|79-246-241-115
+18|code|MOV             R2, R3|26-70
+20|code|CMP             R1, R3|153-66
+22|code|LDRH            R3, [ctx,#2]|67-136
+24|code|ITT HI|132-191
+26|code|ADDHI           R1, #0xF|15-49
+28|code|STRHHI          R1, [ctx]|1-128
+30|code|CMP             R3, R2|147-66
+32|code|ITT HI|132-191
+34|code|ADDHI           R3, #0xF|15-51
+36|code|STRHHI          R3, [ctx,#2]|67-128
+38|code|LDRH            R2, [ctx,#2]|66-136
+40|code|LDRH            R3, [ctx]|3-136
+42|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+46|code|REV             R3, R3|27-186
+48|code|STR.W           R3, [ctx,#4]!|64-248-4-63
+52|code|BX              LR|112-71
+54|code|ADD             inlen, ptr|10-68
+56|code|PUSH            {R4-R6,LR}|112-181
+58|code|MOVW            R6, #0xFFF0|79-246-240-118
+62|code|CMP             ptr, R2|145-66
+64|code|BEQ             locret_70|22-208
+66|code|LDRB.W          R5, [ptr],#1|17-248-1-91
+70|code|LDRH            R4, [ctx]|4-136
+72|code|UXTH            R3, R5|171-178
+74|code|ADD             R5, R4|37-68
+76|code|CMP             R5, R6|181-66
+78|code|ITET HI|138-191
+80|code|ADDHI.W         R5, R4, #0xF|4-241-15-5
+84|code|ADDLS           R3, R3, R4|27-25
+86|code|ADDHI           R3, R3, R5|91-25
+88|code|LDRH            R4, [ctx,#2]|68-136
+90|code|UXTH            R3, R3|155-178
+92|code|STRH            R3, [ctx]|3-128
+94|code|ADDS            R5, R3, R4|29-25
+96|code|CMP             R5, R6|181-66
+98|code|ITETT HI|137-191
+100|code|ADDHI           R4, #0xF|15-52
+102|code|UXTHLS          R3, R5|171-178
+104|code|ADDHI           R3, R3, R4|27-25
+106|code|UXTHHI          R3, R3|155-178
+108|code|STRH            R3, [ctx,#2]|67-128
+110|code|B               loc_3E|230-231
+112|code|POP             {R4-R6,PC}|112-189
+114|code|PUSH            {R3,LR}|8-181
+116|code|LDR             mod, =spec_adler32|1-72
+118|code|LDR             R3, =grub_md_register|2-75
+120|code|BLX             R3; grub_md_register|152-71
+122|code|POP             {R3,PC}|8-189
+124|data|DCD spec_adler32|160-0-0-0
+128|data|DCD grub_md_register|228-0-0-0
+132|code|PUSH            {R3,LR}|8-181
+134|code|LDR             R0, =spec_adler32|2-72
+136|code|LDR             R3, =grub_md_unregister|2-75
+138|code|BLX             R3; grub_md_unregister|152-71
+140|code|POP             {R3,PC}|8-189
+142|data|ALIGN 0x10|0-191
+144|data|DCD spec_adler32|160-0-0-0
+148|data|DCD grub_md_unregister|224-0-0-0
+152|data|DCB "ADLER32",0|65-68-76-69-82-51-50-0
+160|data|gcry_md_spec_t <aAdler32, 0, 0, 0, 4, adler32_init+1, adler32_write+1,\; "ADLER32"|152-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-4-0-0-0-1-0-0-0-55-0-0-0-11-0-0-0-13-0-0-0-8-0-0-0-64-0-0-0-0-0-0-0
+208|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

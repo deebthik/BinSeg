@@ -1,0 +1,143 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_dfly_partition_map|61-75
+2|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+6|code|SUB             SP, SP, #0x74|157-176
+8|code|LDR             R5, =grub_disk_read|60-77
+10|code|MOV             R11, hook_data|147-70
+12|code|STR             R3, [SP,#0x98+part.partmap]|26-147
+14|code|MOVS            hook_data, #0|0-34
+16|code|MOVS            R3, #0|0-35
+18|code|STRD.W          R2, R3, [SP,#0x98+var_98]|205-233-0-35
+22|code|MOVS            R3, #0x10|16-35
+24|code|MOVS            R2, #1|1-34
+26|code|STR             R3, [SP,#0x98+var_90]|2-147
+28|code|ADD             R3, SP, #0x98+label|12-171
+30|code|STR             R3, [SP,#0x98+var_8C]|3-147
+32|code|MOVS            R3, #0|0-35
+34|code|MOV             R7, disk|7-70
+36|code|MOV             R10, hook|138-70
+38|code|BLX             R5; grub_disk_read|168-71
+40|code|STR             R5, [SP,#0x98+var_7C]|7-149
+42|code|MOV             R4, R0|4-70
+44|code|CMP             R0, #0|0-40
+46|code|BNE             loc_B0|63-209
+48|code|LDR             R2, [SP,#0x98+label]|12-154
+50|code|LDR             R3, =0xC4464C59|51-75
+52|code|CMP             R2, R3|154-66
+54|code|BEQ             loc_B6|62-208
+56|code|STMEA.W         SP, {R2,R3}|141-232-12-0
+60|code|MOVS            R1, #0x48 ; 'H'|72-33
+62|code|LDR             R0, =aPartmapDflyC; "partmap/dfly.c"|49-72
+64|code|LDR             R2, =aPartition; "partition"|49-74
+66|code|LDR             R3, =aBadMagicFound0; "bad magic (found 0x%x; wanted 0x%x)\n"|50-75
+68|code|LDR             R4, =grub_real_dprintf|50-76
+70|code|BLX             R4; grub_real_dprintf|160-71
+72|code|MOVS            R0, #0x13|19-32
+74|code|LDR             R1, =aDisklabel64Not; "disklabel64 not found"|50-73
+76|code|LDR             R3, =grub_error|50-75
+78|code|BLX             R3; grub_error|152-71
+80|code|MOV             R4, R0|4-70
+82|code|B               loc_F0|77-224
+84|code|LDRD.W          R2, R3, [SP,#0x98+dpart]|221-233-8-35
+88|code|MOVS            R1, #0x5E ; '^'|94-33
+90|code|LDR             R0, =aPartmapDflyC; "partmap/dfly.c"|42-72
+92|code|STR             partno, [SP,#0x98+var_98]|0-150
+94|code|STRD.W          R2, R3, [SP,#0x98+var_90]|205-233-2-35
+98|code|LDRD.W          R2, R3, [SP,#0x98+dpart.bsize]|221-233-10-35
+102|code|LDR.W           R12, =grub_real_dprintf|223-248-168-192
+106|code|STRD.W          R2, R3, [SP,#0x98+var_88]|205-233-4-35
+110|code|LDR             R3, =aPartition2dOff; "partition %2d: offset 0x%llx, size 0x%l"...|43-75
+112|code|LDR             R2, =aPartition; "partition"|37-74
+114|code|BLX             R12; grub_real_dprintf|224-71
+116|code|LDRD.W          R0, R1, [SP,#0x98+dpart.bsize]|221-233-10-1
+120|code|ORRS.W          R3, R0, R1|80-234-1-3
+124|code|BNE             loc_BA|29-209
+126|code|ADDS            partno, #1|1-54
+128|code|LDR             R3, [SP,#0x98+label.npartitions]|15-155
+130|code|LSLS            R5, R6, #6|181-1
+132|code|ADD.W           R5, R5, #0x2C8|5-245-50-117
+136|code|CMP             partno, R3|158-66
+138|code|BCS             loc_F0|49-210
+140|code|MOV.W           R9, pos,LSR#9|79-234-85-41
+144|code|MOVS            R3, #0|0-35
+146|code|MOVS            R2, #0x10|16-34
+148|code|UBFX.W          pos, pos, #0, #9|197-243-8-5
+152|code|STR             R2, [SP,#0x98+var_90]|2-146
+154|code|MOV             R0, disk|56-70
+156|code|ADD             R2, SP, #0x98+dpart|8-170
+158|code|STR             R5, [SP,#0x98+var_98]|0-149
+160|code|STR             R2, [SP,#0x98+var_8C]|3-146
+162|code|MOV             R2, R9|74-70
+164|code|STR             R3, [SP,#0x98+var_94]|1-147
+166|code|LDR             R1, [SP,#0x98+var_7C]|7-153
+168|code|BLX             R1|136-71
+170|code|MOV             R8, R0|128-70
+172|code|CMP             R0, #0|0-40
+174|code|BEQ             loc_54|209-208
+176|code|LDR             R3, =grub_errno|27-75
+178|code|LDR             R4, [R3]|28-104
+180|code|B               loc_F0|28-224
+182|code|MOV             R6, R0|6-70
+184|code|B               loc_80|226-231
+186|code|LDR             R3, [SP,#0x98+dpart]|8-155
+188|code|LDR             R2, [SP,#0x98+dpart.boffset+4]|9-154
+190|code|STR             partno, [SP,#0x98+part]|16-150
+192|code|LSRS            R3, R3, #9|91-10
+194|code|STR.W           R9, [SP,#0x98+part.offset]|205-248-88-144
+198|code|ORR.W           R3, R3, R2,LSL#23|67-234-194-83
+202|code|STR             R3, [SP,#0x98+part.start]|18-147
+204|code|LSRS            R3, R0, #9|67-10
+206|code|LSRS            R2, R2, #9|82-10
+208|code|ORR.W           R3, R3, R1,LSL#23|67-234-193-83
+212|code|STR             R2, [SP,#0x98+part.start+4]|19-146
+214|code|STR             R3, [SP,#0x98+part.len]|20-147
+216|code|MOV             R0, disk|56-70
+218|code|LSRS            R3, R1, #9|75-10
+220|code|MOV             R2, hook_data|90-70
+222|code|ADD             R1, SP, #0x98+part|16-169
+224|code|STR             R3, [SP,#0x98+part.len+4]|21-147
+226|code|STR.W           R8, [SP,#0x98+part.offset+4]|205-248-92-128
+230|code|STR             R5, [SP,#0x98+part.index]|24-149
+232|code|BLX             hook|208-71
+234|code|CMP             R0, #0|0-40
+236|code|BEQ             loc_7E|199-208
+238|code|B               loc_B0|223-231
+240|code|MOV             R0, R4|32-70
+242|code|ADD             SP, SP, #0x74 ; 't'|29-176
+244|code|POP.W           {R4-hook_data,PC}|189-232-240-143
+248|data|DCD grub_dfly_partition_map|212-1-0-0
+252|data|DCD grub_disk_read|248-1-0-0
+256|data|DCD 0xC4464C59|89-76-70-196
+260|data|DCD aPartmapDflyC; "partmap/dfly.c"|80-1-0-0
+264|data|DCD aPartition; "partition"|95-1-0-0
+268|data|DCD aBadMagicFound0; "bad magic (found 0x%x; wanted 0x%x)\n"|105-1-0-0
+272|data|DCD grub_real_dprintf|0-2-0-0
+276|data|DCD aDisklabel64Not; "disklabel64 not found"|142-1-0-0
+280|data|DCD grub_error|4-2-0-0
+284|data|DCD aPartition2dOff; "partition %2d: offset 0x%llx, size 0x%l"...|164-1-0-0
+288|data|DCD grub_errno|252-1-0-0
+292|code|PUSH            {R3,LR}|8-181
+294|code|LDR             mod, =grub_partition_map_list|2-72
+296|code|LDR             R1, =grub_dfly_partition_map|2-73
+298|code|LDR             R3, =grub_list_push|3-75
+300|code|BLX             R3; grub_list_push|152-71
+302|code|POP             {R3,PC}|8-189
+304|data|DCD grub_partition_map_list|244-1-0-0
+308|data|DCD grub_dfly_partition_map|212-1-0-0
+312|data|DCD grub_list_push|12-2-0-0
+316|code|PUSH            {R3,LR}|8-181
+318|code|LDR             R0, =grub_dfly_partition_map|2-72
+320|code|LDR             R3, =grub_list_remove|2-75
+322|code|BLX             R3; grub_list_remove|152-71
+324|code|POP             {R3,PC}|8-189
+326|data|ALIGN 4|0-191
+328|data|DCD grub_dfly_partition_map|212-1-0-0
+332|data|DCD grub_list_remove|8-2-0-0
+336|data|DCB "partmap/dfly.c",0|112-97-114-116-109-97-112-47-100-102-108-121-46-99-0
+351|data|DCB "partition",0|112-97-114-116-105-116-105-111-110-0
+361|data|DCB "bad magic (found 0x%x; wanted 0x%x)",0xA,0|98-97-100-32-109-97-103-105-99-32-40-102-111-117-110-100-32-48-120-37-120-59-32-119-97-110-116-101-100-32-48-120-37-120-41-10-0
+398|data|DCB "disklabel64 not found",0|100-105-115-107-108-97-98-101-108-54-52-32-110-111-116-32-102-111-117-110-100-0
+420|data|DCB "partition %2d: offset 0x%llx, size 0x%llx",0xA,0|112-97-114-116-105-116-105-111-110-32-37-50-100-58-32-111-102-102-115-101-116-32-48-120-37-108-108-120-44-32-115-105-122-101-32-48-120-37-108-108-120-10-0
+463|data|DCB "dfly",0|100-102-108-121-0
+468|data|grub_partition_map <0, 0, aDfly, dfly_partition_map_iterate+1>; "dfly"|0-0-0-0-0-0-0-0-207-1-0-0-1-0-0-0
+484|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

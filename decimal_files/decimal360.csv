@@ -1,0 +1,886 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|MOV             R4, elf|4-70
+4|code|LDR             R6, [elf]|6-104
+6|code|LDR             R5, =grub_free|7-77
+8|code|LDR             elf, [elf,#0x48]|128-108
+10|code|BLX             R5; grub_free|168-71
+12|code|LDR             R0, [elf,#0x4C]|224-108
+14|code|BLX             R5; grub_free|168-71
+16|code|MOV             R0, elf|32-70
+18|code|BLX             R5; grub_free|168-71
+20|code|CBZ             file, loc_1C|22-177
+22|code|MOV             R0, file|48-70
+24|code|LDR             R3, =grub_file_close|3-75
+26|code|BLX             R3; grub_file_close|152-71
+28|code|LDR             R3, =grub_errno|3-75
+30|code|LDR             R0, [R3]|24-104
+32|code|POP             {elf-file,PC}|112-189
+34|data|ALIGN 4|0-191
+36|data|DCD grub_free|192-9-0-0
+40|data|DCD grub_file_close|176-9-0-0
+44|data|DCD grub_errno|156-9-0-0
+48|code|LDRB            elf, [elf,#0xC]|0-123
+50|code|SUBS            R3, R0, #1|67-30
+52|code|NEGS            R0, R3|88-66
+54|code|ADCS            R0, R3|88-65
+56|code|BX              LR|112-71
+58|code|PUSH            {R4-R7,LR}|240-181
+60|code|MOV             R4, elf|4-70
+62|code|LDR             R6, [elf,#0x48]|134-108
+64|code|SUB             SP, SP, #0x14|133-176
+66|code|CBZ             R6, loc_48|14-177
+68|code|MOVS            R0, #0|0-32
+70|code|B               loc_AC|49-224
+72|code|LDRH            R3, [elf,#0x34]|131-142
+74|code|MOVS            R1, #0x13|19-33
+76|code|LDRH            R5, [elf,#0x32]|69-142
+78|code|LDR             R2, =aElf; "elf"|24-74
+80|code|LDR             R7, =grub_real_dprintf|24-79
+82|code|MULS            R5, R3|93-67
+84|code|LDR             R3, [elf,#0x24]|67-106
+86|code|LDR             elf, =aKernElfC; "kern/elf.c"|24-72
+88|code|STMEA.W         SP, {R3,R6}|141-232-72-0
+92|code|LDR             R3, =aLoadingProgram; "Loading program headers at 0x%llx, size"...|23-75
+94|code|STR             phdrs_size, [SP,#0x28+var_20]|2-149
+96|code|BLX             R7; grub_real_dprintf|184-71
+98|code|MOV             R0, phdrs_size|40-70
+100|code|LDR             R3, =grub_malloc|22-75
+102|code|BLX             R3; grub_malloc|152-71
+104|code|STR             R0, [elf,#0x48]|160-100
+106|code|CBNZ            R0, loc_72|16-185
+108|code|LDR             R3, =grub_errno|21-75
+110|code|LDR             R0, [R3]|24-104
+112|code|B               loc_AC|28-224
+114|code|LDR             R0, [elf]|32-104
+116|code|MOV             R3, R6|51-70
+118|code|LDR             R2, [elf,#0x24]|98-106
+120|code|LDR             R1, =grub_file_seek|19-73
+122|code|BLX             R1; grub_file_seek|136-71
+124|code|ADDS            R1, #1|1-49
+126|code|IT EQ|8-191
+128|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+132|code|BNE             loc_9A|9-209
+134|code|LDR             R3, =grub_errno|15-75
+136|code|LDR             R2, [R3]|26-104
+138|code|MOV             phdrs_size, R3|29-70
+140|code|CBNZ            R2, loc_AA|106-185
+142|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|15-73
+144|code|MOVS            R0, #6|6-32
+146|code|LDR             R2, [elf,#0x4C]|226-108
+148|code|LDR             R3, =grub_error|14-75
+150|code|BLX             R3; grub_error|152-71
+152|code|B               loc_AA|7-224
+154|code|LDR             R0, [elf]|32-104
+156|code|MOV             R2, phdrs_size|42-70
+158|code|LDR             R1, [elf,#0x48]|161-108
+160|code|LDR             R3, =grub_file_read|12-75
+162|code|BLX             R3; grub_file_read|152-71
+164|code|CMP             R0, phdrs_size|168-66
+166|code|BNE             loc_86|238-209
+168|code|B               loc_44|204-231
+170|code|LDR             R0, [R5]|40-104
+172|code|ADD             SP, SP, #0x14|5-176
+174|code|POP             {elf-R7,PC}|240-189
+176|data|DCD aElf; "elf"|151-8-0-0
+180|data|DCD grub_real_dprintf|184-9-0-0
+184|data|DCD aKernElfC; "kern/elf.c"|140-8-0-0
+188|data|DCD aLoadingProgram; "Loading program headers at 0x%llx, size"...|155-8-0-0
+192|data|DCD grub_malloc|172-9-0-0
+196|data|DCD grub_errno|156-9-0-0
+200|data|DCD grub_file_seek|152-9-0-0
+204|data|DCD aPrematureEndOf; "premature end of file %s"|203-8-0-0
+208|data|DCD grub_error|188-9-0-0
+212|data|DCD grub_file_read|164-9-0-0
+216|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+220|code|MOV             R8, elf|128-70
+222|code|MOV             R7, base|15-70
+224|code|MOV             R9, max_align|145-70
+226|code|BL              grub_elf32_load_phdrs|255-247-170-255
+230|code|LDR.W           R2, [elf,#0x48]|216-248-72-32
+234|code|MOVS            R4, #0|0-36
+236|code|MOVS            R1, #1|1-33
+238|code|MOV             R6, R4|38-70
+240|code|MOV.W           R5, #0xFFFFFFFF|79-240-255-53
+244|code|MOV             R3, phdr|19-70
+246|code|CBNZ            phdr, loc_100|27-185
+248|code|CBZ             base, loc_134|231-177
+250|code|MOVS            phdr, #0|0-35
+252|code|STR             R3, [base]|59-96
+254|code|B               loc_134|25-224
+256|code|LDRH.W          LR, [elf,#0x34]|184-248-52-224
+260|code|ADD.W           LR, R2, LR,LSL#5|2-235-78-30
+264|code|CMP             phdr, LR|115-69
+266|code|BCS             loc_F8|245-210
+268|code|LDR             R0, [phdr]|24-104
+270|code|CMP             R0, #1|1-40
+272|code|BNE             loc_130|14-209
+274|code|LDR.W           LR, [phdr,#0xC]|211-248-12-224
+278|code|ADDS            nr_phdrs, #1|1-52
+280|code|LDR             R0, [phdr,#0x14]|88-105
+282|code|CMP             segments_start, LR|117-69
+284|code|ADD             R0, LR|112-68
+286|code|IT CS|40-191
+288|code|MOVCS           segments_start, LR|117-70
+290|code|CMP             segments_end, R0|134-66
+292|code|IT CC|56-191
+294|code|MOVCC           segments_end, R0|6-70
+296|code|LDR             R0, [phdr,#0x1C]|216-105
+298|code|CMP             curr_align, R0|129-66
+300|code|IT CC|56-191
+302|code|MOVCC           curr_align, R0|1-70
+304|code|ADDS            phdr, #0x20 ; ' '|32-51
+306|code|B               loc_F6|224-231
+308|code|CBNZ            nr_phdrs, loc_13C|20-185
+310|code|MOVS            R0, #0x15|21-32
+312|code|LDR             curr_align, =aNoProgramHeade; "no program headers present"|10-73
+314|code|B               loc_144|3-224
+316|code|CMP             segments_end, segments_start|174-66
+318|code|BCS             loc_14E|6-210
+320|code|LDR             curr_align, =aBadProgramHead; "bad program header load addresses"|9-73
+322|code|MOVS            R0, #0x15|21-32
+324|code|LDR             R3, =grub_error|9-75
+326|code|BLX             R3; grub_error|152-71
+328|code|MOVS            R0, #0|0-32
+330|code|POP.W           {R3-max_align,PC}|189-232-248-131
+334|code|CBZ             base, loc_152|7-177
+336|code|STR             segments_start, [base]|61-96
+338|code|CMP.W           max_align, #0|185-241-0-15
+342|code|BEQ             loc_15C|1-208
+344|code|STR.W           curr_align, [max_align]|201-248-0-16
+348|code|SUBS            R0, segments_end, segments_start|112-27
+350|code|POP.W           {R3-max_align,PC}|189-232-248-131
+354|data|ALIGN 4|0-191
+356|data|DCD aNoProgramHeade; "no program headers present"|228-8-0-0
+360|data|DCD aBadProgramHead; "bad program header load addresses"|255-8-0-0
+364|data|DCD grub_error|188-9-0-0
+368|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+372|code|SUB             SP, SP, #0x1C|135-176
+374|code|MOV             R6, elf|6-70
+376|code|MOV             R11, load_offset|147-70
+378|code|STR             filename_0, [SP,#0x40+filename]|5-145
+380|code|MOV             R10, load_flags|154-70
+382|code|BL              grub_elf32_load_phdrs|255-247-92-255
+386|code|LDR             R4, [elf,#0x48]|180-108
+388|code|MOVS            R7, #0|0-39
+390|code|MOV.W           R8, #0xFFFFFFFF|79-240-255-56
+394|code|CBNZ            phdr, loc_19A|52-185
+396|code|LDR             R3, [SP,#0x40+base]|16-155
+398|code|CMP             R3, #0|0-43
+400|code|BEQ             loc_24C|92-208
+402|code|LDR             R3, [SP,#0x40+base]|16-155
+404|code|STR.W           load_base, [R3]|195-248-0-128
+408|code|B               loc_24C|88-224
+410|code|LDRH            R2, [elf,#0x34]|178-142
+412|code|LDR             R3, [elf,#0x48]|179-108
+414|code|ADD.W           R3, R3, R2,LSL#5|3-235-66-19
+418|code|CMP             phdr, R3|156-66
+420|code|BCS             loc_18C|242-210
+422|code|LDR             R3, [phdr]|35-104
+424|code|CMP             R3, #1|1-43
+426|code|BEQ             loc_1B6|4-208
+428|code|TST.W           load_flags, #1|26-240-1-15
+432|code|BEQ             loc_248|74-208
+434|code|CMP             R3, #2|2-43
+436|code|BNE             loc_248|72-209
+438|code|AND.W           R3, load_flags, #6|10-240-6-3
+442|code|LDR             R5, [phdr,#0xC]|229-104
+444|code|CMP             R3, #2|2-43
+446|code|BEQ             loc_1CA|4-208
+448|code|CMP             R3, #4|4-43
+450|code|BNE             loc_1CE|4-209
+452|code|BIC.W           load_addr, load_addr, #0xC0000000|37-240-64-69
+456|code|B               loc_1CE|1-224
+458|code|BIC.W           load_addr, load_addr, #0xF0000000|37-240-112-69
+462|code|ADD             load_addr, load_offset|93-68
+464|code|MOV.W           R9, #0|79-240-0-9
+468|code|STMEA.W         SP, {load_addr,R9}|141-232-32-2
+472|code|CMP             load_base, load_addr|168-69
+474|code|LDR             R3, [phdr,#0x14]|99-105
+476|code|MOV.W           R1, #0x7D ; '}'|79-240-125-1
+480|code|LDR             R0, =aKernElfC; "kern/elf.c"|30-72
+482|code|IT CS|40-191
+484|code|MOVCS           load_base, load_addr|168-70
+486|code|LDR             R2, =aElf; "elf"|30-74
+488|code|STR             R3, [SP,#0x40+var_38]|2-147
+490|code|LDR.W           R12, =grub_real_dprintf|223-248-148-192
+494|code|LDR             R3, =aLoadingSegment; "Loading segment at 0x%llx, size 0x%llx"...|29-75
+496|code|STR.W           R9, [SP,#0x40+var_34]|205-248-12-144
+500|code|BLX             R12; grub_real_dprintf|224-71
+502|code|LDR             R0, [elf]|48-104
+504|code|LDR             R2, [phdr,#4]|98-104
+506|code|MOV             R3, R9|75-70
+508|code|LDR             R1, =grub_file_seek|26-73
+510|code|BLX             R1; grub_file_seek|136-71
+512|code|ADDS            R1, #1|1-49
+514|code|IT EQ|8-191
+516|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+520|code|BEQ             loc_252|35-208
+522|code|LDR             R2, [phdr,#0x10]|34-105
+524|code|CBZ             R2, loc_232|138-177
+526|code|LDR             R3, =grub_file_read|23-75
+528|code|MOV             R1, load_addr|41-70
+530|code|LDR             R0, [elf]|48-104
+532|code|BLX             R3; grub_file_read|152-71
+534|code|LDR             R3, [phdr,#0x10]|35-105
+536|code|CMP             read, R3|152-66
+538|code|BEQ             loc_232|10-208
+540|code|LDR             R3, =grub_errno|20-75
+542|code|LDR             R2, [R3]|26-104
+544|code|MOV             phdr, R3|28-70
+546|code|CBNZ            R2, loc_22E|34-185
+548|code|MOVS            read, #6|6-32
+550|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|19-73
+552|code|LDR             R2, [SP,#0x40+filename]|5-154
+554|code|LDR             R3, =grub_error|19-75
+556|code|BLX             R3; grub_error|152-71
+558|code|LDR             R0, [R4]|32-104
+560|code|B               loc_256|17-224
+562|code|LDR             R3, [phdr,#0x10]|35-105
+564|code|LDR             R2, [phdr,#0x14]|98-105
+566|code|CMP             R3, R2|147-66
+568|code|BCS             loc_244|4-210
+570|code|ADDS            R0, load_addr, R3|232-24
+572|code|SUBS            R2, R2, R3|210-26
+574|code|MOVS            R1, #0|0-33
+576|code|LDR             R3, =grub_memset|14-75
+578|code|BLX             R3; grub_memset|152-71
+580|code|LDR             R3, [phdr,#0x14]|99-105
+582|code|ADD             load_size, R3|31-68
+584|code|ADDS            phdr, #0x20 ; ' '|32-52
+586|code|B               loc_18A|158-231
+588|code|LDR             R3, [SP,#0x40+size]|17-155
+590|code|CBZ             R3, loc_252|3-177
+592|code|STR             load_size, [R3]|31-96
+594|code|LDR             R3, =grub_errno|7-75
+596|code|LDR             R0, [R3]|24-104
+598|code|ADD             SP, SP, #0x1C|7-176
+600|code|POP.W           {R4-load_offset,PC}|189-232-240-143
+604|data|DCD aKernElfC; "kern/elf.c"|140-8-0-0
+608|data|DCD aElf; "elf"|151-8-0-0
+612|data|DCD aLoadingSegment; "Loading segment at 0x%llx, size 0x%llx"...|33-9-0-0
+616|data|DCD grub_file_seek|152-9-0-0
+620|data|DCD grub_file_read|164-9-0-0
+624|data|DCD grub_errno|156-9-0-0
+628|data|DCD aPrematureEndOf; "premature end of file %s"|203-8-0-0
+632|data|DCD grub_error|188-9-0-0
+636|data|DCD grub_memset|160-9-0-0
+640|data|DCD grub_real_dprintf|184-9-0-0
+644|code|LDRH            R3, [elf,#0x18]|3-139
+646|code|PUSH            {R4,LR}|16-181
+648|code|REV16           R3, R3|91-186
+650|code|STRH            R3, [elf,#0x18]|3-131
+652|code|MOV             R4, elf|4-70
+654|code|LDRH            R3, [elf,#0x1A]|67-139
+656|code|REV16           R3, R3|91-186
+658|code|STRH            R3, [elf,#0x1A]|67-131
+660|code|LDR             R3, [elf,#0x1C]|195-105
+662|code|REV             R3, R3|27-186
+664|code|STR             R3, [elf,#0x1C]|195-97
+666|code|LDR             R3, [elf,#0x20]|3-106
+668|code|REV             R3, R3|27-186
+670|code|STR             R3, [elf,#0x20]|3-98
+672|code|LDR             R3, [elf,#0x24]|67-106
+674|code|REV             R3, R3|27-186
+676|code|STR             R3, [elf,#0x24]|67-98
+678|code|LDR             R3, [elf,#0x28]|131-106
+680|code|REV             R3, R3|27-186
+682|code|STR             R3, [elf,#0x28]|131-98
+684|code|LDR             R3, [elf,#0x2C]|195-106
+686|code|REV             R3, R3|27-186
+688|code|STR             R3, [elf,#0x2C]|195-98
+690|code|LDRH            R3, [elf,#0x30]|3-142
+692|code|REV16           R3, R3|91-186
+694|code|STRH            R3, [elf,#0x30]|3-134
+696|code|LDRH            R3, [elf,#0x32]|67-142
+698|code|REV16           R3, R3|91-186
+700|code|STRH            R3, [elf,#0x32]|67-134
+702|code|LDRH            R3, [elf,#0x34]|131-142
+704|code|REV16           R3, R3|91-186
+706|code|STRH            R3, [elf,#0x34]|131-134
+708|code|LDRH            R3, [elf,#0x36]|195-142
+710|code|REV16           R3, R3|91-186
+712|code|STRH            R3, [elf,#0x36]|195-134
+714|code|LDRH            R3, [elf,#0x38]|3-143
+716|code|REV16           R3, R3|91-186
+718|code|STRH            R3, [elf,#0x38]|3-135
+720|code|LDRH            R3, [elf,#0x3A]|67-143
+722|code|REV16           R3, R3|91-186
+724|code|STRH            R3, [elf,#0x3A]|67-135
+726|code|BL              grub_elf32_load_phdrs|255-247-176-254
+730|code|LDR             R1, [elf,#0x48]|161-108
+732|code|MOV             R3, phdr|11-70
+734|code|CBZ             phdr, locret_33C|107-179
+736|code|LDRH            R2, [elf,#0x34]|162-142
+738|code|ADD.W           R2, R1, R2,LSL#5|1-235-66-18
+742|code|CMP             phdr, R2|147-66
+744|code|BCS             locret_33C|40-210
+746|code|LDR             R2, [phdr]|26-104
+748|code|ADDS            phdr, #0x20 ; ' '|32-51
+750|code|REV             R2, R2|18-186
+752|code|STR.W           R2, [R3,#-0x20]|67-248-32-44
+756|code|LDR.W           R2, [R3,#-8]|83-248-8-44
+760|code|REV             R2, R2|18-186
+762|code|STR.W           R2, [R3,#-8]|67-248-8-44
+766|code|LDR.W           R2, [R3,#-0x1C]|83-248-28-44
+770|code|REV             R2, R2|18-186
+772|code|STR.W           R2, [R3,#-0x1C]|67-248-28-44
+776|code|LDR.W           R2, [R3,#-0x18]|83-248-24-44
+780|code|REV             R2, R2|18-186
+782|code|STR.W           R2, [R3,#-0x18]|67-248-24-44
+786|code|LDR.W           R2, [R3,#-0x14]|83-248-20-44
+790|code|REV             R2, R2|18-186
+792|code|STR.W           R2, [R3,#-0x14]|67-248-20-44
+796|code|LDR.W           R2, [R3,#-0x10]|83-248-16-44
+800|code|REV             R2, R2|18-186
+802|code|STR.W           R2, [R3,#-0x10]|67-248-16-44
+806|code|LDR.W           R2, [R3,#-0xC]|83-248-12-44
+810|code|REV             R2, R2|18-186
+812|code|STR.W           R2, [R3,#-0xC]|67-248-12-44
+816|code|LDR.W           R2, [R3,#-4]|83-248-4-44
+820|code|REV             R2, R2|18-186
+822|code|STR.W           R2, [R3,#-4]|67-248-4-44
+826|code|B               loc_2DE|208-231
+828|code|POP             {elf,PC}|16-189
+830|code|PUSH            {R3,LR}|8-181
+832|code|LDR             R3, [elf,#0x1C]|195-105
+834|code|CMP             R3, #1|1-43
+836|code|BEQ             loc_350|4-208
+838|code|LDR             R1, =aInvalidArchInd; "invalid arch-independent ELF magic"|3-73
+840|code|MOVS            elf, #0x15|21-32
+842|code|LDR             R3, =grub_error|3-75
+844|code|BLX             R3; grub_error|152-71
+846|code|POP             {R3,PC}|8-189
+848|code|MOVS            elf, #0|0-32
+850|code|POP             {R3,PC}|8-189
+852|data|DCD aInvalidArchInd; "invalid arch-independent ELF magic"|73-9-0-0
+856|data|DCD grub_error|188-9-0-0
+860|code|LDRB            elf, [elf,#0xC]|0-123
+862|code|SUBS            R3, R0, #2|131-30
+864|code|NEGS            R0, R3|88-66
+866|code|ADCS            R0, R3|88-65
+868|code|BX              LR|112-71
+870|code|PUSH            {elf-R6,LR}|127-181
+872|code|MOV             R4, elf|4-70
+874|code|LDR             R3, [elf,#0x48]|131-108
+876|code|CBZ             R3, loc_372|11-177
+878|code|MOVS            R0, #0|0-32
+880|code|B               loc_3DA|51-224
+882|code|LDRH.W          R3, [elf,#0x40]|176-248-64-48
+886|code|MOVS            R1, #0x13|19-33
+888|code|LDRH            R5, [elf,#0x3E]|197-143
+890|code|LDR             R6, =grub_real_dprintf|25-78
+892|code|MULS            R5, R3|93-67
+894|code|LDRD.W          R2, R3, [elf,#0x28]|208-233-10-35
+898|code|LDR             elf, =aKernElfC; "kern/elf.c"|24-72
+900|code|STRD.W          R2, R3, [SP,#0x20+var_20]|205-233-0-35
+904|code|LDR             R2, =aElf; "elf"|23-74
+906|code|LDR             R3, =aLoadingProgram; "Loading program headers at 0x%llx, size"...|24-75
+908|code|STR             phdrs_size, [SP,#0x20+var_18]|2-149
+910|code|BLX             R6; grub_real_dprintf|176-71
+912|code|MOV             R0, phdrs_size|40-70
+914|code|LDR             R3, =grub_malloc|23-75
+916|code|BLX             R3; grub_malloc|152-71
+918|code|STR             R0, [elf,#0x48]|160-100
+920|code|CBNZ            R0, loc_3A0|16-185
+922|code|LDR             R3, =grub_errno|22-75
+924|code|LDR             R0, [R3]|24-104
+926|code|B               loc_3DA|28-224
+928|code|LDR             R0, [elf]|32-104
+930|code|LDRD.W          R2, R3, [elf,#0x28]|212-233-10-35
+934|code|LDR             R1, =grub_file_seek|20-73
+936|code|BLX             R1; grub_file_seek|136-71
+938|code|ADDS            R1, #1|1-49
+940|code|IT EQ|8-191
+942|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+946|code|BNE             loc_3C8|9-209
+948|code|LDR             R3, =grub_errno|15-75
+950|code|LDR             R2, [R3]|26-104
+952|code|MOV             phdrs_size, R3|29-70
+954|code|CBNZ            R2, loc_3D8|106-185
+956|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|15-73
+958|code|MOVS            R0, #6|6-32
+960|code|LDR             R2, [elf,#0x4C]|226-108
+962|code|LDR             R3, =grub_error|15-75
+964|code|BLX             R3; grub_error|152-71
+966|code|B               loc_3D8|7-224
+968|code|LDR             R0, [elf]|32-104
+970|code|MOV             R2, phdrs_size|42-70
+972|code|LDR             R1, [elf,#0x48]|161-108
+974|code|LDR             R3, =grub_file_read|13-75
+976|code|BLX             R3; grub_file_read|152-71
+978|code|CMP             R0, phdrs_size|168-66
+980|code|BNE             loc_3B4|238-209
+982|code|B               loc_36E|202-231
+984|code|LDR             R0, [R5]|40-104
+986|code|ADD             SP, SP, #0x10|4-176
+988|code|POP             {elf-R6,PC}|112-189
+990|data|ALIGN 0x10|0-191
+992|data|DCD grub_real_dprintf|184-9-0-0
+996|data|DCD aKernElfC; "kern/elf.c"|140-8-0-0
+1000|data|DCD aElf; "elf"|151-8-0-0
+1004|data|DCD aLoadingProgram; "Loading program headers at 0x%llx, size"...|155-8-0-0
+1008|data|DCD grub_malloc|172-9-0-0
+1012|data|DCD grub_errno|156-9-0-0
+1016|data|DCD grub_file_seek|152-9-0-0
+1020|data|DCD aPrematureEndOf; "premature end of file %s"|203-8-0-0
+1024|data|DCD grub_error|188-9-0-0
+1028|data|DCD grub_file_read|164-9-0-0
+1032|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1036|code|SUB             SP, SP, #0x14|133-176
+1038|code|MOV             R8, elf|128-70
+1040|code|MOV             R9, base|137-70
+1042|code|STR             max_align_0, [SP,#0x38+max_align]|3-146
+1044|code|BL              grub_elf64_load_phdrs|255-247-167-255
+1048|code|LDR.W           R2, [elf,#0x48]|216-248-72-32
+1052|code|MOVS            R5, #1|1-37
+1054|code|LDR.W           R12, [SP,#0x38+max_align]|221-248-12-192
+1058|code|MOVS            R4, #0|0-36
+1060|code|ADD.W           R3, phdr, #0x38 ; '8'|2-241-56-3
+1064|code|MOV.W           R10, #0xFFFFFFFF|79-240-255-58
+1068|code|MOV.W           R11, #0xFFFFFFFF|79-240-255-59
+1072|code|MOV.W           LR, #0x38 ; '8'|79-240-56-14
+1076|code|MOVS            R0, #0|0-32
+1078|code|MOVS            R1, #0|0-33
+1080|code|STRD.W          R0, R1, [SP,#0x38+segments_end]|205-233-0-1
+1084|code|SUBS.W          R0, R3, #0x38 ; '8'|179-241-56-0
+1088|code|BNE             loc_452|7-209
+1090|code|CMP.W           base, #0|185-241-0-15
+1094|code|BEQ             loc_4A4|45-208
+1096|code|MOVS            R2, #0|0-34
+1098|code|MOVS            R3, #0|0-35
+1100|code|STRD.W          R2, R3, [base]|201-233-0-35
+1104|code|B               loc_4A4|40-224
+1106|code|LDRH.W          R1, [elf,#0x40]|184-248-64-16
+1110|code|MLA.W           R1, LR, R1, R2|14-251-1-33
+1114|code|CMP             phdr, R1|136-66
+1116|code|BCS             loc_442|241-210
+1118|code|LDR.W           R1, [R3,#-0x38]|83-248-56-28
+1122|code|CMP             R1, #1|1-41
+1124|code|BNE             loc_4A0|28-209
+1126|code|LDRD.W          phdr, R1, [R3,#-0x20]|83-233-8-1
+1130|code|ADDS            nr_phdrs, #1|1-52
+1132|code|LDRD.W          R6, R7, [R3,#-0x10]|83-233-4-103
+1136|code|CMP             R1, R11|89-69
+1138|code|IT EQ|8-191
+1140|code|CMPEQ           R0, R10|80-69
+1142|code|ITT CC|60-191
+1144|code|MOVCC           R10, R0|130-70
+1146|code|MOVCC           R11, R1|139-70
+1148|code|ADDS            R6, R6, R0|54-24
+1150|code|ADCS            R7, R1|79-65
+1152|code|LDRD.W          R0, R1, [SP,#0x38+segments_end]|221-233-0-1
+1156|code|CMP             R1, R7|185-66
+1158|code|IT EQ|8-191
+1160|code|CMPEQ           R0, R6|176-66
+1162|code|LDRD.W          R0, R1, [R3,#-8]|83-233-2-1
+1166|code|IT CC|56-191
+1168|code|STRDCC.W        R6, R7, [SP,#0x38+segments_end]|205-233-0-103
+1172|code|MOVS            R7, #0|0-39
+1174|code|CMP             R7, R1|143-66
+1176|code|IT EQ|8-191
+1178|code|CMPEQ           curr_align, R0|133-66
+1180|code|IT CC|56-191
+1182|code|MOVCC           curr_align, R0|5-70
+1184|code|ADDS            phdr, #0x38 ; '8'|56-51
+1186|code|B               loc_43C|203-231
+1188|code|CBNZ            nr_phdrs, loc_4AC|20-185
+1190|code|MOVS            phdr, #0x15|21-32
+1192|code|LDR             R1, =aNoProgramHeade; "no program headers present"|16-73
+1194|code|B               loc_4BC|7-224
+1196|code|LDRD.W          R2, R3, [SP,#0x38+segments_end]|221-233-0-35
+1200|code|CMP             R3, R11|91-69
+1202|code|IT EQ|8-191
+1204|code|CMPEQ           R2, R10|82-69
+1206|code|BCS             loc_4C4|5-210
+1208|code|LDR             R1, =aBadProgramHead; "bad program header load addresses"|13-73
+1210|code|MOVS            phdr, #0x15|21-32
+1212|code|LDR             R3, =grub_error|13-75
+1214|code|BLX             R3; grub_error|152-71
+1216|code|MOVS            R0, #0|0-32
+1218|code|B               loc_4E4|15-224
+1220|code|CMP.W           base, #0|185-241-0-15
+1224|code|BEQ             loc_4CE|1-208
+1226|code|STRD.W          R10, R11, [base]|201-233-0-171
+1230|code|CMP.W           R12, #0|188-241-0-15
+1234|code|BEQ             loc_4DE|4-208
+1236|code|MOVS            R3, #0|0-35
+1238|code|STR.W           curr_align, [R12]|204-248-0-80
+1242|code|STR.W           R3, [R12,#4]|204-248-4-48
+1246|code|LDR             R3, [SP,#0x38+segments_end]|0-155
+1248|code|RSB.W           phdr, R10, R3|202-235-3-0
+1252|code|ADD             SP, SP, #0x14|5-176
+1254|code|POP.W           {nr_phdrs-R11,PC}|189-232-240-143
+1258|data|ALIGN 4|0-191
+1260|data|DCD aNoProgramHeade; "no program headers present"|228-8-0-0
+1264|data|DCD aBadProgramHead; "bad program header load addresses"|255-8-0-0
+1268|data|DCD grub_error|188-9-0-0
+1272|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1276|code|SUB             SP, SP, #0x1C|135-176
+1278|code|MOV             R5, elf|5-70
+1280|code|MOV             R11, load_flags|155-70
+1282|code|STR             filename_0, [SP,#0x40+filename]|4-145
+1284|code|MOVS            R6, #0|0-38
+1286|code|STR             load_offset_0, [SP,#0x40+load_offset]|5-146
+1288|code|BL              grub_elf64_load_phdrs|255-247-45-255
+1292|code|LDR             R4, [elf,#0x48]|172-108
+1294|code|MOV.W           R7, #0xFFFFFFFF|79-240-255-55
+1298|code|ADDS            R4, #0x38 ; '8'|56-52
+1300|code|SUBS.W          R1, R4, #0x38 ; '8'|180-241-56-1
+1304|code|BNE             loc_526|5-209
+1306|code|LDR             R3, [SP,#0x40+base]|16-155
+1308|code|CMP             R3, #0|0-43
+1310|code|BEQ             loc_5F8|107-208
+1312|code|LDR             R3, [SP,#0x40+base]|16-155
+1314|code|STR             load_base, [R3]|31-96
+1316|code|B               loc_5F8|104-224
+1318|code|LDRH.W          R2, [elf,#0x40]|181-248-64-32
+1322|code|MOVS            R0, #0x38 ; '8'|56-32
+1324|code|LDR             R3, [elf,#0x48]|171-108
+1326|code|MLA.W           R3, R0, R2, R3|0-251-2-51
+1330|code|CMP             phdr, R3|153-66
+1332|code|BCS             loc_51A|241-210
+1334|code|LDR.W           R3, [R4,#-0x38]|84-248-56-60
+1338|code|CMP             R3, #1|1-43
+1340|code|BEQ             loc_548|4-208
+1342|code|TST.W           load_flags, #1|27-240-1-15
+1346|code|BEQ             loc_5F4|87-208
+1348|code|CMP             R3, #2|2-43
+1350|code|BNE             loc_5F4|85-209
+1352|code|AND.W           R2, load_flags, #6|11-240-6-2
+1356|code|LDR.W           R3, [R4,#-0x20]|84-248-32-60
+1360|code|CMP             R2, #2|2-42
+1362|code|BEQ             loc_55E|4-208
+1364|code|CMP             R2, #4|4-42
+1366|code|BNE             loc_562|4-209
+1368|code|BIC.W           load_addr, load_addr, #0xC0000000|35-240-64-67
+1372|code|B               loc_562|1-224
+1374|code|BIC.W           load_addr, load_addr, #0xF0000000|35-240-112-67
+1378|code|LDR             R2, [SP,#0x40+load_offset]|5-154
+1380|code|MOVS            phdr, #0x7D ; '}'|125-33
+1382|code|LDR             R0, =aKernElfC; "kern/elf.c"|40-72
+1384|code|ADD.W           R10, R2, load_addr|2-235-3-10
+1388|code|MOVS            R3, #0|0-35
+1390|code|STR.W           load_addr, [SP,#0x40+var_40]|205-248-0-160
+1394|code|CMP             load_base, load_addr|87-69
+1396|code|STR             R3, [SP,#0x40+var_3C]|1-147
+1398|code|LDRD.W          R2, R3, [R4,#-0x10]|84-233-4-35
+1402|code|IT CS|40-191
+1404|code|MOVCS           load_base, load_addr|87-70
+1406|code|LDR.W           R12, =grub_real_dprintf|223-248-172-192
+1410|code|STRD.W          R2, R3, [SP,#0x40+var_38]|205-233-2-35
+1414|code|LDR             R2, =aElf; "elf"|33-74
+1416|code|LDR             R3, =aLoadingSegment; "Loading segment at 0x%llx, size 0x%llx"...|33-75
+1418|code|BLX             R12; grub_real_dprintf|224-71
+1420|code|LDR             R0, [elf]|40-104
+1422|code|LDRD.W          R2, R3, [R4,#-0x30]|84-233-12-35
+1426|code|LDR             R1, =grub_file_seek|32-73
+1428|code|BLX             R1; grub_file_seek|136-71
+1430|code|ADDS            R1, #1|1-49
+1432|code|IT EQ|8-191
+1434|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+1438|code|BEQ             loc_5FE|46-208
+1440|code|LDRD.W          R2, R3, [R4,#-0x18]|84-233-6-35
+1444|code|ORRS.W          R1, R2, R3|82-234-3-1
+1448|code|BEQ             loc_5D0|18-208
+1450|code|LDR             R3, =grub_file_read|27-75
+1452|code|MOV             R1, load_addr|81-70
+1454|code|LDR             R0, [elf]|40-104
+1456|code|BLX             R3; grub_file_read|152-71
+1458|code|LDR.W           R3, [R4,#-0x18]|84-248-24-60
+1462|code|CMP             read, R3|152-66
+1464|code|BEQ             loc_5D0|10-208
+1466|code|LDR             R3, =grub_errno|24-75
+1468|code|LDR             R2, [R3]|26-104
+1470|code|MOV             R4, R3|28-70
+1472|code|CBNZ            R2, loc_5CC|34-185
+1474|code|MOVS            read, #6|6-32
+1476|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|22-73
+1478|code|LDR             R2, [SP,#0x40+filename]|4-154
+1480|code|LDR             R3, =grub_error|22-75
+1482|code|BLX             R3; grub_error|152-71
+1484|code|LDR             R0, [R4]|32-104
+1486|code|B               loc_602|24-224
+1488|code|LDRD.W          R2, R3, [R4,#-0x18]|84-233-6-35
+1492|code|LDRD.W          R8, R9, [R4,#-0x10]|84-233-4-137
+1496|code|CMP             R3, R9|75-69
+1498|code|IT EQ|8-191
+1500|code|CMPEQ           R2, R8|66-69
+1502|code|BCS             loc_5EE|6-210
+1504|code|ADD.W           R0, load_addr, R2|10-235-2-0
+1508|code|MOVS            R1, #0|0-33
+1510|code|RSB.W           R2, R2, R8|194-235-8-2
+1514|code|LDR             R3, =grub_memset|15-75
+1516|code|BLX             R3; grub_memset|152-71
+1518|code|LDR.W           R3, [R4,#-0x10]|84-248-16-60
+1522|code|ADD             load_size, R3|30-68
+1524|code|ADDS            phdr, #0x38 ; '8'|56-52
+1526|code|B               loc_514|141-231
+1528|code|LDR             R3, [SP,#0x40+size]|17-155
+1530|code|CBZ             R3, loc_5FE|3-177
+1532|code|STR             load_size, [R3]|30-96
+1534|code|LDR             R3, =grub_errno|7-75
+1536|code|LDR             R0, [R3]|24-104
+1538|code|ADD             SP, SP, #0x1C|7-176
+1540|code|POP.W           {R4-load_flags,PC}|189-232-240-143
+1544|data|DCD aKernElfC; "kern/elf.c"|140-8-0-0
+1548|data|DCD aElf; "elf"|151-8-0-0
+1552|data|DCD aLoadingSegment; "Loading segment at 0x%llx, size 0x%llx"...|33-9-0-0
+1556|data|DCD grub_file_seek|152-9-0-0
+1560|data|DCD grub_file_read|164-9-0-0
+1564|data|DCD grub_errno|156-9-0-0
+1568|data|DCD aPrematureEndOf; "premature end of file %s"|203-8-0-0
+1572|data|DCD grub_error|188-9-0-0
+1576|data|DCD grub_memset|160-9-0-0
+1580|data|DCD grub_real_dprintf|184-9-0-0
+1584|code|PUSH            {R3-R5,LR}|56-181
+1586|code|MOV             R4, elf|4-70
+1588|code|LDRH            R3, [elf,#0x18]|3-139
+1590|code|MOVS            R5, #0x38 ; '8'|56-37
+1592|code|LDR             R2, [elf,#0x24]|66-106
+1594|code|REV16           R3, R3|91-186
+1596|code|STRH            R3, [elf,#0x18]|3-131
+1598|code|LDRH            R3, [elf,#0x1A]|67-139
+1600|code|REV             R2, R2|18-186
+1602|code|REV16           R3, R3|91-186
+1604|code|STRH            R3, [elf,#0x1A]|67-131
+1606|code|LDR             R3, [elf,#0x1C]|195-105
+1608|code|REV             R3, R3|27-186
+1610|code|STR             R3, [elf,#0x1C]|195-97
+1612|code|LDR             R3, [elf,#0x20]|3-106
+1614|code|STR             R2, [elf,#0x20]|2-98
+1616|code|REV             R3, R3|27-186
+1618|code|STR             R3, [elf,#0x24]|67-98
+1620|code|LDR             R3, [elf,#0x28]|131-106
+1622|code|LDR             R2, [elf,#0x2C]|194-106
+1624|code|REV             R3, R3|27-186
+1626|code|STR             R3, [elf,#0x2C]|195-98
+1628|code|LDR             R3, [elf,#0x30]|3-107
+1630|code|REV             R2, R2|18-186
+1632|code|STR             R2, [elf,#0x28]|130-98
+1634|code|REV             R3, R3|27-186
+1636|code|LDR             R2, [elf,#0x34]|66-107
+1638|code|STR             R3, [elf,#0x34]|67-99
+1640|code|LDR             R3, [elf,#0x38]|131-107
+1642|code|REV             R2, R2|18-186
+1644|code|STR             R2, [elf,#0x30]|2-99
+1646|code|REV             R3, R3|27-186
+1648|code|STR             R3, [elf,#0x38]|131-99
+1650|code|LDRH            R3, [elf,#0x3C]|131-143
+1652|code|REV16           R3, R3|91-186
+1654|code|STRH            R3, [elf,#0x3C]|131-135
+1656|code|LDRH            R3, [elf,#0x3E]|195-143
+1658|code|REV16           R3, R3|91-186
+1660|code|STRH            R3, [elf,#0x3E]|195-135
+1662|code|LDRH.W          R3, [elf,#0x40]|176-248-64-48
+1666|code|REV16           R3, R3|91-186
+1668|code|STRH.W          R3, [elf,#0x40]|160-248-64-48
+1672|code|LDRH.W          R3, [elf,#0x42]|176-248-66-48
+1676|code|REV16           R3, R3|91-186
+1678|code|STRH.W          R3, [elf,#0x42]|160-248-66-48
+1682|code|LDRH.W          R3, [elf,#0x44]|176-248-68-48
+1686|code|REV16           R3, R3|91-186
+1688|code|STRH.W          R3, [elf,#0x44]|160-248-68-48
+1692|code|LDRH.W          R3, [elf,#0x46]|176-248-70-48
+1696|code|REV16           R3, R3|91-186
+1698|code|STRH.W          R3, [elf,#0x46]|160-248-70-48
+1702|code|BL              grub_elf64_load_phdrs|255-247-94-254
+1706|code|LDR             R0, [elf,#0x48]|160-108
+1708|code|ADD.W           R3, phdr, #0x38 ; '8'|0-241-56-3
+1712|code|SUBS.W          R1, R3, #0x38 ; '8'|179-241-56-1
+1716|code|BEQ             locret_74E|75-208
+1718|code|LDRH.W          R2, [elf,#0x40]|180-248-64-32
+1722|code|MLA.W           R2, R5, R2, R0|5-251-2-2
+1726|code|CMP             phdr, R2|145-66
+1728|code|BCS             locret_74E|69-210
+1730|code|LDR.W           R2, [R3,#-0x38]|83-248-56-44
+1734|code|LDR.W           phdr, [R3,#-0x2C]|83-248-44-28
+1738|code|REV             R2, R2|18-186
+1740|code|STR.W           R2, [R3,#-0x38]|67-248-56-44
+1744|code|LDR.W           R2, [R3,#-0x34]|83-248-52-44
+1748|code|REV             R1, R1|9-186
+1750|code|REV             R2, R2|18-186
+1752|code|STR.W           R2, [R3,#-0x34]|67-248-52-44
+1756|code|LDR.W           R2, [R3,#-0x30]|83-248-48-44
+1760|code|STR.W           R1, [R3,#-0x30]|67-248-48-28
+1764|code|REV             R2, R2|18-186
+1766|code|LDR.W           R1, [R3,#-0x24]|83-248-36-28
+1770|code|STR.W           R2, [R3,#-0x2C]|67-248-44-44
+1774|code|LDR.W           R2, [R3,#-0x28]|83-248-40-44
+1778|code|REV             R1, R1|9-186
+1780|code|STR.W           R1, [R3,#-0x28]|67-248-40-28
+1784|code|REV             R2, R2|18-186
+1786|code|LDR.W           R1, [R3,#-0x1C]|83-248-28-28
+1790|code|STR.W           R2, [R3,#-0x24]|67-248-36-44
+1794|code|LDR.W           R2, [R3,#-0x20]|83-248-32-44
+1798|code|REV             R1, R1|9-186
+1800|code|STR.W           R1, [R3,#-0x20]|67-248-32-28
+1804|code|REV             R2, R2|18-186
+1806|code|LDR.W           R1, [R3,#-0x14]|83-248-20-28
+1810|code|STR.W           R2, [R3,#-0x1C]|67-248-28-44
+1814|code|LDR.W           R2, [R3,#-0x18]|83-248-24-44
+1818|code|REV             R1, R1|9-186
+1820|code|STR.W           R1, [R3,#-0x18]|67-248-24-28
+1824|code|REV             R2, R2|18-186
+1826|code|LDR.W           R1, [R3,#-0xC]|83-248-12-28
+1830|code|STR.W           R2, [R3,#-0x14]|67-248-20-44
+1834|code|LDR.W           R2, [R3,#-0x10]|83-248-16-44
+1838|code|REV             R1, R1|9-186
+1840|code|STR.W           R1, [R3,#-0x10]|67-248-16-28
+1844|code|REV             R2, R2|18-186
+1846|code|LDR.W           R1, [R3,#-4]|83-248-4-28
+1850|code|STR.W           R2, [R3,#-0xC]|67-248-12-44
+1854|code|LDR.W           R2, [R3,#-8]|83-248-8-44
+1858|code|REV             R1, R1|9-186
+1860|code|REV             R2, R2|18-186
+1862|code|STMDB.W         R3, {R1,R2}|3-233-6-0
+1866|code|ADDS            phdr, #0x38 ; '8'|56-51
+1868|code|B               loc_6B0|176-231
+1870|code|POP             {R3-R5,PC}|56-189
+1872|code|PUSH            {R3,LR}|8-181
+1874|code|LDR             R3, [elf,#0x1C]|195-105
+1876|code|CMP             R3, #1|1-43
+1878|code|BEQ             loc_762|4-208
+1880|code|LDR             R1, =aInvalidArchInd; "invalid arch-independent ELF magic"|3-73
+1882|code|MOVS            elf, #0x15|21-32
+1884|code|LDR             R3, =grub_error|3-75
+1886|code|BLX             R3; grub_error|152-71
+1888|code|POP             {R3,PC}|8-189
+1890|code|MOVS            elf, #0|0-32
+1892|code|POP             {R3,PC}|8-189
+1894|data|ALIGN 4|0-191
+1896|data|DCD aInvalidArchInd; "invalid arch-independent ELF magic"|73-9-0-0
+1900|data|DCD grub_error|188-9-0-0
+1904|code|PUSH            {R4-R6,LR}|112-181
+1906|code|MOV             R6, file|6-70
+1908|code|LDR             R3, =grub_zalloc|47-75
+1910|code|MOVS            file, #0x50 ; 'P'|80-32
+1912|code|MOV             R5, filename|13-70
+1914|code|BLX             R3; grub_zalloc|152-71
+1916|code|MOV             R4, elf|4-70
+1918|code|CMP             elf, #0|0-40
+1920|code|BEQ             loc_830|86-208
+1922|code|STR             file, [elf]|6-96
+1924|code|MOVS            R2, #0|0-34
+1926|code|MOV             elf, file|48-70
+1928|code|MOVS            R3, #0|0-35
+1930|code|LDR             R1, =grub_file_seek|43-73
+1932|code|BLX             R1; grub_file_seek|136-71
+1934|code|ADDS            R1, #1|1-49
+1936|code|IT EQ|8-191
+1938|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+1942|code|BEQ             fail|66-208
+1944|code|LDR             R0, [elf]|32-104
+1946|code|ADD.W           R1, elf, #8|4-241-8-1
+1950|code|MOVS            R2, #0x40 ; '@'|64-34
+1952|code|LDR             R3, =grub_file_read|38-75
+1954|code|BLX             R3; grub_file_read|152-71
+1956|code|CMP             R0, #0x40 ; '@'|64-40
+1958|code|BEQ             loc_7BC|9-208
+1960|code|LDR             R3, =grub_errno|37-75
+1962|code|LDR             R3, [R3]|27-104
+1964|code|CMP             R3, #0|0-43
+1966|code|BNE             fail|54-209
+1968|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|36-73
+1970|code|MOV             R2, filename|42-70
+1972|code|LDR             R3, =grub_error|36-75
+1974|code|MOVS            R0, #6|6-32
+1976|code|BLX             R3; grub_error|152-71
+1978|code|B               fail|48-224
+1980|code|LDR             R2, [elf,#8]|162-104
+1982|code|LDR             R3, =0x464C457F|35-75
+1984|code|CMP             R2, R3|154-66
+1986|code|BNE             loc_7CA|2-209
+1988|code|LDRB            R3, [elf,#0xE]|163-123
+1990|code|CMP             R3, #1|1-43
+1992|code|BEQ             loc_7D0|2-208
+1994|code|MOVS            R0, #0x15|21-32
+1996|code|LDR             R1, =aInvalidArchInd; "invalid arch-independent ELF magic"|32-73
+1998|code|B               loc_80E|30-224
+2000|code|LDRB            R3, [elf,#0xC]|35-123
+2002|code|CMP             R3, #1|1-43
+2004|code|BEQ             loc_7DC|2-208
+2006|code|CMP             R3, #2|2-43
+2008|code|BEQ             loc_7F0|10-208
+2010|code|B               loc_80A|22-224
+2012|code|LDRB            R3, [elf,#0xD]|99-123
+2014|code|CMP             R3, #1|1-43
+2016|code|BEQ             loc_7E8|2-208
+2018|code|MOV             R0, elf; elf|32-70
+2020|code|BL              grub_elf32_byteswap_header|255-247-78-253
+2024|code|MOV             R0, elf; elf|32-70
+2026|code|BL              grub_elf32_check_version|255-247-168-253
+2030|code|B               loc_802|8-224
+2032|code|LDRB            R3, [elf,#0xD]|99-123
+2034|code|CMP             R3, #1|1-43
+2036|code|BEQ             loc_7FC|2-208
+2038|code|MOV             R0, elf; elf|32-70
+2040|code|BL              grub_elf64_byteswap_header|255-247-26-255
+2044|code|MOV             R0, elf; elf|32-70
+2046|code|BL              grub_elf64_check_version|255-247-167-255
+2050|code|CBZ             R0, loc_814|56-177
+2052|code|LDR             R3, =grub_errno|14-75
+2054|code|LDR             R0, [R3]|24-104
+2056|code|B               loc_812|3-224
+2058|code|LDR             R1, =aUnrecognizedEl; "unrecognized ELF class"|18-73
+2060|code|MOVS            R0, #0x15|21-32
+2062|code|LDR             R3, =grub_error|14-75
+2064|code|BLX             R3; grub_error|152-71
+2066|code|CBNZ            R0, fail|32-185
+2068|code|MOV             R0, filename|40-70
+2070|code|LDR             R3, =grub_strdup|16-75
+2072|code|BLX             R3; grub_strdup|152-71
+2074|code|STR             R0, [elf,#0x4C]|224-100
+2076|code|CBNZ            R0, loc_830|64-185
+2078|code|LDR             filename, =grub_free|15-77
+2080|code|LDR             R0, [elf,#0x4C]|224-108
+2082|code|BLX             R5; grub_free|168-71
+2084|code|LDR             R0, [elf,#0x48]|160-108
+2086|code|BLX             R5; grub_free|168-71
+2088|code|MOV             R0, elf|32-70
+2090|code|BLX             R5; grub_free|168-71
+2092|code|MOVS            R0, #0|0-32
+2094|code|POP             {elf-file,PC}|112-189
+2096|code|MOV             R0, elf|32-70
+2098|code|POP             {elf-file,PC}|112-189
+2100|data|DCD grub_zalloc|168-9-0-0
+2104|data|DCD grub_file_seek|152-9-0-0
+2108|data|DCD grub_file_read|164-9-0-0
+2112|data|DCD grub_errno|156-9-0-0
+2116|data|DCD aPrematureEndOf; "premature end of file %s"|203-8-0-0
+2120|data|DCD grub_error|188-9-0-0
+2124|data|DCD 0x464C457F|127-69-76-70
+2128|data|DCD aInvalidArchInd; "invalid arch-independent ELF magic"|73-9-0-0
+2132|data|DCD aUnrecognizedEl; "unrecognized ELF class"|108-9-0-0
+2136|data|DCD grub_strdup|148-9-0-0
+2140|data|DCD grub_free|192-9-0-0
+2144|code|PUSH            {R3-R5,LR}|56-181
+2146|code|MOV             R4, name|4-70
+2148|code|LDR             R3, =grub_file_open|7-75
+2150|code|BLX             R3; grub_file_open|152-71
+2152|code|MOV             R5, file|5-70
+2154|code|CBZ             file, locret_87E|64-177
+2156|code|MOV             R1, name; filename|33-70
+2158|code|BL              grub_elf_file_0|255-247-127-255
+2162|code|MOV             name, elf|4-70
+2164|code|CBNZ            elf, loc_880|32-185
+2166|code|MOV             elf, file|40-70
+2168|code|LDR             R3, =grub_file_close|3-75
+2170|code|BLX             R3; grub_file_close|152-71
+2172|code|B               loc_880|0-224
+2174|code|POP             {R3-R5,PC}|56-189
+2176|code|MOV             R0, elf|32-70
+2178|code|POP             {R3-file,PC}|56-189
+2180|data|DCD grub_file_open|180-9-0-0
+2184|data|DCD grub_file_close|176-9-0-0
+2188|data|DCB "kern/elf.c",0|107-101-114-110-47-101-108-102-46-99-0
+2199|data|DCB "elf",0|101-108-102-0
+2203|data|DCB "Loading program headers at 0x%llx, size 0x%lx.",0xA,0|76-111-97-100-105-110-103-32-112-114-111-103-114-97-109-32-104-101-97-100-101-114-115-32-97-116-32-48-120-37-108-108-120-44-32-115-105-122-101-32-48-120-37-108-120-46-10-0
+2251|data|DCB "premature end of file %s",0|112-114-101-109-97-116-117-114-101-32-101-110-100-32-111-102-32-102-105-108-101-32-37-115-0
+2276|data|DCB "no program headers present",0|110-111-32-112-114-111-103-114-97-109-32-104-101-97-100-101-114-115-32-112-114-101-115-101-110-116-0
+2303|data|DCB "bad program header load addresses",0|98-97-100-32-112-114-111-103-114-97-109-32-104-101-97-100-101-114-32-108-111-97-100-32-97-100-100-114-101-115-115-101-115-0
+2337|data|DCB "Loading segment at 0x%llx, size 0x%llx",0xA,0|76-111-97-100-105-110-103-32-115-101-103-109-101-110-116-32-97-116-32-48-120-37-108-108-120-44-32-115-105-122-101-32-48-120-37-108-108-120-10-0
+2377|data|DCB "invalid arch-independent ELF magic",0|105-110-118-97-108-105-100-32-97-114-99-104-45-105-110-100-101-112-101-110-100-101-110-116-32-69-76-70-32-109-97-103-105-99-0
+2412|data|DCB "unrecognized ELF class",0|117-110-114-101-99-111-103-110-105-122-101-100-32-69-76-70-32-99-108-97-115-115-0
+2435|data||255
+2436|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,41 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|MOVS            R0, #1|1-32
+4|code|LDR             R3, =grub_machine_fini|1-75
+6|code|BLX             R3; grub_machine_fini|152-71
+8|code|B               loc_8|254-231
+10|data|ALIGN 4|0-191
+12|data|DCD grub_machine_fini|200-0-0-0
+16|code|PUSH            {R3,LR}|8-181
+18|code|LDR             R3, =(grub_halt+1)|1-75
+20|code|BLX             R3; grub_halt|152-71
+22|code|NOP|0-191
+24|data|DCD grub_halt+1|1-0-0-0
+28|code|PUSH            {mod,R1,R4,LR}|19-181
+30|code|MOVS            R2, #0|0-34
+32|code|LDR             R1, =(grub_cmd_halt+1)|4-73
+34|code|STR             R2, [SP,#0x10+var_10]|0-146
+36|code|LDR             R3, =aHaltsTheComput; "Halts the computer.  This command does "...|4-75
+38|code|LDR             R4, =grub_register_command_prio|5-76
+40|code|LDR             mod, =aHalt; "halt"|5-72
+42|code|BLX             R4; grub_register_command_prio|160-71
+44|code|LDR             R3, =cmd|5-75
+46|code|STR             R0, [R3]|24-96
+48|code|ADD             SP, SP, #8|2-176
+50|code|POP             {R4,PC}|16-189
+52|data|DCD grub_cmd_halt+1|17-0-0-0
+56|data|DCD aHaltsTheComput; "Halts the computer.  This command does "...|97-0-0-0
+60|data|DCD grub_register_command_prio|204-0-0-0
+64|data|DCD aHalt; "halt"|92-0-0-0
+68|data|DCD cmd|196-0-0-0
+72|code|PUSH            {R3,LR}|8-181
+74|code|LDR             R3, =cmd|2-75
+76|code|LDR             R0, [R3]|24-104
+78|code|LDR             R3, =grub_unregister_command|2-75
+80|code|BLX             R3; grub_unregister_command|152-71
+82|code|POP             {R3,PC}|8-189
+84|data|DCD cmd|196-0-0-0
+88|data|DCD grub_unregister_command|208-0-0-0
+92|data|DCB "halt",0|104-97-108-116-0
+97|data|DCB "Halts the computer.  This command does not work on all firmware "|72-97-108-116-115-32-116-104-101-32-99-111-109-112-117-116-101-114-46-32-32-84-104-105-115-32-99-111-109-109-97-110-100-32-100-111-101-115-32-110-111-116-32-119-111-114-107-32-111-110-32-97-108-108-32-102-105-114-109-119-97-114-101-32-105-109-112-108-101-109-101-110-116-97-116-105-111-110-115-46-0
+179|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

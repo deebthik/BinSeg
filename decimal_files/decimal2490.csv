@@ -1,0 +1,147 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {ctxt-args,R4-R11,LR}|45-233-247-79
+4|code|MOV             R7, argc|15-70
+6|code|LDR.W           R8, [ctxt,#4]|208-248-4-128
+10|code|MOVS            R6, #0|0-38
+12|code|LDR.W           R9, =grub_xputs|223-248-0-145
+16|code|STR             args, [SP,#0x30+var_2C]|1-146
+18|code|LDR.W           R5, [state]|216-248-0-80
+22|code|CLZ.W           R5, R5|181-250-133-245
+26|code|LSRS            R5, R5, #5|109-9
+28|code|CMP             i, argc|190-66
+30|code|BGE             loc_DC|93-218
+32|code|LDR             R3, [SP,#0x30+var_2C]|1-155
+34|code|LDR.W           R4, [R3,i,LSL#2]|83-248-38-64
+38|code|LDR             R3, =grub_strlen|50-75
+40|code|MOV             R0, arg|32-70
+42|code|BLX             R3; grub_strlen|152-71
+44|code|LDR             R3, =grub_malloc|49-75
+46|code|ADDS            R0, #1|1-48
+48|code|BLX             R3; grub_malloc|152-71
+50|code|MOV             R10, p|130-70
+52|code|CBZ             p, loc_48|64-177
+54|code|MOV             R3, p|3-70
+56|code|MOV.W           LR, #0xB|79-240-11-14
+60|code|MOVS            p, #9|9-32
+62|code|MOV.W           R12, #0xA|79-240-10-12
+66|code|MOV.W           R11, #7|79-240-7-11
+70|code|B               loc_72|20-224
+72|code|LDR             R3, =grub_errno|43-75
+74|code|LDR             p, [R3]|24-104
+76|code|B               loc_EA|77-224
+78|code|CMP             R1, #0x5C ; '\'|92-41
+80|code|BNE             loc_D0|62-209
+82|code|LDR.W           R2, [state,#8]|216-248-8-32
+86|code|CMP             R2, #0|0-42
+88|code|BEQ             loc_D0|58-208
+90|code|LDRB            R2, [R4,#1]|98-120
+92|code|CBZ             R2, loc_78|98-177
+94|code|CMP             R2, #0x66 ; 'f'|102-42
+96|code|BEQ             loc_C0|46-208
+98|code|BHI             loc_98|25-216
+100|code|CMP             R2, #0x61 ; 'a'|97-42
+102|code|BEQ             loc_BA|40-208
+104|code|CMP             R2, #0x63 ; 'c'|99-42
+106|code|BEQ             loc_B6|36-208
+108|code|CMP             R2, #0x5C ; '\'|92-42
+110|code|BEQ             loc_C2|40-208
+112|code|ADDS            R4, #2|2-52
+114|code|LDRB            R1, [arg]|33-120
+116|code|CMP             R1, #0|0-41
+118|code|BNE             loc_4E|234-209
+120|code|MOVS            R2, #0|0-34
+122|code|MOV             R0, unescaped|80-70
+124|code|STRB            R2, [p]|26-112
+126|code|LDR.W           p, [R9]|217-248-0-48
+130|code|BLX             R3|152-71
+132|code|LDR             R3, =grub_free|29-75
+134|code|MOV             R0, unescaped|80-70
+136|code|BLX             R3; grub_free|152-71
+138|code|SUBS            R3, argc, #1|123-30
+140|code|CMP             i, R3|158-66
+142|code|BEQ             loc_D8|35-208
+144|code|LDR             R3, =grub_printf|27-75
+146|code|LDR             R0, =unk_1AC|28-72
+148|code|BLX             R3; grub_printf|152-71
+150|code|B               loc_D8|31-224
+152|code|CMP             R2, #0x72 ; 'r'|114-42
+154|code|BEQ             loc_C6|20-208
+156|code|BHI             loc_A8|4-216
+158|code|CMP             R2, #0x6E ; 'n'|110-42
+160|code|BNE             loc_70|230-209
+162|code|STRB.W          R12, [R3]|131-248-0-192
+166|code|B               loc_CC|17-224
+168|code|CMP             R2, #0x74 ; 't'|116-42
+170|code|BEQ             loc_CA|14-208
+172|code|CMP             R2, #0x76 ; 'v'|118-42
+174|code|BNE             loc_70|223-209
+176|code|STRB.W          LR, [R3]|131-248-0-224
+180|code|B               loc_CC|10-224
+182|code|MOVS            R5, #0|0-37
+184|code|B               loc_70|218-231
+186|code|STRB.W          R11, [R3]|131-248-0-176
+190|code|B               loc_CC|5-224
+192|code|MOVS            R2, #0xC|12-34
+194|code|STRB            R2, [R3]|26-112
+196|code|B               loc_CC|2-224
+198|code|MOVS            R2, #0xD|13-34
+200|code|B               loc_C2|251-231
+202|code|STRB            R0, [R3]|24-112
+204|code|ADDS            R3, #1|1-51
+206|code|B               loc_70|207-231
+208|code|STRB            R1, [R3]|25-112
+210|code|ADDS            arg, #1|1-52
+212|code|ADDS            R3, #1|1-51
+214|code|B               loc_72|204-231
+216|code|ADDS            i, #1|1-54
+218|code|B               loc_1C|159-231
+220|code|CBZ             R5, loc_E4|21-177
+222|code|LDR             R0, =unk_1AE|10-72
+224|code|LDR             R3, =grub_printf|7-75
+226|code|BLX             R3; grub_printf|152-71
+228|code|LDR             R3, =grub_refresh|9-75
+230|code|BLX             R3; grub_refresh|152-71
+232|code|MOVS            R0, #0|0-32
+234|code|ADD             SP, SP, #0xC|3-176
+236|code|POP.W           {R4-R11,PC}|189-232-240-143
+240|data|DCD grub_strlen|64-2-0-0
+244|data|DCD grub_malloc|88-2-0-0
+248|data|DCD grub_errno|76-2-0-0
+252|data|DCD grub_free|92-2-0-0
+256|data|DCD grub_printf|80-2-0-0
+260|data|DCD unk_1AC|172-1-0-0
+264|data|DCD unk_1AE|174-1-0-0
+268|data|DCD grub_refresh|84-2-0-0
+272|data|DCD grub_xputs|72-2-0-0
+276|code|LDR             R3, =aDisplayALineOf; "Display a line of text."|7-75
+278|code|MOV.W           R2, #0x180|79-244-192-114
+282|code|PUSH            {mod,R1,R4,LR}|19-181
+284|code|STR             R3, [SP,#0x10+var_10]|0-147
+286|code|LDR             R3, =options|6-75
+288|code|LDR             R1, =(grub_cmd_echo+1)|6-73
+290|code|LDR             R4, =grub_register_extcmd|7-76
+292|code|STR             R3, [SP,#0x10+var_C]|1-147
+294|code|LDR             mod, =aEcho; "echo"|7-72
+296|code|LDR             R3, =aENString; "[-e|-n] STRING"|7-75
+298|code|BLX             R4; grub_register_extcmd|160-71
+300|code|LDR             R3, =cmd|7-75
+302|code|STR             R0, [R3]|24-96
+304|code|ADD             SP, SP, #8|2-176
+306|code|POP             {R4,PC}|16-189
+308|data|DCD aDisplayALineOf; "Display a line of text."|196-1-0-0
+312|data|DCD options|100-1-0-0
+316|data|DCD grub_cmd_echo+1|1-0-0-0
+320|data|DCD grub_register_extcmd|96-2-0-0
+324|data|DCD aEcho; "echo"|176-1-0-0
+328|data|DCD aENString; "[-e|-n] STRING"|181-1-0-0
+332|data|DCD cmd|60-2-0-0
+336|code|PUSH            {R3,LR}|8-181
+338|code|LDR             R3, =cmd|2-75
+340|code|LDR             R0, [R3]|24-104
+342|code|LDR             R3, =grub_unregister_extcmd|2-75
+344|code|BLX             R3; grub_unregister_extcmd|152-71
+346|code|POP             {R3,PC}|8-189
+348|data|DCD cmd|60-2-0-0
+352|data|DCD grub_unregister_extcmd|68-2-0-0
+356|data|grub_arg_option <0, 0x6E, 0, aDoNotOutputThe, 0, ARG_TYPE_NONE>; "Do not output the trailing newline." ...|0-0-0-0-110-0-0-0-0-0-0-0-220-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-101-0-0-0-0-0-0-0-0-2-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+557|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

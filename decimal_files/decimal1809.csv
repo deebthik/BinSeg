@@ -1,0 +1,50 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|MOVS            R0, #1|1-32
+4|code|LDR             R3, =grub_machine_fini|5-75
+6|code|BLX             R3; grub_machine_fini|152-71
+8|code|LDR             R3, =grub_efi_system_table_0|5-75
+10|code|MOVS            R1, #0|0-33
+12|code|MOVS            R0, #2|2-32
+14|code|MOV             R2, R1|10-70
+16|code|LDR             R3, [R3]|27-104
+18|code|LDR             R3, [R3,#0x38]|155-107
+20|code|LDR             R4, [R3,#0x40]|28-108
+22|code|MOV             R3, R1|11-70
+24|code|BLX             R4|160-71
+26|code|B               loc_1A|254-231
+28|data|DCD grub_machine_fini|224-0-0-0
+32|data|DCD grub_efi_system_table_0|220-0-0-0
+36|code|PUSH            {R3,LR}|8-181
+38|code|LDR             R3, =(grub_halt+1)|1-75
+40|code|BLX             R3; grub_halt|152-71
+42|code|NOP|0-191
+44|data|DCD grub_halt+1|1-0-0-0
+48|code|PUSH            {mod,R1,R4,LR}|19-181
+50|code|MOVS            R2, #0|0-34
+52|code|LDR             R1, =(grub_cmd_halt+1)|4-73
+54|code|STR             R2, [SP,#0x10+var_10]|0-146
+56|code|LDR             R3, =aHaltsTheComput; "Halts the computer.  This command does "...|4-75
+58|code|LDR             R4, =grub_register_command_prio|5-76
+60|code|LDR             mod, =aHalt; "halt"|5-72
+62|code|BLX             R4; grub_register_command_prio|160-71
+64|code|LDR             R3, =cmd|5-75
+66|code|STR             R0, [R3]|24-96
+68|code|ADD             SP, SP, #8|2-176
+70|code|POP             {R4,PC}|16-189
+72|data|DCD grub_cmd_halt+1|37-0-0-0
+76|data|DCD aHaltsTheComput; "Halts the computer.  This command does "...|117-0-0-0
+80|data|DCD grub_register_command_prio|228-0-0-0
+84|data|DCD aHalt; "halt"|112-0-0-0
+88|data|DCD cmd|216-0-0-0
+92|code|PUSH            {R3,LR}|8-181
+94|code|LDR             R3, =cmd|2-75
+96|code|LDR             R0, [R3]|24-104
+98|code|LDR             R3, =grub_unregister_command|2-75
+100|code|BLX             R3; grub_unregister_command|152-71
+102|code|POP             {R3,PC}|8-189
+104|data|DCD cmd|216-0-0-0
+108|data|DCD grub_unregister_command|232-0-0-0
+112|data|DCB "halt",0|104-97-108-116-0
+117|data|DCB "Halts the computer.  This command does not work on all firmware "|72-97-108-116-115-32-116-104-101-32-99-111-109-112-117-116-101-114-46-32-32-84-104-105-115-32-99-111-109-109-97-110-100-32-100-111-101-115-32-110-111-116-32-119-111-114-107-32-111-110-32-97-108-108-32-102-105-114-109-119-97-114-101-32-105-109-112-108-101-109-101-110-116-97-116-105-111-110-115-46-0
+199|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

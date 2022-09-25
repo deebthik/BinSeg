@@ -1,0 +1,722 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|SUB.W           SP, SP, #0x210|173-245-4-125
+6|code|MOV             R6, data|6-70
+8|code|MOV             R5, R3|29-70
+10|code|MOV             data, SP|104-70
+12|code|ADD             R3, SP, #0x220+nbdata|4-171
+14|code|STR             R3, [SP,#0x220+nb_ack]|0-147
+16|code|ADD             R3, SP, #0x220+var_10|132-171
+18|code|STR             R3, [SP,#0x220+nb_ack.end]|3-147
+20|code|MOV             R4, R2|20-70
+22|code|LDR             R3, =grub_netbuff_clear|17-75
+24|code|BLX             R3; grub_netbuff_clear|152-71
+26|code|MOV.W           R1, #0x200|79-244-0-113
+30|code|LDR             R3, =grub_netbuff_reserve|16-75
+32|code|MOV             R0, SP|104-70
+34|code|BLX             R3; grub_netbuff_reserve|152-71
+36|code|MOV             R0, SP|104-70
+38|code|MOVS            R1, #4|4-33
+40|code|LDR             R3, =grub_netbuff_push|14-75
+42|code|BLX             R3; grub_netbuff_push|152-71
+44|code|CBNZ            err, loc_56|152-185
+46|code|LDR             R3, [SP,#0x220+nb_ack.data]|1-155
+48|code|MOVS            R2, #4|4-34
+50|code|STRB            R2, [tftph_ack,#1]|90-112
+52|code|UXTH            R2, R4|162-178
+54|code|STRB            err, [tftph_ack]|24-112
+56|code|LSRS            R1, R2, #8|17-10
+58|code|ORR.W           R1, R1, R2,LSL#8|65-234-2-33
+62|code|UXTH            R1, R1|137-178
+64|code|STRB            R1, [tftph_ack,#2]|153-112
+66|code|LSRS            R1, R1, #8|9-10
+68|code|STRB            R1, [tftph_ack,#3]|217-112
+70|code|MOV             R1, SP|105-70
+72|code|LDR.W           err, [data,#0x128]|214-248-40-1
+76|code|LDR             tftph_ack, =grub_net_send_udp_packet|6-75
+78|code|BLX             R3; grub_net_send_udp_packet|152-71
+80|code|CBNZ            err, loc_56|8-185
+82|code|STR             R4, [data,#0x18]|180-97
+84|code|STR             R5, [data,#0x1C]|245-97
+86|code|ADD.W           SP, SP, #0x210|13-245-4-125
+90|code|POP             {R4-data,PC}|112-189
+92|data|DCD grub_netbuff_clear|172-7-0-0
+96|data|DCD grub_netbuff_reserve|12-8-0-0
+100|data|DCD grub_netbuff_push|200-7-0-0
+104|data|DCD grub_net_send_udp_packet|204-7-0-0
+108|code|LDR             R2, [file,#4]|66-104
+110|code|PUSH            {R4,R5,LR}|48-181
+112|code|LDR             R2, [R2,#4]|82-104
+114|code|LDR             R3, [file,#0x44]|67-108
+116|code|LDR             R1, [R2,#0x14]|81-105
+118|code|CMP             R1, #0x31 ; '1'|49-41
+120|code|BHI             loc_9C|16-216
+122|code|LDR             R1, [R2,#0x24]|81-106
+124|code|CBNZ            R1, loc_80|1-185
+126|code|STR             R1, [R2,#0x28]|145-98
+128|code|LDRD.W          R4, R5, [data,#8]|211-233-2-69
+132|code|LDRD.W          file, R1, [data,#0x18]|211-233-6-1
+136|code|CMP             R1, R5|169-66
+138|code|IT EQ|8-191
+140|code|CMPEQ           R0, R4|160-66
+142|code|BCS             loc_9C|5-210
+144|code|MOV             R0, data|24-70
+146|code|MOV             R2, R4|34-70
+148|code|MOV             data, R5|43-70
+150|code|POP.W           {R4,R5,LR}|189-232-48-64
+154|code|B               ack|177-231
+156|code|MOVS            R0, #0|0-32
+158|code|POP             {R4,R5,PC}|48-189
+160|code|PUSH            {R4,LR}|16-181
+162|code|MOV.W           R2, #0x100|79-244-128-114
+166|code|MOV             R4, save|4-70
+168|code|LDR             R3, =grub_memmove|4-75
+170|code|ADDS            save, #4|4-48
+172|code|LDR             R1, =grub_errmsg|4-73
+174|code|BLX             R3; grub_memmove|152-71
+176|code|LDR             R3, =grub_errno|4-75
+178|code|LDR             R2, [R3]|26-104
+180|code|STR             R2, [save]|34-96
+182|code|MOVS            R2, #0|0-34
+184|code|STR             R2, [R3]|26-96
+186|code|POP             {save,PC}|16-189
+188|data|DCD grub_memmove|180-7-0-0
+192|data|DCD grub_errmsg|156-7-0-0
+196|data|DCD grub_errno|192-7-0-0
+200|code|PUSH            {R3-R7,LR}|248-181
+202|code|MOV             R4, R0|4-70
+204|code|LDR             R5, =grub_priority_queue_top|7-77
+206|code|LDR             R6, =grub_netbuff_free|8-78
+208|code|LDR             R7, =grub_priority_queue_pop|8-79
+210|code|LDR             R0, [R4]|32-104
+212|code|BLX             R5; grub_priority_queue_top|168-71
+214|code|CBZ             nb_p, loc_E2|32-177
+216|code|LDR             nb_p, [nb_p]|0-104
+218|code|BLX             R6; grub_netbuff_free|176-71
+220|code|LDR             R0, [R4]|32-104
+222|code|BLX             R7; grub_priority_queue_pop|184-71
+224|code|B               loc_D2|247-231
+226|code|LDR             nb_p, [R4]|32-104
+228|code|LDR             R3, =grub_priority_queue_destroy|4-75
+230|code|BLX             R3; grub_priority_queue_destroy|152-71
+232|code|POP             {R3-R7,PC}|248-189
+234|data|ALIGN 4|0-191
+236|data|DCD grub_priority_queue_top|8-8-0-0
+240|data|DCD grub_netbuff_free|152-7-0-0
+244|data|DCD grub_priority_queue_pop|160-7-0-0
+248|data|DCD grub_priority_queue_destroy|196-7-0-0
+252|code|PUSH            {R4,LR}|16-181
+254|code|SUB.W           SP, SP, #0x210|173-245-4-125
+258|code|LDR             R4, [file,#0x44]|68-108
+260|code|LDR.W           R3, [data,#0x128]|212-248-40-49
+264|code|CBZ             R3, loc_15E|75-179
+266|code|ADD             R3, SP, #0x218+nbdata|4-171
+268|code|MOV             file, SP|104-70
+270|code|STR             R3, [SP,#0x218+nb_err]|0-147
+272|code|ADD             R3, SP, #0x218+var_8|132-171
+274|code|STR             R3, [SP,#0x218+nb_err.end]|3-147
+276|code|LDR             R3, =grub_netbuff_clear|23-75
+278|code|BLX             R3; grub_netbuff_clear|152-71
+280|code|MOV.W           R1, #0x200|79-244-0-113
+284|code|LDR             R3, =grub_netbuff_reserve|22-75
+286|code|MOV             R0, SP|104-70
+288|code|BLX             R3; grub_netbuff_reserve|152-71
+290|code|MOV             R0, SP|104-70
+292|code|MOVS            R1, #0xB|11-33
+294|code|LDR             R3, =grub_netbuff_push|21-75
+296|code|BLX             R3; grub_netbuff_push|152-71
+298|code|CBZ             err, loc_132|16-177
+300|code|LDR             R3, =grub_print_error|20-75
+302|code|BLX             R3; grub_print_error|152-71
+304|code|B               loc_156|17-224
+306|code|LDR             R3, [SP,#0x218+nb_err.data]|1-155
+308|code|MOVS            R2, #5|5-34
+310|code|LDR             R1, =aClosed; "closed"|19-73
+312|code|STRB            err, [tftph]|24-112
+314|code|STRB            R2, [tftph,#1]|90-112
+316|code|MOVS            R2, #7|7-34
+318|code|STRB            err, [tftph,#2]|152-112
+320|code|STRB            err, [tftph,#3]|216-112
+322|code|ADDS            err, tftph, #4|24-29
+324|code|LDR             tftph, =grub_memmove|16-75
+326|code|BLX             R3; grub_memmove|152-71
+328|code|LDR.W           R0, [data,#0x128]|212-248-40-1
+332|code|MOV             R1, SP|105-70
+334|code|LDR             R3, =grub_net_send_udp_packet|15-75
+336|code|BLX             R3; grub_net_send_udp_packet|152-71
+338|code|CMP             err, #0|0-40
+340|code|BNE             loc_12C|234-209
+342|code|LDR.W           R0, [data,#0x128]|212-248-40-1
+346|code|LDR             R3, =grub_net_udp_close|13-75
+348|code|BLX             R3; grub_net_udp_close|152-71
+350|code|ADD.W           R0, data, #0x12C; data|4-245-150-112
+354|code|BL              destroy_pq|255-247-177-255
+358|code|MOV             R0, data|32-70
+360|code|LDR             R3, =grub_free|10-75
+362|code|BLX             R3; grub_free|152-71
+364|code|MOVS            R0, #0|0-32
+366|code|ADD.W           SP, SP, #0x210|13-245-4-125
+370|code|POP             {data,PC}|16-189
+372|data|DCD grub_netbuff_clear|172-7-0-0
+376|data|DCD grub_netbuff_reserve|12-8-0-0
+380|data|DCD grub_netbuff_push|200-7-0-0
+384|data|DCD grub_print_error|208-7-0-0
+388|data|DCD aClosed; "closed"|4-7-0-0
+392|data|DCD grub_memmove|180-7-0-0
+396|data|DCD grub_net_send_udp_packet|204-7-0-0
+400|data|DCD grub_net_udp_close|0-8-0-0
+404|data|DCD grub_free|240-7-0-0
+408|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+412|code|MOV             R6, file|6-70
+414|code|SUBW            SP, SP, #0x644|173-242-68-109
+418|code|MOV.W           file, #0x130|79-244-152-112
+422|code|LDR             R3, =grub_zalloc|124-75
+424|code|MOV             R7, filename|15-70
+426|code|BLX             R3; grub_zalloc|152-71
+428|code|MOV             R5, data|5-70
+430|code|CMP             data, #0|0-40
+432|code|BEQ.W           loc_2FA|0-240-163-128
+436|code|ADD             R3, SP, #0x668+open_data|25-171
+438|code|ADD             data, SP, #0x668+nb|12-168
+440|code|STR             R3, [SP,#0x668+nb]|12-147
+442|code|ADD.W           R3, SP, #0x668+var_28|13-245-200-99
+446|code|STR             R3, [SP,#0x668+nb.end]|15-147
+448|code|LDR             R3, =grub_netbuff_clear|118-75
+450|code|BLX             R3; grub_netbuff_clear|152-71
+452|code|MOVW            R1, #0x5DC|64-242-220-81
+456|code|LDR             R3, =grub_netbuff_reserve|117-75
+458|code|ADD             R0, SP, #0x668+nb|12-168
+460|code|BLX             R3; grub_netbuff_reserve|152-71
+462|code|ADD             R0, SP, #0x668+nb|12-168
+464|code|MOV.W           R1, #0x204|79-244-1-113
+468|code|LDR             R3, =grub_netbuff_push|115-75
+470|code|BLX             R3; grub_netbuff_push|152-71
+472|code|CMP             err, #0|0-40
+474|code|BNE.W           loc_390|64-240-217-128
+478|code|LDR             R2, [SP,#0x668+nb.data]|13-154
+480|code|MOV.W           R11, #1|79-240-1-11
+484|code|LDR.W           R8, =grub_strcpy|223-248-8-130
+488|code|MOV             R1, filename|57-70
+490|code|ADD.W           R9, tftph, #2|2-241-2-9
+494|code|LDR             R4, =grub_strlen|110-76
+496|code|STRB            err, [tftph]|16-112
+498|code|STRB.W          R11, [tftph,#1]|130-248-1-176
+502|code|MOV             err, rrq_0|72-70
+504|code|BLX             R8; grub_strcpy|192-71
+506|code|MOV             R0, filename|56-70
+508|code|BLX             R4; grub_strlen|160-71
+510|code|STR             R0, [SP,#0x668+nbd]|9-144
+512|code|MOV             R0, filename|56-70
+514|code|BLX             R4; grub_strlen|160-71
+516|code|LDR             R1, =aOctet; "octet"|105-73
+518|code|ADD             R0, R11|88-68
+520|code|ADD             rrq_0, R0|129-68
+522|code|MOV             R0, rrq_0|72-70
+524|code|BLX             R8; grub_strcpy|192-71
+526|code|LDR             R0, =aOctet; "octet"|103-72
+528|code|BLX             R4; grub_strlen|160-71
+530|code|MOV             R10, R0|130-70
+532|code|LDR             R0, =aOctet; "octet"|101-72
+534|code|BLX             R4; grub_strlen|160-71
+536|code|LDR             R1, =aBlksize; "blksize"|101-73
+538|code|ADD             R0, R11|88-68
+540|code|ADD.W           R12, rrq_0, R0|9-235-0-12
+544|code|STR.W           rrq_0, [SP,#0x668+rrq]|205-248-40-192
+548|code|MOV             R0, rrq_0|96-70
+550|code|BLX             R8; grub_strcpy|192-71
+552|code|LDR             R0, =aBlksize; "blksize"|97-72
+554|code|BLX             R4; grub_strlen|160-71
+556|code|MOV             R9, R0|129-70
+558|code|LDR             R0, =aBlksize; "blksize"|96-72
+560|code|BLX             R4; grub_strlen|160-71
+562|code|LDR.W           R12, [SP,#0x668+rrq]|221-248-40-192
+566|code|LDR             R1, =a1024; "1024"|95-73
+568|code|ADD             R0, R11|88-68
+570|code|ADD.W           R3, R12, R0|12-235-0-3
+574|code|STR             rrq_0, [SP,#0x668+rrq]|10-147
+576|code|MOV             R0, rrq_0|24-70
+578|code|BLX             R8; grub_strcpy|192-71
+580|code|LDR             R0, =a1024; "1024"|91-72
+582|code|BLX             R4; grub_strlen|160-71
+584|code|LDR             R3, [SP,#0x668+nbd]|9-155
+586|code|ADD             R3, R10|83-68
+588|code|MOV             R10, R3|154-70
+590|code|ADD.W           R10, R10, #8|10-241-8-10
+594|code|ADD             R9, R10|209-68
+596|code|STR             R0, [SP,#0x668+var_63C]|11-144
+598|code|LDR             R0, =a1024; "1024"|87-72
+600|code|BLX             R4; grub_strlen|160-71
+602|code|LDR             R3, [SP,#0x668+rrq]|10-155
+604|code|LDR             R1, =aTsize; "tsize"|86-73
+606|code|ADD             R0, R11|88-68
+608|code|ADD.W           R12, R3, R0|3-235-0-12
+612|code|STR.W           rrq_0, [SP,#0x668+rrq]|205-248-40-192
+616|code|MOV             R0, rrq_0|96-70
+618|code|BLX             R8; grub_strcpy|192-71
+620|code|LDR             R0, =aTsize; "tsize"|82-72
+622|code|BLX             R4; grub_strlen|160-71
+624|code|STR             R0, [SP,#0x668+nbd]|9-144
+626|code|LDR             R0, =aTsize; "tsize"|81-72
+628|code|BLX             R4; grub_strlen|160-71
+630|code|LDR.W           R12, [SP,#0x668+rrq]|221-248-40-192
+634|code|LDR             R1, =a0; "0"|80-73
+636|code|ADD             R0, R11|88-68
+638|code|ADD             R0, R12|96-68
+640|code|BLX             R8; grub_strcpy|192-71
+642|code|LDR             R0, =a0; "0"|78-72
+644|code|BLX             R4; grub_strlen|160-71
+646|code|LDR             R2, [SP,#0x668+var_63C]|11-154
+648|code|LDR             R3, [SP,#0x668+nbd]|9-155
+650|code|ADD             R9, R2|145-68
+652|code|ADD             R9, R3|153-68
+654|code|MOV             R8, R0|128-70
+656|code|LDR             R0, =a0; "0"|74-72
+658|code|BLX             R4; grub_strlen|160-71
+660|code|LDR             R1, [SP,#0x668+nb.data]|13-153
+662|code|ADD             R8, R9|200-68
+664|code|ADD             R0, SP, #0x668+nb|12-168
+666|code|ADD             hdrlen, R1|136-68
+668|code|LDR             R1, [SP,#0x668+nb.tail]|14-153
+670|code|LDR             R3, =grub_netbuff_unput|72-75
+672|code|RSB.W           R1, R8, R1|200-235-1-1
+676|code|BLX             R3; grub_netbuff_unput|152-71
+678|code|CMP             err, #0|0-40
+680|code|BNE             loc_390|114-209
+682|code|STR.W           R11, [file,#0x40]|198-248-64-176
+686|code|MOVS            err, #4|4-32
+688|code|STR             data, [file,#0x44]|117-100
+690|code|LDR             R1, =(cmp+1)|68-73
+692|code|LDR             R3, =grub_priority_queue_new|68-75
+694|code|BLX             R3; grub_priority_queue_new|152-71
+696|code|STR.W           R0, [data,#0x12C]|197-248-44-1
+700|code|CBZ             R0, loc_2FA|232-177
+702|code|LDR             R3, [file,#4]|115-104
+704|code|ADD.W           R8, SP, #0x668+addr|13-241-64-8
+708|code|MOV             R1, R8|65-70
+710|code|LDR             R3, [R3,#4]|91-104
+712|code|LDR             R0, [R3]|24-104
+714|code|LDR             R3, =grub_net_resolve_address|64-75
+716|code|BLX             R3; grub_net_resolve_address|152-71
+718|code|MOV             R4, err|4-70
+720|code|CBNZ            err, loc_32C|96-187
+722|code|MOVS            R3, #0x45 ; 'E'|69-35
+724|code|STR             R3, [SP,#0x668+var_658]|4-147
+726|code|LDR             R3, =(tftp_receive+1)|62-75
+728|code|STR             file, [SP,#0x668+var_650]|6-150
+730|code|LDR             R4, =grub_net_udp_open|62-76
+732|code|STR             R3, [SP,#0x668+var_654]|5-147
+734|code|ADD             R3, SP, #0x668+addr._anon_0+8|20-171
+736|code|LDM             R3, {err-R3}|15-203
+738|code|STMEA.W         SP, {R0-R3}|141-232-15-0
+742|code|LDM.W           R8, {R0-R3}|152-232-15-0
+746|code|BLX             R4; grub_net_udp_open|160-71
+748|code|STR.W           R0, [data,#0x128]|197-248-40-1
+752|code|CBNZ            R0, loc_300|48-185
+754|code|ADD.W           R0, data, #0x12C; data|5-245-150-112
+758|code|BL              destroy_pq|255-247-231-254
+762|code|LDR             R3, =grub_errno|55-75
+764|code|LDR             R0, [R3]|24-104
+766|code|B               loc_390|71-224
+768|code|LDR             R3, [SP,#0x668+nb.data]|13-155
+770|code|ADD.W           R10, data, #0x20 ; ' '|5-241-32-10
+774|code|LDR.W           R9, =grub_net_send_udp_packet|223-248-236-144
+778|code|MOV.W           R8, #0x190|79-244-200-120
+782|code|LDR.W           R11, =grub_net_poll_cards|223-248-232-176
+786|code|STR             R3, [SP,#0x668+nbd]|9-147
+788|code|LDR             R3, [SP,#0x668+nbd]|9-155
+790|code|ADD             R1, SP, #0x668+nb|12-169
+792|code|LDR.W           R0, [data,#0x128]|213-248-40-1
+796|code|STR             R3, [SP,#0x668+nb.data]|13-147
+798|code|BLX             R9; grub_net_send_udp_packet|200-71
+800|code|MOV             R4, err|4-70
+802|code|CBZ             err, loc_338|72-177
+804|code|LDR.W           err, [data,#0x128]|213-248-40-1
+808|code|LDR             R3, =grub_net_udp_close|44-75
+810|code|BLX             R3; grub_net_udp_close|152-71
+812|code|ADD.W           R0, data, #0x12C; data|5-245-150-112
+816|code|BL              destroy_pq|255-247-202-254
+820|code|MOV             R0, err|32-70
+822|code|B               loc_390|43-224
+824|code|MOV             err, R8|64-70
+826|code|MOV             R1, R10|81-70
+828|code|BLX             R11; grub_net_poll_cards|216-71
+830|code|LDR             R2, [data,#0x20]|42-106
+832|code|CBNZ            R2, loc_37A|218-185
+834|code|ADD.W           R8, R8, #0x14|8-241-20-8
+838|code|CMP.W           R8, #0x4B0|184-245-150-111
+842|code|BNE             loc_314|227-209
+844|code|MOVS            R0, #0x1C|28-32
+846|code|LDR             R1, =aTimeOutOpening; "time out opening `%s'"|36-73
+848|code|MOV             R2, filename|58-70
+850|code|LDR             R3, =grub_error|36-75
+852|code|BLX             R3; grub_error|152-71
+854|code|LDR             err, =grub_errno|32-76
+856|code|LDR             R0, [R4]|32-104
+858|code|CBZ             R0, loc_370|72-177
+860|code|LDR.W           R0, [data,#0x128]|213-248-40-1
+864|code|LDR             R3, =grub_net_udp_close|30-75
+866|code|BLX             R3; grub_net_udp_close|152-71
+868|code|ADD.W           R0, data, #0x12C; data|5-245-150-112
+872|code|BL              destroy_pq|255-247-174-254
+876|code|LDR             R0, [R4]|32-104
+878|code|B               loc_390|15-224
+880|code|LDRD.W          R2, R3, [data]|213-233-0-35
+884|code|STRD.W          R2, R3, [file,#0x38]|198-233-14-35
+888|code|B               loc_390|10-224
+890|code|MOV.W           R2, #0x100|79-244-128-114
+894|code|LDR             R3, =grub_memmove|26-75
+896|code|LDR             R0, =grub_errmsg|26-72
+898|code|ADD.W           R1, data, #0x28 ; '('|5-241-40-1
+902|code|BLX             R3; grub_memmove|152-71
+904|code|LDR             R2, [data,#0x24]|106-106
+906|code|LDR             R3, =grub_errno|19-75
+908|code|STR             R2, [R3]|26-96
+910|code|B               loc_356|226-231
+912|code|ADDW            SP, SP, #0x644|13-242-68-109
+916|code|POP.W           {R4-R11,PC}|189-232-240-143
+920|data|DCD grub_zalloc|212-7-0-0
+924|data|DCD grub_netbuff_clear|172-7-0-0
+928|data|DCD grub_netbuff_reserve|12-8-0-0
+932|data|DCD grub_netbuff_push|200-7-0-0
+936|data|DCD grub_strlen|148-7-0-0
+940|data|DCD aOctet; "octet"|11-7-0-0
+944|data|DCD aBlksize; "blksize"|17-7-0-0
+948|data|DCD a1024; "1024"|25-7-0-0
+952|data|DCD aTsize; "tsize"|30-7-0-0
+956|data|DCD a0; "0"|36-7-0-0
+960|data|DCD grub_netbuff_unput|168-7-0-0
+964|data|DCD cmp+1|253-3-0-0
+968|data|DCD grub_priority_queue_new|228-7-0-0
+972|data|DCD grub_net_resolve_address|244-7-0-0
+976|data|DCD tftp_receive+1|49-4-0-0
+980|data|DCD grub_net_udp_open|188-7-0-0
+984|data|DCD grub_errno|192-7-0-0
+988|data|DCD grub_net_udp_close|0-8-0-0
+992|data|DCD aTimeOutOpening; "time out opening `%s'"|38-7-0-0
+996|data|DCD grub_error|232-7-0-0
+1000|data|DCD grub_memmove|180-7-0-0
+1004|data|DCD grub_errmsg|156-7-0-0
+1008|data|DCD grub_strcpy|164-7-0-0
+1012|data|DCD grub_net_send_udp_packet|204-7-0-0
+1016|data|DCD grub_net_poll_cards|248-7-0-0
+1020|code|LDR             R3, [a__]|3-104
+1022|code|LDR             R2, [R3,#4]|90-104
+1024|code|LDRB            R3, [R2,#2]|147-120
+1026|code|LDRB            R2, [R2,#3]|210-120
+1028|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+1032|code|LDR             R2, [b__]|10-104
+1034|code|REV16           R3, R3|91-186
+1036|code|LDR             b__, [R2,#4]|81-104
+1038|code|LDRB            b_, [b,#2]|138-120
+1040|code|LDRB            b, [b,#3]|201-120
+1042|code|ORR.W           R2, R2, R1,LSL#8|66-234-1-34
+1046|code|REV16           R2, R2|82-186
+1048|code|SUBS            R3, R3, R2|155-26
+1050|code|SXTH            R3, R3|27-178
+1052|code|CMP             R3, #0|0-43
+1054|code|BGT             loc_42A|4-220
+1056|code|ITE NE|20-191
+1058|code|MOVNE.W         a__, #0xFFFFFFFF|79-240-255-48
+1062|code|MOVEQ           R0, #0|0-32
+1064|code|B               loc_42C|0-224
+1066|code|MOVS            a__, #1|1-32
+1068|code|NEGS            R0, R0|64-66
+1070|code|BX              LR|112-71
+1072|code|PUSH.W          {sock-file,R4-R11,LR}|45-233-247-79
+1076|code|MOV             R7, file|23-70
+1078|code|LDR             R4, [file,#0x44]|84-108
+1080|code|MOV             sock, nb_0|8-70
+1082|code|LDR             R5, [nb_0,#4]|77-104
+1084|code|LDR             file, [nb_0,#8]|138-104
+1086|code|STR             nb_0, [SP,#0x30+nb]|1-145
+1088|code|SUBS            R2, R2, R5|82-27
+1090|code|CMP             R2, #1|1-42
+1092|code|BGT             loc_44C|2-220
+1094|code|LDR             R0, =aNetTftpC; "net/tftp.c"|143-72
+1096|code|MOVS            nb_0, #0xAF|175-33
+1098|code|B               loc_4F4|83-224
+1100|code|LDRB            R1, [tftph,#1]|105-120
+1102|code|LDRB            R3, [tftph]|43-120
+1104|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+1108|code|REV16           R3, R3|91-186
+1110|code|UXTH            R3, R3|155-178
+1112|code|CMP             R3, #5|5-43
+1114|code|BEQ.W           loc_5E8|0-240-197-128
+1118|code|CMP             R3, #6|6-43
+1120|code|BEQ             loc_46A|3-208
+1122|code|CMP             R3, #3|3-43
+1124|code|BNE.W           loc_5FA|64-240-201-128
+1128|code|B               loc_4EC|64-224
+1130|code|LDR             file, =grub_memcmp|135-79
+1132|code|ADDS            tftph, #2|2-53
+1134|code|MOV.W           R3, #0x200|79-244-0-115
+1138|code|STR             R3, [data,#0x10]|35-97
+1140|code|MOVS            R3, #1|1-35
+1142|code|STR             R3, [data,#0x20]|35-98
+1144|code|MOV             R8, R7|184-70
+1146|code|LDR             R0, [SP,#0x30+nb]|1-152
+1148|code|LDR             R3, [R0,#8]|131-104
+1150|code|CMP             ptr, R3|157-66
+1152|code|BCS             loc_4CA|35-210
+1154|code|MOV             R0, ptr|40-70
+1156|code|LDR             R1, =aTsize_0; "tsize"|129-73
+1158|code|MOVS            R2, #6|6-34
+1160|code|BLX             R7; grub_memcmp|184-71
+1162|code|MOV             R6, R0|6-70
+1164|code|CBNZ            R0, loc_49C|48-185
+1166|code|ADDS            R0, ptr, #6|168-29
+1168|code|MOV             R1, R6|49-70
+1170|code|MOV             R2, R6|50-70
+1172|code|LDR             R3, =grub_strtoul|126-75
+1174|code|BLX             R3; grub_strtoul|152-71
+1176|code|STM.W           data, {R0,R6}|132-232-65-0
+1180|code|LDR             R1, =aBlksize_0; "blksize"|125-73
+1182|code|MOV             R0, ptr|40-70
+1184|code|MOVS            R2, #8|8-34
+1186|code|BLX             R8; grub_memcmp|192-71
+1188|code|MOV             R1, R0|1-70
+1190|code|CBNZ            R0, loc_4B4|40-185
+1192|code|ADD.W           R0, ptr, #8|5-241-8-0
+1196|code|MOV             R2, R1|10-70
+1198|code|LDR             R3, =grub_strtoul|120-75
+1200|code|BLX             R3; grub_strtoul|152-71
+1202|code|STR             R0, [data,#0x10]|32-97
+1204|code|LDR             R3, [SP,#0x30+nb]|1-155
+1206|code|LDR             R2, [R3,#8]|154-104
+1208|code|CMP             R5, R2|149-66
+1210|code|MOV             R1, R5|41-70
+1212|code|BCS             loc_4C6|3-210
+1214|code|LDRB            R3, [ptr]|11-120
+1216|code|ADDS            R5, #1|1-53
+1218|code|CMP             R3, #0|0-43
+1220|code|BNE             loc_4B8|248-209
+1222|code|ADDS            R5, ptr, #1|77-28
+1224|code|B               loc_47A|215-231
+1226|code|MOVS            R6, #0|0-38
+1228|code|MOVS            R7, #0|0-39
+1230|code|LDR             R3, =grub_netbuff_free|114-75
+1232|code|STRD.W          R6, R7, [data,#8]|196-233-2-103
+1236|code|BLX             R3; grub_netbuff_free|152-71
+1238|code|MOV             R0, data; data|32-70
+1240|code|MOV             R2, R6; block|50-70
+1242|code|MOV             R3, R7; block|59-70
+1244|code|BL              ack|255-247-144-253
+1248|code|ADD.W           R0, data, #0x24 ; '$'; save|4-241-36-0
+1252|code|BL              grub_error_save|255-247-220-253
+1256|code|MOVS            R0, #0|0-32
+1258|code|B               loc_67C|199-224
+1260|code|CMP             R2, #3|3-42
+1262|code|BGT             loc_4FE|6-220
+1264|code|LDR             nb_0, =aNetTftpC; "net/tftp.c"|100-72
+1266|code|MOVS            R1, #0xCE|206-33
+1268|code|LDR             R2, =aTftp; "tftp"|105-74
+1270|code|LDR             R3, =aTftpPacketTooS; "TFTP packet too small\n"|106-75
+1272|code|LDR             data, =grub_real_dprintf|106-76
+1274|code|BLX             R4; grub_real_dprintf|160-71
+1276|code|B               loc_4E8|244-231
+1278|code|LDR.W           nb_0, [data,#0x12C]|212-248-44-1
+1282|code|ADD             R1, SP, #0x30+nb|1-169
+1284|code|LDR             R3, =grub_priority_queue_push|104-75
+1286|code|BLX             R3; grub_priority_queue_push|152-71
+1288|code|CMP             err, #0|0-40
+1290|code|BNE.W           loc_67C|64-240-183-128
+1294|code|LDR.W           R10, =grub_priority_queue_top|223-248-172-161
+1298|code|LDR.W           R9, =grub_netbuff_free|223-248-132-145
+1302|code|LDR.W           R8, =grub_priority_queue_pop|223-248-168-129
+1306|code|LDR.W           R0, [data,#0x12C]|212-248-44-1
+1310|code|BLX             R10; grub_priority_queue_top|208-71
+1312|code|CMP             nb_top_p, #0|0-40
+1314|code|BEQ             loc_4E8|225-208
+1316|code|LDR             R5, [nb_top_p]|5-104
+1318|code|LDR             R6, [nb_top,#4]|110-104
+1320|code|LDRB            R2, [tftph,#3]|242-120
+1322|code|LDRB            R3, [tftph,#2]|179-120
+1324|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+1328|code|LDRH            R3, [data,#8]|35-137
+1330|code|REV16           R2, R2|82-186
+1332|code|MVNS            R3, R3|219-67
+1334|code|UXTAH.W         R3, R3, R2|19-250-130-243
+1338|code|LSLS            R3, R3, #0x10|27-4
+1340|code|BMI             loc_548|4-212
+1342|code|LDR.W           R11, =grub_priority_queue_pop|223-248-128-177
+1346|code|LDR.W           R8, =grub_net_udp_close|223-248-128-129
+1350|code|B               loc_5CE|66-224
+1352|code|UXTH            R2, R2; block|146-178
+1354|code|MOVS            R3, #0; block|0-35
+1356|code|MOV             nb_top_p, data; data|32-70
+1358|code|BL              ack|255-247-87-253
+1362|code|MOV             R0, nb_top|40-70
+1364|code|BLX             R9; grub_netbuff_free|200-71
+1366|code|LDR.W           R0, [data,#0x12C]|212-248-44-1
+1370|code|BLX             R8; grub_priority_queue_pop|192-71
+1372|code|B               loc_51A|221-231
+1374|code|LDR.W           R0, [data,#0x12C]|212-248-44-1
+1378|code|BLX             R11; grub_priority_queue_pop|216-71
+1380|code|LDR             R3, [file,#4]|123-104
+1382|code|LDR             R3, [R3,#4]|91-104
+1384|code|LDR             R2, [R3,#0x14]|90-105
+1386|code|CMP             R2, #0x31 ; '1'|49-42
+1388|code|BHI             loc_600|72-216
+1390|code|LDRD.W          R2, R3, [data,#8]|212-233-2-35
+1394|code|MOV             R0, data; data|32-70
+1396|code|ADDS            R2, #1; block|1-50
+1398|code|ADC.W           R3, R3, #0; block|67-241-0-3
+1402|code|BL              ack|255-247-65-253
+1406|code|CMP             err, #0|0-40
+1408|code|BNE             loc_67C|124-209
+1410|code|MOV             R0, nb_top|40-70
+1412|code|MOVS            R1, #4|4-33
+1414|code|LDR             R3, =grub_netbuff_pull|73-75
+1416|code|BLX             R3; grub_netbuff_pull|152-71
+1418|code|CMP             err, #0|0-40
+1420|code|BNE             loc_67C|118-209
+1422|code|LDR             R1, [nb_top,#8]|169-104
+1424|code|LDR             R3, [nb_top,#4]|107-104
+1426|code|RSB.W           R9, R3, R1|195-235-1-9
+1430|code|LDRD.W          R2, R3, [data,#8]|212-233-2-35
+1434|code|LDR             R1, [data,#0x10]|33-105
+1436|code|ADDS            R2, #1; block|1-50
+1438|code|ADC.W           R3, R3, #0; block|67-241-0-3
+1442|code|CMP             size, R1|137-69
+1444|code|STRD.W          R2, R3, [data,#8]|196-233-2-35
+1448|code|BCC             loc_606|45-211
+1450|code|LDR             R1, [data,#0x10]|33-105
+1452|code|CMP             size, R1|137-69
+1454|code|BHI             loc_630|63-216
+1456|code|LDR             R3, [nb_top,#8]|171-104
+1458|code|LDR             R2, [nb_top,#4]|106-104
+1460|code|SUBS            R3, R3, R2|155-26
+1462|code|CMP             R3, #0|0-43
+1464|code|BLE             loc_674|92-221
+1466|code|LDR             R3, [file,#4]|123-104
+1468|code|MOVS            R0, #0x10|16-32
+1470|code|LDR.W           size, [R3,#4]|211-248-4-144
+1474|code|LDR             R3, =grub_malloc|59-75
+1476|code|ADD.W           R10, R9, #0xC|9-241-12-10
+1480|code|BLX             R3; grub_malloc|152-71
+1482|code|CMP             R0, #0|0-40
+1484|code|BNE             loc_640|56-209
+1486|code|LDRB            R2, [tftph,#3]|242-120
+1488|code|LDRB            R3, [tftph,#2]|179-120
+1490|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+1494|code|REV16           R2, R3|90-186
+1496|code|LDRH            R3, [data,#8]|35-137
+1498|code|MVNS            R3, R3|219-67
+1500|code|UXTAH.W         R3, R3, R2|19-250-130-243
+1504|code|UXTH            R3, R3|155-178
+1506|code|CMP             R3, #0|0-43
+1508|code|BEQ             loc_55E|187-208
+1510|code|B               loc_4E8|127-231
+1512|code|MOVS            R3, #1|1-35
+1514|code|STR             R3, [data,#0x20]|35-98
+1516|code|LDR             R3, =grub_netbuff_free|42-75
+1518|code|BLX             R3; grub_netbuff_free|152-71
+1520|code|ADDS            R1, tftph, #4|41-29
+1522|code|LDR             R3, =grub_error|48-75
+1524|code|MOVS            R0, #0x1D|29-32
+1526|code|BLX             R3; grub_error|152-71
+1528|code|B               loc_4E0|114-231
+1530|code|LDR             R3, =grub_netbuff_free|39-75
+1532|code|BLX             R3; grub_netbuff_free|152-71
+1534|code|B               loc_4E8|115-231
+1536|code|MOVS            R2, #1|1-34
+1538|code|STR             R2, [R3,#0x28]|154-98
+1540|code|B               loc_582|189-231
+1542|code|LDRD.W          err, R1, [data,#0x18]|212-233-6-1
+1546|code|CMP             R1, R3|153-66
+1548|code|IT EQ|8-191
+1550|code|CMPEQ           R0, R2|144-66
+1552|code|BCS             loc_618|2-210
+1554|code|MOV             R0, data; data|32-70
+1556|code|BL              ack|255-247-244-252
+1560|code|LDR             R3, [file,#4]|123-104
+1562|code|MOVS            R2, #1|1-34
+1564|code|LDR.W           R0, [data,#0x128]|212-248-40-1
+1568|code|LDR             R3, [R3,#4]|91-104
+1570|code|STR             R2, [R3,#0x24]|90-98
+1572|code|STR             R2, [R3,#0x28]|154-98
+1574|code|BLX             R8; grub_net_udp_close|192-71
+1576|code|MOVS            R3, #0|0-35
+1578|code|STR.W           R3, [data,#0x128]|196-248-40-49
+1582|code|B               loc_5AA|188-231
+1584|code|MOV             R0, nb_top|40-70
+1586|code|RSB.W           R1, R1, size|193-235-9-1
+1590|code|LDR             R3, =grub_netbuff_unput|32-75
+1592|code|BLX             R3; grub_netbuff_unput|152-71
+1594|code|CMP             err, #0|0-40
+1596|code|BEQ             loc_5B0|184-208
+1598|code|B               loc_67C|29-224
+1600|code|MOVS            R3, #0|0-35
+1602|code|STR             R3, [R0]|3-96
+1604|code|STR             R3, [R0,#4]|67-96
+1606|code|LDR.W           R3, [R9,#0xC]|217-248-12-48
+1610|code|STR             nb_top, [R0,#0xC]|197-96
+1612|code|STR.W           R10, [R0,#8]|192-248-8-160
+1616|code|CBZ             R3, loc_660|51-177
+1618|code|LDR.W           R3, [R9,#0x10]|217-248-16-48
+1622|code|STR             R0, [R3]|24-96
+1624|code|STR.W           R0, [R9,#0x10]|201-248-16-0
+1628|code|STR             R0, [R0,#4]|64-96
+1630|code|B               loc_668|3-224
+1632|code|STR.W           R0, [R9,#0x10]|201-248-16-0
+1636|code|STR.W           R0, [R9,#0xC]|201-248-12-0
+1640|code|LDR.W           R3, [R9,#0x14]|217-248-20-48
+1644|code|ADDS            R3, #1|1-51
+1646|code|STR.W           R3, [R9,#0x14]|201-248-20-48
+1650|code|B               loc_5CE|172-231
+1652|code|MOV             R0, nb_top|40-70
+1654|code|LDR             R3, =grub_netbuff_free|8-75
+1656|code|BLX             R3; grub_netbuff_free|152-71
+1658|code|B               loc_5CE|168-231
+1660|code|ADD             SP, SP, #0xC|3-176
+1662|code|POP.W           {R4-R11,PC}|189-232-240-143
+1666|data|ALIGN 4|0-191
+1668|data|DCD aNetTftpC; "net/tftp.c"|60-7-0-0
+1672|data|DCD grub_memcmp|4-8-0-0
+1676|data|DCD aTsize_0; "tsize"|244-6-0-0
+1680|data|DCD grub_strtoul|16-8-0-0
+1684|data|DCD aBlksize_0; "blksize"|251-6-0-0
+1688|data|DCD grub_netbuff_free|152-7-0-0
+1692|data|DCD aTftp; "tftp"|71-7-0-0
+1696|data|DCD aTftpPacketTooS; "TFTP packet too small\n"|76-7-0-0
+1700|data|DCD grub_real_dprintf|224-7-0-0
+1704|data|DCD grub_priority_queue_push|176-7-0-0
+1708|data|DCD grub_netbuff_pull|220-7-0-0
+1712|data|DCD grub_malloc|216-7-0-0
+1716|data|DCD grub_error|232-7-0-0
+1720|data|DCD grub_netbuff_unput|168-7-0-0
+1724|data|DCD grub_priority_queue_top|8-8-0-0
+1728|data|DCD grub_priority_queue_pop|160-7-0-0
+1732|data|DCD grub_net_udp_close|0-8-0-0
+1736|code|PUSH            {R3,LR}|8-181
+1738|code|LDR             mod, =grub_net_app_level_list|2-72
+1740|code|LDR             R1, =grub_tftp_protocol|2-73
+1742|code|LDR             R3, =grub_list_push|3-75
+1744|code|BLX             R3; grub_list_push|152-71
+1746|code|POP             {R3,PC}|8-189
+1748|data|DCD grub_net_app_level_list|184-7-0-0
+1752|data|DCD grub_tftp_protocol|100-7-0-0
+1756|data|DCD grub_list_push|252-7-0-0
+1760|code|PUSH            {R3,LR}|8-181
+1762|code|LDR             R0, =grub_tftp_protocol|2-72
+1764|code|LDR             R3, =grub_list_remove|2-75
+1766|code|BLX             R3; grub_list_remove|152-71
+1768|code|POP             {R3,PC}|8-189
+1770|data|ALIGN 4|0-191
+1772|data|DCD grub_tftp_protocol|100-7-0-0
+1776|data|DCD grub_list_remove|236-7-0-0
+1780|data|DCB "tsize",0|116-115-105-122-101-0
+1787|data|DCB "blksize",0|98-108-107-115-105-122-101-0
+1795|data|ALIGN 4|0
+1796|data|DCB "closed",0|99-108-111-115-101-100-0
+1803|data|DCB "octet",0|111-99-116-101-116-0
+1809|data|DCB "blksize",0|98-108-107-115-105-122-101-0
+1817|data|DCB "1024",0|49-48-50-52-0
+1822|data|DCB "tsize",0|116-115-105-122-101-0
+1828|data|DCB "0",0|48-0
+1830|data|DCB "time out opening `%s'",0|116-105-109-101-32-111-117-116-32-111-112-101-110-105-110-103-32-96-37-115-39-0
+1852|data|DCB "net/tftp.c",0|110-101-116-47-116-102-116-112-46-99-0
+1863|data|DCB "tftp",0|116-102-116-112-0
+1868|data|DCB "TFTP packet too small",0xA,0|84-70-84-80-32-112-97-99-107-101-116-32-116-111-111-32-115-109-97-108-108-10-0
+1892|data|grub_net_app_protocol <0, 0, aTftp, 0, tftp_open+1, 0, tftp_close+1, \; "tftp"|0-0-0-0-0-0-0-0-71-7-0-0-0-0-0-0-153-1-0-0-0-0-0-0-253-0-0-0-109-0-0-0
+1924|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

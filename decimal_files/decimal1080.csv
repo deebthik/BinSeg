@@ -1,0 +1,111 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_sun_partition_map|52-75
+2|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+6|code|SUB.W           SP, SP, #0x244|173-245-17-125
+10|code|MOV             R8, hook|136-70
+12|code|MOV             R9, hook_data|145-70
+14|code|MOV.W           hook, #0x200|79-244-0-113
+18|code|STR             R3, [SP,#0x268+p.partmap]|14-147
+20|code|MOVS            hook_data, #0|0-34
+22|code|MOVS            R3, #0|0-35
+24|code|STR             R1, [SP,#0x268+var_260]|2-145
+26|code|ADD             R5, SP, #0x268+var_228|16-173
+28|code|STRD.W          R2, R3, [SP,#0x268+var_268]|205-233-0-35
+32|code|MOV             R11, disk|131-70
+34|code|STR             R5, [SP,#0x268+var_25C]|3-149
+36|code|LDR             R1, =grub_disk_read|44-73
+38|code|BLX             R1; grub_disk_read|136-71
+40|code|CMP             err, #0|0-40
+42|code|BNE             loc_CA|78-209
+44|code|LDRH.W          R3, [R5,#0x1FC]|181-248-252-49
+48|code|MOVW            R2, #0xDABE|77-246-190-34
+52|code|REV16           R3, R3|91-186
+54|code|UXTH            R3, R3|155-178
+56|code|CMP             R3, R2|147-66
+58|code|BEQ             loc_42|2-208
+60|code|MOVS            err, #0x13|19-32
+62|code|LDR             R1, =aNotASunPartiti; "not a sun partition table"|39-73
+64|code|B               loc_5C|12-224
+66|code|MOV             R4, err|4-70
+68|code|LDRH.W          R3, [R5,R0,LSL#1]|53-248-16-48
+72|code|ADDS            R0, #1|1-48
+74|code|CMP.W           R0, #0x100|176-245-128-127
+78|code|EOR.W           R4, R4, R3|132-234-3-4
+82|code|UXTH            R4, R4|164-178
+84|code|BNE             loc_44|246-209
+86|code|CBZ             R4, loc_62|36-177
+88|code|LDR             R1, =aInvalidChecksu; "invalid checksum"|33-73
+90|code|MOVS            R0, #0x13|19-32
+92|code|LDR             R3, =grub_error|33-75
+94|code|BLX             R3; grub_error|152-71
+96|code|B               loc_CA|51-224
+98|code|MOV             R10, R4|162-70
+100|code|ADD.W           R3, R5, R4,LSL#2|5-235-132-3
+104|code|LDRB.W          R3, [R3,#0x8F]|147-248-143-48
+108|code|CBZ             R3, loc_C0|67-179
+110|code|CMP             R3, #5|5-43
+112|code|BEQ             loc_C0|38-208
+114|code|ADD.W           LR, R4, #0x37 ; '7'|4-241-55-14
+118|code|LDRH.W          R3, [R5,#0x1B4]|181-248-180-49
+122|code|LDRH.W          R6, [R5,#0x1B6]|181-248-182-97
+126|code|ADD.W           LR, R5, LR,LSL#3|5-235-206-14
+130|code|REV16           R3, R3|91-186
+132|code|REV16           R6, R6|118-186
+134|code|LDR.W           R0, [LR,#4]|222-248-4-0
+138|code|UXTH            R3, R3|155-178
+140|code|UXTH            R6, R6|182-178
+142|code|REV             R0, R0|0-186
+144|code|UMULL.W         R0, R1, R0, R3|160-251-3-1
+148|code|UMULL.W         R2, R3, R0, R6|160-251-6-35
+152|code|MLA.W           R3, R6, R1, R3|6-251-1-51
+156|code|STRD.W          R2, R3, [SP,#0x268+p.start]|205-233-6-35
+160|code|LDR.W           R3, [LR,#8]|222-248-8-48
+164|code|STR.W           R10, [SP,#0x268+p.len+4]|205-248-36-160
+168|code|REV             R3, R3|27-186
+170|code|STR             R4, [SP,#0x268+p.index]|12-148
+172|code|STR             R3, [SP,#0x268+p.len]|8-147
+174|code|STR             R4, [SP,#0x268+p]|4-148
+176|code|CBZ             R3, loc_C0|51-177
+178|code|MOV             R0, disk|88-70
+180|code|ADD             R1, SP, #0x268+p|4-169
+182|code|MOV             R2, hook_data|74-70
+184|code|BLX             hook|192-71
+186|code|CMP             R0, #0|0-40
+188|code|IT NE|24-191
+190|code|MOVNE           R4, #8|8-36
+192|code|ADDS            R4, #1|1-52
+194|code|CMP             partnum, #7|7-44
+196|code|BLE             loc_64|206-221
+198|code|LDR             R3, =grub_errno|8-75
+200|code|LDR             R0, [R3]|24-104
+202|code|ADD.W           SP, SP, #0x244|13-245-17-125
+206|code|POP.W           {R4-disk,PC}|189-232-240-143
+210|data|ALIGN 4|0-191
+212|data|DCD grub_sun_partition_map|72-1-0-0
+216|data|DCD grub_disk_read|108-1-0-0
+220|data|DCD aNotASunPartiti; "not a sun partition table"|24-1-0-0
+224|data|DCD aInvalidChecksu; "invalid checksum"|50-1-0-0
+228|data|DCD grub_error|116-1-0-0
+232|data|DCD grub_errno|112-1-0-0
+236|code|PUSH            {R3,LR}|8-181
+238|code|LDR             mod, =grub_partition_map_list|2-72
+240|code|LDR             R1, =grub_sun_partition_map|2-73
+242|code|LDR             R3, =grub_list_push|3-75
+244|code|BLX             R3; grub_list_push|152-71
+246|code|POP             {R3,PC}|8-189
+248|data|DCD grub_partition_map_list|104-1-0-0
+252|data|DCD grub_sun_partition_map|72-1-0-0
+256|data|DCD grub_list_push|124-1-0-0
+260|code|PUSH            {R3,LR}|8-181
+262|code|LDR             R0, =grub_sun_partition_map|2-72
+264|code|LDR             R3, =grub_list_remove|2-75
+266|code|BLX             R3; grub_list_remove|152-71
+268|code|POP             {R3,PC}|8-189
+270|data|ALIGN 0x10|0-191
+272|data|DCD grub_sun_partition_map|72-1-0-0
+276|data|DCD grub_list_remove|120-1-0-0
+280|data|DCB "not a sun partition table",0|110-111-116-32-97-32-115-117-110-32-112-97-114-116-105-116-105-111-110-32-116-97-98-108-101-0
+306|data|DCB "invalid checksum",0|105-110-118-97-108-105-100-32-99-104-101-99-107-115-117-109-0
+323|data|DCB "sun",0|115-117-110-0
+328|data|grub_partition_map <0, 0, aSun, sun_partition_map_iterate+1>; "sun"|0-0-0-0-0-0-0-0-67-1-0-0-1-0-0-0
+344|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

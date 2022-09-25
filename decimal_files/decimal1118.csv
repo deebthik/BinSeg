@@ -1,0 +1,56 @@
+address|type|disassembly|bytes
+0|code|MOVS            cmd, #0|0-32
+2|code|BX              LR|112-71
+4|code|PUSH            {R3,LR}|8-181
+6|code|MOVS            cmd, #1|1-32
+8|code|LDR             argc, =aFalse; "false"|1-73
+10|code|LDR             R3, =grub_error|2-75
+12|code|BLX             R3; grub_error|152-71
+14|code|POP             {R3,PC}|8-189
+16|data|DCD aFalse; "false"|120-0-0-0
+20|data|DCD grub_error|220-0-0-0
+24|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+26|code|MOVS            R4, #0|0-36
+28|code|MOV             R2, R4|34-70
+30|code|LDR             R6, =grub_register_command_prio|8-78
+32|code|STR             R4, [SP,#0x18+var_18]|0-148
+34|code|LDR             R1, =(grub_cmd_true+1)|8-73
+36|code|LDR             R3, =aDoNothingSucce; "Do nothing, successfully."|8-75
+38|code|LDR             mod, =aTrue; "true"|9-72
+40|code|BLX             R6; grub_register_command_prio|176-71
+42|code|LDR             R5, =cmd_true|9-77
+44|code|STR             R4, [SP,#0x18+var_18]|0-148
+46|code|MOV             R2, R4|34-70
+48|code|LDR             R1, =(grub_cmd_false+1)|8-73
+50|code|LDR             R3, =aDoNothingUnsuc; "Do nothing, unsuccessfully."|9-75
+52|code|STR             R0, [R5]|40-96
+54|code|LDR             R0, =aFalse; "false"|9-72
+56|code|BLX             R6; grub_register_command_prio|176-71
+58|code|STR             R0, [R5,#(cmd_false - 0xCC)]|104-96
+60|code|ADD             SP, SP, #8|2-176
+62|code|POP             {R4-R6,PC}|112-189
+64|data|DCD grub_register_command_prio|212-0-0-0
+68|data|DCD grub_cmd_true+1|1-0-0-0
+72|data|DCD aDoNothingSucce; "Do nothing, successfully."|131-0-0-0
+76|data|DCD aTrue; "true"|126-0-0-0
+80|data|DCD cmd_true|204-0-0-0
+84|data|DCD grub_cmd_false+1|5-0-0-0
+88|data|DCD aDoNothingUnsuc; "Do nothing, unsuccessfully."|157-0-0-0
+92|data|DCD aFalse; "false"|120-0-0-0
+96|code|PUSH            {R3-R5,LR}|56-181
+98|code|LDR             R5, =cmd_true|3-77
+100|code|LDR             R4, =grub_unregister_command|3-76
+102|code|LDR             R0, [R5]|40-104
+104|code|BLX             R4; grub_unregister_command|160-71
+106|code|LDR             R0, [R5,#(cmd_false - 0xCC)]|104-104
+108|code|BLX             R4; grub_unregister_command|160-71
+110|code|POP             {R3-R5,PC}|56-189
+112|data|DCD cmd_true|204-0-0-0
+116|data|DCD grub_unregister_command|216-0-0-0
+120|data|DCB "false",0|102-97-108-115-101-0
+126|data|DCB "true",0|116-114-117-101-0
+131|data|DCB "Do nothing, successfully.",0|68-111-32-110-111-116-104-105-110-103-44-32-115-117-99-99-101-115-115-102-117-108-108-121-46-0
+157|data|DCB "Do nothing, unsuccessfully.",0|68-111-32-110-111-116-104-105-110-103-44-32-117-110-115-117-99-99-101-115-115-102-117-108-108-121-46-0
+185|data||255
+186|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+204|data|% 4|255-255-255-255

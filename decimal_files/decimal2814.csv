@@ -1,0 +1,711 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =unk_630|26-75
+2|code|PUSH            {R4,R5,LR}|48-181
+4|code|MOV             R4, port|4-70
+6|code|LDM.W           R3, {port-R2}|147-232-7-0
+10|code|SUB             SP, SP, #0x34|141-176
+12|code|ADDS            R3, #0xC|12-51
+14|code|ADD             R5, SP, #0x40+parities|6-173
+16|code|STM.W           R5, {R0-R2}|133-232-7-0
+20|code|LDM.W           R3, {R0-R2}|147-232-7-0
+24|code|ADD             R3, SP, #0x40+var_10|12-171
+26|code|STMDB.W         R3, {R0-R2}|3-233-7-0
+30|code|LDR             R3, [port,#0x30]|35-107
+32|code|CBNZ            R3, loc_68|19-187
+34|code|LDR             R2, [port,#0x18]|162-105
+36|code|ADD             R1, SP, #0x40+var_10|12-169
+38|code|STR             R3, [SP,#0x40+var_40]|0-147
+40|code|STR             R3, [SP,#0x40+var_3C]|1-147
+42|code|ADD.W           R2, R1, R2,LSL#2|1-235-130-2
+46|code|LDR             R0, [port,#0x38]|160-107
+48|code|LDR.W           R2, [R2,#-0x18]|82-248-24-44
+52|code|STR             R2, [SP,#0x40+var_38]|2-146
+54|code|LDRB            R2, [port,#0x14]|34-125
+56|code|STR             R2, [SP,#0x40+var_34]|3-146
+58|code|LDR             R2, [port,#0x1C]|226-105
+60|code|ADD.W           R2, R1, R2,LSL#2|1-235-130-2
+64|code|LDR.W           R2, [R2,#-0xC]|82-248-12-44
+68|code|STR             R2, [SP,#0x40+var_30]|4-146
+70|code|LDR             R2, [port,#0x10]|34-105
+72|code|LDR             R1, [R0,#8]|129-104
+74|code|BLX             R1|136-71
+76|code|CBZ             status, loc_52|8-177
+78|code|MOVS            R3, #1|1-35
+80|code|STR             R3, [port,#0x34]|99-99
+82|code|LDR             R2, [port,#0x28]|162-106
+84|code|MOVW            R1, #0x4002|68-242-2-1
+88|code|LDR             status, [port,#0x38]|160-107
+90|code|CMP             R2, #0|0-42
+92|code|LDR             R3, [R0,#0xC]|195-104
+94|code|IT EQ|8-191
+96|code|MOVEQ           R1, #2|2-33
+98|code|BLX             R3|152-71
+100|code|MOVS            R3, #1|1-35
+102|code|STR             R3, [port,#0x30]|35-99
+104|code|ADD             SP, SP, #0x34 ; '4'|13-176
+106|code|POP             {port,R5,PC}|48-189
+108|data|DCD unk_630|48-6-0-0
+112|code|PUSH            {port,R1,R4,LR}|19-181
+114|code|MOV             R4, port|4-70
+116|code|MOVS            R3, #1|1-35
+118|code|STR             R3, [SP,#0x10+bufsize]|1-147
+120|code|BL              do_real_config|255-247-194-255
+124|code|LDR             R3, [port,#0x34]|99-107
+126|code|CBZ             R3, loc_86|19-177
+128|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+132|code|B               loc_A0|12-224
+134|code|LDR             R0, [port,#0x38]|160-107
+136|code|ADD             R1, SP, #0x10+bufsize|1-169
+138|code|ADD.W           R2, SP, #0x10+c|13-241-3-2
+142|code|LDR             R3, [R0,#0x18]|131-105
+144|code|BLX             R3|152-71
+146|code|CMP             status, #0|0-40
+148|code|BNE             loc_80|244-209
+150|code|LDR             R3, [SP,#0x10+bufsize]|1-155
+152|code|CMP             R3, #0|0-43
+154|code|BEQ             loc_80|241-208
+156|code|LDRB.W          status, [SP,#0x10+c]|157-248-3-0
+160|code|ADD             SP, SP, #8|2-176
+162|code|POP             {port,PC}|16-189
+164|code|PUSH            {port,c,R4,LR}|19-181
+166|code|MOV             R4, port|4-70
+168|code|MOVS            R3, #1|1-35
+170|code|STRB.W          c, [SP,#0x10+c0]|141-248-3-16
+174|code|STR             R3, [SP,#0x10+bufsize]|1-147
+176|code|BL              do_real_config|255-247-166-255
+180|code|LDR             R3, [port,#0x34]|99-107
+182|code|CBNZ            R3, loc_C4|43-185
+184|code|LDR             R0, [port,#0x38]|160-107
+186|code|ADD             R1, SP, #0x10+bufsize|1-169
+188|code|ADD.W           R2, SP, #0x10+c0|13-241-3-2
+192|code|LDR             R3, [R0,#0x14]|67-105
+194|code|BLX             R3|152-71
+196|code|ADD             SP, SP, #8|2-176
+198|code|POP             {port,PC}|16-189
+200|code|LDR             R3, [config,#8]|139-104
+202|code|PUSH            {R4-R6,LR}|112-181
+204|code|CMP             R3, #2|2-43
+206|code|MOV             R6, port|6-70
+208|code|BLS             loc_D8|2-217
+210|code|MOVS            port, #0x12|18-32
+212|code|LDR             config, =aUnsupportedSer; "unsupported serial port parity"|14-73
+214|code|B               loc_E2|4-224
+216|code|LDR             R3, [config,#0xC]|203-104
+218|code|CMP             R3, #2|2-43
+220|code|BLS             loc_E8|4-217
+222|code|LDR             config, =aUnsupportedSer_0; "unsupported serial port stop bits numbe"...|13-73
+224|code|MOVS            port, #0x12|18-32
+226|code|LDR             R3, =grub_error|13-75
+228|code|BLX             R3; grub_error|152-71
+230|code|POP             {R4-port,PC}|112-189
+232|code|LDR             R3, [config,#4]|75-104
+234|code|SUBS            R3, #5|5-59
+236|code|CMP             R3, #3|3-43
+238|code|BLS             loc_F6|2-217
+240|code|MOVS            port, #0x12|18-32
+242|code|LDR             config, =aUnsupportedSer_1; "unsupported serial port word length"|10-73
+244|code|B               loc_E2|245-231
+246|code|MOV             R4, config|12-70
+248|code|ADD.W           R5, port, #0x10|0-241-16-5
+252|code|LDM             R4!, {port-R3}|15-204
+254|code|STM             R5!, {R0-R3}|15-197
+256|code|LDM.W           R4, {R0-R3}|148-232-15-0
+260|code|STM.W           R5, {R0-R3}|133-232-15-0
+264|code|MOVS            R3, #0|0-35
+266|code|MOV             R0, R3|24-70
+268|code|STR             R3, [port,#0x30]|51-99
+270|code|POP             {R4-port,PC}|112-189
+272|data|DCD aUnsupportedSer; "unsupported serial port parity"|152-7-0-0
+276|data|DCD aUnsupportedSer_0; "unsupported serial port stop bits numbe"...|183-7-0-0
+280|data|DCD grub_error|128-11-0-0
+284|data|DCD aUnsupportedSer_1; "unsupported serial port word length"|224-7-0-0
+288|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+292|code|SUB             SP, SP, #0x2C|139-176
+294|code|MOVS            R0, #2|2-32
+296|code|LDR             R1, =serial_io_guid|38-73
+298|code|MOVS            R2, #0|0-34
+300|code|ADD             R3, SP, #0x50+num_handles|1-171
+302|code|LDR             R4, =grub_efi_locate_handle|38-76
+304|code|BLX             R4; grub_efi_locate_handle|160-71
+306|code|MOV             R5, handles|5-70
+308|code|CMP             handles, #0|0-40
+310|code|BEQ             loc_1BC|65-208
+312|code|LDR.W           R9, =serial_io_guid|223-248-136-144
+316|code|SUBS            R7, handles, #4|7-31
+318|code|LDR.W           R10, =grub_zalloc|223-248-172-160
+322|code|MOVS            R6, #0|0-38
+324|code|LDR             R3, [SP,#0x50+num_handles]|1-155
+326|code|SUBS            R2, R3, #1|90-30
+328|code|STR             R2, [SP,#0x50+num_handles]|1-146
+330|code|CMP             R3, #0|0-43
+332|code|BEQ             loc_1B6|51-208
+334|code|LDR.W           R0, [R7,#4]!|87-248-4-15
+338|code|MOVS            R2, #2|2-34
+340|code|LDR             R1, =serial_io_guid|27-73
+342|code|LDR             R3, =grub_efi_open_protocol|29-75
+344|code|BLX             R3; grub_efi_open_protocol|152-71
+346|code|MOV             R8, sio|128-70
+348|code|CMP             sio, #0|0-40
+350|code|BEQ             loc_144|241-208
+352|code|MOVS            sio, #0xA0|160-32
+354|code|BLX             R10; grub_zalloc|208-71
+356|code|MOV             R4, port|4-70
+358|code|CBZ             port, loc_1BC|72-179
+360|code|MOVS            port, #0x18|24-32
+362|code|LDR             R3, =grub_malloc|25-75
+364|code|BLX             R3; grub_malloc|152-71
+366|code|STR             R0, [port,#8]|160-96
+368|code|CBZ             R0, loc_1BC|32-179
+370|code|MOV             R3, num_serial|51-70
+372|code|MOVS            R1, #0x18|24-33
+374|code|LDR             R2, =aEfiD; "efi%d"|23-74
+376|code|ADD.W           R11, num_serial, #1|6-241-1-11
+380|code|LDR             R6, =grub_snprintf|22-78
+382|code|BLX             R6; grub_snprintf|176-71
+384|code|LDR             R3, =grub_efiserial_driver|22-75
+386|code|LDR.W           LR, =unk_648|223-248-108-224
+390|code|ADD             R6, SP, #0x50+config|2-174
+392|code|STR.W           sio, [port,#0x38]|196-248-56-128
+396|code|STR             R3, [port,#0xC]|227-96
+398|code|LDM.W           LR!, {R0-R3}|190-232-15-0
+402|code|STM             R6!, {R0-R3}|15-198
+404|code|LDM.W           LR, {R0-R3}|158-232-15-0
+408|code|STM.W           R6, {R0-R3}|134-232-15-0
+412|code|MOV             R0, port; port|32-70
+414|code|ADD             R1, SP, #0x50+config; config|2-169
+416|code|LDR.W           R3, [R9,#(grub_efiserial_driver - 0xA18)]|217-248-16-48
+420|code|BLX             R3; serial_hw_configure|152-71
+422|code|CBZ             R0, loc_1AC|8-177
+424|code|LDR             R3, =grub_print_error|13-75
+426|code|BLX             R3; grub_print_error|152-71
+428|code|MOV             R0, port; port|32-70
+430|code|LDR             R3, =(grub_serial_register+1)|13-75
+432|code|BLX             R3; grub_serial_register|152-71
+434|code|MOV             R6, num_serial|94-70
+436|code|B               loc_144|198-231
+438|code|MOV             R0, handles|40-70
+440|code|LDR             R3, =grub_free|11-75
+442|code|BLX             R3; grub_free|152-71
+444|code|ADD             SP, SP, #0x2C ; ','|11-176
+446|code|POP.W           {R4-R11,PC}|189-232-240-143
+450|data|ALIGN 4|0-191
+452|data|DCD serial_io_guid|24-10-0-0
+456|data|DCD grub_efi_locate_handle|96-11-0-0
+460|data|DCD grub_efi_open_protocol|124-11-0-0
+464|data|DCD grub_malloc|120-11-0-0
+468|data|DCD aEfiD; "efi%d"|4-8-0-0
+472|data|DCD grub_snprintf|56-11-0-0
+476|data|DCD grub_efiserial_driver|40-10-0-0
+480|data|DCD grub_print_error|108-11-0-0
+484|data|DCD grub_serial_register+1|13-4-0-0
+488|data|DCD grub_free|136-11-0-0
+492|data|DCD grub_zalloc|112-11-0-0
+496|data|DCD unk_648|72-6-0-0
+500|code|LDR             R3, [term,#0x48]|131-108
+502|code|LDR             term, [R3,#0x30]|24-107
+504|code|LDR             data, [R0,#0xC]|195-104
+506|code|LDR             R3, [R3,#8]|155-104
+508|code|BX              R3|24-71
+510|code|LDR             R3, [term,#0x1C]|195-105
+512|code|LDR             term, [R3,#0x20]|24-106
+514|code|LDR             data, [R0,#0xC]|195-104
+516|code|LDR             R3, [R3,#4]|91-104
+518|code|BX              R3|24-71
+520|code|LDR             R3, =grub_serial_ports|6-75
+522|code|PUSH            {R4-R6,LR}|112-181
+524|code|MOV             R5, name|5-70
+526|code|LDR             R4, [R3]|28-104
+528|code|LDR             R6, =grub_strcmp|5-78
+530|code|CBZ             port, loc_220|44-177
+532|code|LDR             R0, [port,#8]|160-104
+534|code|MOV             R1, name|41-70
+536|code|BLX             R6; grub_strcmp|176-71
+538|code|CBZ             R0, loc_220|8-177
+540|code|LDR             port, [port]|36-104
+542|code|B               loc_212|248-231
+544|code|MOV             R0, port|32-70
+546|code|POP             {port-R6,PC}|112-189
+548|data|DCD grub_serial_ports|180-10-0-0
+552|data|DCD grub_strcmp|116-11-0-0
+556|code|PUSH            {R4-R7,LR}|240-181
+558|code|MOV             R6, argc|14-70
+560|code|LDR             R4, [ctxt,#4]|68-104
+562|code|SUB             SP, SP, #0x54|149-176
+564|code|MOV             R7, args|23-70
+566|code|LDR             R5, [state]|37-104
+568|code|CBZ             R5, loc_252|93-177
+570|code|MOVS            argc, #0|0-33
+572|code|LDR             R3, =grub_strtoul|93-75
+574|code|MOV             args, R1|10-70
+576|code|LDR             ctxt, [state,#4]|96-104
+578|code|BLX             R3; grub_strtoul|152-71
+580|code|LDR             R5, =grub_snprintf|92-77
+582|code|MOVS            R1, #0x28 ; '('|40-33
+584|code|LDR             R2, =aComLd; "com%ld"|92-74
+586|code|MOV             R3, R0|3-70
+588|code|ADD             R0, SP, #0x68+pname|10-168
+590|code|BLX             R5; grub_snprintf|168-71
+592|code|ADD             R5, SP, #0x68+pname|10-173
+594|code|LDR             R3, [state,#8]|163-104
+596|code|CBZ             R3, loc_274|115-177
+598|code|MOVS            R1, #0|0-33
+600|code|LDR             R3, =grub_strtoul|86-75
+602|code|MOV             R2, R1|10-70
+604|code|LDR             R0, [state,#0xC]|224-104
+606|code|BLX             R3; grub_strtoul|152-71
+608|code|LDR             name, =grub_snprintf|85-77
+610|code|MOVS            R1, #0x28 ; '('|40-33
+612|code|LDR             R2, =aPortLx; "port%lx"|86-74
+614|code|MOV             R3, R0|3-70
+616|code|ADD             R0, SP, #0x68+pname|10-168
+618|code|BLX             R5; grub_snprintf|168-71
+620|code|CMP             argc, #0|0-46
+622|code|BLE             loc_282|8-221
+624|code|LDR             R5, [args]|61-104
+626|code|B               loc_278|1-224
+628|code|CMP             argc, #0|0-46
+630|code|BGT             loc_270|251-220
+632|code|LDR             R3, =aCom0; "com0"|82-75
+634|code|CMP             name, #0|0-45
+636|code|IT EQ|8-191
+638|code|MOVEQ           name, R3|29-70
+640|code|B               loc_284|0-224
+642|code|ADD             R5, SP, #0x68+pname|10-173
+644|code|MOV             R0, name; name|40-70
+646|code|BL              grub_serial_find|255-247-191-255
+650|code|MOV             args, port|7-70
+652|code|CBNZ            port, loc_29A|40-185
+654|code|LDR             R1, =aSerialPortSIsn; "serial port `%s' isn't found"|78-73
+656|code|MOV             R2, name|42-70
+658|code|LDR             R3, =grub_error|78-75
+660|code|MOVS            port, #0x12|18-32
+662|code|BLX             R3; grub_error|152-71
+664|code|B               loc_3B0|138-224
+666|code|ADD.W           argc, port, #0x10|0-241-16-6
+670|code|ADD             name, SP, #0x68+config|2-173
+672|code|LDM             R6!, {port-R3}|15-206
+674|code|STM             R5!, {R0-R3}|15-197
+676|code|LDM.W           R6, {R0-R3}|150-232-15-0
+680|code|STM.W           R5, {R0-R3}|133-232-15-0
+684|code|LDR             R3, [state,#0x10]|35-105
+686|code|CBZ             R3, loc_2BC|43-177
+688|code|MOVS            R1, #0|0-33
+690|code|LDR             R0, [state,#0x14]|96-105
+692|code|MOV             R2, R1|10-70
+694|code|LDR             R3, =grub_strtoul|63-75
+696|code|BLX             R3; grub_strtoul|152-71
+698|code|STR             R0, [SP,#0x68+config]|2-144
+700|code|LDR             R3, [state,#0x18]|163-105
+702|code|CBZ             R3, loc_2CC|43-177
+704|code|MOVS            R1, #0|0-33
+706|code|LDR             R0, [state,#0x1C]|224-105
+708|code|MOV             R2, R1|10-70
+710|code|LDR             R3, =grub_strtoul|59-75
+712|code|BLX             R3; grub_strtoul|152-71
+714|code|STR             R0, [SP,#0x68+config.word_len]|3-144
+716|code|LDR             R3, [state,#0x20]|35-106
+718|code|CBZ             R3, loc_2FE|179-177
+720|code|LDR             R0, [state,#0x24]|96-106
+722|code|LDR             R1, =aNo; "no"|63-73
+724|code|LDR             R5, =grub_strcmp|63-77
+726|code|BLX             R5; grub_strcmp|168-71
+728|code|CBNZ            R0, loc_2DE|8-185
+730|code|STR             R0, [SP,#0x68+config.parity]|4-144
+732|code|B               loc_2FE|15-224
+734|code|LDR             R0, [state,#0x24]|96-106
+736|code|LDR             R1, =aOdd; "odd"|61-73
+738|code|BLX             R5; grub_strcmp|168-71
+740|code|CBNZ            R0, loc_2EA|8-185
+742|code|MOVS            R3, #1|1-35
+744|code|B               loc_2F4|4-224
+746|code|LDR             R0, [state,#0x24]|96-106
+748|code|LDR             R1, =aEven; "even"|59-73
+750|code|BLX             R5; grub_strcmp|168-71
+752|code|CBNZ            R0, loc_2F8|16-185
+754|code|MOVS            R3, #2|2-35
+756|code|STR             R3, [SP,#0x68+config.parity]|4-147
+758|code|B               loc_2FE|2-224
+760|code|MOVS            R0, #0x12|18-32
+762|code|LDR             R1, =aUnsupportedSer_2; "unsupported serial port parity"|57-73
+764|code|B               loc_352|41-224
+766|code|LDR             R3, [state,#0x38]|163-107
+768|code|CBZ             R3, loc_322|123-177
+770|code|LDR             R0, [state,#0x24]|96-106
+772|code|LDR             R1, =aOn; "on"|55-73
+774|code|LDR             R5, =grub_strcmp|51-77
+776|code|BLX             R5; grub_strcmp|168-71
+778|code|CBNZ            R0, loc_310|8-185
+780|code|MOVS            R3, #1|1-35
+782|code|STR             R3, [SP,#0x68+config.rtscts]|8-147
+784|code|LDR             R0, [state,#0x24]|96-106
+786|code|LDR             R1, =aOff; "off"|53-73
+788|code|BLX             R5; grub_strcmp|168-71
+790|code|CBNZ            R0, loc_31C|8-185
+792|code|STR             R0, [SP,#0x68+config.rtscts]|8-144
+794|code|B               loc_322|2-224
+796|code|MOVS            R0, #0x12|18-32
+798|code|LDR             R1, =aUnsupportedSer_3; "unsupported serial port flow control"|51-73
+800|code|B               loc_352|23-224
+802|code|LDR             R3, [state,#0x28]|163-106
+804|code|CBZ             R3, loc_356|187-177
+806|code|LDR             R0, [state,#0x2C]|224-106
+808|code|LDR             R1, =a1; "1"|49-73
+810|code|LDR             R5, =grub_strcmp|42-77
+812|code|BLX             R5; grub_strcmp|168-71
+814|code|CBNZ            R0, loc_334|8-185
+816|code|STR             R0, [SP,#0x68+config.stop_bits]|5-144
+818|code|B               loc_356|16-224
+820|code|LDR             R0, [state,#0x2C]|224-106
+822|code|LDR             R1, =a2; "2"|47-73
+824|code|BLX             R5; grub_strcmp|168-71
+826|code|CBNZ            R0, loc_340|8-185
+828|code|MOVS            R3, #2|2-35
+830|code|B               loc_34A|4-224
+832|code|LDR             R0, [state,#0x2C]|224-106
+834|code|LDR             R1, =a15; "1.5"|45-73
+836|code|BLX             R5; grub_strcmp|168-71
+838|code|CBNZ            R0, loc_34E|16-185
+840|code|MOVS            R3, #1|1-35
+842|code|STR             R3, [SP,#0x68+config.stop_bits]|5-147
+844|code|B               loc_356|3-224
+846|code|LDR             R1, =aUnsupportedSer_4; "unsupported serial port stop bits numbe"...|43-73
+848|code|MOVS            R0, #0x12|18-32
+850|code|LDR             R3, =grub_error|30-75
+852|code|B               loc_3AE|43-224
+854|code|LDR             R3, [state,#0x30]|35-107
+856|code|CBZ             R3, loc_3A6|43-179
+858|code|MOVS            R2, #0|0-34
+860|code|LDR             R3, =grub_strtoull|40-75
+862|code|LDR             R0, [state,#0x34]|96-107
+864|code|ADD             R1, SP, #0x68+ptr|1-169
+866|code|BLX             R3; grub_strtoull|152-71
+868|code|LDR             R3, =grub_errno|39-75
+870|code|MOV             R2, R0|2-70
+872|code|STR             R0, [SP,#0x68+config.base_clock]|6-144
+874|code|LDR             R0, [R3]|24-104
+876|code|STR             R1, [SP,#0x68+config.base_clock+4]|7-145
+878|code|CBNZ            R0, loc_3B0|248-185
+880|code|LDR             R0, [SP,#0x68+ptr]|1-152
+882|code|CBZ             R0, loc_3A6|192-177
+884|code|LDRB            R3, [R0]|3-120
+886|code|CMP             R3, #0x4D ; 'M'|77-43
+888|code|BNE             loc_388|6-209
+890|code|LDR             state, =0xF4240|35-76
+892|code|UMULL.W         R2, R3, R2, R4|162-251-4-35
+896|code|MLA.W           R3, R4, R1, R3|4-251-1-51
+900|code|STRD.W          R2, R3, [SP,#0x68+config.base_clock]|205-233-6-35
+904|code|LDRB            R3, [R0]|3-120
+906|code|AND.W           R3, R3, #0xDF|3-240-223-3
+910|code|CMP             R3, #0x4B ; 'K'|75-43
+912|code|BNE             loc_3A6|9-209
+914|code|LDR             R2, [SP,#0x68+config.base_clock]|6-154
+916|code|MOV.W           R1, #0x3E8|79-244-122-113
+920|code|LDR             R0, [SP,#0x68+config.base_clock+4]|7-152
+922|code|UMULL.W         R2, R3, R2, R1|162-251-1-35
+926|code|MLA.W           R3, R1, R0, R3|1-251-0-51
+930|code|STRD.W          R2, R3, [SP,#0x68+config.base_clock]|205-233-6-35
+934|code|LDR             R3, [port,#0xC]|251-104
+936|code|ADD             R1, SP, #0x68+config|2-169
+938|code|MOV             R0, port|56-70
+940|code|LDR             R3, [R3]|27-104
+942|code|BLX             R3; grub_error|152-71
+944|code|ADD             SP, SP, #0x54 ; 'T'|21-176
+946|code|POP             {R4-port,PC}|240-189
+948|data|DCD grub_strtoul|148-11-0-0
+952|data|DCD grub_snprintf|56-11-0-0
+956|data|DCD aComLd; "com%ld"|15-8-0-0
+960|data|DCD aPortLx; "port%lx"|22-8-0-0
+964|data|DCD aCom0; "com0"|10-8-0-0
+968|data|DCD aSerialPortSIsn; "serial port `%s' isn't found"|30-8-0-0
+972|data|DCD grub_error|128-11-0-0
+976|data|DCD aNo; "no"|59-8-0-0
+980|data|DCD grub_strcmp|116-11-0-0
+984|data|DCD aOdd; "odd"|62-8-0-0
+988|data|DCD aEven; "even"|66-8-0-0
+992|data|DCD aUnsupportedSer_2; "unsupported serial port parity"|71-8-0-0
+996|data|DCD aOn; "on"|102-8-0-0
+1000|data|DCD aOff; "off"|105-8-0-0
+1004|data|DCD aUnsupportedSer_3; "unsupported serial port flow control"|109-8-0-0
+1008|data|DCD a1; "1"|146-8-0-0
+1012|data|DCD a2; "2"|148-8-0-0
+1016|data|DCD a15; "1.5"|150-8-0-0
+1020|data|DCD aUnsupportedSer_4; "unsupported serial port stop bits numbe"...|154-8-0-0
+1024|data|DCD grub_strtoull|24-11-0-0
+1028|data|DCD grub_errno|76-11-0-0
+1032|data|DCD 0xF4240|64-66-15-0
+1036|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+1040|code|MOV             R7, port|7-70
+1042|code|LDR.W           R9, =grub_malloc|223-248-64-145
+1046|code|MOVS            port, #0x20 ; ' '|32-32
+1048|code|BLX             R9; grub_malloc|200-71
+1050|code|MOV             R4, in|4-70
+1052|code|CBZ             in, loc_42C|48-177
+1054|code|MOVS            in, #0x24 ; '$'|36-32
+1056|code|BLX             R9; grub_malloc|200-71
+1058|code|MOV             R6, indata|6-70
+1060|code|MOV             indata, in|32-70
+1062|code|CBNZ            indata, loc_434|46-185
+1064|code|LDR             R3, =grub_free|58-75
+1066|code|BLX             R3; grub_free|152-71
+1068|code|LDR             R3, =grub_errno|58-75
+1070|code|LDR             R0, [R3]|24-104
+1072|code|POP.W           {R3-R9,PC}|189-232-248-131
+1076|code|MOVS            R2, #0x20 ; ' '|32-34
+1078|code|LDR             R1, =grub_serial_term_input|57-73
+1080|code|LDR.W           R8, =grub_memmove|223-248-28-129
+1084|code|BLX             R8; grub_memmove|192-71
+1086|code|LDR             R3, =grub_xasprintf|56-75
+1088|code|LDR             R1, [port,#8]|185-104
+1090|code|STR             indata, [in,#0x1C]|230-97
+1092|code|LDR             R0, =aSerialS; "serial_%s"|55-72
+1094|code|BLX             R3; grub_xasprintf|152-71
+1096|code|LDR             R1, =grub_serial_terminfo_input|55-73
+1098|code|MOVS            R2, #0x24 ; '$'|36-34
+1100|code|STR             R0, [in,#8]|160-96
+1102|code|MOV             R0, indata|48-70
+1104|code|BLX             R8; grub_memmove|192-71
+1106|code|LDR             R3, [in,#8]|163-104
+1108|code|CBNZ            R3, loc_462|43-185
+1110|code|MOV             R0, in|32-70
+1112|code|LDR             in, =grub_free|46-76
+1114|code|BLX             R4; grub_free|160-71
+1116|code|MOV             R0, indata|48-70
+1118|code|BLX             R4; grub_free|160-71
+1120|code|B               loc_42C|228-231
+1122|code|MOVS            R0, #0x4C ; 'L'|76-32
+1124|code|BLX             R9; grub_malloc|200-71
+1126|code|MOV             R5, out|5-70
+1128|code|CBNZ            out, loc_47A|56-185
+1130|code|MOV             out, in|32-70
+1132|code|LDR             out, =grub_free|41-77
+1134|code|BLX             R5; grub_free|168-71
+1136|code|MOV             R0, indata|48-70
+1138|code|BLX             R5; grub_free|168-71
+1140|code|LDR             R0, [in,#8]|160-104
+1142|code|BLX             R5; grub_free|168-71
+1144|code|B               loc_42C|216-231
+1146|code|MOVS            out, #0x34 ; '4'|52-32
+1148|code|BLX             R9; grub_malloc|200-71
+1150|code|MOV             R9, outdata|129-70
+1152|code|CBNZ            outdata, loc_496|72-185
+1154|code|LDR             port, =grub_free|36-79
+1156|code|MOV             outdata, in|32-70
+1158|code|BLX             R7; grub_free|184-71
+1160|code|MOV             R0, indata|48-70
+1162|code|BLX             R7; grub_free|184-71
+1164|code|LDR             R0, [in,#8]|160-104
+1166|code|BLX             R7; grub_free|184-71
+1168|code|MOV             R0, out|40-70
+1170|code|BLX             R7; grub_free|184-71
+1172|code|B               loc_42C|202-231
+1174|code|LDR             R1, =grub_serial_term_output|37-73
+1176|code|MOVS            R2, #0x4C ; 'L'|76-34
+1178|code|MOV             outdata, out|40-70
+1180|code|LDR             indata, =grub_list_push|36-78
+1182|code|BLX             R8; grub_memmove|192-71
+1184|code|LDR             R3, [in,#8]|163-104
+1186|code|MOVS            R2, #0x34 ; '4'|52-34
+1188|code|LDR             R1, =grub_serial_terminfo_output|35-73
+1190|code|STR.W           outdata, [out,#0x48]|197-248-72-144
+1194|code|MOV             R0, outdata|72-70
+1196|code|STR             R3, [out,#8]|171-96
+1198|code|BLX             R8; grub_memmove|192-71
+1200|code|LDR             R0, =grub_serial_ports|33-72
+1202|code|MOV             R1, port|57-70
+1204|code|BLX             R6; grub_list_push|176-71
+1206|code|LDR             R3, [in,#0x1C]|227-105
+1208|code|MOV             R0, out|40-70
+1210|code|LDR             R1, =aVt100; "vt100"|32-73
+1212|code|STR             port, [R3,#0x20]|31-98
+1214|code|LDR             R3, [out,#0x48]|171-108
+1216|code|STR             port, [R3,#0x30]|31-99
+1218|code|LDR             R3, =grub_terminfo_output_register|31-75
+1220|code|STR.W           in, [port,#0x98]|199-248-152-64
+1224|code|STR.W           out, [port,#0x94]|199-248-148-80
+1228|code|BLX             R3; grub_terminfo_output_register|152-71
+1230|code|LDR             R3, =grub_term_inputs|29-75
+1232|code|LDR             R3, [R3]|27-104
+1234|code|CBZ             R3, loc_4D8|11-177
+1236|code|LDR             R0, =grub_term_inputs_disabled|28-72
+1238|code|B               loc_4DE|2-224
+1240|code|LDR             R3, [in,#0xC]|227-104
+1242|code|CBNZ            R3, loc_4E4|27-185
+1244|code|LDR             R0, =grub_term_inputs|25-72
+1246|code|MOV             R1, in|33-70
+1248|code|BLX             R6; grub_list_push|176-71
+1250|code|B               loc_4EC|3-224
+1252|code|MOV             R0, in|32-70
+1254|code|BLX             R3|152-71
+1256|code|CMP             R0, #0|0-40
+1258|code|BEQ             loc_4DC|247-208
+1260|code|LDR             R3, =grub_term_outputs|23-75
+1262|code|LDR             in, [R3]|28-104
+1264|code|CBZ             R4, loc_4F6|12-177
+1266|code|LDR             R0, =grub_term_outputs_disabled|23-72
+1268|code|B               loc_4FC|2-224
+1270|code|LDR             R3, [out,#0xC]|235-104
+1272|code|CBNZ            R3, loc_506|43-185
+1274|code|LDR             R0, =grub_term_outputs|20-72
+1276|code|MOV             R1, out|41-70
+1278|code|BLX             R6; grub_list_push|176-71
+1280|code|MOVS            R0, #0|0-32
+1282|code|POP.W           {R3-outdata,PC}|189-232-248-131
+1286|code|MOV             R0, out|40-70
+1288|code|BLX             R3|152-71
+1290|code|CMP             R0, #0|0-40
+1292|code|BEQ             loc_4FA|245-208
+1294|code|MOV             R0, R4|32-70
+1296|code|POP.W           {R3-outdata,PC}|189-232-248-131
+1300|data|DCD grub_free|136-11-0-0
+1304|data|DCD grub_errno|76-11-0-0
+1308|data|DCD grub_serial_term_input|56-10-0-0
+1312|data|DCD grub_xasprintf|36-11-0-0
+1316|data|DCD aSerialS; "serial_%s"|195-8-0-0
+1320|data|DCD grub_serial_terminfo_input|184-10-0-0
+1324|data|DCD grub_serial_term_output|88-10-0-0
+1328|data|DCD grub_list_push|144-11-0-0
+1332|data|DCD grub_serial_terminfo_output|220-10-0-0
+1336|data|DCD grub_serial_ports|180-10-0-0
+1340|data|DCD aVt100; "vt100"|205-8-0-0
+1344|data|DCD grub_terminfo_output_register|32-11-0-0
+1348|data|DCD grub_term_inputs|84-11-0-0
+1352|data|DCD grub_term_inputs_disabled|104-11-0-0
+1356|data|DCD grub_term_outputs|100-11-0-0
+1360|data|DCD grub_term_outputs_disabled|80-11-0-0
+1364|data|DCD grub_malloc|120-11-0-0
+1368|data|DCD grub_memmove|40-11-0-0
+1372|code|LDR             R3, [port,#0xC]|195-104
+1374|code|PUSH            {R4-R6,LR}|112-181
+1376|code|MOV             R5, port|5-70
+1378|code|LDR             R3, [R3,#0xC]|219-104
+1380|code|CBZ             R3, loc_568|3-177
+1382|code|BLX             R3|152-71
+1384|code|LDR.W           R6, [port,#0x98]|213-248-152-96
+1388|code|LDR             R4, =grub_list_remove|7-76
+1390|code|CBZ             R6, loc_578|30-177
+1392|code|MOV             R0, R6|48-70
+1394|code|BLX             R4; grub_list_remove|160-71
+1396|code|MOV             R0, R6|48-70
+1398|code|BLX             R4; grub_list_remove|160-71
+1400|code|LDR.W           R6, [port,#0x94]|213-248-148-96
+1404|code|CBZ             R6, loc_586|30-177
+1406|code|MOV             R0, R6|48-70
+1408|code|BLX             R4; grub_list_remove|160-71
+1410|code|MOV             R0, R6|48-70
+1412|code|BLX             R4; grub_list_remove|160-71
+1414|code|MOV             R0, port|40-70
+1416|code|BLX             R4; grub_list_remove|160-71
+1418|code|POP             {R4-R6,PC}|112-189
+1420|data|DCD grub_list_remove|132-11-0-0
+1424|code|PUSH            {R3-R5,LR}|56-181
+1426|code|MOV             R4, driver|4-70
+1428|code|LDR             R3, =grub_serial_ports|5-75
+1430|code|LDR             driver, [R3]; port|24-104
+1432|code|CBZ             port, locret_5AA|56-177
+1434|code|LDR             R2, [port,#0xC]|194-104
+1436|code|LDR             R5, [port]|5-104
+1438|code|CMP             R2, driver|162-66
+1440|code|BNE             loc_5A6|1-209
+1442|code|BL              grub_serial_unregister|255-247-219-255
+1446|code|MOV             R0, next|40-70
+1448|code|B               loc_598|246-231
+1450|code|POP             {R3-R5,PC}|56-189
+1452|data|DCD grub_serial_ports|180-10-0-0
+1456|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+1458|code|MOVS            R2, #0|0-34
+1460|code|LDR             R4, =options|13-76
+1462|code|LDR             R3, =aConfigureSeria; "Configure serial port."|14-75
+1464|code|LDR             R1, =(grub_cmd_serial+1)|14-73
+1466|code|STR             R4, [SP,#0x18+var_14]|1-148
+1468|code|STR             R3, [SP,#0x18+var_18]|0-147
+1470|code|LDR             R5, =grub_register_extcmd|14-77
+1472|code|LDR             R3, =aOptions; "[OPTIONS...]"|14-75
+1474|code|LDR             mod, =aSerial; "serial"|15-72
+1476|code|BLX             R5; grub_register_extcmd|168-71
+1478|code|LDR             R5, =grub_serial_ports|15-77
+1480|code|ADD.W           R1, R4, #0xD8|4-241-216-1
+1484|code|LDR             R6, =grub_memmove|14-78
+1486|code|MOVS            R2, #0x34 ; '4'|52-34
+1488|code|STR             R0, [R5,#(cmd - 0xAB4)]|232-101
+1490|code|ADD.W           R0, R5, #0x28 ; '('|5-241-40-0
+1494|code|BLX             R6; grub_memmove|176-71
+1496|code|ADD.W           R1, R4, #0x10C|4-245-134-113
+1500|code|MOVS            R2, #0x24 ; '$'|36-34
+1502|code|ADDS            R0, R5, #4|40-29
+1504|code|BLX             R6; grub_memmove|176-71
+1506|code|LDR             R3, =(grub_efiserial_init+1)|10-75
+1508|code|BLX             R3; grub_efiserial_init|152-71
+1510|code|ADD             SP, SP, #8|2-176
+1512|code|POP             {R4-R6,PC}|112-189
+1514|data|ALIGN 4|0-191
+1516|data|DCD options|104-6-0-0
+1520|data|DCD aConfigureSeria; "Configure serial port."|231-8-0-0
+1524|data|DCD grub_cmd_serial+1|45-2-0-0
+1528|data|DCD grub_register_extcmd|140-11-0-0
+1532|data|DCD aOptions; "[OPTIONS...]"|218-8-0-0
+1536|data|DCD aSerial; "serial"|211-8-0-0
+1540|data|DCD grub_serial_ports|180-10-0-0
+1544|data|DCD grub_memmove|40-11-0-0
+1548|data|DCD grub_efiserial_init+1|33-1-0-0
+1552|code|PUSH            {R4,LR}|16-181
+1554|code|LDR             R4, =grub_serial_ports|5-76
+1556|code|LDR             R0, [R4]; port|32-104
+1558|code|CBZ             R0, loc_61E|16-177
+1560|code|BL              grub_serial_unregister|255-247-160-255
+1564|code|B               loc_614|250-231
+1566|code|LDR             R3, =grub_serial_ports|2-75
+1568|code|LDR             R0, [R3,#(cmd - 0xAB4)]|216-109
+1570|code|LDR             R3, =grub_unregister_extcmd|2-75
+1572|code|BLX             R3; grub_unregister_extcmd|152-71
+1574|code|POP             {R4,PC}|16-189
+1576|data|DCD grub_serial_ports|180-10-0-0
+1580|data|DCD grub_unregister_extcmd|68-11-0-0
+1944|data|DCB "unsupported serial port parity",0|117-110-115-117-112-112-111-114-116-101-100-32-115-101-114-105-97-108-32-112-111-114-116-32-112-97-114-105-116-121-0
+1975|data|DCB "unsupported serial port stop bits number",0|117-110-115-117-112-112-111-114-116-101-100-32-115-101-114-105-97-108-32-112-111-114-116-32-115-116-111-112-32-98-105-116-115-32-110-117-109-98-101-114-0
+2016|data|DCB "unsupported serial port word length",0|117-110-115-117-112-112-111-114-116-101-100-32-115-101-114-105-97-108-32-112-111-114-116-32-119-111-114-100-32-108-101-110-103-116-104-0
+2052|data|DCB "efi%d",0|101-102-105-37-100-0
+2058|data|DCB "com0",0|99-111-109-48-0
+2063|data|DCB "com%ld",0|99-111-109-37-108-100-0
+2070|data|DCB "port%lx",0|112-111-114-116-37-108-120-0
+2078|data|DCB "serial port `%s' isn't found",0|115-101-114-105-97-108-32-112-111-114-116-32-96-37-115-39-32-105-115-110-39-116-32-102-111-117-110-100-0
+2107|data|DCB "no",0|110-111-0
+2110|data|DCB "odd",0|111-100-100-0
+2114|data|DCB "even",0|101-118-101-110-0
+2119|data|DCB "unsupported serial port parity",0|117-110-115-117-112-112-111-114-116-101-100-32-115-101-114-105-97-108-32-112-111-114-116-32-112-97-114-105-116-121-0
+2150|data|DCB "on",0|111-110-0
+2153|data|DCB "off",0|111-102-102-0
+2157|data|DCB "unsupported serial port flow control",0|117-110-115-117-112-112-111-114-116-101-100-32-115-101-114-105-97-108-32-112-111-114-116-32-102-108-111-119-32-99-111-110-116-114-111-108-0
+2194|data|DCB "1",0|49-0
+2196|data|DCB "2",0|50-0
+2198|data|DCB "1.5",0|49-46-53-0
+2202|data|DCB "unsupported serial port stop bits number",0|117-110-115-117-112-112-111-114-116-101-100-32-115-101-114-105-97-108-32-112-111-114-116-32-115-116-111-112-32-98-105-116-115-32-110-117-109-98-101-114-0
+2243|data|DCB "serial_%s",0|115-101-114-105-97-108-95-37-115-0
+2253|data|DCB "vt100",0|118-116-49-48-48-0
+2259|data|DCB "serial",0|115-101-114-105-97-108-0
+2266|data|DCB "[OPTIONS...]",0|91-79-80-84-73-79-78-83-46-46-46-93-0
+2279|data|DCB "Configure serial port.",0|67-111-110-102-105-103-117-114-101-32-115-101-114-105-97-108-32-112-111-114-116-46-0
+2302|data|DCB "unit",0|117-110-105-116-0
+2307|data|DCB "Set the serial unit.",0|83-101-116-32-116-104-101-32-115-101-114-105-97-108-32-117-110-105-116-46-0
+2328|data|DCB "port",0|112-111-114-116-0
+2333|data|DCB "Set the serial port address.",0|83-101-116-32-116-104-101-32-115-101-114-105-97-108-32-112-111-114-116-32-97-100-100-114-101-115-115-46-0
+2362|data|DCB "speed",0|115-112-101-101-100-0
+2368|data|DCB "Set the serial port speed.",0|83-101-116-32-116-104-101-32-115-101-114-105-97-108-32-112-111-114-116-32-115-112-101-101-100-46-0
+2395|data|DCB "word",0|119-111-114-100-0
+2400|data|DCB "Set the serial port word length.",0|83-101-116-32-116-104-101-32-115-101-114-105-97-108-32-112-111-114-116-32-119-111-114-100-32-108-101-110-103-116-104-46-0
+2433|data|DCB "parity",0|112-97-114-105-116-121-0
+2440|data|DCB "Set the serial port parity.",0|83-101-116-32-116-104-101-32-115-101-114-105-97-108-32-112-111-114-116-32-112-97-114-105-116-121-46-0
+2468|data|DCB "stop",0|115-116-111-112-0
+2473|data|DCB "Set the serial port stop bits.",0|83-101-116-32-116-104-101-32-115-101-114-105-97-108-32-112-111-114-116-32-115-116-111-112-32-98-105-116-115-46-0
+2504|data|DCB "base-clock",0|98-97-115-101-45-99-108-111-99-107-0
+2515|data|DCB "Set the base frequency.",0|83-101-116-32-116-104-101-32-98-97-115-101-32-102-114-101-113-117-101-110-99-121-46-0
+2539|data|DCB "rtscts",0|114-116-115-99-116-115-0
+2546|data|DCB "Enable/disable RTS/CTS.",0|69-110-97-98-108-101-47-100-105-115-97-98-108-101-32-82-84-83-47-67-84-83-46-0
+2570|data|DCB "on|off",0|111-110-124-111-102-102-0
+2584|data|DCD 0xBB25CF6F          ; data1|111-207-37-187-212-241-210-17-154-12-0-144-39-63-193-253
+2600|data|grub_serial_driver <serial_hw_configure+1, serial_hw_fetch+1, \|201-0-0-0-113-0-0-0-165-0-0-0-0-0-0-0
+2616|data|grub_term_input <0, 0, aSerial, grub_terminfo_input_init, 0, \; "serial"|0-0-0-0-0-0-0-0-211-8-0-0-88-11-0-0-0-0-0-0-64-11-0-0-0-0-0-0-184-10-0-0
+2648|data|grub_term_output <0, 0, aSerial, grub_terminfo_output_init, 0, \; "serial"|0-0-0-0-0-0-0-0-211-8-0-0-52-11-0-0-0-0-0-0-28-11-0-0-0-0-0-0-72-11-0-0-92-11-0-0-20-11-0-0-44-11-0-0-48-11-0-0-60-11-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-0-0-0-0-0-0-0-220-10-0-0
+2724|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2740|data|% 4|255-255-255-255
+2744|data|grub_serial_input_state <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+2780|data|grub_serial_output_state <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255

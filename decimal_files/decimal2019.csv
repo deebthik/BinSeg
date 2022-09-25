@@ -1,0 +1,437 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|MOV             R5, argc|13-70
+6|code|SUB             SP, SP, #0x74|157-176
+8|code|LDR             cmd, =aGfxmode; "gfxmode"|35-72
+10|code|LDR             R3, =grub_env_get|36-75
+12|code|MOV             R4, args|20-70
+14|code|BLX             R3; grub_env_get|152-71
+16|code|CBZ             argc, loc_14|5-177
+18|code|LDR             mode, [args]|32-104
+20|code|LDR             R3, =aAuto; "auto"|34-75
+22|code|MOVS            R1, #0x40 ; '@'|64-33
+24|code|MOVS            R2, #0|0-34
+26|code|CMP             R0, #0|0-40
+28|code|IT EQ|8-191
+30|code|MOVEQ           R0, R3|24-70
+32|code|LDR             R3, =grub_video_set_mode|32-75
+34|code|BLX             R3; grub_video_set_mode|152-71
+36|code|CMP             err, #0|0-40
+38|code|BNE.W           loc_342|64-240-140-129
+42|code|ADD             R1, SP, #0x98+y|8-169
+44|code|ADD             R2, SP, #0x98+width|9-170
+46|code|ADD             R3, SP, #0x98+height|10-171
+48|code|LDR             args, =grub_video_get_viewport|29-76
+50|code|ADD             err, SP, #0x98+x|7-168
+52|code|BLX             R4; grub_video_get_viewport|160-71
+54|code|LDR             R4, =grub_video_create_render_target|29-76
+56|code|ADD             R0, SP, #0x98+text_layer|11-168
+58|code|LDR             R1, [SP,#0x98+width]|9-153
+60|code|LDR             R2, [SP,#0x98+height]|10-154
+62|code|MOVS            R3, #0x21 ; '!'|33-35
+64|code|BLX             R4; grub_video_create_render_target|160-71
+66|code|MOV             R4, R0|4-70
+68|code|CMP             R0, #0|0-40
+70|code|BNE.W           loc_332|64-240-116-129
+74|code|LDR             R0, [SP,#0x98+text_layer]|11-152
+76|code|CMP             R0, #0|0-40
+78|code|BEQ.W           loc_332|0-240-112-129
+82|code|LDR             R3, =grub_video_set_active_render_target|23-75
+84|code|BLX             R3; grub_video_set_active_render_target|152-71
+86|code|MOVS            R1, #0xFF|255-33
+88|code|MOV             R2, R1|10-70
+90|code|MOV             R0, R4|32-70
+92|code|LDR.W           R11, =grub_video_map_rgb|223-248-104-176
+96|code|BLX             R11; grub_video_map_rgb|216-71
+98|code|LDR             argc, =grub_font_get|20-77
+100|code|MOV             R7, R0|7-70
+102|code|LDR             color_0, =aUnknownRegular; "Unknown Regular 16"|20-72
+104|code|BLX             R5; grub_font_get|168-71
+106|code|MOV             R9, R0|129-70
+108|code|LDR             sansbig, =aUnknownRegular; "Unknown Regular 16"|18-72
+110|code|BLX             R5; grub_font_get|168-71
+112|code|MOV             R6, R0|6-70
+114|code|LDR             sans, =aUnknownRegular; "Unknown Regular 16"|17-72
+116|code|BLX             R5; grub_font_get|168-71
+118|code|MOV             R8, R0|128-70
+120|code|LDR             sanssmall, =aFixed20; "Fixed 20"|16-72
+122|code|BLX             R5; grub_font_get|168-71
+124|code|MOV             R5, R0|5-70
+126|code|CMP.W           sansbig, #0|185-241-0-15
+130|code|BEQ             loc_8E|4-208
+132|code|CBZ             sans, loc_8E|30-177
+134|code|CMP.W           sanssmall, #0|184-241-0-15
+138|code|BEQ             loc_8E|0-208
+140|code|CBNZ            fixed, loc_CC|240-185
+142|code|LDR             R1, =aNoFontLoaded; "no font loaded"|12-73
+144|code|MOVS            fixed, #0x17|23-32
+146|code|LDR             R3, =grub_error|12-75
+148|code|BLX             R3; grub_error|152-71
+150|code|B               loc_342|84-225
+152|data|DCD aGfxmode; "gfxmode"|233-3-0-0
+156|data|DCD grub_env_get|52-5-0-0
+160|data|DCD aAuto; "auto"|228-3-0-0
+164|data|DCD grub_video_set_mode|228-4-0-0
+168|data|DCD grub_video_get_viewport|8-5-0-0
+172|data|DCD grub_video_create_render_target|236-4-0-0
+176|data|DCD grub_video_set_active_render_target|32-5-0-0
+180|data|DCD grub_font_get|240-4-0-0
+184|data|DCD aUnknownRegular; "Unknown Regular 16"|241-3-0-0
+188|data|DCD aFixed20; "Fixed 20"|4-4-0-0
+192|data|DCD aNoFontLoaded; "no font loaded"|13-4-0-0
+196|data|DCD grub_error|40-5-0-0
+200|data|DCD grub_video_map_rgb|36-5-0-0
+204|code|MOVS            R1, #0x2A ; '*'|42-33
+206|code|LDR             R3, =grub_font_get_glyph|159-75
+208|code|BLX             R3; grub_font_get_glyph|152-71
+210|code|MOV             R1, color_0|57-70
+212|code|MOV             R3, R4|35-70
+214|code|MOVS            R2, #0xC8|200-34
+216|code|LDR             color_0, =grub_font_draw_glyph|157-79
+218|code|BLX             R7; grub_font_draw_glyph|184-71
+220|code|MOVS            R0, #0xFF|255-32
+222|code|MOV             R1, R0|1-70
+224|code|MOV             R2, R0|2-70
+226|code|BLX             R11; grub_video_map_rgb|216-71
+228|code|LDR             R7, =grub_font_draw_string|155-79
+230|code|MOV             R1, sans|49-70
+232|code|MOVS            R3, #0x20 ; ' '|32-35
+234|code|STR             R3, [SP,#0x98+var_98]|0-147
+236|code|MOVS            R3, #0x10|16-35
+238|code|MOV             R12, R0|132-70
+240|code|LDR             color_0, =aTheQuickBrownF; "The quick brown fox jumped over the laz"...|153-72
+242|code|MOV             R2, color_0|98-70
+244|code|STR.W           color_0, [SP,#0x98+color]|205-248-20-192
+248|code|BLX             R7; grub_font_draw_string|184-71
+250|code|MOV             R0, sans|48-70
+252|code|LDR             R3, =grub_font_get_descent|151-75
+254|code|BLX             R3; grub_font_get_descent|152-71
+256|code|LDR             R3, =grub_font_get_leading|151-75
+258|code|MOV             R10, R0|130-70
+260|code|MOV             R0, sans|48-70
+262|code|BLX             R3; grub_font_get_leading|152-71
+264|code|LDR.W           R12, [SP,#0x98+color]|221-248-20-192
+268|code|MOV             R1, fixed|41-70
+270|code|MOVS            R3, #0x10|16-35
+272|code|MOV             R2, R12|98-70
+274|code|ADD             R0, R10|80-68
+276|code|ADD.W           R10, R0, #0x20 ; ' '|0-241-32-10
+280|code|LDRSH.W         R0, [fixed,#0x14]|181-249-20-0
+284|code|ADD             texty, R0|130-68
+286|code|LDR             R0, =aTheQuickBrownF; "The quick brown fox jumped over the laz"...|142-72
+288|code|STR.W           texty, [SP,#0x98+var_98]|205-248-0-160
+292|code|BLX             R7; grub_font_draw_string|184-71
+294|code|MOV             R0, fixed|40-70
+296|code|LDR             R3, =grub_font_get_descent|140-75
+298|code|BLX             R3; grub_font_get_descent|152-71
+300|code|LDR             R3, =grub_font_get_leading|140-75
+302|code|STR             R0, [SP,#0x98+color]|5-144
+304|code|MOV             R0, fixed|40-70
+306|code|BLX             R3; grub_font_get_leading|152-71
+308|code|LDR             R3, [SP,#0x98+color]|5-155
+310|code|MOVS            R2, #0xFF|255-34
+312|code|ADD             R0, R3|24-68
+314|code|ADD             texty, R0|130-68
+316|code|MOVS            R0, #0x80|128-32
+318|code|MOV             R1, R0|1-70
+320|code|BLX             R11; grub_video_map_rgb|216-71
+322|code|MOV             R1, fixed|41-70
+324|code|MOVS            R3, #0x10|16-35
+326|code|MOV             R11, R0|131-70
+328|code|LDRSH.W         color_0, [fixed,#0x14]|181-249-20-0
+332|code|MOV             R2, color_0|90-70
+334|code|ADD             texty, R0|130-68
+336|code|LDR             R0, =unk_44A|132-72
+338|code|STR.W           texty, [SP,#0x98+var_98]|205-248-0-160
+342|code|BLX             R7; grub_font_draw_string|184-71
+344|code|MOV             R0, fixed|40-70
+346|code|LDR             R3, =grub_font_get_descent|128-75
+348|code|BLX             R3; grub_font_get_descent|152-71
+350|code|LDR             R3, =grub_font_get_leading|128-75
+352|code|STR             R0, [SP,#0x98+color]|5-144
+354|code|MOV             R0, fixed|40-70
+356|code|BLX             R3; grub_font_get_leading|152-71
+358|code|LDR             R3, [SP,#0x98+color]|5-155
+360|code|MOV             R1, sansbig|73-70
+362|code|MOV             R2, color_0|90-70
+364|code|ADD             R0, R3|24-68
+366|code|MOVS            R3, #0x10|16-35
+368|code|ADD             texty, R0|130-68
+370|code|LDRSH.W         R0, [sansbig,#0x14]|185-249-20-0
+374|code|ADD             texty, R0|130-68
+376|code|LDR             R0, =unk_44A|122-72
+378|code|STR.W           texty, [SP,#0x98+var_98]|205-248-0-160
+382|code|BLX             R7; grub_font_draw_string|184-71
+384|code|MOV             R0, sansbig|72-70
+386|code|LDR             R3, =grub_font_get_descent|118-75
+388|code|BLX             R3; grub_font_get_descent|152-71
+390|code|LDR             R3, =grub_font_get_leading|118-75
+392|code|STR             R0, [SP,#0x98+color]|5-144
+394|code|MOV             R0, sansbig|72-70
+396|code|BLX             R3; grub_font_get_leading|152-71
+398|code|LDR             R3, [SP,#0x98+color]|5-155
+400|code|LDRSH.W         sansbig, [sans,#0x14]|182-249-20-144
+404|code|MOV             R1, sans|49-70
+406|code|MOV             R2, color_0|90-70
+408|code|ADD             R0, R3|24-68
+410|code|MOVS            R3, #0x10|16-35
+412|code|ADD             texty, R0|130-68
+414|code|LDR             R0, =unk_44A|113-72
+416|code|ADD             R9, texty|209-68
+418|code|STR.W           texty, [SP,#0x98+var_98]|205-248-0-144
+422|code|BLX             R7; grub_font_draw_string|184-71
+424|code|MOV             R0, sans|48-70
+426|code|LDR             R3, =grub_font_get_descent|108-75
+428|code|BLX             R3; grub_font_get_descent|152-71
+430|code|LDR             R3, =grub_font_get_leading|108-75
+432|code|MOV             R10, R0|130-70
+434|code|MOV             R0, sans|48-70
+436|code|BLX             R3; grub_font_get_leading|152-71
+438|code|MOV             R1, sanssmall|65-70
+440|code|MOV             R2, color_0|90-70
+442|code|MOVS            R3, #0x10|16-35
+444|code|LDR             sans, =grub_font_draw_glyph|100-78
+446|code|ADD             R0, R10|80-68
+448|code|ADD             texty, R0|129-68
+450|code|LDRSH.W         R0, [sanssmall,#0x14]|184-249-20-0
+454|code|ADD             R0, R9|72-68
+456|code|STR             texty, [SP,#0x98+var_98]|0-144
+458|code|LDR             texty, =unk_44A|102-72
+460|code|BLX             R7; grub_font_draw_string|184-71
+462|code|MOV             R0, sanssmall|64-70
+464|code|LDR             R3, =grub_font_get_descent|98-75
+466|code|BLX             R3; grub_font_get_descent|152-71
+468|code|MOV             R0, sanssmall|64-70
+470|code|LDR             R3, =grub_font_get_leading|98-75
+472|code|ADD.W           sanssmall, SP, #0x98+palette|13-241-48-8
+476|code|BLX             R3; grub_font_get_leading|152-71
+478|code|MOV             R0, fixed|40-70
+480|code|MOVS            R1, #0x2A ; '*'|42-33
+482|code|LDR             R3, =grub_font_get_glyph|90-75
+484|code|BLX             R3; grub_font_get_glyph|152-71
+486|code|LDR.W           R9, =grub_video_map_color|223-248-168-145
+490|code|MOV             fixed, R4|37-70
+492|code|MOV             R7, R0|7-70
+494|code|MOV             R0, i|40-70
+496|code|BLX             R9; grub_video_map_color|200-71
+498|code|MOVS            R3, #0xDC|220-35
+500|code|STR.W           R0, [R8,i,LSL#2]|72-248-37-0
+504|code|ADDS            i, #1|1-53
+506|code|MOV             R1, R0|1-70
+508|code|MOV             color_0, glyph|56-70
+510|code|LSLS            R2, R5, #4|42-1
+512|code|BLX             R6; grub_font_draw_glyph|176-71
+514|code|CMP             i, #0x10|16-45
+516|code|BNE             loc_1EE|243-209
+518|code|MOVS            R0, #0|0-32
+520|code|LDR             R3, =grub_video_set_active_render_target|87-75
+522|code|BLX             R3; grub_video_set_active_render_target|152-71
+524|code|LDR             glyph, =grub_video_map_rgb|87-79
+526|code|LDR             R6, =grub_video_fill_rect|88-78
+528|code|MOV.W           R9, #0|79-240-0-9
+532|code|LDR.W           R10, =grub_video_set_viewport|223-248-124-161
+536|code|CMP.W           i, #1|185-241-1-15
+540|code|BGT             loc_2CA|85-220
+542|code|MOVS            R0, #0|0-32
+544|code|MOVS            R5, #0x64 ; 'd'|100-37
+546|code|MOV             R1, R0|1-70
+548|code|MOV             R2, R0|2-70
+550|code|BLX             R7; grub_video_map_rgb|184-71
+552|code|LDR             R3, [SP,#0x98+height]|10-155
+554|code|MOVS            R1, #0|0-33
+556|code|MOV             R2, R1|10-70
+558|code|STR             R3, [SP,#0x98+var_98]|0-147
+560|code|LDR             R3, [SP,#0x98+width]|9-155
+562|code|BLX             R6; grub_video_fill_rect|176-71
+564|code|MOVS            R1, #0|0-33
+566|code|MOV             R2, R1|10-70
+568|code|MOVS            R0, #0xFF|255-32
+570|code|BLX             R7; grub_video_map_rgb|184-71
+572|code|MOVS            R1, #0|0-33
+574|code|MOV             R2, R1|10-70
+576|code|MOV             R3, R5|43-70
+578|code|STR             R5, [SP,#0x98+var_98]|0-149
+580|code|BLX             R6; grub_video_fill_rect|176-71
+582|code|MOVS            R0, #0|0-32
+584|code|MOVS            R1, #0xFF|255-33
+586|code|MOV             R2, R0|2-70
+588|code|BLX             R7; grub_video_map_rgb|184-71
+590|code|MOV             R3, R5|43-70
+592|code|MOV             R1, R5|41-70
+594|code|MOVS            R2, #0|0-34
+596|code|STR             R5, [SP,#0x98+var_98]|0-149
+598|code|BLX             R6; grub_video_fill_rect|176-71
+600|code|MOVS            R0, #0|0-32
+602|code|MOV             R1, R0|1-70
+604|code|MOVS            R2, #0xFF|255-34
+606|code|BLX             R7; grub_video_map_rgb|184-71
+608|code|MOV             R3, R5|43-70
+610|code|MOVS            R1, #0xC8|200-33
+612|code|MOVS            R2, #0|0-34
+614|code|STR             R5, [SP,#0x98+var_98]|0-149
+616|code|BLX             R6; grub_video_fill_rect|176-71
+618|code|MOVS            R1, #0xFF|255-33
+620|code|MOV             R2, R1|10-70
+622|code|MOVS            R0, #0|0-32
+624|code|BLX             R7; grub_video_map_rgb|184-71
+626|code|MOV             R3, R5|43-70
+628|code|MOVS            R1, #0|0-33
+630|code|MOV             R2, R5|42-70
+632|code|STR             R5, [SP,#0x98+var_98]|0-149
+634|code|BLX             R6; grub_video_fill_rect|176-71
+636|code|MOVS            R0, #0xFF|255-32
+638|code|MOVS            R1, #0|0-33
+640|code|MOV             R2, R0|2-70
+642|code|BLX             R7; grub_video_map_rgb|184-71
+644|code|MOV             R3, R5|43-70
+646|code|MOV             R1, R5|41-70
+648|code|MOV             R2, R5|42-70
+650|code|STR             R5, [SP,#0x98+var_98]|0-149
+652|code|BLX             R6; grub_video_fill_rect|176-71
+654|code|MOVS            R0, #0xFF|255-32
+656|code|MOV             R1, R0|1-70
+658|code|MOVS            R2, #0|0-34
+660|code|BLX             R7; grub_video_map_rgb|184-71
+662|code|MOVS            R1, #0xC8|200-33
+664|code|MOV             R2, R5|42-70
+666|code|MOV             R3, R5|43-70
+668|code|STR             R5, [SP,#0x98+var_98]|0-149
+670|code|BLX             R6; grub_video_fill_rect|176-71
+672|code|LDR             R0, [SP,#0x98+x]|7-152
+674|code|LDR             R1, [SP,#0x98+y]|8-153
+676|code|LDR             R2, [SP,#0x98+width]|9-154
+678|code|ADDS            R0, #0x96|150-48
+680|code|LDR             R3, [SP,#0x98+height]|10-155
+682|code|ADDS            R1, #0x96|150-49
+684|code|SUB.W           R2, R2, #0x12C|162-245-150-114
+688|code|SUB.W           R3, R3, #0x12C|163-245-150-115
+692|code|BLX             R10; grub_video_set_viewport|208-71
+694|code|MOVS            R0, #0x4D ; 'M'|77-32
+696|code|MOVS            R1, #0x21 ; '!'|33-33
+698|code|MOV             R2, R0|2-70
+700|code|BLX             R7; grub_video_map_rgb|184-71
+702|code|LDR             R3, [SP,#0x98+height]|10-155
+704|code|MOVS            R1, #0|0-33
+706|code|MOV             R2, R1|10-70
+708|code|STR             R3, [SP,#0x98+var_98]|0-147
+710|code|LDR             R3, [SP,#0x98+width]|9-155
+712|code|BLX             R6; grub_video_fill_rect|176-71
+714|code|UXTB.W          R0, i|95-250-137-240
+718|code|MOVS            R1, #0x21 ; '!'|33-33
+720|code|MOVS            R2, #0x4D ; 'M'|77-34
+722|code|MOVS            R5, #0|0-37
+724|code|BLX             R7; grub_video_map_rgb|184-71
+726|code|LDR             R3, [SP,#0x98+height]|10-155
+728|code|MOVS            R1, #0|0-33
+730|code|ADD.W           i, i, #1|9-241-1-9
+734|code|MOV             R2, R1|10-70
+736|code|STR             R3, [SP,#0x98+var_98]|0-147
+738|code|LDR             R3, [SP,#0x98+width]|9-155
+740|code|BLX             R6; grub_video_fill_rect|176-71
+742|code|LDR             R3, [SP,#0x98+width]|9-155
+744|code|MOVS            R1, #1|1-33
+746|code|MOV             R2, R5|42-70
+748|code|LDR.W           R12, =grub_video_blit_render_target|223-248-168-192
+752|code|STR             R3, [SP,#0x98+var_90]|2-147
+754|code|LDR             R3, [SP,#0x98+height]|10-155
+756|code|STR             R5, [SP,#0x98+var_98]|0-149
+758|code|STR             R5, [SP,#0x98+var_94]|1-149
+760|code|STR             R3, [SP,#0x98+var_8C]|3-147
+762|code|MOV             R3, R5|43-70
+764|code|LDR             R0, [SP,#0x98+text_layer]|11-152
+766|code|BLX             R12; grub_video_blit_render_target|224-71
+768|code|LDR             R3, =grub_video_swap_buffers|28-75
+770|code|BLX             R3; grub_video_swap_buffers|152-71
+772|code|CMP.W           i, #5|185-241-5-15
+776|code|BNE             loc_218|134-209
+778|code|LDR             R3, =grub_getkey|27-75
+780|code|BLX             R3; grub_getkey|152-71
+782|code|LDR             R3, =grub_video_delete_render_target|27-75
+784|code|LDR             R0, [SP,#0x98+text_layer]|11-152
+786|code|BLX             R3; grub_video_delete_render_target|152-71
+788|code|LDR             R3, =grub_video_restore|26-75
+790|code|BLX             R3; grub_video_restore|152-71
+792|code|LDR             R6, =grub_printf|26-78
+794|code|MOV             R1, i|41-70
+796|code|LDR.W           R2, [R8,i,LSL#2]|88-248-37-32
+800|code|LDR             R0, =aColorD08x; "color %d: %08x\n"|25-72
+802|code|ADDS            i, #1|1-53
+804|code|BLX             R6; grub_printf|176-71
+806|code|CMP             i, #0x10|16-45
+808|code|BNE             loc_31A|247-209
+810|code|LDR             R3, =grub_errno|24-75
+812|code|MOVS            R2, #0|0-34
+814|code|STR             R2, [R3]|26-96
+816|code|B               loc_344|8-224
+818|code|LDR             R3, =grub_video_delete_render_target|18-75
+820|code|LDR             R0, [SP,#0x98+text_layer]|11-152
+822|code|BLX             R3; grub_video_delete_render_target|152-71
+824|code|LDR             R3, =grub_video_restore|17-75
+826|code|BLX             R3; grub_video_restore|152-71
+828|code|LDR             R3, =grub_errno|19-75
+830|code|LDR             R4, [R3]|28-104
+832|code|B               loc_344|0-224
+834|code|MOV             R4, R0|4-70
+836|code|MOV             R0, R4|32-70
+838|code|ADD             SP, SP, #0x74 ; 't'|29-176
+840|code|POP.W           {R4-R11,PC}|189-232-240-143
+844|data|DCD grub_font_get_glyph|224-4-0-0
+848|data|DCD grub_font_draw_glyph|20-5-0-0
+852|data|DCD grub_font_draw_string|252-4-0-0
+856|data|DCD aTheQuickBrownF; "The quick brown fox jumped over the laz"...|28-4-0-0
+860|data|DCD grub_font_get_descent|216-4-0-0
+864|data|DCD grub_font_get_leading|0-5-0-0
+868|data|DCD unk_44A|74-4-0-0
+872|data|DCD grub_video_set_active_render_target|32-5-0-0
+876|data|DCD grub_video_map_rgb|36-5-0-0
+880|data|DCD grub_video_fill_rect|232-4-0-0
+884|data|DCD grub_video_swap_buffers|24-5-0-0
+888|data|DCD grub_getkey|248-4-0-0
+892|data|DCD grub_video_delete_render_target|220-4-0-0
+896|data|DCD grub_video_restore|28-5-0-0
+900|data|DCD grub_printf|12-5-0-0
+904|data|DCD aColorD08x; "color %d: %08x\n"|125-4-0-0
+908|data|DCD grub_errno|244-4-0-0
+912|data|DCD grub_video_map_color|212-4-0-0
+916|data|DCD grub_video_set_viewport|48-5-0-0
+920|data|DCD grub_video_blit_render_target|44-5-0-0
+924|code|PUSH            {mod,R1,R4,LR}|19-181
+926|code|MOVS            R3, #0|0-35
+928|code|LDR             R1, =(grub_cmd_videotest+1)|5-73
+930|code|STR             R3, [SP,#0x10+var_10]|0-147
+932|code|LDR             R2, =aWxh; "[WxH]"|5-74
+934|code|LDR             R3, =aTestVideoSubsy; "Test video subsystem in mode WxH."|6-75
+936|code|LDR             R4, =grub_register_command_prio|6-76
+938|code|LDR             mod, =aVideotest; "videotest"|7-72
+940|code|BLX             R4; grub_register_command_prio|160-71
+942|code|LDR             R3, =cmd|7-75
+944|code|STR             R0, [R3]|24-96
+946|code|ADD             SP, SP, #8|2-176
+948|code|POP             {R4,PC}|16-189
+950|data|ALIGN 4|0-191
+952|data|DCD grub_cmd_videotest+1|1-0-0-0
+956|data|DCD aWxh; "[WxH]"|151-4-0-0
+960|data|DCD aTestVideoSubsy; "Test video subsystem in mode WxH."|157-4-0-0
+964|data|DCD grub_register_command_prio|4-5-0-0
+968|data|DCD aVideotest; "videotest"|141-4-0-0
+972|data|DCD cmd|208-4-0-0
+976|code|PUSH            {R3,LR}|8-181
+978|code|LDR             R3, =cmd|2-75
+980|code|LDR             R0, [R3]|24-104
+982|code|LDR             R3, =grub_unregister_command|2-75
+984|code|BLX             R3; grub_unregister_command|152-71
+986|code|POP             {R3,PC}|8-189
+988|data|DCD cmd|208-4-0-0
+992|data|DCD grub_unregister_command|16-5-0-0
+996|data|DCB "auto",0|97-117-116-111-0
+1001|data|DCB "gfxmode",0|103-102-120-109-111-100-101-0
+1009|data|DCB "Unknown Regular 16",0|85-110-107-110-111-119-110-32-82-101-103-117-108-97-114-32-49-54-0
+1028|data|DCB "Fixed 20",0|70-105-120-101-100-32-50-48-0
+1037|data|DCB "no font loaded",0|110-111-32-102-111-110-116-32-108-111-97-100-101-100-0
+1052|data|DCB "The quick brown fox jumped over the lazy dog.",0|84-104-101-32-113-117-105-99-107-32-98-114-111-119-110-32-102-111-120-32-106-117-109-112-101-100-32-111-118-101-114-32-116-104-101-32-108-97-122-121-32-100-111-103-46-0
+1149|data|DCB "color %d: %08x",0xA,0|99-111-108-111-114-32-37-100-58-32-37-48-56-120-10-0
+1165|data|DCB "videotest",0|118-105-100-101-111-116-101-115-116-0
+1175|data|DCB "[WxH]",0|91-87-120-72-93-0
+1181|data|DCB "Test video subsystem in mode WxH.",0|84-101-115-116-32-118-105-100-101-111-32-115-117-98-115-121-115-116-101-109-32-105-110-32-109-111-100-101-32-87-120-72-46-0
+1215|data||255
+1216|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

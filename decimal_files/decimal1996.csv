@@ -1,0 +1,258 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|MOV             R4, len|28-70
+4|code|LDR             R6, =grub_xputs|10-78
+6|code|MOV             R5, len|29-70
+8|code|CMP.W           len, #0x200|181-245-0-127
+12|code|BCC             loc_1A|5-211
+14|code|LDR             R0, =unk_28C|9-72
+16|code|SUB.W           len, len, #0x200|165-245-0-117
+20|code|LDR             R3, [R6]|51-104
+22|code|BLX             R3|152-71
+24|code|B               loc_8|246-231
+26|code|UBFX.W          R4, R4, #0, #9|196-243-8-4
+30|code|CBZ             R4, loc_28|28-177
+32|code|LDR             R3, =grub_xputs|3-75
+34|code|LDR             R0, =unk_28C|4-72
+36|code|LDR             R3, [R3]|27-104
+38|code|BLX             R3|152-71
+40|code|LDR             R3, =grub_refresh|3-75
+42|code|BLX             R3; grub_refresh|152-71
+44|code|POP             {R4-R6,PC}|112-189
+46|data|ALIGN 0x10|0-191
+48|data|DCD grub_xputs|96-3-0-0
+52|data|DCD unk_28C|140-2-0-0
+56|data|DCD grub_refresh|124-3-0-0
+60|code|CMP             argc, #0|0-41
+62|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+66|code|MOV             R9, argv|145-70
+68|code|SUB.W           SP, SP, #0x21C|173-245-7-125
+72|code|BGT             loc_54|4-220
+74|code|LDR             argc, =aFilenameExpect; "filename expected"|105-73
+76|code|MOVS            cmd, #0x12|18-32
+78|code|LDR             R3, =grub_error|105-75
+80|code|BLX             R3; grub_error|152-71
+82|code|B               loc_1E8|201-224
+84|code|LDR             cmd, [argv]|16-104
+86|code|LDR             R3, =grub_file_open|104-75
+88|code|BLX             R3; grub_file_open|152-71
+90|code|MOV             R5, file|5-70
+92|code|CBNZ            file, loc_64|16-185
+94|code|LDR             R3, =grub_errno|103-75
+96|code|LDR             file, [R3]|24-104
+98|code|B               loc_1E8|193-224
+100|code|LDR             R3, [file,#0x38]|131-107
+102|code|BIC.W           R8, R3, #0x1FE|35-244-255-120
+106|code|BIC.W           R8, R8, #1|40-240-1-8
+110|code|CMP.W           size, #0|184-241-0-15
+114|code|BNE             loc_7C|3-209
+116|code|LDR             R3, =grub_file_close|98-75
+118|code|BLX             R3; grub_file_close|152-71
+120|code|MOV             R0, size|64-70
+122|code|B               loc_1E8|181-224
+124|code|MOV             file, size|64-70
+126|code|LDR             R3, =grub_malloc|97-75
+128|code|BLX             R3; grub_malloc|152-71
+130|code|STR             buf_0, [SP,#0x240+buf]|1-144
+132|code|CMP             buf_0, #0|0-40
+134|code|BEQ.W           fail|0-240-160-128
+138|code|LDR.W           R1, [argv]|217-248-0-16
+142|code|LDR             buf_0, =aReadingSSequen; "Reading %s sequentially"|94-72
+144|code|LDR             R4, =grub_printf|94-76
+146|code|BLX             R4; grub_printf|160-71
+148|code|LDR             R3, =(read_progress+1)|94-75
+150|code|LDR             R6, =grub_file_read|95-78
+152|code|MOV             R0, file|40-70
+154|code|LDR             R1, [SP,#0x240+buf]|1-153
+156|code|MOV             R2, size|66-70
+158|code|STR             R3, [file,#0x48]|171-100
+160|code|BLX             R6; grub_file_read|176-71
+162|code|STR             R6, [SP,#0x240+var_230]|4-150
+164|code|CMP             R0, size|64-69
+166|code|BNE.W           fail|64-240-144-128
+170|code|LDR             R6, =grub_file_seek|91-78
+172|code|MOV.W           R10, #0|79-240-0-10
+176|code|LDR             R0, =aDone; " Done.\n"|90-72
+178|code|MOV.W           R11, #0|79-240-0-11
+182|code|BLX             R4; grub_printf|160-71
+184|code|LDR.W           R1, [argv]|217-248-0-16
+188|code|LDR             R0, =aReadingSSequen_0; "Reading %s sequentially again"|88-72
+190|code|BLX             R4; grub_printf|160-71
+192|code|MOVS            R2, #0|0-34
+194|code|MOVS            R3, #0|0-35
+196|code|MOV             R0, file|40-70
+198|code|BLX             R6; grub_file_seek|176-71
+200|code|MOV             R2, size|66-70
+202|code|MOVS            R3, #0|0-35
+204|code|STR             R6, [SP,#0x240+var_22C]|5-150
+206|code|STRD.W          R2, R3, [SP,#0x240+var_238]|205-233-2-35
+210|code|LDRD.W          R6, R7, [SP,#0x240+var_238]|221-233-2-103
+214|code|CMP             R11, R7|187-69
+216|code|IT EQ|8-191
+218|code|CMPEQ           R10, R6|178-69
+220|code|BCS             loc_134|42-210
+222|code|LDRD.W          R2, R3, [SP,#0x240+var_238]|221-233-2-35
+226|code|MOVS            R1, #0|0-33
+228|code|MOVW            R0, #0x1FF|64-242-255-16
+232|code|SUBS.W          R2, R2, R10|178-235-10-2
+236|code|SBC.W           R3, R3, R11|99-235-11-3
+240|code|CMP             R1, R3|153-66
+242|code|ADD             R1, SP, #0x240+sector|6-169
+244|code|IT EQ|8-191
+246|code|CMPEQ           R0, R2|144-66
+248|code|LDR             R3, [SP,#0x240+var_230]|4-155
+250|code|IT CS|40-191
+252|code|RSBCS.W         R6, R10, size|202-235-8-6
+256|code|MOV             R0, file|40-70
+258|code|IT CC|56-191
+260|code|MOVCC.W         curlen, #0x200|79-244-0-118
+264|code|MOV             R2, curlen|50-70
+266|code|BLX             R3|152-71
+268|code|CMP             R0, curlen|176-66
+270|code|BNE             fail|92-209
+272|code|LDR             R3, [SP,#0x240+buf]|1-155
+274|code|ADD             R0, SP, #0x240+sector|6-168
+276|code|MOV             R2, curlen|50-70
+278|code|ADD.W           R1, R3, R10|3-235-10-1
+282|code|LDR             R3, =grub_memcmp|66-75
+284|code|BLX             R3; grub_memcmp|152-71
+286|code|CBZ             R0, loc_12A|32-177
+288|code|MOV             R2, R10|82-70
+290|code|MOV             R3, R11|91-70
+292|code|LDR             R0, =aDiffersInLld; "\nDiffers in %lld\n"|64-72
+294|code|BLX             R4; grub_printf|160-71
+296|code|B               fail|79-224
+298|code|ADDS.W          R10, R10, curlen|26-235-6-10
+302|code|ADC.W           R11, R11, #0|75-241-0-11
+306|code|B               loc_D2|206-231
+308|code|LDR             R0, =aDone; " Done.\n"|57-72
+310|code|MOVW            size, #0x1FF|64-242-255-24
+314|code|BLX             R4; grub_printf|160-71
+316|code|LDR.W           R1, [argv]|217-248-0-16
+320|code|LDR             R0, =aReadingSBackwa; "Reading %s backwards"|58-72
+322|code|MOV.W           argv, #0|79-240-0-9
+326|code|BLX             R4; grub_printf|160-71
+328|code|CMP             R9, R7|185-69
+330|code|IT EQ|8-191
+332|code|CMPEQ           R8, R6|176-69
+334|code|BCS             loc_15A|4-210
+336|code|SUBS.W          R6, R6, #0x200|182-245-0-118
+340|code|ADC.W           R7, R7, #0xFFFFFFFF|71-241-255-55
+344|code|B               loc_15E|1-224
+346|code|MOVS            R6, #0|0-38
+348|code|MOVS            R7, #0|0-39
+350|code|MOV             R2, R6|50-70
+352|code|MOV             R3, R7|59-70
+354|code|MOV             R0, file|40-70
+356|code|LDR             R1, [SP,#0x240+var_22C]|5-153
+358|code|BLX             R1|136-71
+360|code|MOV.W           R2, #0x200|79-244-0-114
+364|code|MOV             R0, file|40-70
+366|code|ADD             R1, SP, #0x240+sector|6-169
+368|code|LDR             R3, [SP,#0x240+var_230]|4-155
+370|code|BLX             R3|152-71
+372|code|CMP.W           R0, #0x200|176-245-0-127
+376|code|MOV             R2, R0|2-70
+378|code|BNE             fail|38-209
+380|code|LDR             R3, [SP,#0x240+buf]|1-155
+382|code|ADD             R0, SP, #0x240+sector|6-168
+384|code|ADD.W           R10, R3, R6|3-235-6-10
+388|code|LDR             R3, =grub_memcmp|39-75
+390|code|MOV             R1, R10|81-70
+392|code|BLX             R3; grub_memcmp|152-71
+394|code|MOV             R11, R0|131-70
+396|code|CBZ             R0, loc_1BC|176-177
+398|code|MOV             R2, R6|50-70
+400|code|MOV             R3, R7|59-70
+402|code|LDR             R0, =aDiffersInLld; "\nDiffers in %lld\n"|37-72
+404|code|MOVS            R6, #0|0-38
+406|code|BLX             R4; grub_printf|160-71
+408|code|LDR             R7, =grub_printf|28-79
+410|code|LDR             R0, =a02x; "%02x "|37-72
+412|code|LDRB.W          R1, [R10,i]|26-248-6-16
+416|code|BLX             R4; grub_printf|160-71
+418|code|AND.W           R3, i, #0xF|6-240-15-3
+422|code|CMP             R3, #0xF|15-43
+424|code|BNE             loc_1AE|1-209
+426|code|LDR             R0, =asc_30B; "\n"|34-72
+428|code|BLX             R7; grub_printf|184-71
+430|code|ADDS            i, #1|1-54
+432|code|CMP.W           i, #0x200|182-245-0-127
+436|code|BNE             loc_19A|241-209
+438|code|LDR             R3, =grub_refresh|32-75
+440|code|BLX             R3; grub_refresh|152-71
+442|code|B               fail|6-224
+444|code|ORRS.W          R3, R6, R7|86-234-7-3
+448|code|BNE             loc_148|194-209
+450|code|LDR             R0, =aDone; " Done.\n"|22-72
+452|code|BLX             R4; grub_printf|160-71
+454|code|MOV             R0, R11|88-70
+456|code|B               loc_1E8|14-224
+458|code|LDR             R3, =grub_file_close|13-75
+460|code|MOV             R0, file|40-70
+462|code|BLX             R3; grub_file_close|152-71
+464|code|LDR             R3, =grub_free|26-75
+466|code|LDR             R0, [SP,#0x240+buf]|1-152
+468|code|BLX             R3; grub_free|152-71
+470|code|LDR             R3, =grub_errno|9-75
+472|code|LDR             R2, [R3]|26-104
+474|code|MOV             R4, R3|28-70
+476|code|CBNZ            R2, loc_1E6|26-185
+478|code|MOVS            R0, #0x1D|29-32
+480|code|LDR             R1, =aBadRead; "bad read"|23-73
+482|code|LDR             R3, =grub_error|4-75
+484|code|BLX             R3; grub_error|152-71
+486|code|LDR             R0, [R4]|32-104
+488|code|ADD.W           SP, SP, #0x21C|13-245-7-125
+492|code|POP.W           {R4-R11,PC}|189-232-240-143
+496|data|DCD aFilenameExpect; "filename expected"|142-2-0-0
+500|data|DCD grub_error|140-3-0-0
+504|data|DCD grub_file_open|136-3-0-0
+508|data|DCD grub_errno|104-3-0-0
+512|data|DCD grub_file_close|132-3-0-0
+516|data|DCD grub_malloc|128-3-0-0
+520|data|DCD aReadingSSequen; "Reading %s sequentially"|160-2-0-0
+524|data|DCD grub_printf|112-3-0-0
+528|data|DCD read_progress+1|1-0-0-0
+532|data|DCD grub_file_read|120-3-0-0
+536|data|DCD grub_file_seek|100-3-0-0
+540|data|DCD aDone; " Done.\n"|184-2-0-0
+544|data|DCD aReadingSSequen_0; "Reading %s sequentially again"|192-2-0-0
+548|data|DCD grub_memcmp|148-3-0-0
+552|data|DCD aDiffersInLld; "\nDiffers in %lld\n"|222-2-0-0
+556|data|DCD aReadingSBackwa; "Reading %s backwards"|240-2-0-0
+560|data|DCD a02x; "%02x "|5-3-0-0
+564|data|DCD asc_30B; "\n"|11-3-0-0
+568|data|DCD grub_refresh|124-3-0-0
+572|data|DCD grub_free|144-3-0-0
+576|data|DCD aBadRead; "bad read"|13-3-0-0
+580|code|PUSH            {mod,R1,R4,LR}|19-181
+582|code|MOVS            R3, #0|0-35
+584|code|LDR             R1, =(grub_cmd_testload+1)|5-73
+586|code|STR             R3, [SP,#0x10+var_10]|0-147
+588|code|LDR             R2, =aFile; "FILE"|5-74
+590|code|LDR             R3, =aLoadTheSameFil; "Load the same file in multiple ways."|6-75
+592|code|LDR             R4, =grub_register_command_prio|6-76
+594|code|LDR             mod, =aTestload; "testload"|7-72
+596|code|BLX             R4; grub_register_command_prio|160-71
+598|code|LDR             R3, =cmd|7-75
+600|code|STR             R0, [R3]|24-96
+602|code|ADD             SP, SP, #8|2-176
+604|code|POP             {R4,PC}|16-189
+606|data|ALIGN 0x10|0-191
+608|data|DCD grub_cmd_testload+1|61-0-0-0
+612|data|DCD aFile; "FILE"|31-3-0-0
+616|data|DCD aLoadTheSameFil; "Load the same file in multiple ways."|36-3-0-0
+620|data|DCD grub_register_command_prio|108-3-0-0
+624|data|DCD aTestload; "testload"|22-3-0-0
+628|data|DCD cmd|92-3-0-0
+632|code|PUSH            {R3,LR}|8-181
+634|code|LDR             R3, =cmd|2-75
+636|code|LDR             R0, [R3]|24-104
+638|code|LDR             R3, =grub_unregister_command|2-75
+640|code|BLX             R3; grub_unregister_command|152-71
+642|code|POP             {R3,PC}|8-189
+644|data|DCD cmd|92-3-0-0
+648|data|DCD grub_unregister_command|116-3-0-0
+841|data||255
+842|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

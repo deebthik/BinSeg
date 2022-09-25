@@ -1,0 +1,329 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R5,LR}|56-181
+2|code|MOV             R5, state|5-70
+4|code|LDR             R3, =grub_term_outputs|5-75
+6|code|LDR             R4, [R3]|28-104
+8|code|CBZ             term, locret_18|52-177
+10|code|LDR             R3, [term,#0x2C]|227-106
+12|code|CBZ             R3, loc_14|19-177
+14|code|MOV             R0, term|32-70
+16|code|MOV             R1, state|41-70
+18|code|BLX             R3|152-71
+20|code|LDR             term, [term]|36-104
+22|code|B               loc_8|247-231
+24|code|POP             {R3-state,PC}|56-189
+26|data|ALIGN 4|0-191
+28|data|DCD grub_term_outputs|200-3-0-0
+32|code|MOV             R3, c|3-70
+34|code|LDR             c, [count]|16-104
+36|code|PUSH            {R4,LR}|16-181
+38|code|CBZ             R0, loc_64|232-177
+40|code|AND.W           R0, R3, #0xC0|3-240-192-0
+44|code|CMP             R0, #0x80|128-40
+46|code|BEQ             loc_34|1-208
+48|code|MOVS            R0, #0|0-32
+50|code|B               loc_60|21-224
+52|code|LDR             R0, [code]|8-104
+54|code|AND.W           R3, R3, #0x3F|3-240-63-3
+58|code|ORR.W           R3, R3, R0,LSL#6|67-234-128-19
+62|code|STR             R3, [code]|11-96
+64|code|LDR             R3, [count]|19-104
+66|code|SUBS            R3, #1|1-59
+68|code|STR             R3, [count]|19-96
+70|code|CMP             R3, #1|1-43
+72|code|BNE             loc_56|5-209
+74|code|LDR             R3, [code]|11-104
+76|code|CMP             R3, #0x1F|31-43
+78|code|BHI             loc_A8|43-216
+80|code|MOVS            R0, #0|0-32
+82|code|STR             R0, [code]|8-96
+84|code|B               loc_60|4-224
+86|code|CMP             R3, #2|2-43
+88|code|BNE             loc_A8|38-209
+90|code|LDR             R3, [code]|11-104
+92|code|CMP             R3, #0xF|15-43
+94|code|B               loc_4E|246-231
+96|code|STR             R0, [count]|16-96
+98|code|POP             {R4,PC}|16-189
+100|code|LSLS            R4, R3, #0x18|28-6
+102|code|BPL             loc_A6|30-213
+104|code|AND.W           R4, R3, #0xE0|3-240-224-4
+108|code|CMP             R4, #0xC0|192-44
+110|code|BNE             loc_84|9-209
+112|code|AND.W           R3, R3, #0x1F|3-240-31-3
+116|code|MOVS            R4, #1|1-36
+118|code|CMP             R3, R4|163-66
+120|code|STR             R4, [count]|20-96
+122|code|STR             R3, [code]|11-96
+124|code|BHI             loc_A8|20-216
+126|code|STR             R0, [count]|16-96
+128|code|STR             R0, [code]|8-96
+130|code|POP             {R4,PC}|16-189
+132|code|AND.W           R4, R3, #0xF0|3-240-240-4
+136|code|CMP             R4, #0xE0|224-44
+138|code|BNE             loc_96|4-209
+140|code|MOVS            R0, #2|2-32
+142|code|AND.W           R3, R3, #0xF|3-240-15-3
+146|code|STR             R0, [count]|16-96
+148|code|B               loc_A6|7-224
+150|code|AND.W           R4, R3, #0xF8|3-240-248-4
+154|code|CMP             R4, #0xF0|240-44
+156|code|BNE             locret_AA|5-209
+158|code|AND.W           R3, R3, #7|3-240-7-3
+162|code|MOVS            R0, #3|3-32
+164|code|STR             R0, [count]|16-96
+166|code|STR             R3, [code]|11-96
+168|code|MOVS            R0, #1|1-32
+170|code|POP             {R4,PC}|16-189
+172|code|LDR             R3, [ctxt,#4]|67-104
+174|code|CMP             argc, #1|1-41
+176|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+180|code|SUB.W           SP, SP, #0x21C|173-245-7-125
+184|code|MOV.W           R4, #0|79-240-0-4
+188|code|LDR             R5, [state]|29-104
+190|code|STR             R4, [SP,#0x240+code]|2-148
+192|code|STR             R4, [SP,#0x240+count]|3-148
+194|code|BEQ             loc_CE|4-208
+196|code|LDR             argc, =aFilenameExpect; "filename expected"|109-73
+198|code|MOVS            ctxt, #0x12|18-32
+200|code|LDR             state, =grub_error|109-75
+202|code|BLX             R3; grub_error|152-71
+204|code|B               loc_272|209-224
+206|code|LDR             ctxt, [args]|16-104
+208|code|LDR             state, =grub_file_open|108-75
+210|code|BLX             R3; grub_file_open|152-71
+212|code|MOV             R10, file|130-70
+214|code|CBZ             file, loc_EC|72-177
+216|code|MOVS            R3, R5|43-28
+218|code|MOV             R9, R4|161-70
+220|code|MOV             R6, R4|38-70
+222|code|MOV             R5, R4|37-70
+224|code|IT NE|24-191
+226|code|MOVNE           R3, #1|1-35
+228|code|LDR.W           R8, =grub_printf|223-248-172-129
+232|code|STR             R3, [SP,#0x240+var_23C]|1-147
+234|code|B               loc_100|9-224
+236|code|LDR             R3, =grub_errno|102-75
+238|code|LDR             file, [R3]|24-104
+240|code|B               loc_272|191-224
+242|code|LDR             R6, =grub_getkey_noblock|102-78
+244|code|BLX             R6; grub_getkey_noblock|176-71
+246|code|CMP             R0, #0x1B|27-40
+248|code|MOV             R5, R0|5-70
+250|code|BNE.W           loc_236|64-240-156-128
+254|code|MOV             R6, utcount|38-70
+256|code|MOV             R0, file|80-70
+258|code|ADD             R1, SP, #0x240+buf|6-169
+260|code|MOV.W           R2, #0x200|79-244-0-114
+264|code|LDR             R4, =grub_file_read|97-76
+266|code|BLX             R4; grub_file_read|160-71
+268|code|CMP             size, #0|0-40
+270|code|BGT             loc_12E|14-220
+272|code|CMP.W           R9, #0|185-241-0-15
+276|code|BEQ.W           loc_23E|0-240-147-128
+280|code|MOVS            size, #2; state|2-32
+282|code|BL              grub_setcolorstate|255-247-113-255
+286|code|MOVS            R1, #0xD|13-33
+288|code|LDR             R3, =grub_printf|92-75
+290|code|LDR             R0, =aX; "<%x>"|93-72
+292|code|BLX             R3; grub_printf|152-71
+294|code|MOVS            R0, #0; state|0-32
+296|code|BL              grub_setcolorstate|255-247-106-255
+300|code|B               loc_23E|135-224
+302|code|CMP             key, #0x1B|27-45
+304|code|BEQ             loc_110|238-208
+306|code|SUBS            R7, size, #1|71-30
+308|code|ADD             R3, SP, #0x240+buf|6-171
+310|code|ADD.W           key, SP, #0x240+var_229|13-241-23-5
+314|code|ADD             R7, R3|31-68
+316|code|LDRB.W          R2, [R5,#1]!|21-248-1-47
+320|code|ADD.W           R11, SP, #0x240+utbuf|13-241-16-11
+324|code|ADDS            R4, utcount, #1|116-28
+326|code|STRB.W          R2, [R11,R6]|11-248-6-32
+330|code|CMP.W           R9, #0|185-241-0-15
+334|code|BEQ             loc_166|10-208
+336|code|CMP             R2, #0xA|10-42
+338|code|BEQ             loc_166|8-208
+340|code|MOVS            R0, #2; state|2-32
+342|code|BL              grub_setcolorstate|255-247-83-255
+346|code|LDR             R0, =aX; "<%x>"|79-72
+348|code|MOVS            R1, #0xD|13-33
+350|code|BLX             R8; grub_printf|192-71
+352|code|MOVS            R0, #0; state|0-32
+354|code|BL              grub_setcolorstate|255-247-77-255
+358|code|LDRB            R0, [R5]; c|40-120
+360|code|ADD             R1, SP, #0x240+code; code|2-169
+362|code|ADD             R2, SP, #0x240+count; count|3-170
+364|code|BL              grub_utf8_process|255-247-88-255
+368|code|MOV             R9, R0|129-70
+370|code|CBNZ            R0, loc_1C2|48-187
+372|code|MOVS            R0, #2; state|2-32
+374|code|BL              grub_setcolorstate|255-247-67-255
+378|code|CMP             j, R6|177-69
+380|code|BEQ             loc_18C|6-208
+382|code|LDRB.W          R1, [R11,j]|27-248-9-16
+386|code|ADD.W           j, j, #1|9-241-1-9
+390|code|LDR             R0, =aX; "<%x>"|68-72
+392|code|BLX             R8; grub_printf|192-71
+394|code|B               loc_17A|246-231
+396|code|CMP             utcount, #1|1-44
+398|code|MOV.W           R6, #0|79-240-0-6
+402|code|STR             R6, [SP,#0x240+code]|2-150
+404|code|STR             R6, [SP,#0x240+count]|3-150
+406|code|BNE             loc_1AC|9-209
+408|code|MOVS            utcount, #0|0-36
+410|code|LDRB            R1, [R5]|41-120
+412|code|LDR             R0, =aX; "<%x>"|62-72
+414|code|BLX             R8; grub_printf|192-71
+416|code|MOV             R0, R4; state|32-70
+418|code|STR             R4, [SP,#0x240+code]|2-148
+420|code|STR             R4, [SP,#0x240+count]|3-148
+422|code|BL              grub_setcolorstate|255-247-43-255
+426|code|B               loc_228|61-224
+428|code|LDRB            R0, [R5]; c|40-120
+430|code|ADD             R1, SP, #0x240+code; code|2-169
+432|code|ADD             R2, SP, #0x240+count; count|3-170
+434|code|BL              grub_utf8_process|255-247-53-255
+438|code|CMP             R0, #0|0-40
+440|code|BEQ             loc_198|238-208
+442|code|MOV             R0, R6; state|48-70
+444|code|MOVS            utcount, #1|1-36
+446|code|BL              grub_setcolorstate|255-247-31-255
+450|code|LDR             R3, [SP,#0x240+count]|3-155
+452|code|CMP             R3, #0|0-43
+454|code|BNE             loc_228|47-209
+456|code|LDR             R0, [SP,#0x240+code]|2-152
+458|code|CMP             R0, #0xA0|160-40
+460|code|BLS             loc_1DA|5-217
+462|code|LDR             R1, [SP,#0x240+code]|2-153
+464|code|CMP             R1, #0xD|13-41
+466|code|BEQ             loc_200|21-208
+468|code|LDR             R0, =aC; "%C"|49-72
+470|code|BLX             R8; grub_printf|192-71
+472|code|B               loc_222|35-224
+474|code|SUB.W           R3, R0, #0x20 ; ' '|160-241-32-3
+478|code|CMP             R3, #0x5E ; '^'|94-43
+480|code|BLS             loc_1CE|245-217
+482|code|LDR             R3, =grub_isspace|47-75
+484|code|BLX             R3; grub_isspace|152-71
+486|code|CMP             R0, #0|0-40
+488|code|BNE             loc_1CE|241-209
+490|code|LDR             R3, [SP,#0x240+var_23C]|1-155
+492|code|CBZ             R3, loc_206|91-177
+494|code|LDR             R3, [SP,#0x240+code]|2-155
+496|code|CMP             R3, #0xD|13-43
+498|code|BNE             loc_206|8-209
+500|code|MOVS            utcount, #0|0-36
+502|code|MOV.W           R9, #1|79-240-1-9
+506|code|STR             R4, [SP,#0x240+count]|3-148
+508|code|STR             R4, [SP,#0x240+code]|2-148
+510|code|B               loc_22C|21-224
+512|code|LDR             R3, [SP,#0x240+var_23C]|1-155
+514|code|CMP             R3, #0|0-43
+516|code|BNE             loc_1F4|246-209
+518|code|MOVS            R0, #2; state|2-32
+520|code|MOVS            R6, #0|0-38
+522|code|BL              grub_setcolorstate|255-247-249-254
+526|code|LDRB.W          R1, [R11,j]|27-248-6-16
+530|code|ADDS            j, #1|1-54
+532|code|LDR             R0, =aX; "<%x>"|32-72
+534|code|BLX             R8; grub_printf|192-71
+536|code|CMP             j, utcount|166-66
+538|code|BNE             loc_20E|248-209
+540|code|MOVS            R0, #0; state|0-32
+542|code|BL              grub_setcolorstate|255-247-239-254
+546|code|MOVS            utcount, #0|0-36
+548|code|STR             R4, [SP,#0x240+count]|3-148
+550|code|STR             R4, [SP,#0x240+code]|2-148
+552|code|MOV.W           R9, #0|79-240-0-9
+556|code|CMP             R5, R7|189-66
+558|code|BEQ.W           loc_F2|63-244-96-175
+562|code|MOV             R6, utcount|38-70
+564|code|B               loc_13C|130-231
+566|code|CMP             key, #0|0-40
+568|code|BNE.W           loc_F4|127-244-92-175
+572|code|B               loc_FE|95-231
+574|code|MOVS            R0, #2; state|2-32
+576|code|LDR             R7, =grub_printf|20-79
+578|code|BL              grub_setcolorstate|255-247-221-254
+582|code|ADD             key, SP, #0x240+utbuf|4-173
+584|code|MOVS            R4, #0|0-36
+586|code|CMP             j, utcount|180-66
+588|code|BEQ             loc_258|4-208
+590|code|LDRB            R1, [R5,j]|41-93
+592|code|ADDS            j, #1|1-52
+594|code|LDR             R0, =aX; "<%x>"|17-72
+596|code|BLX             R7; grub_printf|184-71
+598|code|B               loc_24A|248-231
+600|code|MOVS            R0, #0; state|0-32
+602|code|BL              grub_setcolorstate|255-247-209-254
+606|code|LDR             R3, =grub_xputs|17-75
+608|code|LDR             R0, =asc_34E; "\n"|17-72
+610|code|LDR             R3, [R3]|27-104
+612|code|BLX             R3|152-71
+614|code|LDR             R3, =grub_refresh|17-75
+616|code|BLX             R3; grub_refresh|152-71
+618|code|MOV             R0, file|80-70
+620|code|LDR             R3, =grub_file_close|16-75
+622|code|BLX             R3; grub_file_close|152-71
+624|code|MOVS            R0, #0|0-32
+626|code|ADD.W           SP, SP, #0x21C|13-245-7-125
+630|code|POP.W           {R4-R11,PC}|189-232-240-143
+634|data|ALIGN 4|0-191
+636|data|DCD aFilenameExpect; "filename expected"|52-3-0-0
+640|data|DCD grub_error|220-3-0-0
+644|data|DCD grub_file_open|212-3-0-0
+648|data|DCD grub_errno|188-3-0-0
+652|data|DCD grub_getkey_noblock|228-3-0-0
+656|data|DCD grub_file_read|196-3-0-0
+660|data|DCD grub_printf|192-3-0-0
+664|data|DCD aX; "<%x>"|70-3-0-0
+668|data|DCD aC; "%C"|75-3-0-0
+672|data|DCD grub_isspace|216-3-0-0
+676|data|DCD grub_xputs|184-3-0-0
+680|data|DCD asc_34E; "\n"|78-3-0-0
+684|data|DCD grub_refresh|204-3-0-0
+688|data|DCD grub_file_close|208-3-0-0
+692|code|LDR             R3, =aShowTheContent; "Show the contents of a file."|7-75
+694|code|MOVS            R2, #0|0-34
+696|code|PUSH            {mod,R1,R4,LR}|19-181
+698|code|STR             R3, [SP,#0x10+var_10]|0-147
+700|code|LDR             R3, =options|6-75
+702|code|LDR             R1, =(grub_cmd_cat+1)|7-73
+704|code|LDR             R4, =grub_register_extcmd|7-76
+706|code|STR             R3, [SP,#0x10+var_C]|1-147
+708|code|LDR             mod, =aCat; "cat"|7-72
+710|code|LDR             R3, =aFile; "FILE"|8-75
+712|code|BLX             R4; grub_register_extcmd|160-71
+714|code|LDR             R3, =cmd|8-75
+716|code|STR             R0, [R3]|24-96
+718|code|ADD             SP, SP, #8|2-176
+720|code|POP             {R4,PC}|16-189
+722|data|ALIGN 4|0-191
+724|data|DCD aShowTheContent; "Show the contents of a file."|89-3-0-0
+728|data|DCD options|4-3-0-0
+732|data|DCD grub_cmd_cat+1|173-0-0-0
+736|data|DCD grub_register_extcmd|224-3-0-0
+740|data|DCD aCat; "cat"|80-3-0-0
+744|data|DCD aFile; "FILE"|84-3-0-0
+748|data|DCD cmd|176-3-0-0
+752|code|PUSH            {R3,LR}|8-181
+754|code|LDR             R3, =cmd|2-75
+756|code|LDR             R0, [R3]|24-104
+758|code|LDR             R3, =grub_unregister_extcmd|2-75
+760|code|BLX             R3; grub_unregister_extcmd|152-71
+762|code|POP             {R3,PC}|8-189
+764|data|DCD cmd|176-3-0-0
+768|data|DCD grub_unregister_extcmd|180-3-0-0
+772|data|grub_arg_option <aDos, 0xFFFFFFFF, 0, aAcceptDosStyle, 0, \; "dos" ...|118-3-0-0-255-255-255-255-0-0-0-0-122-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+820|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+838|data|DCB "<%x>",0|60-37-120-62-0
+843|data|DCB "%C",0|37-67-0
+846|data|DCB 0xA,0|10-0
+848|data|DCB "cat",0|99-97-116-0
+852|data|DCB "FILE",0|70-73-76-69-0
+857|data|DCB "Show the contents of a file.",0|83-104-111-119-32-116-104-101-32-99-111-110-116-101-110-116-115-32-111-102-32-97-32-102-105-108-101-46-0
+886|data|DCB "dos",0|100-111-115-0
+890|data|DCB "Accept DOS-style CR/NL line endings.",0|65-99-99-101-112-116-32-68-79-83-45-115-116-121-108-101-32-67-82-47-78-76-32-108-105-110-101-32-101-110-100-105-110-103-115-46-0
+927|data||255
+928|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

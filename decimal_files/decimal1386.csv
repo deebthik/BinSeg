@@ -1,0 +1,239 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R5,LR}|56-181
+2|code|MOV             R5, sz|5-70
+4|code|LDR             R4, =testfile|4-76
+6|code|LDR             R3, =grub_strlen|5-75
+8|code|MOV             sz, R4|32-70
+10|code|BLX             R3; grub_strlen|152-71
+12|code|LDR             R3, =grub_strdup|4-75
+14|code|STR             R0, [sz]|40-96
+16|code|MOV             R0, R4|32-70
+18|code|BLX             R3; grub_strdup|152-71
+20|code|POP             {R3-sz,PC}|56-189
+22|data|ALIGN 4|0-191
+24|data|DCD testfile|112-2-0-0
+28|data|DCD grub_strlen|4-8-0-0
+32|data|DCD grub_strdup|36-8-0-0
+36|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+40|code|SUB             SP, SP, #0x5C|151-176
+42|code|LDR             R4, =grub_dl_load|90-76
+44|code|LDR             R0, =unk_558|90-72
+46|code|BLX             R4; grub_dl_load|160-71
+48|code|LDR             R5, =grub_errno|90-77
+50|code|LDR             R0, =aGettext; "gettext"|91-72
+52|code|BLX             R4; grub_dl_load|160-71
+54|code|LDR             R0, =aGfxterm; "gfxterm"|91-72
+56|code|BLX             R4; grub_dl_load|160-71
+58|code|LDR             R0, =aGfxmenu; "gfxmenu"|91-72
+60|code|MOVS            R3, #0|0-35
+62|code|STR             R3, [R5]|43-96
+64|code|BLX             R4; grub_dl_load|160-71
+66|code|LDR             R0, =aUnknownRegular; "Unknown Regular 16"|90-72
+68|code|LDR             R3, =grub_font_get|90-75
+70|code|MOV             R8, R5|168-70
+72|code|BLX             R3; grub_font_get|152-71
+74|code|CMP             font, #0|0-40
+76|code|BEQ.W           loc_16C|0-240-142-128
+80|code|LDR             font, [font]|0-104
+82|code|LDR             R1, =aUnknownRegular; "Unknown Regular 16"|86-73
+84|code|LDR             R3, =grub_strcmp|87-75
+86|code|BLX             R3; grub_strcmp|152-71
+88|code|CMP             R0, #0|0-40
+90|code|BNE.W           loc_16C|64-240-135-128
+94|code|LDR             R0, =grub_procfs_entries|86-72
+96|code|LDR             R1, =test_cfg|86-73
+98|code|LDR             R3, =grub_list_push|87-75
+100|code|BLX             R3; grub_list_push|152-71
+102|code|LDR             R4, =tests.val|87-76
+104|code|LDR             R6, =grub_get_time_ms|87-78
+106|code|ADD.W           R7, R4, #0x9C|4-241-156-7
+110|code|LDR             R5, =grub_test_video_modes|87-77
+112|code|ADD.W           R9, R5, #0x214|5-245-5-121
+116|code|BLX             R6; grub_get_time_ms|176-71
+118|code|LDR             R3, =grub_video_capture_start|86-75
+120|code|LDR             R2, [R5,#0x18]|170-105
+122|code|STRD.W          R0, R1, [SP,#0x80+start]|205-233-4-1
+126|code|MOV             R0, R5|40-70
+128|code|LDR             R1, =grub_video_fbstd_colors|84-73
+130|code|BLX             R3; grub_video_capture_start|152-71
+132|code|LDR.W           R3, [R8]|216-248-0-48
+136|code|CBZ             R3, loc_A6|107-177
+138|code|LDR             R2, =a0; "0"|83-74
+140|code|MOVS            R0, #0|0-32
+142|code|STR             R3, [SP,#0x80+var_78]|2-147
+144|code|LDR             R3, =grub_errmsg|82-75
+146|code|STR             R2, [SP,#0x80+var_80]|0-146
+148|code|LDR             R2, =aCanTStartCaptu; "can't start capture: %d: %s"|82-74
+150|code|STR             R3, [SP,#0x80+var_74]|3-147
+152|code|MOVS            R3, #0x91|145-35
+154|code|LDR             R1, =aTestsGfxtermMe; "tests/gfxterm_menu.c"|82-73
+156|code|STR             R2, [SP,#0x80+var_7C]|1-146
+158|code|LDR             R4, =grub_test_assert_helper|82-76
+160|code|LDR             R2, =__FUNCTION__.6198; "gfxterm_menu"|82-74
+162|code|BLX             R4; grub_test_assert_helper|160-71
+164|code|B               loc_18E|115-224
+166|code|LDR.W           R12, =unk_520|223-248-148-193
+170|code|ADD.W           LR, SP, #0x80+var_60|13-241-32-14
+174|code|LDM.W           R12!, {R0-R3}|188-232-15-0
+178|code|STM.W           LR!, {R0-R3}|174-232-15-0
+182|code|LDM.W           R12!, {R0-R3}|188-232-15-0
+186|code|STM.W           LR!, {R0-R3}|174-232-15-0
+190|code|LDM.W           R12!, {R0-R3}|188-232-15-0
+194|code|STM.W           LR!, {R0-R3}|174-232-15-0
+198|code|LDM.W           R12, {R0,R1}|156-232-3-0
+202|code|LDR             R3, =grub_terminal_input_fake_sequence|73-75
+204|code|STM.W           LR, {R0,R1}|142-232-3-0
+208|code|ADD             R0, SP, #0x80+var_60|8-168
+210|code|MOVS            R1, #0xE|14-33
+212|code|BLX             R3; grub_terminal_input_fake_sequence|152-71
+214|code|LDR             R3, =grub_video_checksum|71-75
+216|code|LDR.W           R0, [R4,#-8]|84-248-8-12
+220|code|BLX             R3; grub_video_checksum|152-71
+222|code|LDR             R3, =grub_test_use_gfxterm|70-75
+224|code|BLX             R3; grub_test_use_gfxterm|152-71
+226|code|CMP             R0, #0|0-40
+228|code|BNE             loc_18E|83-209
+230|code|LDR             R3, =grub_env_context_open|69-75
+232|code|BLX             R3; grub_env_context_open|152-71
+234|code|LDR.W           R0, [R4,#-4]|84-248-4-12
+238|code|CBZ             R0, loc_F6|16-177
+240|code|LDR             R1, [R4]|33-104
+242|code|LDR             R3, =grub_env_set|67-75
+244|code|BLX             R3; grub_env_set|152-71
+246|code|MOVS            R1, #1|1-33
+248|code|MOVS            R2, #0|0-34
+250|code|LDR             R0, =aProcTestCfg; "(proc)/test.cfg"|66-72
+252|code|LDR             R3, =grub_normal_execute|66-75
+254|code|BLX             R3; grub_normal_execute|152-71
+256|code|LDR             R3, =grub_env_context_close|66-75
+258|code|BLX             R3; grub_env_context_close|152-71
+260|code|LDR             R3, =grub_test_use_gfxterm_end|66-75
+262|code|BLX             R3; grub_test_use_gfxterm_end|152-71
+264|code|LDR             R3, =grub_terminal_input_fake_sequence_end|66-75
+266|code|BLX             R3; grub_terminal_input_fake_sequence_end|152-71
+268|code|LDR             R3, =grub_video_checksum_end|66-75
+270|code|BLX             R3; grub_video_checksum_end|152-71
+272|code|LDR             R3, =grub_video_capture_end|66-75
+274|code|BLX             R3; grub_video_capture_end|152-71
+276|code|LDR.W           R0, [R4,#-4]|84-248-4-12
+280|code|CBZ             R0, loc_11E|8-177
+282|code|LDR             R3, =grub_env_unset|65-75
+284|code|BLX             R3; grub_env_unset|152-71
+286|code|LDR             R3, [R5,#4]|107-104
+288|code|ADDS            R5, #0x4C ; 'L'|76-53
+290|code|LDR.W           R10, [R5,#-0x4C]|85-248-76-172
+294|code|LDR.W           R11, [R4,#-8]|84-248-8-188
+298|code|STR             R3, [SP,#0x80+var_68]|6-147
+300|code|LDR             R3, =grub_video_checksum_get_modename|61-75
+302|code|BLX             R3; grub_video_checksum_get_modename|152-71
+304|code|LDR             R3, =grub_get_time_ms|37-75
+306|code|STR             R0, [SP,#0x80+var_64]|7-144
+308|code|BLX             R3; grub_get_time_ms|152-71
+310|code|LDR             R3, [SP,#0x80+var_64]|7-155
+312|code|LDR.W           R12, =grub_printf|223-248-4-193
+316|code|STR             R3, [SP,#0x80+var_80]|0-147
+318|code|LDRD.W          R2, R3, [SP,#0x80+start]|221-233-4-35
+322|code|SUBS            R2, R0, R2|130-26
+324|code|SBC.W           R3, R1, R3|97-235-3-3
+328|code|MOV             R0, R2|16-70
+330|code|MOV             R2, R10|82-70
+332|code|MOV             R1, R3|25-70
+334|code|LDR             R3, [SP,#0x80+var_68]|6-155
+336|code|STRD.W          R0, R1, [SP,#0x80+var_78]|205-233-2-1
+340|code|MOV             R1, R11|89-70
+342|code|LDR             R0, =aSDxDxSDoneLldM; "%s %dx%dx%s done %lld ms\n"|52-72
+344|code|BLX             R12; grub_printf|224-71
+346|code|CMP             R5, R9|77-69
+348|code|BNE             loc_74|138-209
+350|code|ADDS            R4, #0xC|12-52
+352|code|CMP             R4, R7|188-66
+354|code|BNE             loc_6E|132-209
+356|code|LDR             R0, =test_cfg|21-72
+358|code|LDR             R3, =grub_list_remove|49-75
+360|code|BLX             R3; grub_list_remove|152-71
+362|code|B               loc_18E|16-224
+364|code|LDR             R0, =aUnicode; "unicode"|48-72
+366|code|LDR             R3, =grub_font_load|49-75
+368|code|BLX             R3; grub_font_load|152-71
+370|code|CMP             font, #0|0-40
+372|code|BNE.W           loc_5E|127-244-115-175
+376|code|LDR             R3, =a0; "0"|23-75
+378|code|LDR             R1, =aTestsGfxtermMe; "tests/gfxterm_menu.c"|26-73
+380|code|LDR             R2, =__FUNCTION__.6198; "gfxterm_menu"|27-74
+382|code|STR             R3, [SP,#0x80+var_80]|0-147
+384|code|LDR             R3, =aUnicodeFontNot; "unicode font not found: %s"|45-75
+386|code|LDR             R4, =grub_test_assert_helper|25-76
+388|code|STR             R3, [SP,#0x80+var_7C]|1-147
+390|code|LDR             R3, =grub_errmsg|21-75
+392|code|STR             R3, [SP,#0x80+var_78]|2-147
+394|code|MOVS            R3, #0x77 ; 'w'|119-35
+396|code|BLX             R4; grub_test_assert_helper|160-71
+398|code|ADD             SP, SP, #0x5C ; '\'|23-176
+400|code|POP.W           {R4-R11,PC}|189-232-240-143
+404|data|DCD grub_dl_load|28-8-0-0
+408|data|DCD unk_558|88-5-0-0
+412|data|DCD grub_errno|52-8-0-0
+416|data|DCD aGettext; "gettext"|92-5-0-0
+420|data|DCD aGfxterm; "gfxterm"|100-5-0-0
+424|data|DCD aGfxmenu; "gfxmenu"|108-5-0-0
+428|data|DCD aUnknownRegular; "Unknown Regular 16"|116-5-0-0
+432|data|DCD grub_font_get|48-8-0-0
+436|data|DCD grub_strcmp|84-8-0-0
+440|data|DCD grub_procfs_entries|20-8-0-0
+444|data|DCD test_cfg|72-7-0-0
+448|data|DCD grub_list_push|120-8-0-0
+452|data|DCD tests.val|96-7-0-0
+456|data|DCD grub_get_time_ms|88-8-0-0
+460|data|DCD grub_test_video_modes|76-8-0-0
+464|data|DCD grub_video_capture_start|60-8-0-0
+468|data|DCD grub_video_fbstd_colors|112-8-0-0
+472|data|DCD a0; "0"|156-5-0-0
+476|data|DCD grub_errmsg|12-8-0-0
+480|data|DCD aCanTStartCaptu; "can't start capture: %d: %s"|185-5-0-0
+484|data|DCD aTestsGfxtermMe; "tests/gfxterm_menu.c"|135-5-0-0
+488|data|DCD grub_test_assert_helper|128-8-0-0
+492|data|DCD __FUNCTION__.6198; "gfxterm_menu"|18-5-0-0
+496|data|DCD grub_terminal_input_fake_sequence|56-8-0-0
+500|data|DCD grub_video_checksum|116-8-0-0
+504|data|DCD grub_test_use_gfxterm|8-8-0-0
+508|data|DCD grub_env_context_open|64-8-0-0
+512|data|DCD grub_env_set|124-8-0-0
+516|data|DCD aProcTestCfg; "(proc)/test.cfg"|213-5-0-0
+520|data|DCD grub_normal_execute|80-8-0-0
+524|data|DCD grub_env_context_close|24-8-0-0
+528|data|DCD grub_test_use_gfxterm_end|100-8-0-0
+532|data|DCD grub_terminal_input_fake_sequence_end|16-8-0-0
+536|data|DCD grub_video_checksum_end|44-8-0-0
+540|data|DCD grub_video_capture_end|72-8-0-0
+544|data|DCD grub_env_unset|96-8-0-0
+548|data|DCD grub_video_checksum_get_modename|32-8-0-0
+552|data|DCD aSDxDxSDoneLldM; "%s %dx%dx%s done %lld ms\n"|229-5-0-0
+556|data|DCD grub_list_remove|108-8-0-0
+560|data|DCD aUnicode; "unicode"|255-5-0-0
+564|data|DCD grub_font_load|40-8-0-0
+568|data|DCD aUnicodeFontNot; "unicode font not found: %s"|158-5-0-0
+572|data|DCD unk_520|32-5-0-0
+576|data|DCD grub_printf|68-8-0-0
+580|code|PUSH            {R3,LR}|8-181
+582|code|LDR             mod, =aGfxtermMenu; "gfxterm_menu"|2-72
+584|code|LDR             R1, =(gfxterm_menu+1)|2-73
+586|code|LDR             R3, =grub_test_register|3-75
+588|code|BLX             R3; grub_test_register|152-71
+590|code|POP             {R3,PC}|8-189
+592|data|DCD aGfxtermMenu; "gfxterm_menu"|7-6-0-0
+596|data|DCD gfxterm_menu+1|37-0-0-0
+600|data|DCD grub_test_register|92-8-0-0
+604|code|PUSH            {R3,LR}|8-181
+606|code|LDR             R0, =aGfxtermMenu; "gfxterm_menu"|2-72
+608|code|LDR             R3, =grub_test_unregister|2-75
+610|code|BLX             R3; grub_test_unregister|152-71
+612|code|POP             {R3,PC}|8-189
+614|data|ALIGN 4|0-191
+616|data|DCD aGfxtermMenu; "gfxterm_menu"|7-6-0-0
+620|data|DCD grub_test_unregister|104-8-0-0
+624|data|DCB 0x6D, 0x65, 0x6E, 0x75, 0x65, 0x6E, 0x74, 0x72, 0x79|109-101-110-117-101-110-116-114-121-32-34-116-101-115-116-34-32-123-10-9-116-114-117-101-10-125-10-109-101-110-117-101-110-116-114-121-32-34-115-204-155-32-111-204-155-32-116-32-111-204-146-32-115-204-146-32-117-32-111-204-149-204-154-32-56-46-48-52-32-109-204-130-110-204-131-97-204-138-104-204-138-122-204-134-120-204-163-32-97-204-161-32-98-204-162-103-204-162-32-117-225-183-142-111-225-183-142-204-130-32-111-204-130-225-183-142-32-79-204-183-32-97-204-150-204-163-32-97-204-145-204-144-34-32-45-45-99-108-97-115-115-32-117-98-117-110-116-117-32-45-45-99-108-97-115-115-32-108-105-110-117-120-32-45-45-99-108-97-115-115-32-111-115-32-123-10-9-116-114-117-101-10-125-10-109-101-110-117-101-110-116-114-121-32-34-32-215-148-214-183-215-168-215-158-215-156-215-156-40-215-152-215-149-214-185-215-145-214-184-41-32-215-156-214-182-215-154-214-176-34-32-45-45-99-108-97-115-115-32-111-112-101-110-115-117-115-101-32-45-45-99-108-97-115-115-32-108-105-110-117-120-32-45-45-99-108-97-115-115-32-111-115-32-123-10-9-116-114-117-101-10-125-10-109-101-110-117-101-110-116-114-121-32-34-216-167-217-132-216-177-217-133-217-132-217-132-32-216-172-217-144-216-175-216-167-217-139-32-217-132-217-144-217-131-217-142-34-32-45-45-99-108-97-115-115-32-103-101-110-116-111-111-32-45-45-99-108-97-115-115-32-108-105-110-117-120-32-45-45-99-108-97-115-115-32-111-115-32-123-10-9-116-114-117-101-10-125-10-109-101-110-117-101-110-116-114-121-32-34-225-189-145-207-128-207-140-206-179-207-133-205-133-206-191-206-189-34-32-45-45-99-108-97-115-115-32-107-117-98-117-110-116-117-32-45-45-99-108-97-115-115-32-108-105-110-117-120-32-45-45-99-108-97-115-115-32-111-115-32-123-10-9-116-114-117-101-10-125-10-109-101-110-117-101-110-116-114-121-32-34-216-179-217-145-217-142-32-217-134-217-145-217-144-32-217-134-217-142-217-145-32-217-134-217-145-217-140-32-217-134-217-145-217-146-34-32-45-45-99-108-97-115-115-32-108-105-110-117-120-109-105-110-116-32-45-45-99-108-97-115-115-32-108-105-110-117-120-32-45-45-99-108-97-115-115-32-111-115-32-123-10-9-116-114-117-101-10-125-10-109-101-110-117-101-110-116-114-121-32-34-228-187-142-231-161-172-231-155-152-231-154-132-231-172-172-228-184-128-228-184-187-229-136-134-229-140-186-229-144-175-229-138-168-34-32-45-45-99-108-97-115-115-32-34-119-105-110-100-111-119-115-32-120-112-34-32-45-45-99-108-97-115-115-32-119-105-110-100-111-119-115-32-45-45-99-108-97-115-115-32-111-115-32-123-10-9-116-114-117-101-10-125-10-116-105-109-101-111-117-116-61-51-10-0
+1298|data|DCB "gfxterm_menu",0|103-102-120-116-101-114-109-95-109-101-110-117-0
+1311|data|ALIGN 0x10|0
+1864|data|grub_procfs_entry <0, 0, aTestCfg, get_test_cfg+1>; "test.cfg"|0-0-0-0-0-0-0-0-60-7-0-0-1-0-0-0
+1880|data|$8C5A47AAA1337F47F40735859841D0D5 <aGfxtermMenu, 0, 0>; "gfxmenu" ...|7-6-0-0-0-0-0-0-0-0-0-0-108-5-0-0-20-6-0-0-26-6-0-0-46-6-0-0-57-6-0-0-62-6-0-0-72-6-0-0-57-6-0-0-84-6-0-0-96-6-0-0-57-6-0-0-108-6-0-0-118-6-0-0-57-6-0-0-130-6-0-0-139-6-0-0-57-6-0-0-150-6-0-0-153-6-0-0-57-6-0-0-164-6-0-0-167-6-0-0-57-6-0-0-180-6-0-0-188-6-0-0-57-6-0-0-205-6-0-0-217-6-0-0-57-6-0-0-228-6-0-0-234-6-0-0-246-6-0-0-8-7-0-0-17-7-0-0-30-7-0-0-51-7-0-0
+2036|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,63 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [ctxt,#8]|131-104
+2|code|PUSH            {R4,LR}|16-181
+4|code|MOV             R4, ctxt|4-70
+6|code|CBNZ            R3, loc_12|35-185
+8|code|LDR             argc, =aNoBlockParamet; "no block parameter"|8-73
+10|code|MOVS            ctxt, #0x12|18-32
+12|code|LDR             R3, =grub_error|8-75
+14|code|BLX             R3; grub_error|152-71
+16|code|POP             {ctxt,PC}|16-189
+18|code|ADD.W           argc, argc, #0x40000000|1-241-128-65
+22|code|LDR             R3, =grub_printf|7-75
+24|code|SUBS            R1, #1|1-57
+26|code|LDR             ctxt, =aS; "%s\n"|7-72
+28|code|LDR.W           R1, [args,R1,LSL#2]|82-248-33-16
+32|code|BLX             R3; grub_printf|152-71
+34|code|LDR             R0, [ctxt,#8]|160-104
+36|code|LDR             R3, =grub_script_execute|5-75
+38|code|BLX             R3; grub_script_execute|152-71
+40|code|MOVS            R0, #0|0-32
+42|code|POP             {ctxt,PC}|16-189
+44|data|DCD aNoBlockParamet; "no block parameter"|140-0-0-0
+48|data|DCD grub_error|252-0-0-0
+52|data|DCD grub_printf|248-0-0-0
+56|data|DCD aS; "%s\n"|159-0-0-0
+60|data|DCD grub_script_execute|240-0-0-0
+64|code|LDR             R3, =aPrintAndExecut; "Print and execute block argument."|7-75
+66|code|MOVS            R2, #0x40 ; '@'|64-34
+68|code|PUSH            {mod,R1,R4,LR}|19-181
+70|code|LDR             R1, =(test_blockarg+1)|7-73
+72|code|STR             R3, [SP,#0x10+var_10]|0-147
+74|code|MOVS            R3, #0|0-35
+76|code|LDR             R4, =grub_register_extcmd|6-76
+78|code|STR             R3, [SP,#0x10+var_C]|1-147
+80|code|LDR             mod, =aTestBlockarg; "test_blockarg"|6-72
+82|code|LDR             R3, =aBlock; "BLOCK"|7-75
+84|code|BLX             R4; grub_register_extcmd|160-71
+86|code|LDR             R3, =cmd|7-75
+88|code|STR             R0, [R3]|24-96
+90|code|ADD             SP, SP, #8|2-176
+92|code|POP             {R4,PC}|16-189
+94|data|ALIGN 0x10|0-191
+96|data|DCD aPrintAndExecut; "Print and execute block argument."|183-0-0-0
+100|data|DCD test_blockarg+1|1-0-0-0
+104|data|DCD grub_register_extcmd|0-1-0-0
+108|data|DCD aTestBlockarg; "test_blockarg"|163-0-0-0
+112|data|DCD aBlock; "BLOCK"|177-0-0-0
+116|data|DCD cmd|236-0-0-0
+120|code|PUSH            {R3,LR}|8-181
+122|code|LDR             R3, =cmd|2-75
+124|code|LDR             R0, [R3]|24-104
+126|code|LDR             R3, =grub_unregister_extcmd|2-75
+128|code|BLX             R3; grub_unregister_extcmd|152-71
+130|code|POP             {R3,PC}|8-189
+132|data|DCD cmd|236-0-0-0
+136|data|DCD grub_unregister_extcmd|244-0-0-0
+140|data|DCB "no block parameter",0|110-111-32-98-108-111-99-107-32-112-97-114-97-109-101-116-101-114-0
+159|data|DCB "%s",0xA,0|37-115-10-0
+163|data|DCB "test_blockarg",0|116-101-115-116-95-98-108-111-99-107-97-114-103-0
+177|data|DCB "BLOCK",0|66-76-79-67-75-0
+183|data|DCB "Print and execute block argument.",0|80-114-105-110-116-32-97-110-100-32-101-120-101-99-117-116-101-32-98-108-111-99-107-32-97-114-103-117-109-101-110-116-46-0
+217|data||255
+218|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

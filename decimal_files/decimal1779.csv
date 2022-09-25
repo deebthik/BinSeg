@@ -1,0 +1,379 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|LDR             R3, =grub_exit|1-75
+4|code|BLX             R3; grub_exit|152-71
+6|code|NOP|0-191
+8|data|DCD grub_exit|204-4-0-0
+12|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+16|code|LDR             R3, =grub_printf_|18-75
+18|code|LDR             cmd, =aNameRefCountDe; "Name\tRef Count\tDependencies\n"|19-72
+20|code|BLX             R3; grub_printf_|152-71
+22|code|LDR             R3, =grub_dl_head|19-75
+24|code|LDR             R6, =grub_printf|19-78
+26|code|LDR             R4, [R3]|28-104
+28|code|MOV             R7, R6|55-70
+30|code|CBZ             mod, loc_56|212-177
+32|code|LDR             R0, =aSD; "%s\t%d\t\t"|18-72
+34|code|LDM.W           mod, {R1,R2}|148-232-6-0
+38|code|BLX             R6; grub_printf|176-71
+40|code|LDR.W           R8, =grub_xputs|223-248-76-128
+44|code|LDR             R5, [mod,#8]|165-104
+46|code|CBZ             dep, loc_4A|101-177
+48|code|LDR             R3, [mod,#8]|163-104
+50|code|CMP             dep, R3|157-66
+52|code|BEQ             loc_3E|3-208
+54|code|LDR             R0, =asc_381; ","|14-72
+56|code|LDR.W           R3, [R8]|216-248-0-48
+60|code|BLX             R3|152-71
+62|code|LDR             R3, [dep,#4]|107-104
+64|code|LDR             R0, =aS; "%s"|12-72
+66|code|LDR             R1, [R3]|25-104
+68|code|BLX             R7; grub_printf|184-71
+70|code|LDR             dep, [dep]|45-104
+72|code|B               loc_2E|241-231
+74|code|LDR             R3, =grub_xputs|11-75
+76|code|LDR             R0, =asc_386; "\n"|11-72
+78|code|LDR             R3, [R3]|27-104
+80|code|BLX             R3|152-71
+82|code|LDR             mod, [mod,#0x38]|164-107
+84|code|B               loc_1E|227-231
+86|code|MOV             R0, mod|32-70
+88|code|POP.W           {mod-R8,PC}|189-232-240-129
+92|data|DCD grub_printf_|20-5-0-0
+96|data|DCD aNameRefCountDe; "Name\tRef Count\tDependencies\n"|92-3-0-0
+100|data|DCD grub_dl_head|8-5-0-0
+104|data|DCD grub_printf|228-4-0-0
+108|data|DCD aSD; "%s\t%d\t\t"|121-3-0-0
+112|data|DCD asc_381; ","|129-3-0-0
+116|data|DCD aS; "%s"|131-3-0-0
+120|data|DCD grub_xputs|212-4-0-0
+124|data|DCD asc_386; "\n"|134-3-0-0
+128|code|LDR             R3, =grub_command_list|10-75
+130|code|PUSH            {cmd-argv,R4,R5,LR}|55-181
+132|code|LDR             R4, [R3]|28-104
+134|code|LDR             R5, =grub_printf|10-77
+136|code|CBZ             p, loc_A6|108-177
+138|code|LDR             R2, [p,#0xC]|226-104
+140|code|LDR             R3, [p,#0x1C]|227-105
+142|code|TST.W           R2, #0x100|18-244-128-127
+146|code|LDR             R1, [p,#8]|161-104
+148|code|LDR             R0, =aSDCS; "%s (%d%c)\t%s\n"|7-72
+150|code|UXTB            R2, R2|210-178
+152|code|STR             R3, [SP,#0x18+var_18]|0-147
+154|code|ITE NE|20-191
+156|code|MOVNE           R3, #0x2B ; '+'|43-35
+158|code|MOVEQ           R3, #0x2D ; '-'|45-35
+160|code|BLX             R5; grub_printf|168-71
+162|code|LDR             p, [p]|36-104
+164|code|B               loc_88|240-231
+166|code|MOV             R0, p|32-70
+168|code|ADD             SP, SP, #0xC|3-176
+170|code|POP             {p,R5,PC}|48-189
+172|data|DCD grub_command_list|208-4-0-0
+176|data|DCD grub_printf|228-4-0-0
+180|data|DCD aSDCS; "%s (%d%c)\t%s\n"|136-3-0-0
+184|code|PUSH            {R3-R7,LR}|248-181
+186|code|CBNZ            argc, loc_C2|17-185
+188|code|MOVS            cmd, #0x12|18-32
+190|code|LDR             argc, =aNoModuleSpecif; "no module specified"|15-73
+192|code|B               loc_F4|24-224
+194|code|LDR             R3, =grub_dl_head|15-75
+196|code|LDR             R6, [argv]|22-104
+198|code|LDR             R7, =grub_strcmp|15-79
+200|code|LDR             R5, [R3]|29-104
+202|code|CBZ             R5, loc_F0|141-177
+204|code|MOV             R0, R6|48-70
+206|code|LDR             R1, [R5]|41-104
+208|code|BLX             R7; grub_strcmp|184-71
+210|code|MOV             R4, R0|4-70
+212|code|CBNZ            R0, loc_E8|64-185
+214|code|MOV             R0, R5|40-70
+216|code|LDR             R3, =grub_dl_unref|11-75
+218|code|BLX             R3; grub_dl_unref|152-71
+220|code|CMP             R0, #0|0-40
+222|code|BGT             loc_EC|5-220
+224|code|MOV             R0, R5|40-70
+226|code|LDR             R3, =grub_dl_unload|10-75
+228|code|BLX             R3; grub_dl_unload|152-71
+230|code|B               loc_EC|1-224
+232|code|LDR             R5, [R5,#0x38]|173-107
+234|code|B               loc_CA|238-231
+236|code|MOV             R0, R4|32-70
+238|code|POP             {R3-R7,PC}|248-189
+240|code|LDR             R1, =aNoSuchModule; "no such module"|7-73
+242|code|MOVS            R0, #0x12|18-32
+244|code|LDR             R3, =grub_error|7-75
+246|code|BLX             R3; grub_error|152-71
+248|code|POP             {R3-R7,PC}|248-189
+250|data|ALIGN 4|0-191
+252|data|DCD aNoModuleSpecif; "no module specified"|150-3-0-0
+256|data|DCD grub_dl_head|8-5-0-0
+260|data|DCD grub_strcmp|244-4-0-0
+264|data|DCD grub_dl_unref|16-5-0-0
+268|data|DCD grub_dl_unload|224-4-0-0
+272|data|DCD aNoSuchModule; "no such module"|170-3-0-0
+276|data|DCD grub_error|12-5-0-0
+280|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+284|code|MOV             R7, argv|23-70
+286|code|MOV             R8, argc|136-70
+288|code|CBNZ            argc, loc_12E|41-185
+290|code|MOVS            cmd, #0x12|18-32
+292|code|LDR             argc, =aNoAddressSpeci; "no address specified"|18-73
+294|code|LDR             R3, =grub_error|19-75
+296|code|BLX             R3; grub_error|152-71
+298|code|MOV             R5, R0|5-70
+300|code|B               loc_16A|29-224
+302|code|MOVS            argc, #0|0-33
+304|code|LDR             cmd, [argv]|16-104
+306|code|LDR             R6, =grub_strtoul|17-78
+308|code|MOV             argv, R1|10-70
+310|code|BLX             R6; grub_strtoul|176-71
+312|code|LDR             R3, =grub_errno|16-75
+314|code|LDR             R5, [R3]|29-104
+316|code|MOV             R4, R0|4-70
+318|code|CBNZ            R5, loc_16A|165-185
+320|code|CMP.W           argc, #1|184-241-1-15
+324|code|BLE             loc_150|4-221
+326|code|LDR             addr, [argv,#4]|120-104
+328|code|MOV             R1, R5|41-70
+330|code|MOV             R2, R5|42-70
+332|code|BLX             R6; grub_strtoul|176-71
+334|code|B               loc_152|0-224
+336|code|MOVS            addr, #4|4-32
+338|code|LDR             argv, =grub_printf|11-79
+340|code|ADDS            R6, R0, addr|6-25
+342|code|CMP             addr, R6|180-66
+344|code|BEQ             loc_16A|7-208
+346|code|LDRB.W          R2, [addr],#1|20-248-1-43
+350|code|LDR             R0, =aXX; "%x%x "|9-72
+352|code|LSRS            R1, R2, #4|17-9
+354|code|AND.W           R2, R2, #0xF|2-240-15-2
+358|code|BLX             R7; grub_printf|184-71
+360|code|B               loc_156|245-231
+362|code|MOV             R0, R5|40-70
+364|code|POP.W           {R4-argc,PC}|189-232-240-129
+368|data|DCD aNoAddressSpeci; "no address specified"|185-3-0-0
+372|data|DCD grub_error|12-5-0-0
+376|data|DCD grub_strtoul|24-5-0-0
+380|data|DCD grub_errno|216-4-0-0
+384|data|DCD grub_printf|228-4-0-0
+388|data|DCD aXX; "%x%x "|206-3-0-0
+392|code|CMP             argc, #0|0-41
+394|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+398|code|SUB.W           SP, SP, #0x200|173-245-0-125
+402|code|BGT             loc_19E|4-220
+404|code|LDR             argc, =aFilenameExpect; "filename expected"|42-73
+406|code|MOVS            cmd, #0x12|18-32
+408|code|LDR             R3, =grub_error|42-75
+410|code|BLX             R3; grub_error|152-71
+412|code|B               loc_238|76-224
+414|code|LDR             cmd, [argv]|16-104
+416|code|LDR             R3, =grub_file_open|41-75
+418|code|BLX             R3; grub_file_open|152-71
+420|code|MOV             R7, file|7-70
+422|code|CBNZ            file, loc_1AE|16-185
+424|code|LDR             R3, =grub_errno|40-75
+426|code|LDR             file, [R3]|24-104
+428|code|B               loc_238|68-224
+430|code|LDR.W           R8, =grub_term_outputs|223-248-196-128
+434|code|MOV             R10, R8|194-70
+436|code|MOV             R0, file|56-70
+438|code|MOV             R1, SP|105-70
+440|code|MOV.W           R2, #0x200|79-244-0-114
+444|code|LDR             R3, =grub_file_read|36-75
+446|code|BLX             R3; grub_file_read|152-71
+448|code|SUBS.W          R9, size, #0|176-241-0-9
+452|code|BLE             loc_224|46-221
+454|code|MOVS            R6, #0|0-38
+456|code|LDRB.W          R4, [SP,i]|29-248-6-64
+460|code|SUB.W           R3, c, #0x20 ; ' '|164-241-32-3
+464|code|CMP             R3, #0x5E ; '^'|94-43
+466|code|BHI             loc_1E2|6-216
+468|code|CMP             c, #0xD|13-44
+470|code|BEQ             loc_1EC|9-208
+472|code|MOV             R1, c|33-70
+474|code|LDR             R3, =grub_printf|30-75
+476|code|LDR             R0, =aC; "%c"|30-72
+478|code|BLX             R3; grub_printf|152-71
+480|code|B               loc_21C|28-224
+482|code|MOV             R0, c|32-70
+484|code|LDR             R3, =grub_isspace|29-75
+486|code|BLX             R3; grub_isspace|152-71
+488|code|CMP             R0, #0|0-40
+490|code|BNE             loc_1D4|243-209
+492|code|LDR.W           R5, [R8]|216-248-0-80
+496|code|CBZ             R5, loc_200|53-177
+498|code|LDR             R3, [R5,#0x2C]|235-106
+500|code|CBZ             R3, loc_1FC|19-177
+502|code|MOV             R0, R5|40-70
+504|code|MOVS            R1, #2|2-33
+506|code|BLX             R3|152-71
+508|code|LDR             R5, [R5]|45-104
+510|code|B               loc_1F0|247-231
+512|code|MOV             R1, c|33-70
+514|code|LDR             R0, =aX; "<%x>"|23-72
+516|code|LDR             R3, =grub_printf|19-75
+518|code|BLX             R3; grub_printf|152-71
+520|code|LDR.W           c, [R10]|218-248-0-64
+524|code|CBZ             R4, loc_21C|52-177
+526|code|LDR             R3, [R4,#0x2C]|227-106
+528|code|CBZ             R3, loc_218|19-177
+530|code|MOV             R0, R4|32-70
+532|code|MOVS            R1, #0|0-33
+534|code|BLX             R3|152-71
+536|code|LDR             R4, [R4]|36-104
+538|code|B               loc_20C|247-231
+540|code|ADDS            i, #1|1-54
+542|code|CMP             i, size|78-69
+544|code|BNE             loc_1C8|210-209
+546|code|B               loc_1B4|199-231
+548|code|LDR             R3, =grub_xputs|15-75
+550|code|LDR             size, =asc_386; "\n"|16-72
+552|code|LDR             R3, [R3]|27-104
+554|code|BLX             R3|152-71
+556|code|LDR             R3, =grub_refresh|15-75
+558|code|BLX             R3; grub_refresh|152-71
+560|code|MOV             R0, file|56-70
+562|code|LDR             R3, =grub_file_close|15-75
+564|code|BLX             R3; grub_file_close|152-71
+566|code|MOVS            R0, #0|0-32
+568|code|ADD.W           SP, SP, #0x200|13-245-0-125
+572|code|POP.W           {R4-R10,PC}|189-232-240-135
+576|data|DCD aFilenameExpect; "filename expected"|212-3-0-0
+580|data|DCD grub_error|12-5-0-0
+584|data|DCD grub_file_open|0-5-0-0
+588|data|DCD grub_errno|216-4-0-0
+592|data|DCD grub_file_read|236-4-0-0
+596|data|DCD grub_printf|228-4-0-0
+600|data|DCD aC; "%c"|230-3-0-0
+604|data|DCD grub_isspace|4-5-0-0
+608|data|DCD aX; "<%x>"|233-3-0-0
+612|data|DCD grub_xputs|212-4-0-0
+616|data|DCD asc_386; "\n"|134-3-0-0
+620|data|DCD grub_refresh|248-4-0-0
+624|data|DCD grub_file_close|252-4-0-0
+628|data|DCD grub_term_outputs|240-4-0-0
+632|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+634|code|MOVS            R4, #0|0-36
+636|code|LDR             R6, =grub_register_command_prio|22-78
+638|code|STR             R4, [SP,#0x18+var_18]|0-148
+640|code|LDR             R1, =(grub_mini_cmd_cat+1)|22-73
+642|code|LDR             R2, =aFile; "FILE"|23-74
+644|code|LDR             R3, =aShowTheContent; "Show the contents of a file."|23-75
+646|code|LDR             mod, =aCat; "cat"|24-72
+648|code|BLX             R6; grub_register_command_prio|176-71
+650|code|LDR             R5, =cmd_cat|24-77
+652|code|MOV             R2, R4|34-70
+654|code|STR             R4, [SP,#0x18+var_18]|0-148
+656|code|LDR             R1, =(grub_mini_cmd_help+1)|23-73
+658|code|LDR             R3, =aShowThisMessag; "Show this message."|24-75
+660|code|STR             R0, [R5]|40-96
+662|code|LDR             R0, =aHelp; "help"|24-72
+664|code|BLX             R6; grub_register_command_prio|176-71
+666|code|STR             R4, [SP,#0x18+var_18]|0-148
+668|code|LDR             R1, =(grub_mini_cmd_dump+1)|23-73
+670|code|LDR             R2, =aAddrSize; "ADDR [SIZE]"|24-74
+672|code|LDR             R3, =aShowMemoryCont; "Show memory contents."|24-75
+674|code|STR             R0, [R5,#(cmd_help - 0x4B4)]|104-96
+676|code|LDR             R0, =aDump; "dump"|24-72
+678|code|BLX             R6; grub_register_command_prio|176-71
+680|code|STR             R4, [SP,#0x18+var_18]|0-148
+682|code|LDR             R1, =(grub_mini_cmd_rmmod+1)|24-73
+684|code|LDR             R2, =aModule; "MODULE"|24-74
+686|code|LDR             R3, =aRemoveAModule; "Remove a module."|25-75
+688|code|STR             R0, [R5,#(cmd_dump - 0x4B4)]|168-96
+690|code|LDR             R0, =aRmmod; "rmmod"|25-72
+692|code|BLX             R6; grub_register_command_prio|176-71
+694|code|MOV             R2, R4|34-70
+696|code|STR             R4, [SP,#0x18+var_18]|0-148
+698|code|LDR             R1, =(grub_mini_cmd_lsmod+1)|24-73
+700|code|LDR             R3, =aShowLoadedModu; "Show loaded modules."|24-75
+702|code|STR             R0, [R5,#(cmd_rmmod - 0x4B4)]|232-96
+704|code|LDR             R0, =aLsmod; "lsmod"|24-72
+706|code|BLX             R6; grub_register_command_prio|176-71
+708|code|STR             R4, [SP,#0x18+var_18]|0-148
+710|code|LDR             R1, =(grub_mini_cmd_exit+1)|24-73
+712|code|MOV             R2, R4|34-70
+714|code|LDR             R3, =aExitFromGrub; "Exit from GRUB."|24-75
+716|code|STR             R0, [R5,#(cmd_lsmod - 0x4B4)]|40-97
+718|code|LDR             R0, =aExit; "exit"|24-72
+720|code|BLX             R6; grub_register_command_prio|176-71
+722|code|STR             R0, [R5,#(cmd_exit - 0x4B4)]|104-97
+724|code|ADD             SP, SP, #8|2-176
+726|code|POP             {R4-R6,PC}|112-189
+728|data|DCD grub_register_command_prio|220-4-0-0
+732|data|DCD grub_mini_cmd_cat+1|137-1-0-0
+736|data|DCD aFile; "FILE"|242-3-0-0
+740|data|DCD aShowTheContent; "Show the contents of a file."|247-3-0-0
+744|data|DCD aCat; "cat"|238-3-0-0
+748|data|DCD cmd_cat|180-4-0-0
+752|data|DCD grub_mini_cmd_help+1|129-0-0-0
+756|data|DCD aShowThisMessag; "Show this message."|25-4-0-0
+760|data|DCD aHelp; "help"|20-4-0-0
+764|data|DCD grub_mini_cmd_dump+1|25-1-0-0
+768|data|DCD aAddrSize; "ADDR [SIZE]"|49-4-0-0
+772|data|DCD aShowMemoryCont; "Show memory contents."|61-4-0-0
+776|data|DCD aDump; "dump"|44-4-0-0
+780|data|DCD grub_mini_cmd_rmmod+1|185-0-0-0
+784|data|DCD aModule; "MODULE"|89-4-0-0
+788|data|DCD aRemoveAModule; "Remove a module."|96-4-0-0
+792|data|DCD aRmmod; "rmmod"|83-4-0-0
+796|data|DCD grub_mini_cmd_lsmod+1|13-0-0-0
+800|data|DCD aShowLoadedModu; "Show loaded modules."|119-4-0-0
+804|data|DCD aLsmod; "lsmod"|113-4-0-0
+808|data|DCD grub_mini_cmd_exit+1|1-0-0-0
+812|data|DCD aExitFromGrub; "Exit from GRUB."|145-4-0-0
+816|data|DCD aExit; "exit"|140-4-0-0
+820|code|PUSH            {R3-R5,LR}|56-181
+822|code|LDR             R5, =cmd_cat|7-77
+824|code|LDR             R4, =grub_unregister_command|7-76
+826|code|LDR             R0, [R5]|40-104
+828|code|BLX             R4; grub_unregister_command|160-71
+830|code|LDR             R0, [R5,#(cmd_help - 0x4B4)]|104-104
+832|code|BLX             R4; grub_unregister_command|160-71
+834|code|LDR             R0, [R5,#(cmd_dump - 0x4B4)]|168-104
+836|code|BLX             R4; grub_unregister_command|160-71
+838|code|LDR             R0, [R5,#(cmd_rmmod - 0x4B4)]|232-104
+840|code|BLX             R4; grub_unregister_command|160-71
+842|code|LDR             R0, [R5,#(cmd_lsmod - 0x4B4)]|40-105
+844|code|BLX             R4; grub_unregister_command|160-71
+846|code|LDR             R0, [R5,#(cmd_exit - 0x4B4)]|104-105
+848|code|BLX             R4; grub_unregister_command|160-71
+850|code|POP             {R3-R5,PC}|56-189
+852|data|DCD cmd_cat|180-4-0-0
+856|data|DCD grub_unregister_command|232-4-0-0
+860|data|DCB "Name",9,"Ref Count",9,"Dependencies",0xA,0|78-97-109-101-9-82-101-102-32-67-111-117-110-116-9-68-101-112-101-110-100-101-110-99-105-101-115-10-0
+889|data|DCB "%s",9,"%d",9,9,0|37-115-9-37-100-9-9-0
+897|data|DCB ",",0|44-0
+899|data|DCB "%s",0|37-115-0
+902|data|DCB 0xA,0|10-0
+904|data|DCB "%s (%d%c)",9,"%s",0xA,0|37-115-32-40-37-100-37-99-41-9-37-115-10-0
+918|data|DCB "no module specified",0|110-111-32-109-111-100-117-108-101-32-115-112-101-99-105-102-105-101-100-0
+938|data|DCB "no such module",0|110-111-32-115-117-99-104-32-109-111-100-117-108-101-0
+953|data|DCB "no address specified",0|110-111-32-97-100-100-114-101-115-115-32-115-112-101-99-105-102-105-101-100-0
+974|data|DCB "%x%x ",0|37-120-37-120-32-0
+980|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+998|data|DCB "%c",0|37-99-0
+1001|data|DCB "<%x>",0|60-37-120-62-0
+1006|data|DCB "cat",0|99-97-116-0
+1010|data|DCB "FILE",0|70-73-76-69-0
+1015|data|DCB "Show the contents of a file.",0|83-104-111-119-32-116-104-101-32-99-111-110-116-101-110-116-115-32-111-102-32-97-32-102-105-108-101-46-0
+1044|data|DCB "help",0|104-101-108-112-0
+1049|data|DCB "Show this message.",0|83-104-111-119-32-116-104-105-115-32-109-101-115-115-97-103-101-46-0
+1068|data|DCB "dump",0|100-117-109-112-0
+1073|data|DCB "ADDR [SIZE]",0|65-68-68-82-32-91-83-73-90-69-93-0
+1085|data|DCB "Show memory contents.",0|83-104-111-119-32-109-101-109-111-114-121-32-99-111-110-116-101-110-116-115-46-0
+1107|data|DCB "rmmod",0|114-109-109-111-100-0
+1113|data|DCB "MODULE",0|77-79-68-85-76-69-0
+1120|data|DCB "Remove a module.",0|82-101-109-111-118-101-32-97-32-109-111-100-117-108-101-46-0
+1137|data|DCB "lsmod",0|108-115-109-111-100-0
+1143|data|DCB "Show loaded modules.",0|83-104-111-119-32-108-111-97-100-101-100-32-109-111-100-117-108-101-115-46-0
+1164|data|DCB "exit",0|101-120-105-116-0
+1169|data|DCB "Exit from GRUB.",0|69-120-105-116-32-102-114-111-109-32-71-82-85-66-46-0
+1185|data||255
+1186|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+1204|data|% 4|255-255-255-255
+1208|data|% 4|255-255-255-255
+1212|data|% 4|255-255-255-255
+1216|data|% 4|255-255-255-255
+1220|data|% 4|255-255-255-255

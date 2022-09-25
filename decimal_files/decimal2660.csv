@@ -1,0 +1,390 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x14|133-176
+6|code|LDR             R4, =grub_efi_get_device_path|26-76
+8|code|MOV             R10, hnd|130-70
+10|code|MOV             R8, device|136-70
+12|code|MOV             R9, path|145-70
+14|code|BLX             R4; grub_efi_get_device_path|160-71
+16|code|MOV             R5, dp|5-70
+18|code|CBZ             dp, loc_6A|80-179
+20|code|LDR             R3, =grub_net_cards|23-75
+22|code|LDR             R6, =efidriver|24-78
+24|code|LDR             R7, [R3]|31-104
+26|code|CBZ             card, loc_6A|55-179
+28|code|LDR             R2, [card,#0xC]|250-104
+30|code|CMP             R2, R6|178-66
+32|code|BNE             loc_66|33-209
+34|code|LDR             R0, [card,#0x60]|56-110
+36|code|BLX             R4; grub_efi_get_device_path|160-71
+38|code|MOV             R1, cdp|1-70
+40|code|CBZ             cdp, loc_66|232-177
+42|code|MOV             cdp, dp|40-70
+44|code|LDR             R3, =grub_efi_compare_device_paths|19-75
+46|code|BLX             R3; grub_efi_compare_device_paths|152-71
+48|code|MOV             R11, R0|131-70
+50|code|CBNZ            R0, loc_66|192-185
+52|code|MOV             R0, hnd|80-70
+54|code|ADD.W           R1, R6, #0x20 ; ' '|6-241-32-1
+58|code|MOVS            R2, #2|2-34
+60|code|LDR             R3, =grub_efi_open_protocol|16-75
+62|code|BLX             R3; grub_efi_open_protocol|152-71
+64|code|CBZ             pxe, loc_66|136-177
+66|code|LDR             R3, [pxe,#0x38]|131-107
+68|code|MOV.W           R1, #0x5C0|79-244-184-97
+72|code|STR.W           device, [SP,#0x38+var_30]|205-248-8-128
+76|code|MOVS            R2, #1|1-34
+78|code|STR.W           path, [SP,#0x38+var_2C]|205-248-12-144
+82|code|ADDW            pxe_mode, pxe_mode, #0x5F4|3-242-244-83
+86|code|STMEA.W         SP, {R1,R2}|141-232-6-0
+90|code|MOV             R1, card|57-70
+92|code|LDR             pxe, [card,#8]|184-104
+94|code|MOV             R2, R11|90-70
+96|code|LDR             R4, =grub_net_configure_by_dhcp_ack|8-76
+98|code|BLX             R4; grub_net_configure_by_dhcp_ack|160-71
+100|code|B               loc_6A|1-224
+102|code|LDR             card, [card]|63-104
+104|code|B               loc_1A|215-231
+106|code|ADD             SP, SP, #0x14|5-176
+108|code|POP.W           {R4-R11,PC}|189-232-240-143
+112|data|DCD grub_efi_get_device_path|100-4-0-0
+116|data|DCD grub_net_cards|52-4-0-0
+120|data|DCD efidriver|208-3-0-0
+124|data|DCD grub_efi_compare_device_paths|48-4-0-0
+128|data|DCD grub_efi_open_protocol|88-4-0-0
+132|data|DCD grub_net_configure_by_dhcp_ack|36-4-0-0
+136|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+140|code|SUB             SP, SP, #0x1C|135-176
+142|code|LDR             R3, [dev,#0x50]|3-109
+144|code|MOV             R4, dev|4-70
+146|code|LDR             R6, [dev,#0x5C]|198-109
+148|code|MOVS            R7, #2|2-39
+150|code|LDR.W           R8, =grub_malloc|223-248-172-128
+154|code|LDR.W           R9, =0x80000005|223-248-172-144
+158|code|LDR.W           R10, =grub_free|223-248-172-160
+162|code|STR             R3, [SP,#0x40+bufsize]|5-147
+164|code|LDR             R3, [dev,#0x4C]|227-108
+166|code|CBNZ            R3, loc_AE|19-185
+168|code|LDR             R0, [dev,#0x50]|32-109
+170|code|BLX             R8; grub_malloc|192-71
+172|code|STR             R0, [dev,#0x4C]|224-100
+174|code|LDR             R3, [dev,#0x4C]|227-108
+176|code|CBNZ            R3, loc_B6|11-185
+178|code|MOVS            R0, #0|0-32
+180|code|B               loc_128|56-224
+182|code|MOVS            R1, #0|0-33
+184|code|MOV             R0, net|48-70
+186|code|STR             R1, [SP,#0x40+var_40]|0-145
+188|code|ADD             R2, SP, #0x40+bufsize|5-170
+190|code|STR             R1, [SP,#0x40+var_3C]|1-145
+192|code|STR             R1, [SP,#0x40+var_38]|2-145
+194|code|LDR             R5, [net,#0x38]|181-107
+196|code|BLX             R5|168-71
+198|code|CMP             st, R9|72-69
+200|code|BNE             loc_F0|18-209
+202|code|LDR             R3, [dev,#0x50]|35-109
+204|code|LDR             R2, [SP,#0x40+bufsize]|5-154
+206|code|LDR             st, [dev,#0x4C]|224-108
+208|code|CMP             R3, R2|147-66
+210|code|IT LS|152-191
+212|code|ADDLS.W         R3, R2, #0x3F ; '?'|2-241-63-3
+216|code|BIC.W           R3, R3, #0x3F|35-240-63-3
+220|code|LSLS            R3, R3, #1|91-0
+222|code|STR             R3, [dev,#0x50]|35-101
+224|code|BLX             R10; grub_free|208-71
+226|code|CMP             R7, #1|1-47
+228|code|MOV.W           R3, #0|79-240-0-3
+232|code|STR             R3, [dev,#0x4C]|227-100
+234|code|BEQ             loc_B2|226-208
+236|code|MOVS            R7, #1|1-39
+238|code|B               loc_A4|217-231
+240|code|CMP             st, #0|0-40
+242|code|BNE             loc_B2|222-209
+244|code|LDR             st, [SP,#0x40+bufsize]|5-152
+246|code|LDR             R3, =grub_netbuff_alloc|14-75
+248|code|ADDS            R0, #2|2-48
+250|code|BLX             R3; grub_netbuff_alloc|152-71
+252|code|MOV             R5, nb|5-70
+254|code|CMP             nb, #0|0-40
+256|code|BEQ             loc_B2|215-208
+258|code|MOVS            R1, #2|2-33
+260|code|LDR             R3, =grub_netbuff_reserve|11-75
+262|code|BLX             R3; grub_netbuff_reserve|152-71
+264|code|CBNZ            R0, loc_11E|72-185
+266|code|LDR             R1, [dev,#0x4C]|225-108
+268|code|LDR             R3, =grub_memmove|10-75
+270|code|LDR             R0, [nb,#4]|104-104
+272|code|LDR             R2, [SP,#0x40+bufsize]|5-154
+274|code|BLX             R3; grub_memmove|152-71
+276|code|MOV             R0, nb|40-70
+278|code|LDR             R1, [SP,#0x40+bufsize]|5-153
+280|code|LDR             R3, =grub_netbuff_put|8-75
+282|code|BLX             R3; grub_netbuff_put|152-71
+284|code|CBZ             err, loc_126|24-177
+286|code|MOV             R0, nb|40-70
+288|code|LDR             R3, =grub_netbuff_free|7-75
+290|code|BLX             R3; grub_netbuff_free|152-71
+292|code|B               loc_B2|197-231
+294|code|MOV             err, nb|40-70
+296|code|ADD             SP, SP, #0x1C|7-176
+298|code|POP.W           {dev-R11,PC}|189-232-240-143
+302|data|ALIGN 0x10|0-191
+304|data|DCD grub_netbuff_alloc|56-4-0-0
+308|data|DCD grub_netbuff_reserve|112-4-0-0
+312|data|DCD grub_memmove|44-4-0-0
+316|data|DCD grub_netbuff_put|108-4-0-0
+320|data|DCD grub_netbuff_free|32-4-0-0
+324|data|DCD grub_malloc|76-4-0-0
+328|data|DCD 0x80000005|5-0-0-128
+332|data|DCD grub_free|96-4-0-0
+336|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+340|code|MOV             R4, dev|4-70
+342|code|SUB             SP, SP, #0x1C|135-176
+344|code|LDR             R7, =grub_get_time_ms|39-79
+346|code|MOV             R10, pack|138-70
+348|code|LDR             R5, [dev,#0x5C]|197-109
+350|code|BLX             R7; grub_get_time_ms|184-71
+352|code|LDR             R3, [dev,#0x58]|163-109
+354|code|CBZ             R3, loc_1B6|67-179
+356|code|ADDS.W          R8, R0, #0xFA0|16-245-122-104
+360|code|MOV.W           R11, #0|79-240-0-11
+364|code|ADC.W           R9, R1, #0|65-241-0-9
+368|code|MOVS            R1, #0|0-33
+370|code|STR.W           R11, [SP,#0x40+txbuf]|205-248-20-176
+374|code|LDR             R3, [net,#0x30]|43-107
+376|code|MOV             R0, net|40-70
+378|code|ADD             R2, SP, #0x40+txbuf|5-170
+380|code|BLX             R3|152-71
+382|code|MOV             R1, st|1-70
+384|code|CMP             st, #0|0-40
+386|code|BNE             loc_1EA|50-209
+388|code|LDR             R2, [SP,#0x40+txbuf]|5-154
+390|code|LDR             R3, [dev,#0x48]|163-108
+392|code|CMP             R2, R3|154-66
+394|code|BNE             loc_190|1-209
+396|code|STR             st, [dev,#0x58]|160-101
+398|code|B               loc_1B6|18-224
+400|code|CBZ             R2, loc_1A2|58-177
+402|code|STR             st, [SP,#0x40+var_40]|0-144
+404|code|STR             st, [SP,#0x40+var_3C]|1-144
+406|code|STR             st, [SP,#0x40+var_38]|2-144
+408|code|MOV             st, net|40-70
+410|code|LDR             R2, [dev,#0x64]|98-110
+412|code|LDR             R6, [net,#0x34]|110-107
+414|code|BLX             R6|176-71
+416|code|CBNZ            st, loc_1EA|24-187
+418|code|BLX             R7; grub_get_time_ms|184-71
+420|code|CMP             R9, R1|137-69
+422|code|IT EQ|8-191
+424|code|CMPEQ           R8, R0|128-69
+426|code|BCS             loc_170|225-210
+428|code|MOVS            R0, #0x1C|28-32
+430|code|LDR             R1, =aCouldnTSendNet; "couldn't send network packet"|19-73
+432|code|LDR             R3, =grub_error|19-75
+434|code|BLX             R3; grub_error|152-71
+436|code|B               loc_1F2|29-224
+438|code|LDR.W           R2, [pack,#4]|218-248-4-32
+442|code|LDR.W           R3, [pack,#8]|218-248-8-48
+446|code|LDR             R0, [dev,#0x48]|160-108
+448|code|SUBS            R3, R3, R2|155-26
+450|code|LDR             R2, [dev,#0x38]|162-107
+452|code|STR             R3, [dev,#0x64]|99-102
+454|code|CMP             R3, R2|147-66
+456|code|LDR             R3, =grub_memmove|14-75
+458|code|IT HI|136-191
+460|code|STRHI           R2, [dev,#0x64]|98-102
+462|code|LDR.W           R1, [pack,#4]|218-248-4-16
+466|code|LDR             R2, [dev,#0x64]|98-110
+468|code|BLX             R3; grub_memmove|152-71
+470|code|MOVS            R1, #0|0-33
+472|code|MOV             R0, net|40-70
+474|code|STR             R1, [SP,#0x40+var_40]|0-145
+476|code|STR             R1, [SP,#0x40+var_3C]|1-145
+478|code|STR             R1, [SP,#0x40+var_38]|2-145
+480|code|LDR             R2, [dev,#0x64]|98-110
+482|code|LDR             R6, [net,#0x34]|110-107
+484|code|LDR             R3, [dev,#0x48]|163-108
+486|code|BLX             R6|176-71
+488|code|CBZ             st, loc_1EE|8-177
+490|code|MOVS            st, #0x1D|29-32
+492|code|B               loc_1AE|223-231
+494|code|MOVS            R3, #1|1-35
+496|code|STR             R3, [dev,#0x58]|163-101
+498|code|ADD             SP, SP, #0x1C|7-176
+500|code|POP.W           {dev-R11,PC}|189-232-240-143
+504|data|DCD grub_get_time_ms|80-4-0-0
+508|data|DCD aCouldnTSendNet; "couldn't send network packet"|156-3-0-0
+512|data|DCD grub_error|92-4-0-0
+516|data|DCD grub_memmove|44-4-0-0
+520|code|CBZ             card, locret_218|48-177
+522|code|LDR             R2, [card,#0xC]|194-104
+524|code|LDR             R3, =efidriver|3-75
+526|code|CMP             R2, R3|154-66
+528|code|BNE             loc_216|1-209
+530|code|LDR             card, [card,#0x60]|0-110
+532|code|BX              LR|112-71
+534|code|MOVS            card, #0|0-32
+536|code|BX              LR|112-71
+538|data|ALIGN 4|0-191
+540|data|DCD efidriver|208-3-0-0
+544|code|PUSH.W          {mod-R2,R4-R11,LR}|45-233-247-79
+548|code|MOVS            mod, #2|2-32
+550|code|LDR             R1, =net_io_guid|65-73
+552|code|MOVS            R2, #0|0-34
+554|code|ADD             R3, SP, #0x30+var_2C|1-171
+556|code|LDR             R4, =grub_efi_locate_handle|64-76
+558|code|BLX             R4; grub_efi_locate_handle|160-71
+560|code|MOV             R5, R0|5-70
+562|code|CMP             R0, #0|0-40
+564|code|BEQ             loc_320|116-208
+566|code|LDR.W           R8, =grub_zalloc|223-248-40-129
+570|code|SUBS            R7, R0, #4|7-31
+572|code|MOVS            R6, #0|0-38
+574|code|LDR             R3, [SP,#0x30+var_2C]|1-155
+576|code|SUBS            R2, R3, #1|90-30
+578|code|STR             R2, [SP,#0x30+var_2C]|1-146
+580|code|CMP             R3, #0|0-43
+582|code|BEQ             loc_31A|104-208
+584|code|LDR.W           R0, [R7,#4]!|87-248-4-15
+588|code|MOVS            R2, #2|2-34
+590|code|LDR             R1, =net_io_guid|55-73
+592|code|LDR             R3, =grub_efi_open_protocol|56-75
+594|code|BLX             R3; grub_efi_open_protocol|152-71
+596|code|MOV             R10, R0|130-70
+598|code|CMP             R0, #0|0-40
+600|code|BEQ             loc_23E|241-208
+602|code|LDR             R3, [R0,#0x40]|3-108
+604|code|LDR             R3, [R3]|27-104
+606|code|CBZ             R3, loc_26C|43-177
+608|code|LDR.W           R3, [R10,#0x40]|218-248-64-48
+612|code|LDR             R3, [R3]|27-104
+614|code|CMP             R3, #0|0-43
+616|code|BEQ             loc_23E|233-208
+618|code|B               loc_276|4-224
+620|code|LDR             R3, [R0,#8]|131-104
+622|code|BLX             R3|152-71
+624|code|CMP             R0, #0|0-40
+626|code|BNE             loc_23E|228-209
+628|code|B               loc_260|244-231
+630|code|CMP             R3, #1|1-43
+632|code|BEQ             loc_288|6-208
+634|code|MOVS            R0, #0x68 ; 'h'|104-32
+636|code|BLX             R8; grub_zalloc|192-71
+638|code|MOV             R4, R0|4-70
+640|code|CBNZ            R0, loc_29A|88-185
+642|code|LDR             R3, =grub_print_error|45-75
+644|code|BLX             R3; grub_print_error|152-71
+646|code|B               loc_31A|72-224
+648|code|MOVS            R1, #0|0-33
+650|code|LDR.W           R3, [R10,#0x10]|218-248-16-48
+654|code|MOV             R0, R10|80-70
+656|code|MOV             R2, R1|10-70
+658|code|BLX             R3|152-71
+660|code|CMP             R0, #0|0-40
+662|code|BNE             loc_23E|210-209
+664|code|B               loc_27A|239-231
+666|code|LDR.W           R3, [R10,#0x40]|218-248-64-48
+670|code|LDR             R3, [R3,#0xC]|219-104
+672|code|STR             R3, [R0,#0x38]|131-99
+674|code|ADDS            R3, #0x3F ; '?'|63-51
+676|code|BIC.W           R3, R3, #0x3F|35-240-63-3
+680|code|ADD.W           R0, R3, #0x100|3-245-128-112
+684|code|STR             R0, [R4,#0x54]|96-101
+686|code|BLX             R8; grub_zalloc|192-71
+688|code|STR             R0, [R4,#0x48]|160-100
+690|code|CBNZ            R0, loc_2C4|56-185
+692|code|LDR             R3, =grub_print_error|32-75
+694|code|BLX             R3; grub_print_error|152-71
+696|code|MOV             R0, R5|40-70
+698|code|LDR             R5, =grub_free|32-77
+700|code|BLX             R5; grub_free|168-71
+702|code|MOV             R0, R4|32-70
+704|code|BLX             R5; grub_free|168-71
+706|code|B               loc_320|45-224
+708|code|LDR             R3, [R4,#0x38]|163-107
+710|code|MOV.W           R11, #0|79-240-0-11
+714|code|MOV             R1, R6|49-70
+716|code|LDR             R2, =grub_xasprintf|28-74
+718|code|ADDS            R3, #0x3F ; '?'|63-51
+720|code|STR.W           R11, [R4,#0x58]|196-248-88-176
+724|code|BIC.W           R3, R3, #0x3F|35-240-63-3
+728|code|LDR             R0, =aEfinetD; "efinet%d"|26-72
+730|code|ADD.W           R3, R3, #0x100|3-245-128-115
+734|code|STR             R3, [R4,#0x50]|35-101
+736|code|BLX             R2; grub_xasprintf|144-71
+738|code|LDR             R2, =efidriver|25-74
+740|code|LDR.W           R1, [R10,#0x40]|218-248-64-16
+744|code|ADD.W           R9, R6, #1|6-241-1-9
+748|code|STR.W           R11, [R4,#0x1C]|196-248-28-176
+752|code|STR             R2, [R4,#0xC]|226-96
+754|code|ADD.W           R1, R1, #0x228|1-245-10-113
+758|code|MOVS            R2, #6|6-34
+760|code|LDR             R6, =grub_memmove|20-78
+762|code|STR.W           R11, [R4,#0x10]|196-248-16-176
+766|code|STR             R0, [R4,#8]|160-96
+768|code|ADD.W           R0, R4, #0x14|4-241-20-0
+772|code|BLX             R6; grub_memmove|176-71
+774|code|STR.W           R10, [R4,#0x5C]|196-248-92-160
+778|code|LDR             R2, [R7]|58-104
+780|code|MOV             R1, R4|33-70
+782|code|LDR             R0, =grub_net_cards|16-72
+784|code|MOV             R6, R9|78-70
+786|code|STR             R2, [R4,#0x60]|34-102
+788|code|LDR             R2, =grub_list_push|15-74
+790|code|BLX             R2; grub_list_push|144-71
+792|code|B               loc_23E|145-231
+794|code|MOV             R0, R5|40-70
+796|code|LDR             R3, =grub_free|7-75
+798|code|BLX             R3; grub_free|152-71
+800|code|LDR             R2, =(grub_efi_net_config_real+1)|13-74
+802|code|LDR             R3, =grub_efi_net_config|14-75
+804|code|STR             R2, [R3]|26-96
+806|code|ADD             SP, SP, #0xC|3-176
+808|code|POP.W           {R4-R11,PC}|189-232-240-143
+812|data|DCD net_io_guid|0-4-0-0
+816|data|DCD grub_efi_locate_handle|60-4-0-0
+820|data|DCD grub_efi_open_protocol|88-4-0-0
+824|data|DCD grub_print_error|68-4-0-0
+828|data|DCD grub_free|96-4-0-0
+832|data|DCD grub_xasprintf|40-4-0-0
+836|data|DCD aEfinetD; "efinet%d"|185-3-0-0
+840|data|DCD efidriver|208-3-0-0
+844|data|DCD grub_memmove|44-4-0-0
+848|data|DCD grub_net_cards|52-4-0-0
+852|data|DCD grub_list_push|104-4-0-0
+856|data|DCD grub_efi_net_config_real+1|1-0-0-0
+860|data|DCD grub_efi_net_config|64-4-0-0
+864|data|DCD grub_zalloc|72-4-0-0
+868|code|LDR             R3, =grub_net_cards|10-75
+870|code|PUSH            {R4-R6,LR}|112-181
+872|code|LDR             R0, [R3]|24-104
+874|code|CBZ             card, loc_370|8-177
+876|code|LDR             R4, [card]|4-104
+878|code|B               loc_372|0-224
+880|code|MOV             R4, card|4-70
+882|code|LDR             R5, =efidriver|8-77
+884|code|LDR             R6, =grub_net_card_unregister|8-78
+886|code|CBZ             card, locret_38E|80-177
+888|code|LDR             R3, [card,#0xC]|195-104
+890|code|CMP             R3, R5|171-66
+892|code|BNE             loc_380|0-209
+894|code|BLX             R6; grub_net_card_unregister|176-71
+896|code|CBZ             next, loc_386|12-177
+898|code|LDR             R3, [next]|35-104
+900|code|B               loc_388|0-224
+902|code|MOV             R3, next|35-70
+904|code|MOV             R0, next|32-70
+906|code|MOV             next, R3|28-70
+908|code|B               loc_376|243-231
+910|code|POP             {next-R6,PC}|112-189
+912|data|DCD grub_net_cards|52-4-0-0
+916|data|DCD efidriver|208-3-0-0
+920|data|DCD grub_net_card_unregister|84-4-0-0
+924|data|DCB "couldn't send network packet",0|99-111-117-108-100-110-39-116-32-115-101-110-100-32-110-101-116-119-111-114-107-32-112-97-99-107-101-116-0
+953|data|DCB "efinet%d",0|101-102-105-110-101-116-37-100-0
+962|data|DCB "efinet",0|101-102-105-110-101-116-0
+976|data|grub_net_card_driver <0, 0, aEfinet, 0, 0, send_card_buffer+1, \; "efinet"|0-0-0-0-0-0-0-0-194-3-0-0-0-0-0-0-0-0-0-0-81-1-0-0-137-0-0-0
+1004|data|ALIGN 0x10|0-0-0-0
+1008|data|DCD 0x3C4E603           ; data1|3-230-196-3-40-172-211-17-154-45-0-144-39-63-193-77
+1024|data|DCD 0xA19832B9          ; data1|185-50-152-161-37-172-211-17-154-45-0-144-39-63-193-77
+1040|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

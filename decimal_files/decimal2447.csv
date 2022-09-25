@@ -1,0 +1,718 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|MOV             R5, n|5-70
+4|code|LDR             R6, =grub_printf|4-78
+6|code|MOVS            R4, #0|0-36
+8|code|CMP             i, n|172-66
+10|code|BGE             locret_14|3-218
+12|code|LDR             R0, =unk_718|3-72
+14|code|ADDS            i, #1|1-52
+16|code|BLX             R6; grub_printf|176-71
+18|code|B               loc_8|249-231
+20|code|POP             {i-R6,PC}|112-189
+22|data|ALIGN 4|0-191
+24|data|DCD grub_printf|24-12-0-0
+28|data|DCD unk_718|24-7-0-0
+32|code|PUSH.W          {R3-R11,LR}|45-233-248-79
+36|code|MOV             R5, bootpath|13-70
+38|code|LDR             R4, =grub_zfs_nvlist_lookup_string|37-76
+40|code|MOV             R7, nvlist|7-70
+42|code|LDR             bootpath, =aType; "type"|37-73
+44|code|MOV             R6, devid|22-70
+46|code|BLX             R4; grub_zfs_nvlist_lookup_string|160-71
+48|code|MOV             R9, type|129-70
+50|code|CBNZ            type, loc_3C|24-185
+52|code|LDR             R3, =grub_errno|35-75
+54|code|LDR             type, [R3]|24-104
+56|code|POP.W           {R3-R11,PC}|189-232-248-143
+60|code|LDR             R1, =aDisk; "disk"|34-73
+62|code|LDR.W           R8, =grub_strcmp|223-248-164-128
+66|code|BLX             R8; grub_strcmp|192-71
+68|code|CBNZ            R0, loc_76|184-185
+70|code|LDR             R1, =aPhysPath; "phys_path"|33-73
+72|code|MOV             R0, nvlist|56-70
+74|code|BLX             R4; grub_zfs_nvlist_lookup_string|160-71
+76|code|LDR             R1, =aDevid; "devid"|32-73
+78|code|STR             R0, [bootpath]|40-96
+80|code|MOV             R0, nvlist|56-70
+82|code|BLX             R4; grub_zfs_nvlist_lookup_string|160-71
+84|code|STR             R0, [devid]|48-96
+86|code|LDR             R3, [bootpath]|43-104
+88|code|CBZ             R3, loc_62|27-177
+90|code|CBZ             R0, loc_62|16-177
+92|code|MOVS            R0, #0|0-32
+94|code|POP.W           {R3-R11,PC}|189-232-248-143
+98|code|MOV             R0, R3|24-70
+100|code|LDR             R4, =grub_free|27-76
+102|code|BLX             R4; grub_free|160-71
+104|code|LDR             R0, [devid]|48-104
+106|code|BLX             R4; grub_free|160-71
+108|code|MOVS            R0, #0|0-32
+110|code|STR             R0, [bootpath]|40-96
+112|code|STR             R0, [devid]|48-96
+114|code|POP.W           {R3-R11,PC}|189-232-248-143
+118|code|MOV             R0, type|72-70
+120|code|LDR             R1, =aMirror; "mirror"|23-73
+122|code|BLX             R8; grub_strcmp|192-71
+124|code|MOV             R4, R0|4-70
+126|code|CMP             R0, #0|0-40
+128|code|BNE             loc_5C|236-209
+130|code|MOV             R0, nvlist|56-70
+132|code|LDR             R1, =aChildren; "children"|21-73
+134|code|LDR             R3, =grub_zfs_nvlist_lookup_nvlist_array_get_nelm|22-75
+136|code|BLX             R3; grub_zfs_nvlist_lookup_nvlist_array_get_nelm|152-71
+138|code|LDR.W           type, =grub_zfs_nvlist_lookup_nvlist_array|223-248-92-144
+142|code|LDR.W           R10, =grub_free|223-248-68-160
+146|code|MOV             nelm, R0|128-70
+148|code|CMP             i, nelm|68-69
+150|code|BGE             loc_5C|225-218
+152|code|LDR             R1, =aChildren; "children"|16-73
+154|code|MOV             R2, i|34-70
+156|code|MOV             R0, nvlist|56-70
+158|code|BLX             R9; grub_zfs_nvlist_lookup_nvlist_array|200-71
+160|code|MOV             R1, bootpath; bootpath|41-70
+162|code|MOV             R2, devid; devid|50-70
+164|code|MOV             R11, R0|131-70
+166|code|BL              get_bootpath|255-247-187-255
+170|code|MOV             R0, child|88-70
+172|code|BLX             R10; grub_free|208-71
+174|code|LDR             R3, [bootpath]|43-104
+176|code|CBZ             R3, loc_B8|19-177
+178|code|LDR             R3, [devid]|51-104
+180|code|CMP             R3, #0|0-43
+182|code|BNE             loc_5C|209-209
+184|code|ADDS            i, #1|1-52
+186|code|B               loc_94|235-231
+188|data|DCD grub_zfs_nvlist_lookup_string|40-12-0-0
+192|data|DCD aType; "type"|26-7-0-0
+196|data|DCD grub_errno|16-12-0-0
+200|data|DCD aDisk; "disk"|31-7-0-0
+204|data|DCD aPhysPath; "phys_path"|36-7-0-0
+208|data|DCD aDevid; "devid"|46-7-0-0
+212|data|DCD grub_free|56-12-0-0
+216|data|DCD aMirror; "mirror"|52-7-0-0
+220|data|DCD aChildren; "children"|59-7-0-0
+224|data|DCD grub_zfs_nvlist_lookup_nvlist_array_get_nelm|252-11-0-0
+228|data|DCD grub_strcmp|32-12-0-0
+232|data|DCD grub_zfs_nvlist_lookup_nvlist_array|68-12-0-0
+236|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+240|code|SUBS.W          R9, argc, #0|177-241-0-9
+244|code|SUB             SP, SP, #0x34|141-176
+246|code|MOV.W           R3, #0|79-240-0-3
+250|code|MOV             R6, args|22-70
+252|code|STR             R3, [SP,#0x58+nvlist]|7-147
+254|code|STR             R3, [SP,#0x58+bootpath]|8-147
+256|code|STR             R3, [SP,#0x58+devid]|9-147
+258|code|BGT             loc_110|5-220
+260|code|MOVS            cmd, #0x12|18-32
+262|code|LDR             argc, =aOneArgumentExp; "one argument expected"|73-73
+264|code|LDR             R3, =grub_error|73-75
+266|code|BLX             R3; grub_error|152-71
+268|code|MOV             R5, R0|5-70
+270|code|B               loc_224|137-224
+272|code|LDR             cmd, [args]|16-104
+274|code|LDR             R3, =grub_file_get_device_name|72-75
+276|code|BLX             R3; grub_file_get_device_name|152-71
+278|code|LDR.W           R10, =grub_errno|223-248-100-161
+282|code|LDR.W           R5, [R10]|218-248-0-80
+286|code|MOV             R8, R10|208-70
+288|code|MOV             R4, R0|4-70
+290|code|CMP             R5, #0|0-45
+292|code|BNE             loc_224|126-209
+294|code|LDR             R3, =grub_device_open|68-75
+296|code|BLX             R3; grub_device_open|152-71
+298|code|MOV             R7, R0|7-70
+300|code|MOV             dev, devname|32-70
+302|code|LDR             devname, =grub_free|67-76
+304|code|BLX             R4; grub_free|160-71
+306|code|CBNZ            dev, loc_13A|23-185
+308|code|LDR.W           R5, [R10]|218-248-0-80
+312|code|B               loc_224|116-224
+314|code|ADD             R1, SP, #0x58+nvlist|7-169
+316|code|LDR             R3, =grub_zfs_fetch_nvlist|64-75
+318|code|MOV             R0, dev|56-70
+320|code|BLX             R3; grub_zfs_fetch_nvlist|152-71
+322|code|MOVS            R1, #0x29 ; ')'|41-33
+324|code|LDR             R3, =grub_strchr|63-75
+326|code|MOV             R10, R0|130-70
+328|code|LDR             err, [args]|48-104
+330|code|BLX             R3; grub_strchr|152-71
+332|code|CBZ             fsname, loc_152|8-177
+334|code|ADDS            R1, fsname, #1|65-28
+336|code|B               loc_154|0-224
+338|code|LDR             R1, [args]|49-104
+340|code|CMP.W           err, #0|186-241-0-15
+344|code|BNE             loc_164|4-209
+346|code|MOV             R0, dev|56-70
+348|code|ADD             R2, SP, #0x58+mdnobj|10-170
+350|code|LDR             R3, =grub_zfs_getmdnobj|58-75
+352|code|BLX             R3; grub_zfs_getmdnobj|152-71
+354|code|MOV             err, R0|130-70
+356|code|MOV             R0, dev|56-70
+358|code|LDR             R3, =grub_device_close|57-75
+360|code|BLX             R3; grub_device_close|152-71
+362|code|CMP.W           err, #0|186-241-0-15
+366|code|BNE             loc_222|88-209
+368|code|LDR             R0, [SP,#0x58+nvlist]|7-152
+370|code|LDR             R1, =aName; "name"|55-73
+372|code|LDR             R3, =grub_zfs_nvlist_lookup_string|55-75
+374|code|BLX             R3; grub_zfs_nvlist_lookup_string|152-71
+376|code|MOV             dev, poolname|7-70
+378|code|CBNZ            poolname, loc_18E|64-185
+380|code|LDR.W           R3, [R8]|216-248-0-48
+384|code|CMP             R3, #0|0-43
+386|code|BNE             loc_1F4|55-209
+388|code|LDR             R1, =aNoPoolnameFoun; "No poolname found"|52-73
+390|code|MOVS            poolname, #9|9-32
+392|code|LDR             R3, =grub_error|41-75
+394|code|BLX             R3; grub_error|152-71
+396|code|B               loc_1F4|50-224
+398|code|LDR             poolname, [SP,#0x58+nvlist]|7-152
+400|code|LDR             R1, =aVdevTree; "vdev_tree"|50-73
+402|code|LDR             R3, =grub_zfs_nvlist_lookup_nvlist|51-75
+404|code|BLX             R3; grub_zfs_nvlist_lookup_nvlist|152-71
+406|code|MOV             err, nv|130-70
+408|code|CBZ             nv, loc_1A2|24-177
+410|code|ADD             R1, SP, #0x58+bootpath; bootpath|8-169
+412|code|ADD             R2, SP, #0x58+devid; devid|9-170
+414|code|BL              get_bootpath|255-247-63-255
+418|code|MOV             R0, nv|80-70
+420|code|BLX             R4; grub_free|160-71
+422|code|LDR             R0, [SP,#0x58+nvlist]|7-152
+424|code|BLX             R4; grub_free|160-71
+426|code|LDR             R2, [SP,#0x58+bootpath]|8-154
+428|code|LDRD.W          nv, R11, [SP,#0x58+mdnobj]|221-233-10-171
+432|code|CBZ             R2, loc_1BA|26-177
+434|code|LDR.W           LR, =aBootpath; ",bootpath=\""|223-248-204-224
+438|code|LDR             R0, =asc_751; "\""|43-72
+440|code|B               loc_1C0|2-224
+442|code|LDR             R2, =unk_744|43-74
+444|code|MOV             LR, R2|150-70
+446|code|MOV             R0, R2|16-70
+448|code|LDR             R3, [SP,#0x58+devid]|9-155
+450|code|CBZ             R3, loc_1CC|27-177
+452|code|LDR.W           R12, =aDiskdevid; ",diskdevid=\""|223-248-188-192
+456|code|LDR             R1, =asc_751; "\""|38-73
+458|code|B               loc_1D2|2-224
+460|code|LDR             R3, =unk_744|38-75
+462|code|MOV             R12, R3|156-70
+464|code|MOV             R1, R3|25-70
+466|code|STR             R2, [SP,#0x58+var_54]|1-146
+468|code|MOV             R2, R10|82-70
+470|code|STR             R0, [SP,#0x58+var_50]|2-144
+472|code|STR.W           R12, [SP,#0x58+var_4C]|205-248-12-192
+476|code|STR             R3, [SP,#0x58+var_48]|4-147
+478|code|MOV             R3, R11|91-70
+480|code|STR             R1, [SP,#0x58+var_44]|5-145
+482|code|MOV             R1, poolname|57-70
+484|code|STR.W           LR, [SP,#0x58+var_58]|205-248-0-224
+488|code|LDR             R0, =aZfsBootfsSLluS; "zfs-bootfs=%s/%llu%s%s%s%s%s%s"|32-72
+490|code|LDR.W           R12, =grub_xasprintf|223-248-156-192
+494|code|BLX             R12; grub_xasprintf|224-71
+496|code|MOV             R10, bootfs|130-70
+498|code|CBNZ            bootfs, loc_1FA|16-185
+500|code|LDR.W           R5, [R8]|216-248-0-80
+504|code|B               loc_224|20-224
+506|code|CMP.W           argc, #1|185-241-1-15
+510|code|ITTTE NE|29-191
+512|code|LDRNE           bootfs, [args,#4]|112-104
+514|code|MOVNE           R1, bootfs|81-70
+516|code|LDRNE           R3, =grub_env_set|26-75
+518|code|MOVEQ           R1, bootfs|81-70
+520|code|ITT EQ|4-191
+522|code|LDREQ           R0, =aS; "%s\n"|26-72
+524|code|LDREQ           R3, =grub_printf|26-75
+526|code|BLX             R3; grub_printf|152-71
+528|code|MOV             R0, bootfs|80-70
+530|code|BLX             R4; grub_free|160-71
+532|code|MOV             R0, poolname|56-70
+534|code|BLX             R4; grub_free|160-71
+536|code|LDR             R0, [SP,#0x58+bootpath]|8-152
+538|code|BLX             R4; grub_free|160-71
+540|code|LDR             R0, [SP,#0x58+devid]|9-152
+542|code|BLX             R4; grub_free|160-71
+544|code|B               loc_224|0-224
+546|code|MOV             R5, err|85-70
+548|code|MOV             R0, R5|40-70
+550|code|ADD             SP, SP, #0x34 ; '4'|13-176
+552|code|POP.W           {R4-R11,PC}|189-232-240-143
+556|data|DCD aOneArgumentExp; "one argument expected"|96-7-0-0
+560|data|DCD grub_error|48-12-0-0
+564|data|DCD grub_file_get_device_name|8-12-0-0
+568|data|DCD grub_device_open|248-11-0-0
+572|data|DCD grub_free|56-12-0-0
+576|data|DCD grub_zfs_fetch_nvlist|0-12-0-0
+580|data|DCD grub_strchr|36-12-0-0
+584|data|DCD grub_zfs_getmdnobj|72-12-0-0
+588|data|DCD grub_device_close|44-12-0-0
+592|data|DCD aName; "name"|118-7-0-0
+596|data|DCD grub_zfs_nvlist_lookup_string|40-12-0-0
+600|data|DCD aNoPoolnameFoun; "No poolname found"|123-7-0-0
+604|data|DCD aVdevTree; "vdev_tree"|141-7-0-0
+608|data|DCD grub_zfs_nvlist_lookup_nvlist|76-12-0-0
+612|data|DCD asc_751; "\""|81-7-0-0
+616|data|DCD unk_744|68-7-0-0
+620|data|DCD aZfsBootfsSLluS; "zfs-bootfs=%s/%llu%s%s%s%s%s%s"|151-7-0-0
+624|data|DCD grub_env_set|64-12-0-0
+628|data|DCD aS; "%s\n"|182-7-0-0
+632|data|DCD grub_printf|24-12-0-0
+636|data|DCD grub_errno|16-12-0-0
+640|data|DCD aBootpath; ",bootpath=\""|69-7-0-0
+644|data|DCD aDiskdevid; ",diskdevid=\""|83-7-0-0
+648|data|DCD grub_xasprintf|244-11-0-0
+652|code|PUSH            {nvlist,tab,R4-R6,LR}|115-181
+654|code|MOV             R6, nvlist|6-70
+656|code|MOV             nvlist, tab; n|8-70
+658|code|LDR             R4, =grub_zfs_nvlist_lookup_uint64|25-76
+660|code|BL              print_tabs|255-247-180-254
+664|code|MOV             R0, nvlist|48-70
+666|code|LDR             R1, =aRemoved; "removed"|24-73
+668|code|MOV             R2, SP|106-70
+670|code|BLX             R4; grub_zfs_nvlist_lookup_uint64|160-71
+672|code|CBZ             R0, loc_2AC|32-177
+674|code|LDR             R0, =aVirtualDeviceI; "Virtual device is removed"|23-72
+676|code|MOVS            R5, #0|0-37
+678|code|LDR             R3, =grub_puts_|23-75
+680|code|BLX             R3; grub_puts_|152-71
+682|code|B               loc_2AE|0-224
+684|code|MOVS            R5, #1|1-37
+686|code|MOV             R0, nvlist|48-70
+688|code|LDR             R1, =aFaulted; "faulted"|21-73
+690|code|MOV             R2, SP|106-70
+692|code|BLX             R4; grub_zfs_nvlist_lookup_uint64|160-71
+694|code|CBZ             R0, loc_2C0|24-177
+696|code|LDR             R0, =aVirtualDeviceI_0; "Virtual device is faulted"|20-72
+698|code|MOVS            isok, #0|0-37
+700|code|LDR             R3, =grub_puts_|17-75
+702|code|BLX             R3; grub_puts_|152-71
+704|code|MOV             R0, nvlist|48-70
+706|code|LDR             R1, =aOffline; "offline"|19-73
+708|code|MOV             R2, SP|106-70
+710|code|BLX             R4; grub_zfs_nvlist_lookup_uint64|160-71
+712|code|CBZ             R0, loc_2D2|24-177
+714|code|LDR             R0, =aVirtualDeviceI_1; "Virtual device is offline"|18-72
+716|code|MOVS            isok, #0|0-37
+718|code|LDR             R3, =grub_puts_|13-75
+720|code|BLX             R3; grub_puts_|152-71
+722|code|MOV             R0, nvlist|48-70
+724|code|LDR             R1, =aFaulted; "faulted"|12-73
+726|code|MOV             R2, SP|106-70
+728|code|BLX             R4; grub_zfs_nvlist_lookup_uint64|160-71
+730|code|CBZ             R0, loc_2E2|16-177
+732|code|LDR             R0, =aVirtualDeviceI_2; "Virtual device is degraded"|14-72
+734|code|LDR             R3, =grub_puts_|9-75
+736|code|BLX             R3; grub_puts_|152-71
+738|code|CBZ             isok, loc_2EA|21-177
+740|code|LDR             R0, =aVirtualDeviceI_3; "Virtual device is online"|13-72
+742|code|LDR             R3, =grub_puts_|7-75
+744|code|BLX             R3; grub_puts_|152-71
+746|code|LDR             R3, =grub_xputs|13-75
+748|code|LDR             R0, =asc_854; "\n"|13-72
+750|code|LDR             R3, [R3]|27-104
+752|code|BLX             R3|152-71
+754|code|MOVS            R0, #0|0-32
+756|code|ADD             SP, SP, #8|2-176
+758|code|POP             {R4-nvlist,PC}|112-189
+760|data|DCD grub_zfs_nvlist_lookup_uint64|52-12-0-0
+764|data|DCD aRemoved; "removed"|186-7-0-0
+768|data|DCD aVirtualDeviceI; "Virtual device is removed"|194-7-0-0
+772|data|DCD grub_puts_|240-11-0-0
+776|data|DCD aFaulted; "faulted"|220-7-0-0
+780|data|DCD aVirtualDeviceI_0; "Virtual device is faulted"|228-7-0-0
+784|data|DCD aOffline; "offline"|254-7-0-0
+788|data|DCD aVirtualDeviceI_1; "Virtual device is offline"|6-8-0-0
+792|data|DCD aVirtualDeviceI_2; "Virtual device is degraded"|32-8-0-0
+796|data|DCD aVirtualDeviceI_3; "Virtual device is online"|59-8-0-0
+800|data|DCD grub_xputs|12-12-0-0
+804|data|DCD asc_854; "\n"|84-8-0-0
+808|code|PUSH.W          {nvlist,tab,R4-R10,LR}|45-233-243-71
+812|code|MOV             R5, tab|13-70
+814|code|LDR             R7, =grub_zfs_nvlist_lookup_string|92-79
+816|code|MOV             R6, nvlist|6-70
+818|code|LDR             tab, =aType; "type"|92-73
+820|code|BLX             R7; grub_zfs_nvlist_lookup_string|184-71
+822|code|MOV             R8, type|128-70
+824|code|CBNZ            type, loc_34C|64-185
+826|code|MOV             type, tab; n|40-70
+828|code|BL              print_tabs|255-247-96-254
+832|code|LDR             R3, =grub_puts_|89-75
+834|code|LDR             R0, =aIncorrectVirtu; "Incorrect virtual device: no type avail"...|90-72
+836|code|BLX             R3; grub_puts_|152-71
+838|code|LDR             R3, =grub_errno|90-75
+840|code|LDR             R0, [R3]|24-104
+842|code|B               loc_49A|166-224
+844|code|LDR             R1, =aDisk; "disk"|89-73
+846|code|LDR             R4, =grub_strcmp|90-76
+848|code|BLX             R4; grub_strcmp|160-71
+850|code|CMP             R0, #0|0-40
+852|code|BNE             loc_3DC|66-209
+854|code|MOV             R0, tab; n|40-70
+856|code|LDR             R4, =grub_puts_|83-76
+858|code|BL              print_tabs|255-247-81-254
+862|code|LDR             R0, =aLeafVirtualDev; "Leaf virtual device (file or disk)"|87-72
+864|code|BLX             R4; grub_puts_|160-71
+866|code|MOV             R1, tab; tab|41-70
+868|code|MOV             R0, nvlist; nvlist|48-70
+870|code|BL              print_state|255-247-145-255
+874|code|MOV             R0, nvlist|48-70
+876|code|LDR             R1, =aPhysPath; "phys_path"|84-73
+878|code|BLX             R7; grub_zfs_nvlist_lookup_string|184-71
+880|code|MOV             R9, R0|129-70
+882|code|MOV             bootpath, tab; n|40-70
+884|code|BL              print_tabs|255-247-68-254
+888|code|CMP.W           bootpath, #0|185-241-0-15
+892|code|BNE             loc_384|2-209
+894|code|LDR             R0, =aBootpathUnavai; "Bootpath: unavailable\n"|81-72
+896|code|BLX             R4; grub_puts_|160-71
+898|code|B               loc_38C|3-224
+900|code|LDR             R0, =aBootpathS; "Bootpath: %s\n"|80-72
+902|code|MOV             R1, bootpath|73-70
+904|code|LDR             R3, =grub_printf_|80-75
+906|code|BLX             R3; grub_printf_|152-71
+908|code|MOV             R0, nvlist|48-70
+910|code|LDR             R1, =aPath; "path"|80-73
+912|code|BLX             R7; grub_zfs_nvlist_lookup_string|184-71
+914|code|MOV             type, R0|128-70
+916|code|MOV             path, tab; n|40-70
+918|code|BL              print_tabs|255-247-51-254
+922|code|CMP.W           path, #0|184-241-0-15
+926|code|BNE             loc_3A6|2-209
+928|code|LDR             R0, =aPathUnavailabl; "Path: unavailable"|76-72
+930|code|BLX             R4; grub_puts_|160-71
+932|code|B               loc_3AE|3-224
+934|code|LDR             R0, =aPathS; "Path: %s\n"|76-72
+936|code|MOV             R1, path|65-70
+938|code|LDR             R3, =grub_printf_|72-75
+940|code|BLX             R3; grub_printf_|152-71
+942|code|MOV             R0, nvlist|48-70
+944|code|LDR             R1, =aDevid; "devid"|74-73
+946|code|BLX             R7; grub_zfs_nvlist_lookup_string|184-71
+948|code|MOV             nvlist, R0|6-70
+950|code|MOV             devid, tab; n|40-70
+952|code|BL              print_tabs|255-247-34-254
+956|code|CBNZ            devid, loc_3C4|22-185
+958|code|LDR             R0, =aDevidUnavailab; "Devid: unavailable"|72-72
+960|code|BLX             R4; grub_puts_|160-71
+962|code|B               loc_3CC|3-224
+964|code|LDR             R0, =aDevidS; "Devid: %s\n"|71-72
+966|code|MOV             R1, devid|49-70
+968|code|LDR             R3, =grub_printf_|64-75
+970|code|BLX             R3; grub_printf_|152-71
+972|code|MOV             R0, bootpath|72-70
+974|code|LDR             R4, =grub_free|70-76
+976|code|BLX             R4; grub_free|160-71
+978|code|MOV             R0, devid|48-70
+980|code|BLX             R4; grub_free|160-71
+982|code|MOV             R0, path|64-70
+984|code|BLX             R4; grub_free|160-71
+986|code|B               loc_486|84-224
+988|code|LDR             R1, =aMirror; "mirror"|67-73
+990|code|MOV             R0, type|64-70
+992|code|BLX             R4; grub_strcmp|160-71
+994|code|LDR             R1, =aRaidz; "raidz"|67-73
+996|code|CLZ.W           R7, R0|176-250-128-247
+1000|code|MOV             R0, type|64-70
+1002|code|BLX             R4; grub_strcmp|160-71
+1004|code|LSRS            R7, R7, #5|127-9
+1006|code|CLZ.W           R4, R0|176-250-128-244
+1010|code|LSRS            R4, R4, #5|100-9
+1012|code|CBNZ            is_mirror, loc_3FA|15-185
+1014|code|CMP             is_raidz, #0|0-44
+1016|code|BEQ             loc_48A|71-208
+1018|code|MOV             R0, nvlist|48-70
+1020|code|LDR             R1, =aChildren; "children"|61-73
+1022|code|LDR             R3, =grub_zfs_nvlist_lookup_nvlist_array_get_nelm|62-75
+1024|code|BLX             R3; grub_zfs_nvlist_lookup_nvlist_array_get_nelm|152-71
+1026|code|MOV             type, R0|128-70
+1028|code|CBZ             is_mirror, loc_40E|31-177
+1030|code|LDR             R3, =grub_puts_|40-75
+1032|code|LDR             nelm, =aThisVdevIsAMir; "This VDEV is a mirror"|60-72
+1034|code|BLX             R3; grub_puts_|152-71
+1036|code|B               loc_424|10-224
+1038|code|CBZ             is_raidz, loc_424|76-177
+1040|code|LDR             R1, =aNparity; "nparity"|59-73
+1042|code|MOV             R2, SP|106-70
+1044|code|LDR             R3, =grub_zfs_nvlist_lookup_uint64|59-75
+1046|code|MOV             nelm, nvlist|48-70
+1048|code|BLX             R3; grub_zfs_nvlist_lookup_uint64|152-71
+1050|code|LDR             R0, =aThisVdevIsARai; "This VDEV is a RAIDZ%llu\n"|59-72
+1052|code|LDRD.W          R2, R3, [SP,#0x28+parity]|221-233-0-35
+1056|code|LDR             R1, =grub_printf_|42-73
+1058|code|BLX             R1; grub_printf_|136-71
+1060|code|MOV             R0, tab; n|40-70
+1062|code|BL              print_tabs|255-247-235-253
+1066|code|CMP.W           nelm, #0|184-241-0-15
+1070|code|BGT             loc_438|3-220
+1072|code|LDR             R3, =grub_puts_|29-75
+1074|code|LDR             R0, =aIncorrectVdev; "Incorrect VDEV"|54-72
+1076|code|BLX             R3; grub_puts_|152-71
+1078|code|B               loc_486|38-224
+1080|code|MOV             R1, nelm|65-70
+1082|code|LDR             R0, =aVdevWithDChild; "VDEV with %d children\n"|53-72
+1084|code|LDR             is_mirror, =grub_printf_|35-79
+1086|code|MOVS            is_raidz, #0|0-36
+1088|code|BLX             R7; grub_printf_|184-71
+1090|code|MOV             R0, nvlist; nvlist|48-70
+1092|code|MOV             R1, tab; tab|41-70
+1094|code|LDR.W           R10, =grub_zfs_nvlist_lookup_nvlist_array|223-248-216-160
+1098|code|BL              print_state|255-247-31-255
+1102|code|MOV             R0, nvlist|48-70
+1104|code|LDR             R1, =aChildren; "children"|40-73
+1106|code|MOV             R2, i|34-70
+1108|code|BLX             R10; grub_zfs_nvlist_lookup_nvlist_array|208-71
+1110|code|MOV             R9, R0|129-70
+1112|code|MOV             child, tab; n|40-70
+1114|code|BL              print_tabs|255-247-209-253
+1118|code|CMP.W           child, #0|185-241-0-15
+1122|code|BNE             loc_46C|3-209
+1124|code|MOV             R1, i|33-70
+1126|code|LDR             R0, =aVdevElementNum; "VDEV element number %d isn't correct\n"|43-72
+1128|code|BLX             R7; grub_printf_|184-71
+1130|code|B               loc_480|9-224
+1132|code|MOV             R1, i|33-70
+1134|code|LDR             R0, =aVdevElementNum_0; "VDEV element number %d:\n"|42-72
+1136|code|BLX             R7; grub_printf_|184-71
+1138|code|MOV             R0, child; nvlist|72-70
+1140|code|ADDS            R1, tab, #1; tab|105-28
+1142|code|BL              print_vdev_info|255-247-87-255
+1146|code|MOV             R0, child|72-70
+1148|code|LDR             R3, =grub_free|26-75
+1150|code|BLX             R3; grub_free|152-71
+1152|code|ADDS            i, #1|1-52
+1154|code|CMP             i, nelm|68-69
+1156|code|BNE             loc_44E|227-209
+1158|code|MOVS            R0, #0|0-32
+1160|code|B               loc_49A|7-224
+1162|code|MOV             R0, tab; n|40-70
+1164|code|BL              print_tabs|255-247-184-253
+1168|code|LDR             R0, =aUnknownVirtual; "Unknown virtual device type: %s\n"|34-72
+1170|code|MOV             R1, type|65-70
+1172|code|LDR             R3, =grub_printf_|13-75
+1174|code|BLX             R3; grub_printf_|152-71
+1176|code|MOV             R0, is_raidz|32-70
+1178|code|ADD             SP, SP, #8|2-176
+1180|code|POP.W           {R4-R10,PC}|189-232-240-135
+1184|data|DCD grub_zfs_nvlist_lookup_string|40-12-0-0
+1188|data|DCD aType; "type"|26-7-0-0
+1192|data|DCD grub_puts_|240-11-0-0
+1196|data|DCD aIncorrectVirtu; "Incorrect virtual device: no type avail"...|86-8-0-0
+1200|data|DCD grub_errno|16-12-0-0
+1204|data|DCD aDisk; "disk"|31-7-0-0
+1208|data|DCD grub_strcmp|32-12-0-0
+1212|data|DCD aLeafVirtualDev; "Leaf virtual device (file or disk)"|130-8-0-0
+1216|data|DCD aPhysPath; "phys_path"|36-7-0-0
+1220|data|DCD aBootpathUnavai; "Bootpath: unavailable\n"|165-8-0-0
+1224|data|DCD aBootpathS; "Bootpath: %s\n"|188-8-0-0
+1228|data|DCD grub_printf_|60-12-0-0
+1232|data|DCD aPath; "path"|202-8-0-0
+1236|data|DCD aPathUnavailabl; "Path: unavailable"|207-8-0-0
+1240|data|DCD aPathS; "Path: %s\n"|225-8-0-0
+1244|data|DCD aDevid; "devid"|46-7-0-0
+1248|data|DCD aDevidUnavailab; "Devid: unavailable"|235-8-0-0
+1252|data|DCD aDevidS; "Devid: %s\n"|254-8-0-0
+1256|data|DCD grub_free|56-12-0-0
+1260|data|DCD aMirror; "mirror"|52-7-0-0
+1264|data|DCD aRaidz; "raidz"|9-9-0-0
+1268|data|DCD aChildren; "children"|59-7-0-0
+1272|data|DCD grub_zfs_nvlist_lookup_nvlist_array_get_nelm|252-11-0-0
+1276|data|DCD aThisVdevIsAMir; "This VDEV is a mirror"|15-9-0-0
+1280|data|DCD aNparity; "nparity"|37-9-0-0
+1284|data|DCD grub_zfs_nvlist_lookup_uint64|52-12-0-0
+1288|data|DCD aThisVdevIsARai; "This VDEV is a RAIDZ%llu\n"|45-9-0-0
+1292|data|DCD aIncorrectVdev; "Incorrect VDEV"|71-9-0-0
+1296|data|DCD aVdevWithDChild; "VDEV with %d children\n"|86-9-0-0
+1300|data|DCD aVdevElementNum; "VDEV element number %d isn't correct\n"|109-9-0-0
+1304|data|DCD aVdevElementNum_0; "VDEV element number %d:\n"|147-9-0-0
+1308|data|DCD aUnknownVirtual; "Unknown virtual device type: %s\n"|172-9-0-0
+1312|data|DCD grub_zfs_nvlist_lookup_nvlist_array|68-12-0-0
+1316|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1320|code|MOVS            R7, #0|0-39
+1322|code|SUB             SP, SP, #0x18|134-176
+1324|code|CMP             argc, R7|185-66
+1326|code|MOV             R5, args|21-70
+1328|code|STR             R7, [SP,#0x30+nvlist]|1-151
+1330|code|BGT             loc_53E|4-220
+1332|code|LDR             argc, =aOneArgumentExp; "one argument expected"|60-73
+1334|code|MOVS            cmd, #0x12|18-32
+1336|code|LDR             R3, =grub_error|60-75
+1338|code|BLX             R3; grub_error|152-71
+1340|code|B               loc_620|112-224
+1342|code|LDR             R4, [args]|20-104
+1344|code|LDR             R6, =grub_strdup|59-78
+1346|code|LDRB            R3, [R4]|35-120
+1348|code|CMP             R3, #0x28 ; '('|40-43
+1350|code|BNE             loc_56E|18-209
+1352|code|MOV             cmd, R4|32-70
+1354|code|LDR.W           R8, =grub_strlen|223-248-64-129
+1358|code|BLX             R8; grub_strlen|192-71
+1360|code|ADD             R0, R4|32-68
+1362|code|LDRB.W          R3, [R0,#-1]|16-248-1-60
+1366|code|CMP             R3, #0x29 ; ')'|41-43
+1368|code|BNE             loc_56E|9-209
+1370|code|LDR             R0, [args]|40-104
+1372|code|ADDS            R0, #1|1-48
+1374|code|BLX             R6; grub_strdup|176-71
+1376|code|MOV             R4, devname|4-70
+1378|code|CBZ             devname, loc_586|128-177
+1380|code|BLX             R8; grub_strlen|192-71
+1382|code|ADD             R0, devname|32-68
+1384|code|STRB.W          R7, [R0,#-1]|0-248-1-124
+1388|code|B               loc_576|3-224
+1390|code|LDR             R0, [args]|40-104
+1392|code|BLX             R6; grub_strdup|176-71
+1394|code|MOV             R4, devname|4-70
+1396|code|CBZ             devname, loc_586|56-177
+1398|code|MOV             R0, devname|32-70
+1400|code|LDR             R3, =grub_device_open|46-75
+1402|code|BLX             R3; grub_device_open|152-71
+1404|code|LDR             args, =grub_free|46-77
+1406|code|MOV             R6, R0|6-70
+1408|code|MOV             dev, devname|32-70
+1410|code|BLX             R5; grub_free|168-71
+1412|code|CBNZ            dev, loc_58C|22-185
+1414|code|LDR             R3, =grub_errno|45-75
+1416|code|LDR             R0, [R3]|24-104
+1418|code|B               loc_620|73-224
+1420|code|LDR             R3, =grub_zfs_fetch_nvlist|44-75
+1422|code|MOV             R0, dev|48-70
+1424|code|ADD             R1, SP, #0x30+nvlist|1-169
+1426|code|BLX             R3; grub_zfs_fetch_nvlist|152-71
+1428|code|LDR             R3, =grub_device_close|43-75
+1430|code|MOV             devname, R0|4-70
+1432|code|MOV             err, dev|48-70
+1434|code|BLX             R3; grub_device_close|152-71
+1436|code|CMP             err, #0|0-44
+1438|code|BNE             loc_61E|62-209
+1440|code|LDR             R1, =aName; "name"|41-73
+1442|code|LDR             R0, [SP,#0x30+nvlist]|1-152
+1444|code|LDR             R3, =grub_zfs_nvlist_lookup_string|41-75
+1446|code|BLX             R3; grub_zfs_nvlist_lookup_string|152-71
+1448|code|LDR             err, =grub_puts_|41-76
+1450|code|MOV             R1, poolname|1-70
+1452|code|CBNZ            poolname, loc_5B4|16-185
+1454|code|LDR             poolname, =aPoolNameUnavai; "Pool name: unavailable"|41-72
+1456|code|BLX             R4; grub_puts_|160-71
+1458|code|B               loc_5BA|2-224
+1460|code|LDR             poolname, =aPoolNameS; "Pool name: %s\n"|40-72
+1462|code|LDR             R3, =grub_printf_|41-75
+1464|code|BLX             R3; grub_printf_|152-71
+1466|code|LDR             R0, [SP,#0x30+nvlist]|1-152
+1468|code|ADD             R2, SP, #0x30+guid|2-170
+1470|code|LDR             R1, =aPoolGuid; "pool_guid"|40-73
+1472|code|LDR             dev, =grub_zfs_nvlist_lookup_uint64|40-78
+1474|code|BLX             R6; grub_zfs_nvlist_lookup_uint64|176-71
+1476|code|CBNZ            found, loc_5CC|16-185
+1478|code|LDR             found, =aPoolGuidUnavai; "Pool GUID: unavailable"|40-72
+1480|code|BLX             R4; grub_puts_|160-71
+1482|code|B               loc_5D6|4-224
+1484|code|LDR             found, =aPoolGuid016llx; "Pool GUID: %016llx\n"|39-72
+1486|code|LDRD.W          R2, R3, [SP,#0x30+guid]|221-233-2-35
+1490|code|LDR             R1, =grub_printf_|34-73
+1492|code|BLX             R1; grub_printf_|136-71
+1494|code|LDR             R0, [SP,#0x30+nvlist]|1-152
+1496|code|ADD             R2, SP, #0x30+pool_state|4-170
+1498|code|LDR             R1, =aState; "state"|37-73
+1500|code|BLX             R6; grub_zfs_nvlist_lookup_uint64|176-71
+1502|code|CBNZ            found, loc_5E4|8-185
+1504|code|LDR             found, =aUnableToRetrie; "Unable to retrieve pool state"|36-72
+1506|code|B               loc_5F8|9-224
+1508|code|LDRD.W          R2, R3, [SP,#0x30+pool_state]|221-233-4-35
+1512|code|CMP             R3, #0|0-43
+1514|code|IT EQ|8-191
+1516|code|CMPEQ           R2, #8|8-42
+1518|code|ITET CC|54-191
+1520|code|LDRCC           R3, =poolstates|33-75
+1522|code|LDRCS           found, =aUnrecognizedPo; "Unrecognized pool state"|34-72
+1524|code|LDRCC.W         R0, [R3,R2,LSL#2]|83-248-34-0
+1528|code|BLX             R4; grub_puts_|160-71
+1530|code|LDR             R0, [SP,#0x30+nvlist]|1-152
+1532|code|LDR             R1, =aVdevTree; "vdev_tree"|32-73
+1534|code|LDR             R3, =grub_zfs_nvlist_lookup_nvlist|33-75
+1536|code|BLX             R3; grub_zfs_nvlist_lookup_nvlist|152-71
+1538|code|MOV             R6, nv|6-70
+1540|code|CBNZ            nv, loc_60C|16-185
+1542|code|LDR             nv, =aNoVirtualDevic; "No virtual device tree available"|32-72
+1544|code|BLX             R4; grub_puts_|160-71
+1546|code|B               loc_612|2-224
+1548|code|MOVS            R1, #1; tab|1-33
+1550|code|BL              print_vdev_info|255-247-139-254
+1554|code|MOV             R0, nv|48-70
+1556|code|BLX             R5; grub_free|168-71
+1558|code|LDR             R0, [SP,#0x30+nvlist]|1-152
+1560|code|BLX             R5; grub_free|168-71
+1562|code|MOVS            R0, #0|0-32
+1564|code|B               loc_620|0-224
+1566|code|MOV             R0, err|32-70
+1568|code|ADD             SP, SP, #0x18|6-176
+1570|code|POP.W           {R4-R8,PC}|189-232-240-129
+1574|data|ALIGN 4|0-191
+1576|data|DCD aOneArgumentExp; "one argument expected"|96-7-0-0
+1580|data|DCD grub_error|48-12-0-0
+1584|data|DCD grub_strdup|4-12-0-0
+1588|data|DCD grub_device_open|248-11-0-0
+1592|data|DCD grub_free|56-12-0-0
+1596|data|DCD grub_errno|16-12-0-0
+1600|data|DCD grub_zfs_fetch_nvlist|0-12-0-0
+1604|data|DCD grub_device_close|44-12-0-0
+1608|data|DCD aName; "name"|118-7-0-0
+1612|data|DCD grub_zfs_nvlist_lookup_string|40-12-0-0
+1616|data|DCD grub_puts_|240-11-0-0
+1620|data|DCD aPoolNameUnavai; "Pool name: unavailable"|205-9-0-0
+1624|data|DCD aPoolNameS; "Pool name: %s\n"|228-9-0-0
+1628|data|DCD grub_printf_|60-12-0-0
+1632|data|DCD aPoolGuid; "pool_guid"|243-9-0-0
+1636|data|DCD grub_zfs_nvlist_lookup_uint64|52-12-0-0
+1640|data|DCD aPoolGuidUnavai; "Pool GUID: unavailable"|253-9-0-0
+1644|data|DCD aPoolGuid016llx; "Pool GUID: %016llx\n"|20-10-0-0
+1648|data|DCD aState; "state"|40-10-0-0
+1652|data|DCD aUnableToRetrie; "Unable to retrieve pool state"|46-10-0-0
+1656|data|DCD poolstates|248-6-0-0
+1660|data|DCD aUnrecognizedPo; "Unrecognized pool state"|76-10-0-0
+1664|data|DCD aVdevTree; "vdev_tree"|141-7-0-0
+1668|data|DCD grub_zfs_nvlist_lookup_nvlist|76-12-0-0
+1672|data|DCD aNoVirtualDevic; "No virtual device tree available"|100-10-0-0
+1676|data|DCD grub_strlen|236-11-0-0
+1680|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+1682|code|MOVS            R6, #0|0-38
+1684|code|LDR             R5, =grub_register_command_prio|8-77
+1686|code|STR             R6, [SP,#0x18+var_18]|0-150
+1688|code|LDR             R1, =(grub_cmd_zfsinfo+1)|8-73
+1690|code|LDR             R2, =aDevice; "DEVICE"|9-74
+1692|code|LDR             R3, =aPrintZfsInfoAb; "Print ZFS info about DEVICE."|9-75
+1694|code|LDR             mod, =aZfsinfo; "zfsinfo"|10-72
+1696|code|BLX             R5; grub_register_command_prio|168-71
+1698|code|LDR             R4, =cmd_info|10-76
+1700|code|STR             R6, [SP,#0x18+var_18]|0-150
+1702|code|LDR             R1, =(grub_cmd_zfs_bootfs+1)|10-73
+1704|code|LDR             R2, =aFilesystemVari; "FILESYSTEM [VARIABLE]"|10-74
+1706|code|LDR             R3, =aPrintZfsBootfs; "Print ZFS-BOOTFSOBJ or store it into VA"...|11-75
+1708|code|STR             R0, [R4]|32-96
+1710|code|LDR             R0, =aZfsBootfs; "zfs-bootfs"|11-72
+1712|code|BLX             R5; grub_register_command_prio|168-71
+1714|code|STR             R0, [R4,#(cmd_bootfs - 0xBE4)]|96-96
+1716|code|ADD             SP, SP, #8|2-176
+1718|code|POP             {R4-R6,PC}|112-189
+1720|data|DCD grub_register_command_prio|20-12-0-0
+1724|data|DCD grub_cmd_zfsinfo+1|37-5-0-0
+1728|data|DCD aDevice; "DEVICE"|141-10-0-0
+1732|data|DCD aPrintZfsInfoAb; "Print ZFS info about DEVICE."|148-10-0-0
+1736|data|DCD aZfsinfo; "zfsinfo"|133-10-0-0
+1740|data|DCD cmd_info|228-11-0-0
+1744|data|DCD grub_cmd_zfs_bootfs+1|237-0-0-0
+1748|data|DCD aFilesystemVari; "FILESYSTEM [VARIABLE]"|188-10-0-0
+1752|data|DCD aPrintZfsBootfs; "Print ZFS-BOOTFSOBJ or store it into VA"...|210-10-0-0
+1756|data|DCD aZfsBootfs; "zfs-bootfs"|177-10-0-0
+1760|code|PUSH            {R3-R5,LR}|56-181
+1762|code|LDR             R5, =cmd_info|3-77
+1764|code|LDR             R4, =grub_unregister_command|3-76
+1766|code|LDR             R0, [R5]|40-104
+1768|code|BLX             R4; grub_unregister_command|160-71
+1770|code|LDR             R0, [R5,#(cmd_bootfs - 0xBE4)]|104-104
+1772|code|BLX             R4; grub_unregister_command|160-71
+1774|code|POP             {R3-R5,PC}|56-189
+1776|data|DCD cmd_info|228-11-0-0
+1780|data|DCD grub_unregister_command|28-12-0-0
+1784|data|DCD aPoolStateActiv, aPoolStateExpor, aPoolStateDestr; "Pool state: active" ...|0-11-0-0-19-11-0-0-40-11-0-0-62-11-0-0-97-11-0-0-128-11-0-0-154-11-0-0-178-11-0-0
+3025|data||255
+3026|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+3044|data|% 4|255-255-255-255

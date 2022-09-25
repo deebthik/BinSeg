@@ -1,0 +1,126 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|MOV             R6, disk|6-70
+6|code|SUB.W           SP, SP, #0x214|173-245-5-125
+10|code|MOVS            disk, #0x30 ; '0'|48-32
+12|code|LDR             R3, =grub_zalloc|54-75
+14|code|MOV             R7, hook|15-70
+16|code|MOV             R8, hook_data|144-70
+18|code|BLX             R3; grub_zalloc|152-71
+20|code|MOV             R5, p|5-70
+22|code|CMP             p, #0|0-40
+24|code|BEQ             loc_DC|96-208
+26|code|LDR             R3, =grub_sun_pc_partition_map|52-75
+28|code|MOVS            R2, #0|0-34
+30|code|ADD.W           R9, SP, #0x238+var_228|13-241-16-9
+34|code|LDR             R1, =grub_disk_read|51-73
+36|code|STR             R3, [p,#0x28]|131-98
+38|code|MOVS            R3, #0|0-35
+40|code|STR.W           R9, [SP,#0x238+var_22C]|205-248-12-144
+44|code|MOV             p, disk|48-70
+46|code|STRD.W          R2, R3, [SP,#0x238+var_238]|205-233-0-35
+50|code|MOV.W           R3, #0x200|79-244-0-115
+54|code|MOVS            R2, #1|1-34
+56|code|STR             R3, [SP,#0x238+var_230]|2-147
+58|code|MOVS            R3, #0|0-35
+60|code|BLX             R1; grub_disk_read|136-71
+62|code|MOV             R4, err|4-70
+64|code|CBZ             err, loc_4C|32-177
+66|code|MOV             err, p|40-70
+68|code|LDR             R3, =grub_free|43-75
+70|code|BLX             R3; grub_free|152-71
+72|code|MOV             R0, err|32-70
+74|code|B               loc_E0|73-224
+76|code|LDRH.W          R2, [R9,#0x1FC]|185-248-252-33
+80|code|MOVW            R3, #0xDABE|77-246-190-35
+84|code|CMP             R2, R3|154-66
+86|code|BEQ             loc_64|5-208
+88|code|MOV             R0, p|40-70
+90|code|LDR             R3, =grub_free|38-75
+92|code|BLX             R3; grub_free|152-71
+94|code|MOVS            R0, #0x13|19-32
+96|code|LDR             R1, =aNotASunPcParti; "not a sun_pc partition table"|37-73
+98|code|B               loc_86|16-224
+100|code|MOV             R3, err|3-70
+102|code|MOV             R4, err|4-70
+104|code|LDRH.W          R2, [R9,R3,LSL#1]|57-248-19-32
+108|code|ADDS            R3, #1|1-51
+110|code|CMP.W           R3, #0x100|179-245-128-127
+114|code|EOR.W           R4, R4, R2|132-234-2-4
+118|code|UXTH            R4, R4|164-178
+120|code|BNE             loc_68|246-209
+122|code|CBZ             R4, loc_8C|60-177
+124|code|MOV             err, p|40-70
+126|code|LDR             R3, =grub_free|29-75
+128|code|BLX             R3; grub_free|152-71
+130|code|LDR             R1, =aInvalidChecksu; "invalid checksum"|30-73
+132|code|MOVS            R0, #0x13|19-32
+134|code|LDR             R3, =grub_error|30-75
+136|code|BLX             R3; grub_error|152-71
+138|code|B               loc_E0|41-224
+140|code|MOV.W           R11, #0xC|79-240-12-11
+144|code|MOV             R10, R4|162-70
+146|code|MUL.W           R3, R11, R4|11-251-4-243
+150|code|ADD.W           R2, R3, #0x48 ; 'H'|3-241-72-2
+154|code|ADD.W           R1, R9, R2|9-235-2-1
+158|code|LDRH.W          R2, [R9,R2]|57-248-2-32
+162|code|CBZ             R2, loc_D0|170-177
+164|code|CMP             R2, #5|5-42
+166|code|BEQ             loc_D0|19-208
+168|code|LDR             R2, [R1,#4]|74-104
+170|code|ADDS            R3, #0x50 ; 'P'|80-51
+172|code|STR.W           R10, [p,#0xC]|197-248-12-160
+176|code|STR             R2, [p,#8]|170-96
+178|code|LDR.W           R2, [R9,R3]|89-248-3-32
+182|code|MOVS            R3, #0|0-35
+184|code|STR             R4, [p]|44-96
+186|code|STRD.W          R2, R3, [p,#0x10]|197-233-4-35
+190|code|ORRS            R3, R2|19-67
+192|code|BEQ             loc_D0|6-208
+194|code|MOV             R0, disk|48-70
+196|code|MOV             R1, p|41-70
+198|code|MOV             R2, hook_data|66-70
+200|code|BLX             hook|184-71
+202|code|CMP             R0, #0|0-40
+204|code|IT NE|24-191
+206|code|MOVNE           R4, #0x10|16-36
+208|code|ADDS            R4, #1|1-52
+210|code|CMP             partnum, #0xF|15-44
+212|code|BLE             loc_92|221-221
+214|code|MOV             R0, p|40-70
+216|code|LDR             R3, =grub_free|6-75
+218|code|BLX             R3; grub_free|152-71
+220|code|LDR             R3, =grub_errno|9-75
+222|code|LDR             R0, [R3]|24-104
+224|code|ADD.W           SP, SP, #0x214|13-245-5-125
+228|code|POP.W           {R4-R11,PC}|189-232-240-143
+232|data|DCD grub_zalloc|148-1-0-0
+236|data|DCD grub_sun_pc_partition_map|104-1-0-0
+240|data|DCD grub_disk_read|140-1-0-0
+244|data|DCD grub_free|160-1-0-0
+248|data|DCD aNotASunPcParti; "not a sun_pc partition table"|52-1-0-0
+252|data|DCD aInvalidChecksu; "invalid checksum"|81-1-0-0
+256|data|DCD grub_error|152-1-0-0
+260|data|DCD grub_errno|144-1-0-0
+264|code|PUSH            {R3,LR}|8-181
+266|code|LDR             mod, =grub_partition_map_list|2-72
+268|code|LDR             R1, =grub_sun_pc_partition_map|2-73
+270|code|LDR             R3, =grub_list_push|3-75
+272|code|BLX             R3; grub_list_push|152-71
+274|code|POP             {R3,PC}|8-189
+276|data|DCD grub_partition_map_list|136-1-0-0
+280|data|DCD grub_sun_pc_partition_map|104-1-0-0
+284|data|DCD grub_list_push|164-1-0-0
+288|code|PUSH            {R3,LR}|8-181
+290|code|LDR             R0, =grub_sun_pc_partition_map|2-72
+292|code|LDR             R3, =grub_list_remove|2-75
+294|code|BLX             R3; grub_list_remove|152-71
+296|code|POP             {R3,PC}|8-189
+298|data|ALIGN 4|0-191
+300|data|DCD grub_sun_pc_partition_map|104-1-0-0
+304|data|DCD grub_list_remove|156-1-0-0
+308|data|DCB "not a sun_pc partition table",0|110-111-116-32-97-32-115-117-110-95-112-99-32-112-97-114-116-105-116-105-111-110-32-116-97-98-108-101-0
+337|data|DCB "invalid checksum",0|105-110-118-97-108-105-100-32-99-104-101-99-107-115-117-109-0
+354|data|DCB "sunpc",0|115-117-110-112-99-0
+360|data|grub_partition_map <0, 0, aSunpc, sun_pc_partition_map_iterate+1>; "sunpc"|0-0-0-0-0-0-0-0-98-1-0-0-1-0-0-0
+376|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

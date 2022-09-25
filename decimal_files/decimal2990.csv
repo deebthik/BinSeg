@@ -1,0 +1,153 @@
+address|type|disassembly|bytes
+0|code|CMP             argc, #1|1-41
+2|code|PUSH            {R3-R7,LR}|248-181
+4|code|MOV             R7, args|23-70
+6|code|BEQ             loc_12|4-208
+8|code|LDR             argc, =aFilenameExpect; "filename expected"|25-73
+10|code|MOVS            cmd, #0x12|18-32
+12|code|LDR             R3, =grub_error|25-75
+14|code|BLX             R3; grub_error|152-71
+16|code|POP             {R3-args,PC}|248-189
+18|code|LDR             R3, [cmd,#8]|131-104
+20|code|LDRB            R4, [R3]|28-120
+22|code|SUB.W           args, R4, #0x65 ; 'e'|164-241-101-2
+26|code|NEGS            R4, R2|84-66
+28|code|ADCS            R4, R2|84-65
+30|code|LSLS            R2, R4, #4|34-1
+32|code|LDRB            R6, [R3,R2]|158-92
+34|code|SUB.W           argc, R6, #0x63 ; 'c'|166-241-99-1
+38|code|NEGS            R6, R1|78-66
+40|code|ADCS            R6, R1|78-65
+42|code|EOR.W           R5, R6, #1|134-240-1-5
+46|code|CBZ             R6, loc_44|78-177
+48|code|LDR             R3, =grub_cls|17-75
+50|code|BLX             R3; grub_cls|152-71
+52|code|CBZ             R4, loc_3E|28-177
+54|code|MOV             R0, R5|40-70
+56|code|LDR             R3, =grub_env_extractor_open|16-75
+58|code|BLX             R3; grub_env_extractor_open|152-71
+60|code|B               loc_48|4-224
+62|code|LDR             R3, =grub_env_context_open|16-75
+64|code|BLX             R3; grub_env_context_open|152-71
+66|code|B               loc_48|1-224
+68|code|CMP             R4, #0|0-44
+70|code|BNE             loc_36|246-209
+72|code|UXTB            R5, R5|237-178
+74|code|LDR             R0, [args]|56-104
+76|code|MOVS            R1, #1|1-33
+78|code|LDR             R3, =grub_normal_execute|13-75
+80|code|MOV             R2, R5|42-70
+82|code|BLX             R3; grub_normal_execute|152-71
+84|code|CBZ             R6, loc_5E|30-177
+86|code|CBNZ            R4, loc_60|28-185
+88|code|LDR             R3, =grub_env_context_close|11-75
+90|code|BLX             R3; grub_env_context_close|152-71
+92|code|B               loc_6A|5-224
+94|code|CBZ             R4, loc_6A|36-177
+96|code|MOV             R0, R5|40-70
+98|code|LDR             R3, =grub_env_extractor_close|10-75
+100|code|BLX             R3; grub_env_extractor_close|152-71
+102|code|MOVS            R0, #0|0-32
+104|code|POP             {R3-args,PC}|248-189
+106|code|MOV             R0, R4|32-70
+108|code|POP             {R3-args,PC}|248-189
+110|data|ALIGN 0x10|0-191
+112|data|DCD aFilenameExpect; "filename expected"|84-1-0-0
+116|data|DCD grub_error|196-2-0-0
+120|data|DCD grub_cls|200-2-0-0
+124|data|DCD grub_env_extractor_open|168-2-0-0
+128|data|DCD grub_env_context_open|180-2-0-0
+132|data|DCD grub_normal_execute|192-2-0-0
+136|data|DCD grub_env_context_close|172-2-0-0
+140|data|DCD grub_env_extractor_close|176-2-0-0
+144|code|PUSH.W          {mod-R2,R4-R9,LR}|45-233-247-67
+148|code|MOV.W           R8, #0|79-240-0-8
+152|code|LDR             R7, =(grub_cmd_source+1)|24-79
+154|code|LDR             R6, =aFile; "FILE"|25-78
+156|code|LDR             R5, =grub_register_command_prio|25-77
+158|code|MOV             R1, R7|57-70
+160|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+164|code|MOV             R2, R6|50-70
+166|code|LDR             R3, =aLoadAnotherCon; "Load another config file."|24-75
+168|code|LDR             mod, =aConfigfile; "configfile"|24-72
+170|code|BLX             R5; grub_register_command_prio|168-71
+172|code|LDR             R4, =cmd_configfile|24-76
+174|code|LDR.W           R9, =aLoadAnotherCon_0; "Load another config file without changi"...|223-248-124-144
+178|code|MOV             R1, R7|57-70
+180|code|MOV             R2, R6|50-70
+182|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+186|code|MOV             R3, R9|75-70
+188|code|STR             R0, [R4]|32-96
+190|code|LDR             R0, =aSource; "source"|21-72
+192|code|BLX             R5; grub_register_command_prio|168-71
+194|code|MOV             R1, R7|57-70
+196|code|MOV             R2, R6|50-70
+198|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+202|code|LDR             R3, =aLoadAnotherCon_1; "Load another config file without changi"...|19-75
+204|code|STR             R0, [R4,#(cmd_source - 0x294)]|96-96
+206|code|LDR             R0, =aExtractEntries; "extract_entries_source"|19-72
+208|code|BLX             R5; grub_register_command_prio|168-71
+210|code|MOV             R1, R7|57-70
+212|code|MOV             R2, R6|50-70
+214|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+218|code|LDR             R3, =aLoadAnotherCon_2; "Load another config file but take only "...|17-75
+220|code|STR             R0, [R4,#(cmd_extractor_source - 0x294)]|160-96
+222|code|LDR             R0, =aExtractEntries_0; "extract_entries_configfile"|17-72
+224|code|BLX             R5; grub_register_command_prio|168-71
+226|code|STR.W           R8, [SP,#0x28+var_28]|205-248-0-128
+230|code|MOV             R1, R7|57-70
+232|code|MOV             R2, R6|50-70
+234|code|MOV             R3, R9|75-70
+236|code|STR             R0, [R4,#(cmd_extractor_configfile - 0x294)]|224-96
+238|code|LDR             R0, =asc_27F; "."|14-72
+240|code|BLX             R5; grub_register_command_prio|168-71
+242|code|STR             R0, [R4,#(cmd_dot - 0x294)]|32-97
+244|code|ADD             SP, SP, #0xC|3-176
+246|code|POP.W           {R4-R9,PC}|189-232-240-131
+250|data|ALIGN 4|0-191
+252|data|DCD grub_cmd_source+1|1-0-0-0
+256|data|DCD aFile; "FILE"|113-1-0-0
+260|data|DCD grub_register_command_prio|184-2-0-0
+264|data|DCD aLoadAnotherCon; "Load another config file."|118-1-0-0
+268|data|DCD aConfigfile; "configfile"|102-1-0-0
+272|data|DCD cmd_configfile|148-2-0-0
+276|data|DCD aSource; "source"|144-1-0-0
+280|data|DCD aLoadAnotherCon_1; "Load another config file without changi"...|225-1-0-0
+284|data|DCD aExtractEntries; "extract_entries_source"|202-1-0-0
+288|data|DCD aLoadAnotherCon_2; "Load another config file but take only "...|74-2-0-0
+292|data|DCD aExtractEntries_0; "extract_entries_configfile"|47-2-0-0
+296|data|DCD asc_27F; "."|127-2-0-0
+300|data|DCD aLoadAnotherCon_0; "Load another config file without changi"...|151-1-0-0
+304|code|PUSH            {R3-R5,LR}|56-181
+306|code|LDR             R5, =cmd_configfile|6-77
+308|code|LDR             R4, =grub_unregister_command|6-76
+310|code|LDR             R0, [R5]|40-104
+312|code|BLX             R4; grub_unregister_command|160-71
+314|code|LDR             R0, [R5,#(cmd_source - 0x294)]|104-104
+316|code|BLX             R4; grub_unregister_command|160-71
+318|code|LDR             R0, [R5,#(cmd_extractor_configfile - 0x294)]|232-104
+320|code|BLX             R4; grub_unregister_command|160-71
+322|code|LDR             R0, [R5,#(cmd_extractor_source - 0x294)]|168-104
+324|code|BLX             R4; grub_unregister_command|160-71
+326|code|LDR             R0, [R5,#(cmd_dot - 0x294)]|40-105
+328|code|BLX             R4; grub_unregister_command|160-71
+330|code|POP             {R3-R5,PC}|56-189
+332|data|DCD cmd_configfile|148-2-0-0
+336|data|DCD grub_unregister_command|188-2-0-0
+340|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+358|data|DCB "configfile",0|99-111-110-102-105-103-102-105-108-101-0
+369|data|DCB "FILE",0|70-73-76-69-0
+374|data|DCB "Load another config file.",0|76-111-97-100-32-97-110-111-116-104-101-114-32-99-111-110-102-105-103-32-102-105-108-101-46-0
+400|data|DCB "source",0|115-111-117-114-99-101-0
+407|data|DCB "Load another config file without changing context.",0|76-111-97-100-32-97-110-111-116-104-101-114-32-99-111-110-102-105-103-32-102-105-108-101-32-119-105-116-104-111-117-116-32-99-104-97-110-103-105-110-103-32-99-111-110-116-101-120-116-46-0
+458|data|DCB "extract_entries_source",0|101-120-116-114-97-99-116-95-101-110-116-114-105-101-115-95-115-111-117-114-99-101-0
+481|data|DCB "Load another config file without changing context but take only "|76-111-97-100-32-97-110-111-116-104-101-114-32-99-111-110-102-105-103-32-102-105-108-101-32-119-105-116-104-111-117-116-32-99-104-97-110-103-105-110-103-32-99-111-110-116-101-120-116-32-98-117-116-32-116-97-107-101-32-111-110-108-121-32-109-101-110-117-32-101-110-116-114-105-101-115-46-0
+559|data|DCB "extract_entries_configfile",0|101-120-116-114-97-99-116-95-101-110-116-114-105-101-115-95-99-111-110-102-105-103-102-105-108-101-0
+586|data|DCB "Load another config file but take only menu entries.",0|76-111-97-100-32-97-110-111-116-104-101-114-32-99-111-110-102-105-103-32-102-105-108-101-32-98-117-116-32-116-97-107-101-32-111-110-108-121-32-109-101-110-117-32-101-110-116-114-105-101-115-46-0
+639|data|DCB ".",0|46-0
+641|data||255
+642|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+660|data|% 4|255-255-255-255
+664|data|% 4|255-255-255-255
+668|data|% 4|255-255-255-255
+672|data|% 4|255-255-255-255

@@ -1,0 +1,944 @@
+address|type|disassembly|bytes
+0|data|DCD 0x464C457F; File format: \x7FELF|127-69-76-70
+4|data|DCB 1; File class: 32-bit|1
+5|data|DCB 1; Data encoding: little-endian|1
+6|data|DCB 1; File version|1
+7|data|DCB 0; OS/ABI: UNIX System V ABI|0
+8|data|DCB 0; ABI Version|0
+9|data|DCB 0, 0, 0, 0, 0, 0, 0; Padding|0-0-0-0-0-0-0
+16|data|DCW 3; File type: Shared object|3-0
+18|data|DCW 0x28; Machine: ARM|40-0
+20|data|DCD 1; File version|1-0-0-0
+24|data|DCD start+1; Entry point|225-12-0-0
+28|data|DCD 0x34; PHT file offset|52-0-0-0
+32|data|DCD 0x2130; SHT file offset|48-33-0-0
+36|data|DCD 0x5000402; Processor-specific flags|2-4-0-5
+40|data|DCW 0x34; ELF header size|52-0
+42|data|DCW 0x20; PHT entry size|32-0
+44|data|DCW 9; Number of entries in PHT|9-0
+46|data|DCW 0x28; SHT entry size|40-0
+48|data|DCW 0x1B; Number of entries in SHT|27-0
+50|data|DCW 0x1A; SHT entry index for string table|26-0
+52|data|DCD 0x70000001; Type: EXIDX|1-0-0-112
+56|data|DCD 0x1174; File offset|116-17-0-0
+60|data|DCD unk_1174; Virtual address|116-17-0-0
+64|data|DCD 0x1174; Physical address|116-17-0-0
+68|data|DCD 8; Size in file image|8-0-0-0
+72|data|DCD 8; Size in memory image|8-0-0-0
+76|data|DCD 4; Flags|4-0-0-0
+80|data|DCD 4; Alignment|4-0-0-0
+84|data|DCD 6; Type: PHDR|6-0-0-0
+88|data|DCD 0x34; File offset|52-0-0-0
+92|data|DCD dword_34; Virtual address|52-0-0-0
+96|data|DCD 0x34; Physical address|52-0-0-0
+100|data|DCD 0x120; Size in file image|32-1-0-0
+104|data|DCD 0x120; Size in memory image|32-1-0-0
+108|data|DCD 5; Flags|5-0-0-0
+112|data|DCD 4; Alignment|4-0-0-0
+116|data|DCD 3; Type: INTERP|3-0-0-0
+120|data|DCD 0x154; File offset|84-1-0-0
+124|data|DCD aLibLdLinuxArmh; Virtual address|84-1-0-0
+128|data|DCD 0x154; Physical address|84-1-0-0
+132|data|DCD 0x19; Size in file image|25-0-0-0
+136|data|DCD 0x19; Size in memory image|25-0-0-0
+140|data|DCD 4; Flags|4-0-0-0
+144|data|DCD 1; Alignment|1-0-0-0
+148|data|DCD 1; Type: LOAD|1-0-0-0
+152|data|DCD 0; File offset|0-0-0-0
+156|data|DCD 0; Virtual address|0-0-0-0
+160|data|DCD 0; Physical address|0-0-0-0
+164|data|DCD 0x1180; Size in file image|128-17-0-0
+168|data|DCD 0x1180; Size in memory image|128-17-0-0
+172|data|DCD 5; Flags|5-0-0-0
+176|data|DCD 0x8000; Alignment|0-128-0-0
+180|data|DCD 1; Type: LOAD|1-0-0-0
+184|data|DCD 0x1E4C; File offset|76-30-0-0
+188|data|DCD off_9E4C; Virtual address|76-158-0-0
+192|data|DCD 0x9E4C; Physical address|76-158-0-0
+196|data|DCD 0x1BC; Size in file image|188-1-0-0
+200|data|DCD 0x1C4; Size in memory image|196-1-0-0
+204|data|DCD 6; Flags|6-0-0-0
+208|data|DCD 0x8000; Alignment|0-128-0-0
+212|data|DCD 2; Type: DYNAMIC|2-0-0-0
+216|data|DCD 0x1E58; File offset|88-30-0-0
+220|data|DCD stru_9E58; Virtual address|88-158-0-0
+224|data|DCD 0x9E58; Physical address|88-158-0-0
+228|data|DCD 0x108; Size in file image|8-1-0-0
+232|data|DCD 0x108; Size in memory image|8-1-0-0
+236|data|DCD 6; Flags|6-0-0-0
+240|data|DCD 4; Alignment|4-0-0-0
+244|data|DCD 4; Type: NOTE|4-0-0-0
+248|data|DCD 0x170; File offset|112-1-0-0
+252|data|DCD dword_170; Virtual address|112-1-0-0
+256|data|DCD 0x170; Physical address|112-1-0-0
+260|data|DCD 0x44; Size in file image|68-0-0-0
+264|data|DCD 0x44; Size in memory image|68-0-0-0
+268|data|DCD 4; Flags|4-0-0-0
+272|data|DCD 4; Alignment|4-0-0-0
+276|data|DCD 0x6474E551; Type: STACK|81-229-116-100
+280|data|DCD 0; File offset|0-0-0-0
+284|data|DCD 0; Virtual address|0-0-0-0
+288|data|DCD 0; Physical address|0-0-0-0
+292|data|DCD 0; Size in file image|0-0-0-0
+296|data|DCD 0; Size in memory image|0-0-0-0
+300|data|DCD 6; Flags|6-0-0-0
+304|data|DCD 0x10; Alignment|16-0-0-0
+308|data|DCD 0x6474E552; Type: RO-AFTER|82-229-116-100
+312|data|DCD 0x1E4C; File offset|76-30-0-0
+316|data|DCD off_9E4C; Virtual address|76-158-0-0
+320|data|DCD 0x9E4C; Physical address|76-158-0-0
+324|data|DCD 0x1B4; Size in file image|180-1-0-0
+328|data|DCD 0x1B4; Size in memory image|180-1-0-0
+332|data|DCD 4; Flags|4-0-0-0
+336|data|DCD 1; Alignment|1-0-0-0
+340|data|DCB "/lib/ld-linux-armhf.so.3",0|47-108-105-98-47-108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+365|data|DCB 0, 0, 0|0-0-0
+368|data|DCD 4; Name Size|4-0-0-0
+372|data|DCD 0x10; Desc Size|16-0-0-0
+376|data|DCD 1; Type: NT_GNU_ABI_TAG|1-0-0-0
+380|data|DCB "GNU",0; Name|71-78-85-0
+384|data|DCD 0, 2, 6, 0x20; ABI: Linux 2.6.32|0-0-0-0-2-0-0-0-6-0-0-0-32-0-0-0
+400|data|DCD 4; Name Size|4-0-0-0
+404|data|DCD 0x14; Desc Size|20-0-0-0
+408|data|DCD 3; Type: NT_GNU_BUILD_ID|3-0-0-0
+412|data|DCB "GNU",0; Name|71-78-85-0
+416|data|DCB 0x49, 0x38, 0x5F, 0x92, 0x60, 0x40, 0xAD, 0x83, 0xD7; Desc|73-56-95-146-96-64-173-131-215-106-52-162-67-162-43-196-197-9-124-198
+436|data|DCD 3|3-0-0-0
+440|data|DCD 0x22|34-0-0-0
+444|data|DCD 4|4-0-0-0
+448|data|DCD 7|7-0-0-0
+452|data|DCD 0x40001101, 0x89200080, 0x4D00040A, 0x40440580|1-17-0-64-128-0-32-137-10-4-0-77-128-5-68-64
+468|data|DCD 0x22, 0x26, 0x2C|34-0-0-0-38-0-0-0-44-0-0-0
+480|data|DCD 0xE834AF00, 0xECD54542, 0xD643096A, 0x7C92E3BB, 0x2A61F0DE|0-175-52-232-66-69-213-236-106-9-67-214-187-227-146-124-222-240-97-42-190-218-87-27-218-205-227-158-216-113-88-28-106-127-154-124-185-141-241-14-12-20-226-158-118-84-60-148-234-211-239-14-89-239-151-121
+536|data|Elf32_Sym <0>|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+552|data|Elf32_Sym <byte_518 - byte_518, aLibLdLinuxArmh, 0, 3, 0, 1>; "/lib/ld-linux-armhf.so.3"|0-0-0-0-84-1-0-0-0-0-0-0-3-0-1-0
+568|data|Elf32_Sym <byte_518 - byte_518, dword_9E54, 0, 3, 0, 0x14>|0-0-0-0-84-158-0-0-0-0-0-0-3-0-20-0
+584|data|Elf32_Sym <aCxaFinalize - byte_518, dword_0, 0, 0x22, 0, 0>; "__cxa_finalize"|196-1-0-0-0-0-0-0-0-0-0-0-34-0-0-0
+600|data|Elf32_Sym <aItmDeregistert - byte_518, dword_0, 0, 0x20, 0, 0>; "_ITM_deregisterTMCloneTable"|15-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+616|data|Elf32_Sym <aSepolLinkPacka - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_link_packages"|3-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+632|data|Elf32_Sym <aFopen - byte_518, dword_0, 0, 0x12, 0, 0>; "fopen"|92-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+648|data|Elf32_Sym <aSepolModulePac_0 - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_module_package_write"|155-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+664|data|Elf32_Sym <aSepolModulePac_2+0x15 - byte_518, dword_0, 0, 0x12, 0, 0>; "free"|254-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+680|data|Elf32_Sym <aSepolModulePac_1 - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_module_package_read"|182-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+696|data|Elf32_Sym <aOptind - byte_518, dword_0, 0, 0x11, 0, 0>; "optind"|98-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+712|data|Elf32_Sym <aSepolPolicyFil_1 - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_policy_file_set_fp"|23-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+728|data|Elf32_Sym <aSepolModulePac - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_module_package_create"|104-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+744|data|Elf32_Sym <aPerror - byte_518, dword_0, 0, 0x12, 0, 0>; "perror"|105-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+760|data|Elf32_Sym <aStderr - byte_518, dword_0, 0, 0x11, 0, 0>; "stderr"|189-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+776|data|Elf32_Sym <aSepolPolicyFil_0 - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_policy_file_create"|208-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+792|data|Elf32_Sym <aPuts - byte_518, dword_0, 0, 0x12, 0, 0>; "puts"|112-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+808|data|Elf32_Sym <aMalloc - byte_518, dword_0, 0, 0x12, 0, 0>; "malloc"|175-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+824|data|Elf32_Sym <aLibcStartMain - byte_518, dword_0, 0, 0x12, 0, 0>; "__libc_start_main"|220-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+840|data|Elf32_Sym <aStrerror - byte_518, dword_0, 0, 0x12, 0, 0>; "strerror"|211-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+856|data|Elf32_Sym <aGmonStart - byte_518, dword_0, 0, 0x20, 0, 0>; "__gmon_start__"|43-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+872|data|Elf32_Sym <aExit - byte_518, dword_0, 0, 0x12, 0, 0>; "exit"|87-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+888|data|Elf32_Sym <aGetopt - byte_518, dword_0, 0, 0x12, 0, 0>; "getopt"|147-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+904|data|Elf32_Sym <aErrnoLocation - byte_518, dword_0, 0, 0x12, 0, 0>; "__errno_location"|130-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+920|data|Elf32_Sym <aMemset - byte_518, dword_0, 0, 0x12, 0, 0>; "memset"|123-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+936|data|Elf32_Sym <aSepolPolicyFil - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_policy_file_free"|132-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+952|data|Elf32_Sym <aPrintfChk - byte_518, dword_0, 0, 0x12, 0, 0>; "__printf_chk"|74-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+968|data|Elf32_Sym <aFprintfChk - byte_518, dword_0, 0, 0x12, 0, 0>; "__fprintf_chk"|154-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+984|data|Elf32_Sym <aFclose - byte_518, dword_0, 0, 0x12, 0, 0>; "fclose"|168-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+1000|data|Elf32_Sym <aJvRegisterclas - byte_518, dword_0, 0, 0x20, 0, 0>; "_Jv_RegisterClasses"|58-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+1016|data|Elf32_Sym <aSepolModulePac_2 - byte_518, dword_0, 0, 0x12, 0, 0>; "sepol_module_package_free"|233-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+1032|data|Elf32_Sym <aItmRegistertmc - byte_518, dword_0, 0, 0x20, 0, 0>; "_ITM_registerTMCloneTable"|78-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+1048|data|Elf32_Sym <aOptarg - byte_518, dword_0, 0, 0x11, 0, 0>; "optarg"|182-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+1064|data|Elf32_Sym <aAbort - byte_518, dword_0, 0, 0x12, 0, 0>; "abort"|117-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+1080|data|Elf32_Sym <aBssEnd+1 - byte_518, _end, 0, 0x10, 0, 0x18>; "_bss_end__"|29-2-0-0-16-160-0-0-0-0-0-0-16-0-24-0
+1096|data|Elf32_Sym <aEdata - byte_518, __bss_start__, 0, 0x10, 0, 0x17>; "_edata"|251-1-0-0-8-160-0-0-0-0-0-0-16-0-23-0
+1112|data|Elf32_Sym <aDataStart - byte_518, __data_start, 0, 0x10, 0, 0x17>; "__data_start"|238-1-0-0-0-160-0-0-0-0-0-0-16-0-23-0
+1128|data|Elf32_Sym <aEnd_0 - byte_518, _end, 0, 0x10, 0, 0x18>; "_end"|48-2-0-0-16-160-0-0-0-0-0-0-16-0-24-0
+1144|data|Elf32_Sym <aProgname - byte_518, progname, 4, 0x11, 0, 0x18>; "progname"|69-2-0-0-12-160-0-0-4-0-0-0-17-0-24-0
+1160|data|Elf32_Sym <aBssEnd - byte_518, _end, 0, 0x10, 0, 0x18>; "__bss_end__"|28-2-0-0-16-160-0-0-0-0-0-0-16-0-24-0
+1176|data|Elf32_Sym <aLibcCsuInit - byte_518, __libc_csu_init+1, 0x40, 0x12, 0, \; "__libc_csu_init"|78-2-0-0-77-15-0-0-64-0-0-0-18-0-13-0
+1192|data|Elf32_Sym <aBssStart - byte_518, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start"|2-2-0-0-8-160-0-0-0-0-0-0-16-0-24-0
+1208|data|Elf32_Sym <aLibcStartMain+0xD - byte_518, main+1, 0x254, 0x12, 0, 0xD>; "main"|233-1-0-0-141-10-0-0-84-2-0-0-18-0-13-0
+1224|data|Elf32_Sym <aLibcCsuInit+0xA - byte_518, .init_proc, 0, 0x12, 0, 0xB>; "_init"|88-2-0-0-64-9-0-0-0-0-0-0-18-0-11-0
+1240|data|Elf32_Sym <aLibcCsuFini - byte_518, __libc_csu_fini+1, 2, 0x12, 0, \; "__libc_csu_fini"|53-2-0-0-141-15-0-0-2-0-0-0-18-0-13-0
+1256|data|Elf32_Sym <aBssStart_0 - byte_518, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start__"|14-2-0-0-8-160-0-0-0-0-0-0-16-0-24-0
+1272|data|Elf32_Sym <aLibcCsuFini+0xA - byte_518, .term_proc, 0, 0x12, 0, 0xE>; "_fini"|63-2-0-0-144-15-0-0-0-0-0-0-18-0-14-0
+1288|data|Elf32_Sym <aEnd - byte_518, _end, 0, 0x10, 0, 0x18>; "__end__"|40-2-0-0-16-160-0-0-0-0-0-0-16-0-24-0
+1304|data|DCB 0|0
+1305|data|DCB "libsepol.so.1",0|108-105-98-115-101-112-111-108-46-115-111-46-49-0
+1319|data|DCB "_ITM_deregisterTMCloneTable",0|95-73-84-77-95-100-101-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+1347|data|DCB "__gmon_start__",0|95-95-103-109-111-110-95-115-116-97-114-116-95-95-0
+1362|data|DCB "_Jv_RegisterClasses",0|95-74-118-95-82-101-103-105-115-116-101-114-67-108-97-115-115-101-115-0
+1382|data|DCB "_ITM_registerTMCloneTable",0|95-73-84-77-95-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+1408|data|DCB "sepol_module_package_create",0|115-101-112-111-108-95-109-111-100-117-108-101-95-112-97-99-107-97-103-101-95-99-114-101-97-116-101-0
+1436|data|DCB "sepol_policy_file_free",0|115-101-112-111-108-95-112-111-108-105-99-121-95-102-105-108-101-95-102-114-101-101-0
+1459|data|DCB "sepol_module_package_write",0|115-101-112-111-108-95-109-111-100-117-108-101-95-112-97-99-107-97-103-101-95-119-114-105-116-101-0
+1486|data|DCB "sepol_module_package_read",0|115-101-112-111-108-95-109-111-100-117-108-101-95-112-97-99-107-97-103-101-95-114-101-97-100-0
+1512|data|DCB "sepol_policy_file_create",0|115-101-112-111-108-95-112-111-108-105-99-121-95-102-105-108-101-95-99-114-101-97-116-101-0
+1537|data|DCB "sepol_module_package_free",0|115-101-112-111-108-95-109-111-100-117-108-101-95-112-97-99-107-97-103-101-95-102-114-101-101-0
+1563|data|DCB "sepol_link_packages",0|115-101-112-111-108-95-108-105-110-107-95-112-97-99-107-97-103-101-115-0
+1583|data|DCB "sepol_policy_file_set_fp",0|115-101-112-111-108-95-112-111-108-105-99-121-95-102-105-108-101-95-115-101-116-95-102-112-0
+1608|data|DCB "libselinux.so.1",0|108-105-98-115-101-108-105-110-117-120-46-115-111-46-49-0
+1624|data|DCB "libc.so.6",0|108-105-98-99-46-115-111-46-54-0
+1634|data|DCB "__printf_chk",0|95-95-112-114-105-110-116-102-95-99-104-107-0
+1647|data|DCB "exit",0|101-120-105-116-0
+1652|data|DCB "fopen",0|102-111-112-101-110-0
+1658|data|DCB "optind",0|111-112-116-105-110-100-0
+1665|data|DCB "perror",0|112-101-114-114-111-114-0
+1672|data|DCB "puts",0|112-117-116-115-0
+1677|data|DCB "abort",0|97-98-111-114-116-0
+1683|data|DCB "memset",0|109-101-109-115-101-116-0
+1690|data|DCB "__errno_location",0|95-95-101-114-114-110-111-95-108-111-99-97-116-105-111-110-0
+1707|data|DCB "getopt",0|103-101-116-111-112-116-0
+1714|data|DCB "__fprintf_chk",0|95-95-102-112-114-105-110-116-102-95-99-104-107-0
+1728|data|DCB "fclose",0|102-99-108-111-115-101-0
+1735|data|DCB "malloc",0|109-97-108-108-111-99-0
+1742|data|DCB "optarg",0|111-112-116-97-114-103-0
+1749|data|DCB "stderr",0|115-116-100-101-114-114-0
+1756|data|DCB "__cxa_finalize",0|95-95-99-120-97-95-102-105-110-97-108-105-122-101-0
+1771|data|DCB "strerror",0|115-116-114-101-114-114-111-114-0
+1780|data|DCB "__libc_start_main",0|95-95-108-105-98-99-95-115-116-97-114-116-95-109-97-105-110-0
+1798|data|DCB "__data_start",0|95-95-100-97-116-97-95-115-116-97-114-116-0
+1811|data|DCB "_edata",0|95-101-100-97-116-97-0
+1818|data|DCB "__bss_start",0|95-95-98-115-115-95-115-116-97-114-116-0
+1830|data|DCB "__bss_start__",0|95-95-98-115-115-95-115-116-97-114-116-95-95-0
+1844|data|DCB "__bss_end__",0|95-95-98-115-115-95-101-110-100-95-95-0
+1856|data|DCB "__end__",0|95-95-101-110-100-95-95-0
+1864|data|DCB "_end",0|95-101-110-100-0
+1869|data|DCB "__libc_csu_fini",0|95-95-108-105-98-99-95-99-115-117-95-102-105-110-105-0
+1885|data|DCB "progname",0|112-114-111-103-110-97-109-101-0
+1894|data|DCB "__libc_csu_init",0|95-95-108-105-98-99-95-99-115-117-95-105-110-105-116-0
+1910|data|DCB "GLIBC_2.4",0|71-76-73-66-67-95-50-46-52-0
+1920|data|DCW 0|0-0
+1922|data|DCW 0|0-0
+1924|data|DCW 0|0-0
+1926|data|DCW 2; __cxa_finalize@@GLIBC_2.4|2-0
+1928|data|DCW 0; local  symbol: _ITM_deregisterTMCloneTable|0-0
+1930|data|DCW 0; local  symbol: sepol_link_packages|0-0
+1932|data|DCW 2; fopen@@GLIBC_2.4|2-0
+1934|data|DCW 0; local  symbol: sepol_module_package_write|0-0
+1936|data|DCW 2; free@@GLIBC_2.4|2-0
+1938|data|DCW 0; local  symbol: sepol_module_package_read|0-0
+1940|data|DCW 2; optind@@GLIBC_2.4|2-0
+1942|data|DCW 0; local  symbol: sepol_policy_file_set_fp|0-0
+1944|data|DCW 0; local  symbol: sepol_module_package_create|0-0
+1946|data|DCW 2; perror@@GLIBC_2.4|2-0
+1948|data|DCW 2; stderr@@GLIBC_2.4|2-0
+1950|data|DCW 0; local  symbol: sepol_policy_file_create|0-0
+1952|data|DCW 2; puts@@GLIBC_2.4|2-0
+1954|data|DCW 2; malloc@@GLIBC_2.4|2-0
+1956|data|DCW 2; __libc_start_main@@GLIBC_2.4|2-0
+1958|data|DCW 2; strerror@@GLIBC_2.4|2-0
+1960|data|DCW 0; local  symbol: __gmon_start__|0-0
+1962|data|DCW 2; exit@@GLIBC_2.4|2-0
+1964|data|DCW 2; getopt@@GLIBC_2.4|2-0
+1966|data|DCW 2; __errno_location@@GLIBC_2.4|2-0
+1968|data|DCW 2; memset@@GLIBC_2.4|2-0
+1970|data|DCW 0; local  symbol: sepol_policy_file_free|0-0
+1972|data|DCW 2; __printf_chk@@GLIBC_2.4|2-0
+1974|data|DCW 2; __fprintf_chk@@GLIBC_2.4|2-0
+1976|data|DCW 2; fclose@@GLIBC_2.4|2-0
+1978|data|DCW 0; local  symbol: _Jv_RegisterClasses|0-0
+1980|data|DCW 0; local  symbol: sepol_module_package_free|0-0
+1982|data|DCW 0; local  symbol: _ITM_registerTMCloneTable|0-0
+1984|data|DCW 2; optarg@@GLIBC_2.4|2-0
+1986|data|DCW 2; abort@@GLIBC_2.4|2-0
+1988|data|DCW 1; global symbol: _bss_end__|1-0
+1990|data|DCW 1; global symbol: _edata|1-0
+1992|data|DCW 1; global symbol: __data_start|1-0
+1994|data|DCW 1; global symbol: _end|1-0
+1996|data|DCW 1; global symbol: progname|1-0
+1998|data|DCW 1; global symbol: __bss_end__|1-0
+2000|data|DCW 1; global symbol: __libc_csu_init|1-0
+2002|data|DCW 1; global symbol: __bss_start|1-0
+2004|data|DCW 1; global symbol: main|1-0
+2006|data|DCW 1; global symbol: _init|1-0
+2008|data|DCW 1; global symbol: __libc_csu_fini|1-0
+2010|data|DCW 1; global symbol: __bss_start__|1-0
+2012|data|DCW 1; global symbol: _fini|1-0
+2014|data|DCW 1; global symbol: __end__|1-0
+2016|data|Elf32_Verneed <1, 1, aLibcSo6 - byte_518, 0x10, 0>; "libc.so.6"|1-0-1-0-64-1-0-0-16-0-0-0-0-0-0-0
+2032|data|Elf32_Vernaux <0xD696914, 0, 2, aGlibc24 - byte_518, 0>; "GLIBC_2.4"|20-105-105-13-0-0-2-0-94-2-0-0-0-0-0-0
+2048|data|Elf32_Rel <0x9E4C, 0x17>; R_ARM_RELATIVE|76-158-0-0-23-0-0-0
+2056|data|Elf32_Rel <0x9E50, 0x17>; R_ARM_RELATIVE|80-158-0-0-23-0-0-0
+2064|data|Elf32_Rel <0x9FD0, 0x17>; R_ARM_RELATIVE|208-159-0-0-23-0-0-0
+2072|data|Elf32_Rel <0x9FDC, 0x17>; R_ARM_RELATIVE|220-159-0-0-23-0-0-0
+2080|data|Elf32_Rel <0x9FEC, 0x17>; R_ARM_RELATIVE|236-159-0-0-23-0-0-0
+2088|data|Elf32_Rel <0x9FF0, 0x17>; R_ARM_RELATIVE|240-159-0-0-23-0-0-0
+2096|data|Elf32_Rel <0xA004, 0x17>; R_ARM_RELATIVE|4-160-0-0-23-0-0-0
+2104|data|Elf32_Rel <0x9FD4, 0x315>; R_ARM_GLOB_DAT __cxa_finalize|212-159-0-0-21-3-0-0
+2112|data|Elf32_Rel <0x9FD8, 0x415>; R_ARM_GLOB_DAT _ITM_deregisterTMCloneTable|216-159-0-0-21-4-0-0
+2120|data|Elf32_Rel <0x9FE0, 0xA15>; R_ARM_GLOB_DAT optind|224-159-0-0-21-10-0-0
+2128|data|Elf32_Rel <0x9FE4, 0xE15>; R_ARM_GLOB_DAT stderr|228-159-0-0-21-14-0-0
+2136|data|Elf32_Rel <0x9FE8, 0x1415>; R_ARM_GLOB_DAT __gmon_start__|232-159-0-0-21-20-0-0
+2144|data|Elf32_Rel <0x9FF4, 0x1D15>; R_ARM_GLOB_DAT _Jv_RegisterClasses|244-159-0-0-21-29-0-0
+2152|data|Elf32_Rel <0x9FF8, 0x1F15>; R_ARM_GLOB_DAT _ITM_registerTMCloneTable|248-159-0-0-21-31-0-0
+2160|data|Elf32_Rel <0x9FFC, 0x2015>; R_ARM_GLOB_DAT optarg|252-159-0-0-21-32-0-0
+2168|data|Elf32_Rel <0x9F6C, 0x316>; R_ARM_JUMP_SLOT __cxa_finalize|108-159-0-0-22-3-0-0
+2176|data|Elf32_Rel <0x9F70, 0x516>; R_ARM_JUMP_SLOT sepol_link_packages|112-159-0-0-22-5-0-0
+2184|data|Elf32_Rel <0x9F74, 0x616>; R_ARM_JUMP_SLOT fopen|116-159-0-0-22-6-0-0
+2192|data|Elf32_Rel <0x9F78, 0x716>; R_ARM_JUMP_SLOT sepol_module_package_write|120-159-0-0-22-7-0-0
+2200|data|Elf32_Rel <0x9F7C, 0x816>; R_ARM_JUMP_SLOT free|124-159-0-0-22-8-0-0
+2208|data|Elf32_Rel <0x9F80, 0x916>; R_ARM_JUMP_SLOT sepol_module_package_read|128-159-0-0-22-9-0-0
+2216|data|Elf32_Rel <0x9F84, 0xB16>; R_ARM_JUMP_SLOT sepol_policy_file_set_fp|132-159-0-0-22-11-0-0
+2224|data|Elf32_Rel <0x9F88, 0xC16>; R_ARM_JUMP_SLOT sepol_module_package_create|136-159-0-0-22-12-0-0
+2232|data|Elf32_Rel <0x9F8C, 0xD16>; R_ARM_JUMP_SLOT perror|140-159-0-0-22-13-0-0
+2240|data|Elf32_Rel <0x9F90, 0xF16>; R_ARM_JUMP_SLOT sepol_policy_file_create|144-159-0-0-22-15-0-0
+2248|data|Elf32_Rel <0x9F94, 0x1016>; R_ARM_JUMP_SLOT puts|148-159-0-0-22-16-0-0
+2256|data|Elf32_Rel <0x9F98, 0x1116>; R_ARM_JUMP_SLOT malloc|152-159-0-0-22-17-0-0
+2264|data|Elf32_Rel <0x9F9C, 0x1216>; R_ARM_JUMP_SLOT __libc_start_main|156-159-0-0-22-18-0-0
+2272|data|Elf32_Rel <0x9FA0, 0x1316>; R_ARM_JUMP_SLOT strerror|160-159-0-0-22-19-0-0
+2280|data|Elf32_Rel <0x9FA4, 0x1416>; R_ARM_JUMP_SLOT __gmon_start__|164-159-0-0-22-20-0-0
+2288|data|Elf32_Rel <0x9FA8, 0x1516>; R_ARM_JUMP_SLOT exit|168-159-0-0-22-21-0-0
+2296|data|Elf32_Rel <0x9FAC, 0x1616>; R_ARM_JUMP_SLOT getopt|172-159-0-0-22-22-0-0
+2304|data|Elf32_Rel <0x9FB0, 0x1716>; R_ARM_JUMP_SLOT __errno_location|176-159-0-0-22-23-0-0
+2312|data|Elf32_Rel <0x9FB4, 0x1816>; R_ARM_JUMP_SLOT memset|180-159-0-0-22-24-0-0
+2320|data|Elf32_Rel <0x9FB8, 0x1916>; R_ARM_JUMP_SLOT sepol_policy_file_free|184-159-0-0-22-25-0-0
+2328|data|Elf32_Rel <0x9FBC, 0x1A16>; R_ARM_JUMP_SLOT __printf_chk|188-159-0-0-22-26-0-0
+2336|data|Elf32_Rel <0x9FC0, 0x1B16>; R_ARM_JUMP_SLOT __fprintf_chk|192-159-0-0-22-27-0-0
+2344|data|Elf32_Rel <0x9FC4, 0x1C16>; R_ARM_JUMP_SLOT fclose|196-159-0-0-22-28-0-0
+2352|data|Elf32_Rel <0x9FC8, 0x1E16>; R_ARM_JUMP_SLOT sepol_module_package_free|200-159-0-0-22-30-0-0
+2360|data|Elf32_Rel <0x9FCC, 0x2116>; R_ARM_JUMP_SLOT abort|204-159-0-0-22-33-0-0
+2368|code|PUSH            {R3,LR}; _init|8-64-45-233
+2372|code|BL              sub_D28|247-0-0-235
+2376|code|POP             {R3,PC}|8-128-189-232
+2380|code|PUSH            {LR}|4-224-45-229
+2384|code|LDR             LR, =(_GLOBAL_OFFSET_TABLE_ - 0x95C)|4-224-159-229
+2388|code|ADD             LR, PC, LR; _GLOBAL_OFFSET_TABLE_|14-224-143-224
+2392|code|LDR             PC, [LR,#8]!; dword_0|8-240-190-229
+2396|data|DCD _GLOBAL_OFFSET_TABLE_ - 0x95C|4-150-0-0
+2400|code|ADR             R12, 0x968|0-198-143-226
+2404|code|ADD             R12, R12, #0x9000|9-202-140-226
+2408|code|LDR             PC, [R12,#(__cxa_finalize_ptr - 0x9968)]!; __imp___cxa_finalize|4-246-188-229
+2412|code|ADR             R12, 0x974|0-198-143-226
+2416|code|ADD             R12, R12, #0x9000|9-202-140-226
+2420|code|LDR             PC, [R12,#(sepol_link_packages_ptr - 0x9974)]!; __imp_sepol_link_packages|252-245-188-229
+2424|code|ADR             R12, 0x980|0-198-143-226
+2428|code|ADD             R12, R12, #0x9000|9-202-140-226
+2432|code|LDR             PC, [R12,#(fopen_ptr - 0x9980)]!; __imp_fopen|244-245-188-229
+2436|code|ADR             R12, 0x98C|0-198-143-226
+2440|code|ADD             R12, R12, #0x9000|9-202-140-226
+2444|code|LDR             PC, [R12,#(sepol_module_package_write_ptr - 0x998C)]!; __imp_sepol_module_package_write|236-245-188-229
+2448|code|ADR             R12, 0x998|0-198-143-226
+2452|code|ADD             R12, R12, #0x9000|9-202-140-226
+2456|code|LDR             PC, [R12,#(free_ptr - 0x9998)]!; __imp_free|228-245-188-229
+2460|code|ADR             R12, 0x9A4|0-198-143-226
+2464|code|ADD             R12, R12, #0x9000|9-202-140-226
+2468|code|LDR             PC, [R12,#(sepol_module_package_read_ptr - 0x99A4)]!; __imp_sepol_module_package_read|220-245-188-229
+2472|code|ADR             R12, 0x9B0|0-198-143-226
+2476|code|ADD             R12, R12, #0x9000|9-202-140-226
+2480|code|LDR             PC, [R12,#(sepol_policy_file_set_fp_ptr - 0x99B0)]!; __imp_sepol_policy_file_set_fp|212-245-188-229
+2484|code|ADR             R12, 0x9BC|0-198-143-226
+2488|code|ADD             R12, R12, #0x9000|9-202-140-226
+2492|code|LDR             PC, [R12,#(sepol_module_package_create_ptr - 0x99BC)]!; __imp_sepol_module_package_create|204-245-188-229
+2496|code|ADR             R12, 0x9C8|0-198-143-226
+2500|code|ADD             R12, R12, #0x9000|9-202-140-226
+2504|code|LDR             PC, [R12,#(perror_ptr - 0x99C8)]!; __imp_perror|196-245-188-229
+2508|code|ADR             R12, 0x9D4|0-198-143-226
+2512|code|ADD             R12, R12, #0x9000|9-202-140-226
+2516|code|LDR             PC, [R12,#(sepol_policy_file_create_ptr - 0x99D4)]!; __imp_sepol_policy_file_create|188-245-188-229
+2520|code|ADR             R12, 0x9E0|0-198-143-226
+2524|code|ADD             R12, R12, #0x9000|9-202-140-226
+2528|code|LDR             PC, [R12,#(puts_ptr - 0x99E0)]!; __imp_puts|180-245-188-229
+2532|code|ADR             R12, 0x9EC|0-198-143-226
+2536|code|ADD             R12, R12, #0x9000|9-202-140-226
+2540|code|LDR             PC, [R12,#(malloc_ptr - 0x99EC)]!; __imp_malloc|172-245-188-229
+2544|code|ADR             R12, 0x9F8|0-198-143-226
+2548|code|ADD             R12, R12, #0x9000|9-202-140-226
+2552|code|LDR             PC, [R12,#(__libc_start_main_ptr - 0x99F8)]!; __imp___libc_start_main|164-245-188-229
+2556|code|ADR             R12, 0xA04|0-198-143-226
+2560|code|ADD             R12, R12, #0x9000|9-202-140-226
+2564|code|LDR             PC, [R12,#(strerror_ptr - 0x9A04)]!; __imp_strerror|156-245-188-229
+2568|code|ADR             R12, 0xA10|0-198-143-226
+2572|code|ADD             R12, R12, #0x9000|9-202-140-226
+2576|code|LDR             PC, [R12,#(__gmon_start___ptr - 0x9A10)]!; __imp___gmon_start__|148-245-188-229
+2580|code|ADR             R12, 0xA1C|0-198-143-226
+2584|code|ADD             R12, R12, #0x9000|9-202-140-226
+2588|code|LDR             PC, [R12,#(exit_ptr - 0x9A1C)]!; __imp_exit|140-245-188-229
+2592|code|ADR             R12, 0xA28|0-198-143-226
+2596|code|ADD             R12, R12, #0x9000|9-202-140-226
+2600|code|LDR             PC, [R12,#(getopt_ptr - 0x9A28)]!; __imp_getopt|132-245-188-229
+2604|code|ADR             R12, 0xA34|0-198-143-226
+2608|code|ADD             R12, R12, #0x9000|9-202-140-226
+2612|code|LDR             PC, [R12,#(__errno_location_ptr - 0x9A34)]!; __imp___errno_location|124-245-188-229
+2616|code|ADR             R12, 0xA40|0-198-143-226
+2620|code|ADD             R12, R12, #0x9000|9-202-140-226
+2624|code|LDR             PC, [R12,#(memset_ptr - 0x9A40)]!; __imp_memset|116-245-188-229
+2628|code|ADR             R12, 0xA4C|0-198-143-226
+2632|code|ADD             R12, R12, #0x9000|9-202-140-226
+2636|code|LDR             PC, [R12,#(sepol_policy_file_free_ptr - 0x9A4C)]!; __imp_sepol_policy_file_free|108-245-188-229
+2640|code|ADR             R12, 0xA58|0-198-143-226
+2644|code|ADD             R12, R12, #0x9000|9-202-140-226
+2648|code|LDR             PC, [R12,#(__printf_chk_ptr - 0x9A58)]!; __imp___printf_chk|100-245-188-229
+2652|code|ADR             R12, 0xA64|0-198-143-226
+2656|code|ADD             R12, R12, #0x9000|9-202-140-226
+2660|code|LDR             PC, [R12,#(__fprintf_chk_ptr - 0x9A64)]!; __imp___fprintf_chk|92-245-188-229
+2664|code|ADR             R12, 0xA70|0-198-143-226
+2668|code|ADD             R12, R12, #0x9000|9-202-140-226
+2672|code|LDR             PC, [R12,#(fclose_ptr - 0x9A70)]!; __imp_fclose|84-245-188-229
+2676|code|ADR             R12, 0xA7C|0-198-143-226
+2680|code|ADD             R12, R12, #0x9000|9-202-140-226
+2684|code|LDR             PC, [R12,#(sepol_module_package_free_ptr - 0x9A7C)]!; __imp_sepol_module_package_free|76-245-188-229
+2688|code|ADR             R12, 0xA88|0-198-143-226
+2692|code|ADD             R12, R12, #0x9000|9-202-140-226
+2696|code|LDR             PC, [R12,#(abort_ptr - 0x9A88)]!; __imp_abort|68-245-188-229
+2700|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2704|code|MOVS            R7, #0|0-39
+2706|code|LDR             R6, =(_GLOBAL_OFFSET_TABLE_ - 0xA9E)|130-78
+2708|code|SUB             SP, SP, #0x24|137-176
+2710|code|LDR             R2, =(progname_ptr - 0x9F60)|130-74
+2712|code|MOV             R4, R1|12-70
+2714|code|ADD             R6, PC; _GLOBAL_OFFSET_TABLE_|126-68
+2716|code|LDR.W           R10, =(aOVv - 0xAAA); "o:Vv"|223-248-4-162
+2720|code|LDR             R3, [R1]|11-104
+2722|code|MOV             R5, R0|5-70
+2724|code|LDR             R2, [R6,R2]; progname|178-88
+2726|code|ADD             R10, PC; "o:Vv"|250-68
+2728|code|MOV             R9, R7|185-70
+2730|code|MOV             R8, R7|184-70
+2732|code|STR             R3, [R2]|19-96
+2734|code|MOV             R0, R5; argc|40-70
+2736|code|MOV             R1, R4; argv|33-70
+2738|code|MOV             R2, R10; shortopts|82-70
+2740|code|BLX             getopt|255-247-180-239
+2744|code|ADDS            R3, R0, #1|67-28
+2746|code|BEQ             loc_AEE|24-208
+2748|code|CMP             R0, #0x6F ; 'o'|111-40
+2750|code|BEQ             loc_AE6|18-208
+2752|code|CMP             R0, #0x76 ; 'v'|118-40
+2754|code|BEQ             loc_ADA|10-208
+2756|code|CMP             R0, #0x56 ; 'V'|86-40
+2758|code|BEQ             loc_AE0|11-208
+2760|code|LDR             R1, =(aUsageSVvOOutfi - 0xAD2); "usage: %s [-Vv] [-o outfile] basemodpkg"...|119-73
+2762|code|MOVS            R0, #1|1-32
+2764|code|LDR             R2, [R4]|34-104
+2766|code|ADD             R1, PC; "usage: %s [-Vv] [-o outfile] basemodpkg"...|121-68
+2768|code|BLX             __printf_chk|255-247-190-239
+2772|code|MOVS            R0, #1; status|1-32
+2774|code|BLX             exit|255-247-158-239
+2778|code|MOV.W           R9, #1|79-240-1-9
+2782|code|B               loc_AAE|230-231
+2784|code|MOV.W           R8, #1|79-240-1-8
+2788|code|B               loc_AAE|227-231
+2790|code|LDR             R3, =(optarg_ptr - 0x9F60)|113-75
+2792|code|LDR             R3, [R6,R3]; optarg|243-88
+2794|code|LDR             R7, [R3]|31-104
+2796|code|B               loc_AAE|223-231
+2798|code|CMP.W           R8, #0|184-241-0-15
+2802|code|BNE             loc_BD8|113-209
+2804|code|CMP             R5, #2|2-45
+2806|code|BLE             loc_BB4|93-221
+2808|code|LDR             R3, =(optind_ptr - 0x9F60)|109-75
+2810|code|SUBS            R2, R5, #1|106-30
+2812|code|LDR.W           R10, [R6,R3]; optind|86-248-3-160
+2816|code|LDR.W           R3, [R10]|218-248-0-48
+2820|code|CMP             R2, R3|154-66
+2822|code|BEQ             loc_BB4|85-208
+2824|code|LDR.W           R11, [R4,R3,LSL#2]|84-248-35-176
+2828|code|ADDS            R3, #1|1-51
+2830|code|STR.W           R3, [R10]|202-248-0-48
+2834|code|MOV             R0, R11|88-70
+2836|code|BL              sub_E24|0-240-134-249
+2840|code|STR             R0, [SP,#0x48+var_34]|5-144
+2842|code|CMP             R0, #0|0-40
+2844|code|BEQ             loc_C08|116-208
+2846|code|LDR.W           R3, [R10]|218-248-0-48
+2850|code|SUBS            R3, R5, R3|235-26
+2852|code|STR             R3, [SP,#0x48+var_3C]|3-147
+2854|code|MOV.W           R11, R3,LSL#2|79-234-131-11
+2858|code|MOV             R0, R11; size|88-70
+2860|code|BLX             malloc|255-247-90-239
+2864|code|STR             R0, [SP,#0x48+ptr]|4-144
+2866|code|CMP             R0, #0|0-40
+2868|code|BEQ             loc_C24|118-208
+2870|code|MOV             R1, R8; c|65-70
+2872|code|MOV             R2, R11; n|90-70
+2874|code|BLX             memset|255-247-126-239
+2878|code|LDR             R3, [SP,#0x48+ptr]|4-155
+2880|code|MOV             R11, R10|211-70
+2882|code|SUB.W           R8, R3, #4|163-241-4-8
+2886|code|B               loc_B62|12-224
+2888|code|LDR.W           R0, [R4,R3,LSL#2]|84-248-35-0
+2892|code|BL              sub_E24|0-240-106-249
+2896|code|STR.W           R0, [R8,#4]!|72-248-4-15
+2900|code|CMP             R0, #0|0-40
+2902|code|BEQ             loc_BE6|70-208
+2904|code|LDR.W           R3, [R11]|219-248-0-48
+2908|code|ADDS            R3, #1|1-51
+2910|code|STR.W           R3, [R11]|203-248-0-48
+2914|code|LDR.W           R3, [R10]|218-248-0-48
+2918|code|CMP             R5, R3|157-66
+2920|code|BGT             loc_B48|238-220
+2922|code|STR.W           R9, [SP,#0x48+var_48]|205-248-0-144
+2926|code|MOVS            R0, #0|0-32
+2928|code|LDR             R1, [SP,#0x48+var_34]|5-153
+2930|code|LDR             R2, [SP,#0x48+ptr]|4-154
+2932|code|LDR             R3, [SP,#0x48+var_3C]|3-155
+2934|code|BLX             sepol_link_packages|255-247-250-238
+2938|code|CMP             R0, #0|0-40
+2940|code|BNE             loc_C30|88-209
+2942|code|CMP             R7, #0|0-47
+2944|code|BEQ             loc_C66|113-208
+2946|code|LDR             R1, =(aW - 0xB8A); "w"|76-73
+2948|code|MOV             R0, R7; filename|56-70
+2950|code|ADD             R1, PC; "w"|121-68
+2952|code|BLX             fopen|255-247-246-238
+2956|code|MOV             R5, R0|5-70
+2958|code|CMP             R0, #0|0-40
+2960|code|BEQ             loc_C8E|125-208
+2962|code|ADD             R0, SP, #0x48+var_2C|7-168
+2964|code|BLX             sepol_policy_file_create|255-247-26-239
+2968|code|CMP             R0, #0|0-40
+2970|code|BEQ             loc_C3C|79-208
+2972|code|LDR             R2, =(aSOutOfMemory - 0xBA8); "%s:  Out of memory\n"|70-74
+2974|code|MOVS            R1, #1|1-33
+2976|code|LDR             R0, =(stderr_ptr - 0x9F60)|70-72
+2978|code|LDR             R3, [R4]|35-104
+2980|code|ADD             R2, PC; "%s:  Out of memory\n"|122-68
+2982|code|LDR             R0, [R6,R0]; stderr|48-88
+2984|code|LDR             R0, [R0]|0-104
+2986|code|BLX             __fprintf_chk|255-247-88-239
+2990|code|MOVS            R0, #1; status|1-32
+2992|code|BLX             exit|255-247-48-239
+2996|code|LDR             R0, =(stderr_ptr - 0x9F60)|65-72
+2998|code|MOVS            R1, #1|1-33
+3000|code|LDR             R2, =(aSYouMustProvid - 0xBC2); "%s:  You must provide the base module p"...|65-74
+3002|code|LDR             R3, [R4]|35-104
+3004|code|LDR             R0, [R6,R0]; stderr|48-88
+3006|code|ADD             R2, PC; "%s:  You must provide the base module p"...|122-68
+3008|code|LDR             R0, [R0]|0-104
+3010|code|BLX             __fprintf_chk|255-247-76-239
+3014|code|LDR             R1, =(aUsageSVvOOutfi - 0xBD0); "usage: %s [-Vv] [-o outfile] basemodpkg"...|63-73
+3016|code|LDR             R2, [R4]|34-104
+3018|code|MOVS            R0, #1|1-32
+3020|code|ADD             R1, PC; "usage: %s [-Vv] [-o outfile] basemodpkg"...|121-68
+3022|code|BLX             __printf_chk|255-247-64-239
+3026|code|MOVS            R0, #1; status|1-32
+3028|code|BLX             exit|255-247-30-239
+3032|code|LDR             R0, =(a10 - 0xBDE); "1.0"|59-72
+3034|code|ADD             R0, PC; "1.0"|120-68
+3036|code|BLX             puts|255-247-252-238
+3040|code|MOVS            R0, #0; status|0-32
+3042|code|BLX             exit|255-247-24-239
+3046|code|LDR.W           R0, [R11]|219-248-0-0
+3050|code|MOVS            R1, #1|1-33
+3052|code|LDR             R2, =(stderr_ptr - 0x9F60)|51-74
+3054|code|LDR             R3, [R4]|35-104
+3056|code|LDR.W           R4, [R4,R0,LSL#2]|84-248-32-64
+3060|code|LDR             R0, [R6,R2]; stderr|176-88
+3062|code|LDR             R2, =(aSCouldNotLoadM - 0xBFE); "%s:  Could not load module from file %s"...|53-74
+3064|code|STR             R4, [SP,#0x48+var_48]|0-148
+3066|code|ADD             R2, PC; "%s:  Could not load module from file %s"...|122-68
+3068|code|LDR             R0, [R0]|0-104
+3070|code|BLX             __fprintf_chk|255-247-46-239
+3074|code|MOVS            R0, #1; status|1-32
+3076|code|BLX             exit|255-247-6-239
+3080|code|LDR             R0, =(stderr_ptr - 0x9F60)|44-72
+3082|code|MOVS            R1, #1|1-33
+3084|code|LDR             R2, =(aSCouldNotLoadB - 0xC16); "%s:  Could not load base module from fi"...|48-74
+3086|code|LDR             R3, [R4]|35-104
+3088|code|LDR             R0, [R6,R0]; stderr|48-88
+3090|code|ADD             R2, PC; "%s:  Could not load base module from fi"...|122-68
+3092|code|STR.W           R11, [SP,#0x48+var_48]|205-248-0-176
+3096|code|LDR             R0, [R0]|0-104
+3098|code|BLX             __fprintf_chk|255-247-32-239
+3102|code|MOVS            R0, #1; status|1-32
+3104|code|BLX             exit|255-247-248-238
+3108|code|LDR             R2, =(aSOutOfMemory - 0xC30); "%s:  Out of memory\n"|43-74
+3110|code|MOVS            R1, #1|1-33
+3112|code|LDR             R0, =(stderr_ptr - 0x9F60)|36-72
+3114|code|LDR             R3, [R4]|35-104
+3116|code|ADD             R2, PC; "%s:  Out of memory\n"|122-68
+3118|code|B               loc_BA6|186-231
+3120|code|LDR             R2, =(aSErrorWhileLin - 0xC3C); "%s:  Error while linking packages\n"|41-74
+3122|code|MOVS            R1, #1|1-33
+3124|code|LDR             R0, =(stderr_ptr - 0x9F60)|33-72
+3126|code|LDR             R3, [R4]|35-104
+3128|code|ADD             R2, PC; "%s:  Error while linking packages\n"|122-68
+3130|code|B               loc_BA6|180-231
+3132|code|LDR             R0, [SP,#0x48+var_2C]|7-152
+3134|code|MOV             R1, R5|41-70
+3136|code|BLX             sepol_policy_file_set_fp|255-247-178-238
+3140|code|LDR             R0, [SP,#0x48+var_34]|5-152
+3142|code|LDR             R1, [SP,#0x48+var_2C]|7-153
+3144|code|BLX             sepol_module_package_write|255-247-156-238
+3148|code|CBZ             R0, loc_C5A|40-177
+3150|code|LDR             R2, =(aSErrorWritingL - 0xC5A); "%s:  Error writing linked package.\n"|35-74
+3152|code|MOVS            R1, #1|1-33
+3154|code|LDR             R0, =(stderr_ptr - 0x9F60)|26-72
+3156|code|LDR             R3, [R4]|35-104
+3158|code|ADD             R2, PC; "%s:  Error writing linked package.\n"|122-68
+3160|code|B               loc_BA6|165-231
+3162|code|LDR             R0, [SP,#0x48+var_2C]|7-152
+3164|code|BLX             sepol_policy_file_free|255-247-242-238
+3168|code|MOV             R0, R5; stream|40-70
+3170|code|BLX             fclose|255-247-2-239
+3174|code|LDR             R0, [SP,#0x48+var_34]|5-152
+3176|code|MOVS            R4, #0|0-36
+3178|code|BLX             sepol_module_package_free|255-247-4-239
+3182|code|B               loc_C7C|5-224
+3184|code|LDR             R3, [SP,#0x48+ptr]|4-155
+3186|code|LDR.W           R0, [R3,R4,LSL#2]|83-248-36-0
+3190|code|ADDS            R4, #1|1-52
+3192|code|BLX             sepol_module_package_free|255-247-252-238
+3196|code|LDR             R3, [SP,#0x48+var_3C]|3-155
+3198|code|CMP             R4, R3|156-66
+3200|code|BLT             loc_C70|246-219
+3202|code|LDR             R0, [SP,#0x48+ptr]; ptr|4-152
+3204|code|BLX             free|255-247-132-238
+3208|code|MOVS            R0, #0; status|0-32
+3210|code|BLX             exit|255-247-196-238
+3214|code|MOV             R0, R7; s|56-70
+3216|code|BLX             perror|255-247-150-238
+3220|code|MOVS            R0, #1; status|1-32
+3222|code|BLX             exit|255-247-190-238
+3226|data|ALIGN 4|0-191
+3228|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xA9E|194-148-0-0
+3232|data|DCD progname_ptr - 0x9F60|124-0-0-0
+3236|data|DCD aOVv - 0xAAA; "o:Vv"|190-5-0-0
+3240|data|DCD aUsageSVvOOutfi - 0xAD2; "usage: %s [-Vv] [-o outfile] basemodpkg"...|86-5-0-0
+3244|data|DCD optarg_ptr - 0x9F60|156-0-0-0
+3248|data|DCD optind_ptr - 0x9F60|128-0-0-0
+3252|data|DCD aW - 0xB8A; "w"|194-5-0-0
+3256|data|DCD aSOutOfMemory - 0xBA8; "%s:  Out of memory\n"|244-3-0-0
+3260|data|DCD stderr_ptr - 0x9F60|132-0-0-0
+3264|data|DCD aSYouMustProvid - 0xBC2; "%s:  You must provide the base module p"...|178-4-0-0
+3268|data|DCD aUsageSVvOOutfi - 0xBD0; "usage: %s [-Vv] [-o outfile] basemodpkg"...|88-4-0-0
+3272|data|DCD a10 - 0xBDE; "1.0"|146-4-0-0
+3276|data|DCD aSCouldNotLoadM - 0xBFE; "%s:  Could not load module from file %s"...|254-4-0-0
+3280|data|DCD aSCouldNotLoadB - 0xC16; "%s:  Could not load base module from fi"...|182-4-0-0
+3284|data|DCD aSOutOfMemory - 0xC30; "%s:  Out of memory\n"|108-3-0-0
+3288|data|DCD aSErrorWhileLin - 0xC3C; "%s:  Error while linking packages\n"|236-4-0-0
+3292|data|DCD aSErrorWritingL - 0xC5A; "%s:  Error writing linked package.\n"|246-4-0-0
+3296|code|MOV.W           R11, #0|79-240-0-11
+3300|code|MOV.W           LR, #0|79-240-0-14
+3304|code|POP             {R1}; argc|2-188
+3306|code|MOV             R2, SP; ubp_av|106-70
+3308|code|PUSH            {R2}; stack_end|4-180
+3310|code|PUSH            {R0}; rtld_fini|1-180
+3312|code|LDR.W           R10, =(_GLOBAL_OFFSET_TABLE_ - 0xD18)|223-248-36-160
+3316|code|ADR             R3, off_D18|8-163
+3318|code|ADD             R10, R3; _GLOBAL_OFFSET_TABLE_|154-68
+3320|code|LDR.W           R12, =(__libc_csu_fini_ptr - 0x9F60)|223-248-32-192
+3324|code|LDR.W           R12, [R10,R12]; __libc_csu_fini|90-248-12-192
+3328|code|PUSH.W          {R12}; fini|77-248-4-205
+3332|code|LDR             R3, =(__libc_csu_init_ptr - 0x9F60)|6-75
+3334|code|LDR.W           R3, [R10,R3]; __libc_csu_init ; init|90-248-3-48
+3338|code|LDR             R0, =(main_ptr - 0x9F60)|6-72
+3340|code|LDR.W           R0, [R10,R0]; main ; main|90-248-0-0
+3344|code|BLX             __libc_start_main|255-247-110-238
+3348|code|BLX             abort|255-247-180-238
+3352|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD18|72-146-0-0
+3356|data|DCD __libc_csu_fini_ptr - 0x9F60|112-0-0-0
+3360|data|DCD __libc_csu_init_ptr - 0x9F60|140-0-0-0
+3364|data|DCD main_ptr - 0x9F60|144-0-0-0
+3368|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xD38)|20-48-159-229
+3372|code|LDR             R2, =(__gmon_start___ptr_0 - 0x9F60)|20-32-159-229
+3376|code|ADD             R3, PC, R3; _GLOBAL_OFFSET_TABLE_|3-48-143-224
+3380|code|LDR             R2, [R3,R2]; __imp___gmon_start__|2-32-147-231
+3384|code|CMP             R2, #0|0-0-82-227
+3388|code|BXEQ            LR|30-255-47-1
+3392|code|B               __gmon_start__|48-255-255-234
+3396|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD38|40-146-0-0
+3400|data|DCD __gmon_start___ptr_0 - 0x9F60|136-0-0-0
+3404|code|LDR             R2, =(__bss_start__ - 0xD54)|8-74
+3406|code|LDR             R0, =(__bss_start__ - 0xD56)|9-72
+3408|code|ADD             R2, PC; __bss_start__|122-68
+3410|code|ADD             R0, PC; __bss_start__|120-68
+3412|code|ADDS            R2, #3|3-50
+3414|code|SUBS            R2, R2, R0|18-26
+3416|code|PUSH            {R3,LR}|8-181
+3418|code|CMP             R2, #6|6-42
+3420|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xD62)|6-75
+3422|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3424|code|BHI             loc_D64|0-216
+3426|code|POP             {R3,PC}|8-189
+3428|code|LDR             R2, =(_ITM_deregisterTMCloneTable_ptr - 0x9F60)|5-74
+3430|code|LDR             R3, [R3,R2]; _ITM_deregisterTMCloneTable|155-88
+3432|code|CMP             R3, #0|0-43
+3434|code|BEQ             locret_D62|250-208
+3436|code|BLX             R3; _ITM_deregisterTMCloneTable|152-71
+3438|code|B               locret_D62|248-231
+3440|data|DCD __bss_start__ - 0xD54|180-146-0-0
+3444|data|DCD __bss_start__ - 0xD56|178-146-0-0
+3448|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD62|254-145-0-0
+3452|data|DCD _ITM_deregisterTMCloneTable_ptr - 0x9F60|120-0-0-0
+3456|code|PUSH            {R3,LR}|8-181
+3458|code|LDR             R0, =(__bss_start__ - 0xD8A)|10-72
+3460|code|LDR             R3, =(__bss_start__ - 0xD8E)|10-75
+3462|code|ADD             R0, PC; __bss_start__|120-68
+3464|code|LDR             R2, =(_GLOBAL_OFFSET_TABLE_ - 0xD92)|10-74
+3466|code|ADD             R3, PC; __bss_start__|123-68
+3468|code|SUBS            R3, R3, R0|27-26
+3470|code|ADD             R2, PC; _GLOBAL_OFFSET_TABLE_|122-68
+3472|code|ASRS            R3, R3, #2|155-16
+3474|code|ADD.W           R3, R3, R3,LSR#31|3-235-211-115
+3478|code|ASRS            R3, R3, #1|91-16
+3480|code|BNE             loc_D9C|0-209
+3482|code|POP             {R3,PC}|8-189
+3484|code|LDR             R1, =(_ITM_registerTMCloneTable_ptr - 0x9F60)|6-73
+3486|code|LDR             R2, [R2,R1]; _ITM_registerTMCloneTable|82-88
+3488|code|CMP             R2, #0|0-42
+3490|code|BEQ             locret_D9A|250-208
+3492|code|MOV             R1, R3|25-70
+3494|code|BLX             R2; _ITM_registerTMCloneTable|144-71
+3496|code|B               locret_D9A|247-231
+3498|data|ALIGN 4|0-191
+3500|data|DCD __bss_start__ - 0xD8A|126-146-0-0
+3504|data|DCD __bss_start__ - 0xD8E|122-146-0-0
+3508|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xD92|206-145-0-0
+3512|data|DCD _ITM_registerTMCloneTable_ptr - 0x9F60|152-0-0-0
+3516|code|LDR             R2, =(__bss_start__ - 0xDC4)|10-74
+3518|code|PUSH            {R3,LR}|8-181
+3520|code|ADD             R2, PC; __bss_start__|122-68
+3522|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xDCA)|10-75
+3524|code|LDRB            R2, [R2]|18-120
+3526|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3528|code|CBNZ            R2, locret_DE6|106-185
+3530|code|LDR             R2, =(__cxa_finalize_ptr_0 - 0x9F60)|9-74
+3532|code|LDR             R3, [R3,R2]; __imp___cxa_finalize|155-88
+3534|code|CBZ             R3, loc_DDA|35-177
+3536|code|LDR             R3, =(off_A004 - 0xDD6)|8-75
+3538|code|ADD             R3, PC; off_A004|123-68
+3540|code|LDR             R0, [R3]; off_A004 ; void *|24-104
+3542|code|BLX             __cxa_finalize|255-247-196-237
+3546|code|BL              sub_D4C|255-247-183-255
+3550|code|LDR             R3, =(__bss_start__ - 0xDE6)|6-75
+3552|code|MOVS            R2, #1|1-34
+3554|code|ADD             R3, PC; __bss_start__|123-68
+3556|code|STRB            R2, [R3]|26-112
+3558|code|POP             {R3,PC}|8-189
+3560|data|DCD __bss_start__ - 0xDC4|68-146-0-0
+3564|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xDCA|150-145-0-0
+3568|data|DCD __cxa_finalize_ptr_0 - 0x9F60|116-0-0-0
+3572|data|DCD off_A004 - 0xDD6|46-146-0-0
+3576|data|DCD __bss_start__ - 0xDE6|34-146-0-0
+3580|code|LDR             R0, =(dword_9E54 - 0xE04)|6-72
+3582|code|PUSH            {R3,LR}|8-181
+3584|code|ADD             R0, PC; dword_9E54|120-68
+3586|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xE0A)|6-75
+3588|code|LDR             R2, [R0]|2-104
+3590|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3592|code|CBZ             R2, loc_E12|26-177
+3594|code|LDR             R2, =(_Jv_RegisterClasses_ptr - 0x9F60)|5-74
+3596|code|LDR             R3, [R3,R2]; _Jv_RegisterClasses|155-88
+3598|code|CBZ             R3, loc_E12|3-177
+3600|code|BLX             R3; _Jv_RegisterClasses|152-71
+3602|code|POP.W           {R3,LR}|189-232-8-64
+3606|code|B               sub_D80|179-231
+3608|data|DCD dword_9E54 - 0xE04|80-144-0-0
+3612|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xE0A|86-145-0-0
+3616|data|DCD _Jv_RegisterClasses_ptr - 0x9F60|148-0-0-0
+3620|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+3624|code|SUB             SP, SP, #0x10|132-176
+3626|code|ADD             R2, SP, #0x28+var_18|4-170
+3628|code|LDR             R4, =(_GLOBAL_OFFSET_TABLE_ - 0xE3E)|62-76
+3630|code|MOVS            R1, #0|0-33
+3632|code|MOV             R5, R0|5-70
+3634|code|STR.W           R1, [R2,#-4]!|66-248-4-29
+3638|code|MOV             R0, R2|16-70
+3640|code|STR             R1, [SP,#0x28+var_20]|2-145
+3642|code|ADD             R4, PC; _GLOBAL_OFFSET_TABLE_|124-68
+3644|code|BLX             sepol_module_package_create|255-247-186-237
+3648|code|CBZ             R0, loc_E6C|160-177
+3650|code|LDR             R2, =(aSOutOfMemory - 0xE4E); "%s:  Out of memory\n"|58-74
+3652|code|MOVS            R1, #1|1-33
+3654|code|LDR             R0, =(stderr_ptr - 0x9F60)|58-72
+3656|code|LDR             R3, =(progname_ptr - 0x9F60)|58-75
+3658|code|ADD             R2, PC; "%s:  Out of memory\n"|122-68
+3660|code|LDR             R0, [R4,R0]; stderr|32-88
+3662|code|LDR             R3, [R4,R3]; progname|227-88
+3664|code|LDR             R0, [R0]|0-104
+3666|code|LDR             R3, [R3]|27-104
+3668|code|BLX             __fprintf_chk|255-247-2-238
+3672|code|LDR             R0, [SP,#0x28+var_1C]|3-152
+3674|code|BLX             sepol_module_package_free|255-247-12-238
+3678|code|LDR             R0, [SP,#0x28+var_20]|2-152
+3680|code|BLX             sepol_policy_file_free|255-247-240-237
+3684|code|MOVS            R0, #0|0-32
+3686|code|ADD             SP, SP, #0x10|4-176
+3688|code|POP.W           {R4-R8,PC}|189-232-240-129
+3692|code|ADD             R0, SP, #0x28+var_20|2-168
+3694|code|BLX             sepol_policy_file_create|255-247-174-237
+3698|code|MOV             R6, R0|6-70
+3700|code|CMP             R0, #0|0-40
+3702|code|BNE             loc_EE2|52-209
+3704|code|LDR             R1, =(aR - 0xE80); "r"|47-73
+3706|code|MOV             R0, R5; filename|40-70
+3708|code|ADD             R1, PC; "r"|121-68
+3710|code|BLX             fopen|255-247-124-237
+3714|code|MOV             R7, R0|7-70
+3716|code|CMP             R0, #0|0-40
+3718|code|BEQ             loc_EFE|58-208
+3720|code|LDR             R0, [SP,#0x28+var_20]|2-152
+3722|code|MOV             R1, R7|57-70
+3724|code|BLX             sepol_policy_file_set_fp|255-247-140-237
+3728|code|LDR             R2, =(progname_ptr - 0x9F60)|40-74
+3730|code|LDR             R1, =(aSLoadingPackag - 0xEA0); "%s:  loading package from file %s\n"|42-73
+3732|code|MOVS            R0, #1|1-32
+3734|code|MOV             R3, R5|43-70
+3736|code|LDR.W           R8, [R4,R2]; progname|84-248-2-128
+3740|code|ADD             R1, PC; "%s:  loading package from file %s\n"|121-68
+3742|code|LDR.W           R2, [R8]|216-248-0-32
+3746|code|BLX             __printf_chk|255-247-214-237
+3750|code|LDR             R0, [SP,#0x28+var_1C]|3-152
+3752|code|LDR             R1, [SP,#0x28+var_20]|2-153
+3754|code|MOV             R2, R6|50-70
+3756|code|BLX             sepol_module_package_read|255-247-118-237
+3760|code|CBZ             R0, loc_EEE|232-177
+3762|code|LDR             R0, =(stderr_ptr - 0x9F60)|31-72
+3764|code|MOVS            R1, #1|1-33
+3766|code|LDR             R2, =(aSErrorWhileRea - 0xEC2); "%s:  Error while reading package from %"...|34-74
+3768|code|LDR.W           R3, [R8]|216-248-0-48
+3772|code|LDR             R0, [R4,R0]; stderr|32-88
+3774|code|ADD             R2, PC; "%s:  Error while reading package from %"...|122-68
+3776|code|STR             R5, [SP,#0x28+var_28]|0-149
+3778|code|LDR             R0, [R0]|0-104
+3780|code|BLX             __fprintf_chk|255-247-202-237
+3784|code|LDR             R0, [SP,#0x28+var_1C]|3-152
+3786|code|BLX             sepol_module_package_free|255-247-212-237
+3790|code|LDR             R0, [SP,#0x28+var_20]|2-152
+3792|code|BLX             sepol_policy_file_free|255-247-184-237
+3796|code|MOV             R0, R7; stream|56-70
+3798|code|BLX             fclose|255-247-200-237
+3802|code|MOV             R0, R6|48-70
+3804|code|ADD             SP, SP, #0x10|4-176
+3806|code|POP.W           {R4-R8,PC}|189-232-240-129
+3810|code|LDR             R2, =(aSOutOfMemory - 0xEEE); "%s:  Out of memory\n"|24-74
+3812|code|MOVS            R1, #1|1-33
+3814|code|LDR             R0, =(stderr_ptr - 0x9F60)|18-72
+3816|code|LDR             R3, =(progname_ptr - 0x9F60)|18-75
+3818|code|ADD             R2, PC; "%s:  Out of memory\n"|122-68
+3820|code|B               loc_E4C|174-231
+3822|code|MOV             R0, R7; stream|56-70
+3824|code|BLX             fclose|255-247-186-237
+3828|code|LDR             R0, [SP,#0x28+var_20]|2-152
+3830|code|BLX             sepol_policy_file_free|255-247-166-237
+3834|code|LDR             R0, [SP,#0x28+var_1C]|3-152
+3836|code|B               loc_E66|179-231
+3838|code|LDR             R2, =(stderr_ptr - 0x9F60)|12-74
+3840|code|LDR             R3, =(progname_ptr - 0x9F60)|12-75
+3842|code|LDR             R2, [R4,R2]; stderr|162-88
+3844|code|LDR             R3, [R4,R3]; progname|227-88
+3846|code|LDR             R4, [R2]|20-104
+3848|code|LDR             R6, [R3]|30-104
+3850|code|BLX             __errno_location|255-247-144-237
+3854|code|LDR             R0, [R0]; errnum|0-104
+3856|code|BLX             strerror|255-247-116-237
+3860|code|LDR             R2, =(aSCouldNotOpenP - 0xF20); "%s:  Could not open package %s:  %s"|12-74
+3862|code|MOV             R3, R6|51-70
+3864|code|STR             R5, [SP,#0x28+var_28]|0-149
+3866|code|MOVS            R1, #1|1-33
+3868|code|ADD             R2, PC; "%s:  Could not open package %s:  %s"|122-68
+3870|code|STR             R0, [SP,#0x28+var_24]|1-144
+3872|code|MOV             R0, R4|32-70
+3874|code|BLX             __fprintf_chk|255-247-156-237
+3878|code|B               loc_E58|151-231
+3880|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xE3E|34-145-0-0
+3884|data|DCD aSOutOfMemory - 0xE4E; "%s:  Out of memory\n"|78-1-0-0
+3888|data|DCD stderr_ptr - 0x9F60|132-0-0-0
+3892|data|DCD progname_ptr - 0x9F60|124-0-0-0
+3896|data|DCD aR - 0xE80; "r"|48-1-0-0
+3900|data|DCD aSLoadingPackag - 0xEA0; "%s:  loading package from file %s\n"|56-1-0-0
+3904|data|DCD aSErrorWhileRea - 0xEC2; "%s:  Error while reading package from %"...|58-1-0-0
+3908|data|DCD aSOutOfMemory - 0xEEE; "%s:  Out of memory\n"|174-0-0-0
+3912|data|DCD aSCouldNotOpenP - 0xF20; "%s:  Could not open package %s:  %s"|148-0-0-0
+3916|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+3920|code|MOV             R7, R0|7-70
+3922|code|LDR             R6, =(off_9E50 - 0xF5E)|12-78
+3924|code|MOV             R8, R1|136-70
+3926|code|LDR             R5, =(off_9E4C - 0xF64)|12-77
+3928|code|MOV             R9, R2|145-70
+3930|code|ADD             R6, PC; off_9E50|126-68
+3932|code|BLX             .init_proc|255-247-240-236
+3936|code|ADD             R5, PC; off_9E4C|125-68
+3938|code|SUBS            R6, R6, R5|118-27
+3940|code|ASRS            R6, R6, #2|182-16
+3942|code|BEQ             locret_F7E|10-208
+3944|code|SUBS            R5, #4|4-61
+3946|code|MOVS            R4, #0|0-36
+3948|code|ADDS            R4, #1|1-52
+3950|code|LDR.W           R3, [R5,#4]!|85-248-4-63
+3954|code|MOV             R0, R7|56-70
+3956|code|MOV             R1, R8|65-70
+3958|code|MOV             R2, R9|74-70
+3960|code|BLX             R3|152-71
+3962|code|CMP             R4, R6|180-66
+3964|code|BNE             loc_F6C|246-209
+3966|code|POP.W           {R3-R9,PC}|189-232-248-131
+3970|data|ALIGN 4|0-191
+3972|data|DCD off_9E50 - 0xF5E|242-142-0-0
+3976|data|DCD off_9E4C - 0xF64|232-142-0-0
+3980|code|BX              LR|112-71
+3982|data|ALIGN 0x10|0-191
+3984|code|PUSH            {R3,LR}; _fini|8-64-45-233
+3988|code|POP             {R3,PC}|8-128-189-232
+4476|data|ALIGN 0x10|0-0-0-0
+40524|data|DCD sub_DFC+1|253-13-0-0
+40528|data|DCD sub_DBC+1|189-13-0-0
+40532|data|DCD 0|0-0-0-0
+40536|data|Elf32_Dyn <1, <1>>; DT_NEEDED libsepol.so.1|1-0-0-0-1-0-0-0
+40544|data|Elf32_Dyn <1, <0x130>>; DT_NEEDED libselinux.so.1|1-0-0-0-48-1-0-0
+40552|data|Elf32_Dyn <1, <0x140>>; DT_NEEDED libc.so.6|1-0-0-0-64-1-0-0
+40560|data|Elf32_Dyn <0xC, <0x940>>; DT_INIT|12-0-0-0-64-9-0-0
+40568|data|Elf32_Dyn <0xD, <0xF90>>; DT_FINI|13-0-0-0-144-15-0-0
+40576|data|Elf32_Dyn <0x19, <0x9E4C>>; DT_INIT_ARRAY|25-0-0-0-76-158-0-0
+40584|data|Elf32_Dyn <0x1B, <4>>; DT_INIT_ARRAYSZ|27-0-0-0-4-0-0-0
+40592|data|Elf32_Dyn <0x1A, <0x9E50>>; DT_FINI_ARRAY|26-0-0-0-80-158-0-0
+40600|data|Elf32_Dyn <0x1C, <4>>; DT_FINI_ARRAYSZ|28-0-0-0-4-0-0-0
+40608|data|Elf32_Dyn <0x6FFFFEF5, <0x1B4>>; DT_GNU_HASH|245-254-255-111-180-1-0-0
+40616|data|Elf32_Dyn <5, <0x518>>; DT_STRTAB|5-0-0-0-24-5-0-0
+40624|data|Elf32_Dyn <6, <0x218>>; DT_SYMTAB|6-0-0-0-24-2-0-0
+40632|data|Elf32_Dyn <0xA, <0x268>>; DT_STRSZ|10-0-0-0-104-2-0-0
+40640|data|Elf32_Dyn <0xB, <0x10>>; DT_SYMENT|11-0-0-0-16-0-0-0
+40648|data|Elf32_Dyn <0x15, <0>>; DT_DEBUG|21-0-0-0-0-0-0-0
+40656|data|Elf32_Dyn <3, <0x9F60>>; DT_PLTGOT|3-0-0-0-96-159-0-0
+40664|data|Elf32_Dyn <2, <0xC8>>; DT_PLTRELSZ|2-0-0-0-200-0-0-0
+40672|data|Elf32_Dyn <0x14, <0x11>>; DT_PLTREL|20-0-0-0-17-0-0-0
+40680|data|Elf32_Dyn <0x17, <0x878>>; DT_JMPREL|23-0-0-0-120-8-0-0
+40688|data|Elf32_Dyn <0x11, <0x800>>; DT_REL|17-0-0-0-0-8-0-0
+40696|data|Elf32_Dyn <0x12, <0x78>>; DT_RELSZ|18-0-0-0-120-0-0-0
+40704|data|Elf32_Dyn <0x13, <8>>; DT_RELENT|19-0-0-0-8-0-0-0
+40712|data|Elf32_Dyn <0x18, <0>>; DT_BIND_NOW|24-0-0-0-0-0-0-0
+40720|data|Elf32_Dyn <0x6FFFFFFB, <1>>; DT_FLAGS_1|251-255-255-111-1-0-0-0
+40728|data|Elf32_Dyn <0x6FFFFFFE, <0x7E0>>; DT_VERNEED|254-255-255-111-224-7-0-0
+40736|data|Elf32_Dyn <0x6FFFFFFF, <1>>; DT_VERNEEDNUM|255-255-255-111-1-0-0-0
+40744|data|Elf32_Dyn <0x6FFFFFF0, <0x780>>; DT_VERSYM|240-255-255-111-128-7-0-0
+40752|data|Elf32_Dyn <0x6FFFFFFA, <7>>; DT_RELCOUNT|250-255-255-111-7-0-0-0
+40760|data|Elf32_Dyn <0>; DT_NULL|0-0-0-0-0-0-0-0
+40800|data|DCD stru_9E58|88-158-0-0
+40804|data|DCD 0|0-0-0-0
+40808|data|DCD dword_0|0-0-0-0
+40812|data|DCD __imp___cxa_finalize|20-160-0-0
+40816|data|DCD __imp_sepol_link_packages|24-160-0-0
+40820|data|DCD __imp_fopen|28-160-0-0
+40824|data|DCD __imp_sepol_module_package_write|32-160-0-0
+40828|data|DCD __imp_free|36-160-0-0
+40832|data|DCD __imp_sepol_module_package_read|40-160-0-0
+40836|data|DCD __imp_sepol_policy_file_set_fp|48-160-0-0
+40840|data|DCD __imp_sepol_module_package_create|52-160-0-0
+40844|data|DCD __imp_perror|56-160-0-0
+40848|data|DCD __imp_sepol_policy_file_create|64-160-0-0
+40852|data|DCD __imp_puts|68-160-0-0
+40856|data|DCD __imp_malloc|72-160-0-0
+40860|data|DCD __imp___libc_start_main|76-160-0-0
+40864|data|DCD __imp_strerror|80-160-0-0
+40868|data|DCD __imp___gmon_start__|132-160-0-0
+40872|data|DCD __imp_exit|84-160-0-0
+40876|data|DCD __imp_getopt|88-160-0-0
+40880|data|DCD __imp___errno_location|92-160-0-0
+40884|data|DCD __imp_memset|96-160-0-0
+40888|data|DCD __imp_sepol_policy_file_free|100-160-0-0
+40892|data|DCD __imp___printf_chk|104-160-0-0
+40896|data|DCD __imp___fprintf_chk|108-160-0-0
+40900|data|DCD __imp_fclose|112-160-0-0
+40904|data|DCD __imp_sepol_module_package_free|116-160-0-0
+40908|data|DCD __imp_abort|124-160-0-0
+40912|data|DCD __libc_csu_fini+1|141-15-0-0
+40916|data|DCD __imp___cxa_finalize|20-160-0-0
+40920|data|DCD _ITM_deregisterTMCloneTable|128-160-0-0
+40924|data|DCD progname|12-160-0-0
+40928|data|DCD optind|44-160-0-0
+40932|data|DCD stderr|60-160-0-0
+40936|data|DCD __imp___gmon_start__|132-160-0-0
+40940|data|DCD __libc_csu_init+1|77-15-0-0
+40944|data|DCD main+1|141-10-0-0
+40948|data|DCD _Jv_RegisterClasses|136-160-0-0
+40952|data|DCD _ITM_registerTMCloneTable|140-160-0-0
+40956|data|DCD optarg|120-160-0-0
+40968|data|% 1; Alternative name is '__bss_start'|255
+40969|data|ALIGN 4|255-255-255

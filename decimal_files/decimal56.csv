@@ -1,0 +1,92 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4,LR}|16-181
+2|code|SUB             SP, SP, #0x20|136-176
+4|code|MOVS            args, #1|1-34
+6|code|MOVS            R3, #0|0-35
+8|code|STRD.W          R2, R3, [SP,#0x28+os_indications]|205-233-2-35
+12|code|ADD             R4, SP, #0x28+global|4-172
+14|code|LDR             R3, =unk_D8|16-75
+16|code|LDM             R3, {cmd-R3}|15-203
+18|code|STM.W           R4, {R0-R3}|132-232-15-0
+22|code|MOV             R1, R4|33-70
+24|code|LDR             R0, =aOsindications; "OsIndications"|14-72
+26|code|ADD             R2, SP, #0x28+oi_size|1-170
+28|code|LDR             R3, =grub_efi_get_variable|14-75
+30|code|BLX             R3; grub_efi_get_variable|152-71
+32|code|CBZ             old_os_indications, loc_3A|88-177
+34|code|LDR             R3, [SP,#0x28+oi_size]|1-155
+36|code|CMP             R3, #8|8-43
+38|code|ITTTT EQ|1-191
+40|code|LDRDEQ.W        R2, R3, [SP,#0x28+os_indications]|221-233-2-35
+44|code|LDRDEQ.W        old_os_indications, R1, [old_os_indications]|208-233-0-1
+48|code|ORREQ           R2, R0|2-67
+50|code|ORREQ           R3, R1|11-67
+52|code|IT EQ|8-191
+54|code|STRDEQ.W        R2, R3, [SP,#0x28+os_indications]|205-233-2-35
+58|code|MOV             R1, R4|33-70
+60|code|LDR             R0, =aOsindications; "OsIndications"|5-72
+62|code|ADD             R2, SP, #0x28+os_indications|2-170
+64|code|MOVS            R3, #8|8-35
+66|code|LDR             R4, =grub_efi_set_variable|6-76
+68|code|BLX             R4; grub_efi_set_variable|160-71
+70|code|CBNZ            status, loc_4C|8-185
+72|code|LDR             R3, =grub_reboot|5-75
+74|code|BLX             R3; grub_reboot|152-71
+76|code|ADD             SP, SP, #0x20 ; ' '|8-176
+78|code|POP             {R4,PC}|16-189
+80|data|DCD unk_D8|216-0-0-0
+84|data|DCD aOsindications; "OsIndications"|232-0-0-0
+88|data|DCD grub_efi_get_variable|80-1-0-0
+92|data|DCD grub_efi_set_variable|88-1-0-0
+96|data|DCD grub_reboot|76-1-0-0
+100|code|LDR             R3, =unk_D8|14-75
+102|code|PUSH            {R4,R5,LR}|48-181
+104|code|SUB             SP, SP, #0x24|137-176
+106|code|LDM             R3, {mod-R3}|15-203
+108|code|ADD             R4, SP, #0x30+var_20|4-172
+110|code|MOVS            R5, #0|0-37
+112|code|STR             R5, [SP,#0x30+var_24]|3-149
+114|code|STM.W           R4, {R0-R3}|132-232-15-0
+118|code|MOV             R1, R4|33-70
+120|code|LDR             R0, =aOsindicationss; "OsIndicationsSupported"|10-72
+122|code|ADD             R2, SP, #0x30+var_24|3-170
+124|code|LDR             R3, =grub_efi_get_variable|10-75
+126|code|BLX             R3; grub_efi_get_variable|152-71
+128|code|CBZ             R0, loc_9C|96-177
+130|code|LDR             R3, [R0]|3-104
+132|code|AND.W           R3, R3, #1|3-240-1-3
+136|code|CBZ             R3, loc_9C|67-177
+138|code|LDR             R3, =aRebootIntoFirm; "Reboot into firmware setup menu."|8-75
+140|code|MOV             R2, R5|42-70
+142|code|STR             R5, [SP,#0x30+var_30]|0-149
+144|code|LDR             R0, =aFwsetup; "fwsetup"|7-72
+146|code|LDR             R1, =(grub_cmd_fwsetup+1)|8-73
+148|code|LDR             R4, =grub_register_command_prio|8-76
+150|code|BLX             R4; grub_register_command_prio|160-71
+152|code|LDR             R3, =cmd|8-75
+154|code|STR             R0, [R3]|24-96
+156|code|ADD             SP, SP, #0x24 ; '$'|9-176
+158|code|POP             {R4,R5,PC}|48-189
+160|data|DCD unk_D8|216-0-0-0
+164|data|DCD aOsindicationss; "OsIndicationsSupported"|246-0-0-0
+168|data|DCD grub_efi_get_variable|80-1-0-0
+172|data|DCD aRebootIntoFirm; "Reboot into firmware setup menu."|21-1-0-0
+176|data|DCD aFwsetup; "fwsetup"|13-1-0-0
+180|data|DCD grub_cmd_fwsetup+1|1-0-0-0
+184|data|DCD grub_register_command_prio|84-1-0-0
+188|data|DCD cmd|72-1-0-0
+192|code|PUSH            {R3,LR}|8-181
+194|code|LDR             R3, =cmd|3-75
+196|code|LDR             R0, [R3]|24-104
+198|code|CBZ             R0, locret_CC|8-177
+200|code|LDR             R3, =grub_unregister_command|2-75
+202|code|BLX             R3; grub_unregister_command|152-71
+204|code|POP             {R3,PC}|8-189
+206|data|ALIGN 0x10|0-191
+208|data|DCD cmd|72-1-0-0
+212|data|DCD grub_unregister_command|92-1-0-0
+232|data|DCB "OsIndications",0|79-115-73-110-100-105-99-97-116-105-111-110-115-0
+246|data|DCB "OsIndicationsSupported",0|79-115-73-110-100-105-99-97-116-105-111-110-115-83-117-112-112-111-114-116-101-100-0
+269|data|DCB "fwsetup",0|102-119-115-101-116-117-112-0
+277|data|DCB "Reboot into firmware setup menu.",0|82-101-98-111-111-116-32-105-110-116-111-32-102-105-114-109-119-97-114-101-32-115-101-116-117-112-32-109-101-110-117-46-0
+311|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

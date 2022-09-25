@@ -1,0 +1,106 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =buf.5492|29-75
+2|code|PUSH            {var-R2,R4-R7,LR}|247-181
+4|code|MOV             R5, var|5-70
+6|code|MOVS            R2, #0|0-34
+8|code|MOV             var, SP|104-70
+10|code|STRB            R2, [R3]|26-112
+12|code|LDR             R3, =grub_get_datetime|27-75
+14|code|BLX             R3; grub_get_datetime|152-71
+16|code|CBNZ            R0, loc_66|72-187
+18|code|LDR             R6, =grub_datetime_names|27-78
+20|code|MOV             R4, R0|4-70
+22|code|LDR             R7, =grub_strcmp|27-79
+24|code|LDR             R0, [var]|40-104
+26|code|LDR.W           R1, [R6,i,LSL#2]|86-248-36-16
+30|code|BLX             R7; grub_strcmp|184-71
+32|code|CBNZ            R0, loc_6A|24-187
+34|code|CMP             i, #5; switch 6 cases|5-44
+36|code|BHI             def_26; jumptable 00000026 default case|22-216
+38|code|TBB.W           [PC,i]; switch jump|223-232-4-240
+42|data|DCB 3; jump table for switch statement|3
+43|data|DCB 6|6
+44|data|DCB 9|9
+45|data|DCB 0xC|12
+46|data|DCB 0xF|15
+47|data|DCB 0x12|18
+48|code|LDRH.W          R3, [SP,#0x20+datetime]; jumptable 00000026 case 0|189-248-0-48
+52|code|B               loc_5C|18-224
+54|code|LDRB.W          R3, [SP,#0x20+datetime.month]; jumptable 00000026 case 1|157-248-2-48
+58|code|B               loc_5C|15-224
+60|code|LDRB.W          R3, [SP,#0x20+datetime.day]; jumptable 00000026 case 2|157-248-3-48
+64|code|B               loc_5C|12-224
+66|code|LDRB.W          R3, [SP,#0x20+datetime.hour]; jumptable 00000026 case 3|157-248-4-48
+70|code|B               loc_5C|9-224
+72|code|LDRB.W          R3, [SP,#0x20+datetime.minute]; jumptable 00000026 case 4|157-248-5-48
+76|code|B               loc_5C|6-224
+78|code|LDRB.W          R3, [SP,#0x20+datetime.second]; jumptable 00000026 case 5|157-248-6-48
+82|code|B               loc_5C|3-224
+84|code|MOV             R0, SP; jumptable 00000026 default case|104-70
+86|code|LDR             R3, =grub_get_weekday_name|12-75
+88|code|BLX             R3; grub_get_weekday_name|152-71
+90|code|B               loc_72|10-224
+92|code|LDR             R0, =buf.5492|6-72
+94|code|MOVS            R1, #6|6-33
+96|code|LDR             R2, =unk_118|10-74
+98|code|LDR             i, =grub_snprintf|11-76
+100|code|BLX             R4; grub_snprintf|160-71
+102|code|LDR             R0, =buf.5492|4-72
+104|code|B               loc_72|3-224
+106|code|ADDS            i, #1|1-52
+108|code|CMP             i, #7|7-44
+110|code|BNE             loc_18|211-209
+112|code|B               loc_66|249-231
+114|code|ADD             SP, SP, #0xC|3-176
+116|code|POP             {R4-R7,PC}|240-189
+118|data|ALIGN 4|0-191
+120|data|DCD buf.5492|85-1-0-0
+124|data|DCD grub_get_datetime|92-1-0-0
+128|data|DCD grub_datetime_names|252-0-0-0
+132|data|DCD grub_strcmp|112-1-0-0
+136|data|DCD grub_get_weekday_name|104-1-0-0
+140|data|DCD unk_118|24-1-0-0
+144|data|DCD grub_snprintf|100-1-0-0
+148|code|PUSH            {R3-R7,LR}|248-181
+150|code|MOVS            R4, #0|0-36
+152|code|LDR             R7, =grub_datetime_names|7-79
+154|code|LDR             R6, =grub_register_variable_hook|8-78
+156|code|LDR.W           R5, [R7,i,LSL#2]|87-248-36-80
+160|code|MOVS            R2, #0|0-34
+162|code|LDR             R1, =(grub_read_hook_datetime+1)|7-73
+164|code|ADDS            i, #1|1-52
+166|code|MOV             R0, R5|40-70
+168|code|BLX             R6; grub_register_variable_hook|176-71
+170|code|MOV             R0, R5|40-70
+172|code|LDR             R3, =grub_env_export|5-75
+174|code|BLX             R3; grub_env_export|152-71
+176|code|CMP             i, #7|7-44
+178|code|BNE             loc_9C|243-209
+180|code|POP             {R3-R7,PC}|248-189
+182|data|ALIGN 4|0-191
+184|data|DCD grub_datetime_names|252-0-0-0
+188|data|DCD grub_register_variable_hook|108-1-0-0
+192|data|DCD grub_read_hook_datetime+1|1-0-0-0
+196|data|DCD grub_env_export|96-1-0-0
+200|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+204|code|MOVS            R4, #0|0-36
+206|code|LDR.W           R8, =grub_datetime_names|223-248-40-128
+210|code|LDR             R7, =grub_register_variable_hook|7-79
+212|code|LDR             R6, =grub_env_unset|7-78
+214|code|LDR.W           R5, [R8,i,LSL#2]|88-248-36-80
+218|code|MOVS            R1, #0|0-33
+220|code|MOV             R2, R1|10-70
+222|code|ADDS            i, #1|1-52
+224|code|MOV             R0, R5|40-70
+226|code|BLX             R7; grub_register_variable_hook|184-71
+228|code|MOV             R0, R5|40-70
+230|code|BLX             R6; grub_env_unset|176-71
+232|code|CMP             i, #7|7-44
+234|code|BNE             loc_D6|244-209
+236|code|POP.W           {i-R8,PC}|189-232-240-129
+240|data|DCD grub_register_variable_hook|108-1-0-0
+244|data|DCD grub_env_unset|116-1-0-0
+248|data|DCD grub_datetime_names|252-0-0-0
+252|data|DCD aYear, aMonth, aDay, aHour, aMinute, aSecond, aWeekday; "YEAR" ...|27-1-0-0-32-1-0-0-38-1-0-0-42-1-0-0-47-1-0-0-54-1-0-0-61-1-0-0
+325|data||255
+326|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

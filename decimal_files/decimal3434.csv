@@ -1,0 +1,912 @@
+address|type|disassembly|bytes
+0|data|DCD 0x464C457F; File format: \x7FELF|127-69-76-70
+4|data|DCB 1; File class: 32-bit|1
+5|data|DCB 1; Data encoding: little-endian|1
+6|data|DCB 1; File version|1
+7|data|DCB 0; OS/ABI: UNIX System V ABI|0
+8|data|DCB 0; ABI Version|0
+9|data|DCB 0, 0, 0, 0, 0, 0, 0; Padding|0-0-0-0-0-0-0
+16|data|DCW 3; File type: Shared object|3-0
+18|data|DCW 0x28; Machine: ARM|40-0
+20|data|DCD 1; File version|1-0-0-0
+24|data|DCD start+1; Entry point|129-13-0-0
+28|data|DCD 0x34; PHT file offset|52-0-0-0
+32|data|DCD 0x2130; SHT file offset|48-33-0-0
+36|data|DCD 0x5000402; Processor-specific flags|2-4-0-5
+40|data|DCW 0x34; ELF header size|52-0
+42|data|DCW 0x20; PHT entry size|32-0
+44|data|DCW 9; Number of entries in PHT|9-0
+46|data|DCW 0x28; SHT entry size|40-0
+48|data|DCW 0x1B; Number of entries in SHT|27-0
+50|data|DCW 0x1A; SHT entry index for string table|26-0
+52|data|DCD 0x70000001; Type: EXIDX|1-0-0-112
+56|data|DCD 0x1050; File offset|80-16-0-0
+60|data|DCD unk_1050; Virtual address|80-16-0-0
+64|data|DCD 0x1050; Physical address|80-16-0-0
+68|data|DCD 8; Size in file image|8-0-0-0
+72|data|DCD 8; Size in memory image|8-0-0-0
+76|data|DCD 4; Flags|4-0-0-0
+80|data|DCD 4; Alignment|4-0-0-0
+84|data|DCD 6; Type: PHDR|6-0-0-0
+88|data|DCD 0x34; File offset|52-0-0-0
+92|data|DCD dword_34; Virtual address|52-0-0-0
+96|data|DCD 0x34; Physical address|52-0-0-0
+100|data|DCD 0x120; Size in file image|32-1-0-0
+104|data|DCD 0x120; Size in memory image|32-1-0-0
+108|data|DCD 5; Flags|5-0-0-0
+112|data|DCD 4; Alignment|4-0-0-0
+116|data|DCD 3; Type: INTERP|3-0-0-0
+120|data|DCD 0x154; File offset|84-1-0-0
+124|data|DCD aLibLdLinuxArmh; Virtual address|84-1-0-0
+128|data|DCD 0x154; Physical address|84-1-0-0
+132|data|DCD 0x19; Size in file image|25-0-0-0
+136|data|DCD 0x19; Size in memory image|25-0-0-0
+140|data|DCD 4; Flags|4-0-0-0
+144|data|DCD 1; Alignment|1-0-0-0
+148|data|DCD 1; Type: LOAD|1-0-0-0
+152|data|DCD 0; File offset|0-0-0-0
+156|data|DCD 0; Virtual address|0-0-0-0
+160|data|DCD 0; Physical address|0-0-0-0
+164|data|DCD 0x105C; Size in file image|92-16-0-0
+168|data|DCD 0x105C; Size in memory image|92-16-0-0
+172|data|DCD 5; Flags|5-0-0-0
+176|data|DCD 0x10000; Alignment|0-0-1-0
+180|data|DCD 1; Type: LOAD|1-0-0-0
+184|data|DCD 0x1E38; File offset|56-30-0-0
+188|data|DCD off_11E38; Virtual address|56-30-1-0
+192|data|DCD 0x11E38; Physical address|56-30-1-0
+196|data|DCD 0x1D0; Size in file image|208-1-0-0
+200|data|DCD 0x1DC; Size in memory image|220-1-0-0
+204|data|DCD 6; Flags|6-0-0-0
+208|data|DCD 0x10000; Alignment|0-0-1-0
+212|data|DCD 2; Type: DYNAMIC|2-0-0-0
+216|data|DCD 0x1E44; File offset|68-30-0-0
+220|data|DCD stru_11E44; Virtual address|68-30-1-0
+224|data|DCD 0x11E44; Physical address|68-30-1-0
+228|data|DCD 0x128; Size in file image|40-1-0-0
+232|data|DCD 0x128; Size in memory image|40-1-0-0
+236|data|DCD 6; Flags|6-0-0-0
+240|data|DCD 4; Alignment|4-0-0-0
+244|data|DCD 4; Type: NOTE|4-0-0-0
+248|data|DCD 0x170; File offset|112-1-0-0
+252|data|DCD dword_170; Virtual address|112-1-0-0
+256|data|DCD 0x170; Physical address|112-1-0-0
+260|data|DCD 0x44; Size in file image|68-0-0-0
+264|data|DCD 0x44; Size in memory image|68-0-0-0
+268|data|DCD 4; Flags|4-0-0-0
+272|data|DCD 4; Alignment|4-0-0-0
+276|data|DCD 0x6474E551; Type: STACK|81-229-116-100
+280|data|DCD 0; File offset|0-0-0-0
+284|data|DCD 0; Virtual address|0-0-0-0
+288|data|DCD 0; Physical address|0-0-0-0
+292|data|DCD 0; Size in file image|0-0-0-0
+296|data|DCD 0; Size in memory image|0-0-0-0
+300|data|DCD 6; Flags|6-0-0-0
+304|data|DCD 0x10; Alignment|16-0-0-0
+308|data|DCD 0x6474E552; Type: RO-AFTER|82-229-116-100
+312|data|DCD 0x1E38; File offset|56-30-0-0
+316|data|DCD off_11E38; Virtual address|56-30-1-0
+320|data|DCD 0x11E38; Physical address|56-30-1-0
+324|data|DCD 0x1C8; Size in file image|200-1-0-0
+328|data|DCD 0x1C8; Size in memory image|200-1-0-0
+332|data|DCD 4; Flags|4-0-0-0
+336|data|DCD 1; Alignment|1-0-0-0
+340|data|DCB "/lib/ld-linux-armhf.so.3",0|47-108-105-98-47-108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+365|data|DCB 0, 0, 0|0-0-0
+368|data|DCD 4; Name Size|4-0-0-0
+372|data|DCD 0x10; Desc Size|16-0-0-0
+376|data|DCD 1; Type: NT_GNU_ABI_TAG|1-0-0-0
+380|data|DCB "GNU",0; Name|71-78-85-0
+384|data|DCD 0, 2, 6, 0x20; ABI: Linux 2.6.32|0-0-0-0-2-0-0-0-6-0-0-0-32-0-0-0
+400|data|DCD 4; Name Size|4-0-0-0
+404|data|DCD 0x14; Desc Size|20-0-0-0
+408|data|DCD 3; Type: NT_GNU_BUILD_ID|3-0-0-0
+412|data|DCB "GNU",0; Name|71-78-85-0
+416|data|DCB 0x13, 0x2B, 0x5A, 0xB8, 0x6A, 0x11, 0xF8, 0xAA, 0xEE; Desc|19-43-90-184-106-17-248-170-238-84-167-9-119-132-38-88-233-174-227-176
+436|data|DCD 3|3-0-0-0
+440|data|DCD 0x20|32-0-0-0
+444|data|DCD 4|4-0-0-0
+448|data|DCD 7|7-0-0-0
+452|data|DCD 0x40001101, 0x89200080, 0x4D000408, 0x40440580|1-17-0-64-128-0-32-137-8-4-0-77-128-5-68-64
+468|data|DCD 0x20, 0x24, 0x29|32-0-0-0-36-0-0-0-41-0-0-0
+480|data|DCD 0xD643096A, 0xE834AF00, 0x7C92E3BA, 0xECD54543, 0x9EE3CDDA|106-9-67-214-0-175-52-232-186-227-146-124-67-69-213-236-218-205-227-158-190-218-87-27-216-113-88-28-106-127-154-124-185-141-241-14-12-20-226-158-234-211-239-14-118-84-60-148-89-239-151-121
+532|data|Elf32_Sym <0>|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+548|data|Elf32_Sym <byte_4E4 - byte_4E4, aLibLdLinuxArmh, 0, 3, 0, 1>; "/lib/ld-linux-armhf.so.3"|0-0-0-0-84-1-0-0-0-0-0-0-3-0-1-0
+564|data|Elf32_Sym <byte_4E4 - byte_4E4, dword_11E40, 0, 3, 0, 0x14>|0-0-0-0-64-30-1-0-0-0-0-0-3-0-20-0
+580|data|Elf32_Sym <aTraceGetWireLe - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_get_wire_length"|252-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+596|data|Elf32_Sym <aAbort - byte_4E4, dword_0, 0, 0x12, 0, 0>; "abort"|152-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+612|data|Elf32_Sym <aTracePerror - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_perror"|138-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+628|data|Elf32_Sym <aMemcmp - byte_4E4, dword_0, 0, 0x12, 0, 0>; "memcmp"|165-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+644|data|Elf32_Sym <aLibcStartMain - byte_4E4, dword_0, 0, 0x12, 0, 0>; "__libc_start_main"|215-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+660|data|Elf32_Sym <aGmonStart - byte_4E4, dword_0, 0, 0x20, 0, 0>; "__gmon_start__"|15-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+676|data|Elf32_Sym <aJvRegisterclas - byte_4E4, dword_0, 0, 0x20, 0, 0>; "_Jv_RegisterClasses"|30-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+692|data|Elf32_Sym <aTraceDumpPacke - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_dump_packet"|82-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+708|data|Elf32_Sym <aPrintfChk - byte_4E4, dword_0, 0, 0x12, 0, 0>; "__printf_chk"|110-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+724|data|Elf32_Sym <aTraceIsErr - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_is_err"|205-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+740|data|Elf32_Sym <aTraceReadPacke - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_read_packet"|175-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+756|data|Elf32_Sym <aTraceStart - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_start"|193-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+772|data|Elf32_Sym <aTraceCreatePac - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_create_packet"|218-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+788|data|Elf32_Sym <aItmDeregistert - byte_4E4, dword_0, 0, 0x20, 0, 0>; "_ITM_deregisterTMCloneTable"|50-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+804|data|Elf32_Sym <aOptind - byte_4E4, dword_0, 0, 0x11, 0, 0>; "optind"|123-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+820|data|Elf32_Sym <aItmRegistertmc - byte_4E4, dword_0, 0, 0x20, 0, 0>; "_ITM_registerTMCloneTable"|78-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+836|data|Elf32_Sym <aTraceDestroy - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_destroy"|238-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+852|data|Elf32_Sym <aGetopt - byte_4E4, dword_0, 0, 0x12, 0, 0>; "getopt"|172-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+868|data|Elf32_Sym <aStrtol - byte_4E4, dword_0, 0, 0x12, 0, 0>; "strtol"|158-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+884|data|Elf32_Sym <aStackChkGuard - byte_4E4, dword_0, 0, 0x11, 0, 0>; "__stack_chk_guard"|253-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+900|data|Elf32_Sym <aFwrite - byte_4E4, dword_0, 0, 0x12, 0, 0>; "fwrite"|193-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+916|data|Elf32_Sym <aTraceCreate - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_create"|104-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+932|data|Elf32_Sym <aStackChkFail - byte_4E4, dword_0, 0, 0x12, 0, 0>; "__stack_chk_fail"|135-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+948|data|Elf32_Sym <aPuts - byte_4E4, dword_0, 0, 0x12, 0, 0>; "puts"|130-1-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+964|data|Elf32_Sym <aTraceGetPacket - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_get_packet_buffer"|151-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+980|data|Elf32_Sym <aStderr - byte_4E4, dword_0, 0, 0x11, 0, 0>; "stderr"|186-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+996|data|Elf32_Sym <aTraceDestroyPa - byte_4E4, dword_0, 0, 0x12, 0, 0>; "trace_destroy_packet"|117-0-0-0-0-0-0-0-0-0-0-0-18-0-0-0
+1012|data|Elf32_Sym <aOptarg - byte_4E4, dword_0, 0, 0x11, 0, 0>; "optarg"|179-1-0-0-0-0-0-0-0-0-0-0-17-0-0-0
+1028|data|Elf32_Sym <aCxaFinalize - byte_4E4, dword_0, 0, 0x22, 0, 0>; "__cxa_finalize"|200-1-0-0-0-0-0-0-0-0-0-0-34-0-0-0
+1044|data|Elf32_Sym <aDataStart - byte_4E4, __data_start, 0, 0x10, 0, 0x17>; "__data_start"|15-2-0-0-0-32-1-0-0-0-0-0-16-0-23-0
+1060|data|Elf32_Sym <aBssEnd+1 - byte_4E4, _end, 0, 0x10, 0, 0x18>; "_bss_end__"|62-2-0-0-20-32-1-0-0-0-0-0-16-0-24-0
+1076|data|Elf32_Sym <aEnd_0 - byte_4E4, _end, 0, 0x10, 0, 0x18>; "_end"|81-2-0-0-20-32-1-0-0-0-0-0-16-0-24-0
+1092|data|Elf32_Sym <aEdata - byte_4E4, __bss_start__, 0, 0x10, 0, 0x17>; "_edata"|28-2-0-0-8-32-1-0-0-0-0-0-16-0-23-0
+1108|data|Elf32_Sym <aLibcCsuInit - byte_4E4, __libc_csu_init+1, 0x40, 0x12, 0, \; "__libc_csu_init"|102-2-0-0-253-14-0-0-64-0-0-0-18-0-13-0
+1124|data|Elf32_Sym <aBssEnd - byte_4E4, _end, 0, 0x10, 0, 0x18>; "__bss_end__"|61-2-0-0-20-32-1-0-0-0-0-0-16-0-24-0
+1140|data|Elf32_Sym <aBssStart - byte_4E4, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start"|35-2-0-0-8-32-1-0-0-0-0-0-16-0-24-0
+1156|data|Elf32_Sym <aLibcStartMain+0xD - byte_4E4, main+1, 0x32C, 0x12, 0, 0xD>; "main"|228-1-0-0-85-10-0-0-44-3-0-0-18-0-13-0
+1172|data|Elf32_Sym <aLibcCsuInit+0xA - byte_4E4, .init_proc, 0, 0x12, 0, 0xB>; "_init"|112-2-0-0-40-9-0-0-0-0-0-0-18-0-11-0
+1188|data|Elf32_Sym <aLibcCsuFini - byte_4E4, __libc_csu_fini+1, 2, 0x12, 0, \; "__libc_csu_fini"|86-2-0-0-61-15-0-0-2-0-0-0-18-0-13-0
+1204|data|Elf32_Sym <aLibcCsuFini+0xA - byte_4E4, .term_proc, 0, 0x12, 0, 0xE>; "_fini"|96-2-0-0-64-15-0-0-0-0-0-0-18-0-14-0
+1220|data|Elf32_Sym <aBssStart_0 - byte_4E4, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start__"|47-2-0-0-8-32-1-0-0-0-0-0-16-0-24-0
+1236|data|Elf32_Sym <aEnd - byte_4E4, _end, 0, 0x10, 0, 0x18>; "__end__"|73-2-0-0-20-32-1-0-0-0-0-0-16-0-24-0
+1252|data|DCB 0|0
+1253|data|DCB "libtrace.so.3",0|108-105-98-116-114-97-99-101-46-115-111-46-51-0
+1267|data|DCB "__gmon_start__",0|95-95-103-109-111-110-95-115-116-97-114-116-95-95-0
+1282|data|DCB "_Jv_RegisterClasses",0|95-74-118-95-82-101-103-105-115-116-101-114-67-108-97-115-115-101-115-0
+1302|data|DCB "_ITM_deregisterTMCloneTable",0|95-73-84-77-95-100-101-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+1330|data|DCB "_ITM_registerTMCloneTable",0|95-73-84-77-95-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+1356|data|DCB "trace_create",0|116-114-97-99-101-95-99-114-101-97-116-101-0
+1369|data|DCB "trace_destroy_packet",0|116-114-97-99-101-95-100-101-115-116-114-111-121-95-112-97-99-107-101-116-0
+1390|data|DCB "trace_perror",0|116-114-97-99-101-95-112-101-114-114-111-114-0
+1403|data|DCB "trace_get_packet_buffer",0|116-114-97-99-101-95-103-101-116-95-112-97-99-107-101-116-95-98-117-102-102-101-114-0
+1427|data|DCB "trace_read_packet",0|116-114-97-99-101-95-114-101-97-100-95-112-97-99-107-101-116-0
+1445|data|DCB "trace_start",0|116-114-97-99-101-95-115-116-97-114-116-0
+1457|data|DCB "trace_is_err",0|116-114-97-99-101-95-105-115-95-101-114-114-0
+1470|data|DCB "trace_create_packet",0|116-114-97-99-101-95-99-114-101-97-116-101-95-112-97-99-107-101-116-0
+1490|data|DCB "trace_destroy",0|116-114-97-99-101-95-100-101-115-116-114-111-121-0
+1504|data|DCB "trace_get_wire_length",0|116-114-97-99-101-95-103-101-116-95-119-105-114-101-95-108-101-110-103-116-104-0
+1526|data|DCB "libwandio.so.1",0|108-105-98-119-97-110-100-105-111-46-115-111-46-49-0
+1541|data|DCB "libncurses.so.5",0|108-105-98-110-99-117-114-115-101-115-46-115-111-46-53-0
+1557|data|DCB "libtinfo.so.5",0|108-105-98-116-105-110-102-111-46-115-111-46-53-0
+1571|data|DCB "libpacketdump.so.3",0|108-105-98-112-97-99-107-101-116-100-117-109-112-46-115-111-46-51-0
+1590|data|DCB "trace_dump_packet",0|116-114-97-99-101-95-100-117-109-112-95-112-97-99-107-101-116-0
+1608|data|DCB "libc.so.6",0|108-105-98-99-46-115-111-46-54-0
+1618|data|DCB "__printf_chk",0|95-95-112-114-105-110-116-102-95-99-104-107-0
+1631|data|DCB "optind",0|111-112-116-105-110-100-0
+1638|data|DCB "puts",0|112-117-116-115-0
+1643|data|DCB "__stack_chk_fail",0|95-95-115-116-97-99-107-95-99-104-107-95-102-97-105-108-0
+1660|data|DCB "abort",0|97-98-111-114-116-0
+1666|data|DCB "strtol",0|115-116-114-116-111-108-0
+1673|data|DCB "memcmp",0|109-101-109-99-109-112-0
+1680|data|DCB "getopt",0|103-101-116-111-112-116-0
+1687|data|DCB "optarg",0|111-112-116-97-114-103-0
+1694|data|DCB "stderr",0|115-116-100-101-114-114-0
+1701|data|DCB "fwrite",0|102-119-114-105-116-101-0
+1708|data|DCB "__cxa_finalize",0|95-95-99-120-97-95-102-105-110-97-108-105-122-101-0
+1723|data|DCB "__libc_start_main",0|95-95-108-105-98-99-95-115-116-97-114-116-95-109-97-105-110-0
+1741|data|DCB "ld-linux-armhf.so.3",0|108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+1761|data|DCB "__stack_chk_guard",0|95-95-115-116-97-99-107-95-99-104-107-95-103-117-97-114-100-0
+1779|data|DCB "__data_start",0|95-95-100-97-116-97-95-115-116-97-114-116-0
+1792|data|DCB "_edata",0|95-101-100-97-116-97-0
+1799|data|DCB "__bss_start",0|95-95-98-115-115-95-115-116-97-114-116-0
+1811|data|DCB "__bss_start__",0|95-95-98-115-115-95-115-116-97-114-116-95-95-0
+1825|data|DCB "__bss_end__",0|95-95-98-115-115-95-101-110-100-95-95-0
+1837|data|DCB "__end__",0|95-95-101-110-100-95-95-0
+1845|data|DCB "_end",0|95-101-110-100-0
+1850|data|DCB "__libc_csu_fini",0|95-95-108-105-98-99-95-99-115-117-95-102-105-110-105-0
+1866|data|DCB "__libc_csu_init",0|95-95-108-105-98-99-95-99-115-117-95-105-110-105-116-0
+1882|data|DCB "GLIBC_2.4",0|71-76-73-66-67-95-50-46-52-0
+1892|data|DCW 0|0-0
+1894|data|DCW 0|0-0
+1896|data|DCW 0|0-0
+1898|data|DCW 0; local  symbol: trace_get_wire_length|0-0
+1900|data|DCW 2; abort@@GLIBC_2.4|2-0
+1902|data|DCW 0; local  symbol: trace_perror|0-0
+1904|data|DCW 2; memcmp@@GLIBC_2.4|2-0
+1906|data|DCW 2; __libc_start_main@@GLIBC_2.4|2-0
+1908|data|DCW 0; local  symbol: __gmon_start__|0-0
+1910|data|DCW 0; local  symbol: _Jv_RegisterClasses|0-0
+1912|data|DCW 0; local  symbol: trace_dump_packet|0-0
+1914|data|DCW 2; __printf_chk@@GLIBC_2.4|2-0
+1916|data|DCW 0; local  symbol: trace_is_err|0-0
+1918|data|DCW 0; local  symbol: trace_read_packet|0-0
+1920|data|DCW 0; local  symbol: trace_start|0-0
+1922|data|DCW 0; local  symbol: trace_create_packet|0-0
+1924|data|DCW 0; local  symbol: _ITM_deregisterTMCloneTable|0-0
+1926|data|DCW 2; optind@@GLIBC_2.4|2-0
+1928|data|DCW 0; local  symbol: _ITM_registerTMCloneTable|0-0
+1930|data|DCW 0; local  symbol: trace_destroy|0-0
+1932|data|DCW 2; getopt@@GLIBC_2.4|2-0
+1934|data|DCW 2; strtol@@GLIBC_2.4|2-0
+1936|data|DCW 3; __stack_chk_guard@@GLIBC_2.4|3-0
+1938|data|DCW 2; fwrite@@GLIBC_2.4|2-0
+1940|data|DCW 0; local  symbol: trace_create|0-0
+1942|data|DCW 2; __stack_chk_fail@@GLIBC_2.4|2-0
+1944|data|DCW 2; puts@@GLIBC_2.4|2-0
+1946|data|DCW 0; local  symbol: trace_get_packet_buffer|0-0
+1948|data|DCW 2; stderr@@GLIBC_2.4|2-0
+1950|data|DCW 0; local  symbol: trace_destroy_packet|0-0
+1952|data|DCW 2; optarg@@GLIBC_2.4|2-0
+1954|data|DCW 2; __cxa_finalize@@GLIBC_2.4|2-0
+1956|data|DCW 1; global symbol: __data_start|1-0
+1958|data|DCW 1; global symbol: _bss_end__|1-0
+1960|data|DCW 1; global symbol: _end|1-0
+1962|data|DCW 1; global symbol: _edata|1-0
+1964|data|DCW 1; global symbol: __libc_csu_init|1-0
+1966|data|DCW 1; global symbol: __bss_end__|1-0
+1968|data|DCW 1; global symbol: __bss_start|1-0
+1970|data|DCW 1; global symbol: main|1-0
+1972|data|DCW 1; global symbol: _init|1-0
+1974|data|DCW 1; global symbol: __libc_csu_fini|1-0
+1976|data|DCW 1; global symbol: _fini|1-0
+1978|data|DCW 1; global symbol: __bss_start__|1-0
+1980|data|DCW 1; global symbol: __end__|1-0
+1982|data|DCW 0|0-0
+1984|data|Elf32_Verneed <1, 1, aLdLinuxArmhfSo - byte_4E4, 0x10, 0x20>; "ld-linux-armhf.so.3"|1-0-1-0-233-1-0-0-16-0-0-0-32-0-0-0
+2000|data|Elf32_Vernaux <0xD696914, 0, 3, aGlibc24 - byte_4E4, 0>; "GLIBC_2.4"|20-105-105-13-0-0-3-0-118-2-0-0-0-0-0-0
+2016|data|Elf32_Verneed <1, 1, aLibcSo6 - byte_4E4, 0x10, 0>; "libc.so.6"|1-0-1-0-100-1-0-0-16-0-0-0-0-0-0-0
+2032|data|Elf32_Vernaux <0xD696914, 0, 2, aGlibc24 - byte_4E4, 0>; "GLIBC_2.4"|20-105-105-13-0-0-2-0-118-2-0-0-0-0-0-0
+2048|data|Elf32_Rel <0x11E38, 0x17>; R_ARM_RELATIVE|56-30-1-0-23-0-0-0
+2056|data|Elf32_Rel <0x11E3C, 0x17>; R_ARM_RELATIVE|60-30-1-0-23-0-0-0
+2064|data|Elf32_Rel <0x11FD0, 0x17>; R_ARM_RELATIVE|208-31-1-0-23-0-0-0
+2072|data|Elf32_Rel <0x11FE8, 0x17>; R_ARM_RELATIVE|232-31-1-0-23-0-0-0
+2080|data|Elf32_Rel <0x11FFC, 0x17>; R_ARM_RELATIVE|252-31-1-0-23-0-0-0
+2088|data|Elf32_Rel <0x12004, 0x17>; R_ARM_RELATIVE|4-32-1-0-23-0-0-0
+2096|data|Elf32_Rel <0x11FD4, 0x815>; R_ARM_GLOB_DAT __gmon_start__|212-31-1-0-21-8-0-0
+2104|data|Elf32_Rel <0x11FD8, 0x915>; R_ARM_GLOB_DAT _Jv_RegisterClasses|216-31-1-0-21-9-0-0
+2112|data|Elf32_Rel <0x11FDC, 0x1015>; R_ARM_GLOB_DAT _ITM_deregisterTMCloneTable|220-31-1-0-21-16-0-0
+2120|data|Elf32_Rel <0x11FE0, 0x1115>; R_ARM_GLOB_DAT optind|224-31-1-0-21-17-0-0
+2128|data|Elf32_Rel <0x11FE4, 0x1215>; R_ARM_GLOB_DAT _ITM_registerTMCloneTable|228-31-1-0-21-18-0-0
+2136|data|Elf32_Rel <0x11FEC, 0x1615>; R_ARM_GLOB_DAT __stack_chk_guard|236-31-1-0-21-22-0-0
+2144|data|Elf32_Rel <0x11FF0, 0x1C15>; R_ARM_GLOB_DAT stderr|240-31-1-0-21-28-0-0
+2152|data|Elf32_Rel <0x11FF4, 0x1E15>; R_ARM_GLOB_DAT optarg|244-31-1-0-21-30-0-0
+2160|data|Elf32_Rel <0x11FF8, 0x1F15>; R_ARM_GLOB_DAT __cxa_finalize|248-31-1-0-21-31-0-0
+2168|data|Elf32_Rel <0x11F78, 0x316>; R_ARM_JUMP_SLOT trace_get_wire_length|120-31-1-0-22-3-0-0
+2176|data|Elf32_Rel <0x11F7C, 0x416>; R_ARM_JUMP_SLOT abort|124-31-1-0-22-4-0-0
+2184|data|Elf32_Rel <0x11F80, 0x516>; R_ARM_JUMP_SLOT trace_perror|128-31-1-0-22-5-0-0
+2192|data|Elf32_Rel <0x11F84, 0x616>; R_ARM_JUMP_SLOT memcmp|132-31-1-0-22-6-0-0
+2200|data|Elf32_Rel <0x11F88, 0x716>; R_ARM_JUMP_SLOT __libc_start_main|136-31-1-0-22-7-0-0
+2208|data|Elf32_Rel <0x11F8C, 0x816>; R_ARM_JUMP_SLOT __gmon_start__|140-31-1-0-22-8-0-0
+2216|data|Elf32_Rel <0x11F90, 0xA16>; R_ARM_JUMP_SLOT trace_dump_packet|144-31-1-0-22-10-0-0
+2224|data|Elf32_Rel <0x11F94, 0xB16>; R_ARM_JUMP_SLOT __printf_chk|148-31-1-0-22-11-0-0
+2232|data|Elf32_Rel <0x11F98, 0xC16>; R_ARM_JUMP_SLOT trace_is_err|152-31-1-0-22-12-0-0
+2240|data|Elf32_Rel <0x11F9C, 0xD16>; R_ARM_JUMP_SLOT trace_read_packet|156-31-1-0-22-13-0-0
+2248|data|Elf32_Rel <0x11FA0, 0xE16>; R_ARM_JUMP_SLOT trace_start|160-31-1-0-22-14-0-0
+2256|data|Elf32_Rel <0x11FA4, 0xF16>; R_ARM_JUMP_SLOT trace_create_packet|164-31-1-0-22-15-0-0
+2264|data|Elf32_Rel <0x11FA8, 0x1316>; R_ARM_JUMP_SLOT trace_destroy|168-31-1-0-22-19-0-0
+2272|data|Elf32_Rel <0x11FAC, 0x1416>; R_ARM_JUMP_SLOT getopt|172-31-1-0-22-20-0-0
+2280|data|Elf32_Rel <0x11FB0, 0x1516>; R_ARM_JUMP_SLOT strtol|176-31-1-0-22-21-0-0
+2288|data|Elf32_Rel <0x11FB4, 0x1716>; R_ARM_JUMP_SLOT fwrite|180-31-1-0-22-23-0-0
+2296|data|Elf32_Rel <0x11FB8, 0x1816>; R_ARM_JUMP_SLOT trace_create|184-31-1-0-22-24-0-0
+2304|data|Elf32_Rel <0x11FBC, 0x1916>; R_ARM_JUMP_SLOT __stack_chk_fail|188-31-1-0-22-25-0-0
+2312|data|Elf32_Rel <0x11FC0, 0x1A16>; R_ARM_JUMP_SLOT puts|192-31-1-0-22-26-0-0
+2320|data|Elf32_Rel <0x11FC4, 0x1B16>; R_ARM_JUMP_SLOT trace_get_packet_buffer|196-31-1-0-22-27-0-0
+2328|data|Elf32_Rel <0x11FC8, 0x1D16>; R_ARM_JUMP_SLOT trace_destroy_packet|200-31-1-0-22-29-0-0
+2336|data|Elf32_Rel <0x11FCC, 0x1F16>; R_ARM_JUMP_SLOT __cxa_finalize|204-31-1-0-22-31-0-0
+2344|code|PUSH            {R3,LR}; _init|8-64-45-233
+2348|code|BL              sub_DC8|37-1-0-235
+2352|code|POP             {R3,PC}|8-128-189-232
+2356|code|PUSH            {LR}|4-224-45-229
+2360|code|LDR             LR, =(_GLOBAL_OFFSET_TABLE_ - 0x944)|4-224-159-229
+2364|code|ADD             LR, PC, LR; _GLOBAL_OFFSET_TABLE_|14-224-143-224
+2368|code|LDR             PC, [LR,#8]!; dword_0|8-240-190-229
+2372|data|DCD _GLOBAL_OFFSET_TABLE_ - 0x944|40-22-1-0
+2376|code|ADR             R12, 0x950|0-198-143-226
+2380|code|ADD             R12, R12, #0x11000|17-202-140-226
+2384|code|LDR             PC, [R12,#(trace_get_wire_length_ptr - 0x11950)]!; __imp_trace_get_wire_length|40-246-188-229
+2388|code|ADR             R12, 0x95C|0-198-143-226
+2392|code|ADD             R12, R12, #0x11000|17-202-140-226
+2396|code|LDR             PC, [R12,#(abort_ptr - 0x1195C)]!; __imp_abort|32-246-188-229
+2400|code|ADR             R12, 0x968|0-198-143-226
+2404|code|ADD             R12, R12, #0x11000|17-202-140-226
+2408|code|LDR             PC, [R12,#(trace_perror_ptr - 0x11968)]!; __imp_trace_perror|24-246-188-229
+2412|code|ADR             R12, 0x974|0-198-143-226
+2416|code|ADD             R12, R12, #0x11000|17-202-140-226
+2420|code|LDR             PC, [R12,#(memcmp_ptr - 0x11974)]!; __imp_memcmp|16-246-188-229
+2424|code|ADR             R12, 0x980|0-198-143-226
+2428|code|ADD             R12, R12, #0x11000|17-202-140-226
+2432|code|LDR             PC, [R12,#(__libc_start_main_ptr - 0x11980)]!; __imp___libc_start_main|8-246-188-229
+2436|code|ADR             R12, 0x98C|0-198-143-226
+2440|code|ADD             R12, R12, #0x11000|17-202-140-226
+2444|code|LDR             PC, [R12,#(__gmon_start___ptr - 0x1198C)]!; __imp___gmon_start__|0-246-188-229
+2448|code|ADR             R12, 0x998|0-198-143-226
+2452|code|ADD             R12, R12, #0x11000|17-202-140-226
+2456|code|LDR             PC, [R12,#(trace_dump_packet_ptr - 0x11998)]!; __imp_trace_dump_packet|248-245-188-229
+2460|code|ADR             R12, 0x9A4|0-198-143-226
+2464|code|ADD             R12, R12, #0x11000|17-202-140-226
+2468|code|LDR             PC, [R12,#(__printf_chk_ptr - 0x119A4)]!; __imp___printf_chk|240-245-188-229
+2472|code|ADR             R12, 0x9B0|0-198-143-226
+2476|code|ADD             R12, R12, #0x11000|17-202-140-226
+2480|code|LDR             PC, [R12,#(trace_is_err_ptr - 0x119B0)]!; __imp_trace_is_err|232-245-188-229
+2484|code|ADR             R12, 0x9BC|0-198-143-226
+2488|code|ADD             R12, R12, #0x11000|17-202-140-226
+2492|code|LDR             PC, [R12,#(trace_read_packet_ptr - 0x119BC)]!; __imp_trace_read_packet|224-245-188-229
+2496|code|ADR             R12, 0x9C8|0-198-143-226
+2500|code|ADD             R12, R12, #0x11000|17-202-140-226
+2504|code|LDR             PC, [R12,#(trace_start_ptr - 0x119C8)]!; __imp_trace_start|216-245-188-229
+2508|code|ADR             R12, 0x9D4|0-198-143-226
+2512|code|ADD             R12, R12, #0x11000|17-202-140-226
+2516|code|LDR             PC, [R12,#(trace_create_packet_ptr - 0x119D4)]!; __imp_trace_create_packet|208-245-188-229
+2520|code|ADR             R12, 0x9E0|0-198-143-226
+2524|code|ADD             R12, R12, #0x11000|17-202-140-226
+2528|code|LDR             PC, [R12,#(trace_destroy_ptr - 0x119E0)]!; __imp_trace_destroy|200-245-188-229
+2532|code|ADR             R12, 0x9EC|0-198-143-226
+2536|code|ADD             R12, R12, #0x11000|17-202-140-226
+2540|code|LDR             PC, [R12,#(getopt_ptr - 0x119EC)]!; __imp_getopt|192-245-188-229
+2544|code|ADR             R12, 0x9F8|0-198-143-226
+2548|code|ADD             R12, R12, #0x11000|17-202-140-226
+2552|code|LDR             PC, [R12,#(strtol_ptr - 0x119F8)]!; __imp_strtol|184-245-188-229
+2556|code|ADR             R12, 0xA04|0-198-143-226
+2560|code|ADD             R12, R12, #0x11000|17-202-140-226
+2564|code|LDR             PC, [R12,#(fwrite_ptr - 0x11A04)]!; __imp_fwrite|176-245-188-229
+2568|code|ADR             R12, 0xA10|0-198-143-226
+2572|code|ADD             R12, R12, #0x11000|17-202-140-226
+2576|code|LDR             PC, [R12,#(trace_create_ptr - 0x11A10)]!; __imp_trace_create|168-245-188-229
+2580|code|ADR             R12, 0xA1C|0-198-143-226
+2584|code|ADD             R12, R12, #0x11000|17-202-140-226
+2588|code|LDR             PC, [R12,#(__stack_chk_fail_ptr - 0x11A1C)]!; __imp___stack_chk_fail|160-245-188-229
+2592|code|BX              PC|120-71
+2594|data|ALIGN 4|192-70
+2596|code|ADR             R12, 0xA2C|0-198-143-226
+2600|code|ADD             R12, R12, #0x11000|17-202-140-226
+2604|code|LDR             PC, [R12,#(puts_ptr - 0x11A2C)]!; __imp_puts|148-245-188-229
+2608|code|ADR             R12, 0xA38|0-198-143-226
+2612|code|ADD             R12, R12, #0x11000|17-202-140-226
+2616|code|LDR             PC, [R12,#(trace_get_packet_buffer_ptr - 0x11A38)]!; __imp_trace_get_packet_buffer|140-245-188-229
+2620|code|ADR             R12, 0xA44|0-198-143-226
+2624|code|ADD             R12, R12, #0x11000|17-202-140-226
+2628|code|LDR             PC, [R12,#(trace_destroy_packet_ptr - 0x11A44)]!; __imp_trace_destroy_packet|132-245-188-229
+2632|code|ADR             R12, 0xA50|0-198-143-226
+2636|code|ADD             R12, R12, #0x11000|17-202-140-226
+2640|code|LDR             PC, [R12,#(__cxa_finalize_ptr - 0x11A50)]!; __imp___cxa_finalize|124-245-188-229
+2644|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2648|code|SUB             SP, SP, #0x2C|139-176
+2650|code|LDR.W           R8, =(_GLOBAL_OFFSET_TABLE_ - 0xA68)|223-248-204-130
+2654|code|CMP             R0, #1|1-40
+2656|code|LDR             R3, =(__stack_chk_guard_ptr - 0x11F6C)|178-75
+2658|code|MOV             R4, R0|4-70
+2660|code|ADD             R8, PC; _GLOBAL_OFFSET_TABLE_|248-68
+2662|code|MOV             R7, R1|15-70
+2664|code|LDR.W           R3, [R8,R3]; __stack_chk_guard|88-248-3-48
+2668|code|STR             R3, [SP,#0x50+var_48]|2-147
+2670|code|LDR             R3, [R3]|27-104
+2672|code|STR             R3, [SP,#0x50+var_2C]|9-147
+2674|code|BLE.W           loc_CA8|64-243-25-129
+2678|code|LDR             R5, =(aM - 0xA84); "m:"|174-77
+2680|code|LDR.W           R9, =(dword_1200C - 0xA86)|223-248-184-146
+2684|code|LDR.W           R10, =(aMOptionMustNot - 0xA88); "-m option must not be negative - ignori"...|223-248-184-162
+2688|code|ADD             R5, PC; "m:"|125-68
+2690|code|ADD             R9, PC; dword_1200C|249-68
+2692|code|ADD             R10, PC; "-m option must not be negative - ignori"...|250-68
+2694|code|MOV             R0, R4; argc|32-70
+2696|code|MOV             R1, R7; argv|57-70
+2698|code|MOV             R2, R5; shortopts|42-70
+2700|code|BLX             getopt|255-247-170-239
+2704|code|ADDS            R3, R0, #1|67-28
+2706|code|BEQ             loc_ACC|27-208
+2708|code|CMP             R0, #0x6D ; 'm'|109-40
+2710|code|BNE.W           loc_C46|64-240-214-128
+2714|code|LDR             R3, =(optarg_ptr - 0x11F6C)|168-75
+2716|code|MOVS            R1, #0; endptr|0-33
+2718|code|MOVS            R2, #0xA; base|10-34
+2720|code|LDR.W           R6, [R8,R3]; optarg|88-248-3-96
+2724|code|LDR             R0, [R6]; nptr|48-104
+2726|code|BLX             strtol|255-247-164-239
+2730|code|CMP             R0, #0|0-40
+2732|code|BLT.W           loc_C6C|192-242-222-128
+2736|code|MOVS            R1, #0; endptr|0-33
+2738|code|MOVS            R2, #0xA; base|10-34
+2740|code|LDR             R0, [R6]; nptr|48-104
+2742|code|BLX             strtol|255-247-156-239
+2746|code|MOV             R1, R7; argv|57-70
+2748|code|MOV             R2, R5; shortopts|42-70
+2750|code|STR.W           R0, [R9]|201-248-0-0
+2754|code|MOV             R0, R4; argc|32-70
+2756|code|BLX             getopt|255-247-142-239
+2760|code|ADDS            R3, R0, #1|67-28
+2762|code|BNE             loc_A94|227-209
+2764|code|LDR             R3, =(optind_ptr - 0x11F6C)|156-75
+2766|code|MOV             R6, R0|6-70
+2768|code|LDR.W           R8, [R8,R3]; optind|88-248-3-128
+2772|code|LDR.W           R3, [R8]|216-248-0-48
+2776|code|ADDS            R3, #1|1-51
+2778|code|CMP             R4, R3|156-66
+2780|code|BLE.W           loc_CA8|64-243-228-128
+2784|code|BLX             trace_create_packet|255-247-116-239
+2788|code|MOV             R4, R0|4-70
+2790|code|BLX             trace_create_packet|255-247-114-239
+2794|code|LDR.W           R3, [R8]|216-248-0-48
+2798|code|ADDS            R2, R3, #1|90-28
+2800|code|STR.W           R2, [R8]|200-248-0-32
+2804|code|MOV             R5, R0|5-70
+2806|code|LDR.W           R0, [R7,R3,LSL#2]|87-248-35-0
+2810|code|BLX             trace_create|255-247-134-239
+2814|code|MOV             R9, R0|129-70
+2816|code|BLX             trace_is_err|255-247-82-239
+2820|code|CMP             R0, #0|0-40
+2822|code|BNE.W           loc_CB4|64-240-213-128
+2826|code|MOV             R0, R9|72-70
+2828|code|BLX             trace_start|255-247-88-239
+2832|code|CMP             R0, #0|0-40
+2834|code|BNE.W           loc_CC2|64-240-214-128
+2838|code|LDR.W           R3, [R8]|216-248-0-48
+2842|code|ADDS            R2, R3, #1|90-28
+2844|code|STR.W           R2, [R8]|200-248-0-32
+2848|code|LDR.W           R0, [R7,R3,LSL#2]|87-248-35-0
+2852|code|BLX             trace_create|255-247-112-239
+2856|code|MOV             R10, R0|130-70
+2858|code|BLX             trace_is_err|255-247-62-239
+2862|code|CMP             R0, #0|0-40
+2864|code|BNE.W           loc_CD6|64-240-209-128
+2868|code|MOV             R0, R10|80-70
+2870|code|BLX             trace_start|255-247-68-239
+2874|code|CMP             R0, #0|0-40
+2876|code|BNE.W           loc_D10|64-240-232-128
+2880|code|LDR             R3, =(asc_102C - 0xB4A); "****************"|128-75
+2882|code|LDR.W           R11, =(dword_1200C - 0xB50)|223-248-4-178
+2886|code|ADD             R3, PC; "****************"|123-68
+2888|code|STR             R3, [SP,#0x50+var_40]|4-147
+2890|code|LDR             R3, =(dword_1200C - 0xB56)|128-75
+2892|code|ADD             R11, PC; dword_1200C|251-68
+2894|code|LDR.W           R8, =(dword_1200C - 0xB5C)|223-248-0-130
+2898|code|ADD             R3, PC; dword_1200C|123-68
+2900|code|STR             R3, [SP,#0x50+var_3C]|5-147
+2902|code|LDR             R3, =(asc_102C - 0xB5E); "****************"|127-75
+2904|code|ADD             R8, PC; dword_1200C|248-68
+2906|code|ADD             R3, PC; "****************"|123-68
+2908|code|STR             R3, [SP,#0x50+s]|3-147
+2910|code|LDR             R3, =(asc_102C - 0xB64); "****************"|126-75
+2912|code|ADD             R3, PC; "****************"|123-68
+2914|code|STR             R3, [SP,#0x50+var_4C]|1-147
+2916|code|MOV             R0, R9|72-70
+2918|code|MOV             R1, R4|33-70
+2920|code|BLX             trace_read_packet|255-247-36-239
+2924|code|CMP             R0, #0|0-40
+2926|code|BLE             loc_BFE|70-221
+2928|code|MOV             R0, R10|80-70
+2930|code|MOV             R1, R5|41-70
+2932|code|BLX             trace_read_packet|255-247-30-239
+2936|code|CMP             R0, #0|0-40
+2938|code|BLE             loc_BFE|64-221
+2940|code|ADD             R6, SP, #0x50+var_38|6-174
+2942|code|ADD             R2, SP, #0x50+n|7-170
+2944|code|MOV             R0, R4|32-70
+2946|code|MOV             R1, R6|49-70
+2948|code|BLX             trace_get_packet_buffer|255-247-84-239
+2952|code|MOV             R1, R6|49-70
+2954|code|ADD             R2, SP, #0x50+var_30|8-170
+2956|code|MOV             R7, R0|7-70
+2958|code|MOV             R0, R5|40-70
+2960|code|BLX             trace_get_packet_buffer|255-247-78-239
+2964|code|MOV             R6, R0|6-70
+2966|code|MOV             R0, R4|32-70
+2968|code|BLX             trace_get_wire_length|255-247-214-238
+2972|code|LDR             R3, [SP,#0x50+n]|7-155
+2974|code|CMP             R0, R3|152-66
+2976|code|IT CC|56-191
+2978|code|STRCC           R0, [SP,#0x50+n]|7-144
+2980|code|MOV             R0, R5|40-70
+2982|code|BLX             trace_get_wire_length|255-247-208-238
+2986|code|LDR             R3, [SP,#0x50+var_30]|8-155
+2988|code|CLZ.W           R2, R6|182-250-134-242
+2992|code|LSRS            R2, R2, #5|82-9
+2994|code|CMP             R0, R3|152-66
+2996|code|CLZ.W           R3, R7|183-250-135-243
+3000|code|IT CC|56-191
+3002|code|STRCC           R0, [SP,#0x50+var_30]|8-144
+3004|code|LSRS            R3, R3, #5|91-9
+3006|code|TST             R2, R3|26-66
+3008|code|BNE             loc_BEE|21-209
+3010|code|ORRS            R3, R2|19-67
+3012|code|BNE             loc_C4E|67-209
+3014|code|LDR             R2, [SP,#0x50+n]; n|7-154
+3016|code|CBZ             R2, loc_BEE|138-177
+3018|code|LDR             R3, [SP,#0x50+var_30]|8-155
+3020|code|CBZ             R3, loc_BEE|123-177
+3022|code|CMP             R2, R3|154-66
+3024|code|BEQ             loc_C80|86-208
+3026|code|MOV             R0, R4|32-70
+3028|code|BLX             trace_dump_packet|255-247-220-238
+3032|code|MOV             R0, R5|40-70
+3034|code|BLX             trace_dump_packet|255-247-218-238
+3038|code|LDR             R0, [SP,#0x50+s]; s|3-152
+3040|code|BLX             puts|255-247-32-239
+3044|code|LDR             R2, =(dword_1200C - 0xBEA)|93-74
+3046|code|ADD             R2, PC; dword_1200C|122-68
+3048|code|LDR             R3, [R2,#(dword_12010 - 0x1200C)]|83-104
+3050|code|ADDS            R3, #1|1-51
+3052|code|STR             R3, [R2,#(dword_12010 - 0x1200C)]|83-96
+3054|code|LDR.W           R3, [R8]|216-248-0-48
+3058|code|CMP             R3, #0|0-43
+3060|code|BEQ             loc_B64|182-208
+3062|code|LDR.W           R2, [R8,#(dword_12010 - 0x1200C)]|216-248-4-32
+3066|code|CMP             R3, R2|147-66
+3068|code|BHI             loc_B64|178-216
+3070|code|MOV             R0, R9|72-70
+3072|code|BLX             trace_is_err|255-247-210-238
+3076|code|CMP             R0, #0|0-40
+3078|code|BNE             loc_CE4|109-209
+3080|code|MOV             R0, R10|80-70
+3082|code|BLX             trace_is_err|255-247-206-238
+3086|code|CMP             R0, #0|0-40
+3088|code|BNE             loc_CFA|115-209
+3090|code|MOV             R0, R9|72-70
+3092|code|BLX             trace_destroy|255-247-224-238
+3096|code|MOV             R0, R10|80-70
+3098|code|BLX             trace_destroy|255-247-222-238
+3102|code|MOV             R0, R4|32-70
+3104|code|BLX             trace_destroy_packet|255-247-12-239
+3108|code|MOV             R0, R5|40-70
+3110|code|BLX             trace_destroy_packet|255-247-10-239
+3114|code|LDR             R3, =(dword_1200C - 0xC30)|77-75
+3116|code|ADD             R3, PC; dword_1200C|123-68
+3118|code|LDR             R6, [R3,#(dword_12010 - 0x1200C)]|94-104
+3120|code|MOVS            R0, R6|48-28
+3122|code|IT NE|24-191
+3124|code|MOVNE           R0, #1|1-32
+3126|code|LDR             R3, [SP,#0x50+var_48]|2-155
+3128|code|LDR             R2, [SP,#0x50+var_2C]|9-154
+3130|code|LDR             R3, [R3]|27-104
+3132|code|CMP             R2, R3|154-66
+3134|code|BNE             loc_D24|113-209
+3136|code|ADD             SP, SP, #0x2C ; ','|11-176
+3138|code|POP.W           {R4-R11,PC}|189-232-240-143
+3142|code|LDR             R0, [R7]|56-104
+3144|code|BL              sub_EBC|0-240-56-249
+3148|code|B               loc_A86|27-231
+3150|code|MOV             R0, R4|32-70
+3152|code|BLX             trace_dump_packet|255-247-158-238
+3156|code|MOV             R0, R5|40-70
+3158|code|BLX             trace_dump_packet|255-247-156-238
+3162|code|LDR             R0, [SP,#0x50+var_4C]; s|1-152
+3164|code|BLX             puts|255-247-226-238
+3168|code|LDR.W           R3, [R11,#(dword_12010 - 0x1200C)]|219-248-4-48
+3172|code|ADDS            R3, #1|1-51
+3174|code|STR.W           R3, [R11,#(dword_12010 - 0x1200C)]|203-248-4-48
+3178|code|B               loc_BEE|192-231
+3180|code|LDR             R3, =(stderr_ptr - 0x11F6C)|61-75
+3182|code|MOV             R0, R10; ptr|80-70
+3184|code|MOVS            R1, #1; size|1-33
+3186|code|MOVS            R2, #0x2A ; '*'; n|42-34
+3188|code|LDR.W           R3, [R8,R3]; stderr|88-248-3-48
+3192|code|LDR             R3, [R3]; s|27-104
+3194|code|BLX             fwrite|255-247-192-238
+3198|code|B               loc_A86|2-231
+3200|code|MOV             R0, R7; s1|56-70
+3202|code|MOV             R1, R6; s2|49-70
+3204|code|BLX             memcmp|255-247-114-238
+3208|code|CMP             R0, #0|0-40
+3210|code|BEQ             loc_BEE|176-208
+3212|code|MOV             R0, R4|32-70
+3214|code|BLX             trace_dump_packet|255-247-128-238
+3218|code|MOV             R0, R5|40-70
+3220|code|BLX             trace_dump_packet|255-247-124-238
+3224|code|LDR             R0, [SP,#0x50+var_40]; s|4-152
+3226|code|BLX             puts|255-247-196-238
+3230|code|LDR             R2, [SP,#0x50+var_3C]|5-154
+3232|code|LDR             R3, [R2,#4]|83-104
+3234|code|ADDS            R3, #1|1-51
+3236|code|STR             R3, [R2,#4]|83-96
+3238|code|B               loc_BEE|162-231
+3240|code|LDR             R0, [R7]|56-104
+3242|code|BL              sub_EBC|0-240-7-249
+3246|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+3250|code|B               loc_C36|192-231
+3252|code|LDR             R1, =(aOpeningTraceFi - 0xCBC); "Opening trace file"|44-73
+3254|code|MOV             R0, R9|72-70
+3256|code|ADD             R1, PC; "Opening trace file"|121-68
+3258|code|BLX             trace_perror|255-247-82-238
+3262|code|MOV             R0, R6|48-70
+3264|code|B               loc_C36|185-231
+3266|code|LDR             R1, =(aStartingTrace - 0xCCA); "Starting trace"|42-73
+3268|code|MOV             R0, R9|72-70
+3270|code|ADD             R1, PC; "Starting trace"|121-68
+3272|code|BLX             trace_perror|255-247-74-238
+3276|code|MOV             R0, R9|72-70
+3278|code|BLX             trace_destroy|255-247-132-238
+3282|code|MOV             R0, R6|48-70
+3284|code|B               loc_C36|175-231
+3286|code|LDR             R1, =(aOpeningTraceFi - 0xCDE); "Opening trace file"|38-73
+3288|code|MOV             R0, R10|80-70
+3290|code|ADD             R1, PC; "Opening trace file"|121-68
+3292|code|BLX             trace_perror|255-247-64-238
+3296|code|MOV             R0, R6|48-70
+3298|code|B               loc_C36|168-231
+3300|code|LDR             R1, =(aReadingPackets - 0xCEC); "Reading packets"|35-73
+3302|code|MOV             R0, R9|72-70
+3304|code|ADD             R1, PC; "Reading packets"|121-68
+3306|code|BLX             trace_perror|255-247-58-238
+3310|code|MOV             R0, R9|72-70
+3312|code|BLX             trace_destroy|255-247-114-238
+3316|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+3320|code|B               loc_C36|157-231
+3322|code|LDR             R1, =(aReadingPackets - 0xD02); "Reading packets"|31-73
+3324|code|MOV             R0, R10|80-70
+3326|code|ADD             R1, PC; "Reading packets"|121-68
+3328|code|BLX             trace_perror|255-247-46-238
+3332|code|MOV             R0, R10|80-70
+3334|code|BLX             trace_destroy|255-247-104-238
+3338|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+3342|code|B               loc_C36|146-231
+3344|code|LDR             R1, =(aStartingTrace - 0xD18); "Starting trace"|26-73
+3346|code|MOV             R0, R10|80-70
+3348|code|ADD             R1, PC; "Starting trace"|121-68
+3350|code|BLX             trace_perror|255-247-36-238
+3354|code|MOV             R0, R10|80-70
+3356|code|BLX             trace_destroy|255-247-92-238
+3360|code|MOV             R0, R6|48-70
+3362|code|B               loc_C36|136-231
+3364|code|BLX             __stack_chk_fail|255-247-118-238
+3368|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xA68|4-21-1-0
+3372|data|DCD __stack_chk_guard_ptr - 0x11F6C|128-0-0-0
+3376|data|DCD aM - 0xA84; "m:"|128-5-0-0
+3380|data|DCD dword_1200C - 0xA86|134-21-1-0
+3384|data|DCD aMOptionMustNot - 0xA88; "-m option must not be negative - ignori"...|80-5-0-0
+3388|data|DCD optarg_ptr - 0x11F6C|136-0-0-0
+3392|data|DCD optind_ptr - 0x11F6C|116-0-0-0
+3396|data|DCD asc_102C - 0xB4A; "****************"|226-4-0-0
+3400|data|DCD dword_1200C - 0xB50|188-20-1-0
+3404|data|DCD dword_1200C - 0xB56|182-20-1-0
+3408|data|DCD dword_1200C - 0xB5C|176-20-1-0
+3412|data|DCD asc_102C - 0xB5E; "****************"|206-4-0-0
+3416|data|DCD asc_102C - 0xB64; "****************"|200-4-0-0
+3420|data|DCD dword_1200C - 0xBEA|34-20-1-0
+3424|data|DCD dword_1200C - 0xC30|220-19-1-0
+3428|data|DCD stderr_ptr - 0x11F6C|132-0-0-0
+3432|data|DCD aOpeningTraceFi - 0xCBC; "Opening trace file"|76-3-0-0
+3436|data|DCD aStartingTrace - 0xCCA; "Starting trace"|82-3-0-0
+3440|data|DCD aOpeningTraceFi - 0xCDE; "Opening trace file"|42-3-0-0
+3444|data|DCD aReadingPackets - 0xCEC; "Reading packets"|84-3-0-0
+3448|data|DCD aReadingPackets - 0xD02; "Reading packets"|62-3-0-0
+3452|data|DCD aStartingTrace - 0xD18; "Starting trace"|4-3-0-0
+3456|code|MOV.W           R11, #0|79-240-0-11
+3460|code|MOV.W           LR, #0|79-240-0-14
+3464|code|POP             {R1}; argc|2-188
+3466|code|MOV             R2, SP; ubp_av|106-70
+3468|code|PUSH            {R2}; stack_end|4-180
+3470|code|PUSH            {R0}; rtld_fini|1-180
+3472|code|LDR.W           R10, =(_GLOBAL_OFFSET_TABLE_ - 0xDB8)|223-248-36-160
+3476|code|ADR             R3, off_DB8|8-163
+3478|code|ADD             R10, R3; _GLOBAL_OFFSET_TABLE_|154-68
+3480|code|LDR.W           R12, =(__libc_csu_fini_ptr - 0x11F6C)|223-248-32-192
+3484|code|LDR.W           R12, [R10,R12]; __libc_csu_fini|90-248-12-192
+3488|code|PUSH.W          {R12}; fini|77-248-4-205
+3492|code|LDR             R3, =(__libc_csu_init_ptr - 0x11F6C)|6-75
+3494|code|LDR.W           R3, [R10,R3]; __libc_csu_init ; init|90-248-3-48
+3498|code|LDR             R0, =(main_ptr - 0x11F6C)|6-72
+3500|code|LDR.W           R0, [R10,R0]; main ; main|90-248-0-0
+3504|code|BLX             __libc_start_main|255-247-226-237
+3508|code|BLX             abort|255-247-206-237
+3512|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xDB8|180-17-1-0
+3516|data|DCD __libc_csu_fini_ptr - 0x11F6C|100-0-0-0
+3520|data|DCD __libc_csu_init_ptr - 0x11F6C|124-0-0-0
+3524|data|DCD main_ptr - 0x11F6C|144-0-0-0
+3528|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xDD8)|20-48-159-229
+3532|code|LDR             R2, =(__gmon_start___ptr_0 - 0x11F6C)|20-32-159-229
+3536|code|ADD             R3, PC, R3; _GLOBAL_OFFSET_TABLE_|3-48-143-224
+3540|code|LDR             R2, [R3,R2]; __imp___gmon_start__|2-32-147-231
+3544|code|CMP             R2, #0|0-0-82-227
+3548|code|BXEQ            LR|30-255-47-1
+3552|code|B               __gmon_start__|231-254-255-234
+3556|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xDD8|148-17-1-0
+3560|data|DCD __gmon_start___ptr_0 - 0x11F6C|104-0-0-0
+3564|code|LDR             R3, =(__bss_start__ - 0xDF4)|7-75
+3566|code|LDR             R0, =(__bss_start__ - 0xDF8)|8-72
+3568|code|ADD             R3, PC; __bss_start__|123-68
+3570|code|LDR             R2, =(_GLOBAL_OFFSET_TABLE_ - 0xDFE)|8-74
+3572|code|ADD             R0, PC; __bss_start__|120-68
+3574|code|ADDS            R3, #3|3-51
+3576|code|SUBS            R3, R3, R0|27-26
+3578|code|ADD             R2, PC; _GLOBAL_OFFSET_TABLE_|122-68
+3580|code|CMP             R3, #6|6-43
+3582|code|BLS             locret_E08|3-217
+3584|code|LDR             R3, =(_ITM_deregisterTMCloneTable_ptr - 0x11F6C)|5-75
+3586|code|LDR             R3, [R2,R3]; _ITM_deregisterTMCloneTable|211-88
+3588|code|CBZ             R3, locret_E08|3-177
+3590|code|BX              R3; _ITM_deregisterTMCloneTable|24-71
+3592|code|BX              LR|112-71
+3594|data|ALIGN 4|0-191
+3596|data|DCD __bss_start__ - 0xDF4|20-18-1-0
+3600|data|DCD __bss_start__ - 0xDF8|16-18-1-0
+3604|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xDFE|110-17-1-0
+3608|data|DCD _ITM_deregisterTMCloneTable_ptr - 0x11F6C|112-0-0-0
+3612|code|LDR             R1, =(__bss_start__ - 0xE24)|8-73
+3614|code|LDR             R0, =(__bss_start__ - 0xE28)|9-72
+3616|code|ADD             R1, PC; __bss_start__|121-68
+3618|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xE2C)|9-75
+3620|code|ADD             R0, PC; __bss_start__|120-68
+3622|code|SUBS            R1, R1, R0|9-26
+3624|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3626|code|ASRS            R1, R1, #2|137-16
+3628|code|ADD.W           R1, R1, R1,LSR#31|1-235-209-113
+3632|code|ASRS            R1, R1, #1|73-16
+3634|code|BEQ             locret_E3C|3-208
+3636|code|LDR             R2, =(_ITM_registerTMCloneTable_ptr - 0x11F6C)|5-74
+3638|code|LDR             R3, [R3,R2]; _ITM_registerTMCloneTable|155-88
+3640|code|CBZ             R3, locret_E3C|3-177
+3642|code|BX              R3; _ITM_registerTMCloneTable|24-71
+3644|code|BX              LR|112-71
+3646|data|ALIGN 0x10|0-191
+3648|data|DCD __bss_start__ - 0xE24|228-17-1-0
+3652|data|DCD __bss_start__ - 0xE28|224-17-1-0
+3656|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xE2C|64-17-1-0
+3660|data|DCD _ITM_registerTMCloneTable_ptr - 0x11F6C|120-0-0-0
+3664|code|PUSH            {R3,LR}|8-181
+3666|code|LDR             R3, =(__bss_start__ - 0xE5A)|10-75
+3668|code|LDR             R2, =(_GLOBAL_OFFSET_TABLE_ - 0xE5C)|10-74
+3670|code|ADD             R3, PC; __bss_start__|123-68
+3672|code|ADD             R2, PC; _GLOBAL_OFFSET_TABLE_|122-68
+3674|code|LDRB            R3, [R3]|27-120
+3676|code|CBNZ            R3, locret_E7A|107-185
+3678|code|LDR             R3, =(__cxa_finalize_ptr_0 - 0x11F6C)|9-75
+3680|code|LDR             R3, [R2,R3]; __imp___cxa_finalize|211-88
+3682|code|CBZ             R3, loc_E6E|35-177
+3684|code|LDR             R3, =(off_12004 - 0xE6A)|8-75
+3686|code|ADD             R3, PC; off_12004|123-68
+3688|code|LDR             R0, [R3]; off_12004 ; void *|24-104
+3690|code|BLX             __cxa_finalize|255-247-238-237
+3694|code|BL              sub_DEC|255-247-189-255
+3698|code|LDR             R3, =(__bss_start__ - 0xE7A)|6-75
+3700|code|MOVS            R2, #1|1-34
+3702|code|ADD             R3, PC; __bss_start__|123-68
+3704|code|STRB            R2, [R3]|26-112
+3706|code|POP             {R3,PC}|8-189
+3708|data|DCD __bss_start__ - 0xE5A|174-17-1-0
+3712|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xE5C|16-17-1-0
+3716|data|DCD __cxa_finalize_ptr_0 - 0x11F6C|140-0-0-0
+3720|data|DCD off_12004 - 0xE6A|154-17-1-0
+3724|data|DCD __bss_start__ - 0xE7A|142-17-1-0
+3728|code|LDR             R0, =(dword_11E40 - 0xE98)|7-72
+3730|code|PUSH            {R3,LR}|8-181
+3732|code|ADD             R0, PC; dword_11E40|120-68
+3734|code|LDR             R2, [R0]|2-104
+3736|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0xE9E)|6-75
+3738|code|ADD             R3, PC; _GLOBAL_OFFSET_TABLE_|123-68
+3740|code|CBNZ            R2, loc_EA4|18-185
+3742|code|POP.W           {R3,LR}|189-232-8-64
+3746|code|B               sub_E1C|187-231
+3748|code|LDR             R2, =(_Jv_RegisterClasses_ptr - 0x11F6C)|4-74
+3750|code|LDR             R3, [R3,R2]; _Jv_RegisterClasses|155-88
+3752|code|CMP             R3, #0|0-43
+3754|code|BEQ             loc_E9E|248-208
+3756|code|BLX             R3; _Jv_RegisterClasses|152-71
+3758|code|B               loc_E9E|246-231
+3760|data|DCD dword_11E40 - 0xE98|168-15-1-0
+3764|data|DCD _GLOBAL_OFFSET_TABLE_ - 0xE9E|206-16-1-0
+3768|data|DCD _Jv_RegisterClasses_ptr - 0x11F6C|108-0-0-0
+3772|code|LDR             R1, =(aUsageInstructi - 0xEC6); "Usage instructions for %s\n\n"|11-73
+3774|code|MOV             R2, R0|2-70
+3776|code|PUSH            {R4,LR}|16-181
+3778|code|ADD             R1, PC; "Usage instructions for %s\n\n"|121-68
+3780|code|MOV             R4, R0|4-70
+3782|code|MOVS            R0, #1|1-32
+3784|code|BLX             __printf_chk|255-247-104-237
+3788|code|LDR             R1, =(aSOptionsTracea - 0xED6); "\t%s [options] traceA traceB\n\n"|8-73
+3790|code|MOV             R2, R4|34-70
+3792|code|MOVS            R0, #1|1-32
+3794|code|ADD             R1, PC; "\t%s [options] traceA traceB\n\n"|121-68
+3796|code|BLX             __printf_chk|255-247-98-237
+3800|code|LDR             R0, =(aSupportedOptio - 0xEDE); "Supported options:"|6-72
+3802|code|ADD             R0, PC; "Supported options:"|120-68
+3804|code|BLX             puts|255-247-162-237
+3808|code|LDR             R0, =(aMMaxStopAfterM - 0xEEA); "\t-m <max>   Stop after <max> differenc"...|5-72
+3810|code|POP.W           {R4,LR}|189-232-16-64
+3814|code|ADD             R0, PC; "\t-m <max>   Stop after <max> differenc"...|120-68
+3816|code|B.W             j_puts|255-247-154-189
+3820|data|DCD aUsageInstructi - 0xEC6; "Usage instructions for %s\n\n"|134-0-0-0
+3824|data|DCD aSOptionsTracea - 0xED6; "\t%s [options] traceA traceB\n\n"|146-0-0-0
+3828|data|DCD aSupportedOptio - 0xEDE; "Supported options:"|170-0-0-0
+3832|data|DCD aMMaxStopAfterM - 0xEEA; "\t-m <max>   Stop after <max> differenc"...|178-0-0-0
+3836|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+3840|code|MOV             R7, R0|7-70
+3842|code|LDR             R6, =(off_11E3C - 0xF0E)|12-78
+3844|code|MOV             R8, R1|136-70
+3846|code|LDR             R5, =(off_11E38 - 0xF14)|12-77
+3848|code|MOV             R9, R2|145-70
+3850|code|ADD             R6, PC; off_11E3C|126-68
+3852|code|BLX             .init_proc|255-247-12-237
+3856|code|ADD             R5, PC; off_11E38|125-68
+3858|code|SUBS            R6, R6, R5|118-27
+3860|code|ASRS            R6, R6, #2|182-16
+3862|code|BEQ             locret_F2E|10-208
+3864|code|SUBS            R5, #4|4-61
+3866|code|MOVS            R4, #0|0-36
+3868|code|ADDS            R4, #1|1-52
+3870|code|LDR.W           R3, [R5,#4]!|85-248-4-63
+3874|code|MOV             R0, R7|56-70
+3876|code|MOV             R1, R8|65-70
+3878|code|MOV             R2, R9|74-70
+3880|code|BLX             R3|152-71
+3882|code|CMP             R4, R6|180-66
+3884|code|BNE             loc_F1C|246-209
+3886|code|POP.W           {R3-R9,PC}|189-232-248-131
+3890|data|ALIGN 4|0-191
+3892|data|DCD off_11E3C - 0xF0E|46-15-1-0
+3896|data|DCD off_11E38 - 0xF14|36-15-1-0
+3900|code|BX              LR|112-71
+3902|data|ALIGN 0x10|0-191
+3904|code|PUSH            {R3,LR}; _fini|8-64-45-233
+3908|code|POP             {R3,PC}|8-128-189-232
+73272|data|DCD sub_E90+1|145-14-0-0
+73276|data|DCD sub_E50+1|81-14-0-0
+73280|data|DCD 0|0-0-0-0
+73284|data|Elf32_Dyn <1, <1>>; DT_NEEDED libtrace.so.3|1-0-0-0-1-0-0-0
+73292|data|Elf32_Dyn <1, <0x112>>; DT_NEEDED libwandio.so.1|1-0-0-0-18-1-0-0
+73300|data|Elf32_Dyn <1, <0x121>>; DT_NEEDED libncurses.so.5|1-0-0-0-33-1-0-0
+73308|data|Elf32_Dyn <1, <0x131>>; DT_NEEDED libtinfo.so.5|1-0-0-0-49-1-0-0
+73316|data|Elf32_Dyn <1, <0x13F>>; DT_NEEDED libpacketdump.so.3|1-0-0-0-63-1-0-0
+73324|data|Elf32_Dyn <1, <0x164>>; DT_NEEDED libc.so.6|1-0-0-0-100-1-0-0
+73332|data|Elf32_Dyn <1, <0x1E9>>; DT_NEEDED ld-linux-armhf.so.3|1-0-0-0-233-1-0-0
+73340|data|Elf32_Dyn <0xC, <0x928>>; DT_INIT|12-0-0-0-40-9-0-0
+73348|data|Elf32_Dyn <0xD, <0xF40>>; DT_FINI|13-0-0-0-64-15-0-0
+73356|data|Elf32_Dyn <0x19, <0x11E38>>; DT_INIT_ARRAY|25-0-0-0-56-30-1-0
+73364|data|Elf32_Dyn <0x1B, <4>>; DT_INIT_ARRAYSZ|27-0-0-0-4-0-0-0
+73372|data|Elf32_Dyn <0x1A, <0x11E3C>>; DT_FINI_ARRAY|26-0-0-0-60-30-1-0
+73380|data|Elf32_Dyn <0x1C, <4>>; DT_FINI_ARRAYSZ|28-0-0-0-4-0-0-0
+73388|data|Elf32_Dyn <0x6FFFFEF5, <0x1B4>>; DT_GNU_HASH|245-254-255-111-180-1-0-0
+73396|data|Elf32_Dyn <5, <0x4E4>>; DT_STRTAB|5-0-0-0-228-4-0-0
+73404|data|Elf32_Dyn <6, <0x214>>; DT_SYMTAB|6-0-0-0-20-2-0-0
+73412|data|Elf32_Dyn <0xA, <0x280>>; DT_STRSZ|10-0-0-0-128-2-0-0
+73420|data|Elf32_Dyn <0xB, <0x10>>; DT_SYMENT|11-0-0-0-16-0-0-0
+73428|data|Elf32_Dyn <0x15, <0>>; DT_DEBUG|21-0-0-0-0-0-0-0
+73436|data|Elf32_Dyn <3, <0x11F6C>>; DT_PLTGOT|3-0-0-0-108-31-1-0
+73444|data|Elf32_Dyn <2, <0xB0>>; DT_PLTRELSZ|2-0-0-0-176-0-0-0
+73452|data|Elf32_Dyn <0x14, <0x11>>; DT_PLTREL|20-0-0-0-17-0-0-0
+73460|data|Elf32_Dyn <0x17, <0x878>>; DT_JMPREL|23-0-0-0-120-8-0-0
+73468|data|Elf32_Dyn <0x11, <0x800>>; DT_REL|17-0-0-0-0-8-0-0
+73476|data|Elf32_Dyn <0x12, <0x78>>; DT_RELSZ|18-0-0-0-120-0-0-0
+73484|data|Elf32_Dyn <0x13, <8>>; DT_RELENT|19-0-0-0-8-0-0-0
+73492|data|Elf32_Dyn <0x18, <0>>; DT_BIND_NOW|24-0-0-0-0-0-0-0
+73500|data|Elf32_Dyn <0x6FFFFFFB, <1>>; DT_FLAGS_1|251-255-255-111-1-0-0-0
+73508|data|Elf32_Dyn <0x6FFFFFFE, <0x7C0>>; DT_VERNEED|254-255-255-111-192-7-0-0
+73516|data|Elf32_Dyn <0x6FFFFFFF, <2>>; DT_VERNEEDNUM|255-255-255-111-2-0-0-0
+73524|data|Elf32_Dyn <0x6FFFFFF0, <0x764>>; DT_VERSYM|240-255-255-111-100-7-0-0
+73532|data|Elf32_Dyn <0x6FFFFFFA, <6>>; DT_RELCOUNT|250-255-255-111-6-0-0-0
+73540|data|Elf32_Dyn <0>; DT_NULL|0-0-0-0-0-0-0-0
+73548|data|ALIGN 0x10|0-0-0-0
+73580|data|DCD stru_11E44|68-30-1-0
+73584|data|DCD 0|0-0-0-0
+73588|data|DCD dword_0|0-0-0-0
+73592|data|DCD __imp_trace_get_wire_length|24-32-1-0
+73596|data|DCD __imp_abort|28-32-1-0
+73600|data|DCD __imp_trace_perror|32-32-1-0
+73604|data|DCD __imp_memcmp|36-32-1-0
+73608|data|DCD __imp___libc_start_main|40-32-1-0
+73612|data|DCD __imp___gmon_start__|124-32-1-0
+73616|data|DCD __imp_trace_dump_packet|44-32-1-0
+73620|data|DCD __imp___printf_chk|48-32-1-0
+73624|data|DCD __imp_trace_is_err|52-32-1-0
+73628|data|DCD __imp_trace_read_packet|56-32-1-0
+73632|data|DCD __imp_trace_start|60-32-1-0
+73636|data|DCD __imp_trace_create_packet|64-32-1-0
+73640|data|DCD __imp_trace_destroy|72-32-1-0
+73644|data|DCD __imp_getopt|76-32-1-0
+73648|data|DCD __imp_strtol|80-32-1-0
+73652|data|DCD __imp_fwrite|88-32-1-0
+73656|data|DCD __imp_trace_create|92-32-1-0
+73660|data|DCD __imp___stack_chk_fail|96-32-1-0
+73664|data|DCD __imp_puts|100-32-1-0
+73668|data|DCD __imp_trace_get_packet_buffer|104-32-1-0
+73672|data|DCD __imp_trace_destroy_packet|112-32-1-0
+73676|data|DCD __imp___cxa_finalize|120-32-1-0
+73680|data|DCD __libc_csu_fini+1|61-15-0-0
+73684|data|DCD __imp___gmon_start__|124-32-1-0
+73688|data|DCD _Jv_RegisterClasses|128-32-1-0
+73692|data|DCD _ITM_deregisterTMCloneTable|132-32-1-0
+73696|data|DCD optind|68-32-1-0
+73700|data|DCD _ITM_registerTMCloneTable|136-32-1-0
+73704|data|DCD __libc_csu_init+1|253-14-0-0
+73708|data|DCD __stack_chk_guard|84-32-1-0
+73712|data|DCD stderr|108-32-1-0
+73716|data|DCD optarg|116-32-1-0
+73720|data|DCD __imp___cxa_finalize|120-32-1-0
+73724|data|DCD main+1|85-10-0-0
+73736|data|% 1; Alternative name is '__bss_start'|255
+73737|data|ALIGN 4|255-255-255
+73740|data|% 4|255-255-255-255

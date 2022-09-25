@@ -1,0 +1,89 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+4|code|MOV             R7, argv|23-70
+6|code|MOV             R4, size|12-70
+8|code|CBZ             size, loc_76|169-179
+10|code|LDR.W           R8, =grub_strlen|223-248-128-128
+14|code|MOV             R6, size|14-70
+16|code|MOVS            R5, #0|0-37
+18|code|CMP             i, argc|165-66
+20|code|BGE             loc_22|5-218
+22|code|LDR.W           R0, [argv,i,LSL#2]|87-248-37-0
+26|code|ADDS            i, #1|1-53
+28|code|BLX             R8; grub_strlen|192-71
+30|code|ADD             size, R0|6-68
+32|code|B               loc_12|247-231
+34|code|MOV             R0, size|48-70
+36|code|LDR             R3, =grub_malloc|21-75
+38|code|BLX             R3; grub_malloc|152-71
+40|code|MOV             i, p|5-70
+42|code|CBZ             p, loc_34|24-177
+44|code|MOV             R3, p|3-70
+46|code|MOVS            R1, #0|0-33
+48|code|MOVS            R2, #0x20 ; ' '|32-34
+50|code|B               loc_42|6-224
+52|code|LDR             R3, =grub_errno|18-75
+54|code|LDR             p, [R3]|24-104
+56|code|POP.W           {argc-R8,PC}|189-232-240-129
+60|code|ADDS            i, #1|1-49
+62|code|STRB            R2, [R3]|26-112
+64|code|MOV             R3, p|3-70
+66|code|CMP             i, argc|161-66
+68|code|BGE             loc_62|13-218
+70|code|LDR.W           R6, [argv,i,LSL#2]|87-248-33-96
+74|code|LDRB.W          LR, [R6]|150-248-0-224
+78|code|MOV             R0, R3|24-70
+80|code|STRB.W          LR, [R0],#1|0-248-1-235
+84|code|LDRB.W          LR, [R6],#1|22-248-1-235
+88|code|CMP.W           LR, #0|190-241-0-15
+92|code|BEQ             loc_3C|238-208
+94|code|MOV             R3, R0|3-70
+96|code|B               loc_4A|243-231
+98|code|MOVS            R2, #0|0-34
+100|code|MOV             R0, str|40-70
+102|code|STRB.W          R2, [R3,#-1]|3-248-1-44
+106|code|LDR             R3, =grub_script_execute_sourcecode|6-75
+108|code|BLX             R3; grub_script_execute_sourcecode|152-71
+110|code|LDR             R3, =grub_free|6-75
+112|code|MOV             argc, R0|4-70
+114|code|MOV             ret, str|40-70
+116|code|BLX             R3; grub_free|152-71
+118|code|MOV             R0, R4|32-70
+120|code|POP.W           {R4-R8,PC}|189-232-240-129
+124|data|DCD grub_malloc|48-1-0-0
+128|data|DCD grub_errno|36-1-0-0
+132|data|DCD grub_script_execute_sourcecode|52-1-0-0
+136|data|DCD grub_free|56-1-0-0
+140|data|DCD grub_strlen|32-1-0-0
+144|code|PUSH            {mod,R1,R4,LR}|19-181
+146|code|MOVS            R3, #0|0-35
+148|code|LDR             R1, =(grub_cmd_eval+1)|5-73
+150|code|STR             R3, [SP,#0x10+var_10]|0-147
+152|code|LDR             R2, =aString; "STRING ..."|5-74
+154|code|LDR             R3, =aEvaluateArgume; "Evaluate arguments as GRUB commands"|6-75
+156|code|LDR             R4, =grub_register_command_prio|6-76
+158|code|LDR             mod, =aEval; "eval"|7-72
+160|code|BLX             R4; grub_register_command_prio|160-71
+162|code|LDR             R3, =cmd|7-75
+164|code|STR             R0, [R3]|24-96
+166|code|ADD             SP, SP, #8|2-176
+168|code|POP             {R4,PC}|16-189
+170|data|ALIGN 4|0-191
+172|data|DCD grub_cmd_eval+1|1-0-0-0
+176|data|DCD aString; "STRING ..."|221-0-0-0
+180|data|DCD aEvaluateArgume; "Evaluate arguments as GRUB commands"|232-0-0-0
+184|data|DCD grub_register_command_prio|40-1-0-0
+188|data|DCD aEval; "eval"|216-0-0-0
+192|data|DCD cmd|28-1-0-0
+196|code|PUSH            {R3,LR}|8-181
+198|code|LDR             R3, =cmd|2-75
+200|code|LDR             R0, [R3]|24-104
+202|code|LDR             R3, =grub_unregister_command|2-75
+204|code|BLX             R3; grub_unregister_command|152-71
+206|code|POP             {R3,PC}|8-189
+208|data|DCD cmd|28-1-0-0
+212|data|DCD grub_unregister_command|44-1-0-0
+216|data|DCB "eval",0|101-118-97-108-0
+221|data|DCB "STRING ...",0|83-84-82-73-78-71-32-46-46-46-0
+232|data|DCB "Evaluate arguments as GRUB commands",0|69-118-97-108-117-97-116-101-32-97-114-103-117-109-101-110-116-115-32-97-115-32-71-82-85-66-32-99-111-109-109-97-110-100-115-0
+269|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

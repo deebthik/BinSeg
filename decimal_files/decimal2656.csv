@@ -1,0 +1,2953 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|ADDS            subkey, #8|8-49
+6|code|LDRB            R3, [rawkey,#1]|67-120
+8|code|LDRB            R4, [rawkey]|4-120
+10|code|LDRB            R5, [rawkey,#4]|5-121
+12|code|LSLS            R2, R3, #0x10|26-4
+14|code|LDRB            R3, [rawkey,#3]|195-120
+16|code|ORR.W           R2, R2, R4,LSL#24|66-234-4-98
+20|code|LDRB            R4, [rawkey,#7]|196-121
+22|code|ORRS            R2, R3|26-67
+24|code|LDRB            R3, [rawkey,#2]|131-120
+26|code|ORR.W           R2, R2, R3,LSL#8|66-234-3-34
+30|code|LDRB            R3, [rawkey,#5]|67-121
+32|code|LDRB            rawkey, [rawkey,#6]|128-121
+34|code|LSLS            R3, R3, #0x10|27-4
+36|code|ORR.W           R3, R3, R5,LSL#24|67-234-5-99
+40|code|ORRS            R3, R4|35-67
+42|code|LDR             R4, =leftkey_swap|199-76
+44|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+48|code|EOR.W           R5, left, right,LSR#4|130-234-16-21
+52|code|AND.W           R5, R5, #0xF0F0F0F|5-240-15-53
+56|code|EORS            left, work|106-64
+58|code|EOR.W           R3, right, work,LSL#4|128-234-5-19
+62|code|EOR.W           work, right, left|131-234-2-5
+66|code|AND.W           R5, R5, #0x10101010|5-240-16-53
+70|code|EORS            left, work|106-64
+72|code|EORS            work, right|93-64
+74|code|UBFX.W          R3, left, #0x15, #4|194-243-67-83
+78|code|UBFX.W          R0, left, #0x18, #4|194-243-3-96
+82|code|LDR.W           R6, [R4,R3,LSL#2]|84-248-35-96
+86|code|AND.W           R3, left, #0xF|2-240-15-3
+90|code|LDR.W           R0, [R4,R0,LSL#2]|84-248-32-0
+94|code|LDR.W           R3, [R4,R3,LSL#2]|84-248-35-48
+98|code|ORR.W           R0, R0, R3,LSL#3|64-234-195-0
+102|code|LSRS            R3, left, #0x1D|83-15
+104|code|LDR.W           R3, [R4,R3,LSL#2]|84-248-35-48
+108|code|ORR.W           R0, R0, R3,LSL#4|64-234-3-16
+112|code|UBFX.W          R3, left, #8, #4|194-243-3-35
+116|code|LDR.W           R3, [R4,R3,LSL#2]|84-248-35-48
+120|code|ORR.W           R0, R0, R3,LSL#2|64-234-131-0
+124|code|UBFX.W          R3, left, #0x10, #4|194-243-3-67
+128|code|LDR.W           R3, [R4,R3,LSL#2]|84-248-35-48
+132|code|ORR.W           R0, R0, R3,LSL#1|64-234-67-0
+136|code|UBFX.W          R3, left, #5, #4|194-243-67-19
+140|code|UBFX.W          left, left, #0xD, #4|194-243-67-50
+144|code|LDR.W           R3, [R4,R3,LSL#2]|84-248-35-48
+148|code|ORR.W           R0, R0, R3,LSL#7|64-234-195-16
+152|code|LDR.W           R3, [R4,R2,LSL#2]|84-248-34-48
+156|code|UBFX.W          R2, right, #0x14, #4|197-243-3-82
+160|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+164|code|ORR.W           R3, R0, R3,LSL#6|64-234-131-19
+168|code|ORR.W           R3, R3, R6,LSL#5|67-234-70-19
+172|code|LDR             R6, [R2,#0x40]|22-108
+174|code|LSRS            R2, right, #0x1C|42-15
+176|code|BIC.W           left, left, #0xF0000000|35-240-112-67
+180|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+184|code|LDR             R7, [R2,#0x40]|23-108
+186|code|UBFX.W          R2, right, #0x19, #4|197-243-67-98
+190|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+194|code|LDR             R0, [R2,#0x40]|16-108
+196|code|UBFX.W          R2, right, #1, #4|197-243-67-2
+200|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+204|code|ORR.W           R0, R0, R7,LSL#4|64-234-7-16
+208|code|MOVS            R7, #0|0-39
+210|code|LDR             R2, [R2,#0x40]|18-108
+212|code|ORR.W           R0, R0, R2,LSL#3|64-234-194-0
+216|code|UBFX.W          R2, right, #9, #4|197-243-67-34
+220|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+224|code|LDR             R2, [R2,#0x40]|18-108
+226|code|ORR.W           R0, R0, R2,LSL#2|64-234-130-0
+230|code|UBFX.W          R2, right, #0x11, #4|197-243-67-66
+234|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+238|code|LDR             R2, [R2,#0x40]|18-108
+240|code|ORR.W           R0, R0, R2,LSL#1|64-234-66-0
+244|code|UBFX.W          R2, right, #4, #4|197-243-3-18
+248|code|UBFX.W          right, right, #0xC, #4|197-243-3-53
+252|code|ADD.W           R2, R4, R2,LSL#2|4-235-130-2
+256|code|ADD.W           R5, R4, R5,LSL#2|4-235-133-5
+260|code|ADDS            R4, #0x80|128-52
+262|code|LDR             R2, [R2,#0x40]|18-108
+264|code|ORR.W           R0, R0, R2,LSL#7|64-234-194-16
+268|code|LDR             R2, [R5,#0x40]|42-108
+270|code|ORR.W           R2, R0, R2,LSL#6|64-234-130-18
+274|code|ORR.W           R2, R2, R6,LSL#5|66-234-70-18
+278|code|BIC.W           right, right, #0xF0000000|34-240-112-66
+282|code|LDRB            R5, [round,R4]|61-93
+284|code|ADDS            round, #1|1-55
+286|code|CMP             R7, #0x10|16-47
+288|code|ADD.W           R1, R1, #8|1-241-8-1
+292|code|RSB.W           R0, R5, #0x1C|197-241-28-0
+296|code|LSR.W           R6, left, R0|35-250-0-246
+300|code|LSL.W           left, left, R5|3-250-5-243
+304|code|ORR.W           R3, R3, R6|67-234-6-3
+308|code|LSR.W           R0, right, R0|34-250-0-240
+312|code|BIC.W           R3, R3, #0xF0000000|35-240-112-67
+316|code|LSL.W           right, right, R5|2-250-5-242
+320|code|ORR.W           R0, R0, R2|64-234-2-0
+324|code|MOV.W           R6, left,LSL#4|79-234-3-22
+328|code|MOV.W           LR, left,LSL#10|79-234-131-46
+332|code|AND.W           R8, R6, #0x24000000|6-240-16-88
+336|code|MOV.W           R6, left,LSL#28|79-234-3-118
+340|code|AND.W           R6, R6, #0x10000000|6-240-128-86
+344|code|BIC.W           R2, R0, #0xF0000000|32-240-112-66
+348|code|ORR.W           R6, R8, R6|72-234-6-6
+352|code|AND.W           R8, R0, #0x100|0-244-128-120
+356|code|ORR.W           R6, R6, R8|70-234-8-6
+360|code|MOV.W           R8, left,LSL#14|79-234-131-56
+364|code|AND.W           R8, R8, #0x8000000|8-240-0-104
+368|code|MOV.W           R12, right,LSR#14|79-234-146-60
+372|code|ORR.W           R6, R6, R8|70-234-8-6
+376|code|MOV.W           R8, left,LSL#18|79-234-131-72
+380|code|AND.W           R8, R8, #0x2080000|8-240-2-120
+384|code|MOV.W           R5, right,LSR#3|79-234-210-5
+388|code|ORR.W           R6, R6, R8|70-234-8-6
+392|code|MOV.W           R8, left,LSL#6|79-234-131-24
+396|code|AND.W           R8, R8, #0x1000000|8-240-128-120
+400|code|AND.W           R0, R0, #0x200|0-244-0-112
+404|code|ORR.W           R6, R6, R8|70-234-8-6
+408|code|MOV.W           R8, left,LSL#9|79-234-67-40
+412|code|AND.W           R8, R8, #0x200000|8-244-0-24
+416|code|ORR.W           R6, R6, R8|70-234-8-6
+420|code|MOV.W           R8, left,LSR#1|79-234-83-8
+424|code|AND.W           R8, R8, #0x100000|8-244-128-24
+428|code|ORR.W           R6, R6, R8|70-234-8-6
+432|code|AND.W           R8, LR, #0x40000|14-244-128-40
+436|code|ORR.W           R6, R6, R8|70-234-8-6
+440|code|MOV.W           R8, left,LSL#2|79-234-131-8
+444|code|AND.W           R8, R8, #0x20000|8-244-0-56
+448|code|AND.W           LR, LR, #0x8000000|14-240-0-110
+452|code|ORR.W           R6, R6, R8|70-234-8-6
+456|code|MOV.W           R8, left,LSR#10|79-234-147-40
+460|code|AND.W           R8, R8, #0x10000|8-244-128-56
+464|code|ORR.W           R6, R6, R8|70-234-8-6
+468|code|MOV.W           R8, right,LSR#13|79-234-82-56
+472|code|AND.W           R8, R8, #0x2000|8-244-0-88
+476|code|ORR.W           R6, R6, R8|70-234-8-6
+480|code|MOV.W           R8, right,LSR#4|79-234-18-24
+484|code|AND.W           R8, R8, #0x1000|8-244-128-88
+488|code|ORR.W           R6, R6, R8|70-234-8-6
+492|code|MOV.W           R8, right,LSL#6|79-234-130-24
+496|code|AND.W           R8, R8, #0x800|8-244-0-104
+500|code|ORR.W           R6, R6, R8|70-234-8-6
+504|code|MOV.W           R8, right,LSR#1|79-234-82-8
+508|code|AND.W           R8, R8, #0x400|8-244-128-104
+512|code|ORR.W           R6, R6, R8|70-234-8-6
+516|code|AND.W           R8, R12, #0x200|12-244-0-120
+520|code|ORR.W           R6, R6, R8|70-234-8-6
+524|code|MOV.W           R8, right,LSR#5|79-234-82-24
+528|code|AND.W           R8, R8, #0x20|8-240-32-8
+532|code|ORR.W           R6, R6, R8|70-234-8-6
+536|code|MOV.W           R8, right,LSR#10|79-234-146-40
+540|code|AND.W           R8, R8, #0x10|8-240-16-8
+544|code|ORR.W           R6, R6, R8|70-234-8-6
+548|code|AND.W           R8, R5, #8|5-240-8-8
+552|code|ORR.W           R6, R6, R8|70-234-8-6
+556|code|MOV.W           R8, right,LSR#18|79-234-146-72
+560|code|AND.W           R8, R8, #4|8-240-4-8
+564|code|AND.W           R5, R5, #0x11|5-240-17-5
+568|code|ORR.W           R8, R6, R8|70-234-8-8
+572|code|MOV.W           R6, right,LSR#26|79-234-146-102
+576|code|AND.W           R6, R6, #2|6-240-2-6
+580|code|ORR.W           R6, R8, R6|72-234-6-6
+584|code|UBFX.W          R8, right, #0x18, #1|194-243-0-104
+588|code|ORR.W           R6, R6, R8|70-234-8-6
+592|code|MOV.W           R8, left,LSL#17|79-234-67-72
+596|code|STR.W           R6, [R1,#-0x10]|65-248-16-108
+600|code|MOV.W           R6, left,LSL#15|79-234-195-54
+604|code|AND.W           R9, R6, #0x20000000|6-240-0-89
+608|code|AND.W           R8, R8, #0x10000000|8-240-128-88
+612|code|ORR.W           R8, R9, R8|73-234-8-8
+616|code|AND.W           R6, R6, #0x20000|6-244-0-54
+620|code|ORR.W           R0, R8, R0|72-234-0-0
+624|code|MOV.W           R8, left,LSR#2|79-234-147-8
+628|code|ORR.W           R0, R0, LR|64-234-14-0
+632|code|MOV.W           LR, left,LSL#22|79-234-131-94
+636|code|AND.W           LR, LR, #0x4000000|14-240-128-110
+640|code|AND.W           R8, R8, #0x2000000|8-240-0-120
+644|code|ORR.W           R0, R0, LR|64-234-14-0
+648|code|MOV.W           LR, left,LSL#3|79-234-195-14
+652|code|ORR.W           R0, R0, R8|64-234-8-0
+656|code|MOV.W           R8, left,LSL#1|79-234-67-8
+660|code|AND.W           R8, R8, #0x1000000|8-240-128-120
+664|code|AND.W           LR, LR, #0x80000|14-244-0-46
+668|code|ORR.W           R0, R0, R8|64-234-8-0
+672|code|MOV.W           R8, left,LSL#16|79-234-3-72
+676|code|AND.W           R8, R8, #0x200000|8-244-0-24
+680|code|ORR.W           R0, R0, R8|64-234-8-0
+684|code|MOV.W           R8, left,LSL#11|79-234-195-40
+688|code|AND.W           R8, R8, #0x100000|8-244-128-24
+692|code|ORR.W           R0, R0, R8|64-234-8-0
+696|code|ORR.W           LR, R0, LR|64-234-14-14
+700|code|MOV.W           R0, left,LSR#6|79-234-147-16
+704|code|AND.W           R0, R0, #0x40000|0-244-128-32
+708|code|ORR.W           R0, LR, R0|78-234-0-0
+712|code|MOV.W           LR, right,LSL#7|79-234-194-30
+716|code|ORR.W           R6, R6, R0|70-234-0-6
+720|code|MOV.W           R0, left,LSR#4|79-234-19-16
+724|code|AND.W           R0, R0, #0x10000|0-244-128-48
+728|code|AND.W           LR, LR, #0x100|14-244-128-126
+732|code|ORR.W           R6, R6, R0|70-234-0-6
+736|code|MOV.W           R0, right,LSR#2|79-234-146-0
+740|code|AND.W           R0, R0, #0x2000|0-244-0-80
+744|code|ORR.W           R6, R6, R0|70-234-0-6
+748|code|MOV.W           R0, right,LSL#8|79-234-2-32
+752|code|AND.W           R0, R0, #0x1000|0-244-128-80
+756|code|ORR.W           R6, R6, R0|70-234-0-6
+760|code|MOVW            R0, #0x808|64-246-8-0
+764|code|AND.W           R0, R12, R0|12-234-0-0
+768|code|ORR.W           R6, R6, R0|70-234-0-6
+772|code|MOV.W           R0, right,LSR#9|79-234-82-32
+776|code|AND.W           R0, R0, #0x400|0-244-128-96
+780|code|ORR.W           R0, R0, R6|64-234-6-0
+784|code|ORR.W           R6, R0, LR|64-234-14-6
+788|code|MOV.W           R0, right,LSR#7|79-234-210-16
+792|code|AND.W           R0, R0, #0x20|0-240-32-0
+796|code|ORR.W           R0, R0, R6|64-234-6-0
+800|code|ORR.W           R5, R5, R0|69-234-0-5
+804|code|MOV.W           R0, right,LSL#2|79-234-130-0
+808|code|AND.W           R0, R0, #4|0-240-4-0
+812|code|ORR.W           R5, R5, R0|69-234-0-5
+816|code|MOV.W           R0, right,LSR#21|79-234-82-80
+820|code|AND.W           R0, R0, #2|0-240-2-0
+824|code|ORR.W           R5, R5, R0|69-234-0-5
+828|code|STR.W           R5, [R1,#-0xC]|65-248-12-92
+832|code|BNE.W           loc_11A|127-244-235-174
+836|code|POP.W           {R4-R9,PC}|189-232-240-131
+840|data|DCD leftkey_swap|212-38-0-0
+844|code|PUSH            {R4-R7,LR}|240-181
+846|code|CBZ             mode, loc_35A|35-177
+848|code|ADD.W           R4, ctx, #0x80|0-241-128-4
+852|code|LDR.W           R6, [ctx,#0x80]|208-248-128-96
+856|code|B               loc_35E|1-224
+858|code|LDR             R6, [ctx]|6-104
+860|code|MOV             R4, ctx|4-70
+862|code|LDRB            mode, [from,#1]|75-120
+864|code|LDRB            R7, [from]|15-120
+866|code|LDRB            ctx, [from,#4]|8-121
+868|code|LSLS            R3, R3, #0x10|27-4
+870|code|ORR.W           R3, R3, R7,LSL#24|67-234-7-99
+874|code|LDRB            R7, [from,#3]|207-120
+876|code|ORRS            R3, R7|59-67
+878|code|LDRB            R7, [from,#2]|143-120
+880|code|ORR.W           R7, R3, R7,LSL#8|67-234-7-39
+884|code|LDRB            R3, [from,#5]|75-121
+886|code|LSLS            R3, R3, #0x10|27-4
+888|code|ORR.W           R3, R3, R0,LSL#24|67-234-0-99
+892|code|LDRB            R0, [from,#7]|200-121
+894|code|ORRS            R3, R0|3-67
+896|code|LDRB            R0, [from,#6]|136-121
+898|code|ORR.W           R3, R3, R0,LSL#8|67-234-0-35
+902|code|EOR.W           R5, right, left,LSR#4|131-234-23-21
+906|code|AND.W           R5, R5, #0xF0F0F0F|5-240-15-53
+910|code|EORS            right, work|107-64
+912|code|EOR.W           from, left, work,LSL#4|135-234-5-17
+916|code|EOR.W           work, right, left,LSR#16|131-234-17-69
+920|code|UXTH            R5, R5|173-178
+922|code|EOR.W           R0, work, right|133-234-3-0
+926|code|EOR.W           work, left, work,LSL#16|129-234-5-69
+930|code|EOR.W           R3, left, right,LSR#2|133-234-144-3
+934|code|AND.W           R3, R3, #0x33333333|3-240-51-51
+938|code|EORS            left, work|93-64
+940|code|EOR.W           work, right, work,LSL#2|128-234-131-3
+944|code|EOR.W           R1, left, right,LSR#8|133-234-19-33
+948|code|AND.W           R1, R1, #0xFF00FF|1-240-255-17
+952|code|EOR.W           R0, work, left|129-234-5-0
+956|code|EOR.W           work, right, work,LSL#8|131-234-1-33
+960|code|MOV.W           right, right,ROR#31|79-234-241-113
+964|code|EOR.W           R3, right, left|129-234-0-3
+968|code|AND.W           R3, R3, #0xAAAAAAAA|3-240-170-51
+972|code|EORS            right, work|89-64
+974|code|EORS            left, work|88-64
+976|code|EORS            R6, right|78-64
+978|code|LDR             R3, =leftkey_swap|246-75
+980|code|AND.W           R5, work, #0x3F|6-240-63-5
+984|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+988|code|LDR.W           R5, [R5,#0x90]|213-248-144-80
+992|code|EOR.W           R0, R5, R0,ROR#31|133-234-240-112
+996|code|UBFX.W          R5, work, #8, #6|198-243-5-37
+1000|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+1004|code|LDR.W           R5, [R5,#0x190]|213-248-144-81
+1008|code|EORS            left, R5|104-64
+1010|code|UBFX.W          R5, work, #0x10, #6|198-243-5-69
+1014|code|UBFX.W          work, work, #0x18, #6|198-243-5-102
+1018|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+1022|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1026|code|LDR.W           R5, [R5,#0x290]|213-248-144-82
+1030|code|EORS            left, R5|104-64
+1032|code|LDR.W           R5, [R6,#0x390]|214-248-144-83
+1036|code|EOR.W           R6, left, R5|128-234-5-6
+1040|code|LDR             R5, [R4,#4]|101-104
+1042|code|EOR.W           R5, R5, right,ROR#4|133-234-49-21
+1046|code|AND.W           R0, work, #0x3F|5-240-63-0
+1050|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+1054|code|LDR.W           R7, [R0,#0x490]|208-248-144-116
+1058|code|UBFX.W          R0, work, #8, #6|197-243-5-32
+1062|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+1066|code|EORS            left, R7|126-64
+1068|code|LDR.W           R7, [R0,#0x590]|208-248-144-117
+1072|code|UBFX.W          R0, work, #0x10, #6|197-243-5-64
+1076|code|UBFX.W          work, work, #0x18, #6|197-243-5-101
+1080|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+1084|code|EORS            left, R7|126-64
+1086|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+1090|code|LDR.W           R0, [R0,#0x690]|208-248-144-6
+1094|code|EORS            R0, left|112-64
+1096|code|LDR.W           R6, [R5,#0x790]|213-248-144-103
+1100|code|EORS            R6, left|70-64
+1102|code|LDR             R0, [R4,#8]|160-104
+1104|code|EORS            R0, left|112-64
+1106|code|AND.W           R5, work, #0x3F|0-240-63-5
+1110|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+1114|code|LDR.W           R5, [R5,#0x90]|213-248-144-80
+1118|code|EORS            R5, right|77-64
+1120|code|UBFX.W          R1, work, #8, #6|192-243-5-33
+1124|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1128|code|LDR.W           R7, [R1,#0x190]|209-248-144-113
+1132|code|UBFX.W          R1, work, #0x10, #6|192-243-5-65
+1136|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+1140|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1144|code|EORS            right, R7|125-64
+1146|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+1150|code|LDR.W           R7, [R1,#0x290]|209-248-144-114
+1154|code|LDR.W           R0, [R0,#0x390]|208-248-144-3
+1158|code|EORS            right, R7|125-64
+1160|code|EORS            right, R0|69-64
+1162|code|LDR             R0, [R4,#0xC]|224-104
+1164|code|EOR.W           R0, R0, left,ROR#4|128-234-54-16
+1168|code|AND.W           R1, work, #0x3F|0-240-63-1
+1172|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1176|code|LDR.W           R7, [R1,#0x490]|209-248-144-116
+1180|code|UBFX.W          R1, work, #8, #6|192-243-5-33
+1184|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1188|code|EORS            right, R7|125-64
+1190|code|LDR.W           R7, [R1,#0x590]|209-248-144-117
+1194|code|UBFX.W          R1, work, #0x10, #6|192-243-5-65
+1198|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+1202|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1206|code|EORS            right, R7|125-64
+1208|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+1212|code|LDR.W           R1, [R1,#0x690]|209-248-144-22
+1216|code|EORS            R1, right|105-64
+1218|code|LDR.W           R5, [R0,#0x790]|208-248-144-87
+1222|code|EORS            R5, right|77-64
+1224|code|LDR             R1, [R4,#0x10]|33-105
+1226|code|EORS            R1, right|105-64
+1228|code|AND.W           R0, work, #0x3F|1-240-63-0
+1232|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+1236|code|LDR.W           R0, [R0,#0x90]|208-248-144-0
+1240|code|EORS            R0, left|112-64
+1242|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1246|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1250|code|LDR.W           R7, [R6,#0x190]|214-248-144-113
+1254|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1258|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1262|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1266|code|EORS            left, R7|120-64
+1268|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1272|code|LDR.W           R7, [R6,#0x290]|214-248-144-114
+1276|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+1280|code|EORS            left, R7|120-64
+1282|code|EORS            left, R1|72-64
+1284|code|LDR             R1, [R4,#0x14]|97-105
+1286|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+1290|code|AND.W           R6, work, #0x3F|1-240-63-6
+1294|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1298|code|LDR.W           R7, [R6,#0x490]|214-248-144-116
+1302|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1306|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1310|code|EORS            left, R7|120-64
+1312|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+1316|code|EORS            left, R6|112-64
+1318|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1322|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1326|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1330|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1334|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+1338|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+1342|code|EORS            left, R6|112-64
+1344|code|EORS            left, R1|72-64
+1346|code|LDR             R1, [R4,#0x18]|161-105
+1348|code|EORS            R1, left|65-64
+1350|code|AND.W           R6, work, #0x3F|1-240-63-6
+1354|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1358|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+1362|code|EORS            right, R6|117-64
+1364|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1368|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1372|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+1376|code|EORS            right, R6|117-64
+1378|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1382|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1386|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1390|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1394|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+1398|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+1402|code|EORS            right, R6|117-64
+1404|code|EORS            right, R1|77-64
+1406|code|LDR             R1, [R4,#0x1C]|225-105
+1408|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+1412|code|AND.W           R6, work, #0x3F|1-240-63-6
+1416|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1420|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+1424|code|EORS            right, R6|117-64
+1426|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1430|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1434|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+1438|code|EORS            right, R6|117-64
+1440|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1444|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1448|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1452|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1456|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+1460|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+1464|code|EORS            right, R6|117-64
+1466|code|EORS            right, R1|77-64
+1468|code|LDR             R1, [R4,#0x20]|33-106
+1470|code|EORS            R1, right|105-64
+1472|code|AND.W           R6, work, #0x3F|1-240-63-6
+1476|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1480|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+1484|code|EORS            left, R6|112-64
+1486|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1490|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1494|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+1498|code|EORS            left, R6|112-64
+1500|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1504|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1508|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1512|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1516|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+1520|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+1524|code|EORS            left, R6|112-64
+1526|code|EORS            left, R1|72-64
+1528|code|LDR             R1, [R4,#0x24]|97-106
+1530|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+1534|code|AND.W           R6, work, #0x3F|1-240-63-6
+1538|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1542|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+1546|code|EORS            left, R6|112-64
+1548|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1552|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1556|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+1560|code|EORS            left, R6|112-64
+1562|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1566|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1570|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1574|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1578|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+1582|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+1586|code|EORS            left, R6|112-64
+1588|code|EORS            left, R1|72-64
+1590|code|LDR             R1, [R4,#0x28]|161-106
+1592|code|EORS            R1, left|65-64
+1594|code|AND.W           R6, work, #0x3F|1-240-63-6
+1598|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1602|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+1606|code|EORS            right, R6|117-64
+1608|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1612|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1616|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+1620|code|EORS            right, R6|117-64
+1622|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1626|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1630|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1634|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1638|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+1642|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+1646|code|EORS            right, R6|117-64
+1648|code|EORS            right, R1|77-64
+1650|code|LDR             R1, [R4,#0x2C]|225-106
+1652|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+1656|code|AND.W           R6, work, #0x3F|1-240-63-6
+1660|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1664|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+1668|code|EORS            right, R6|117-64
+1670|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1674|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1678|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+1682|code|EORS            right, R6|117-64
+1684|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1688|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1692|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1696|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1700|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+1704|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+1708|code|EORS            right, R6|117-64
+1710|code|EORS            right, R1|77-64
+1712|code|LDR             R1, [R4,#0x30]|33-107
+1714|code|EORS            R1, right|105-64
+1716|code|AND.W           R6, work, #0x3F|1-240-63-6
+1720|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1724|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+1728|code|EORS            left, R6|112-64
+1730|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1734|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1738|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+1742|code|EORS            left, R6|112-64
+1744|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1748|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1752|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1756|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1760|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+1764|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+1768|code|EORS            left, R6|112-64
+1770|code|EORS            left, R1|72-64
+1772|code|LDR             R1, [R4,#0x34]|97-107
+1774|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+1778|code|AND.W           R6, work, #0x3F|1-240-63-6
+1782|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1786|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+1790|code|EORS            left, R6|112-64
+1792|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1796|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1800|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+1804|code|EORS            left, R6|112-64
+1806|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1810|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1814|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1818|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1822|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+1826|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+1830|code|EORS            left, R6|112-64
+1832|code|EORS            left, R1|72-64
+1834|code|LDR             R1, [R4,#0x38]|161-107
+1836|code|EORS            R1, left|65-64
+1838|code|AND.W           R6, work, #0x3F|1-240-63-6
+1842|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1846|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+1850|code|EORS            right, R6|117-64
+1852|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1856|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1860|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+1864|code|EORS            right, R6|117-64
+1866|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1870|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1874|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1878|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1882|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+1886|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+1890|code|EORS            right, R6|117-64
+1892|code|EORS            right, R1|77-64
+1894|code|LDR             R1, [R4,#0x3C]|225-107
+1896|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+1900|code|AND.W           R6, work, #0x3F|1-240-63-6
+1904|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1908|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+1912|code|EORS            right, R6|117-64
+1914|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1918|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1922|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+1926|code|EORS            right, R6|117-64
+1928|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+1932|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+1936|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1940|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+1944|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+1948|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+1952|code|EORS            right, R6|117-64
+1954|code|EORS            right, R1|77-64
+1956|code|LDR             R1, [R4,#0x40]|33-108
+1958|code|EORS            R1, right|105-64
+1960|code|B               loc_7B0|2-224
+1962|data|ALIGN 4|0-191
+1964|data|DCD leftkey_swap|212-38-0-0
+1968|code|AND.W           R6, work, #0x3F|1-240-63-6
+1972|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1976|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+1980|code|EORS            left, R6|112-64
+1982|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+1986|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+1990|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+1994|code|EORS            left, R6|112-64
+1996|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2000|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2004|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2008|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2012|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2016|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+2020|code|EORS            left, R6|112-64
+2022|code|EORS            left, R1|72-64
+2024|code|LDR             R1, [R4,#0x44]|97-108
+2026|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+2030|code|AND.W           R6, work, #0x3F|1-240-63-6
+2034|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2038|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2042|code|EORS            left, R6|112-64
+2044|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2048|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2052|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2056|code|EORS            left, R6|112-64
+2058|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2062|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2066|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2070|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2074|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2078|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+2082|code|EORS            left, R6|112-64
+2084|code|EORS            left, R1|72-64
+2086|code|LDR             R1, [R4,#0x48]|161-108
+2088|code|EORS            R1, left|65-64
+2090|code|AND.W           R6, work, #0x3F|1-240-63-6
+2094|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2098|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2102|code|EORS            right, R6|117-64
+2104|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2108|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2112|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2116|code|EORS            right, R6|117-64
+2118|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2122|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2126|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2130|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2134|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2138|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+2142|code|EORS            right, R6|117-64
+2144|code|EORS            right, R1|77-64
+2146|code|LDR             R1, [R4,#0x4C]|225-108
+2148|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+2152|code|AND.W           R6, work, #0x3F|1-240-63-6
+2156|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2160|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2164|code|EORS            right, R6|117-64
+2166|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2170|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2174|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2178|code|EORS            right, R6|117-64
+2180|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2184|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2188|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2192|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2196|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2200|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+2204|code|EORS            right, R6|117-64
+2206|code|EORS            right, R1|77-64
+2208|code|LDR             R1, [R4,#0x50]|33-109
+2210|code|EORS            R1, right|105-64
+2212|code|AND.W           R6, work, #0x3F|1-240-63-6
+2216|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2220|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2224|code|EORS            left, R6|112-64
+2226|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2230|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2234|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2238|code|EORS            left, R6|112-64
+2240|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2244|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2248|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2252|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2256|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2260|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+2264|code|EORS            left, R6|112-64
+2266|code|EORS            left, R1|72-64
+2268|code|LDR             R1, [R4,#0x54]|97-109
+2270|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+2274|code|AND.W           R6, work, #0x3F|1-240-63-6
+2278|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2282|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2286|code|EORS            left, R6|112-64
+2288|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2292|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2296|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2300|code|EORS            left, R6|112-64
+2302|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2306|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2310|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2314|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2318|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2322|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+2326|code|EORS            left, R6|112-64
+2328|code|EORS            left, R1|72-64
+2330|code|LDR             R1, [R4,#0x58]|161-109
+2332|code|EORS            R1, left|65-64
+2334|code|AND.W           R6, work, #0x3F|1-240-63-6
+2338|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2342|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2346|code|EORS            right, R6|117-64
+2348|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2352|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2356|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2360|code|EORS            right, R6|117-64
+2362|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2366|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2370|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2374|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2378|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2382|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+2386|code|EORS            right, R6|117-64
+2388|code|EORS            right, R1|77-64
+2390|code|LDR             R1, [R4,#0x5C]|225-109
+2392|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+2396|code|AND.W           R6, work, #0x3F|1-240-63-6
+2400|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2404|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2408|code|EORS            right, R6|117-64
+2410|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2414|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2418|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2422|code|EORS            right, R6|117-64
+2424|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2428|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2432|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2436|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2440|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2444|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+2448|code|EORS            right, R6|117-64
+2450|code|EORS            right, R1|77-64
+2452|code|LDR             R1, [R4,#0x60]|33-110
+2454|code|EORS            R1, right|105-64
+2456|code|AND.W           R6, work, #0x3F|1-240-63-6
+2460|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2464|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2468|code|EORS            left, R6|112-64
+2470|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2474|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2478|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2482|code|EORS            left, R6|112-64
+2484|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2488|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2492|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2496|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2500|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2504|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+2508|code|EORS            left, R6|112-64
+2510|code|EORS            left, R1|72-64
+2512|code|LDR             R1, [R4,#0x64]|97-110
+2514|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+2518|code|AND.W           R6, work, #0x3F|1-240-63-6
+2522|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2526|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2530|code|EORS            left, R6|112-64
+2532|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2536|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2540|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2544|code|EORS            left, R6|112-64
+2546|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2550|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2554|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2558|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2562|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2566|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+2570|code|EORS            left, R6|112-64
+2572|code|EORS            left, R1|72-64
+2574|code|LDR             R1, [R4,#0x68]|161-110
+2576|code|EORS            R1, left|65-64
+2578|code|AND.W           R6, work, #0x3F|1-240-63-6
+2582|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2586|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2590|code|EORS            right, R6|117-64
+2592|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2596|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2600|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2604|code|EORS            right, R6|117-64
+2606|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2610|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2614|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2618|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2622|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2626|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+2630|code|EORS            right, R6|117-64
+2632|code|EORS            right, R1|77-64
+2634|code|LDR             R1, [R4,#0x6C]|225-110
+2636|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+2640|code|AND.W           R6, work, #0x3F|1-240-63-6
+2644|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2648|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2652|code|EORS            right, R6|117-64
+2654|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2658|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2662|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2666|code|EORS            right, R6|117-64
+2668|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2672|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2676|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2680|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2684|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2688|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+2692|code|EORS            right, R6|117-64
+2694|code|EORS            right, R1|77-64
+2696|code|LDR             R1, [R4,#0x70]|33-111
+2698|code|EORS            R1, right|105-64
+2700|code|AND.W           R6, work, #0x3F|1-240-63-6
+2704|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2708|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2712|code|EORS            left, R6|112-64
+2714|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+2718|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2722|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2726|code|EORS            left, R6|112-64
+2728|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+2732|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+2736|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2740|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+2744|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2748|code|EORS            left, R6|112-64
+2750|code|LDR.W           R6, [R1,#0x390]|209-248-144-99
+2754|code|EOR.W           R1, left, R6|128-234-6-1
+2758|code|LDR             R0, [R4,#0x74]|96-111
+2760|code|EOR.W           R0, R0, right,ROR#4|128-234-53-16
+2764|code|AND.W           R6, work, #0x3F|0-240-63-6
+2768|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2772|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+2776|code|EORS            left, R6|113-64
+2778|code|UBFX.W          R6, work, #8, #6|192-243-5-38
+2782|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2786|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+2790|code|EORS            left, R6|113-64
+2792|code|UBFX.W          R6, work, #0x10, #6|192-243-5-70
+2796|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+2800|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2804|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+2808|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+2812|code|LDR.W           R0, [R0,#0x790]|208-248-144-7
+2816|code|EORS            left, R6|113-64
+2818|code|EORS            left, R0|65-64
+2820|code|LDR             R0, [R4,#0x78]|160-111
+2822|code|EORS            R0, left|72-64
+2824|code|AND.W           R6, work, #0x3F|0-240-63-6
+2828|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2832|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+2836|code|EORS            right, R6|117-64
+2838|code|UBFX.W          R6, work, #8, #6|192-243-5-38
+2842|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2846|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+2850|code|EORS            right, R6|117-64
+2852|code|UBFX.W          R6, work, #0x10, #6|192-243-5-70
+2856|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+2860|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+2864|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+2868|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+2872|code|LDR.W           R0, [R0,#0x390]|208-248-144-3
+2876|code|EORS            right, R6|117-64
+2878|code|EORS            right, R0|69-64
+2880|code|LDR             R0, [R4,#0x7C]|224-111
+2882|code|EOR.W           R0, R0, left,ROR#4|128-234-49-16
+2886|code|AND.W           R4, work, #0x3F|0-240-63-4
+2890|code|ADD.W           R4, R3, R4,LSL#2|3-235-132-4
+2894|code|LDR.W           R6, [R4,#0x490]|212-248-144-100
+2898|code|EOR.W           R4, right, R6|133-234-6-4
+2902|code|UBFX.W          R5, work, #8, #6|192-243-5-37
+2906|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+2910|code|LDR.W           R5, [R5,#0x590]|213-248-144-85
+2914|code|EORS            right, R5|108-64
+2916|code|UBFX.W          R5, work, #0x10, #6|192-243-5-69
+2920|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+2924|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+2928|code|ADD.W           R3, R3, R0,LSL#2|3-235-128-3
+2932|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+2936|code|LDR.W           R3, [R3,#0x790]|211-248-144-55
+2940|code|EORS            right, R5|108-64
+2942|code|EORS            right, R3|92-64
+2944|code|MOV.W           right, right,ROR#1|79-234-116-4
+2948|code|EOR.W           R0, right, left|132-234-1-0
+2952|code|AND.W           R0, R0, #0xAAAAAAAA|0-240-170-48
+2956|code|EORS            left, work|65-64
+2958|code|EORS            right, work|68-64
+2960|code|MOV.W           work, left,ROR#1|79-234-113-0
+2964|code|EOR.W           R3, right, left,LSR#8|132-234-16-35
+2968|code|AND.W           R3, R3, #0xFF00FF|3-240-255-19
+2972|code|EORS            right, work|92-64
+2974|code|EOR.W           R1, left, work,LSL#8|128-234-3-33
+2978|code|EOR.W           work, right, left,LSR#2|132-234-145-3
+2982|code|AND.W           R3, R3, #0x33333333|3-240-51-51
+2986|code|EORS            right, work|92-64
+2988|code|EOR.W           work, left, work,LSL#2|129-234-131-3
+2992|code|EOR.W           R1, left, right,LSR#16|131-234-20-65
+2996|code|UXTH            R1, R1|137-178
+2998|code|EORS            left, work|75-64
+3000|code|EOR.W           R0, right, work,LSL#16|132-234-1-64
+3004|code|EOR.W           work, left, right,LSR#4|131-234-16-17
+3008|code|AND.W           R1, R1, #0xF0F0F0F|1-240-15-49
+3012|code|EORS            left, work|75-64
+3014|code|STRB            left, [to,#7]|211-113
+3016|code|EOR.W           work, right, work,LSL#4|128-234-1-17
+3020|code|STRB            right, [to,#3]|209-112
+3022|code|LSRS            R0, right, #0x18|8-14
+3024|code|STRB            R0, [to]|16-112
+3026|code|LSRS            R0, right, #0x10|8-12
+3028|code|STRB            R0, [to,#1]|80-112
+3030|code|LSRS            R0, right, #8|8-10
+3032|code|LSRS            right, left, #0x18|25-14
+3034|code|STRB            R0, [to,#2]|144-112
+3036|code|MOVS            R0, #0|0-32
+3038|code|STRB            R1, [to,#4]|17-113
+3040|code|LSRS            R1, left, #0x10|25-12
+3042|code|STRB            R1, [to,#5]|81-113
+3044|code|LSRS            R1, left, #8|25-10
+3046|code|STRB            R1, [to,#6]|145-113
+3048|code|POP             {R4-R7,PC}|240-189
+3050|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+3054|code|CBZ             mode, loc_BFA|35-177
+3056|code|ADD.W           R4, ctx, #0x180|0-245-192-116
+3060|code|LDR.W           R6, [ctx,#0x180]|208-248-128-97
+3064|code|B               loc_BFE|1-224
+3066|code|LDR             R6, [ctx]|6-104
+3068|code|MOV             R4, ctx|4-70
+3070|code|LDRB            mode, [from,#1]|75-120
+3072|code|LDRB            R7, [from]|15-120
+3074|code|LDRB            ctx, [from,#4]|8-121
+3076|code|LSLS            R3, R3, #0x10|27-4
+3078|code|ORR.W           R3, R3, R7,LSL#24|67-234-7-99
+3082|code|LDRB            R7, [from,#3]|207-120
+3084|code|ORRS            R3, R7|59-67
+3086|code|LDRB            R7, [from,#2]|143-120
+3088|code|ORR.W           R7, R3, R7,LSL#8|67-234-7-39
+3092|code|LDRB            R3, [from,#5]|75-121
+3094|code|LSLS            R3, R3, #0x10|27-4
+3096|code|ORR.W           R3, R3, R0,LSL#24|67-234-0-99
+3100|code|LDRB            R0, [from,#7]|200-121
+3102|code|ORRS            R3, R0|3-67
+3104|code|LDRB            R0, [from,#6]|136-121
+3106|code|ORR.W           R3, R3, R0,LSL#8|67-234-0-35
+3110|code|EOR.W           R5, right, left,LSR#4|131-234-23-21
+3114|code|AND.W           R5, R5, #0xF0F0F0F|5-240-15-53
+3118|code|EORS            right, work|107-64
+3120|code|EOR.W           from, left, work,LSL#4|135-234-5-17
+3124|code|EOR.W           work, right, left,LSR#16|131-234-17-69
+3128|code|UXTH            R5, R5|173-178
+3130|code|EOR.W           R0, work, right|133-234-3-0
+3134|code|EOR.W           work, left, work,LSL#16|129-234-5-69
+3138|code|EOR.W           R3, left, right,LSR#2|133-234-144-3
+3142|code|AND.W           R3, R3, #0x33333333|3-240-51-51
+3146|code|EORS            left, work|93-64
+3148|code|EOR.W           work, right, work,LSL#2|128-234-131-3
+3152|code|EOR.W           R1, left, right,LSR#8|133-234-19-33
+3156|code|AND.W           R1, R1, #0xFF00FF|1-240-255-17
+3160|code|EOR.W           R0, work, left|129-234-5-0
+3164|code|EOR.W           work, right, work,LSL#8|131-234-1-33
+3168|code|MOV.W           right, right,ROR#31|79-234-241-113
+3172|code|EOR.W           R3, right, left|129-234-0-3
+3176|code|AND.W           R3, R3, #0xAAAAAAAA|3-240-170-51
+3180|code|EORS            right, work|89-64
+3182|code|EORS            left, work|88-64
+3184|code|EORS            R6, right|78-64
+3186|code|LDR             R3, =leftkey_swap|246-75
+3188|code|AND.W           R5, work, #0x3F|6-240-63-5
+3192|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+3196|code|LDR.W           R5, [R5,#0x90]|213-248-144-80
+3200|code|EOR.W           R0, R5, R0,ROR#31|133-234-240-112
+3204|code|UBFX.W          R5, work, #8, #6|198-243-5-37
+3208|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+3212|code|LDR.W           R5, [R5,#0x190]|213-248-144-81
+3216|code|EORS            left, R5|104-64
+3218|code|UBFX.W          R5, work, #0x10, #6|198-243-5-69
+3222|code|UBFX.W          work, work, #0x18, #6|198-243-5-102
+3226|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+3230|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3234|code|LDR.W           R5, [R5,#0x290]|213-248-144-82
+3238|code|EORS            left, R5|104-64
+3240|code|LDR.W           R5, [R6,#0x390]|214-248-144-83
+3244|code|EOR.W           R6, left, R5|128-234-5-6
+3248|code|LDR             R5, [R4,#4]|101-104
+3250|code|EOR.W           R5, R5, right,ROR#4|133-234-49-21
+3254|code|AND.W           R0, work, #0x3F|5-240-63-0
+3258|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+3262|code|LDR.W           R7, [R0,#0x490]|208-248-144-116
+3266|code|UBFX.W          R0, work, #8, #6|197-243-5-32
+3270|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+3274|code|EORS            left, R7|126-64
+3276|code|LDR.W           R7, [R0,#0x590]|208-248-144-117
+3280|code|UBFX.W          R0, work, #0x10, #6|197-243-5-64
+3284|code|UBFX.W          work, work, #0x18, #6|197-243-5-101
+3288|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+3292|code|EORS            left, R7|126-64
+3294|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+3298|code|LDR.W           R0, [R0,#0x690]|208-248-144-6
+3302|code|EORS            R0, left|112-64
+3304|code|LDR.W           R6, [R5,#0x790]|213-248-144-103
+3308|code|EORS            R6, left|70-64
+3310|code|LDR             R0, [R4,#8]|160-104
+3312|code|EORS            R0, left|112-64
+3314|code|AND.W           R5, work, #0x3F|0-240-63-5
+3318|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+3322|code|LDR.W           R5, [R5,#0x90]|213-248-144-80
+3326|code|EORS            R5, right|77-64
+3328|code|UBFX.W          R1, work, #8, #6|192-243-5-33
+3332|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3336|code|LDR.W           R7, [R1,#0x190]|209-248-144-113
+3340|code|UBFX.W          R1, work, #0x10, #6|192-243-5-65
+3344|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+3348|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3352|code|EORS            right, R7|125-64
+3354|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+3358|code|LDR.W           R7, [R1,#0x290]|209-248-144-114
+3362|code|LDR.W           R0, [R0,#0x390]|208-248-144-3
+3366|code|EORS            right, R7|125-64
+3368|code|EORS            right, R0|69-64
+3370|code|LDR             R0, [R4,#0xC]|224-104
+3372|code|EOR.W           R0, R0, left,ROR#4|128-234-54-16
+3376|code|AND.W           R1, work, #0x3F|0-240-63-1
+3380|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3384|code|LDR.W           R7, [R1,#0x490]|209-248-144-116
+3388|code|UBFX.W          R1, work, #8, #6|192-243-5-33
+3392|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3396|code|EORS            right, R7|125-64
+3398|code|LDR.W           R7, [R1,#0x590]|209-248-144-117
+3402|code|UBFX.W          R1, work, #0x10, #6|192-243-5-65
+3406|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+3410|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3414|code|EORS            right, R7|125-64
+3416|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+3420|code|LDR.W           R1, [R1,#0x690]|209-248-144-22
+3424|code|EORS            R1, right|105-64
+3426|code|LDR.W           R5, [R0,#0x790]|208-248-144-87
+3430|code|EORS            R5, right|77-64
+3432|code|LDR             R1, [R4,#0x10]|33-105
+3434|code|EORS            R1, right|105-64
+3436|code|AND.W           R0, work, #0x3F|1-240-63-0
+3440|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+3444|code|LDR.W           R0, [R0,#0x90]|208-248-144-0
+3448|code|EORS            R0, left|112-64
+3450|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3454|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3458|code|LDR.W           R7, [R6,#0x190]|214-248-144-113
+3462|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3466|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3470|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3474|code|EORS            left, R7|120-64
+3476|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3480|code|LDR.W           R7, [R6,#0x290]|214-248-144-114
+3484|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+3488|code|EORS            left, R7|120-64
+3490|code|EORS            left, R1|72-64
+3492|code|LDR             R1, [R4,#0x14]|97-105
+3494|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+3498|code|AND.W           R6, work, #0x3F|1-240-63-6
+3502|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3506|code|LDR.W           R7, [R6,#0x490]|214-248-144-116
+3510|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3514|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3518|code|EORS            left, R7|120-64
+3520|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+3524|code|EORS            left, R6|112-64
+3526|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3530|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3534|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3538|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3542|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+3546|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+3550|code|EORS            left, R6|112-64
+3552|code|EORS            left, R1|72-64
+3554|code|LDR             R1, [R4,#0x18]|161-105
+3556|code|EORS            R1, left|65-64
+3558|code|AND.W           R6, work, #0x3F|1-240-63-6
+3562|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3566|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+3570|code|EORS            right, R6|117-64
+3572|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3576|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3580|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+3584|code|EORS            right, R6|117-64
+3586|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3590|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3594|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3598|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3602|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+3606|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+3610|code|EORS            right, R6|117-64
+3612|code|EORS            right, R1|77-64
+3614|code|LDR             R1, [R4,#0x1C]|225-105
+3616|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+3620|code|AND.W           R6, work, #0x3F|1-240-63-6
+3624|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3628|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+3632|code|EORS            right, R6|117-64
+3634|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3638|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3642|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+3646|code|EORS            right, R6|117-64
+3648|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3652|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3656|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3660|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3664|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+3668|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+3672|code|EORS            right, R6|117-64
+3674|code|EORS            right, R1|77-64
+3676|code|LDR             R1, [R4,#0x20]|33-106
+3678|code|EORS            R1, right|105-64
+3680|code|AND.W           R6, work, #0x3F|1-240-63-6
+3684|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3688|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+3692|code|EORS            left, R6|112-64
+3694|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3698|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3702|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+3706|code|EORS            left, R6|112-64
+3708|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3712|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3716|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3720|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3724|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+3728|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+3732|code|EORS            left, R6|112-64
+3734|code|EORS            left, R1|72-64
+3736|code|LDR             R1, [R4,#0x24]|97-106
+3738|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+3742|code|AND.W           R6, work, #0x3F|1-240-63-6
+3746|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3750|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+3754|code|EORS            left, R6|112-64
+3756|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3760|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3764|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+3768|code|EORS            left, R6|112-64
+3770|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3774|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3778|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3782|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3786|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+3790|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+3794|code|EORS            left, R6|112-64
+3796|code|EORS            left, R1|72-64
+3798|code|LDR             R1, [R4,#0x28]|161-106
+3800|code|EORS            R1, left|65-64
+3802|code|AND.W           R6, work, #0x3F|1-240-63-6
+3806|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3810|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+3814|code|EORS            right, R6|117-64
+3816|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3820|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3824|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+3828|code|EORS            right, R6|117-64
+3830|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3834|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3838|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3842|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3846|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+3850|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+3854|code|EORS            right, R6|117-64
+3856|code|EORS            right, R1|77-64
+3858|code|LDR             R1, [R4,#0x2C]|225-106
+3860|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+3864|code|AND.W           R6, work, #0x3F|1-240-63-6
+3868|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3872|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+3876|code|EORS            right, R6|117-64
+3878|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3882|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3886|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+3890|code|EORS            right, R6|117-64
+3892|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3896|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3900|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3904|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3908|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+3912|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+3916|code|EORS            right, R6|117-64
+3918|code|EORS            right, R1|77-64
+3920|code|LDR             R1, [R4,#0x30]|33-107
+3922|code|EORS            R1, right|105-64
+3924|code|AND.W           R6, work, #0x3F|1-240-63-6
+3928|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3932|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+3936|code|EORS            left, R6|112-64
+3938|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+3942|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3946|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+3950|code|EORS            left, R6|112-64
+3952|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+3956|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+3960|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3964|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+3968|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+3972|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+3976|code|EORS            left, R6|112-64
+3978|code|EORS            left, R1|72-64
+3980|code|LDR             R1, [R4,#0x34]|97-107
+3982|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+3986|code|AND.W           R6, work, #0x3F|1-240-63-6
+3990|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+3994|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+3998|code|EORS            left, R6|112-64
+4000|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4004|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4008|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4012|code|EORS            left, R6|112-64
+4014|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4018|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4022|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4026|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4030|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4034|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4038|code|EORS            left, R6|112-64
+4040|code|EORS            left, R1|72-64
+4042|code|LDR             R1, [R4,#0x38]|161-107
+4044|code|EORS            R1, left|65-64
+4046|code|AND.W           R6, work, #0x3F|1-240-63-6
+4050|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4054|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4058|code|EORS            right, R6|117-64
+4060|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4064|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4068|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+4072|code|EORS            right, R6|117-64
+4074|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4078|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4082|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4086|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4090|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+4094|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4098|code|EORS            right, R6|117-64
+4100|code|EORS            right, R1|77-64
+4102|code|LDR             R1, [R4,#0x3C]|225-107
+4104|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+4108|code|AND.W           R6, work, #0x3F|1-240-63-6
+4112|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4116|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+4120|code|EORS            right, R6|117-64
+4122|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4126|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4130|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4134|code|EORS            right, R6|117-64
+4136|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4140|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4144|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4148|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4152|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4156|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4160|code|EORS            right, R6|117-64
+4162|code|EORS            right, R1|77-64
+4164|code|LDR             R1, [R4,#0x40]|33-108
+4166|code|EORS            R1, right|105-64
+4168|code|B               loc_1050|2-224
+4170|data|ALIGN 4|0-191
+4172|data|DCD leftkey_swap|212-38-0-0
+4176|code|AND.W           R6, work, #0x3F|1-240-63-6
+4180|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4184|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4188|code|EORS            left, R6|112-64
+4190|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4194|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4198|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+4202|code|EORS            left, R6|112-64
+4204|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4208|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4212|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4216|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4220|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+4224|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4228|code|EORS            left, R6|112-64
+4230|code|EORS            left, R1|72-64
+4232|code|LDR             R1, [R4,#0x44]|97-108
+4234|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+4238|code|AND.W           R6, work, #0x3F|1-240-63-6
+4242|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4246|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+4250|code|EORS            left, R6|112-64
+4252|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4256|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4260|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4264|code|EORS            left, R6|112-64
+4266|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4270|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4274|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4278|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4282|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4286|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4290|code|EORS            left, R6|112-64
+4292|code|EORS            left, R1|72-64
+4294|code|LDR             R1, [R4,#0x48]|161-108
+4296|code|EORS            R1, left|65-64
+4298|code|AND.W           R6, work, #0x3F|1-240-63-6
+4302|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4306|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4310|code|EORS            right, R6|117-64
+4312|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4316|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4320|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+4324|code|EORS            right, R6|117-64
+4326|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4330|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4334|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4338|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4342|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+4346|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4350|code|EORS            right, R6|117-64
+4352|code|EORS            right, R1|77-64
+4354|code|LDR             R1, [R4,#0x4C]|225-108
+4356|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+4360|code|AND.W           R6, work, #0x3F|1-240-63-6
+4364|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4368|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+4372|code|EORS            right, R6|117-64
+4374|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4378|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4382|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4386|code|EORS            right, R6|117-64
+4388|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4392|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4396|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4400|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4404|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4408|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4412|code|EORS            right, R6|117-64
+4414|code|EORS            right, R1|77-64
+4416|code|LDR             R1, [R4,#0x50]|33-109
+4418|code|EORS            R1, right|105-64
+4420|code|AND.W           R6, work, #0x3F|1-240-63-6
+4424|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4428|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4432|code|EORS            left, R6|112-64
+4434|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4438|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4442|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+4446|code|EORS            left, R6|112-64
+4448|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4452|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4456|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4460|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4464|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+4468|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4472|code|EORS            left, R6|112-64
+4474|code|EORS            left, R1|72-64
+4476|code|LDR             R1, [R4,#0x54]|97-109
+4478|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+4482|code|AND.W           R6, work, #0x3F|1-240-63-6
+4486|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4490|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+4494|code|EORS            left, R6|112-64
+4496|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4500|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4504|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4508|code|EORS            left, R6|112-64
+4510|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4514|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4518|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4522|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4526|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4530|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4534|code|EORS            left, R6|112-64
+4536|code|EORS            left, R1|72-64
+4538|code|LDR             R1, [R4,#0x58]|161-109
+4540|code|EORS            R1, left|65-64
+4542|code|AND.W           R6, work, #0x3F|1-240-63-6
+4546|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4550|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4554|code|EORS            right, R6|117-64
+4556|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4560|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4564|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+4568|code|EORS            right, R6|117-64
+4570|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4574|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4578|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4582|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4586|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+4590|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4594|code|EORS            right, R6|117-64
+4596|code|EORS            right, R1|77-64
+4598|code|LDR             R1, [R4,#0x5C]|225-109
+4600|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+4604|code|AND.W           R6, work, #0x3F|1-240-63-6
+4608|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4612|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+4616|code|EORS            right, R6|117-64
+4618|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4622|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4626|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4630|code|EORS            right, R6|117-64
+4632|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4636|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4640|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4644|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4648|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4652|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4656|code|EORS            right, R6|117-64
+4658|code|EORS            right, R1|77-64
+4660|code|LDR             R1, [R4,#0x60]|33-110
+4662|code|EORS            R1, right|105-64
+4664|code|AND.W           R6, work, #0x3F|1-240-63-6
+4668|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4672|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4676|code|EORS            left, R6|112-64
+4678|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4682|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4686|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+4690|code|EORS            left, R6|112-64
+4692|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4696|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4700|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4704|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4708|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+4712|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4716|code|EORS            left, R6|112-64
+4718|code|EORS            left, R1|72-64
+4720|code|LDR             R1, [R4,#0x64]|97-110
+4722|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+4726|code|AND.W           R6, work, #0x3F|1-240-63-6
+4730|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4734|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+4738|code|EORS            left, R6|112-64
+4740|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+4744|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4748|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+4752|code|EORS            left, R6|112-64
+4754|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+4758|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4762|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4766|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4770|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+4774|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4778|code|EORS            left, R6|112-64
+4780|code|EORS            left, R1|72-64
+4782|code|LDR             R1, [R4,#0x68]|161-110
+4784|code|EORS            R1, left|65-64
+4786|code|AND.W           R6, work, #0x3F|1-240-63-6
+4790|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+4794|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+4798|code|EOR.W           LR, right, R6|133-234-6-14
+4802|code|UBFX.W          R5, work, #8, #6|193-243-5-37
+4806|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+4810|code|LDR.W           R6, [R5,#0x190]|213-248-144-97
+4814|code|UBFX.W          R5, work, #0x10, #6|193-243-5-69
+4818|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4822|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+4826|code|EOR.W           LR, LR, R6|142-234-6-14
+4830|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4834|code|LDR.W           R6, [R5,#0x290]|213-248-144-98
+4838|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4842|code|EOR.W           LR, LR, R6|142-234-6-14
+4846|code|EOR.W           LR, LR, R1|142-234-1-14
+4850|code|LDR             R1, [R4,#0x6C]|225-110
+4852|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+4856|code|AND.W           R5, work, #0x3F|1-240-63-5
+4860|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+4864|code|LDR.W           R6, [R5,#0x490]|213-248-144-100
+4868|code|UBFX.W          R5, work, #8, #6|193-243-5-37
+4872|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+4876|code|EOR.W           LR, LR, R6|142-234-6-14
+4880|code|LDR.W           R6, [R5,#0x590]|213-248-144-101
+4884|code|UBFX.W          R5, work, #0x10, #6|193-243-5-69
+4888|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4892|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+4896|code|EOR.W           LR, LR, R6|142-234-6-14
+4900|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4904|code|LDR             R6, [R4,#0x7C]|230-111
+4906|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+4910|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+4914|code|EOR.W           R5, LR, R5|142-234-5-5
+4918|code|EOR.W           LR, right, R1|133-234-1-14
+4922|code|LDR             R1, [R4,#0x70]|33-111
+4924|code|EOR.W           R1, LR, R1|142-234-1-1
+4928|code|AND.W           R5, work, #0x3F|1-240-63-5
+4932|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+4936|code|LDR.W           R7, [R5,#0x90]|213-248-144-112
+4940|code|EORS            R7, left|71-64
+4942|code|UBFX.W          R0, work, #8, #6|193-243-5-32
+4946|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+4950|code|LDR.W           R5, [R0,#0x190]|208-248-144-81
+4954|code|UBFX.W          R0, work, #0x10, #6|193-243-5-64
+4958|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+4962|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+4966|code|EORS            left, R5|111-64
+4968|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+4972|code|LDR.W           R5, [R0,#0x290]|208-248-144-82
+4976|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+4980|code|EORS            left, R5|111-64
+4982|code|EORS            left, R1|79-64
+4984|code|LDR             R1, [R4,#0x74]|97-111
+4986|code|EOR.W           R1, R1, LR,ROR#4|129-234-62-17
+4990|code|AND.W           R0, work, #0x3F|1-240-63-0
+4994|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+4998|code|LDR.W           R5, [R0,#0x490]|208-248-144-84
+5002|code|UBFX.W          R0, work, #8, #6|193-243-5-32
+5006|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+5010|code|EORS            left, R5|111-64
+5012|code|LDR.W           R5, [R0,#0x590]|208-248-144-85
+5016|code|UBFX.W          R0, work, #0x10, #6|193-243-5-64
+5020|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5024|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+5028|code|EORS            left, R5|111-64
+5030|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5034|code|LDR             R5, [R4,#0x78]|165-111
+5036|code|LDR.W           R0, [R0,#0x690]|208-248-144-6
+5040|code|EORS            R0, left|120-64
+5042|code|LDR.W           R7, [R1,#0x790]|209-248-144-119
+5046|code|LDR.W           R1, [R4,#0x84]|212-248-132-16
+5050|code|EORS            R7, left|71-64
+5052|code|LDR.W           R0, [R4,#0x80]|212-248-128-0
+5056|code|EORS            R5, left|125-64
+5058|code|EORS            R0, left|120-64
+5060|code|MOV.W           R12, left,ROR#4|79-234-55-28
+5064|code|EOR.W           R6, R12, R6|140-234-6-6
+5068|code|EOR.W           R1, R12, R1|140-234-1-1
+5072|code|AND.W           R8, R0, #0x3F|0-240-63-8
+5076|code|AND.W           R12, R5, #0x3F|5-240-63-12
+5080|code|ADD.W           R8, R3, R8,LSL#2|3-235-136-8
+5084|code|ADD.W           R12, R3, R12,LSL#2|3-235-140-12
+5088|code|LDR.W           R9, [R12,#0x90]|220-248-144-144
+5092|code|LDR.W           R12, [R8,#0x90]|216-248-144-192
+5096|code|EOR.W           R12, R9, R12|137-234-12-12
+5100|code|EOR.W           LR, R12, LR|140-234-14-14
+5104|code|UBFX.W          R12, R5, #8, #6|197-243-5-44
+5108|code|ADD.W           R12, R3, R12,LSL#2|3-235-140-12
+5112|code|LDR.W           R12, [R12,#0x190]|220-248-144-193
+5116|code|EOR.W           LR, LR, R12|142-234-12-14
+5120|code|UBFX.W          R12, R5, #0x10, #6|197-243-5-76
+5124|code|UBFX.W          R5, R5, #0x18, #6|197-243-5-101
+5128|code|ADD.W           R12, R3, R12,LSL#2|3-235-140-12
+5132|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5136|code|LDR.W           R12, [R12,#0x290]|220-248-144-194
+5140|code|LDR.W           R5, [R5,#0x390]|213-248-144-83
+5144|code|EOR.W           LR, LR, R12|142-234-12-14
+5148|code|EOR.W           LR, LR, R5|142-234-5-14
+5152|code|AND.W           R5, R6, #0x3F|6-240-63-5
+5156|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5160|code|LDR.W           R5, [R5,#0x490]|213-248-144-84
+5164|code|EOR.W           LR, LR, R5|142-234-5-14
+5168|code|UBFX.W          R5, R0, #8, #6|192-243-5-37
+5172|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5176|code|LDR.W           R5, [R5,#0x190]|213-248-144-81
+5180|code|EOR.W           LR, LR, R5|142-234-5-14
+5184|code|UBFX.W          R5, R0, #0x10, #6|192-243-5-69
+5188|code|UBFX.W          R0, R0, #0x18, #6|192-243-5-96
+5192|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5196|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+5200|code|LDR.W           R5, [R5,#0x290]|213-248-144-82
+5204|code|EOR.W           LR, LR, R5|142-234-5-14
+5208|code|LDR.W           R5, [R0,#0x390]|208-248-144-83
+5212|code|EOR.W           R0, LR, R5|142-234-5-0
+5216|code|AND.W           R5, work, #0x3F|1-240-63-5
+5220|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5224|code|LDR.W           R5, [R5,#0x490]|213-248-144-84
+5228|code|EORS            R0, R5|104-64
+5230|code|UBFX.W          R5, R6, #8, #6|198-243-5-37
+5234|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5238|code|LDR.W           R5, [R5,#0x590]|213-248-144-85
+5242|code|EORS            R0, R5|104-64
+5244|code|UBFX.W          R5, R6, #0x10, #6|198-243-5-69
+5248|code|UBFX.W          R6, R6, #0x18, #6|198-243-5-102
+5252|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5256|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5260|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+5264|code|EORS            R0, R5|104-64
+5266|code|LDR.W           R5, [R6,#0x790]|214-248-144-87
+5270|code|EORS            R0, R5|104-64
+5272|code|UBFX.W          R5, work, #8, #6|193-243-5-37
+5276|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5280|code|LDR.W           R5, [R5,#0x590]|213-248-144-85
+5284|code|EORS            right, R5|104-64
+5286|code|UBFX.W          R5, work, #0x10, #6|193-243-5-69
+5290|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5294|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5298|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5302|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+5306|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+5310|code|EORS            right, R5|104-64
+5312|code|EORS            right, R1|72-64
+5314|code|LDR.W           R1, [R4,#0x88]|212-248-136-16
+5318|code|EORS            R1, right|65-64
+5320|code|AND.W           R5, work, #0x3F|1-240-63-5
+5324|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5328|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+5332|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5336|code|LDR.W           R5, [R5,#0x90]|213-248-144-80
+5340|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+5344|code|EORS            R5, left|125-64
+5346|code|EORS            left, R6|117-64
+5348|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5352|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5356|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5360|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5364|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+5368|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+5372|code|EORS            left, R6|117-64
+5374|code|EORS            left, R1|77-64
+5376|code|LDR.W           R1, [R4,#0x8C]|212-248-140-16
+5380|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+5384|code|AND.W           R6, work, #0x3F|1-240-63-6
+5388|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5392|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+5396|code|EORS            left, R6|117-64
+5398|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5402|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5406|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+5410|code|EORS            left, R6|117-64
+5412|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5416|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5420|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5424|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5428|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+5432|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+5436|code|EORS            left, R6|117-64
+5438|code|EORS            left, R1|77-64
+5440|code|LDR.W           R1, [R4,#0x90]|212-248-144-16
+5444|code|EORS            R1, left|105-64
+5446|code|AND.W           R6, work, #0x3F|1-240-63-6
+5450|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5454|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+5458|code|EORS            right, R6|112-64
+5460|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5464|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5468|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+5472|code|EORS            right, R6|112-64
+5474|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5478|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5482|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5486|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5490|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+5494|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+5498|code|EORS            right, R6|112-64
+5500|code|EORS            right, R1|72-64
+5502|code|LDR.W           R1, [R4,#0x94]|212-248-148-16
+5506|code|EOR.W           R1, R1, left,ROR#4|129-234-53-17
+5510|code|AND.W           R6, work, #0x3F|1-240-63-6
+5514|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5518|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+5522|code|EORS            right, R6|112-64
+5524|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5528|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5532|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+5536|code|EORS            right, R6|112-64
+5538|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5542|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5546|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5550|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5554|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+5558|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+5562|code|EORS            right, R6|112-64
+5564|code|EORS            right, R1|72-64
+5566|code|LDR.W           R1, [R4,#0x98]|212-248-152-16
+5570|code|EORS            R1, right|65-64
+5572|code|AND.W           R6, work, #0x3F|1-240-63-6
+5576|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5580|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+5584|code|EORS            left, R6|117-64
+5586|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5590|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5594|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+5598|code|EORS            left, R6|117-64
+5600|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5604|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5608|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5612|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5616|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+5620|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+5624|code|EORS            left, R6|117-64
+5626|code|EORS            left, R1|77-64
+5628|code|LDR.W           R1, [R4,#0x9C]|212-248-156-16
+5632|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+5636|code|AND.W           R6, work, #0x3F|1-240-63-6
+5640|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5644|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+5648|code|EORS            left, R6|117-64
+5650|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5654|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5658|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+5662|code|EORS            left, R6|117-64
+5664|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5668|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5672|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5676|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5680|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+5684|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+5688|code|EORS            left, R6|117-64
+5690|code|EORS            left, R1|77-64
+5692|code|LDR.W           R1, [R4,#0xA0]|212-248-160-16
+5696|code|EORS            R1, left|105-64
+5698|code|AND.W           R6, work, #0x3F|1-240-63-6
+5702|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5706|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+5710|code|EORS            right, R6|112-64
+5712|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5716|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5720|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+5724|code|EORS            right, R6|112-64
+5726|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5730|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5734|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5738|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5742|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+5746|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+5750|code|EORS            right, R6|112-64
+5752|code|EORS            right, R1|72-64
+5754|code|LDR.W           R1, [R4,#0xA4]|212-248-164-16
+5758|code|EOR.W           R1, R1, left,ROR#4|129-234-53-17
+5762|code|AND.W           R6, work, #0x3F|1-240-63-6
+5766|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5770|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+5774|code|EORS            right, R6|112-64
+5776|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5780|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5784|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+5788|code|EORS            right, R6|112-64
+5790|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5794|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5798|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5802|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5806|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+5810|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+5814|code|EORS            right, R6|112-64
+5816|code|EORS            right, R1|72-64
+5818|code|LDR.W           R1, [R4,#0xA8]|212-248-168-16
+5822|code|EORS            R1, right|65-64
+5824|code|AND.W           R6, work, #0x3F|1-240-63-6
+5828|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5832|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+5836|code|EORS            left, R6|117-64
+5838|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5842|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5846|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+5850|code|EORS            left, R6|117-64
+5852|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5856|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5860|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5864|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5868|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+5872|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+5876|code|EORS            left, R6|117-64
+5878|code|EORS            left, R1|77-64
+5880|code|LDR.W           R1, [R4,#0xAC]|212-248-172-16
+5884|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+5888|code|AND.W           R6, work, #0x3F|1-240-63-6
+5892|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5896|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+5900|code|EORS            left, R6|117-64
+5902|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5906|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5910|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+5914|code|EORS            left, R6|117-64
+5916|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5920|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5924|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5928|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5932|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+5936|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+5940|code|EORS            left, R6|117-64
+5942|code|EORS            left, R1|77-64
+5944|code|LDR.W           R1, [R4,#0xB0]|212-248-176-16
+5948|code|EORS            R1, left|105-64
+5950|code|AND.W           R6, work, #0x3F|1-240-63-6
+5954|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5958|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+5962|code|EORS            right, R6|112-64
+5964|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+5968|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5972|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+5976|code|EORS            right, R6|112-64
+5978|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+5982|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+5986|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+5990|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+5994|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+5998|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6002|code|EORS            right, R6|112-64
+6004|code|EORS            right, R1|72-64
+6006|code|LDR.W           R1, [R4,#0xB4]|212-248-180-16
+6010|code|EOR.W           R1, R1, left,ROR#4|129-234-53-17
+6014|code|AND.W           R6, work, #0x3F|1-240-63-6
+6018|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6022|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6026|code|EORS            right, R6|112-64
+6028|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6032|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6036|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6040|code|EORS            right, R6|112-64
+6042|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6046|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6050|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6054|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6058|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6062|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6066|code|EORS            right, R6|112-64
+6068|code|EORS            right, R1|72-64
+6070|code|LDR.W           R1, [R4,#0xB8]|212-248-184-16
+6074|code|EORS            R1, right|65-64
+6076|code|AND.W           R6, work, #0x3F|1-240-63-6
+6080|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6084|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6088|code|EORS            left, R6|117-64
+6090|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6094|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6098|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+6102|code|EORS            left, R6|117-64
+6104|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6108|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6112|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6116|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6120|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+6124|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6128|code|EORS            left, R6|117-64
+6130|code|EORS            left, R1|77-64
+6132|code|LDR.W           R1, [R4,#0xBC]|212-248-188-16
+6136|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+6140|code|AND.W           R6, work, #0x3F|1-240-63-6
+6144|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6148|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6152|code|EORS            left, R6|117-64
+6154|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6158|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6162|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6166|code|EORS            left, R6|117-64
+6168|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6172|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6176|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6180|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6184|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6188|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6192|code|EORS            left, R6|117-64
+6194|code|EORS            left, R1|77-64
+6196|code|LDR.W           R1, [R4,#0xC0]|212-248-192-16
+6200|code|EORS            R1, left|105-64
+6202|code|AND.W           R6, work, #0x3F|1-240-63-6
+6206|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6210|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6214|code|EORS            right, R6|112-64
+6216|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6220|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6224|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+6228|code|EORS            right, R6|112-64
+6230|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6234|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6238|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6242|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6246|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+6250|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6254|code|EORS            right, R6|112-64
+6256|code|EORS            right, R1|72-64
+6258|code|LDR.W           R1, [R4,#0xC4]|212-248-196-16
+6262|code|EOR.W           R1, R1, left,ROR#4|129-234-53-17
+6266|code|AND.W           R6, work, #0x3F|1-240-63-6
+6270|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6274|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6278|code|EORS            right, R6|112-64
+6280|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6284|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6288|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6292|code|EORS            right, R6|112-64
+6294|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6298|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6302|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6306|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6310|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6314|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6318|code|EORS            right, R6|112-64
+6320|code|EORS            right, R1|72-64
+6322|code|LDR.W           R1, [R4,#0xC8]|212-248-200-16
+6326|code|EORS            R1, right|65-64
+6328|code|AND.W           R6, work, #0x3F|1-240-63-6
+6332|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6336|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6340|code|EORS            left, R6|117-64
+6342|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6346|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6350|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+6354|code|EORS            left, R6|117-64
+6356|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6360|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6364|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6368|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6372|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+6376|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6380|code|EORS            left, R6|117-64
+6382|code|EORS            left, R1|77-64
+6384|code|LDR.W           R1, [R4,#0xCC]|212-248-204-16
+6388|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+6392|code|AND.W           R6, work, #0x3F|1-240-63-6
+6396|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6400|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6404|code|EORS            left, R6|117-64
+6406|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6410|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6414|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6418|code|EORS            left, R6|117-64
+6420|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6424|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6428|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6432|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6436|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6440|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6444|code|EORS            left, R6|117-64
+6446|code|EORS            left, R1|77-64
+6448|code|LDR.W           R1, [R4,#0xD0]|212-248-208-16
+6452|code|EORS            R1, left|105-64
+6454|code|AND.W           R6, work, #0x3F|1-240-63-6
+6458|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6462|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6466|code|EORS            right, R6|112-64
+6468|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6472|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6476|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+6480|code|EORS            right, R6|112-64
+6482|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6486|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6490|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6494|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6498|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+6502|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6506|code|EORS            right, R6|112-64
+6508|code|EORS            right, R1|72-64
+6510|code|LDR.W           R1, [R4,#0xD4]|212-248-212-16
+6514|code|EOR.W           R1, R1, left,ROR#4|129-234-53-17
+6518|code|AND.W           R6, work, #0x3F|1-240-63-6
+6522|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6526|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6530|code|EORS            right, R6|112-64
+6532|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6536|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6540|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6544|code|EORS            right, R6|112-64
+6546|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6550|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6554|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6558|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6562|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6566|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6570|code|EORS            right, R6|112-64
+6572|code|EORS            right, R1|72-64
+6574|code|LDR.W           R1, [R4,#0xD8]|212-248-216-16
+6578|code|EORS            R1, right|65-64
+6580|code|AND.W           R6, work, #0x3F|1-240-63-6
+6584|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6588|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6592|code|EORS            left, R6|117-64
+6594|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6598|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6602|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+6606|code|EORS            left, R6|117-64
+6608|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6612|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6616|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6620|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6624|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+6628|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6632|code|EORS            left, R6|117-64
+6634|code|EORS            left, R1|77-64
+6636|code|LDR.W           R1, [R4,#0xDC]|212-248-220-16
+6640|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+6644|code|AND.W           R6, work, #0x3F|1-240-63-6
+6648|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6652|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6656|code|EORS            left, R6|117-64
+6658|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6662|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6666|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6670|code|EORS            left, R6|117-64
+6672|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6676|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6680|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6684|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6688|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6692|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6696|code|EORS            left, R6|117-64
+6698|code|EORS            left, R1|77-64
+6700|code|LDR.W           R1, [R4,#0xE0]|212-248-224-16
+6704|code|EORS            R1, left|105-64
+6706|code|AND.W           R6, work, #0x3F|1-240-63-6
+6710|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6714|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6718|code|EORS            right, R6|112-64
+6720|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6724|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6728|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+6732|code|EORS            right, R6|112-64
+6734|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6738|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6742|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6746|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6750|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+6754|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6758|code|EORS            right, R6|112-64
+6760|code|EORS            right, R1|72-64
+6762|code|LDR.W           R1, [R4,#0xE4]|212-248-228-16
+6766|code|EOR.W           R1, R1, left,ROR#4|129-234-53-17
+6770|code|AND.W           R6, work, #0x3F|1-240-63-6
+6774|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6778|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+6782|code|EORS            right, R6|112-64
+6784|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+6788|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6792|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+6796|code|EORS            right, R6|112-64
+6798|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+6802|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6806|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6810|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6814|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+6818|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6822|code|EORS            right, R6|112-64
+6824|code|EORS            right, R1|72-64
+6826|code|LDR.W           R1, [R4,#0xE8]|212-248-232-16
+6830|code|EORS            R1, right|65-64
+6832|code|AND.W           R6, work, #0x3F|1-240-63-6
+6836|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+6840|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+6844|code|EOR.W           LR, left, R6|133-234-6-14
+6848|code|UBFX.W          R5, work, #8, #6|193-243-5-37
+6852|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+6856|code|LDR.W           R6, [R5,#0x190]|213-248-144-97
+6860|code|UBFX.W          R5, work, #0x10, #6|193-243-5-69
+6864|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6868|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+6872|code|EOR.W           LR, LR, R6|142-234-6-14
+6876|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6880|code|LDR.W           R6, [R5,#0x290]|213-248-144-98
+6884|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+6888|code|EOR.W           LR, LR, R6|142-234-6-14
+6892|code|EOR.W           LR, LR, R1|142-234-1-14
+6896|code|LDR.W           R1, [R4,#0xEC]|212-248-236-16
+6900|code|EOR.W           R1, R1, right,ROR#4|129-234-48-17
+6904|code|AND.W           R5, work, #0x3F|1-240-63-5
+6908|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+6912|code|LDR.W           R6, [R5,#0x490]|213-248-144-100
+6916|code|UBFX.W          R5, work, #8, #6|193-243-5-37
+6920|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+6924|code|EOR.W           LR, LR, R6|142-234-6-14
+6928|code|LDR.W           R6, [R5,#0x590]|213-248-144-101
+6932|code|UBFX.W          R5, work, #0x10, #6|193-243-5-69
+6936|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+6940|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+6944|code|EOR.W           LR, LR, R6|142-234-6-14
+6948|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+6952|code|LDR.W           R6, [R4,#0xFC]|212-248-252-96
+6956|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+6960|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+6964|code|EOR.W           R5, LR, R5|142-234-5-5
+6968|code|EOR.W           LR, left, R1|133-234-1-14
+6972|code|LDR.W           R1, [R4,#0xF0]|212-248-240-16
+6976|code|EOR.W           R1, LR, R1|142-234-1-1
+6980|code|AND.W           R5, work, #0x3F|1-240-63-5
+6984|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+6988|code|LDR.W           R7, [R5,#0x90]|213-248-144-112
+6992|code|EORS            R7, right|71-64
+6994|code|UBFX.W          R0, work, #8, #6|193-243-5-32
+6998|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+7002|code|LDR.W           R5, [R0,#0x190]|208-248-144-81
+7006|code|UBFX.W          R0, work, #0x10, #6|193-243-5-64
+7010|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7014|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+7018|code|EORS            right, R5|111-64
+7020|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7024|code|LDR.W           R5, [R0,#0x290]|208-248-144-82
+7028|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+7032|code|EORS            right, R5|111-64
+7034|code|EORS            right, R1|79-64
+7036|code|LDR.W           R1, [R4,#0xF4]|212-248-244-16
+7040|code|EOR.W           R1, R1, LR,ROR#4|129-234-62-17
+7044|code|AND.W           R0, work, #0x3F|1-240-63-0
+7048|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+7052|code|LDR.W           R5, [R0,#0x490]|208-248-144-84
+7056|code|UBFX.W          R0, work, #8, #6|193-243-5-32
+7060|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+7064|code|EORS            right, R5|111-64
+7066|code|LDR.W           R5, [R0,#0x590]|208-248-144-85
+7070|code|UBFX.W          R0, work, #0x10, #6|193-243-5-64
+7074|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7078|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+7082|code|EORS            right, R5|111-64
+7084|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7088|code|LDR.W           R5, [R4,#0xF8]|212-248-248-80
+7092|code|LDR.W           R0, [R0,#0x690]|208-248-144-6
+7096|code|EORS            R0, right|120-64
+7098|code|LDR.W           R7, [R1,#0x790]|209-248-144-119
+7102|code|LDR.W           R1, [R4,#0x104]|212-248-4-17
+7106|code|EORS            R7, right|71-64
+7108|code|LDR.W           R0, [R4,#0x100]|212-248-0-1
+7112|code|EORS            R5, right|125-64
+7114|code|EORS            R0, right|120-64
+7116|code|MOV.W           R12, right,ROR#4|79-234-55-28
+7120|code|EOR.W           R6, R12, R6|140-234-6-6
+7124|code|EOR.W           R1, R12, R1|140-234-1-1
+7128|code|AND.W           R8, R0, #0x3F|0-240-63-8
+7132|code|AND.W           R12, R5, #0x3F|5-240-63-12
+7136|code|ADD.W           R8, R3, R8,LSL#2|3-235-136-8
+7140|code|ADD.W           R12, R3, R12,LSL#2|3-235-140-12
+7144|code|LDR.W           R9, [R12,#0x90]|220-248-144-144
+7148|code|LDR.W           R12, [R8,#0x90]|216-248-144-192
+7152|code|EOR.W           R12, R9, R12|137-234-12-12
+7156|code|EOR.W           LR, R12, LR|140-234-14-14
+7160|code|UBFX.W          R12, R5, #8, #6|197-243-5-44
+7164|code|ADD.W           R12, R3, R12,LSL#2|3-235-140-12
+7168|code|LDR.W           R12, [R12,#0x190]|220-248-144-193
+7172|code|EOR.W           LR, LR, R12|142-234-12-14
+7176|code|UBFX.W          R12, R5, #0x10, #6|197-243-5-76
+7180|code|UBFX.W          R5, R5, #0x18, #6|197-243-5-101
+7184|code|ADD.W           R12, R3, R12,LSL#2|3-235-140-12
+7188|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7192|code|LDR.W           R12, [R12,#0x290]|220-248-144-194
+7196|code|LDR.W           R5, [R5,#0x390]|213-248-144-83
+7200|code|EOR.W           LR, LR, R12|142-234-12-14
+7204|code|EOR.W           LR, LR, R5|142-234-5-14
+7208|code|AND.W           R5, R6, #0x3F|6-240-63-5
+7212|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7216|code|LDR.W           R5, [R5,#0x490]|213-248-144-84
+7220|code|EOR.W           LR, LR, R5|142-234-5-14
+7224|code|UBFX.W          R5, R0, #8, #6|192-243-5-37
+7228|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7232|code|LDR.W           R5, [R5,#0x190]|213-248-144-81
+7236|code|EOR.W           LR, LR, R5|142-234-5-14
+7240|code|UBFX.W          R5, R0, #0x10, #6|192-243-5-69
+7244|code|UBFX.W          R0, R0, #0x18, #6|192-243-5-96
+7248|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7252|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+7256|code|LDR.W           R5, [R5,#0x290]|213-248-144-82
+7260|code|EOR.W           LR, LR, R5|142-234-5-14
+7264|code|LDR.W           R5, [R0,#0x390]|208-248-144-83
+7268|code|EOR.W           R0, LR, R5|142-234-5-0
+7272|code|AND.W           R5, work, #0x3F|1-240-63-5
+7276|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7280|code|LDR.W           R5, [R5,#0x490]|213-248-144-84
+7284|code|EORS            R0, R5|104-64
+7286|code|UBFX.W          R5, R6, #8, #6|198-243-5-37
+7290|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7294|code|LDR.W           R5, [R5,#0x590]|213-248-144-85
+7298|code|EORS            R0, R5|104-64
+7300|code|UBFX.W          R5, R6, #0x10, #6|198-243-5-69
+7304|code|UBFX.W          R6, R6, #0x18, #6|198-243-5-102
+7308|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7312|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7316|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+7320|code|EORS            R0, R5|104-64
+7322|code|LDR.W           R5, [R6,#0x790]|214-248-144-87
+7326|code|EORS            R0, R5|104-64
+7328|code|UBFX.W          R5, work, #8, #6|193-243-5-37
+7332|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7336|code|LDR.W           R5, [R5,#0x590]|213-248-144-85
+7340|code|EORS            left, R5|104-64
+7342|code|UBFX.W          R5, work, #0x10, #6|193-243-5-69
+7346|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7350|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7354|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7358|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+7362|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+7366|code|EORS            left, R5|104-64
+7368|code|EORS            left, R1|72-64
+7370|code|LDR.W           R1, [R4,#0x108]|212-248-8-17
+7374|code|EORS            R1, left|65-64
+7376|code|AND.W           R5, work, #0x3F|1-240-63-5
+7380|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7384|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+7388|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7392|code|LDR.W           R5, [R5,#0x90]|213-248-144-80
+7396|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+7400|code|EORS            R5, right|125-64
+7402|code|EORS            right, R6|117-64
+7404|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7408|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7412|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7416|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7420|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+7424|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+7428|code|EORS            right, R6|117-64
+7430|code|EORS            right, R1|77-64
+7432|code|LDR.W           R1, [R4,#0x10C]|212-248-12-17
+7436|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+7440|code|AND.W           R6, work, #0x3F|1-240-63-6
+7444|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7448|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+7452|code|EORS            right, R6|117-64
+7454|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7458|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7462|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+7466|code|EORS            right, R6|117-64
+7468|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7472|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7476|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7480|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7484|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+7488|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+7492|code|EORS            right, R6|117-64
+7494|code|EORS            right, R1|77-64
+7496|code|LDR.W           R1, [R4,#0x110]|212-248-16-17
+7500|code|EORS            R1, right|105-64
+7502|code|AND.W           R6, work, #0x3F|1-240-63-6
+7506|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7510|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+7514|code|EORS            left, R6|112-64
+7516|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7520|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7524|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+7528|code|EORS            left, R6|112-64
+7530|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7534|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7538|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7542|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7546|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+7550|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+7554|code|EORS            left, R6|112-64
+7556|code|EORS            left, R1|72-64
+7558|code|LDR.W           R1, [R4,#0x114]|212-248-20-17
+7562|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+7566|code|AND.W           R6, work, #0x3F|1-240-63-6
+7570|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7574|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+7578|code|EORS            left, R6|112-64
+7580|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7584|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7588|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+7592|code|EORS            left, R6|112-64
+7594|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7598|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7602|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7606|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7610|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+7614|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+7618|code|EORS            left, R6|112-64
+7620|code|EORS            left, R1|72-64
+7622|code|LDR.W           R1, [R4,#0x118]|212-248-24-17
+7626|code|EORS            R1, left|65-64
+7628|code|AND.W           R6, work, #0x3F|1-240-63-6
+7632|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7636|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+7640|code|EORS            right, R6|117-64
+7642|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7646|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7650|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+7654|code|EORS            right, R6|117-64
+7656|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7660|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7664|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7668|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7672|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+7676|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+7680|code|EORS            right, R6|117-64
+7682|code|EORS            right, R1|77-64
+7684|code|LDR.W           R1, [R4,#0x11C]|212-248-28-17
+7688|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+7692|code|AND.W           R6, work, #0x3F|1-240-63-6
+7696|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7700|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+7704|code|EORS            right, R6|117-64
+7706|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7710|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7714|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+7718|code|EORS            right, R6|117-64
+7720|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7724|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7728|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7732|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7736|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+7740|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+7744|code|EORS            right, R6|117-64
+7746|code|EORS            right, R1|77-64
+7748|code|LDR.W           R1, [R4,#0x120]|212-248-32-17
+7752|code|EORS            R1, right|105-64
+7754|code|AND.W           R6, work, #0x3F|1-240-63-6
+7758|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7762|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+7766|code|EORS            left, R6|112-64
+7768|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7772|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7776|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+7780|code|EORS            left, R6|112-64
+7782|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7786|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7790|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7794|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7798|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+7802|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+7806|code|EORS            left, R6|112-64
+7808|code|EORS            left, R1|72-64
+7810|code|LDR.W           R1, [R4,#0x124]|212-248-36-17
+7814|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+7818|code|AND.W           R6, work, #0x3F|1-240-63-6
+7822|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7826|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+7830|code|EORS            left, R6|112-64
+7832|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7836|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7840|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+7844|code|EORS            left, R6|112-64
+7846|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7850|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7854|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7858|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7862|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+7866|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+7870|code|EORS            left, R6|112-64
+7872|code|EORS            left, R1|72-64
+7874|code|LDR.W           R1, [R4,#0x128]|212-248-40-17
+7878|code|EORS            R1, left|65-64
+7880|code|AND.W           R6, work, #0x3F|1-240-63-6
+7884|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7888|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+7892|code|EORS            right, R6|117-64
+7894|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7898|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7902|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+7906|code|EORS            right, R6|117-64
+7908|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7912|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7916|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7920|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7924|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+7928|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+7932|code|EORS            right, R6|117-64
+7934|code|EORS            right, R1|77-64
+7936|code|LDR.W           R1, [R4,#0x12C]|212-248-44-17
+7940|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+7944|code|AND.W           R6, work, #0x3F|1-240-63-6
+7948|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7952|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+7956|code|EORS            right, R6|117-64
+7958|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+7962|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7966|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+7970|code|EORS            right, R6|117-64
+7972|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+7976|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+7980|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+7984|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+7988|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+7992|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+7996|code|EORS            right, R6|117-64
+7998|code|EORS            right, R1|77-64
+8000|code|LDR.W           R1, [R4,#0x130]|212-248-48-17
+8004|code|EORS            R1, right|105-64
+8006|code|AND.W           R6, work, #0x3F|1-240-63-6
+8010|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8014|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8018|code|EORS            left, R6|112-64
+8020|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8024|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8028|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8032|code|EORS            left, R6|112-64
+8034|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8038|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8042|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8046|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8050|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8054|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8058|code|EORS            left, R6|112-64
+8060|code|EORS            left, R1|72-64
+8062|code|LDR.W           R1, [R4,#0x134]|212-248-52-17
+8066|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+8070|code|AND.W           R6, work, #0x3F|1-240-63-6
+8074|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8078|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8082|code|EORS            left, R6|112-64
+8084|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8088|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8092|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8096|code|EORS            left, R6|112-64
+8098|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8102|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8106|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8110|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8114|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8118|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8122|code|EORS            left, R6|112-64
+8124|code|EORS            left, R1|72-64
+8126|code|LDR.W           R1, [R4,#0x138]|212-248-56-17
+8130|code|EORS            R1, left|65-64
+8132|code|AND.W           R6, work, #0x3F|1-240-63-6
+8136|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8140|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8144|code|EORS            right, R6|117-64
+8146|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8150|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8154|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8158|code|EORS            right, R6|117-64
+8160|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8164|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8168|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8172|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8176|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8180|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8184|code|EORS            right, R6|117-64
+8186|code|EORS            right, R1|77-64
+8188|code|LDR.W           R1, [R4,#0x13C]|212-248-60-17
+8192|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+8196|code|AND.W           R6, work, #0x3F|1-240-63-6
+8200|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8204|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8208|code|EORS            right, R6|117-64
+8210|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8214|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8218|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8222|code|EORS            right, R6|117-64
+8224|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8228|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8232|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8236|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8240|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8244|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8248|code|EORS            right, R6|117-64
+8250|code|EORS            right, R1|77-64
+8252|code|LDR.W           R1, [R4,#0x140]|212-248-64-17
+8256|code|EORS            R1, right|105-64
+8258|code|AND.W           R6, work, #0x3F|1-240-63-6
+8262|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8266|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8270|code|EORS            left, R6|112-64
+8272|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8276|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8280|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8284|code|EORS            left, R6|112-64
+8286|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8290|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8294|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8298|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8302|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8306|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8310|code|EORS            left, R6|112-64
+8312|code|EORS            left, R1|72-64
+8314|code|LDR.W           R1, [R4,#0x144]|212-248-68-17
+8318|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+8322|code|AND.W           R6, work, #0x3F|1-240-63-6
+8326|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8330|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8334|code|EORS            left, R6|112-64
+8336|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8340|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8344|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8348|code|EORS            left, R6|112-64
+8350|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8354|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8358|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8362|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8366|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8370|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8374|code|EORS            left, R6|112-64
+8376|code|EORS            left, R1|72-64
+8378|code|LDR.W           R1, [R4,#0x148]|212-248-72-17
+8382|code|EORS            R1, left|65-64
+8384|code|AND.W           R6, work, #0x3F|1-240-63-6
+8388|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8392|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8396|code|EORS            right, R6|117-64
+8398|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8402|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8406|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8410|code|EORS            right, R6|117-64
+8412|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8416|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8420|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8424|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8428|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8432|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8436|code|EORS            right, R6|117-64
+8438|code|EORS            right, R1|77-64
+8440|code|LDR.W           R1, [R4,#0x14C]|212-248-76-17
+8444|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+8448|code|AND.W           R6, work, #0x3F|1-240-63-6
+8452|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8456|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8460|code|EORS            right, R6|117-64
+8462|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8466|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8470|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8474|code|EORS            right, R6|117-64
+8476|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8480|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8484|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8488|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8492|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8496|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8500|code|EORS            right, R6|117-64
+8502|code|EORS            right, R1|77-64
+8504|code|LDR.W           R1, [R4,#0x150]|212-248-80-17
+8508|code|EORS            R1, right|105-64
+8510|code|AND.W           R6, work, #0x3F|1-240-63-6
+8514|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8518|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8522|code|EORS            left, R6|112-64
+8524|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8528|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8532|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8536|code|EORS            left, R6|112-64
+8538|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8542|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8546|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8550|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8554|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8558|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8562|code|EORS            left, R6|112-64
+8564|code|EORS            left, R1|72-64
+8566|code|LDR.W           R1, [R4,#0x154]|212-248-84-17
+8570|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+8574|code|AND.W           R6, work, #0x3F|1-240-63-6
+8578|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8582|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8586|code|EORS            left, R6|112-64
+8588|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8592|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8596|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8600|code|EORS            left, R6|112-64
+8602|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8606|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8610|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8614|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8618|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8622|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8626|code|EORS            left, R6|112-64
+8628|code|EORS            left, R1|72-64
+8630|code|LDR.W           R1, [R4,#0x158]|212-248-88-17
+8634|code|EORS            R1, left|65-64
+8636|code|AND.W           R6, work, #0x3F|1-240-63-6
+8640|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8644|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8648|code|EORS            right, R6|117-64
+8650|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8654|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8658|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8662|code|EORS            right, R6|117-64
+8664|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8668|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8672|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8676|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8680|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8684|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8688|code|EORS            right, R6|117-64
+8690|code|EORS            right, R1|77-64
+8692|code|LDR.W           R1, [R4,#0x15C]|212-248-92-17
+8696|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+8700|code|AND.W           R6, work, #0x3F|1-240-63-6
+8704|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8708|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8712|code|EORS            right, R6|117-64
+8714|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8718|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8722|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8726|code|EORS            right, R6|117-64
+8728|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8732|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8736|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8740|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8744|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8748|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8752|code|EORS            right, R6|117-64
+8754|code|EORS            right, R1|77-64
+8756|code|LDR.W           R1, [R4,#0x160]|212-248-96-17
+8760|code|EORS            R1, right|105-64
+8762|code|AND.W           R6, work, #0x3F|1-240-63-6
+8766|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8770|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8774|code|EORS            left, R6|112-64
+8776|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8780|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8784|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8788|code|EORS            left, R6|112-64
+8790|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8794|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8798|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8802|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8806|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8810|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8814|code|EORS            left, R6|112-64
+8816|code|EORS            left, R1|72-64
+8818|code|LDR.W           R1, [R4,#0x164]|212-248-100-17
+8822|code|EOR.W           R1, R1, right,ROR#4|129-234-53-17
+8826|code|AND.W           R6, work, #0x3F|1-240-63-6
+8830|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8834|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8838|code|EORS            left, R6|112-64
+8840|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8844|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8848|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8852|code|EORS            left, R6|112-64
+8854|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8858|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8862|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8866|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8870|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+8874|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+8878|code|EORS            left, R6|112-64
+8880|code|EORS            left, R1|72-64
+8882|code|LDR.W           R1, [R4,#0x168]|212-248-104-17
+8886|code|EORS            R1, left|65-64
+8888|code|AND.W           R6, work, #0x3F|1-240-63-6
+8892|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8896|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+8900|code|EORS            right, R6|117-64
+8902|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8906|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8910|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+8914|code|EORS            right, R6|117-64
+8916|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8920|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8924|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8928|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8932|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+8936|code|LDR.W           R1, [R1,#0x390]|209-248-144-19
+8940|code|EORS            right, R6|117-64
+8942|code|EORS            right, R1|77-64
+8944|code|LDR.W           R1, [R4,#0x16C]|212-248-108-17
+8948|code|EOR.W           R1, R1, left,ROR#4|129-234-48-17
+8952|code|AND.W           R6, work, #0x3F|1-240-63-6
+8956|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8960|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+8964|code|EORS            right, R6|117-64
+8966|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+8970|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8974|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+8978|code|EORS            right, R6|117-64
+8980|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+8984|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+8988|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+8992|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+8996|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+9000|code|LDR.W           R1, [R1,#0x790]|209-248-144-23
+9004|code|EORS            right, R6|117-64
+9006|code|EORS            right, R1|77-64
+9008|code|LDR.W           R1, [R4,#0x170]|212-248-112-17
+9012|code|EORS            R1, right|105-64
+9014|code|AND.W           R6, work, #0x3F|1-240-63-6
+9018|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9022|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+9026|code|EORS            left, R6|112-64
+9028|code|UBFX.W          R6, work, #8, #6|193-243-5-38
+9032|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9036|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+9040|code|EORS            left, R6|112-64
+9042|code|UBFX.W          R6, work, #0x10, #6|193-243-5-70
+9046|code|UBFX.W          work, work, #0x18, #6|193-243-5-97
+9050|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9054|code|ADD.W           R1, R3, R1,LSL#2|3-235-129-1
+9058|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+9062|code|EORS            left, R6|112-64
+9064|code|LDR.W           R6, [R1,#0x390]|209-248-144-99
+9068|code|EOR.W           R1, left, R6|128-234-6-1
+9072|code|LDR.W           R0, [R4,#0x174]|212-248-116-1
+9076|code|EOR.W           R0, R0, right,ROR#4|128-234-53-16
+9080|code|AND.W           R6, work, #0x3F|0-240-63-6
+9084|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9088|code|LDR.W           R6, [R6,#0x490]|214-248-144-100
+9092|code|EORS            left, R6|113-64
+9094|code|UBFX.W          R6, work, #8, #6|192-243-5-38
+9098|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9102|code|LDR.W           R6, [R6,#0x590]|214-248-144-101
+9106|code|EORS            left, R6|113-64
+9108|code|UBFX.W          R6, work, #0x10, #6|192-243-5-70
+9112|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+9116|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9120|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+9124|code|LDR.W           R6, [R6,#0x690]|214-248-144-102
+9128|code|LDR.W           R0, [R0,#0x790]|208-248-144-7
+9132|code|EORS            left, R6|113-64
+9134|code|EORS            left, R0|65-64
+9136|code|LDR.W           R0, [R4,#0x178]|212-248-120-1
+9140|code|EORS            R0, left|72-64
+9142|code|AND.W           R6, work, #0x3F|0-240-63-6
+9146|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9150|code|LDR.W           R6, [R6,#0x90]|214-248-144-96
+9154|code|EORS            right, R6|117-64
+9156|code|UBFX.W          R6, work, #8, #6|192-243-5-38
+9160|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9164|code|LDR.W           R6, [R6,#0x190]|214-248-144-97
+9168|code|EORS            right, R6|117-64
+9170|code|UBFX.W          R6, work, #0x10, #6|192-243-5-70
+9174|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+9178|code|ADD.W           R6, R3, R6,LSL#2|3-235-134-6
+9182|code|ADD.W           R0, R3, R0,LSL#2|3-235-128-0
+9186|code|LDR.W           R6, [R6,#0x290]|214-248-144-98
+9190|code|LDR.W           R0, [R0,#0x390]|208-248-144-3
+9194|code|EORS            right, R6|117-64
+9196|code|EORS            right, R0|69-64
+9198|code|LDR.W           R0, [R4,#0x17C]|212-248-124-1
+9202|code|EOR.W           R0, R0, left,ROR#4|128-234-49-16
+9206|code|AND.W           R4, work, #0x3F|0-240-63-4
+9210|code|ADD.W           R4, R3, R4,LSL#2|3-235-132-4
+9214|code|LDR.W           R6, [R4,#0x490]|212-248-144-100
+9218|code|EOR.W           R4, right, R6|133-234-6-4
+9222|code|UBFX.W          R5, work, #8, #6|192-243-5-37
+9226|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+9230|code|LDR.W           R5, [R5,#0x590]|213-248-144-85
+9234|code|EORS            right, R5|108-64
+9236|code|UBFX.W          R5, work, #0x10, #6|192-243-5-69
+9240|code|UBFX.W          work, work, #0x18, #6|192-243-5-96
+9244|code|ADD.W           R5, R3, R5,LSL#2|3-235-133-5
+9248|code|ADD.W           R3, R3, R0,LSL#2|3-235-128-3
+9252|code|LDR.W           R5, [R5,#0x690]|213-248-144-86
+9256|code|LDR.W           R3, [R3,#0x790]|211-248-144-55
+9260|code|EORS            right, R5|108-64
+9262|code|EORS            right, R3|92-64
+9264|code|MOV.W           right, right,ROR#1|79-234-116-4
+9268|code|EOR.W           R0, right, left|132-234-1-0
+9272|code|AND.W           R0, R0, #0xAAAAAAAA|0-240-170-48
+9276|code|EORS            left, work|65-64
+9278|code|EORS            right, work|68-64
+9280|code|MOV.W           work, left,ROR#1|79-234-113-0
+9284|code|EOR.W           R3, right, left,LSR#8|132-234-16-35
+9288|code|AND.W           R3, R3, #0xFF00FF|3-240-255-19
+9292|code|EORS            right, work|92-64
+9294|code|EOR.W           R1, left, work,LSL#8|128-234-3-33
+9298|code|EOR.W           work, right, left,LSR#2|132-234-145-3
+9302|code|AND.W           R3, R3, #0x33333333|3-240-51-51
+9306|code|EORS            right, work|92-64
+9308|code|EOR.W           work, left, work,LSL#2|129-234-131-3
+9312|code|EOR.W           R1, left, right,LSR#16|131-234-20-65
+9316|code|UXTH            R1, R1|137-178
+9318|code|EORS            left, work|75-64
+9320|code|EOR.W           R0, right, work,LSL#16|132-234-1-64
+9324|code|EOR.W           work, left, right,LSR#4|131-234-16-17
+9328|code|AND.W           R1, R1, #0xF0F0F0F|1-240-15-49
+9332|code|EORS            left, work|75-64
+9334|code|STRB            left, [to,#7]|211-113
+9336|code|EOR.W           work, right, work,LSL#4|128-234-1-17
+9340|code|STRB            right, [to,#3]|209-112
+9342|code|LSRS            R0, right, #0x18|8-14
+9344|code|STRB            R0, [to]|16-112
+9346|code|LSRS            R0, right, #0x10|8-12
+9348|code|STRB            R0, [to,#1]|80-112
+9350|code|LSRS            R0, right, #8|8-10
+9352|code|LSRS            right, left, #0x18|25-14
+9354|code|STRB            R0, [to,#2]|144-112
+9356|code|MOVS            R0, #0|0-32
+9358|code|STRB            R1, [to,#4]|17-113
+9360|code|LSRS            R1, left, #0x10|25-12
+9362|code|STRB            R1, [to,#5]|81-113
+9364|code|LSRS            R1, left, #8|25-10
+9366|code|STRB            R1, [to,#6]|145-113
+9368|code|POP.W           {R4-R9,PC}|189-232-240-131
+9372|code|PUSH            {R3,LR}|8-181
+9374|code|MOV             R3, outbuf|11-70
+9376|code|MOV             outbuf, inbuf; from|17-70
+9378|code|MOV             inbuf, outbuf; to|26-70
+9380|code|MOVS            outbuf, #1; mode|1-35
+9382|code|BL              des_ecb_crypt|253-247-81-255
+9386|code|MOVS            R0, #0x20 ; ' '|32-32
+9388|code|LDR             R3, =_gcry_burn_stack|1-75
+9390|code|BLX             R3; _gcry_burn_stack|152-71
+9392|code|POP             {R3,PC}|8-189
+9394|data|ALIGN 4|0-191
+9396|data|DCD _gcry_burn_stack|76-50-0-0
+9400|code|PUSH            {R3,LR}|8-181
+9402|code|MOV             R3, outbuf|11-70
+9404|code|MOV             outbuf, inbuf; from|17-70
+9406|code|MOV             inbuf, outbuf; to|26-70
+9408|code|MOVS            outbuf, #0; mode|0-35
+9410|code|BL              des_ecb_crypt|253-247-67-255
+9414|code|MOVS            R0, #0x20 ; ' '|32-32
+9416|code|LDR             R3, =_gcry_burn_stack|1-75
+9418|code|BLX             R3; _gcry_burn_stack|152-71
+9420|code|POP             {R3,PC}|8-189
+9422|data|ALIGN 0x10|0-191
+9424|data|DCD _gcry_burn_stack|76-50-0-0
+9428|code|PUSH            {R3,LR}|8-181
+9430|code|MOV             R3, outbuf|11-70
+9432|code|MOV             outbuf, inbuf; from|17-70
+9434|code|MOV             inbuf, outbuf; to|26-70
+9436|code|MOVS            outbuf, #1; mode|1-35
+9438|code|BL              tripledes_ecb_crypt|254-247-132-251
+9442|code|MOVS            R0, #0x20 ; ' '|32-32
+9444|code|LDR             R3, =_gcry_burn_stack|1-75
+9446|code|BLX             R3; _gcry_burn_stack|152-71
+9448|code|POP             {R3,PC}|8-189
+9450|data|ALIGN 4|0-191
+9452|data|DCD _gcry_burn_stack|76-50-0-0
+9456|code|PUSH            {R3,LR}|8-181
+9458|code|MOV             R3, outbuf|11-70
+9460|code|MOV             outbuf, inbuf; from|17-70
+9462|code|MOV             inbuf, outbuf; to|26-70
+9464|code|MOVS            outbuf, #0; mode|0-35
+9466|code|BL              tripledes_ecb_crypt|254-247-118-251
+9470|code|MOVS            R0, #0x20 ; ' '|32-32
+9472|code|LDR             R3, =_gcry_burn_stack|1-75
+9474|code|BLX             R3; _gcry_burn_stack|152-71
+9476|code|POP             {R3,PC}|8-189
+9478|data|ALIGN 4|0-191
+9480|data|DCD _gcry_burn_stack|76-50-0-0
+9484|code|MOVS            R3, #0|0-35
+9486|code|PUSH.W          {key,R1,R4-R8,LR}|45-233-243-65
+9490|code|LDRB            R2, [key,i]|194-92
+9492|code|BIC.W           R2, R2, #1|34-240-1-2
+9496|code|STRB.W          R2, [SP,i]|13-248-3-32
+9500|code|ADDS            i, #1|1-51
+9502|code|CMP             i, #8|8-43
+9504|code|BNE             loc_2512|247-209
+9506|code|LDR             R7, =weak_keys|13-79
+9508|code|MOVS            R5, #0x3F ; '?'|63-37
+9510|code|LDR.W           R8, =memcmp|223-248-52-128
+9514|code|MOVS            R6, #0|0-38
+9516|code|ADDS            R4, left, right|116-25
+9518|code|MOV             R0, SP; s1|104-70
+9520|code|MOVS            R2, #8; n|8-34
+9522|code|ASRS            R4, R4, #1|100-16
+9524|code|ADD.W           R1, R7, middle,LSL#3; s2|7-235-196-1
+9528|code|BLX             R8; memcmp|192-71
+9530|code|CMP             cmp_result, #0|0-40
+9532|code|BEQ             loc_254E|7-208
+9534|code|ITE GT|204-191
+9536|code|ADDGT           left, middle, #1|102-28
+9538|code|ADDLE.W         right, middle, #0xFFFFFFFF|4-241-255-53
+9542|code|CMP             left, right|174-66
+9544|code|BLE             loc_252C|240-221
+9546|code|MOVS            cmp_result, #0|0-32
+9548|code|B               loc_2552|1-224
+9550|code|MOV.W           cmp_result, #0xFFFFFFFF|79-240-255-48
+9554|code|ADD             SP, SP, #8|2-176
+9556|code|POP.W           {middle-R8,PC}|189-232-240-129
+9560|data|DCD weak_keys|172-47-0-0
+9564|data|DCD memcmp|80-50-0-0
+9568|code|CMP             keylen, #8|8-42
+9570|code|PUSH            {R4-R6,LR}|112-181
+9572|code|MOV             R4, context|4-70
+9574|code|MOV             R6, key|14-70
+9576|code|BNE             loc_25BE|41-209
+9578|code|LDR             R3, =initialized|22-75
+9580|code|LDR             keylen, [R3]|26-104
+9582|code|CBNZ            R2, loc_2576|18-185
+9584|code|MOVS            key, #1|1-33
+9586|code|STM.W           R3, {R1,R2}|131-232-6-0
+9590|code|LDR             R3, [R3,#(selftest_failed.6193 - 0x323C)]|91-104
+9592|code|LDR             R5, =_gcry_burn_stack|19-77
+9594|code|CBZ             R3, loc_258E|67-177
+9596|code|MOV             R0, key; key|48-70
+9598|code|BL              is_weak_key|255-247-197-255
+9602|code|MOV             ctx, R0|4-70
+9604|code|CBZ             R0, loc_25B6|184-177
+9606|code|MOVS            R0, #0x40 ; '@'|64-32
+9608|code|BLX             R5; _gcry_burn_stack|168-71
+9610|code|MOVS            R0, #0x1F|31-32
+9612|code|POP             {R4-key,PC}|112-189
+9614|code|MOV             R1, R4; subkey|33-70
+9616|code|MOV             ctx, key; rawkey|48-70
+9618|code|BL              des_key_schedule|253-247-53-253
+9622|code|MOVS            R0, #0x20 ; ' '|32-32
+9624|code|BLX             R5; _gcry_burn_stack|168-71
+9626|code|ADD.W           R1, ctx, #0x80|4-241-128-1
+9630|code|MOV             R3, ctx|35-70
+9632|code|MOV             R2, ctx|34-70
+9634|code|LDR             R0, [R3,#0x78]|152-111
+9636|code|ADDS            R2, #8|8-50
+9638|code|SUBS            R3, #8|8-59
+9640|code|STR             R0, [R2,#0x78]|144-103
+9642|code|LDR.W           R0, [R3,#0x84]|211-248-132-0
+9646|code|STR             R0, [R2,#0x7C]|208-103
+9648|code|CMP             R2, R1|138-66
+9650|code|BNE             loc_25A2|246-209
+9652|code|B               loc_257C|226-231
+9654|code|MOVS            R0, #0x40 ; '@'|64-32
+9656|code|BLX             R5; _gcry_burn_stack|168-71
+9658|code|MOV             R0, R4|32-70
+9660|code|POP             {R4-key,PC}|112-189
+9662|code|MOVS            ctx, #0xD|13-32
+9664|code|POP             {ctx-R6,PC}|112-189
+9666|data|ALIGN 4|0-191
+9668|data|DCD initialized|60-50-0-0
+9672|data|DCD _gcry_burn_stack|76-50-0-0
+9676|code|CMP             keylen, #0x18|24-42
+9678|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+9682|code|MOV             R4, context|4-70
+9684|code|MOV             R5, key|13-70
+9686|code|BNE             loc_268C|89-209
+9688|code|LDR             R3, =initialized|46-75
+9690|code|ADD.W           R7, key, #8|1-241-8-7
+9694|code|ADD.W           R6, key, #0x10|1-241-16-6
+9698|code|LDR             keylen, [R3]|26-104
+9700|code|CBNZ            R2, loc_25EC|18-185
+9702|code|MOVS            key, #1|1-33
+9704|code|STR             R2, [R3,#(selftest_failed.6214 - 0x323C)]|154-96
+9706|code|STR             R1, [R3]|25-96
+9708|code|LDR             R3, [R3,#(selftest_failed.6214 - 0x323C)]|155-104
+9710|code|LDR.W           R8, =_gcry_burn_stack|223-248-168-128
+9714|code|CBZ             R3, loc_25FE|35-177
+9716|code|LDR.W           R3, [ctx,#0x300]|212-248-0-51
+9720|code|CMP             R3, #0|0-43
+9722|code|BNE             loc_2682|66-209
+9724|code|B               loc_265C|46-224
+9726|code|MOV             ctx, key; rawkey|40-70
+9728|code|MOV             R1, ctx; subkey|33-70
+9730|code|BL              des_key_schedule|253-247-253-252
+9734|code|MOV             R0, R7; rawkey|56-70
+9736|code|ADD.W           R1, ctx, #0x200; subkey|4-245-0-113
+9740|code|BL              des_key_schedule|253-247-248-252
+9744|code|MOV             R0, R6; rawkey|48-70
+9746|code|ADD.W           R1, ctx, #0x100; subkey|4-245-128-113
+9750|code|BL              des_key_schedule|253-247-243-252
+9754|code|MOVS            R0, #0x20 ; ' '|32-32
+9756|code|BLX             R8; _gcry_burn_stack|192-71
+9758|code|ADD.W           R0, ctx, #0x80|4-241-128-0
+9762|code|MOV             R2, ctx|34-70
+9764|code|MOV             R3, ctx|35-70
+9766|code|LDR.W           R1, [R2,#0x178]|210-248-120-17
+9770|code|ADDS            R3, #8|8-51
+9772|code|SUBS            R2, #8|8-58
+9774|code|STR.W           R1, [R3,#0x178]|195-248-120-17
+9778|code|LDR.W           R1, [R2,#0x184]|210-248-132-17
+9782|code|STR.W           R1, [R3,#0x17C]|195-248-124-17
+9786|code|LDR.W           R1, [R2,#0x280]|210-248-128-18
+9790|code|STR             R1, [R3,#0x78]|153-103
+9792|code|LDR.W           R1, [R2,#0x284]|210-248-132-18
+9796|code|STR             R1, [R3,#0x7C]|217-103
+9798|code|LDR.W           R1, [R2,#0x80]|210-248-128-16
+9802|code|STR.W           R1, [R3,#0x278]|195-248-120-18
+9806|code|LDR.W           R1, [R2,#0x84]|210-248-132-16
+9810|code|STR.W           R1, [R3,#0x27C]|195-248-124-18
+9814|code|CMP             R3, R0|131-66
+9816|code|BNE             loc_2626|229-209
+9818|code|B               loc_25F4|203-231
+9820|code|MOV             R0, key; key|40-70
+9822|code|BL              is_weak_key|255-247-85-255
+9826|code|CBZ             R0, loc_266E|32-177
+9828|code|MOVS            R0, #0x40 ; '@'|64-32
+9830|code|BLX             R8; _gcry_burn_stack|192-71
+9832|code|MOVS            R0, #0x1F|31-32
+9834|code|POP.W           {ctx-R8,PC}|189-232-240-129
+9838|code|MOV             R0, R7; key|56-70
+9840|code|BL              is_weak_key|255-247-76-255
+9844|code|CMP             R0, #0|0-40
+9846|code|BNE             loc_2664|245-209
+9848|code|MOV             R0, R6; key|48-70
+9850|code|BL              is_weak_key|255-247-71-255
+9854|code|CMP             R0, #0|0-40
+9856|code|BNE             loc_2664|240-209
+9858|code|MOVS            R0, #0x40 ; '@'|64-32
+9860|code|BLX             R8; _gcry_burn_stack|192-71
+9862|code|MOVS            R0, #0|0-32
+9864|code|POP.W           {ctx-R8,PC}|189-232-240-129
+9868|code|MOVS            ctx, #0xD|13-32
+9870|code|POP.W           {ctx-R8,PC}|189-232-240-129
+9874|data|ALIGN 4|0-191
+9876|data|DCD initialized|60-50-0-0
+9880|data|DCD _gcry_burn_stack|76-50-0-0
+9884|code|PUSH            {R3-R5,LR}|56-181
+9886|code|LDR             R5, =weak_keys|4-77
+9888|code|LDR             R4, =grub_cipher_register|4-76
+9890|code|ADD.W           mod, R5, #0x200|5-245-0-112
+9894|code|BLX             R4; grub_cipher_register|160-71
+9896|code|ADD.W           R0, R5, #0x230|5-245-12-112
+9900|code|BLX             R4; grub_cipher_register|160-71
+9902|code|POP             {R3-R5,PC}|56-189
+9904|data|DCD weak_keys|172-47-0-0
+9908|data|DCD grub_cipher_register|84-50-0-0
+9912|code|PUSH            {R3-R5,LR}|56-181
+9914|code|LDR             R5, =weak_keys|4-77
+9916|code|LDR             R4, =grub_cipher_unregister|4-76
+9918|code|ADD.W           R0, R5, #0x200|5-245-0-112
+9922|code|BLX             R4; grub_cipher_unregister|160-71
+9924|code|ADD.W           R0, R5, #0x230|5-245-12-112
+9928|code|BLX             R4; grub_cipher_unregister|160-71
+9930|code|POP             {R3-R5,PC}|56-189
+9932|data|DCD weak_keys|172-47-0-0
+9936|data|DCD grub_cipher_unregister|72-50-0-0
+9940|data|DCD 0, 1, 0x100, 0x101, 0x10000, 0x10001, 0x10100, 0x10101|0-0-0-0-1-0-0-0-0-1-0-0-1-1-0-0-0-0-1-0-1-0-1-0-0-1-1-0-1-1-1-0-0-0-0-1-1-0-0-1-0-1-0-1-1-1-0-1-0-0-1-1-1-0-1-1-0-1-1-1-1-1-1-1
+10004|data|DCD 0, 0x1000000, 0x10000, 0x1010000, 0x100, 0x1000100|0-0-0-0-0-0-0-1-0-0-1-0-0-0-1-1-0-1-0-0-0-1-0-1-0-1-1-0-0-1-1-1-1-0-0-0-1-0-0-1-1-0-1-0-1-0-1-1-1-1-0-0-1-1-0-1-1-1-1-0-1-1-1-1
+10068|data|DCB 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1|1-1-2-2-2-2-2-2-1-2-2-2-2-2-2-1
+10084|data|DCD 0x10001040, 0x1000, 0x40000, 0x10041040, 0x10000000|64-16-0-16-0-16-0-0-0-0-4-0-64-16-4-16-0-0-0-16-64-16-0-16-64-0-0-0-0-0-0-16-64-0-4-0-0-0-4-16-64-16-4-16-0-16-4-0-0-16-4-16-64-16-4-0-0-16-0-0-64-0-0-0-0-0-4-16-64-0-0-16-0-16-0-16-64-16-0-0-0-16-4-0-64-0-4-0-64-0-4-16-0-16-4-16-64-16-0-0-0-0-0-0-0-0-0-0-64-0-4-16-64-0-0-16-0-16-0-16-64-16-4-0-0-0-4-0-64-16-4-0-0-0-4-0-0-16-4-16-0-16-0-0-64-0-0-0-64-0-4-16-0-16-0-0-64-16-4-0-0-16-0-16-64-0-0-0-64-0-0-16-0-0-4-16-64-0-4-16-0-0-0-16-0-0-4-0-64-16-0-16-0-0-0-0-64-16-4-16-64-0-4-0-64-0-0-16-0-0-4-16-0-16-0-16-64-16-0-16-0-0-0-0-64-16-4-16-0-16-4-0-0-16-4-0-64-16-0-0-64-16-0-0-64-0-4-0-0-0-0-16-0-16-4-16
+10340|data|DCD 0x20000010, 0x20400000, 0x4000, 0x20404010, 0x20400000|16-0-0-32-0-0-64-32-0-64-0-0-16-64-64-32-0-0-64-32-16-0-0-0-16-64-64-32-0-0-64-0-0-64-0-32-16-64-64-0-0-0-64-0-16-0-0-32-16-0-64-0-0-64-0-32-0-0-0-32-16-64-0-0-0-0-0-0-16-0-64-0-16-64-0-32-0-64-0-0-0-64-64-0-16-64-0-32-16-0-0-0-16-0-64-32-16-0-64-32-0-0-0-0-16-64-64-0-0-64-64-32-16-64-0-0-0-64-64-0-0-64-64-32-0-0-0-32-0-64-0-32-16-0-0-0-16-0-64-32-0-64-64-0-16-64-64-32-0-0-64-0-16-64-0-0-16-0-0-32-0-0-64-0-0-64-0-32-0-0-0-32-16-64-0-0-16-0-0-32-16-64-64-32-0-64-64-0-0-0-64-32-16-64-64-0-0-64-64-32-0-0-0-0-16-0-64-32-16-0-0-0-0-64-0-0-0-0-64-32-16-64-64-0-0-64-0-0-16-0-64-0-16-64-0-32-0-0-0-0-0-64-64-32-0-0-0-32-16-0-64-0-16-64-0-32
+10596|data|DCD 0x802001, 0x2081, 0x2081, 0x80, 0x802080, 0x800081|1-32-128-0-129-32-0-0-129-32-0-0-128-0-0-0-128-32-128-0-129-0-128-0-1-0-128-0-1-32-0-0-0-0-0-0-0-32-128-0-0-32-128-0-129-32-128-0-129-0-0-0-0-0-0-0-128-0-128-0-1-0-128-0-1-0-0-0-0-32-0-0-0-0-128-0-1-32-128-0-128-0-0-0-0-0-128-0-1-32-0-0-128-32-0-0-129-0-128-0-1-0-0-0-128-32-0-0-128-0-128-0-0-32-0-0-128-32-128-0-129-32-128-0-129-0-0-0-128-0-128-0-1-0-128-0-0-32-128-0-129-32-128-0-129-0-0-0-0-0-0-0-0-0-0-0-0-32-128-0-128-32-0-0-128-0-128-0-129-0-128-0-1-0-0-0-1-32-128-0-129-32-0-0-129-32-0-0-128-0-0-0-129-32-128-0-129-0-0-0-1-0-0-0-0-32-0-0-1-0-128-0-1-32-0-0-128-32-128-0-129-0-128-0-1-32-0-0-128-32-0-0-0-0-128-0-1-32-128-0-128-0-0-0-0-0-128-0-0-32-0-0-128-32-128-0
+10852|data|DCD 0x80108020, 0x80008000, 0x8000, 0x108020, 0x100000|32-128-16-128-0-128-0-128-0-128-0-0-32-128-16-0-0-0-16-0-32-0-0-0-32-0-16-128-32-128-0-128-32-0-0-128-32-128-16-128-0-128-16-128-0-0-0-128-0-128-0-128-0-0-16-0-32-0-0-0-32-0-16-128-0-128-16-0-32-0-16-0-32-128-0-128-0-0-0-0-0-0-0-128-0-128-0-0-32-128-16-0-0-0-16-128-32-0-16-0-32-0-0-128-0-0-0-0-0-128-16-0-32-128-0-0-0-128-16-128-0-0-16-128-32-128-0-0-0-0-0-0-32-128-16-0-32-0-16-128-0-0-16-0-32-128-0-128-0-0-16-128-0-128-16-128-0-128-0-0-0-0-16-128-0-128-0-128-32-0-0-0-32-128-16-128-32-128-16-0-32-0-0-0-0-128-0-0-0-0-0-128-32-128-0-0-0-128-16-128-0-0-16-0-32-0-0-128-32-0-16-0-32-128-0-128-32-0-0-128-32-0-16-0-0-128-16-0-0-0-0-0-0-128-0-128-32-128-0-0-0-0-0-128-32-0-16-128-32-128-16-128-0-128-16-0
+11108|data|DCD 0x200000, 0x4200002, 0x4000802, 0, 0x800, 0x4000802|0-0-32-0-2-0-32-4-2-8-0-4-0-0-0-0-0-8-0-0-2-8-0-4-2-8-32-0-0-8-32-4-2-8-32-4-0-0-32-0-0-0-0-0-2-0-0-4-2-0-0-0-0-0-0-4-2-0-32-4-2-8-0-0-0-8-0-4-2-8-32-0-2-0-32-0-0-8-0-4-2-0-0-4-0-0-32-4-0-8-32-4-2-0-32-0-0-0-32-4-0-8-0-0-2-8-0-0-2-8-32-4-0-8-32-0-2-0-0-0-0-0-0-4-0-8-32-0-0-0-0-4-0-8-32-0-0-0-32-0-2-8-0-4-2-8-0-4-2-0-32-4-2-0-32-4-2-0-0-0-2-0-32-0-0-0-0-4-0-8-0-4-0-0-32-0-0-8-32-4-2-8-0-0-2-8-32-0-0-8-32-4-2-8-0-0-2-0-0-4-2-8-32-4-0-0-32-4-0-8-32-0-0-0-0-0-2-0-0-0-2-8-32-4-0-0-0-0-2-8-32-0-0-0-32-4-0-8-0-0-2-0-0-4-0-8-0-4-0-8-0-0-2-0-32-0
+11364|data|DCD 0x100, 0x2080100, 0x2080000, 0x42000100, 0x80000, 0x100|0-1-0-0-0-1-8-2-0-0-8-2-0-1-0-66-0-0-8-0-0-1-0-0-0-0-0-64-0-0-8-2-0-1-8-64-0-0-8-0-0-1-0-2-0-1-8-64-0-1-0-66-0-0-8-66-0-1-8-0-0-0-0-64-0-0-0-2-0-0-8-64-0-0-8-64-0-0-0-0-0-1-0-64-0-1-8-66-0-1-8-66-0-1-0-2-0-0-8-66-0-1-0-64-0-0-0-0-0-0-0-66-0-1-8-2-0-0-0-2-0-0-0-66-0-1-8-0-0-0-8-0-0-1-0-66-0-1-0-0-0-0-0-2-0-0-0-64-0-0-8-2-0-1-0-66-0-1-8-64-0-1-0-2-0-0-0-64-0-0-8-66-0-1-8-2-0-1-8-64-0-1-0-0-0-0-0-2-0-0-8-66-0-1-8-66-0-1-8-0-0-0-0-66-0-1-8-66-0-0-8-2-0-0-0-0-0-0-8-64-0-0-0-66-0-1-8-0-0-1-0-2-0-1-0-64-0-0-8-0-0-0-0-0-0-0-8-64-0-1-8-2-0-1-0-64
+11620|data|DCD 0x208, 0x8020200, 0, 0x8020008, 0x8000200, 0, 0x20208|8-2-0-0-0-2-2-8-0-0-0-0-8-0-2-8-0-2-0-8-0-0-0-0-8-2-2-0-0-2-0-8-8-0-2-0-8-0-0-8-8-0-0-8-0-0-2-0-8-2-2-8-8-0-2-0-0-0-2-8-8-2-0-0-0-0-0-8-8-0-0-0-0-2-2-8-0-2-0-0-0-2-2-0-0-0-2-8-8-0-2-8-8-2-2-0-8-2-0-8-0-2-2-0-0-0-2-0-8-2-0-8-8-0-0-0-8-2-2-8-0-2-0-0-0-0-0-8-0-2-2-8-0-0-0-8-8-0-2-0-8-2-0-0-0-0-2-0-0-2-2-8-0-2-0-8-0-0-0-0-0-2-0-0-8-0-2-0-8-2-2-8-0-2-0-8-8-0-0-8-0-2-0-0-0-0-0-0-8-0-2-8-8-2-0-8-0-0-2-0-0-0-0-8-8-2-2-8-8-0-0-0-8-2-2-0-0-2-2-0-8-0-0-8-0-0-2-8-8-2-0-8-8-2-0-0-0-0-2-8-8-2-2-0-8-0-0-0-8-0-2-8-0-2-2-0
+11876|data|DCD 0x1010400, 0, 0x10000, 0x1010404, 0x1010004, 0x10404|0-4-1-1-0-0-0-0-0-0-1-0-4-4-1-1-4-0-1-1-4-4-1-0-4-0-0-0-0-0-1-0-0-4-0-0-0-4-1-1-4-4-1-1-0-4-0-0-4-4-0-1-4-0-1-1-0-0-0-1-4-0-0-0-4-4-0-0-0-4-0-1-0-4-0-1-0-4-1-0-0-4-1-0-0-0-1-1-0-0-1-1-4-4-0-1-4-0-1-0-4-0-0-1-4-0-0-1-4-0-1-0-0-0-0-0-4-4-0-0-4-4-1-0-0-0-0-1-0-0-1-0-4-4-1-1-4-0-0-0-0-0-1-1-0-4-1-1-0-0-0-1-0-0-0-1-0-4-0-0-4-0-1-1-0-0-1-0-0-4-1-0-4-0-0-1-0-4-0-0-4-0-0-0-4-4-0-1-4-4-1-0-4-4-1-1-4-0-1-0-0-0-1-1-4-4-0-1-4-0-0-1-4-4-0-0-4-4-1-0-0-4-1-1-4-4-0-0-0-4-0-1-0-4-0-1-0-0-0-0-4-0-1-0-0-4-1-0-0-0-0-0-4-0-1-1
+12132|data|DCB "3DES",0; type descriptor name|51-68-69-83-0
+12137|data|DCB "1.2.840.113549.3.7",0|49-46-50-46-56-52-48-46-49-49-51-53-52-57-46-51-46-55-0
+12156|data|DCB "1.3.36.3.1.3.2.1",0|49-46-51-46-51-54-46-51-46-49-46-51-46-50-46-49-0
+12173|data|DCB "1.2.840.113549.1.12.1.3",0|49-46-50-46-56-52-48-46-49-49-51-53-52-57-46-49-46-49-50-46-49-46-51-0
+12197|data|DCB "DES",0|68-69-83-0
+12204|data|DCB 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1E, 0x1E, 0, 0, 0xE|0-0-0-0-0-0-0-0-0-0-30-30-0-0-14-14-0-0-224-224-0-0-240-240-0-0-254-254-0-0-254-254-0-30-0-30-0-14-0-14-0-30-30-0-0-14-14-0-0-30-224-254-0-14-240-254-0-30-254-224-0-14-254-240-0-224-0-224-0-240-0-240-0-224-30-254-0-240-14-254-0-224-224-0-0-240-240-0-0-224-254-30-0-240-254-14-0-254-0-254-0-254-0-254-0-254-30-224-0-254-14-240-0-254-224-30-0-254-240-14-0-254-254-0-0-254-254-0-30-0-0-30-14-0-0-14-30-0-30-0-14-0-14-0-30-0-224-254-14-0-240-254-30-0-254-224-14-0-254-240-30-30-0-0-14-14-0-0-30-30-30-30-14-14-14-14-30-30-224-224-14-14-240-240-30-30-254-254-14-14-254-254-30-224-0-254-14-240-0-254-30-224-30-224-14-240-14-240-30-224-224-30-14-240-240-14-30-224-254-0-14-240-254-0-30-254-0-224-14-254-0-240-30-254-30-254-14-254-14-254-30-254-224-0-14-254-240-0-30-254-254-30-14-254-254-14-224-0-0-224-240-0-0-240-224-0-30-254-240-0-14-254-224-0-224-0-240-0-240-0-224-0-254-30-240-0-254-14-224-30-0-254-240-14-0-254-224-30-30-224-240-14-14-240-224-30-224-30-240-14-240-14-224-30-254-0-240-14-254-0-224-224-0-0-240-240-0-0-224-224-30-30-240-240-14-14-224-224-224-224-240-240-240-240-224-224-254-254-240-240-254-254-224-254-0-30-240-254-0-14-224-254-30-0-240-254-14-0-224-254-224-254-240-254-240-254-224-254-254-224-240-254-254-240-254-0-0-254-254-0-0-254-254-0-30-224-254-0-14-240-254-0-224-30-254-0-240-14-254-0-254-0-254-0-254-0-254-30-0-224-254-14-0-240-254-30-30-254-254-14-14-254-254-30-224-0-254-14-240-0-254-30-254-30-254-14-254-14-254-224-0-30-254-240-0-14-254-224-30-0-254-240-14-0-254-224-224-254-254-240-240-254-254-224-254-224-254-240-254-240-254-254-0-0-254-254-0-0-254-254-30-30-254-254-14-14-254-254-224-224-254-254-240-240-254-254-254-254-254-254-254-254
+12716|data|gcry_cipher_spec_t <aDes, 0, 0, 8, 0x40, 0x100, do_des_setkey+1, \; "DES"|165-47-0-0-0-0-0-0-0-0-0-0-8-0-0-0-64-0-0-0-0-1-0-0-97-37-0-0-185-36-0-0-157-36-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+12764|data|DCD _ZTS3DES; reference to type's name|100-47-0-0
+12772|data|DCD oids_tripledes|12-50-0-0
+12788|data|DCD do_tripledes_setkey+1|205-37-0-0
+12792|data|DCD do_tripledes_encrypt+1|241-36-0-0
+12796|data|DCD do_tripledes_decrypt+1|213-36-0-0
+12812|data|gcry_cipher_oid_spec_t <a1284011354937, 3>; "1.2.840.113549.3.7" ...|105-47-0-0-3-0-0-0-124-47-0-0-3-0-0-0-141-47-0-0-3-0-0-0-0-0-0-0-0-0-0-0
+12844|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+12860|data|% 4|255-255-255-255
+12864|data|% 4|255-255-255-255

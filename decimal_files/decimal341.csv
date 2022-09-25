@@ -1,0 +1,78 @@
+address|type|disassembly|bytes
+0|code|PUSH            {datetime-R4,LR}|31-181
+2|code|MOV             R4, datetime|4-70
+4|code|LDR             R3, =grub_efi_system_table_0|16-75
+6|code|MOV             datetime, SP|104-70
+8|code|MOVS            R1, #0|0-33
+10|code|LDR             R3, [R3]|27-104
+12|code|LDR             R3, [R3,#0x38]|155-107
+14|code|LDR             R3, [R3,#0x18]|155-105
+16|code|BLX             R3|152-71
+18|code|CBZ             status, loc_1E|32-177
+20|code|LDR             R1, =aCanTGetDatetim; "can't get datetime using efi"|13-73
+22|code|MOVS            status, #0x11|17-32
+24|code|LDR             R3, =grub_error|13-75
+26|code|BLX             R3; grub_error|152-71
+28|code|B               loc_42|17-224
+30|code|LDRH.W          R3, [SP,#0x18+efi_time]|189-248-0-48
+34|code|STRH            R3, [datetime]|35-128
+36|code|LDRB.W          R3, [SP,#0x18+efi_time.month]|157-248-2-48
+40|code|STRB            R3, [datetime,#2]|163-112
+42|code|LDRB.W          R3, [SP,#0x18+efi_time.day]|157-248-3-48
+46|code|STRB            R3, [datetime,#3]|227-112
+48|code|LDRB.W          R3, [SP,#0x18+efi_time.hour]|157-248-4-48
+52|code|STRB            R3, [datetime,#4]|35-113
+54|code|LDRB.W          R3, [SP,#0x18+efi_time.minute]|157-248-5-48
+58|code|STRB            R3, [datetime,#5]|99-113
+60|code|LDRB.W          R3, [SP,#0x18+efi_time.second]|157-248-6-48
+64|code|STRB            R3, [datetime,#6]|163-113
+66|code|ADD             SP, SP, #0x10|4-176
+68|code|POP             {datetime,PC}|16-189
+70|data|ALIGN 4|0-191
+72|data|DCD grub_efi_system_table_0|8-1-0-0
+76|data|DCD aCanTGetDatetim; "can't get datetime using efi"|188-0-0-0
+80|data|DCD grub_error|12-1-0-0
+84|code|PUSH            {R4,R5,LR}|48-181
+86|code|SUB             SP, SP, #0x14|133-176
+88|code|LDR             R5, =grub_efi_system_table_0|20-77
+90|code|MOV             R4, datetime|4-70
+92|code|MOVS            R1, #0|0-33
+94|code|MOV             datetime, SP|104-70
+96|code|LDR             R3, [R5]|43-104
+98|code|LDR             R3, [R3,#0x38]|155-107
+100|code|LDR             R3, [R3,#0x18]|155-105
+102|code|BLX             R3|152-71
+104|code|CBZ             status, loc_70|16-177
+106|code|MOVS            status, #0x11|17-32
+108|code|LDR             R1, =aCanTGetDatetim; "can't get datetime using efi"|16-73
+110|code|B               loc_A4|25-224
+112|code|LDRH            R3, [datetime]|35-136
+114|code|MOV             status, SP|104-70
+116|code|STRH.W          R3, [SP,#0x20+efi_time]|173-248-0-48
+120|code|LDRB            R3, [datetime,#2]|163-120
+122|code|STRB.W          R3, [SP,#0x20+efi_time.month]|141-248-2-48
+126|code|LDRB            R3, [datetime,#3]|227-120
+128|code|STRB.W          R3, [SP,#0x20+efi_time.day]|141-248-3-48
+132|code|LDRB            R3, [datetime,#4]|35-121
+134|code|STRB.W          R3, [SP,#0x20+efi_time.hour]|141-248-4-48
+138|code|LDRB            R3, [datetime,#5]|99-121
+140|code|STRB.W          R3, [SP,#0x20+efi_time.minute]|141-248-5-48
+144|code|LDRB            R3, [datetime,#6]|163-121
+146|code|STRB.W          R3, [SP,#0x20+efi_time.second]|141-248-6-48
+150|code|LDR             R3, [R5]|43-104
+152|code|LDR             R3, [R3,#0x38]|155-107
+154|code|LDR             R3, [R3,#0x1C]|219-105
+156|code|BLX             R3|152-71
+158|code|CBZ             status, loc_A8|24-177
+160|code|LDR             R1, =aCanTSetDatetim; "can't set datetime using efi"|4-73
+162|code|MOVS            status, #0x11|17-32
+164|code|LDR             R3, =grub_error|4-75
+166|code|BLX             R3; grub_error|152-71
+168|code|ADD             SP, SP, #0x14|5-176
+170|code|POP             {datetime,R5,PC}|48-189
+172|data|DCD grub_efi_system_table_0|8-1-0-0
+176|data|DCD aCanTGetDatetim; "can't get datetime using efi"|188-0-0-0
+180|data|DCD aCanTSetDatetim; "can't set datetime using efi"|217-0-0-0
+184|data|DCD grub_error|12-1-0-0
+188|data|DCB "can't get datetime using efi",0|99-97-110-39-116-32-103-101-116-32-100-97-116-101-116-105-109-101-32-117-115-105-110-103-32-101-102-105-0
+217|data|DCB "can't set datetime using efi",0|99-97-110-39-116-32-115-101-116-32-100-97-116-101-116-105-109-101-32-117-115-105-110-103-32-101-102-105-0

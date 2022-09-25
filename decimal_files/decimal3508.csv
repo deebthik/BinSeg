@@ -1,0 +1,168 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x13C|207-176
+6|code|LDR             R3, =grub_disk_get_size|82-75
+8|code|MOV             R11, start_sector|147-70
+10|code|MOV             R7, disk|7-70
+12|code|MOV             R10, id|138-70
+14|code|BLX             R3; grub_disk_get_size|152-71
+16|code|MOVS            R5, #0|0-37
+18|code|SUBS.W          R2, R0, #0x10|176-241-16-2
+22|code|STRD.W          R0, R1, [SP,#0x160+size]|205-233-6-1
+26|code|ADC.W           R3, R1, #0xFFFFFFFF|65-241-255-51
+30|code|BIC.W           R0, R2, #7|34-240-7-0
+34|code|MOV             R1, R3|25-70
+36|code|STRD.W          R0, R1, [SP,#0x160+var_140]|205-233-8-1
+40|code|LDRD.W          R2, R3, [SP,#0x160+size]|221-233-6-35
+44|code|ADDS            R3, #1|1-51
+46|code|IT EQ|8-191
+48|code|CMPEQ.W         R2, #0xFFFFFFFF|178-241-255-63
+52|code|BNE             loc_3E|3-209
+54|code|CMP             minor_version, #0|0-45
+56|code|BEQ.W           loc_13E|0-240-129-128
+60|code|B               loc_40|0-224
+62|code|CBZ             minor_version, loc_4A|37-177
+64|code|CMP             minor_version, #2|2-45
+66|code|BEQ             loc_50|5-208
+68|code|MOV.W           R8, #0|79-240-0-8
+72|code|B               loc_54|4-224
+74|code|LDRD.W          R8, R9, [SP,#0x160+var_140]|221-233-8-137
+78|code|B               loc_58|3-224
+80|code|MOV.W           R8, #8|79-240-8-8
+84|code|MOV.W           R9, #0|79-240-0-9
+88|code|LDR             R1, =grub_disk_read|62-73
+90|code|MOVS            R2, #0|0-34
+92|code|MOVS            R3, #0|0-35
+94|code|ADD             R4, SP, #0x160+sb|14-172
+96|code|STRD.W          R2, R3, [SP,#0x160+var_160]|205-233-0-35
+100|code|MOV             R0, disk|56-70
+102|code|MOV.W           R3, #0x100|79-244-128-115
+106|code|STR             R4, [SP,#0x160+var_154]|3-148
+108|code|STR             R3, [SP,#0x160+var_158]|2-147
+110|code|MOV             R2, R8|66-70
+112|code|MOV             R3, R9|75-70
+114|code|STR             R1, [SP,#0x160+var_134]|11-145
+116|code|BLX             R1; grub_disk_read|136-71
+118|code|LDR             R1, [SP,#0x160+var_134]|11-153
+120|code|MOV             R6, R0|6-70
+122|code|CMP             R0, #0|0-40
+124|code|BNE             loc_148|100-209
+126|code|LDR             R3, [R4]|35-104
+128|code|LDR             R2, =0xA92B4EFC|53-74
+130|code|CMP             R3, R2|147-66
+132|code|BNE             loc_13E|91-209
+134|code|LDRD.W          R2, R3, [R4,#0x90]|212-233-36-35
+138|code|CMP             R3, R9|75-69
+140|code|IT EQ|8-191
+142|code|CMPEQ           R2, R8|66-69
+144|code|BNE             loc_13E|85-209
+146|code|LDR             R3, [R4,#4]|99-104
+148|code|CMP             R3, #1|1-43
+150|code|BNE             loc_148|87-209
+152|code|LDR             R2, [R4,#0x48]|162-108
+154|code|ADDS            R3, level, #4|19-29
+156|code|BEQ             loc_B8|12-208
+158|code|CMP             level, #1|1-42
+160|code|BLS             loc_B8|10-217
+162|code|SUBS            R3, level, #4|19-31
+164|code|CMP             R3, #2|2-43
+166|code|BLS             loc_B8|7-217
+168|code|CMP             level, #0xA|10-42
+170|code|BEQ             loc_B8|5-208
+172|code|MOVS            R0, #0x18|24-32
+174|code|LDR             R1, =aUnsupportedRai; "Unsupported RAID level: %d"|43-73
+176|code|LDR             R3, =grub_error|43-75
+178|code|BLX             R3; grub_error|152-71
+180|code|MOV             R0, R6|48-70
+182|code|B               loc_14A|72-224
+184|code|LDR.W           level, [R4,#0xA0]|212-248-160-32
+188|code|LDR.W           R3, [R4,#0xDC]|212-248-220-48
+192|code|CMP             R2, R3|154-66
+194|code|BCS             loc_148|65-210
+196|code|ADDS            R2, #0x80|128-50
+198|code|ADD.W           minor_version, SP, #0x160+role|13-241-54-5
+202|code|MOV             R0, disk|56-70
+204|code|STR             R5, [SP,#0x160+var_154]|3-149
+206|code|LSLS            R2, R2, #1|82-0
+208|code|ASRS            R3, R2, #0x1F|211-23
+210|code|STRD.W          R2, R3, [SP,#0x160+var_160]|205-233-0-35
+214|code|MOVS            R3, #2|2-35
+216|code|MOV             R2, R8|66-70
+218|code|STR             R3, [SP,#0x160+var_158]|2-147
+220|code|MOV             R3, R9|75-70
+222|code|BLX             R1|136-71
+224|code|CMP             R0, #0|0-40
+226|code|BNE             loc_148|49-209
+228|code|LDRH            R3, [R5]|43-136
+230|code|LDR             R2, [R4,#0x5C]|226-109
+232|code|CMP             R3, R2|147-66
+234|code|BCS             loc_148|45-210
+236|code|STR.W           R0, [id,#4]|202-248-4-0
+240|code|MOVS            R0, #0x10|16-32
+242|code|STR.W           R3, [id]|202-248-0-48
+246|code|LDR             R3, =grub_malloc|27-75
+248|code|BLX             R3; grub_malloc|152-71
+250|code|MOV             R5, uuid|5-70
+252|code|CBZ             uuid, loc_148|32-179
+254|code|ADD             R1, SP, #0x160+sb.set_uuid|18-169
+256|code|MOVS            R2, #0x10|16-34
+258|code|LDR             R3, =grub_memmove|25-75
+260|code|BLX             R3; grub_memmove|152-71
+262|code|LDRD.W          R2, R3, [R4,#0x80]|212-233-32-35
+266|code|LDRD.W          R6, disk, [R4,#0x50]|212-233-20-103
+270|code|MOV             R1, uuid|41-70
+272|code|MOVS            R0, #0x10|16-32
+274|code|STRD.W          R2, R3, [start_sector]|203-233-0-35
+278|code|ORRS.W          R3, R6, disk|86-234-7-3
+282|code|LDR             R2, [R4,#0x5C]|226-109
+284|code|IT EQ|8-191
+286|code|LDRDEQ.W        R6, disk, [R4,#0x88]|212-233-34-103
+290|code|STRD.W          R6, disk, [SP,#0x160+var_160]|205-233-0-103
+294|code|LDR             R3, [R4,#0x58]|163-109
+296|code|STR             R3, [SP,#0x160+var_158]|2-147
+298|code|MOVS            R3, #0|0-35
+300|code|STR             R3, [SP,#0x160+var_154]|3-147
+302|code|LDR             R3, [R4,#0x4C]|227-108
+304|code|STR             R3, [SP,#0x160+var_150]|4-147
+306|code|LDR             R3, [R4,#0x48]|163-108
+308|code|LDR             R4, =grub_diskfilter_make_raid|13-76
+310|code|STR             R3, [SP,#0x160+var_14C]|5-147
+312|code|ADD             R3, SP, #0x160+sb.set_name|22-171
+314|code|BLX             R4; grub_diskfilter_make_raid|160-71
+316|code|B               loc_14A|5-224
+318|code|ADDS            minor_version, #1|1-53
+320|code|UXTB            R5, R5|237-178
+322|code|CMP             minor_version, #3|3-45
+324|code|BNE.W           loc_28|127-244-112-175
+328|code|MOVS            R0, #0|0-32
+330|code|ADD             SP, SP, #0x13C|79-176
+332|code|POP.W           {R4-start_sector,PC}|189-232-240-143
+336|data|DCD grub_disk_get_size|224-1-0-0
+340|data|DCD grub_disk_read|232-1-0-0
+344|data|DCD 0xA92B4EFC|252-78-43-169
+348|data|DCD aUnsupportedRai; "Unsupported RAID level: %d"|156-1-0-0
+352|data|DCD grub_error|248-1-0-0
+356|data|DCD grub_malloc|236-1-0-0
+360|data|DCD grub_memmove|228-1-0-0
+364|data|DCD grub_diskfilter_make_raid|240-1-0-0
+368|code|PUSH            {R3,LR}|8-181
+370|code|LDR             mod, =grub_diskfilter_list|2-72
+372|code|LDR             R1, =grub_mdraid_dev|2-73
+374|code|LDR             R3, =grub_list_push|3-75
+376|code|BLX             R3; grub_list_push|152-71
+378|code|POP             {R3,PC}|8-189
+380|data|DCD grub_diskfilter_list|244-1-0-0
+384|data|DCD grub_mdraid_dev|192-1-0-0
+388|data|DCD grub_list_push|0-2-0-0
+392|code|PUSH            {R3,LR}|8-181
+394|code|LDR             R0, =grub_mdraid_dev|2-72
+396|code|LDR             R3, =grub_list_remove|2-75
+398|code|BLX             R3; grub_list_remove|152-71
+400|code|POP             {R3,PC}|8-189
+402|data|ALIGN 4|0-191
+404|data|DCD grub_mdraid_dev|192-1-0-0
+408|data|DCD grub_list_remove|252-1-0-0
+412|data|DCB "Unsupported RAID level: %d",0|85-110-115-117-112-112-111-114-116-101-100-32-82-65-73-68-32-108-101-118-101-108-58-32-37-100-0
+439|data|DCB "mdraid1x",0|109-100-114-97-105-100-49-120-0
+448|data|grub_diskfilter <0, 0, aMdraid1x, grub_mdraid_detect+1>; "mdraid1x"|0-0-0-0-0-0-0-0-183-1-0-0-1-0-0-0
+464|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

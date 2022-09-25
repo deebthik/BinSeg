@@ -1,0 +1,745 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R7,LR}|248-181
+2|code|MOV             R5, ctx|5-70
+4|code|LDR             R6, [ctx,#0x20]|6-106
+6|code|CBZ             l, locret_38|190-177
+8|code|LDR             R7, =grub_free|12-79
+10|code|MOVS            R4, #0|0-36
+12|code|STR             R4, [ctx,#0x20]|4-98
+14|code|LDR             R3, [ctx,#0x18]|171-105
+16|code|CMP             i, R3|156-66
+18|code|BCS             loc_1E|4-210
+20|code|LDR.W           R0, [l,i,LSL#3]|86-248-52-0
+24|code|ADDS            i, #1|1-52
+26|code|BLX             R7; grub_free|184-71
+28|code|B               loc_E|247-231
+30|code|MOV             R0, l|48-70
+32|code|LDR             R3, =grub_free|6-75
+34|code|BLX             R3; grub_free|152-71
+36|code|LDR             R0, [ctx]|40-104
+38|code|CBZ             R0, loc_2C|8-177
+40|code|LDR             R3, =grub_file_close|5-75
+42|code|BLX             R3; grub_file_close|152-71
+44|code|MOVS            R1, #0|0-33
+46|code|MOV             R0, ctx|40-70
+48|code|STR             R1, [ctx]|41-96
+50|code|MOVS            R2, #0x28 ; '('|40-34
+52|code|LDR             R3, =grub_memset|3-75
+54|code|BLX             R3; grub_memset|152-71
+56|code|POP             {R3-R7,PC}|248-189
+58|data|ALIGN 4|0-191
+60|data|DCD grub_free|172-8-0-0
+64|data|DCD grub_file_close|160-8-0-0
+68|data|DCD grub_memset|120-8-0-0
+72|code|PUSH            {R4-R6,LR}|112-181
+74|code|MOV             R6, file|6-70
+76|code|MOV             R5, buf|13-70
+78|code|MOV             R4, len|20-70
+80|code|CBNZ            len, loc_56|10-185
+82|code|MOVS            R0, #0|0-32
+84|code|POP             {len-file,PC}|112-189
+86|code|LDRD.W          len, R3, [SP,#0x10+offset]|221-233-4-35
+90|code|LDR             buf, =grub_file_seek|13-73
+92|code|BLX             R1; grub_file_seek|136-71
+94|code|ADDS            R1, #1|1-49
+96|code|IT EQ|8-191
+98|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+102|code|BNE             loc_6E|2-209
+104|code|LDR             R3, =grub_errno|10-75
+106|code|LDR             R0, [R3]|24-104
+108|code|POP             {len-file,PC}|112-189
+110|code|MOV             R0, file|48-70
+112|code|MOV             R1, buf|41-70
+114|code|MOV             R2, len|34-70
+116|code|LDR             R3, =grub_file_read|8-75
+118|code|BLX             R3; grub_file_read|152-71
+120|code|CMP             R0, len|160-66
+122|code|BEQ             loc_52|234-208
+124|code|LDR             R3, =grub_errno|5-75
+126|code|LDR             R2, [R3]|26-104
+128|code|MOV             len, R3|28-70
+130|code|CBNZ            R2, loc_8C|26-185
+132|code|MOVS            R0, #0xE|14-32
+134|code|LDR             R1, =aPrematureEndOf; "premature end of file"|5-73
+136|code|LDR             R3, =grub_error|5-75
+138|code|BLX             R3; grub_error|152-71
+140|code|LDR             R0, [R4]|32-104
+142|code|POP             {R4-file,PC}|112-189
+144|data|DCD grub_file_seek|112-8-0-0
+148|data|DCD grub_errno|116-8-0-0
+152|data|DCD grub_file_read|136-8-0-0
+156|data|DCD aPrematureEndOf; "premature end of file"|220-6-0-0
+160|data|DCD grub_error|168-8-0-0
+164|code|PUSH            {R4-R7,LR}|240-181
+166|code|MOV             R5, ctx|5-70
+168|code|SUB             SP, SP, #0x24|137-176
+170|code|MOV             ctx, filename|8-70
+172|code|LDR             R3, =grub_file_open|39-75
+174|code|MOV             R7, filename|15-70
+176|code|BLX             R3; grub_file_open|152-71
+178|code|MOV             R6, fd|6-70
+180|code|CMP             fd, #0|0-40
+182|code|BEQ             loc_12C|57-208
+184|code|MOVS            R2, #0|0-34
+186|code|MOVS            R3, #0|0-35
+188|code|ADD             R1, SP, #0x38+head; buf|3-169
+190|code|STRD.W          R2, R3, [SP,#0x38+offset]; offset|205-233-0-35
+194|code|MOVS            R2, #0x14; len|20-34
+196|code|BL              grub_gettext_pread|255-247-192-255
+200|code|MOV             R4, err|4-70
+202|code|CBZ             err, loc_D4|24-177
+204|code|MOV             err, fd|48-70
+206|code|LDR             R3, =grub_file_close|32-75
+208|code|BLX             R3; grub_file_close|152-71
+210|code|B               loc_144|55-224
+212|code|LDR             R2, [SP,#0x38+head]|3-154
+214|code|LDR             R3, =0x950412DE|31-75
+216|code|CMP             R2, R3|154-66
+218|code|BEQ             loc_E8|5-208
+220|code|MOV             err, fd|48-70
+222|code|LDR             R3, =grub_file_close|28-75
+224|code|BLX             R3; grub_file_close|152-71
+226|code|MOVS            R0, #4|4-32
+228|code|LDR             R1, =aMoInvalidMoMag; "mo: invalid mo magic in file: %s"|28-73
+230|code|B               loc_F6|6-224
+232|code|LDR             R3, [SP,#0x38+head.version]|4-155
+234|code|CBZ             R3, loc_FE|67-177
+236|code|MOV             err, fd|48-70
+238|code|LDR             R3, =grub_file_close|24-75
+240|code|BLX             R3; grub_file_close|152-71
+242|code|LDR             R1, =aMoInvalidMoVer; "mo: invalid mo version in file: %s"|26-73
+244|code|MOVS            R0, #4|4-32
+246|code|MOV             R2, filename|58-70
+248|code|LDR             R3, =grub_error|25-75
+250|code|BLX             R3; grub_error|152-71
+252|code|B               loc_146|35-224
+254|code|LDR             R2, [SP,#0x38+head.offset_original]|6-154
+256|code|LDR             err, [SP,#0x38+head.number_of_strings]|5-152
+258|code|STR             R3, [ctx,#0xC]|235-96
+260|code|STR             R2, [ctx,#8]|170-96
+262|code|LDR             R2, [SP,#0x38+head.offset_translation]|7-154
+264|code|STR             R3, [ctx,#0x14]|107-97
+266|code|STR             R0, [ctx,#0x18]|168-97
+268|code|STR             R2, [ctx,#0x10]|42-97
+270|code|STR             R3, [ctx,#0x1C]|235-97
+272|code|LDR             R3, [ctx,#0x1C]|235-105
+274|code|LSRS.W          R4, R0, R3|48-250-3-244
+278|code|BEQ             loc_11C|1-208
+280|code|ADDS            R3, #1|1-51
+282|code|B               loc_10E|248-231
+284|code|LSLS            R0, R0, #3|192-0
+286|code|LDR             R3, =grub_zalloc|17-75
+288|code|BLX             R3; grub_zalloc|152-71
+290|code|STR             R0, [ctx,#0x20]|40-98
+292|code|CBNZ            R0, loc_132|40-185
+294|code|MOV             R0, fd|48-70
+296|code|LDR             R3, =grub_file_close|9-75
+298|code|BLX             R3; grub_file_close|152-71
+300|code|LDR             R3, =grub_errno|14-75
+302|code|LDR             R0, [R3]|24-104
+304|code|B               loc_146|9-224
+306|code|LDR             R3, =grub_gettext|14-75
+308|code|LDR             R2, =(grub_gettext_translate+1)|14-74
+310|code|STR             fd, [ctx]|46-96
+312|code|LDR             R1, [R3]|25-104
+314|code|CMP             R1, R2|145-66
+316|code|ITTT NE|30-191
+318|code|STRNE           R2, [R3]|26-96
+320|code|LDRNE           R0, =grub_gettext_original|12-72
+322|code|STRNE           R1, [R0]|1-96
+324|code|MOV             R0, R4|32-70
+326|code|ADD             SP, SP, #0x24 ; '$'|9-176
+328|code|POP             {R4-filename,PC}|240-189
+330|data|ALIGN 4|0-191
+332|data|DCD grub_file_open|164-8-0-0
+336|data|DCD grub_file_close|160-8-0-0
+340|data|DCD 0x950412DE|222-18-4-149
+344|data|DCD aMoInvalidMoMag; "mo: invalid mo magic in file: %s"|242-6-0-0
+348|data|DCD aMoInvalidMoVer; "mo: invalid mo version in file: %s"|19-7-0-0
+352|data|DCD grub_error|168-8-0-0
+356|data|DCD grub_zalloc|144-8-0-0
+360|data|DCD grub_errno|116-8-0-0
+364|data|DCD grub_gettext|180-8-0-0
+368|data|DCD grub_gettext_translate+1|97-5-0-0
+372|data|DCD grub_gettext_original|0-8-0-0
+376|code|PUSH.W          {ctx-part2,R4-R11,LR}|45-233-247-79
+380|code|MOV             R7, ctx|7-70
+382|code|LDR             R6, =grub_xasprintf|35-78
+384|code|MOV             R10, part1|138-70
+386|code|LDR             ctx, =aSSSMo; "%s%s/%s.mo"|35-72
+388|code|MOV             R9, part2|145-70
+390|code|MOV             R8, locale|152-70
+392|code|BLX             R6; grub_xasprintf|176-71
+394|code|MOV             R4, mo_file_0|4-70
+396|code|CBNZ            mo_file_0, loc_194|16-185
+398|code|LDR             R3, =grub_errno|33-75
+400|code|LDR             mo_file_0, [R3]|24-104
+402|code|B               loc_204|55-224
+404|code|MOV             mo_file_0, ctx; ctx|56-70
+406|code|MOV             R1, mo_file_0; filename|33-70
+408|code|BL              grub_mofile_open|255-247-132-255
+412|code|LDR             R5, =grub_free|30-77
+414|code|MOV             R11, R0|131-70
+416|code|MOV             err, mo_file_0|32-70
+418|code|BLX             R5; grub_free|168-71
+420|code|CMP.W           err, #0|187-241-0-15
+424|code|BNE             loc_1AE|1-209
+426|code|MOVS            R0, #0|0-32
+428|code|B               loc_204|42-224
+430|code|LDR             mo_file_0, =grub_errno|25-76
+432|code|MOV             R3, locale|67-70
+434|code|LDR             R0, =aSSSMoGz; "%s%s/%s.mo.gz"|26-72
+436|code|MOV             R1, part1|81-70
+438|code|MOV             R2, part2|74-70
+440|code|MOV.W           err, #0|79-240-0-11
+444|code|STR.W           R11, [R4]|196-248-0-176
+448|code|BLX             R6; grub_xasprintf|176-71
+450|code|MOV             R3, mo_file_0|3-70
+452|code|CBZ             mo_file_0, loc_1F0|160-177
+454|code|MOV             R1, R3; filename|25-70
+456|code|MOV             mo_file_0, ctx; ctx|56-70
+458|code|STR             R3, [SP,#0x30+mo_file]|1-147
+460|code|BL              grub_mofile_open|255-247-106-255
+464|code|LDR             R3, [SP,#0x30+mo_file]|1-155
+466|code|STR             R0, [SP,#0x30+var_30]|0-144
+468|code|MOV             err, R3|24-70
+470|code|BLX             R5; grub_free|168-71
+472|code|LDR             R2, [SP,#0x30+var_30]|0-154
+474|code|CMP             R2, #0|0-42
+476|code|BEQ             loc_1AA|229-208
+478|code|LDR             R0, =aSSSGmo; "%s%s/%s.gmo"|16-72
+480|code|MOV             R1, part1|81-70
+482|code|MOV             R2, part2|74-70
+484|code|MOV             R3, locale|67-70
+486|code|STR.W           R11, [R4]|196-248-0-176
+490|code|BLX             R6; grub_xasprintf|176-71
+492|code|MOV             R6, mo_file_0|6-70
+494|code|CBNZ            mo_file_0, loc_1F4|8-185
+496|code|LDR             mo_file_0, [R4]|32-104
+498|code|B               loc_204|7-224
+500|code|MOV             R1, R6; filename|49-70
+502|code|MOV             mo_file_0, ctx; ctx|56-70
+504|code|BL              grub_mofile_open|255-247-84-255
+508|code|MOV             R4, R0|4-70
+510|code|MOV             err, mo_file_0|48-70
+512|code|BLX             R5; grub_free|168-71
+514|code|MOV             R0, err|32-70
+516|code|ADD             SP, SP, #0xC|3-176
+518|code|POP.W           {R4-R11,PC}|189-232-240-143
+522|data|ALIGN 4|0-191
+524|data|DCD grub_xasprintf|104-8-0-0
+528|data|DCD aSSSMo; "%s%s/%s.mo"|54-7-0-0
+532|data|DCD grub_errno|116-8-0-0
+536|data|DCD grub_free|172-8-0-0
+540|data|DCD aSSSMoGz; "%s%s/%s.mo.gz"|65-7-0-0
+544|data|DCD aSSSGmo; "%s%s/%s.gmo"|79-7-0-0
+548|code|PUSH.W          {prefix-R9,LR}|45-233-248-67
+552|code|MOV             R5, locale|13-70
+554|code|MOV             R8, ctx|128-70
+556|code|MOV             R6, locale_dir|22-70
+558|code|MOV             R4, prefix|28-70
+560|code|BL              grub_gettext_delete_list|255-247-230-254
+564|code|CMP             locale, #0|0-45
+566|code|BEQ             loc_2B8|63-208
+568|code|LDRB            R3, [locale]|43-120
+570|code|CMP             R3, #0|0-43
+572|code|BEQ             loc_2BE|63-208
+574|code|CBZ             part1, loc_244|14-177
+576|code|LDRB            R3, [part1]|51-120
+578|code|CBNZ            R3, loc_24E|35-185
+580|code|CMP             part1, #0|0-44
+582|code|BEQ             loc_2C4|61-208
+584|code|MOV             locale_dir, part1|38-70
+586|code|LDR             R7, =aLocale; "/locale"|32-79
+588|code|B               loc_250|0-224
+590|code|LDR             R7, =unk_763|32-79
+592|code|LDRB            prefix, [part1]|52-120
+594|code|CMP             R4, #0|0-44
+596|code|BEQ             loc_2C4|54-208
+598|code|MOV             R0, ctx; ctx|64-70
+600|code|MOV             R1, part1; part1|49-70
+602|code|MOV             R2, part2; part2|58-70
+604|code|MOV             R3, locale; locale|43-70
+606|code|BL              grub_mofile_open_lang|255-247-139-255
+610|code|MOV             R4, err|4-70
+612|code|CBZ             err, loc_294|176-177
+614|code|MOV             err, locale|40-70
+616|code|LDR             R3, =grub_strdup|26-75
+618|code|BLX             R3; grub_strdup|152-71
+620|code|MOV             R9, lang|129-70
+622|code|CBZ             lang, loc_28E|112-177
+624|code|MOVS            R1, #0x5F ; '_'|95-33
+626|code|LDR             R3, =grub_strchr|25-75
+628|code|BLX             R3; grub_strchr|152-71
+630|code|CBZ             underscore, loc_28E|80-177
+632|code|LDR             R2, =grub_errno|24-74
+634|code|MOVS            R3, #0|0-35
+636|code|MOV             R1, part1; part1|49-70
+638|code|STRB            R3, [underscore]|3-112
+640|code|MOV             underscore, ctx; ctx|64-70
+642|code|STR             R3, [R2]|19-96
+644|code|MOV             R2, part2; part2|58-70
+646|code|MOV             R3, lang; locale|75-70
+648|code|BL              grub_mofile_open_lang|255-247-118-255
+652|code|MOV             err, R0|4-70
+654|code|MOV             R0, lang|72-70
+656|code|LDR             R3, =grub_free|19-75
+658|code|BLX             R3; grub_free|152-71
+660|code|LDRB            R3, [locale]|43-120
+662|code|CMP             R3, #0x65 ; 'e'|101-43
+664|code|BNE             loc_2B2|11-209
+666|code|LDRB            R3, [locale,#1]|107-120
+668|code|CMP             R3, #0x6E ; 'n'|110-43
+670|code|BNE             loc_2B2|8-209
+672|code|LDRB            R3, [locale,#2]|171-120
+674|code|CBZ             R3, loc_2A8|11-177
+676|code|CMP             R3, #0x5F ; '_'|95-43
+678|code|BNE             loc_2B2|4-209
+680|code|LDR             R3, =grub_errno|12-75
+682|code|MOVS            R0, #0|0-32
+684|code|STR             R0, [R3]|24-96
+686|code|POP.W           {R3-R9,PC}|189-232-248-131
+690|code|CMP             err, #5|5-44
+692|code|BNE             loc_2C4|6-209
+694|code|B               loc_2A8|247-231
+696|code|MOV             R0, locale|40-70
+698|code|POP.W           {R3-R9,PC}|189-232-248-131
+702|code|MOV             R0, R3|24-70
+704|code|POP.W           {R3-R9,PC}|189-232-248-131
+708|code|MOV             R0, R4|32-70
+710|code|POP.W           {R3-R9,PC}|189-232-248-131
+714|data|ALIGN 4|0-191
+716|data|DCD aLocale; "/locale"|91-7-0-0
+720|data|DCD unk_763|99-7-0-0
+724|data|DCD grub_strdup|108-8-0-0
+728|data|DCD grub_strchr|152-8-0-0
+732|data|DCD grub_errno|116-8-0-0
+736|data|DCD grub_free|172-8-0-0
+740|code|PUSH            {R4-R6,LR}|112-181
+742|code|MOV             R5, val|13-70
+744|code|LDR             R4, =grub_env_get|14-76
+746|code|LDR             var, =aLocaleDir; "locale_dir"|15-72
+748|code|BLX             R4; grub_env_get|160-71
+750|code|MOV             R6, R0|6-70
+752|code|LDR             R0, =aPrefix; "prefix"|14-72
+754|code|BLX             R4; grub_env_get|160-71
+756|code|MOV             R1, val; locale|41-70
+758|code|MOV             R2, R6; locale_dir|50-70
+760|code|MOV             R3, R0; prefix|3-70
+762|code|LDR             R0, =main_context; ctx|13-72
+764|code|BL              grub_gettext_init_ext|255-247-146-255
+768|code|CBZ             err, loc_306|8-177
+770|code|LDR             R3, =grub_print_error|12-75
+772|code|BLX             R3; grub_print_error|152-71
+774|code|LDR             R0, =aSecondaryLocal; "secondary_locale_dir"|12-72
+776|code|BLX             R4; grub_env_get|160-71
+778|code|MOV             R1, val; locale|41-70
+780|code|MOVS            R3, #0; prefix|0-35
+782|code|MOV             R2, R0; locale_dir|2-70
+784|code|LDR             R0, =secondary_context; ctx|10-72
+786|code|BL              grub_gettext_init_ext|255-247-135-255
+790|code|CBZ             err, loc_31C|8-177
+792|code|LDR             R3, =grub_print_error|6-75
+794|code|BLX             R3; grub_print_error|152-71
+796|code|MOV             R0, val|40-70
+798|code|LDR             R3, =grub_strdup|8-75
+800|code|BLX             R3; grub_strdup|152-71
+802|code|POP             {R4-R6,PC}|112-189
+804|data|DCD grub_env_get|184-8-0-0
+808|data|DCD aLocaleDir; "locale_dir"|100-7-0-0
+812|data|DCD aPrefix; "prefix"|111-7-0-0
+816|data|DCD main_context|8-8-0-0
+820|data|DCD grub_print_error|140-8-0-0
+824|data|DCD aSecondaryLocal; "secondary_locale_dir"|118-7-0-0
+828|data|DCD secondary_context|48-8-0-0
+832|data|DCD grub_strdup|108-8-0-0
+836|code|PUSH            {R4,LR}|16-181
+838|code|MOV             R4, val|12-70
+840|code|LDR             R3, =grub_env_get|7-75
+842|code|LDR             var, =aLang; "lang"|8-72
+844|code|BLX             R3; grub_env_get|152-71
+846|code|MOV             R2, val; locale_dir|34-70
+848|code|MOVS            R3, #0; prefix|0-35
+850|code|MOV             R1, R0; locale|1-70
+852|code|LDR             R0, =secondary_context; ctx|6-72
+854|code|BL              grub_gettext_init_ext|255-247-101-255
+858|code|CBZ             err, loc_360|8-177
+860|code|LDR             R3, =grub_print_error|5-75
+862|code|BLX             R3; grub_print_error|152-71
+864|code|MOV             R0, val|32-70
+866|code|LDR             R3, =grub_strdup|5-75
+868|code|BLX             R3; grub_strdup|152-71
+870|code|POP             {val,PC}|16-189
+872|data|DCD grub_env_get|184-8-0-0
+876|data|DCD aLang; "lang"|139-7-0-0
+880|data|DCD secondary_context|48-8-0-0
+884|data|DCD grub_print_error|140-8-0-0
+888|data|DCD grub_strdup|108-8-0-0
+892|code|PUSH            {R4-R6,LR}|112-181
+894|code|MOV             R4, val|12-70
+896|code|LDR             R5, =grub_env_get|9-77
+898|code|LDR             var, =aLang; "lang"|10-72
+900|code|BLX             R5; grub_env_get|168-71
+902|code|MOV             R6, R0|6-70
+904|code|LDR             R0, =aPrefix; "prefix"|9-72
+906|code|BLX             R5; grub_env_get|168-71
+908|code|MOV             R1, R6; locale|49-70
+910|code|MOV             R2, val; locale_dir|34-70
+912|code|MOV             R3, R0; prefix|3-70
+914|code|LDR             R0, =main_context; ctx|8-72
+916|code|BL              grub_gettext_init_ext|255-247-70-255
+920|code|CBZ             err, loc_39E|8-177
+922|code|LDR             R3, =grub_print_error|7-75
+924|code|BLX             R3; grub_print_error|152-71
+926|code|MOV             R0, val|32-70
+928|code|LDR             R3, =grub_strdup|6-75
+930|code|BLX             R3; grub_strdup|152-71
+932|code|POP             {val-R6,PC}|112-189
+934|data|ALIGN 4|0-191
+936|data|DCD grub_env_get|184-8-0-0
+940|data|DCD aLang; "lang"|139-7-0-0
+944|data|DCD aPrefix; "prefix"|111-7-0-0
+948|data|DCD main_context|8-8-0-0
+952|data|DCD grub_print_error|140-8-0-0
+956|data|DCD grub_strdup|108-8-0-0
+960|code|PUSH.W          {R0-R8,LR}|45-233-255-65
+964|code|MOV             R7, R0|7-70
+966|code|LDR             R1, [SP,#0x28+position]|10-153
+968|code|LSLS            R1, R1, #3|201-0
+970|code|ADDS            R2, R2, R1|82-24
+972|code|ADD             R1, SP, #0x28+desc; buf|2-169
+974|code|ADC.W           R3, R3, #0|67-241-0-3
+978|code|STRD.W          R2, R3, [SP,#0x28+offset]; offset|205-233-0-35
+982|code|MOVS            R2, #8; len|8-34
+984|code|LDR             R0, [R0]; file|0-104
+986|code|BL              grub_gettext_pread|255-247-53-254
+990|code|MOV             R6, err|6-70
+992|code|CBZ             err, loc_3E6|8-177
+994|code|MOVS            R0, #0|0-32
+996|code|B               loc_416|23-224
+998|code|LDR             R5, [SP,#0x28+desc]|2-157
+1000|code|LDR             R3, =grub_malloc|12-75
+1002|code|ADDS            err, length, #1|104-28
+1004|code|LDR.W           R8, [SP,#0x28+desc.offset]|221-248-12-128
+1008|code|BLX             R3; grub_malloc|152-71
+1010|code|MOV             R4, translation|4-70
+1012|code|CMP             translation, #0|0-40
+1014|code|BEQ             loc_3E2|244-208
+1016|code|STR.W           R8, [SP,#0x28+offset]; offset|205-248-0-128
+1020|code|MOV             R1, R4; buf|33-70
+1022|code|STR             err, [SP,#0x28+offset+4]|1-150
+1024|code|MOV             R2, length; len|42-70
+1026|code|LDR             translation, [R7]; file|56-104
+1028|code|BL              grub_gettext_pread|255-247-32-254
+1032|code|CBZ             err, loc_412|24-177
+1034|code|MOV             err, translation|32-70
+1036|code|LDR             R3, =grub_free|4-75
+1038|code|BLX             R3; grub_free|152-71
+1040|code|B               loc_3E2|231-231
+1042|code|STRB            err, [translation,length]|96-85
+1044|code|MOV             err, translation|32-70
+1046|code|ADD             SP, SP, #0x10|4-176
+1048|code|POP.W           {R4-R8,PC}|189-232-240-129
+1052|data|DCD grub_malloc|156-8-0-0
+1056|data|DCD grub_free|172-8-0-0
+1060|code|PUSH            {ctx,position,R4-R6,LR}|115-181
+1062|code|MOV             R5, ctx|5-70
+1064|code|LDR             R6, [ctx,#0x20]|6-106
+1066|code|MOV             R4, position|12-70
+1068|code|LDR.W           R3, [R6,position,LSL#3]|86-248-49-48
+1072|code|CBNZ            R3, loc_440|51-185
+1074|code|STR             position, [SP,#0x18+var_18]; position|0-145
+1076|code|LDRD.W          R2, R3, [ctx,#8]; off|208-233-2-35
+1080|code|BL              grub_gettext_getstr_from_position|255-247-194-255
+1084|code|STR.W           R0, [R6,position,LSL#3]|70-248-52-0
+1088|code|LDR             R3, [ctx,#0x20]|43-106
+1090|code|LDR.W           R0, [R3,position,LSL#3]|83-248-52-0
+1094|code|ADD             SP, SP, #8|2-176
+1096|code|POP             {position-R6,PC}|112-189
+1098|code|PUSH            {ctx,position,R4-R6,LR}|115-181
+1100|code|LSLS            R4, position, #3|204-0
+1102|code|LDR             R5, [ctx,#0x20]|5-106
+1104|code|MOV             R6, ctx|6-70
+1106|code|ADD             R5, R4|37-68
+1108|code|LDR             R3, [R5,#4]|107-104
+1110|code|CBNZ            R3, loc_464|43-185
+1112|code|STR             position, [SP,#0x18+var_18]; position|0-145
+1114|code|LDRD.W          R2, R3, [ctx,#0x10]; off|208-233-4-35
+1118|code|BL              grub_gettext_getstr_from_position|255-247-175-255
+1122|code|STR             R0, [R5,#4]|104-96
+1124|code|LDR             R3, [ctx,#0x20]|51-106
+1126|code|ADD             R4, R3|28-68
+1128|code|LDR             R0, [R4,#4]|96-104
+1130|code|ADD             SP, SP, #8|2-176
+1132|code|POP             {R4-ctx,PC}|112-189
+1134|code|PUSH.W          {R3-R11,LR}|45-233-248-79
+1138|code|MOV             R7, ctx|7-70
+1140|code|LDR             R3, [ctx,#0x20]|3-106
+1142|code|MOV             R9, orig|137-70
+1144|code|CMP             R3, #0|0-43
+1146|code|BEQ             loc_540|97-208
+1148|code|LDR             R3, [ctx]|3-104
+1150|code|CMP             R3, #0|0-43
+1152|code|BEQ             loc_540|94-208
+1154|code|LDR             R5, =grub_gettext_original|50-77
+1156|code|LDR             R3, [R5,#(depth.5543 - 0x800)]|171-109
+1158|code|CMP             R3, #2|2-43
+1160|code|BGT             loc_546|93-220
+1162|code|ADDS            R3, #1|1-51
+1164|code|STR             R3, [R5,#(depth.5543 - 0x800)]|171-101
+1166|code|LDR             R3, =grub_error_push|48-75
+1168|code|MOVS            R6, #0|0-38
+1170|code|BLX             R3; grub_error_push|152-71
+1172|code|LDR.W           R11, [ctx,#0x1C]|215-248-28-176
+1176|code|MOV.W           R10, #1|79-240-1-10
+1180|code|CMP.W           i, #0|187-241-0-15
+1184|code|BLT             loc_4EE|37-219
+1186|code|LSL.W           R8, R10, i|10-250-11-248
+1190|code|LDR             R2, [ctx,#0x18]|186-105
+1192|code|ORR.W           R8, R8, current|72-234-6-8
+1196|code|CMP             test, R2|144-69
+1198|code|BCS             loc_4E8|27-210
+1200|code|MOV             R0, ctx; ctx|56-70
+1202|code|MOV             R1, test; position|65-70
+1204|code|BL              grub_gettext_getstring_from_position|255-247-182-255
+1208|code|MOV             R4, current_string|4-70
+1210|code|CBNZ            current_string, loc_4C4|24-185
+1212|code|LDR             R3, =grub_errno|37-75
+1214|code|STR             current_string, [R3]|24-96
+1216|code|LDR             R3, =grub_error_pop|37-75
+1218|code|B               loc_4E2|14-224
+1220|code|MOV             R1, orig|73-70
+1222|code|LDR             R3, =grub_strcmp|37-75
+1224|code|BLX             R3; grub_strcmp|152-71
+1226|code|CMP             cmp, #0|0-40
+1228|code|BGT             loc_4E8|12-220
+1230|code|BNE             loc_4E6|10-209
+1232|code|MOV             cmp, ctx; ctx|56-70
+1234|code|MOV             R1, test; position|65-70
+1236|code|BL              grub_gettext_gettranslation_from_position|255-247-185-255
+1240|code|LDR             R3, =grub_error_pop|31-75
+1242|code|MOV             current_string, ret|4-70
+1244|code|CBNZ            ret, loc_4E2|8-185
+1246|code|LDR             R2, =grub_errno|29-74
+1248|code|STR             ret, [R2]|16-96
+1250|code|BLX             R3; grub_error_pop|152-71
+1252|code|B               loc_52A|33-224
+1254|code|MOV             R6, test|70-70
+1256|code|ADD.W           i, i, #0xFFFFFFFF|11-241-255-59
+1260|code|B               loc_49C|214-231
+1262|code|LDR.W           R8, =grub_error_pop|223-248-104-128
+1266|code|CBNZ            current, loc_536|6-187
+1268|code|LDR             R3, [ctx,#0x18]|187-105
+1270|code|CBZ             R3, loc_536|243-177
+1272|code|MOV             R0, ctx; ctx|56-70
+1274|code|MOV             R1, current; position|49-70
+1276|code|BL              grub_gettext_getstring_from_position|255-247-146-255
+1280|code|CBZ             current_string, loc_516|72-177
+1282|code|MOV             R1, orig|73-70
+1284|code|LDR             R3, =grub_strcmp|21-75
+1286|code|BLX             R3; grub_strcmp|152-71
+1288|code|CBNZ            R0, loc_536|168-185
+1290|code|MOV             R0, ctx; ctx|56-70
+1292|code|MOV             R1, current; position|49-70
+1294|code|BL              grub_gettext_gettranslation_from_position|255-247-156-255
+1298|code|MOV             R4, ret|4-70
+1300|code|CBNZ            ret, loc_528|64-185
+1302|code|LDR             R3, =grub_errno|15-75
+1304|code|STR             current, [R3]|30-96
+1306|code|BLX             R8; grub_error_pop|192-71
+1308|code|LDR             R3, [R5,#(depth.5543 - 0x800)]|171-109
+1310|code|MOV             R0, current|48-70
+1312|code|SUBS            R3, #1|1-59
+1314|code|STR             R3, [R5,#(depth.5543 - 0x800)]|171-101
+1316|code|POP.W           {R3-i,PC}|189-232-248-143
+1320|code|BLX             R8; grub_error_pop|192-71
+1322|code|LDR             R3, [R5,#(depth.5543 - 0x800)]|171-109
+1324|code|MOV             R0, R4|32-70
+1326|code|SUBS            R3, #1|1-59
+1328|code|STR             R3, [R5,#(depth.5543 - 0x800)]|171-101
+1330|code|POP.W           {R3-i,PC}|189-232-248-143
+1334|code|BLX             R8; grub_error_pop|192-71
+1336|code|LDR             R3, [R5,#(depth.5543 - 0x800)]|171-109
+1338|code|SUBS            R3, #1|1-59
+1340|code|STR             R3, [R5,#(depth.5543 - 0x800)]|171-101
+1342|code|B               loc_546|2-224
+1344|code|MOV             ctx, R3|24-70
+1346|code|POP.W           {R3-R11,PC}|189-232-248-143
+1350|code|MOVS            R0, #0|0-32
+1352|code|POP.W           {R3-R11,PC}|189-232-248-143
+1356|data|DCD grub_gettext_original|0-8-0-0
+1360|data|DCD grub_error_push|100-8-0-0
+1364|data|DCD grub_errno|116-8-0-0
+1368|data|DCD grub_error_pop|176-8-0-0
+1372|data|DCD grub_strcmp|148-8-0-0
+1376|code|PUSH            {R4,LR}|16-181
+1378|code|MOV             R4, orig|4-70
+1380|code|LDRB            R3, [orig]|3-120
+1382|code|CBNZ            R3, loc_56C|11-185
+1384|code|MOV             R0, orig|32-70
+1386|code|POP             {orig,PC}|16-189
+1388|code|LDR             orig, =main_context; ctx|5-72
+1390|code|MOV             R1, orig; orig|33-70
+1392|code|BL              grub_gettext_translate_real|255-247-125-255
+1396|code|CBNZ            ret, locret_582|40-185
+1398|code|LDR             ret, =secondary_context; ctx|4-72
+1400|code|MOV             R1, orig; orig|33-70
+1402|code|BL              grub_gettext_translate_real|255-247-120-255
+1406|code|CMP             ret, #0|0-40
+1408|code|BEQ             loc_568|242-208
+1410|code|POP             {orig,PC}|16-189
+1412|data|DCD main_context|8-8-0-0
+1416|data|DCD secondary_context|48-8-0-0
+1420|code|CMP             argc, #1|1-41
+1422|code|PUSH            {R3,LR}|8-181
+1424|code|BEQ             loc_59C|4-208
+1426|code|LDR             argc, =aOneArgumentExp; "one argument expected"|7-73
+1428|code|MOVS            cmd, #0x12|18-32
+1430|code|LDR             R3, =grub_error|7-75
+1432|code|BLX             R3; grub_error|152-71
+1434|code|POP             {R3,PC}|8-189
+1436|code|LDR             cmd, [args]; orig|16-104
+1438|code|BL              grub_gettext_translate|255-247-223-255
+1442|code|LDR             R3, =grub_printf|5-75
+1444|code|MOV             R1, R0|1-70
+1446|code|LDR             translation, =aS; "%s\n"|5-72
+1448|code|BLX             R3; grub_printf|152-71
+1450|code|MOVS            R0, #0|0-32
+1452|code|POP             {R3,PC}|8-189
+1454|data|ALIGN 0x10|0-191
+1456|data|DCD aOneArgumentExp; "one argument expected"|144-7-0-0
+1460|data|DCD grub_error|168-8-0-0
+1464|data|DCD grub_printf|132-8-0-0
+1468|data|DCD aS; "%s\n"|166-7-0-0
+1472|code|PUSH            {R4-R6,LR}|112-181
+1474|code|MOV             R5, val|5-70
+1476|code|LDR             R4, =grub_env_get|7-76
+1478|code|LDR             val, =aLang; "lang"|8-72
+1480|code|BLX             R4; grub_env_get|160-71
+1482|code|MOV             R6, R0|6-70
+1484|code|LDR             R0, =aLocaleDir; "locale_dir"|7-72
+1486|code|BLX             R4; grub_env_get|160-71
+1488|code|MOV             R1, R6; locale|49-70
+1490|code|MOV             R3, val; prefix|43-70
+1492|code|MOV             R2, R0; locale_dir|2-70
+1494|code|LDR             R0, =main_context; ctx|6-72
+1496|code|BL              grub_gettext_init_ext|255-247-36-254
+1500|code|CBZ             err, locret_5E2|8-177
+1502|code|LDR             R3, =grub_print_error|5-75
+1504|code|BLX             R3; grub_print_error|152-71
+1506|code|POP             {R4-R6,PC}|112-189
+1508|data|DCD grub_env_get|184-8-0-0
+1512|data|DCD aLang; "lang"|139-7-0-0
+1516|data|DCD aLocaleDir; "locale_dir"|100-7-0-0
+1520|data|DCD main_context|8-8-0-0
+1524|data|DCD grub_print_error|140-8-0-0
+1528|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+1530|code|LDR             R4, =grub_env_get|29-76
+1532|code|LDR             mod, =aLang; "lang"|29-72
+1534|code|BLX             R4; grub_env_get|160-71
+1536|code|MOV             R5, R0|5-70
+1538|code|LDR             lang, =aLocaleDir; "locale_dir"|29-72
+1540|code|BLX             R4; grub_env_get|160-71
+1542|code|MOV             R6, R0|6-70
+1544|code|LDR             R0, =aPrefix; "prefix"|28-72
+1546|code|BLX             R4; grub_env_get|160-71
+1548|code|MOV             R1, lang; locale|41-70
+1550|code|MOV             R2, R6; locale_dir|50-70
+1552|code|MOV             R3, R0; prefix|3-70
+1554|code|LDR             R0, =main_context; ctx|27-72
+1556|code|BL              grub_gettext_init_ext|255-247-6-254
+1560|code|CBZ             err, loc_61E|8-177
+1562|code|LDR             R3, =grub_print_error|26-75
+1564|code|BLX             R3; grub_print_error|152-71
+1566|code|LDR             R0, =aSecondaryLocal; "secondary_locale_dir"|26-72
+1568|code|BLX             R4; grub_env_get|160-71
+1570|code|MOV             R1, lang; locale|41-70
+1572|code|MOVS            R3, #0; prefix|0-35
+1574|code|MOV             R2, R0; locale_dir|2-70
+1576|code|LDR             R0, =secondary_context; ctx|24-72
+1578|code|BL              grub_gettext_init_ext|255-247-251-253
+1582|code|CBZ             err, loc_634|8-177
+1584|code|LDR             R3, =grub_print_error|20-75
+1586|code|BLX             R3; grub_print_error|152-71
+1588|code|LDR             R4, =grub_register_variable_hook|22-76
+1590|code|MOVS            R1, #0|0-33
+1592|code|LDR             R2, =(read_main+1)|22-74
+1594|code|LDR             R0, =aLocaleDir; "locale_dir"|15-72
+1596|code|BLX             R4; grub_register_variable_hook|160-71
+1598|code|MOVS            R1, #0|0-33
+1600|code|LDR             R2, =(read_secondary+1)|21-74
+1602|code|LDR             R0, =aSecondaryLocal; "secondary_locale_dir"|17-72
+1604|code|BLX             R4; grub_register_variable_hook|160-71
+1606|code|LDR             lang, =grub_register_command_prio|21-77
+1608|code|MOVS            R3, #1|1-35
+1610|code|LDR             R1, =(grub_cmd_translate+1)|21-73
+1612|code|STR             R3, [SP,#0x18+var_18]|0-147
+1614|code|LDR             R2, =aString; "STRING"|21-74
+1616|code|LDR             R3, =aTranslatesTheS; "Translates the string with the current "...|21-75
+1618|code|LDR             R0, =aGettext; "gettext"|22-72
+1620|code|BLX             R5; grub_register_command_prio|168-71
+1622|code|MOVS            R1, #0|0-33
+1624|code|LDR             R2, =(grub_gettext_env_write_lang+1)|21-74
+1626|code|LDR             R0, =aLang; "lang"|6-72
+1628|code|BLX             R4; grub_register_variable_hook|160-71
+1630|code|LDR             R4, =grub_env_export|21-76
+1632|code|LDR             R0, =aLang; "lang"|4-72
+1634|code|BLX             R4; grub_env_export|160-71
+1636|code|LDR             R0, =aLocaleDir; "locale_dir"|4-72
+1638|code|BLX             R4; grub_env_export|160-71
+1640|code|LDR             R0, =aSecondaryLocal; "secondary_locale_dir"|7-72
+1642|code|BLX             R4; grub_env_export|160-71
+1644|code|ADD             SP, SP, #8|2-176
+1646|code|POP             {R4-R6,PC}|112-189
+1648|data|DCD grub_env_get|184-8-0-0
+1652|data|DCD aLang; "lang"|139-7-0-0
+1656|data|DCD aLocaleDir; "locale_dir"|100-7-0-0
+1660|data|DCD aPrefix; "prefix"|111-7-0-0
+1664|data|DCD main_context|8-8-0-0
+1668|data|DCD grub_print_error|140-8-0-0
+1672|data|DCD aSecondaryLocal; "secondary_locale_dir"|118-7-0-0
+1676|data|DCD secondary_context|48-8-0-0
+1680|data|DCD grub_register_variable_hook|124-8-0-0
+1684|data|DCD read_main+1|125-3-0-0
+1688|data|DCD read_secondary+1|69-3-0-0
+1692|data|DCD grub_register_command_prio|128-8-0-0
+1696|data|DCD grub_cmd_translate+1|141-5-0-0
+1700|data|DCD aString; "STRING"|178-7-0-0
+1704|data|DCD aTranslatesTheS; "Translates the string with the current "...|185-7-0-0
+1708|data|DCD aGettext; "gettext"|170-7-0-0
+1712|data|DCD grub_gettext_env_write_lang+1|229-2-0-0
+1716|data|DCD grub_env_export|96-8-0-0
+1720|code|PUSH            {R4,LR}|16-181
+1722|code|LDR             R4, =grub_gettext_original|6-76
+1724|code|ADD.W           R0, R4, #8; ctx|4-241-8-0
+1728|code|BL              grub_gettext_delete_list|255-247-158-252
+1732|code|ADD.W           R0, R4, #0x30 ; '0'; ctx|4-241-48-0
+1736|code|BL              grub_gettext_delete_list|255-247-154-252
+1740|code|LDR             R2, [R4]|34-104
+1742|code|LDR             R3, =grub_gettext|2-75
+1744|code|STR             R2, [R3]|26-96
+1746|code|POP             {R4,PC}|16-189
+1748|data|DCD grub_gettext_original|0-8-0-0
+1752|data|DCD grub_gettext|180-8-0-0
+1756|data|DCB "premature end of file",0|112-114-101-109-97-116-117-114-101-32-101-110-100-32-111-102-32-102-105-108-101-0
+1778|data|DCB "mo: invalid mo magic in file: %s",0|109-111-58-32-105-110-118-97-108-105-100-32-109-111-32-109-97-103-105-99-32-105-110-32-102-105-108-101-58-32-37-115-0
+1811|data|DCB "mo: invalid mo version in file: %s",0|109-111-58-32-105-110-118-97-108-105-100-32-109-111-32-118-101-114-115-105-111-110-32-105-110-32-102-105-108-101-58-32-37-115-0
+1846|data|DCB "%s%s/%s.mo",0|37-115-37-115-47-37-115-46-109-111-0
+1857|data|DCB "%s%s/%s.mo.gz",0|37-115-37-115-47-37-115-46-109-111-46-103-122-0
+1871|data|DCB "%s%s/%s.gmo",0|37-115-37-115-47-37-115-46-103-109-111-0
+1883|data|DCB "/locale",0|47-108-111-99-97-108-101-0
+1892|data|DCB "locale_dir",0|108-111-99-97-108-101-95-100-105-114-0
+1903|data|DCB "prefix",0|112-114-101-102-105-120-0
+1910|data|DCB "secondary_locale_dir",0|115-101-99-111-110-100-97-114-121-95-108-111-99-97-108-101-95-100-105-114-0
+1931|data|DCB "lang",0|108-97-110-103-0
+1936|data|DCB "one argument expected",0|111-110-101-32-97-114-103-117-109-101-110-116-32-101-120-112-101-99-116-101-100-0
+1958|data|DCB "%s",0xA,0|37-115-10-0
+1962|data|DCB "gettext",0|103-101-116-116-101-120-116-0
+1970|data|DCB "STRING",0|83-84-82-73-78-71-0
+1977|data|DCB "Translates the string with the current settings.",0|84-114-97-110-115-108-97-116-101-115-32-116-104-101-32-115-116-114-105-110-103-32-119-105-116-104-32-116-104-101-32-99-117-114-114-101-110-116-32-115-101-116-116-105-110-103-115-46-0
+2027|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2048|data|% 4|255-255-255-255
+2052|data|ALIGN 8|255-255-255-255
+2056|data|grub_gettext_context <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+2096|data|grub_gettext_context <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+2136|data|% 4|255-255-255-255

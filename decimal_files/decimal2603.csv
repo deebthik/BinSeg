@@ -1,0 +1,1688 @@
+address|type|disassembly|bytes
+0|code|LDRB            R2, [key,#0xD]|66-123
+2|code|LDRB            R3, [key,#0xC]|3-123
+4|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+8|code|LDRB            R2, [key,#0xE]|130-123
+10|code|LDRB            key, [key,#0xF]|192-123
+12|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+16|code|ORR.W           R0, R3, R0,LSL#24|67-234-0-96
+20|code|CMP.W           R0, #0x10000000|176-241-128-95
+24|code|BEQ             loc_48|22-208
+26|code|BHI             loc_2E|8-216
+28|code|CMP.W           R0, #0x1F4|176-245-250-127
+32|code|BEQ             loc_40|14-208
+34|code|MOVW            R3, #0x22B|64-242-43-35
+38|code|CMP             R0, R3|152-66
+40|code|BEQ             loc_3C|8-208
+42|code|CBNZ            R0, loc_4C|120-185
+44|code|BX              LR|112-71
+46|code|ADDS            R3, R0, #2|131-28
+48|code|BEQ             loc_48|10-208
+50|code|BHI             loc_44|7-216
+52|code|CMP.W           R0, #0x20000000|176-241-0-95
+56|code|BEQ             loc_44|4-208
+58|code|B               loc_4C|7-224
+60|code|MOVS            R0, #4|4-32
+62|code|BX              LR|112-71
+64|code|MOVS            R0, #1|1-32
+66|code|BX              LR|112-71
+68|code|MOVS            R0, #2|2-32
+70|code|BX              LR|112-71
+72|code|MOVS            R0, #3|3-32
+74|code|BX              LR|112-71
+76|code|MOVS            R0, #5|5-32
+78|code|BX              LR|112-71
+80|code|PUSH            {R4,LR}|16-181
+82|code|MOV             R4, key|4-70
+84|code|BL              grub_reiserfs_get_key_v1_type|255-247-212-255
+88|code|CMP             R0, #5|5-40
+90|code|BNE             locret_74|11-209
+92|code|LDRB            R1, [key,#0xF]|225-123
+94|code|MOVS            R3, #0|0-35
+96|code|CMP             R3, #0|0-43
+98|code|UBFX.W          R2, R1, #4, #4|193-243-3-18
+102|code|IT EQ|8-191
+104|code|CMPEQ           R2, #0x10|16-42
+106|code|BCS             locret_74|3-210
+108|code|LDR             R3, =CSWTCH.27|2-75
+110|code|ADD             R2, R3|26-68
+112|code|LDRB            R0, [R2]|16-120
+114|code|POP             {key,PC}|16-189
+116|code|POP             {key,PC}|16-189
+118|data|ALIGN 4|0-191
+120|data|DCD CSWTCH.27|228-16-0-0
+124|code|PUSH            {R3-R5,LR}|56-181
+126|code|LDR             R5, [file,#0x44]|69-108
+128|code|LDR             R4, =grub_free|5-76
+130|code|LDR             file, [node]|40-104
+132|code|BLX             R4; grub_free|160-71
+134|code|MOV             R0, node|40-70
+136|code|BLX             R4; grub_free|160-71
+138|code|LDR             R3, =my_mod|4-75
+140|code|LDR             R0, [R3]|24-104
+142|code|LDR             R3, =grub_dl_unref|4-75
+144|code|BLX             R3; grub_dl_unref|152-71
+146|code|MOVS            R0, #0|0-32
+148|code|POP             {R3-node,PC}|56-189
+150|data|ALIGN 4|0-191
+152|data|DCD grub_free|0-20-0-0
+156|data|DCD my_mod|196-19-0-0
+160|data|DCD grub_dl_unref|8-20-0-0
+164|code|PUSH            {disk-R6,LR}|127-181
+166|code|MOV             R6, disk|6-70
+168|code|LDR             R3, =grub_malloc|23-75
+170|code|MOVS            disk, #0x78 ; 'x'|120-32
+172|code|BLX             R3; grub_malloc|152-71
+174|code|LDR             R5, =grub_errno|23-77
+176|code|MOV             R4, data|4-70
+178|code|CBZ             data, fail|224-177
+180|code|MOVS            R2, #0|0-34
+182|code|MOVS            R3, #0|0-35
+184|code|STR             data, [SP,#0x20+var_14]|3-144
+186|code|MOV             data, disk|48-70
+188|code|STRD.W          R2, R3, [SP,#0x20+var_20]|205-233-0-35
+192|code|MOVS            R3, #0x74 ; 't'|116-35
+194|code|MOVS            R2, #0x80|128-34
+196|code|STR             R3, [SP,#0x20+var_18]|2-147
+198|code|LDR             R1, =grub_disk_read|18-73
+200|code|MOVS            R3, #0|0-35
+202|code|BLX             R1; grub_disk_read|136-71
+204|code|LDR             R3, [R5]|43-104
+206|code|CBNZ            R3, fail|115-185
+208|code|ADD.W           R0, data, #0x34 ; '4'|4-241-52-0
+212|code|LDR             R1, =aReiser; "ReIsEr"|15-73
+214|code|MOVS            R2, #6|6-34
+216|code|LDR             R3, =grub_memcmp|15-75
+218|code|BLX             R3; grub_memcmp|152-71
+220|code|CBZ             R0, loc_E8|32-177
+222|code|LDR             R1, =aNotAReiserfsFi; "not a ReiserFS filesystem"|15-73
+224|code|MOVS            R0, #9|9-32
+226|code|LDR             R3, =grub_error|15-75
+228|code|BLX             R3; grub_error|152-71
+230|code|B               fail|2-224
+232|code|STR             disk, [data,#0x74]|102-103
+234|code|MOV             R0, data|32-70
+236|code|B               loc_104|10-224
+238|code|LDR             R3, [R5]|43-104
+240|code|CMP             R3, #0xB|11-43
+242|code|BNE             loc_FC|3-209
+244|code|MOVS            R0, #9|9-32
+246|code|LDR             R1, =aNotAReiserfsFi; "not a ReiserFS filesystem"|9-73
+248|code|LDR             R3, =grub_error|9-75
+250|code|BLX             R3; grub_error|152-71
+252|code|MOV             R0, data|32-70
+254|code|LDR             R3, =grub_free|9-75
+256|code|BLX             R3; grub_free|152-71
+258|code|MOVS            R0, #0|0-32
+260|code|ADD             SP, SP, #0x10|4-176
+262|code|POP             {data-disk,PC}|112-189
+264|data|DCD grub_malloc|240-19-0-0
+268|data|DCD grub_errno|220-19-0-0
+272|data|DCD grub_disk_read|212-19-0-0
+276|data|DCD aReiser; "ReIsEr"|244-16-0-0
+280|data|DCD grub_memcmp|16-20-0-0
+284|data|DCD aNotAReiserfsFi; "not a ReiserFS filesystem"|251-16-0-0
+288|data|DCD grub_error|248-19-0-0
+292|data|DCD grub_free|0-20-0-0
+296|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+300|code|MOV             R7, uuid|15-70
+302|code|LDR             R5, =my_mod|41-77
+304|code|SUB             SP, SP, #0x18|134-176
+306|code|LDR             R4, [device]|4-104
+308|code|LDR             R3, =grub_dl_ref|40-75
+310|code|LDR             device, [R5]|40-104
+312|code|MOV             R8, R5|168-70
+314|code|BLX             R3; grub_dl_ref|152-71
+316|code|MOVS            R3, #0|0-35
+318|code|MOV             R0, disk; disk|32-70
+320|code|STR             R3, [uuid]|59-96
+322|code|BL              grub_reiserfs_mount|255-247-175-255
+326|code|MOV             disk, data|4-70
+328|code|CMP             data, #0|0-40
+330|code|BEQ             loc_1BC|55-208
+332|code|ADD.W           R3, data, #0x52 ; 'R'|0-241-82-3
+336|code|ADD.W           R2, data, #0x62 ; 'b'|0-241-98-2
+340|code|LDRH.W          R1, [R3,#2]!|51-248-2-31
+344|code|CBNZ            R1, loc_160|17-185
+346|code|CMP             R3, R2|147-66
+348|code|BNE             loc_154|250-209
+350|code|B               loc_1BC|45-224
+352|code|LDRH.W          R1, [R4,#0x54]|180-248-84-16
+356|code|LDRH.W          R2, [R4,#0x56]|180-248-86-32
+360|code|LDRH.W          LR, [R4,#0x58]|180-248-88-224
+364|code|REV16           R1, R1|73-186
+366|code|LDRH.W          R12, [R4,#0x5A]|180-248-90-192
+370|code|REV16           R2, R2|82-186
+372|code|LDRH.W          R3, [R4,#0x5C]|180-248-92-48
+376|code|REV16.W         LR, LR|158-250-158-254
+380|code|LDRH.W          R6, [R4,#0x5E]|180-248-94-96
+384|code|REV16.W         R12, R12|156-250-156-252
+388|code|LDRH.W          R5, [R4,#0x60]|180-248-96-80
+392|code|REV16           R3, R3|91-186
+394|code|LDRH.W          data, [R4,#0x62]|180-248-98-0
+398|code|REV16           R6, R6|118-186
+400|code|REV16           R5, R5|109-186
+402|code|UXTH.W          R12, R12|31-250-140-252
+406|code|REV16           R0, R0|64-186
+408|code|UXTH            R3, R3|155-178
+410|code|UXTH            R5, R5|173-178
+412|code|STR             R3, [SP,#0x30+var_2C]|1-147
+414|code|UXTH            R0, R0|128-178
+416|code|STR             R5, [SP,#0x30+var_24]|3-149
+418|code|STR             R0, [SP,#0x30+var_20]|4-144
+420|code|UXTH            R6, R6|182-178
+422|code|STR.W           R12, [SP,#0x30+var_30]|205-248-0-192
+426|code|UXTH            R1, R1|137-178
+428|code|STR             R6, [SP,#0x30+var_28]|2-150
+430|code|UXTH            R2, R2|146-178
+432|code|LDR             R0, =a04x04x04x04x04; "%04x%04x-%04x-%04x-%04x-%04x%04x%04x"|10-72
+434|code|UXTH.W          R3, LR|31-250-142-243
+438|code|LDR             R5, =grub_xasprintf|10-77
+440|code|BLX             R5; grub_xasprintf|168-71
+442|code|STR             R0, [uuid]|56-96
+444|code|LDR.W           R0, [R8]|216-248-0-0
+448|code|LDR             R3, =grub_dl_unref|8-75
+450|code|BLX             R3; grub_dl_unref|152-71
+452|code|MOV             R0, data|32-70
+454|code|LDR             R3, =grub_free|8-75
+456|code|BLX             R3; grub_free|152-71
+458|code|LDR             R3, =grub_errno|8-75
+460|code|LDR             R0, [R3]|24-104
+462|code|ADD             SP, SP, #0x18|6-176
+464|code|POP.W           {data-R8,PC}|189-232-240-129
+468|data|DCD my_mod|196-19-0-0
+472|data|DCD grub_dl_ref|216-19-0-0
+476|data|DCD a04x04x04x04x04; "%04x%04x-%04x-%04x-%04x-%04x%04x%04x"|21-17-0-0
+480|data|DCD grub_xasprintf|204-19-0-0
+484|data|DCD grub_dl_unref|8-20-0-0
+488|data|DCD grub_free|0-20-0-0
+492|data|DCD grub_errno|220-19-0-0
+496|code|PUSH            {R4-R6,LR}|112-181
+498|code|MOV             R6, label|14-70
+500|code|LDR             R5, =my_mod|12-77
+502|code|LDR             R4, [device]|4-104
+504|code|LDR             R3, =grub_dl_ref|12-75
+506|code|LDR             device, [R5]|40-104
+508|code|BLX             R3; grub_dl_ref|152-71
+510|code|MOV             R0, disk; disk|32-70
+512|code|BL              grub_reiserfs_mount|255-247-80-255
+516|code|MOV             disk, data|4-70
+518|code|CBZ             data, loc_214|40-177
+520|code|ADDS            data, #0x64 ; 'd'|100-48
+522|code|MOVS            R1, #0x10|16-33
+524|code|LDR             R3, =grub_strndup|8-75
+526|code|BLX             R3; grub_strndup|152-71
+528|code|STR             R0, [label]|48-96
+530|code|B               loc_216|0-224
+532|code|STR             data, [label]|48-96
+534|code|LDR             R0, [R5]|40-104
+536|code|LDR             R3, =grub_dl_unref|6-75
+538|code|BLX             R3; grub_dl_unref|152-71
+540|code|MOV             R0, data|32-70
+542|code|LDR             R3, =grub_free|6-75
+544|code|BLX             R3; grub_free|152-71
+546|code|LDR             R3, =grub_errno|6-75
+548|code|LDR             R0, [R3]|24-104
+550|code|POP             {data-label,PC}|112-189
+552|data|DCD my_mod|196-19-0-0
+556|data|DCD grub_dl_ref|216-19-0-0
+560|data|DCD grub_strndup|4-20-0-0
+564|data|DCD grub_dl_unref|8-20-0-0
+568|data|DCD grub_free|0-20-0-0
+572|data|DCD grub_errno|220-19-0-0
+576|code|PUSH            {R4-R7,LR}|240-181
+578|code|SUB             SP, SP, #0x14|133-176
+580|code|MOV             R4, filetype|12-70
+582|code|MOV             R6, node|22-70
+584|code|MOV             R5, data|29-70
+586|code|MOV             R7, filename|7-70
+588|code|MOVS            node, #0x10|16-34
+590|code|MOV             filename, SP|104-70
+592|code|MOVS            filetype, #0|0-33
+594|code|LDR             ctx, =grub_memset|13-75
+596|code|UXTB            filetype, filetype|228-178
+598|code|BLX             R3; grub_memset|152-71
+600|code|SUBS            R3, R4, #2|163-30
+602|code|LDRB.W          R4, [SP,#0x28+info]|157-248-0-64
+606|code|NEGS            R1, R3|89-66
+608|code|MOV             R0, node|48-70
+610|code|ADCS            R1, R3|89-65
+612|code|LDR             R3, [node,#0x18]|179-105
+614|code|BFI.W           R4, R1, #0, #1|97-243-0-4
+618|code|STR             R3, [SP,#0x28+info.mtime]|1-147
+620|code|UXTB            R4, R4|228-178
+622|code|LDR             R3, =grub_free|7-75
+624|code|ORR.W           R4, R4, #2|68-240-2-4
+628|code|STRB.W          R4, [SP,#0x28+info]|141-248-0-64
+632|code|BLX             R3; grub_free|152-71
+634|code|LDR             R3, [ctx]|43-104
+636|code|MOV             R0, filename|56-70
+638|code|MOV             R1, SP|105-70
+640|code|LDR             R2, [ctx,#4]|106-104
+642|code|BLX             R3|152-71
+644|code|ADD             SP, SP, #0x14|5-176
+646|code|POP             {R4-filename,PC}|240-189
+648|data|DCD grub_memset|224-19-0-0
+652|data|DCD grub_free|0-20-0-0
+656|code|PUSH            {R3,LR}|8-181
+658|code|MOV             R2, line|10-70
+660|code|CBNZ            boolean, locret_29E|24-185
+662|code|LDR             boolean, =aAssertionFaile; "Assertion failed at %s:%d\n"|2-72
+664|code|LDR             line, =aFsReiserfsC; "fs/reiserfs.c"|2-73
+666|code|LDR             R3, =grub_printf|3-75
+668|code|BLX             R3; grub_printf|152-71
+670|code|POP             {R3,PC}|8-189
+672|data|DCD aAssertionFaile; "Assertion failed at %s:%d\n"|58-17-0-0
+676|data|DCD aFsReiserfsC; "fs/reiserfs.c"|85-17-0-0
+680|data|DCD grub_printf|228-19-0-0
+684|code|PUSH            {R3-R7,LR}|248-181
+686|code|MOV             R7, grub_type|15-70
+688|code|CMP             grub_type, #4; switch 5 cases|4-41
+690|code|BHI             def_2B4; jumptable 000002B4 default case|67-216
+692|code|TBB.W           [PC,grub_type]; switch jump|223-232-1-240
+696|data|DCB 0xB; jump table for switch statement|11
+697|data|DCB 5|5
+698|data|DCB 7|7
+699|data|DCB 9|9
+700|data|DCB 3|3
+701|data|ALIGN 2|0
+702|code|MOVS            R3, #0xF; jumptable 000002B4 case 4|15-35
+704|code|B               loc_2D0|6-224
+706|code|MOVS            R3, #3; jumptable 000002B4 case 1|3-35
+708|code|B               loc_2D0|4-224
+710|code|MOVS            R3, #2; jumptable 000002B4 case 2|2-35
+712|code|B               loc_2D0|2-224
+714|code|MOVS            R3, #1; jumptable 000002B4 case 3|1-35
+716|code|B               loc_2D0|0-224
+718|code|MOVS            R3, #0; jumptable 000002B4 case 0|0-35
+720|code|LDRB            R6, [key,#9]|70-122
+722|code|LSLS            R5, type, #0x1C|29-7
+724|code|LDRB            grub_type, [key,#8]|1-122
+726|code|MOVS            R4, #0|0-36
+728|code|ORR.W           R1, R1, R6,LSL#8|65-234-6-33
+732|code|LDRB            R6, [key,#0xA]|134-122
+734|code|ORR.W           R1, R1, R6,LSL#16|65-234-6-65
+738|code|LDRB            R6, [key,#0xB]|198-122
+740|code|ORR.W           R2, R1, R6,LSL#24|65-234-6-98
+744|code|LDRB            R6, [key,#0xD]|70-123
+746|code|LDRB            R1, [key,#0xC]|1-123
+748|code|ORRS            R2, R4|34-67
+750|code|STRB            R2, [key,#8]|2-114
+752|code|ORR.W           R6, R1, R6,LSL#8|65-234-6-38
+756|code|LDRB            R1, [key,#0xE]|129-123
+758|code|ORR.W           R6, R6, R1,LSL#16|70-234-1-70
+762|code|LDRB            R1, [key,#0xF]|193-123
+764|code|ORR.W           type, R6, R1,LSL#24|70-234-1-99
+768|code|UBFX.W          R1, R2, #8, #8|194-243-7-33
+772|code|BIC.W           R3, R3, #0xF0000000|35-240-112-67
+776|code|STRB            R1, [key,#9]|65-114
+778|code|ORRS            R3, R5|43-67
+780|code|UBFX.W          R1, R2, #0x10, #8|194-243-7-65
+784|code|STRB            R3, [key,#0xC]|3-115
+786|code|LSRS            R2, R2, #0x18|18-14
+788|code|STRB            R1, [key,#0xA]|129-114
+790|code|STRB            R2, [key,#0xB]|194-114
+792|code|UBFX.W          R2, R3, #8, #8|195-243-7-34
+796|code|STRB            R2, [key,#0xD]|66-115
+798|code|UBFX.W          R2, R3, #0x10, #8|195-243-7-66
+802|code|LSRS            R3, R3, #0x18|27-14
+804|code|STRB            R2, [key,#0xE]|130-115
+806|code|STRB            R3, [key,#0xF]|195-115
+808|code|BL              grub_reiserfs_get_key_type|255-247-146-254
+812|code|MOV.W           R1, #0x1A2|79-244-209-113
+816|code|SUBS            R3, R0, grub_type|195-27
+818|code|NEGS            R0, R3|88-66
+820|code|ADCS            R0, R3|88-65
+822|code|POP.W           {R3-grub_type,LR}|189-232-248-64
+826|code|B               real_assert|169-231
+828|code|POP             {R3-R7,PC}; jumptable 000002B4 default case|248-189
+830|code|PUSH            {R4,R6,R7,LR}|208-181
+832|code|MOV             R4, key|4-70
+834|code|BL              grub_reiserfs_get_key_v1_type|255-247-93-254
+838|code|LDRB            R3, [key,#8]|35-122
+840|code|LDRB            R1, [key,#9]|97-122
+842|code|LDRB            R2, [key,#0xB]|226-122
+844|code|CMP             R0, #5|5-40
+846|code|LDRB            R0, [key,#0xA]|160-122
+848|code|BEQ             loc_362|7-208
+850|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+854|code|MOVS            R1, #0|0-33
+856|code|ORR.W           R3, R3, R0,LSL#16|67-234-0-67
+860|code|ORR.W           R0, R3, R2,LSL#24|67-234-2-96
+864|code|POP             {key,R6,R7,PC}|208-189
+866|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+870|code|ORR.W           R3, R3, R0,LSL#16|67-234-0-67
+874|code|ORR.W           R6, R3, R2,LSL#24|67-234-2-102
+878|code|LDRB            R2, [key,#0xD]|98-123
+880|code|LDRB            R3, [key,#0xC]|35-123
+882|code|MOV             R0, R6|48-70
+884|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+888|code|LDRB            R2, [key,#0xE]|162-123
+890|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+894|code|LDRB            R2, [key,#0xF]|226-123
+896|code|ORR.W           R7, R3, R2,LSL#24|67-234-2-103
+900|code|BIC.W           R1, R7, #0xF0000000|39-240-112-65
+904|code|POP             {key,R6,R7,PC}|208-189
+906|code|PUSH            {R3-R7,LR}|248-181
+908|code|MOV             R4, key2|12-70
+910|code|MOV             R5, key1|5-70
+912|code|CMP             key1, #0|0-40
+914|code|BEQ             loc_43E|84-208
+916|code|CMP             key2, #0|0-41
+918|code|BEQ             loc_43E|82-208
+920|code|LDRB            R2, [key1,#1]|66-120
+922|code|LDRB            R3, [key1]|3-120
+924|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+928|code|LDRB            R3, [key1,#2]|131-120
+930|code|ORR.W           R3, R2, R3,LSL#16|66-234-3-67
+934|code|LDRB            R2, [key1,#3]|194-120
+936|code|ORR.W           R2, R3, R2,LSL#24|67-234-2-98
+940|code|LDRB            R3, [key2]|11-120
+942|code|LDRB            key2, [key2,#1]|73-120
+944|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+948|code|LDRB            R1, [key2,#2]|161-120
+950|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+954|code|LDRB            R1, [key2,#3]|225-120
+956|code|ORR.W           R3, R3, R1,LSL#24|67-234-1-99
+960|code|CMP             id1, id2|154-66
+962|code|BCC             loc_44C|67-211
+964|code|BHI             loc_444|62-216
+966|code|LDRB            id1, [key1,#5]|66-121
+968|code|LDRB            id2, [key1,#4]|3-121
+970|code|LDRB            R1, [key2,#5]|97-121
+972|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+976|code|LDRB            R3, [key1,#6]|131-121
+978|code|ORR.W           R3, R2, R3,LSL#16|66-234-3-67
+982|code|LDRB            R2, [key1,#7]|194-121
+984|code|ORR.W           R2, R3, R2,LSL#24|67-234-2-98
+988|code|LDRB            R3, [key2,#4]|35-121
+990|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+994|code|LDRB            R1, [key2,#6]|161-121
+996|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+1000|code|LDRB            R1, [key2,#7]|225-121
+1002|code|ORR.W           R3, R3, R1,LSL#24|67-234-1-99
+1006|code|CMP             id1, id2|154-66
+1008|code|BCC             loc_44C|44-211
+1010|code|BHI             loc_444|39-216
+1012|code|BL              grub_reiserfs_get_key_offset|255-247-163-255
+1016|code|MOV             R6, R0|6-70
+1018|code|MOV             R0, key2; key|32-70
+1020|code|MOV             R7, R1|15-70
+1022|code|BL              grub_reiserfs_get_key_offset|255-247-158-255
+1026|code|CMP             R7, R1|143-66
+1028|code|IT EQ|8-191
+1030|code|CMPEQ           R6, R0|134-66
+1032|code|BCC             loc_44C|32-211
+1034|code|CMP             R1, R7|185-66
+1036|code|IT EQ|8-191
+1038|code|CMPEQ           R0, R6|176-66
+1040|code|BCC             loc_444|24-211
+1042|code|MOV             R0, key1; key|40-70
+1044|code|BL              grub_reiserfs_get_key_type|255-247-28-254
+1048|code|MOV             key1, R0|5-70
+1050|code|MOV             type1, key2; key|32-70
+1052|code|BL              grub_reiserfs_get_key_type|255-247-24-254
+1056|code|CMP             type1, #4|4-45
+1058|code|BNE             loc_428|1-209
+1060|code|SUBS            R2, type2, #2|130-30
+1062|code|B               loc_42E|2-224
+1064|code|CMP             type2, #4|4-40
+1066|code|BNE             loc_432|2-209
+1068|code|SUBS            R2, type1, #2|170-30
+1070|code|CMP             R2, #1|1-42
+1072|code|BLS             loc_448|10-217
+1074|code|CMP             type1, type2|133-66
+1076|code|BCC             loc_44C|10-211
+1078|code|ITE HI|140-191
+1080|code|MOVHI           type2, #1|1-32
+1082|code|MOVLS           R0, #0|0-32
+1084|code|POP             {R3-R7,PC}|248-189
+1086|code|MOV             key1, #0xFFFFFFFE|111-240-1-0
+1090|code|POP             {R3-R7,PC}|248-189
+1092|code|MOVS            R0, #1|1-32
+1094|code|POP             {R3-R7,PC}|248-189
+1096|code|MOVS            type2, #0|0-32
+1098|code|POP             {R3-R7,PC}|248-189
+1100|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+1104|code|POP             {R3-R7,PC}|248-189
+1106|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1110|code|SUB             SP, SP, #0x2C|139-176
+1112|code|LDR             R4, [data_0,#8]|132-104
+1114|code|MOV             R5, key|13-70
+1116|code|STR             exact_0, [SP,#0x50+exact]|6-147
+1118|code|MOV             R6, item|22-70
+1120|code|LDRH            exact_0, [data_0,#0x2C]|131-141
+1122|code|STR             data_0, [SP,#0x50+data]|5-144
+1124|code|STR             R3, [SP,#0x50+i]|4-147
+1126|code|LDR             data_0, [SP,#0x50+i]|4-152
+1128|code|LDR             R3, =grub_malloc|154-75
+1130|code|BLX             R3; grub_malloc|152-71
+1132|code|MOV             R8, block_header|128-70
+1134|code|CMP             block_header, #0|0-40
+1136|code|BEQ.W           fail|0-240-20-129
+1140|code|MOVS            R3, #0|0-35
+1142|code|MOVS            R2, #0|0-34
+1144|code|STRD.W          R2, R3, [item,#0x10]|198-233-4-35
+1148|code|MOVW            R11, #0xFFFF|79-246-255-123
+1152|code|LDR             R3, [SP,#0x50+i]|4-155
+1154|code|LSRS            R3, R3, #9|91-10
+1156|code|STR             R3, [SP,#0x50+var_34]|7-147
+1158|code|LDR             R3, [SP,#0x50+i]|4-155
+1160|code|MOVW            R0, #0x1FF|64-242-255-16
+1164|code|MOVS            R1, #0|0-33
+1166|code|STR.W           block_header, [SP,#0x50+var_44]|205-248-12-128
+1170|code|UMULL.W         R2, R3, block_number, R3|164-251-3-35
+1174|code|ANDS            R0, R2|16-64
+1176|code|ANDS            R1, R3|25-64
+1178|code|MOV             R2, R0|2-70
+1180|code|MOV             R3, R1|11-70
+1182|code|STRD.W          R2, R3, [SP,#0x50+var_50]|205-233-0-35
+1186|code|LDR             R3, [SP,#0x50+i]|4-155
+1188|code|LDR             R1, =grub_disk_read|140-73
+1190|code|STR             R3, [SP,#0x50+var_48]|2-147
+1192|code|LDR             R3, [SP,#0x50+data]|5-155
+1194|code|LDR             R0, [R3,#0x74]|88-111
+1196|code|LDR             R3, [SP,#0x50+var_34]|7-155
+1198|code|MUL.W           R2, R3, block_number|3-251-4-242
+1202|code|MOVS            R3, #0|0-35
+1204|code|BLX             R1; grub_disk_read|136-71
+1206|code|LDR             R3, =grub_errno|137-75
+1208|code|LDR             R7, [R3]|31-104
+1210|code|CMP             R7, #0|0-47
+1212|code|BNE.W           fail|64-240-238-128
+1216|code|LDRB.W          R9, [block_header,#1]|152-248-1-144
+1220|code|MOVW            R1, #0x211|64-242-17-33
+1224|code|LDRB.W          R3, [block_header]|152-248-0-48
+1228|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|132-72
+1230|code|ORR.W           R9, R3, R9,LSL#8|67-234-9-41
+1234|code|LDR             R2, =aReiserfsTree; "reiserfs_tree"|132-74
+1236|code|STR.W           current_level, [SP,#0x50+var_50]|205-248-0-144
+1240|code|LDR             R3, =aAtLevelD; " at level %d\n"|131-75
+1242|code|LDR.W           R10, =grub_real_dprintf|223-248-44-162
+1246|code|BLX             R10; grub_real_dprintf|208-71
+1248|code|CMP             current_level, previous_level|217-69
+1250|code|BCC             loc_4F6|8-211
+1252|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|126-72
+1254|code|MOV.W           R1, #0x214|79-244-5-113
+1258|code|LDR             R2, =aReiserfsTree; "reiserfs_tree"|126-74
+1260|code|LDR             R3, =aLevelLoopDetec; "level loop detected, aborting\n"|127-75
+1262|code|BLX             R10; grub_real_dprintf|208-71
+1264|code|MOVS            R0, #9|9-32
+1266|code|LDR             R1, =aLevelLoop; "level loop"|127-73
+1268|code|B               loc_614|142-224
+1270|code|LDRB.W          R11, [block_header,#3]|152-248-3-176
+1274|code|MOVW            R1, #0x21B|64-242-27-33
+1278|code|LDRB.W          R3, [block_header,#2]|152-248-2-48
+1282|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|119-72
+1284|code|ORR.W           R11, R3, R11,LSL#8|67-234-11-43
+1288|code|LDR             R2, =aReiserfsTree; "reiserfs_tree"|118-74
+1290|code|STR.W           item_count, [SP,#0x50+var_50]|205-248-0-176
+1294|code|LDR             R3, =aNumberOfContai; " number of contained items : %d\n"|121-75
+1296|code|BLX             R10; grub_real_dprintf|208-71
+1298|code|CMP.W           previous_level, #1|185-241-1-15
+1302|code|ADD.W           R10, block_header, #0x18|8-241-24-10
+1306|code|BLS             loc_5DC|95-217
+1308|code|MOV.W           block_number, item_count,LSL#4|79-234-11-20
+1312|code|MOV             R2, keys|82-70
+1314|code|MOV             R12, R7|188-70
+1316|code|UXTH.W          R7, R12|31-250-140-247
+1320|code|CMP             i_0, item_count|95-69
+1322|code|BCC             loc_550|17-211
+1324|code|ADD.W           R4, R4, i_0,LSL#3|4-235-199-4
+1328|code|CMP             i_0, item_count|95-69
+1330|code|ADD.W           R1, keys, R4|10-235-4-1
+1334|code|LDRB.W          R2, [keys,R4]|26-248-4-32
+1338|code|LDRB            R4, [R1,#1]|76-120
+1340|code|ORR.W           R4, R2, R4,LSL#8|66-234-4-36
+1344|code|LDRB            R2, [R1,#2]|138-120
+1346|code|ORR.W           R2, R4, R2,LSL#16|68-234-2-66
+1350|code|LDRB            R4, [R1,#3]|204-120
+1352|code|ORR.W           R4, R2, R4,LSL#24|66-234-4-100
+1356|code|BCC             loc_570|16-211
+1358|code|B               loc_6C8|187-224
+1360|code|MOV             R1, R2; key2|17-70
+1362|code|MOV             R0, key; key1|40-70
+1364|code|STR.W           R12, [SP,#0x50+var_2C]|205-248-36-192
+1368|code|STR             R2, [SP,#0x50+var_30]|8-146
+1370|code|BL              grub_reiserfs_compare_keys|255-247-22-255
+1374|code|LDR.W           R12, [SP,#0x50+var_2C]|221-248-36-192
+1378|code|LDR             R2, [SP,#0x50+var_30]|8-154
+1380|code|ADD.W           R12, R12, #1|12-241-1-12
+1384|code|ADDS            R2, #0x10|16-50
+1386|code|CMP             R0, #0|0-40
+1388|code|BGE             loc_524|218-218
+1390|code|B               loc_52C|221-231
+1392|code|LDRB            R1, [key,#1]|105-120
+1394|code|LSLS            i_0, i_0, #4|63-1
+1396|code|LDRB            R2, [key]|42-120
+1398|code|ADD.W           R0, keys, R7; key|10-235-7-0
+1402|code|LDRB.W          R3, [keys,R7]|26-248-7-48
+1406|code|ORR.W           R2, R2, R1,LSL#8|66-234-1-34
+1410|code|LDRB            R1, [key,#2]|169-120
+1412|code|ORR.W           R2, R2, R1,LSL#16|66-234-1-66
+1416|code|LDRB            R1, [key,#3]|233-120
+1418|code|ORR.W           R2, R2, R1,LSL#24|66-234-1-98
+1422|code|LDRB            R1, [R0,#1]|65-120
+1424|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+1428|code|LDRB            R1, [R0,#2]|129-120
+1430|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+1434|code|LDRB            R1, [R0,#3]|193-120
+1436|code|ORR.W           R3, R3, R1,LSL#24|67-234-1-99
+1440|code|CMP             R2, R3|154-66
+1442|code|BNE.W           loc_6C8|64-240-145-128
+1446|code|LDRB            R2, [key,#5]|106-121
+1448|code|LDRB            R3, [key,#4]|43-121
+1450|code|LDRB            R1, [R0,#5]|65-121
+1452|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+1456|code|LDRB            R3, [key,#6]|171-121
+1458|code|ORR.W           R3, R2, R3,LSL#16|66-234-3-67
+1462|code|LDRB            R2, [key,#7]|234-121
+1464|code|ORR.W           R2, R3, R2,LSL#24|67-234-2-98
+1468|code|LDRB            R3, [R0,#4]|3-121
+1470|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+1474|code|LDRB            R1, [R0,#6]|129-121
+1476|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+1480|code|LDRB            R1, [R0,#7]|193-121
+1482|code|ORR.W           R3, R3, R1,LSL#24|67-234-1-99
+1486|code|CMP             R2, R3|154-66
+1488|code|BNE             loc_6C8|122-209
+1490|code|BL              grub_reiserfs_get_key_offset|255-247-180-254
+1494|code|STRD.W          R0, R1, [item,#0x10]|198-233-4-1
+1498|code|B               loc_6C8|117-224
+1500|code|MOV             previous_level, item_headers|209-70
+1502|code|MOV             R12, R7|188-70
+1504|code|UXTH.W          R2, R12|31-250-140-242
+1508|code|CMP             i_0, item_count|90-69
+1510|code|BCS             loc_628|31-210
+1512|code|MOV             R0, key; key1|40-70
+1514|code|MOV             R1, R9; key2|73-70
+1516|code|STR             i_0, [SP,#0x50+i]|4-146
+1518|code|STR.W           R12, [SP,#0x50+var_34]|205-248-28-192
+1522|code|BL              grub_reiserfs_compare_keys|255-247-202-254
+1526|code|LDR             R2, [SP,#0x50+i]|4-154
+1528|code|CMP             val, #0|0-40
+1530|code|BEQ             loc_62C|23-208
+1532|code|LDR.W           R12, [SP,#0x50+var_34]|221-248-28-192
+1536|code|ADD.W           R9, R9, #0x18|9-241-24-9
+1540|code|ADD.W           R12, R12, #1|12-241-1-12
+1544|code|BGE             loc_5E0|234-218
+1546|code|LDR             R3, [SP,#0x50+exact]|6-155
+1548|code|CBNZ            R3, loc_646|219-185
+1550|code|CBNZ            R2, loc_61A|34-185
+1552|code|LDR             R1, =aUnexpectedBtre; "unexpected btree node"|57-73
+1554|code|MOVS            R0, #0xE|14-32
+1556|code|LDR             R3, =grub_error|57-75
+1558|code|BLX             R3; grub_error|152-71
+1560|code|B               fail|64-224
+1562|code|SUBS            i_0, #1|1-58
+1564|code|MOV.W           R9, #0x18|79-240-24-9
+1568|code|UXTH            R2, R2|146-178
+1570|code|MLA.W           R9, R9, i_0, item_headers|9-251-2-169
+1574|code|B               loc_630|3-224
+1576|code|MOV.W           R9, #0|79-240-0-9
+1580|code|LDR             R3, [SP,#0x50+exact]|6-155
+1582|code|CBNZ            R3, loc_64A|99-185
+1584|code|CMP             i_0, item_count|90-69
+1586|code|BNE             loc_64A|10-209
+1588|code|CMP             i_0, #0|0-42
+1590|code|BEQ             loc_610|235-208
+1592|code|SUBS            i_0, #1|1-58
+1594|code|MOV.W           block_key, #0x18|79-240-24-9
+1598|code|UXTH            R2, R2|146-178
+1600|code|MLA.W           R9, R9, i_0, item_headers|9-251-2-169
+1604|code|B               loc_64A|1-224
+1606|code|MOV.W           R9, #0|79-240-0-9
+1610|code|LDR             R3, [SP,#0x50+data]|5-155
+1612|code|STR             R3, [item]|51-96
+1614|code|CMP.W           R9, #0|185-241-0-15
+1618|code|BNE             loc_662|6-209
+1620|code|MOVS            R3, #5|5-35
+1622|code|STR.W           R9, [item,#4]|198-248-4-144
+1626|code|STRH.W          R9, [item,#8]|166-248-8-144
+1630|code|STR             R3, [item,#0x28]|179-98
+1632|code|B               loc_682|15-224
+1634|code|STR             R4, [item,#4]|116-96
+1636|code|MOV             R0, R9; key|72-70
+1638|code|STRH            R2, [item,#8]|50-129
+1640|code|MOVS            R4, #0x18|24-36
+1642|code|STR             R2, [SP,#0x50+i]|4-146
+1644|code|BL              grub_reiserfs_get_key_type|255-247-240-252
+1648|code|LDR             R2, [SP,#0x50+i]|4-154
+1650|code|LDR             R3, =grub_memmove|35-75
+1652|code|MLA.W           R1, R4, R2, R10|4-251-2-161
+1656|code|MOV             R2, R4|34-70
+1658|code|STR             R0, [item,#0x28]|176-98
+1660|code|ADD.W           R0, item, #0x2C ; ','|6-241-44-0
+1664|code|BLX             R3; grub_memmove|152-71
+1666|code|LDR             R3, =grub_errno|22-75
+1668|code|MOVW            R1, #(off_28C+1); file|64-242-141-33
+1672|code|LDR             R0, [R3]|24-104
+1674|code|CLZ.W           R0, R0|176-250-128-240
+1678|code|LSRS            R0, R0, #5; boolean|64-9
+1680|code|BL              real_assert|255-247-254-253
+1684|code|MOV             R0, block_header|64-70
+1686|code|LDR             R3, =grub_free|27-75
+1688|code|BLX             R3; grub_free|152-71
+1690|code|B               loc_6CC|23-224
+1692|code|LDR             block_number, =grub_errno|15-76
+1694|code|MOVW            R1, #loc_292; file|64-242-146-33
+1698|code|LDR             R0, [R4]|32-104
+1700|code|ADDS            R0, #0|0-48
+1702|code|IT NE|24-191
+1704|code|MOVNE           R0, #1; boolean|1-32
+1706|code|BL              real_assert|255-247-241-253
+1710|code|MOV             R0, block_header|64-70
+1712|code|LDR             R3, =grub_free|20-75
+1714|code|BLX             R3; grub_free|152-71
+1716|code|LDR             R0, [R4]|32-104
+1718|code|MOV.W           R1, #loc_294; file|79-244-37-113
+1722|code|ADDS            R0, #0|0-48
+1724|code|IT NE|24-191
+1726|code|MOVNE           R0, #1; boolean|1-32
+1728|code|BL              real_assert|255-247-230-253
+1732|code|LDR             R7, [R4]|39-104
+1734|code|B               loc_6CC|1-224
+1736|code|MOV             item_count, previous_level|203-70
+1738|code|B               loc_486|220-230
+1740|code|MOV             R0, R7|56-70
+1742|code|ADD             SP, SP, #0x2C ; ','|11-176
+1744|code|POP.W           {R4-R11,PC}|189-232-240-143
+1748|data|DCD grub_malloc|240-19-0-0
+1752|data|DCD grub_disk_read|212-19-0-0
+1756|data|DCD grub_errno|220-19-0-0
+1760|data|DCD aFsReiserfsC; "fs/reiserfs.c"|85-17-0-0
+1764|data|DCD aReiserfsTree; "reiserfs_tree"|99-17-0-0
+1768|data|DCD aAtLevelD; " at level %d\n"|113-17-0-0
+1772|data|DCD aLevelLoopDetec; "level loop detected, aborting\n"|127-17-0-0
+1776|data|DCD aLevelLoop; "level loop"|158-17-0-0
+1780|data|DCD aNumberOfContai; " number of contained items : %d\n"|169-17-0-0
+1784|data|DCD aUnexpectedBtre; "unexpected btree node"|202-17-0-0
+1788|data|DCD grub_error|248-19-0-0
+1792|data|DCD grub_memmove|208-19-0-0
+1796|data|DCD grub_free|0-20-0-0
+1800|data|DCD grub_real_dprintf|244-19-0-0
+1804|code|PUSH            {R4,R6,R7,LR}|208-181
+1806|code|MOV             R4, key|4-70
+1808|code|MOV             R6, R2|22-70
+1810|code|MOV             R7, R3|31-70
+1812|code|BL              grub_reiserfs_get_key_v1_type|255-247-116-252
+1816|code|CMP             R0, #5|5-40
+1818|code|BEQ             loc_730|9-208
+1820|code|UBFX.W          R3, R6, #8, #8|198-243-7-35
+1824|code|STRB            R6, [key,#8]|38-114
+1826|code|STRB            R3, [key,#9]|99-114
+1828|code|UBFX.W          R3, R6, #0x10, #8|198-243-7-67
+1832|code|LSRS            R6, R6, #0x18|54-14
+1834|code|STRB            R3, [key,#0xA]|163-114
+1836|code|STRB            R6, [key,#0xB]|230-114
+1838|code|POP             {key,R6,R7,PC}|208-189
+1840|code|LDRB            R0, [key,#0xD]|96-123
+1842|code|BIC.W           R7, R7, #0xF0000000|39-240-112-71
+1846|code|LDRB            R1, [key,#0xC]|33-123
+1848|code|MOVS            R2, #0|0-34
+1850|code|ORRS            R2, R6|50-67
+1852|code|STRB            R2, [key,#8]|34-114
+1854|code|ORR.W           R1, R1, R0,LSL#8|65-234-0-33
+1858|code|LDRB            R0, [key,#0xE]|160-123
+1860|code|ORR.W           R1, R1, R0,LSL#16|65-234-0-65
+1864|code|LDRB            R0, [key,#0xF]|224-123
+1866|code|ORR.W           R3, R1, R0,LSL#24|65-234-0-99
+1870|code|UBFX.W          R1, R2, #8, #8|194-243-7-33
+1874|code|AND.W           R3, R3, #0xF0000000|3-240-112-67
+1878|code|STRB            R1, [key,#9]|97-114
+1880|code|ORRS            R3, R7|59-67
+1882|code|UBFX.W          R1, R2, #0x10, #8|194-243-7-65
+1886|code|STRB            R3, [key,#0xC]|35-115
+1888|code|LSRS            R2, R2, #0x18|18-14
+1890|code|STRB            R1, [key,#0xA]|161-114
+1892|code|STRB            R2, [key,#0xB]|226-114
+1894|code|UBFX.W          R2, R3, #8, #8|195-243-7-34
+1898|code|STRB            R2, [key,#0xD]|98-115
+1900|code|UBFX.W          R2, R3, #0x10, #8|195-243-7-66
+1904|code|LSRS            R3, R3, #0x18|27-14
+1906|code|STRB            R2, [key,#0xE]|162-115
+1908|code|STRB            R3, [key,#0xF]|227-115
+1910|code|POP             {key,R6,R7,PC}|208-189
+1912|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1916|code|MOV             R11, R3|155-70
+1918|code|LDR             R3, [node]|3-104
+1920|code|SUB             SP, SP, #0xB4|173-176
+1922|code|MOV             R4, node|4-70
+1924|code|MOVS            R1, #4; grub_type|4-33
+1926|code|MOV             R10, R2|146-70
+1928|code|LDR             R6, [SP,#0xD8+buf]|54-158
+1930|code|STR             R3, [SP,#0xD8+data]|13-147
+1932|code|MOVS            R2, #0; version|0-34
+1934|code|LDRH            R5, [data_0,#0x2C]|157-141
+1936|code|LDR             data_0, [node,#0x2C]|195-106
+1938|code|STR             R3, [SP,#0xD8+key]|22-147
+1940|code|LDR             R3, [node,#0x30]|3-107
+1942|code|ADD             node, SP, #0xD8+key; key|22-168
+1944|code|STR             R3, [SP,#0xD8+key.object_id]|23-147
+1946|code|MOVS            R3, #0|0-35
+1948|code|STRD.W          R2, R3, [SP,#0xD8+key.u]|205-233-24-35
+1952|code|BL              grub_reiserfs_set_key_type|255-247-132-253
+1956|code|LDR             R1, [SP,#0xD8+len]|55-153
+1958|code|LDRD.W          R2, R3, [node,#0x20]|212-233-8-35
+1962|code|ADDS.W          R0, R10, R1|26-235-1-0
+1966|code|STRD.W          R10, R11, [SP,#0xD8+var_D8]|205-233-0-171
+1970|code|ADC.W           R1, R11, #0|75-241-0-1
+1974|code|STRD.W          R0, R1, [SP,#0xD8+final_position]|205-233-8-1
+1978|code|CMP             R3, R1|139-66
+1980|code|LDR             node, =grub_real_dprintf|186-76
+1982|code|IT EQ|8-191
+1984|code|CMPEQ           R2, R0|130-66
+1986|code|IT CC|56-191
+1988|code|STRDCC.W        R2, R3, [SP,#0xD8+final_position]|205-233-8-35
+1992|code|LDRD.W          R2, R3, [SP,#0xD8+final_position]|221-233-8-35
+1996|code|MOV.W           R1, #0x428|79-244-133-97
+2000|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|182-72
+2002|code|STRD.W          R2, R3, [SP,#0xD8+var_D0]|205-233-2-35
+2006|code|SUBS.W          R2, R2, R10|178-235-10-2
+2010|code|SBC.W           R3, R3, R11|99-235-11-3
+2014|code|STRD.W          R2, R3, [SP,#0xD8+var_C8]|205-233-4-35
+2018|code|LDR             R3, [SP,#0xD8+len]|55-155
+2020|code|LDR             R2, =aReiserfs; "reiserfs"|178-74
+2022|code|STR             R3, [SP,#0xD8+var_C0]|6-147
+2024|code|LDR             R3, =aReadingFromLld; "Reading from %lld to %lld (%lld instead"...|178-75
+2026|code|BLX             R4; grub_real_dprintf|160-71
+2028|code|ADDS.W          R2, R10, #1; value|26-241-1-2
+2032|code|ADC.W           R3, R11, #0; value|75-241-0-3
+2036|code|ADD             R0, SP, #0xD8+key; key|22-168
+2038|code|BL              grub_reiserfs_set_key_offset|255-247-137-255
+2042|code|LDR             R0, [SP,#0xD8+data]; data|13-152
+2044|code|ADD             R1, SP, #0xD8+key; key|22-169
+2046|code|ADD             R2, SP, #0xD8+found; item|26-170
+2048|code|MOVS            R3, #0; exact|0-35
+2050|code|BL              grub_reiserfs_get_item|255-247-38-254
+2054|code|CMP             R0, #0|0-40
+2056|code|BNE.W           loc_B08|64-240-126-129
+2060|code|LDR             R4, [SP,#0xD8+found.block_number]|27-156
+2062|code|CBNZ            R4, loc_81E|52-185
+2064|code|LDR             R1, =aOffsetLldNotFo; "offset %lld not found"|169-73
+2066|code|MOV             R2, R10|82-70
+2068|code|MOV             R3, R11|91-70
+2070|code|LDR             block_size, =grub_error|169-77
+2072|code|MOVS            R0, #0xE|14-32
+2074|code|BLX             R5; grub_error|168-71
+2076|code|B               fail|119-225
+2078|code|ADD             R0, SP, #0xD8+found.header; key|37-168
+2080|code|BL              grub_reiserfs_get_key_offset|255-247-141-253
+2084|code|ADDS.W          R8, R0, #0xFFFFFFFF|16-241-255-56
+2088|code|MOV             R2, R0; value|2-70
+2090|code|MOV             R3, R1; value|11-70
+2092|code|ADC.W           R9, R1, #0xFFFFFFFF|65-241-255-57
+2096|code|MOV             R0, block_size|40-70
+2098|code|LSRS            R1, block_size, #9|105-10
+2100|code|STR             R1, [SP,#0xD8+var_88]|20-145
+2102|code|MOVS            R1, #0|0-33
+2104|code|STRD.W          R0, R1, [SP,#0xD8+var_98]|205-233-16-1
+2108|code|LDRD.W          R0, R1, [SP,#0xD8+final_position]|221-233-8-1
+2112|code|CMP             R9, R1|137-69
+2114|code|IT EQ|8-191
+2116|code|CMPEQ           R8, R0|128-69
+2118|code|BCS.W           loc_AE4|128-240-77-129
+2122|code|ADD             R0, SP, #0xD8+key; key|22-168
+2124|code|BL              grub_reiserfs_set_key_offset|255-247-94-255
+2128|code|LDR             R0, [SP,#0xD8+data]; data|13-152
+2130|code|ADD             R1, SP, #0xD8+key; key|22-169
+2132|code|ADD             R2, SP, #0xD8+found; item|26-170
+2134|code|MOVS            R3, #1; exact|1-35
+2136|code|BL              grub_reiserfs_get_item|255-247-251-253
+2140|code|MOV             R7, R0|7-70
+2142|code|CMP             R0, #0|0-40
+2144|code|BNE.W           loc_B08|64-240-82-129
+2148|code|LDR             R3, [SP,#0xD8+found.block_number]|27-155
+2150|code|CMP             R3, #0|0-43
+2152|code|BEQ.W           loc_B08|0-240-78-129
+2156|code|LDR             R2, [SP,#0xD8+found.type]|36-154
+2158|code|LDRH.W          R5, [SP,#0xD8+found.header.item_size]|189-248-166-80
+2162|code|CMP             R2, #2|2-42
+2164|code|BEQ             loc_87C|2-208
+2166|code|CMP             R2, #3|3-42
+2168|code|BEQ             loc_960|114-208
+2170|code|B               loc_B0C|71-225
+2172|code|LDR             R2, [SP,#0xD8+var_88]|20-154
+2174|code|MOVW            R1, #0x446|64-242-70-65
+2178|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|138-72
+2180|code|LDR             R4, =grub_real_dprintf|136-76
+2182|code|MUL.W           R7, R3, R2|3-251-2-247
+2186|code|LDR             R2, =aReiserfsBlockt; "reiserfs_blocktype"|141-74
+2188|code|LDR             R3, =aDU; "D: %u\n"|141-75
+2190|code|STR             R7, [SP,#0xD8+var_D8]|0-151
+2192|code|BLX             R4; grub_real_dprintf|160-71
+2194|code|ADDS.W          R0, R8, item_size|24-235-5-0
+2198|code|MOV.W           R3, #0|79-240-0-3
+2202|code|ADC.W           R1, R9, R3|73-235-3-1
+2206|code|CMP             R11, R1|139-69
+2208|code|MOV             R2, item_size|42-70
+2210|code|IT EQ|8-191
+2212|code|CMPEQ           R10, R0|130-69
+2214|code|BCS.W           loc_A9A|128-240-248-128
+2218|code|RSB.W           R1, R8, R10|200-235-10-1
+2222|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|127-72
+2224|code|LDR.W           R12, =grub_real_dprintf|223-248-244-193
+2228|code|BIC.W           _a, _a, _a,ASR#31|33-234-225-113
+2232|code|STR             R7, [SP,#0xD8+var_D8]|0-151
+2234|code|STR             R1, [SP,#0xD8+var_D4]|1-145
+2236|code|MOV             R4, R1|12-70
+2238|code|ASRS            R5, R1, #0x1F|205-23
+2240|code|STRD.W          R4, R5, [SP,#0xD8+offset]|205-233-14-69
+2244|code|LDRD.W          R4, R5, [SP,#0xD8+final_position]|221-233-8-69
+2248|code|SUBS.W          R4, R4, R8|180-235-8-4
+2252|code|SBC.W           R5, R5, R9|101-235-9-5
+2256|code|CMP             R3, R5|171-66
+2258|code|IT EQ|8-191
+2260|code|CMPEQ           _a, R4|162-66
+2262|code|ITT CC|60-191
+2264|code|MOVCC           R5, R3|29-70
+2266|code|MOVCC           R4, _a|20-70
+2268|code|LDRD.W          _a, R3, [SP,#0xD8+offset]|221-233-14-35
+2272|code|SUBS            R2, R4, R2|162-26
+2274|code|SBC.W           R3, R5, R3|101-235-3-3
+2278|code|STRD.W          R2, R3, [SP,#0xD8+length]|205-233-10-35
+2282|code|LDR             R3, [SP,#0xD8+length]|10-155
+2284|code|LDR             R2, =aReiserfs; "reiserfs"|112-74
+2286|code|ADD             R1, R3|25-68
+2288|code|LDR             R3, =aReadingDirectB; "Reading direct block %u from %u to %u.."...|117-75
+2290|code|STR             R1, [SP,#0xD8+var_D0]|2-145
+2292|code|MOVW            R1, #0x44F|64-242-79-65
+2296|code|BLX             R12; grub_real_dprintf|224-71
+2298|code|LDR             R3, [SP,#0xD8+found]|26-155
+2300|code|LDRD.W          R0, R1, [SP,#0xD8+offset]|221-233-14-1
+2304|code|MOV.W           R12, #0|79-240-0-12
+2308|code|LDRH.W          R2, [SP,#0xD8+found.header.item_location]|189-248-168-32
+2312|code|LDR.W           LR, [R3,#0x74]|211-248-116-224
+2316|code|LDR             R3, [SP,#0xD8+read_hook]|56-155
+2318|code|ADDS            R0, R0, R2|128-24
+2320|code|STR.W           R12, [SP,#0xD8+offset]|205-248-56-192
+2324|code|MOV             R2, R0|2-70
+2326|code|MOV             R0, LR|112-70
+2328|code|STR.W           R3, [LR,#0x20]|206-248-32-48
+2332|code|LDR             R3, [SP,#0xD8+read_hook_data]|57-155
+2334|code|STR.W           R3, [LR,#0x24]|206-248-36-48
+2338|code|MOV.W           R3, #0|79-240-0-3
+2342|code|ADCS            R1, R3|89-65
+2344|code|STR             buf_0, [SP,#0xD8+var_CC]|3-150
+2346|code|MOV             R3, R1|11-70
+2348|code|STRD.W          R2, R3, [SP,#0xD8+var_D8]|205-233-0-35
+2352|code|LDR             R3, [SP,#0xD8+length]|10-155
+2354|code|MOV             R2, R7|58-70
+2356|code|LDR             R1, =grub_disk_read|101-73
+2358|code|STR             R3, [SP,#0xD8+var_D0]|2-147
+2360|code|MOV             R3, R12|99-70
+2362|code|BLX             R1; grub_disk_read|136-71
+2364|code|LDR             R3, [SP,#0xD8+found]|26-155
+2366|code|LDR.W           R12, [SP,#0xD8+offset]|221-248-56-192
+2370|code|LDR             R3, [R3,#0x74]|91-111
+2372|code|STR.W           R12, [R3,#0x20]|195-248-32-192
+2376|code|LDR             R3, =grub_errno|97-75
+2378|code|LDR             R3, [R3]|27-104
+2380|code|CMP             R3, #0|0-43
+2382|code|BNE.W           loc_B08|64-240-219-128
+2386|code|LDR             R3, [SP,#0xD8+length]|10-155
+2388|code|ADDS.W          R0, R4, R8|20-235-8-0
+2392|code|ADC.W           R1, R5, R9|69-235-9-1
+2396|code|ADD             buf_0, R3|30-68
+2398|code|B               loc_A9A|156-224
+2400|code|LSRS            R3, item_size, #2|171-8
+2402|code|MOV             R0, item_size|40-70
+2404|code|STR             R3, [SP,#0xD8+indirect_block_count]|21-147
+2406|code|LDR             indirect_block_count_0, =grub_malloc|91-75
+2408|code|BLX             R3; grub_malloc|152-71
+2410|code|MOV             R4, indirect_block_ptr|4-70
+2412|code|CMP             indirect_block_ptr, #0|0-40
+2414|code|BEQ.W           loc_B08|0-240-203-128
+2418|code|LDRH.W          R2, [SP,#0xD8+found.header.item_location]|189-248-168-32
+2422|code|MOVS            R3, #0|0-35
+2424|code|STR             item_size, [SP,#0xD8+var_D0]|2-149
+2426|code|STR             indirect_block_ptr, [SP,#0xD8+var_CC]|3-144
+2428|code|STRD.W          R2, R3, [SP,#0xD8+var_D8]|205-233-0-35
+2432|code|LDR             R3, [SP,#0xD8+found]|26-155
+2434|code|LDR             R2, [SP,#0xD8+found.block_number]|27-154
+2436|code|LDR             R1, =grub_disk_read|81-73
+2438|code|LDR             indirect_block_ptr, [R3,#0x74]|88-111
+2440|code|LDR             R3, [SP,#0xD8+var_88]|20-155
+2442|code|MULS            R2, R3|90-67
+2444|code|MOV             R3, R7|59-70
+2446|code|BLX             R1; grub_disk_read|136-71
+2448|code|LDR             R3, =grub_errno|79-75
+2450|code|LDR             item_size, [R3]|29-104
+2452|code|CMP             R5, #0|0-45
+2454|code|BNE.W           fail|64-240-186-128
+2458|code|LDR             R3, [SP,#0xD8+found]|26-155
+2460|code|LDR             R2, [SP,#0xD8+read_hook]|56-154
+2462|code|LDR             R3, [R3,#0x74]|91-111
+2464|code|STR             R2, [R3,#0x20]|26-98
+2466|code|LDR             R2, [SP,#0xD8+read_hook_data]|57-154
+2468|code|STR             R2, [R3,#0x24]|90-98
+2470|code|LDR             R3, [SP,#0xD8+indirect_block_count]|21-155
+2472|code|CMP             indirect_block, R3|157-66
+2474|code|BCC             loc_9C0|9-211
+2476|code|LDR             R3, [SP,#0xD8+found]|26-155
+2478|code|MOVS            R2, #0|0-34
+2480|code|MOV             R0, indirect_block_ptr|32-70
+2482|code|LDR             R3, [R3,#0x74]|91-111
+2484|code|STR             R2, [R3,#0x20]|26-98
+2486|code|LDR             R3, =grub_free|72-75
+2488|code|BLX             R3; grub_free|152-71
+2490|code|MOV             R0, R8|64-70
+2492|code|MOV             R1, R9|73-70
+2494|code|B               loc_A9A|108-224
+2496|code|LDRD.W          R2, R3, [SP,#0xD8+final_position]|221-233-8-35
+2500|code|CMP             R9, R3|153-69
+2502|code|IT EQ|8-191
+2504|code|CMPEQ           R8, R2|144-69
+2506|code|BCS             loc_9AC|239-210
+2508|code|LDR.W           R7, [indirect_block_ptr,indirect_block,LSL#2]|84-248-37-112
+2512|code|MOVW            R1, #0x474|64-242-116-65
+2516|code|LDR             R3, [SP,#0xD8+var_88]|20-155
+2518|code|LDR             R2, =aReiserfsBlockt; "reiserfs_blocktype"|58-74
+2520|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|52-72
+2522|code|MULS            R7, R3|95-67
+2524|code|LDR.W           R12, =grub_real_dprintf|223-248-200-192
+2528|code|LDR             R3, =aIU; "I: %u\n"|62-75
+2530|code|STR             R7, [SP,#0xD8+var_D8]|0-151
+2532|code|BLX             R12; grub_real_dprintf|224-71
+2534|code|LDRD.W          R2, R3, [SP,#0xD8+var_98]|221-233-16-35
+2538|code|ADDS.W          R2, R2, R8|18-235-8-2
+2542|code|ADC.W           R3, R3, R9|67-235-9-3
+2546|code|CMP             R3, R11|91-69
+2548|code|IT EQ|8-191
+2550|code|CMPEQ           R2, R10|82-69
+2552|code|BCC             loc_A92|75-211
+2554|code|RSB.W           LR, R8, R10|200-235-10-14
+2558|code|LDR.W           R12, =grub_real_dprintf|223-248-168-192
+2562|code|BIC.W           LR, LR, LR,ASR#31|46-234-238-126
+2566|code|STMEA.W         SP, {R7,LR}|141-232-128-64
+2570|code|MOV             R0, LR|112-70
+2572|code|ASRS            R1, R0, #0x1F|193-23
+2574|code|STRD.W          R0, R1, [SP,#0xD8+offset_0]|205-233-18-1
+2578|code|LDRD.W          R0, R1, [SP,#0xD8+final_position]|221-233-8-1
+2582|code|SUBS.W          R0, R0, R8|176-235-8-0
+2586|code|SBC.W           R1, R1, R9|97-235-9-1
+2590|code|STRD.W          R0, R1, [SP,#0xD8+length]|205-233-10-1
+2594|code|LDRD.W          R2, R3, [SP,#0xD8+length]|221-233-10-35
+2598|code|LDRD.W          R0, R1, [SP,#0xD8+var_98]|221-233-16-1
+2602|code|CMP             R1, R3|153-66
+2604|code|IT EQ|8-191
+2606|code|CMPEQ           R0, R2|144-66
+2608|code|ITTT CC|62-191
+2610|code|MOVCC           R2, R0|2-70
+2612|code|MOVCC           R3, R1|11-70
+2614|code|STRDCC.W        R2, R3, [SP,#0xD8+length]|205-233-10-35
+2618|code|LDRD.W          R2, R3, [SP,#0xD8+offset_0]|221-233-18-35
+2622|code|LDRD.W          R0, R1, [SP,#0xD8+length]|221-233-10-1
+2626|code|SUBS            R0, R0, R2|128-26
+2628|code|SBC.W           R1, R1, R3|97-235-3-1
+2632|code|STRD.W          R0, R1, [SP,#0xD8+offset]|205-233-14-1
+2636|code|LDR             R2, [SP,#0xD8+offset]|14-154
+2638|code|MOVW            R1, #0x47E|64-242-126-65
+2642|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|22-72
+2644|code|ADD.W           R3, LR, R2|14-235-2-3
+2648|code|LDR             R2, =aReiserfs; "reiserfs"|21-74
+2650|code|STR             R3, [SP,#0xD8+var_D0]|2-147
+2652|code|LDR             R3, =aReadingIndirec; "Reading indirect block %u from %u to %u"...|32-75
+2654|code|BLX             R12; grub_real_dprintf|224-71
+2656|code|LDRD.W          R2, R3, [SP,#0xD8+offset_0]|221-233-18-35
+2660|code|STR             buf_0, [SP,#0xD8+var_CC]|3-150
+2662|code|LDR             R1, =grub_disk_read|25-73
+2664|code|STRD.W          R2, R3, [SP,#0xD8+var_D8]|205-233-0-35
+2668|code|MOV             R2, R7|58-70
+2670|code|LDR             R3, [SP,#0xD8+offset]|14-155
+2672|code|STR             R3, [SP,#0xD8+var_D0]|2-147
+2674|code|LDR             R3, [SP,#0xD8+found]|26-155
+2676|code|LDR             R0, [R3,#0x74]|88-111
+2678|code|MOVS            R3, #0|0-35
+2680|code|BLX             R1; grub_disk_read|136-71
+2682|code|LDR             R3, =grub_errno|21-75
+2684|code|LDR             R3, [R3]|27-104
+2686|code|CMP             R3, #0|0-43
+2688|code|BNE             fail|69-209
+2690|code|LDR             R3, [SP,#0xD8+offset]|14-155
+2692|code|ADD             buf_0, R3|30-68
+2694|code|LDRD.W          R2, R3, [SP,#0xD8+length]|221-233-10-35
+2698|code|ADDS.W          R2, R2, R8|18-235-8-2
+2702|code|ADC.W           R3, R3, R9|67-235-9-3
+2706|code|ADDS            indirect_block, #1|1-53
+2708|code|MOV             R8, R2|144-70
+2710|code|MOV             R9, R3|153-70
+2712|code|B               loc_9A6|133-231
+2714|code|ADDS            R2, R0, #1|66-28
+2716|code|MOV             R8, R0|128-70
+2718|code|ADC.W           R3, R1, #0|65-241-0-3
+2722|code|MOV             R9, R1|137-70
+2724|code|B               loc_83C|202-230
+2726|data|ALIGN 4|0-191
+2728|data|DCD grub_real_dprintf|244-19-0-0
+2732|data|DCD aFsReiserfsC; "fs/reiserfs.c"|85-17-0-0
+2736|data|DCD aReiserfs; "reiserfs"|224-17-0-0
+2740|data|DCD aReadingFromLld; "Reading from %lld to %lld (%lld instead"...|233-17-0-0
+2744|data|DCD aOffsetLldNotFo; "offset %lld not found"|36-18-0-0
+2748|data|DCD grub_error|248-19-0-0
+2752|data|DCD aReiserfsBlockt; "reiserfs_blocktype"|58-18-0-0
+2756|data|DCD aDU; "D: %u\n"|77-18-0-0
+2760|data|DCD aReadingDirectB; "Reading direct block %u from %u to %u.."...|84-18-0-0
+2764|data|DCD grub_disk_read|212-19-0-0
+2768|data|DCD grub_errno|220-19-0-0
+2772|data|DCD grub_malloc|240-19-0-0
+2776|data|DCD grub_free|0-20-0-0
+2780|data|DCD aIU; "I: %u\n"|126-18-0-0
+2784|data|DCD aReadingIndirec; "Reading indirect block %u from %u to %u"...|133-18-0-0
+2788|code|SUBS.W          R2, R8, R10|184-235-10-2
+2792|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|13-72
+2794|code|SBC.W           R3, R9, R11|105-235-11-3
+2798|code|STRD.W          R2, R3, [SP,#0xD8+var_D8]|205-233-0-35
+2802|code|LDR             R3, [SP,#0xD8+len]|55-155
+2804|code|MOVW            R1, #0x49C|64-242-156-65
+2808|code|LDR             R2, =aReiserfs; "reiserfs"|10-74
+2810|code|LDR             R4, =grub_real_dprintf|11-76
+2812|code|STR             R3, [SP,#0xD8+var_D0]|2-147
+2814|code|LDR             R3, =aHaveSuccessful; "Have successfully read %lld bytes (%ld "...|11-75
+2816|code|BLX             R4; grub_real_dprintf|160-71
+2818|code|RSB.W           R0, R10, R8|202-235-8-0
+2822|code|B               loc_B18|7-224
+2824|code|MOVS            R4, #0|0-36
+2826|code|B               fail|0-224
+2828|code|MOV             R4, R0|4-70
+2830|code|MOV             R0, indirect_block_ptr|32-70
+2832|code|LDR             R3, =grub_free|7-75
+2834|code|BLX             R3; grub_free|152-71
+2836|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+2840|code|ADD             SP, SP, #0xB4|45-176
+2842|code|POP.W           {R4-R11,PC}|189-232-240-143
+2846|data|ALIGN 0x10|0-191
+2848|data|DCD aFsReiserfsC; "fs/reiserfs.c"|85-17-0-0
+2852|data|DCD aReiserfs; "reiserfs"|224-17-0-0
+2856|data|DCD grub_real_dprintf|244-19-0-0
+2860|data|DCD aHaveSuccessful; "Have successfully read %lld bytes (%ld "...|177-18-0-0
+2864|data|DCD grub_free|0-20-0-0
+2868|code|PUSH            {R4,R5,LR}|48-181
+2870|code|SUB             SP, SP, #0x14; buf|133-176
+2872|code|LDRD.W          R4, R5, [file,#0x10]|208-233-4-69
+2876|code|STMEA.W         SP, {buf,len_0}|141-232-6-0
+2880|code|LDR             R3, [file,#0x48]|131-108
+2882|code|MOV             len_0, R4; off|34-70
+2884|code|STR             R3, [SP,#0x20+read_hook]; read_hook|2-147
+2886|code|LDR             R3, [file,#0x4C]|195-108
+2888|code|STR             R3, [SP,#0x20+read_hook_data]; read_hook_data|3-147
+2890|code|MOV             R3, R5; off|43-70
+2892|code|LDR             file, [file,#0x44]; node|64-108
+2894|code|BL              grub_reiserfs_read_real|255-247-19-254
+2898|code|ADD             SP, SP, #0x14|5-176
+2900|code|POP             {R4,R5,PC}|48-189
+2902|code|PUSH            {R4-R7,LR}|240-181
+2904|code|MOV             R6, node|6-70
+2906|code|LDR             R7, [node,#0x20]|7-106
+2908|code|SUB             SP, SP, #0x14; buf|133-176
+2910|code|LDR             R3, =grub_malloc|13-75
+2912|code|MOVS            R5, #0|0-37
+2914|code|ADDS            node, len, #1|120-28
+2916|code|BLX             R3; grub_malloc|152-71
+2918|code|MOV             R4, symlink_buffer|4-70
+2920|code|CBZ             symlink_buffer, loc_B8C|128-177
+2922|code|STMEA.W         SP, {R4,len}|141-232-144-0
+2926|code|MOV             symlink_buffer, node; node|48-70
+2928|code|STR             R5, [SP,#0x28+read_hook]; read_hook|2-149
+2930|code|MOVS            R2, #0; off|0-34
+2932|code|STR             R5, [SP,#0x28+read_hook_data]; read_hook_data|3-149
+2934|code|MOVS            R3, #0; off|0-35
+2936|code|BL              grub_reiserfs_read_real|255-247-254-253
+2940|code|CMP             ret, #0|0-40
+2942|code|BGE             loc_B8A|4-218
+2944|code|MOV             ret, symlink_buffer|32-70
+2946|code|LDR             R3, =grub_free|5-75
+2948|code|BLX             R3; grub_free|152-71
+2950|code|MOV             R0, R5|40-70
+2952|code|B               loc_B8E|1-224
+2954|code|STRB            R5, [symlink_buffer,ret]|37-84
+2956|code|MOV             R0, symlink_buffer|32-70
+2958|code|ADD             SP, SP, #0x14|5-176
+2960|code|POP             {symlink_buffer-len,PC}|240-189
+2962|data|ALIGN 4|0-191
+2964|data|DCD grub_malloc|240-19-0-0
+2968|data|DCD grub_free|0-20-0-0
+2972|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2976|code|SUB             SP, SP, #0x7C|159-176
+2978|code|LDR             R5, =my_mod|56-77
+2980|code|MOV             R4, file|4-70
+2982|code|MOVS            R3, #0|0-35
+2984|code|STR             R3, [SP,#0xA0+found]|7-147
+2986|code|LDR             R3, =grub_dl_ref|55-75
+2988|code|MOV             R11, name|139-70
+2990|code|LDR             file, [R5]|40-104
+2992|code|ADD.W           R10, SP, #0xA0+root|13-241-48-10
+2996|code|BLX             R3; grub_dl_ref|152-71
+2998|code|LDR             R3, [file,#4]|99-104
+3000|code|LDR             R6, =grub_errno|52-78
+3002|code|LDR             R0, [R3]; disk|24-104
+3004|code|BL              grub_reiserfs_mount|255-247-114-250
+3008|code|STR             R5, [SP,#0xA0+var_8C]|5-149
+3010|code|MOV             R7, data|7-70
+3012|code|CMP             data, #0|0-40
+3014|code|BEQ             fail|68-208
+3016|code|MOVS            R5, #1|1-37
+3018|code|ADD             data, SP, #0xA0+key; key|8-168
+3020|code|MOV             R1, R5; grub_type|41-70
+3022|code|MOVS            R3, #2|2-35
+3024|code|STR             R5, [SP,#0xA0+key]|8-149
+3026|code|MOV.W           R8, #0|79-240-0-8
+3030|code|STR             R3, [SP,#0xA0+key.object_id]|9-147
+3032|code|MOV.W           R9, #0|79-240-0-9
+3036|code|STRD.W          R8, R9, [SP,#0xA0+key.u]|205-233-10-137
+3040|code|BL              grub_reiserfs_set_key_type|255-247-100-251
+3044|code|ADD             R0, SP, #0xA0+key; key|8-168
+3046|code|MOVS            R2, #1; value|1-34
+3048|code|MOVS            R3, #0; value|0-35
+3050|code|BL              grub_reiserfs_set_key_offset|255-247-143-253
+3054|code|MOV             R0, data; data|56-70
+3056|code|ADD             R1, SP, #0xA0+key; key|8-169
+3058|code|MOV             R2, R10; item|82-70
+3060|code|MOV             R3, R5; exact|43-70
+3062|code|BL              grub_reiserfs_get_item|255-247-44-252
+3066|code|CMP             R0, #0|0-40
+3068|code|BNE             fail|41-209
+3070|code|LDR             R3, [SP,#0xA0+root.block_number]|13-155
+3072|code|CBNZ            R3, loc_C0C|35-185
+3074|code|LDR             R1, =aUnableToFindRo; "unable to find root item"|35-73
+3076|code|MOVS            R0, #9|9-32
+3078|code|LDR             R3, =grub_error|35-75
+3080|code|BLX             R3; grub_error|152-71
+3082|code|B               fail|34-224
+3084|code|LDR             R3, =(grub_reiserfs_read_symlink+1)|34-75
+3086|code|MOV             R0, name|88-70
+3088|code|MOV             R1, R10|81-70
+3090|code|ADD             R2, SP, #0xA0+found|7-170
+3092|code|LDR.W           R12, =grub_fshelp_find_file|223-248-160-192
+3096|code|STMEA.W         SP, {R3,R5}|141-232-40-0
+3100|code|LDR             R3, =(grub_reiserfs_iterate_dir+1)|31-75
+3102|code|BLX             R12; grub_fshelp_find_file|224-71
+3104|code|LDR.W           name, [R6]|214-248-0-176
+3108|code|CMP.W           R11, #0|187-241-0-15
+3112|code|BNE             fail|19-209
+3114|code|LDR             R2, [SP,#0xA0+found]|7-154
+3116|code|MOVW            R1, #0x3FD|64-242-253-49
+3120|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|27-72
+3122|code|LDR             R5, =grub_real_dprintf|28-77
+3124|code|LDR             R3, [R2,#0x20]|19-106
+3126|code|LDR             R2, [R2,#0x24]|82-106
+3128|code|STR             R3, [file,#0x38]|163-99
+3130|code|STR             R2, [file,#0x3C]|226-99
+3132|code|STR             R3, [SP,#0xA0+var_A0]|0-147
+3134|code|STR             R2, [SP,#0xA0+var_9C]|1-146
+3136|code|STR             R3, [SP,#0xA0+var_98]|2-147
+3138|code|LDR             R2, =aReiserfs; "reiserfs"|25-74
+3140|code|LDR             R3, =aFileSizeD08x08; "file size : %d (%08x%08x)\n"|25-75
+3142|code|BLX             R5; grub_real_dprintf|168-71
+3144|code|LDR             R3, [SP,#0xA0+found]|7-155
+3146|code|STRD.W          R8, R9, [file,#0x10]|196-233-4-137
+3150|code|STR             R3, [file,#0x44]|99-100
+3152|code|B               loc_C7C|20-224
+3154|code|LDR             R0, [R6]|48-104
+3156|code|MOVW            R1, #(loc_402+1); file|64-242-3-65
+3160|code|LDR             file, =grub_free|21-76
+3162|code|ADDS            R0, #0|0-48
+3164|code|IT NE|24-191
+3166|code|MOVNE           R0, #1; boolean|1-32
+3168|code|BL              real_assert|255-247-22-251
+3172|code|LDR             R0, [SP,#0xA0+found]|7-152
+3174|code|CMP             R0, R10|80-69
+3176|code|BEQ             loc_C6C|0-208
+3178|code|BLX             R4; grub_free|160-71
+3180|code|MOV             R0, data|56-70
+3182|code|BLX             R4; grub_free|160-71
+3184|code|LDR             R3, [SP,#0xA0+var_8C]|5-155
+3186|code|LDR             R0, [R3]|24-104
+3188|code|LDR             R3, =grub_dl_unref|15-75
+3190|code|BLX             R3; grub_dl_unref|152-71
+3192|code|LDR.W           R11, [R6]|214-248-0-176
+3196|code|MOV             R0, R11|88-70
+3198|code|ADD             SP, SP, #0x7C ; '|'|31-176
+3200|code|POP.W           {R4-R11,PC}|189-232-240-143
+3204|data|DCD my_mod|196-19-0-0
+3208|data|DCD grub_dl_ref|216-19-0-0
+3212|data|DCD grub_errno|220-19-0-0
+3216|data|DCD aUnableToFindRo; "unable to find root item"|228-18-0-0
+3220|data|DCD grub_error|248-19-0-0
+3224|data|DCD grub_reiserfs_read_symlink+1|87-11-0-0
+3228|data|DCD grub_reiserfs_iterate_dir+1|189-12-0-0
+3232|data|DCD aFsReiserfsC; "fs/reiserfs.c"|85-17-0-0
+3236|data|DCD grub_real_dprintf|244-19-0-0
+3240|data|DCD aReiserfs; "reiserfs"|224-17-0-0
+3244|data|DCD aFileSizeD08x08; "file size : %d (%08x%08x)\n"|253-18-0-0
+3248|data|DCD grub_free|0-20-0-0
+3252|data|DCD grub_dl_unref|8-20-0-0
+3256|data|DCD grub_fshelp_find_file|200-19-0-0
+3260|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+3264|code|SUB             SP, SP, #0x8C|163-176
+3266|code|MOV             R5, item|5-70
+3268|code|LDR.W           R9, [item]|208-248-0-144
+3272|code|STR             hook_data_0, [SP,#0xB0+hook_data]|10-146
+3274|code|LDRD.W          hook_data_0, R3, [item,#0x10]|208-233-4-35
+3278|code|STR             hook_0, [SP,#0xB0+hook]|9-145
+3280|code|STRD.W          R2, R3, [SP,#0xB0+next_offset]|205-233-4-35
+3284|code|LDR             R3, [item,#0x28]|131-106
+3286|code|CMP             R3, #1|1-43
+3288|code|BEQ             loc_CE6|5-208
+3290|code|MOVS            item, #4|4-32
+3292|code|LDR             hook_0, =aNotADirectory; "not a directory"|172-73
+3294|code|LDR             R3, =grub_error|173-75
+3296|code|MOVS            R7, #0|0-39
+3298|code|BLX             R3; grub_error|152-71
+3300|code|B               fail|68-225
+3302|code|LDRH.W          R10, [data,#0x2C]|185-248-44-160
+3306|code|LDR             R3, =grub_malloc|171-75
+3308|code|ADD.W           item, block_size, #1|10-241-1-0
+3312|code|BLX             R3; grub_malloc|152-71
+3314|code|MOV             R7, block_header|7-70
+3316|code|CMP             block_header, #0|0-40
+3318|code|BEQ.W           fail|0-240-59-129
+3322|code|LDR             R3, =aIteratingDirec; "Iterating directory...\n"|168-75
+3324|code|MOVW            R1, #0x2E5|64-242-229-33
+3328|code|LDR             block_header, =aFsReiserfsC; "fs/reiserfs.c"|167-72
+3330|code|LDR             R2, =aReiserfs; "reiserfs"|168-74
+3332|code|LDR             R6, =grub_real_dprintf|168-78
+3334|code|LDR             R4, [item,#4]|108-104
+3336|code|LDRH            item, [item,#8]|45-137
+3338|code|BLX             R6; grub_real_dprintf|176-71
+3340|code|MOV.W           R3, block_size,LSR#9|79-234-90-35
+3344|code|STR             R3, [SP,#0xB0+var_98]|6-147
+3346|code|UMULL.W         R2, R3, block_number, block_size|164-251-10-35
+3350|code|MOVW            R0, #0x1FF|64-242-255-16
+3354|code|MOVS            R1, #0|0-33
+3356|code|STR.W           block_size, [SP,#0xB0+var_A8]|205-248-8-160
+3360|code|ANDS            R0, R2|16-64
+3362|code|ANDS            R1, R3|25-64
+3364|code|STR             block_header, [SP,#0xB0+var_A4]|3-151
+3366|code|MOV             R2, R0|2-70
+3368|code|MOV             R3, R1|11-70
+3370|code|STRD.W          R2, R3, [SP,#0xB0+var_B0]|205-233-0-35
+3374|code|LDR             R3, [SP,#0xB0+var_98]|6-155
+3376|code|LDR.W           R0, [data,#0x74]|217-248-116-0
+3380|code|LDR             R1, =grub_disk_read|157-73
+3382|code|MUL.W           R2, R3, block_number|3-251-4-242
+3386|code|MOVS            R3, #0|0-35
+3388|code|BLX             R1; grub_disk_read|136-71
+3390|code|LDR             R3, =grub_errno|156-75
+3392|code|LDR             R3, [R3]|27-104
+3394|code|CMP             R3, #0|0-43
+3396|code|BNE.W           fail|64-240-20-129
+3400|code|MOVS            R6, #0x18|24-38
+3402|code|STRB.W          R3, [block_header,block_size]|7-248-10-48
+3406|code|MLA.W           R6, R6, block_position, block_header|6-251-5-118
+3410|code|ADDS            R6, #0x18|24-54
+3412|code|LDRB.W          R8, [R6,#0x15]|150-248-21-128
+3416|code|LDRB            R3, [R6,#0x14]|51-125
+3418|code|LDRB            R2, [R6,#0x11]|114-124
+3420|code|ORR.W           R8, R3, R8,LSL#8|67-234-8-40
+3424|code|LDRB            R3, [R6,#0x10]|51-124
+3426|code|ADD             R8, block_header|184-68
+3428|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+3432|code|MOV             block_position, directory_headers|69-70
+3434|code|ADD.W           R3, directory_headers, R3,LSL#4|8-235-3-19
+3438|code|STR             R3, [SP,#0xB0+var_90]|8-147
+3440|code|LDR             R3, [SP,#0xB0+var_90]|8-155
+3442|code|CMP             R5, R3|157-66
+3444|code|BEQ.W           loc_F1C|0-240-210-128
+3448|code|LDRB            R3, [directory_header,#0xE]|171-123
+3450|code|LSLS            R3, R3, #0x1D|91-7
+3452|code|BPL.W           loc_F18|64-241-204-128
+3456|code|LDRB            R2, [directory_header,#0xD]|106-123
+3458|code|MOVS            R1, #1; grub_type|1-33
+3460|code|LDRB            R3, [directory_header,#0xC]|43-123
+3462|code|ADD             R0, SP, #0xB0+entry_key; key|12-168
+3464|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+3468|code|STR             R3, [SP,#0xB0+var_94]|7-147
+3470|code|LDRB            R2, [directory_header,#5]|106-121
+3472|code|ADD.W           R11, directory_headers, R3|8-235-3-11
+3476|code|LDRB            R3, [directory_header,#4]|43-121
+3478|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+3482|code|LDRB            R2, [directory_header,#6]|170-121
+3484|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+3488|code|LDRB            R2, [directory_header,#7]|234-121
+3490|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+3494|code|STR             R3, [SP,#0xB0+entry_key]|12-147
+3496|code|LDRB            R2, [directory_header,#9]|106-122
+3498|code|LDRB            R3, [directory_header,#8]|43-122
+3500|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+3504|code|LDRB            R2, [directory_header,#0xA]|170-122
+3506|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+3510|code|LDRB            R2, [directory_header,#0xB]|234-122
+3512|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+3516|code|MOVS            R2, #0; version|0-34
+3518|code|STR             R3, [SP,#0xB0+entry_key.object_id]|13-147
+3520|code|MOVS            R3, #0|0-35
+3522|code|STRD.W          R2, R3, [SP,#0xB0+entry_key.u]|205-233-14-35
+3526|code|BL              grub_reiserfs_set_key_type|255-247-113-250
+3530|code|ADD             R0, SP, #0xB0+entry_key; key|12-168
+3532|code|MOVS            R2, #1; value|1-34
+3534|code|MOVS            R3, #0; value|0-35
+3536|code|BL              grub_reiserfs_set_key_offset|255-247-156-252
+3540|code|MOVS            R0, #0x48 ; 'H'|72-32
+3542|code|LDR             R3, =grub_malloc|112-75
+3544|code|BLX             R3; grub_malloc|152-71
+3546|code|MOV             R4, entry_item|4-70
+3548|code|CMP             entry_item, #0|0-40
+3550|code|BEQ.W           fail|0-240-199-128
+3554|code|MOV             entry_item, data; data|72-70
+3556|code|ADD             R1, SP, #0xB0+entry_key; key|12-169
+3558|code|MOV             R2, entry_item; item|34-70
+3560|code|MOVS            R3, #1; exact|1-35
+3562|code|BL              grub_reiserfs_get_item|255-247-50-251
+3566|code|CBNZ            R0, loc_E1A|160-185
+3568|code|LDR             R3, [entry_item,#0x28]|163-106
+3570|code|STR             R0, [SP,#0xB0+entry_type]|11-144
+3572|code|CMP             R3, #1|1-43
+3574|code|BEQ             loc_EE0|115-208
+3576|code|MOVS            R2, #0; value|0-34
+3578|code|MOVS            R3, #0; value|0-35
+3580|code|ADD             R0, SP, #0xB0+entry_key; key|12-168
+3582|code|BL              grub_reiserfs_set_key_offset|255-247-133-252
+3586|code|ADD             R0, SP, #0xB0+entry_key; key|12-168
+3588|code|LDR             R1, [SP,#0xB0+entry_type]; grub_type|11-153
+3590|code|BL              grub_reiserfs_set_key_type|255-247-81-250
+3594|code|MOVS            R3, #1; exact|1-35
+3596|code|MOV             R0, data; data|72-70
+3598|code|ADD             R1, SP, #0xB0+entry_key; key|12-169
+3600|code|MOV             R2, entry_item; item|34-70
+3602|code|BL              grub_reiserfs_get_item|255-247-30-251
+3606|code|MOV             R3, R0|3-70
+3608|code|CBZ             R0, loc_E22|24-177
+3610|code|MOV             R0, entry_item|32-70
+3612|code|LDR             R3, =grub_free|101-75
+3614|code|BLX             R3; grub_free|152-71
+3616|code|B               fail|166-224
+3618|code|LDR             R2, [entry_item,#4]|98-104
+3620|code|CMP             R2, #0|0-42
+3622|code|BEQ             loc_EBA|72-208
+3624|code|LDR             R1, [SP,#0xB0+var_98]|6-153
+3626|code|LDRH.W          R0, [entry_item,#0x40]|180-248-64-0
+3630|code|LDRH.W          LR, [entry_item,#0x42]|180-248-66-224
+3634|code|MULS            entry_block_number, R1|74-67
+3636|code|MOVS            R1, #0|0-33
+3638|code|STRD.W          R0, R1, [SP,#0xB0+var_B0]|205-233-0-1
+3642|code|CMP.W           LR, #0|190-241-0-15
+3646|code|BNE             loc_E7E|30-209
+3648|code|MOVS            R3, #0x20 ; ' '|32-35
+3650|code|LDR             R1, =grub_disk_read|90-73
+3652|code|STR             R3, [SP,#0xB0+var_A8]|2-147
+3654|code|ADD             R3, SP, #0xB0+entry_v2_stat|16-171
+3656|code|STR             R3, [SP,#0xB0+var_A4]|3-147
+3658|code|MOV             R3, LR|115-70
+3660|code|LDR.W           R0, [data,#0x74]|217-248-116-0
+3664|code|BLX             R1; grub_disk_read|136-71
+3666|code|LDR             R3, =grub_errno|87-75
+3668|code|LDR             R2, [R3]|26-104
+3670|code|CMP             R2, #0|0-42
+3672|code|BNE.W           fail|64-240-138-128
+3676|code|LDR             R3, [SP,#0xB0+entry_v2_stat.uid]|20-155
+3678|code|STR             R3, [entry_item,#0x18]|163-97
+3680|code|LDRH.W          R3, [SP,#0xB0+entry_v2_stat]|189-248-64-48
+3684|code|AND.W           R3, R3, #0xA000|3-244-32-67
+3688|code|CMP.W           R3, #0xA000|179-245-32-79
+3692|code|LDR             R3, [SP,#0xB0+entry_v2_stat.size]|18-155
+3694|code|STR             R2, [entry_item,#0x24]|98-98
+3696|code|ITE EQ|12-191
+3698|code|MOVEQ.W         R12, #3|79-240-3-12
+3702|code|MOVNE.W         R12, #1|79-240-1-12
+3706|code|STR             R3, [entry_item,#0x20]|35-98
+3708|code|B               loc_EE4|50-224
+3710|code|MOVS            R1, #0x2C ; ','|44-33
+3712|code|STR             R1, [SP,#0xB0+var_A8]|2-145
+3714|code|ADD             R1, SP, #0xB0+entry_v2_stat|16-169
+3716|code|STR             R1, [SP,#0xB0+var_A4]|3-145
+3718|code|LDR             R1, =grub_disk_read|73-73
+3720|code|LDR.W           R0, [data,#0x74]|217-248-116-0
+3724|code|BLX             R1; grub_disk_read|136-71
+3726|code|LDR             R3, =grub_errno|72-75
+3728|code|LDR             R3, [R3]|27-104
+3730|code|CMP             R3, #0|0-43
+3732|code|BNE             fail|108-209
+3734|code|LDR             R3, [SP,#0xB0+entry_v2_stat.mtime]|23-155
+3736|code|STR             R3, [entry_item,#0x18]|163-97
+3738|code|LDRD.W          R2, R3, [SP,#0xB0+entry_v2_stat.size]|221-233-18-35
+3742|code|STRD.W          R2, R3, [entry_item,#0x20]|196-233-8-35
+3746|code|LDRH.W          R3, [SP,#0xB0+entry_v2_stat]|189-248-64-48
+3750|code|AND.W           R3, R3, #0xA000|3-244-32-67
+3754|code|CMP.W           R3, #0xA000|179-245-32-79
+3758|code|ITE EQ|12-191
+3760|code|MOVEQ.W         R12, #3|79-240-3-12
+3764|code|MOVNE.W         R12, #1|79-240-1-12
+3768|code|B               loc_EE4|20-224
+3770|code|MOV             R0, entry_name|88-70
+3772|code|LDR             R1, =asc_1340; ".."|62-73
+3774|code|LDR             R3, =grub_strcmp|63-75
+3776|code|BLX             R3; grub_strcmp|152-71
+3778|code|CBZ             R0, loc_ED8|72-177
+3780|code|STR.W           entry_name, [SP,#0xB0+var_B0]|205-248-0-176
+3784|code|MOVW            R1, #0x3AD|64-242-173-49
+3788|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|52-72
+3790|code|LDR             R2, =aReiserfs; "reiserfs"|53-74
+3792|code|LDR             R3, =aWarningSHasNoS; "Warning : %s has no stat block !\n"|59-75
+3794|code|LDR.W           R12, =grub_real_dprintf|223-248-212-192
+3798|code|BLX             R12; grub_real_dprintf|224-71
+3800|code|MOV             R0, entry_item|32-70
+3802|code|LDR             R3, =grub_free|54-75
+3804|code|BLX             R3; grub_free|152-71
+3806|code|B               next|23-224
+3808|code|MOV.W           R12, #2|79-240-2-12
+3812|code|MOV             R1, entry_type_0|97-70
+3814|code|STR.W           entry_type_0, [SP,#0xB0+entry_type]|205-248-44-192
+3818|code|MOV             R2, entry_item|34-70
+3820|code|MOV             R0, entry_name|88-70
+3822|code|LDR             R3, [SP,#0xB0+hook_data]|10-155
+3824|code|LDR             entry_item, [SP,#0xB0+hook]|9-156
+3826|code|BLX             R4|160-71
+3828|code|LDR.W           R12, [SP,#0xB0+entry_type]|221-248-44-192
+3832|code|CBZ             R0, next|80-177
+3834|code|LDR             R4, =grub_real_dprintf|43-76
+3836|code|MOVW            R1, #0x3B5|64-242-181-49
+3840|code|STMEA.W         SP, {entry_name,R12}|141-232-0-24
+3844|code|LDR             R0, =aFsReiserfsC; "fs/reiserfs.c"|38-72
+3846|code|LDR             R2, =aReiserfs; "reiserfs"|39-74
+3848|code|LDR             R3, =aFoundSTypeD; "Found : %s, type=%d\n"|46-75
+3850|code|BLX             R4; grub_real_dprintf|160-71
+3852|code|MOVS            R4, #1|1-36
+3854|code|B               found|33-224
+3856|code|LDR             R2, [SP,#0xB0+var_94]|7-154
+3858|code|MOVS            R3, #0|0-35
+3860|code|STRB.W          R3, [directory_headers,R2]|8-248-2-48
+3864|code|ADDS            directory_header, #0x10|16-53
+3866|code|B               loc_D70|41-231
+3868|code|LDRD.W          R2, R3, [SP,#0xB0+next_offset]; line|221-233-4-35
+3872|code|ORRS            R3, R2|19-67
+3874|code|BEQ             loc_F52|22-208
+3876|code|LDRD.W          R2, R3, [SP,#0xB0+next_offset]; value|221-233-4-35
+3880|code|MOV             R0, R6; key|48-70
+3882|code|BL              grub_reiserfs_set_key_offset|255-247-239-251
+3886|code|MOV             R0, data; data|72-70
+3888|code|MOV             R1, R6; key|49-70
+3890|code|ADD             R2, SP, #0xB0+entry_v2_stat; item|16-170
+3892|code|MOVS            R3, #1; exact|1-35
+3894|code|BL              grub_reiserfs_get_item|255-247-140-250
+3898|code|CBNZ            R0, fail|200-185
+3900|code|LDRD.W          R2, R3, [SP,#0xB0+entry_v2_stat.uid]|221-233-20-35
+3904|code|LDR             R4, [SP,#0xB0+entry_v2_stat.hardlink_count]|17-156
+3906|code|LDRH.W          R5, [SP,#0xB0+entry_v2_stat.size]|189-248-72-80
+3910|code|STRD.W          R2, R3, [SP,#0xB0+next_offset]|205-233-4-35
+3914|code|CMP             block_number, #0|0-44
+3916|code|BNE.W           loc_D12|127-244-225-174
+3920|code|B               found|0-224
+3922|code|MOVS            R4, #0|0-36
+3924|code|LDR             R3, =grub_errno|22-75
+3926|code|MOVW            R1, #(loc_3CC+3); file|64-242-207-49
+3930|code|LDR             R0, [R3]|24-104
+3932|code|CLZ.W           R0, R0|176-250-128-240
+3936|code|LSRS            R0, R0, #5; boolean|64-9
+3938|code|BL              real_assert|255-247-149-249
+3942|code|MOV             R0, block_header|56-70
+3944|code|LDR             R3, =grub_free|18-75
+3946|code|BLX             R3; grub_free|152-71
+3948|code|MOV             R0, ret|32-70
+3950|code|B               loc_F8A|12-224
+3952|code|LDR             R3, =grub_errno|15-75
+3954|code|MOVW            R1, #(loc_3D2+1); file|64-242-211-49
+3958|code|LDR             R0, [R3]|24-104
+3960|code|ADDS            R0, #0|0-48
+3962|code|IT NE|24-191
+3964|code|MOVNE           R0, #1; boolean|1-32
+3966|code|BL              real_assert|255-247-135-249
+3970|code|MOV             R0, block_header|56-70
+3972|code|LDR             R3, =grub_free|11-75
+3974|code|BLX             R3; grub_free|152-71
+3976|code|MOVS            R0, #0|0-32
+3978|code|ADD             SP, SP, #0x8C|35-176
+3980|code|POP.W           {R4-R11,PC}|189-232-240-143
+3984|data|DCD aNotADirectory; "not a directory"|24-19-0-0
+3988|data|DCD grub_error|248-19-0-0
+3992|data|DCD grub_malloc|240-19-0-0
+3996|data|DCD aIteratingDirec; "Iterating directory...\n"|40-19-0-0
+4000|data|DCD aFsReiserfsC; "fs/reiserfs.c"|85-17-0-0
+4004|data|DCD aReiserfs; "reiserfs"|224-17-0-0
+4008|data|DCD grub_real_dprintf|244-19-0-0
+4012|data|DCD grub_disk_read|212-19-0-0
+4016|data|DCD grub_errno|220-19-0-0
+4020|data|DCD grub_free|0-20-0-0
+4024|data|DCD asc_1340; ".."|64-19-0-0
+4028|data|DCD grub_strcmp|236-19-0-0
+4032|data|DCD aWarningSHasNoS; "Warning : %s has no stat block !\n"|67-19-0-0
+4036|data|DCD aFoundSTypeD; "Found : %s, type=%d\n"|101-19-0-0
+4040|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4044|code|SUB             SP, SP, #0x7C|159-176
+4046|code|LDR             R6, =my_mod|44-78
+4048|code|MOV             R4, device|4-70
+4050|code|STR             hook_data_0, [SP,#0xA0+hook_data]|7-147
+4052|code|MOV             R11, path|139-70
+4054|code|LDR             hook_data_0, =grub_dl_ref|43-75
+4056|code|LDR             device, [R6]|48-104
+4058|code|MOV             R10, R6|178-70
+4060|code|STR             hook, [SP,#0xA0+var_88]|6-146
+4062|code|BLX             R3; grub_dl_ref|152-71
+4064|code|LDR             R0, [device]; disk|32-104
+4066|code|BL              grub_reiserfs_mount|255-247-95-248
+4070|code|LDR             R7, =grub_errno|40-79
+4072|code|LDR.W           R9, =grub_free|223-248-184-144
+4076|code|LDR.W           R8, =grub_dl_unref|223-248-184-128
+4080|code|MOV             device, data|4-70
+4082|code|CMP             data, #0|0-40
+4084|code|BEQ             fail|57-208
+4086|code|MOVS            R5, #1|1-37
+4088|code|ADD             data, SP, #0xA0+root_key; key|8-168
+4090|code|MOV             R1, R5; grub_type|41-70
+4092|code|MOV.W           R12, #2|79-240-2-12
+4096|code|MOVS            R2, #0; version|0-34
+4098|code|STR.W           R12, [SP,#0xA0+root_key.object_id]|205-248-36-192
+4102|code|STR.W           R12, [SP,#0xA0+var_94]|205-248-12-192
+4106|code|MOVS            R3, #0|0-35
+4108|code|STR             R5, [SP,#0xA0+root_key]|8-149
+4110|code|STRD.W          R2, R3, [SP,#0xA0+root_key.u]|205-233-10-35
+4114|code|BL              grub_reiserfs_set_key_type|255-247-75-249
+4118|code|ADD             R0, SP, #0xA0+root_key; key|8-168
+4120|code|MOVS            R2, #1; value|1-34
+4122|code|MOVS            R3, #0; value|0-35
+4124|code|BL              grub_reiserfs_set_key_offset|255-247-118-251
+4128|code|MOV             R0, data; data|32-70
+4130|code|ADD             R1, SP, #0xA0+root_key; key|8-169
+4132|code|ADD             R2, SP, #0xA0+root; item|12-170
+4134|code|MOV             R3, R5; exact|43-70
+4136|code|BL              grub_reiserfs_get_item|255-247-19-250
+4140|code|LDR.W           R12, [SP,#0xA0+var_94]|221-248-12-192
+4144|code|CBNZ            R0, fail|216-185
+4146|code|LDR             R3, [SP,#0xA0+root.block_number]|13-155
+4148|code|CBNZ            R3, loc_1040|35-185
+4150|code|LDR             R1, =aRootNotFound; "root not found"|21-73
+4152|code|MOVS            R0, #9|9-32
+4154|code|LDR             R3, =grub_error|21-75
+4156|code|BLX             R3; grub_error|152-71
+4158|code|B               fail|20-224
+4160|code|LDR             R3, =(grub_reiserfs_read_symlink+1)|20-75
+4162|code|MOV             R0, path|88-70
+4164|code|LDR             R5, =grub_fshelp_find_file|20-77
+4166|code|ADD             R1, SP, #0xA0+root|12-169
+4168|code|ADD             R2, SP, #0xA0+found|5-170
+4170|code|STMEA.W         SP, {R3,R12}|141-232-8-16
+4174|code|LDR             R3, =(grub_reiserfs_iterate_dir+1)|19-75
+4176|code|BLX             R5; grub_fshelp_find_file|168-71
+4178|code|LDR             R5, [R7]|61-104
+4180|code|CBNZ            R5, fail|77-185
+4182|code|LDR             R1, =(grub_reiserfs_dir_iter+1); hook|18-73
+4184|code|ADD             R2, SP, #0xA0+var_88; hook_data|6-170
+4186|code|LDR             R0, [SP,#0xA0+found]; item|5-152
+4188|code|BL              grub_reiserfs_iterate_dir|255-247-46-254
+4192|code|MOV             R0, data|32-70
+4194|code|BLX             R9; grub_free|200-71
+4196|code|LDR             R0, [R6]|48-104
+4198|code|BLX             R8; grub_dl_unref|192-71
+4200|code|B               loc_1076|5-224
+4202|code|MOV             R0, data|32-70
+4204|code|BLX             R9; grub_free|200-71
+4206|code|LDR.W           R0, [R10]|218-248-0-0
+4210|code|BLX             R8; grub_dl_unref|192-71
+4212|code|LDR             R5, [R7]|61-104
+4214|code|MOV             R0, R5|40-70
+4216|code|ADD             SP, SP, #0x7C ; '|'|31-176
+4218|code|POP.W           {data-path,PC}|189-232-240-143
+4222|data|ALIGN 0x10|0-191
+4224|data|DCD my_mod|196-19-0-0
+4228|data|DCD grub_dl_ref|216-19-0-0
+4232|data|DCD grub_errno|220-19-0-0
+4236|data|DCD aRootNotFound; "root not found"|122-19-0-0
+4240|data|DCD grub_error|248-19-0-0
+4244|data|DCD grub_reiserfs_read_symlink+1|87-11-0-0
+4248|data|DCD grub_fshelp_find_file|200-19-0-0
+4252|data|DCD grub_reiserfs_iterate_dir+1|189-12-0-0
+4256|data|DCD grub_reiserfs_dir_iter+1|65-2-0-0
+4260|data|DCD grub_free|0-20-0-0
+4264|data|DCD grub_dl_unref|8-20-0-0
+4268|code|PUSH            {R4,LR}|16-181
+4270|code|MOV             R4, mod|4-70
+4272|code|LDR             R3, =grub_list_push|3-75
+4274|code|LDR             mod, =grub_fs_list|4-72
+4276|code|LDR             R1, =grub_reiserfs_fs|4-73
+4278|code|BLX             R3; grub_list_push|152-71
+4280|code|LDR             R3, =my_mod|4-75
+4282|code|STR             mod, [R3]|28-96
+4284|code|POP             {mod,PC}|16-189
+4286|data|ALIGN 0x10|0-191
+4288|data|DCD grub_list_push|12-20-0-0
+4292|data|DCD grub_fs_list|232-19-0-0
+4296|data|DCD grub_reiserfs_fs|140-19-0-0
+4300|data|DCD my_mod|196-19-0-0
+4304|code|PUSH            {R3,LR}|8-181
+4306|code|LDR             R0, =grub_reiserfs_fs|2-72
+4308|code|LDR             R3, =grub_list_remove|2-75
+4310|code|BLX             R3; grub_list_remove|152-71
+4312|code|POP             {R3,PC}|8-189
+4314|data|ALIGN 4|0-191
+4316|data|DCD grub_reiserfs_fs|140-19-0-0
+4320|data|DCD grub_list_remove|252-19-0-0
+4340|data|DCB "ReIsEr",0|82-101-73-115-69-114-0
+4347|data|DCB "not a ReiserFS filesystem",0|110-111-116-32-97-32-82-101-105-115-101-114-70-83-32-102-105-108-101-115-121-115-116-101-109-0
+4373|data|DCB "%04x%04x-%04x-%04x-%04x-%04x%04x%04x",0|37-48-52-120-37-48-52-120-45-37-48-52-120-45-37-48-52-120-45-37-48-52-120-45-37-48-52-120-37-48-52-120-37-48-52-120-0
+4410|data|DCB "Assertion failed at %s:%d",0xA,0|65-115-115-101-114-116-105-111-110-32-102-97-105-108-101-100-32-97-116-32-37-115-58-37-100-10-0
+4437|data|DCB "fs/reiserfs.c",0|102-115-47-114-101-105-115-101-114-102-115-46-99-0
+4451|data|DCB "reiserfs_tree",0|114-101-105-115-101-114-102-115-95-116-114-101-101-0
+4465|data|DCB " at level %d",0xA,0|32-97-116-32-108-101-118-101-108-32-37-100-10-0
+4479|data|DCB "level loop detected, aborting",0xA,0|108-101-118-101-108-32-108-111-111-112-32-100-101-116-101-99-116-101-100-44-32-97-98-111-114-116-105-110-103-10-0
+4510|data|DCB "level loop",0|108-101-118-101-108-32-108-111-111-112-0
+4521|data|DCB " number of contained items : %d",0xA,0|32-110-117-109-98-101-114-32-111-102-32-99-111-110-116-97-105-110-101-100-32-105-116-101-109-115-32-58-32-37-100-10-0
+4554|data|DCB "unexpected btree node",0|117-110-101-120-112-101-99-116-101-100-32-98-116-114-101-101-32-110-111-100-101-0
+4576|data|DCB "reiserfs",0|114-101-105-115-101-114-102-115-0
+4585|data|DCB "Reading from %lld to %lld (%lld instead of requested %ld)",0xA,0|82-101-97-100-105-110-103-32-102-114-111-109-32-37-108-108-100-32-116-111-32-37-108-108-100-32-40-37-108-108-100-32-105-110-115-116-101-97-100-32-111-102-32-114-101-113-117-101-115-116-101-100-32-37-108-100-41-10-0
+4644|data|DCB "offset %lld not found",0|111-102-102-115-101-116-32-37-108-108-100-32-110-111-116-32-102-111-117-110-100-0
+4666|data|DCB "reiserfs_blocktype",0|114-101-105-115-101-114-102-115-95-98-108-111-99-107-116-121-112-101-0
+4685|data|DCB "D: %u",0xA,0|68-58-32-37-117-10-0
+4692|data|DCB "Reading direct block %u from %u to %u...",0xA,0|82-101-97-100-105-110-103-32-100-105-114-101-99-116-32-98-108-111-99-107-32-37-117-32-102-114-111-109-32-37-117-32-116-111-32-37-117-46-46-46-10-0
+4734|data|DCB "I: %u",0xA,0|73-58-32-37-117-10-0
+4741|data|DCB "Reading indirect block %u from %u to %u...",0xA,0|82-101-97-100-105-110-103-32-105-110-100-105-114-101-99-116-32-98-108-111-99-107-32-37-117-32-102-114-111-109-32-37-117-32-116-111-32-37-117-46-46-46-10-0
+4785|data|DCB "Have successfully read %lld bytes (%ld requested)",0xA,0|72-97-118-101-32-115-117-99-99-101-115-115-102-117-108-108-121-32-114-101-97-100-32-37-108-108-100-32-98-121-116-101-115-32-40-37-108-100-32-114-101-113-117-101-115-116-101-100-41-10-0
+4836|data|DCB "unable to find root item",0|117-110-97-98-108-101-32-116-111-32-102-105-110-100-32-114-111-111-116-32-105-116-101-109-0
+4861|data|DCB "file size : %d (%08x%08x)",0xA,0|102-105-108-101-32-115-105-122-101-32-58-32-37-100-32-40-37-48-56-120-37-48-56-120-41-10-0
+4888|data|DCB "not a directory",0|110-111-116-32-97-32-100-105-114-101-99-116-111-114-121-0
+4904|data|DCB "Iterating directory...",0xA,0|73-116-101-114-97-116-105-110-103-32-100-105-114-101-99-116-111-114-121-46-46-46-10-0
+4928|data|DCB "..",0|46-46-0
+4931|data|DCB "Warning : %s has no stat block !",0xA,0|87-97-114-110-105-110-103-32-58-32-37-115-32-104-97-115-32-110-111-32-115-116-97-116-32-98-108-111-99-107-32-33-10-0
+4965|data|DCB "Found : %s, type=%d",0xA,0|70-111-117-110-100-32-58-32-37-115-44-32-116-121-112-101-61-37-100-10-0
+4986|data|DCB "root not found",0|114-111-111-116-32-110-111-116-32-102-111-117-110-100-0
+5004|data|grub_fs <0, 0, aReiserfs, grub_reiserfs_dir+1, grub_reiserfs_open+1, \; "reiserfs"|0-0-0-0-0-0-0-0-224-17-0-0-201-15-0-0-157-11-0-0-53-11-0-0-125-0-0-0-241-1-0-0-41-1-0-0-0-0-0-0
+5044|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

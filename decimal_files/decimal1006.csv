@@ -1,0 +1,211 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|SUB             SP, SP, #0x1C|135-176
+6|code|LDR             R7, [ctxt,#4]|71-104
+8|code|MOVS            ctxt, #0|0-32
+10|code|LDR             R3, =grub_video_get_info|42-75
+12|code|MOV             R9, argc|137-70
+14|code|MOV             R8, args|144-70
+16|code|BLX             R3; grub_video_get_info|152-71
+18|code|LDR             R5, =grub_errno|41-77
+20|code|MOV             R6, R0|6-70
+22|code|CBZ             R0, loc_1C|8-177
+24|code|LDR             R0, [R5]|40-104
+26|code|B               loc_AC|71-224
+28|code|LDR             R4, =grub_gfxterm_background_0|39-76
+30|code|LDR             R0, [R4]|32-104
+32|code|CBZ             R0, loc_2E|40-177
+34|code|LDR             R3, =grub_video_bitmap_destroy|39-75
+36|code|BLX             R3; grub_video_bitmap_destroy|152-71
+38|code|LDR             R3, =grub_gfxterm_schedule_repaint|39-75
+40|code|STR             R6, [R4]|38-96
+42|code|STR             R6, [R4,#4]|102-96
+44|code|BLX             R3; grub_gfxterm_schedule_repaint|152-71
+46|code|CMP.W           argc, #0|185-241-0-15
+50|code|BLE             loc_9C|51-221
+52|code|LDR             R0, =grub_gfxterm_background_0|33-72
+54|code|LDR.W           R1, [args]|216-248-0-16
+58|code|LDR             R3, =grub_video_bitmap_load|35-75
+60|code|BLX             R3; grub_video_bitmap_load|152-71
+62|code|LDR             R0, [R5]|40-104
+64|code|CMP             R0, #0|0-40
+66|code|BNE             loc_AC|51-209
+68|code|LDR             R3, [state]|59-104
+70|code|CBNZ            R3, loc_58|59-185
+72|code|ADD             R1, SP, #0x38+height|4-169
+74|code|LDR             R3, =grub_gfxterm_get_dimensions|32-75
+76|code|ADD             R0, SP, #0x38+width|3-168
+78|code|BLX             R3; grub_gfxterm_get_dimensions|152-71
+80|code|LDR             R3, [R4]|35-104
+82|code|LDR             R1, [SP,#0x38+width]|3-153
+84|code|CBNZ            R3, loc_66|59-185
+86|code|B               loc_A2|36-224
+88|code|LDR             R0, [state,#4]|120-104
+90|code|LDR             R1, =aStretch; "stretch"|29-73
+92|code|LDR             R3, =grub_strcmp|29-75
+94|code|BLX             R3; grub_strcmp|152-71
+96|code|CMP             R0, #0|0-40
+98|code|BEQ             loc_48|241-208
+100|code|B               loc_8E|19-224
+102|code|LDR             R2, [R3]|26-104
+104|code|CMP             R1, R2|145-66
+106|code|BNE             loc_74|3-209
+108|code|LDR             R0, [SP,#0x38+height]|4-152
+110|code|LDR             R2, [R3,#4]|90-104
+112|code|CMP             R0, R2|144-66
+114|code|BEQ             loc_8E|12-208
+116|code|MOVS            R2, #1|1-34
+118|code|ADD             R0, SP, #0x38+scaled_bitmap|5-168
+120|code|STR             R2, [SP,#0x38+var_38]|0-146
+122|code|LDR             R6, =grub_video_bitmap_create_scaled|23-78
+124|code|LDR             R2, [SP,#0x38+height]|4-154
+126|code|BLX             R6; grub_video_bitmap_create_scaled|176-71
+128|code|LDR             R3, [R5]|43-104
+130|code|CBNZ            R3, loc_8E|35-185
+132|code|LDR             R3, =grub_video_bitmap_destroy|14-75
+134|code|LDR             R0, [R4]|32-104
+136|code|BLX             R3; grub_video_bitmap_destroy|152-71
+138|code|LDR             R3, [SP,#0x38+scaled_bitmap]|5-155
+140|code|STR             R3, [R4]|35-96
+142|code|LDR             R3, [R4]|35-104
+144|code|CBZ             R3, loc_9C|35-177
+146|code|LDR             R3, =grub_gfxterm_background_0|10-75
+148|code|MOVS            R2, #1|1-34
+150|code|STR             R2, [R3,#4]|90-96
+152|code|LDR             R3, =grub_gfxterm_schedule_repaint|10-75
+154|code|BLX             R3; grub_gfxterm_schedule_repaint|152-71
+156|code|MOVS            R0, #0|0-32
+158|code|STR             R0, [R5]|40-96
+160|code|B               loc_AC|4-224
+162|code|CMP             R1, #0|0-41
+164|code|BNE             loc_74|230-209
+166|code|LDR             R0, [SP,#0x38+height]|4-152
+168|code|MOV             R2, R1|10-70
+170|code|B               loc_70|225-231
+172|code|ADD             SP, SP, #0x1C|7-176
+174|code|POP.W           {R4-argc,PC}|189-232-240-131
+178|data|ALIGN 4|0-191
+180|data|DCD grub_video_get_info|56-3-0-0
+184|data|DCD grub_errno|28-3-0-0
+188|data|DCD grub_gfxterm_background_0|4-3-0-0
+192|data|DCD grub_video_bitmap_destroy|20-3-0-0
+196|data|DCD grub_gfxterm_schedule_repaint|48-3-0-0
+200|data|DCD grub_video_bitmap_load|12-3-0-0
+204|data|DCD grub_gfxterm_get_dimensions|24-3-0-0
+208|data|DCD aStretch; "stretch"|8-2-0-0
+212|data|DCD grub_strcmp|44-3-0-0
+216|data|DCD grub_video_bitmap_create_scaled|64-3-0-0
+220|code|CMP             argc, #1|1-41
+222|code|PUSH            {R4-R6,LR}|112-181
+224|code|MOV             R4, args|20-70
+226|code|BEQ             loc_F0|5-208
+228|code|MOVS            cmd, #0x12|18-32
+230|code|LDR             argc, =aOneArgumentExp; "one argument expected"|18-73
+232|code|LDR             R3, =grub_error|18-75
+234|code|BLX             R3; grub_error|152-71
+236|code|MOV             args, R0|4-70
+238|code|B               loc_12A|28-224
+240|code|MOVS            cmd, #0|0-32
+242|code|LDR             R3, =grub_video_get_info|17-75
+244|code|BLX             R3; grub_video_get_info|152-71
+246|code|CBNZ            R0, loc_106|48-185
+248|code|LDR             R5, =(grub_gfxterm_background_0+8)|16-77
+250|code|LDR             R0, [args]|32-104
+252|code|LDR             R3, =grub_video_parse_color|16-75
+254|code|MOV             R1, R5|41-70
+256|code|BLX             R3; grub_video_parse_color|152-71
+258|code|MOV             args, R0|4-70
+260|code|CBZ             R0, loc_10C|16-177
+262|code|LDR             R3, =grub_errno|15-75
+264|code|LDR             R4, [R3]|28-104
+266|code|B               loc_12A|14-224
+268|code|LDR.W           R0, [R5,#-8]|85-248-8-12
+272|code|LDR             R6, =grub_gfxterm_schedule_repaint|13-78
+274|code|CBZ             R0, loc_11E|32-177
+276|code|LDR             R3, =grub_video_bitmap_destroy|13-75
+278|code|BLX             R3; grub_video_bitmap_destroy|152-71
+280|code|STR.W           R4, [R5,#-8]|69-248-8-76
+284|code|BLX             R6; grub_gfxterm_schedule_repaint|176-71
+286|code|LDR             R3, =grub_gfxterm_video_update_color|12-75
+288|code|BLX             R3; grub_gfxterm_video_update_color|152-71
+290|code|LDR             R3, =grub_gfxterm_background_0|12-75
+292|code|MOVS            R2, #1|1-34
+294|code|STR             R2, [R3,#4]|90-96
+296|code|BLX             R6; grub_gfxterm_schedule_repaint|176-71
+298|code|MOV             R0, R4|32-70
+300|code|POP             {R4-R6,PC}|112-189
+302|data|ALIGN 0x10|0-191
+304|data|DCD aOneArgumentExp; "one argument expected"|16-2-0-0
+308|data|DCD grub_error|52-3-0-0
+312|data|DCD grub_video_get_info|56-3-0-0
+316|data|DCD grub_gfxterm_background_0+8|12-3-0-0
+320|data|DCD grub_video_parse_color|32-3-0-0
+324|data|DCD grub_errno|28-3-0-0
+328|data|DCD grub_gfxterm_schedule_repaint|48-3-0-0
+332|data|DCD grub_video_bitmap_destroy|20-3-0-0
+336|data|DCD grub_gfxterm_video_update_color|8-3-0-0
+340|data|DCD grub_gfxterm_background_0|4-3-0-0
+344|code|LDR             R3, =aLoadBackground; "Load background image for active termin"...|11-75
+346|code|PUSH            {mod-R2,R4,R5,LR}|55-181
+348|code|MOVS            R2, #0|0-34
+350|code|STR             R3, [SP,#0x18+var_18]|0-147
+352|code|LDR             R3, =background_image_cmd_options|10-75
+354|code|LDR             R1, =(grub_gfxterm_background_image_cmd+1)|11-73
+356|code|LDR             R4, =grub_register_extcmd|11-76
+358|code|STR             R3, [SP,#0x18+var_14]|1-147
+360|code|LDR             mod, =aBackgroundImag; "background_image"|11-72
+362|code|LDR             R3, =aMStretchNormal; "[-m (stretch|normal)] FILE"|12-75
+364|code|BLX             R4; grub_register_extcmd|160-71
+366|code|LDR             R4, =background_image_cmd_handle|12-76
+368|code|MOVS            R3, #0|0-35
+370|code|LDR             R1, =(grub_gfxterm_background_color_cmd+1)|12-73
+372|code|LDR             R2, =aColor; "COLOR"|12-74
+374|code|LDR             R5, =grub_register_command_prio|13-77
+376|code|STR             R0, [R4]|32-96
+378|code|STR             R3, [SP,#0x18+var_18]|0-147
+380|code|LDR             R0, =aBackgroundColo; "background_color"|12-72
+382|code|LDR             R3, =aSetBackgroundC; "Set background color for active termina"...|13-75
+384|code|BLX             R5; grub_register_command_prio|168-71
+386|code|STR             R0, [R4,#(background_color_cmd_handle - 0x2FC)]|96-96
+388|code|ADD             SP, SP, #0xC|3-176
+390|code|POP             {R4,R5,PC}|48-189
+392|data|DCD aLoadBackground; "Load background image for active termin"...|82-2-0-0
+396|data|DCD background_image_cmd_options|216-1-0-0
+400|data|DCD grub_gfxterm_background_image_cmd+1|1-0-0-0
+404|data|DCD grub_register_extcmd|60-3-0-0
+408|data|DCD aBackgroundImag; "background_image"|38-2-0-0
+412|data|DCD aMStretchNormal; "[-m (stretch|normal)] FILE"|55-2-0-0
+416|data|DCD background_image_cmd_handle|252-2-0-0
+420|data|DCD grub_gfxterm_background_color_cmd+1|221-0-0-0
+424|data|DCD aColor; "COLOR"|142-2-0-0
+428|data|DCD grub_register_command_prio|36-3-0-0
+432|data|DCD aBackgroundColo; "background_color"|125-2-0-0
+436|data|DCD aSetBackgroundC; "Set background color for active termina"...|148-2-0-0
+440|code|PUSH            {R4,LR}|16-181
+442|code|LDR             R4, =background_image_cmd_handle|4-76
+444|code|LDR             R3, =grub_unregister_command|4-75
+446|code|LDR             R0, [R4,#(background_color_cmd_handle - 0x2FC)]|96-104
+448|code|BLX             R3; grub_unregister_command|152-71
+450|code|LDR             R0, [R4]|32-104
+452|code|LDR             R3, =grub_unregister_extcmd|3-75
+454|code|BLX             R3; grub_unregister_extcmd|152-71
+456|code|POP             {R4,PC}|16-189
+458|data|ALIGN 4|0-191
+460|data|DCD background_image_cmd_handle|252-2-0-0
+464|data|DCD grub_unregister_command|40-3-0-0
+468|data|DCD grub_unregister_extcmd|16-3-0-0
+472|data|grub_arg_option <aMode, 0x6D, 0, aBackgroundImag_0, aStretchNormal, \; "mode" ...|190-2-0-0-109-0-0-0-0-0-0-0-195-2-0-0-218-2-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+520|data|DCB "stretch",0|115-116-114-101-116-99-104-0
+528|data|DCB "one argument expected",0|111-110-101-32-97-114-103-117-109-101-110-116-32-101-120-112-101-99-116-101-100-0
+550|data|DCB "background_image",0|98-97-99-107-103-114-111-117-110-100-95-105-109-97-103-101-0
+567|data|DCB "[-m (stretch|normal)] FILE",0|91-45-109-32-40-115-116-114-101-116-99-104-124-110-111-114-109-97-108-41-93-32-70-73-76-69-0
+594|data|DCB "Load background image for active terminal.",0|76-111-97-100-32-98-97-99-107-103-114-111-117-110-100-32-105-109-97-103-101-32-102-111-114-32-97-99-116-105-118-101-32-116-101-114-109-105-110-97-108-46-0
+637|data|DCB "background_color",0|98-97-99-107-103-114-111-117-110-100-95-99-111-108-111-114-0
+654|data|DCB "COLOR",0|67-79-76-79-82-0
+660|data|DCB "Set background color for active terminal.",0|83-101-116-32-98-97-99-107-103-114-111-117-110-100-32-99-111-108-111-114-32-102-111-114-32-97-99-116-105-118-101-32-116-101-114-109-105-110-97-108-46-0
+702|data|DCB "mode",0|109-111-100-101-0
+707|data|DCB "Background image mode.",0|66-97-99-107-103-114-111-117-110-100-32-105-109-97-103-101-32-109-111-100-101-46-0
+730|data|DCB "stretch|normal",0|115-116-114-101-116-99-104-124-110-111-114-109-97-108-0
+745|data||255
+746|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+764|data|% 4|255-255-255-255

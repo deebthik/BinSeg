@@ -1,0 +1,288 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|MOVS            disk, #0x18|24-32
+4|code|LDR             R1, =aLoopbackWriteI; "loopback write is not supported"|1-73
+6|code|LDR             R3, =grub_error|2-75
+8|code|BLX             R3; grub_error|152-71
+10|code|POP             {R3,PC}|8-189
+12|data|DCD aLoopbackWriteI; "loopback write is not supported"|208-2-0-0
+16|data|DCD grub_error|16-4-0-0
+20|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+24|code|MOV             R5, R3|29-70
+26|code|LDR             R3, [disk,#0x28]|131-106
+28|code|MOV             R4, R2|20-70
+30|code|LDR.W           R10, [SP,#0x20+size]|221-248-32-160
+34|code|LSLS            R2, R2, #9|82-2
+36|code|LDR.W           R9, [SP,#0x20+buf]|221-248-36-144
+40|code|LDR.W           R8, [R3,#4]|211-248-4-128
+44|code|LSLS            R3, R5, #9|107-2
+46|code|MOV.W           R6, R10,LSL#9|79-234-74-38
+50|code|ORR.W           R3, R3, R4,LSR#23|67-234-212-83
+54|code|LDR             R1, =grub_file_seek|17-73
+56|code|MOV             disk, file|64-70
+58|code|BLX             R1; grub_file_seek|136-71
+60|code|LDR             R3, =grub_file_read|16-75
+62|code|MOV             R0, file|64-70
+64|code|MOV             R1, R9|73-70
+66|code|MOV             R2, R6|50-70
+68|code|BLX             R3; grub_file_read|152-71
+70|code|LDR             R3, =grub_errno|15-75
+72|code|LDR             R7, [R3]|31-104
+74|code|CBNZ            R7, loc_74|159-185
+76|code|ADDS.W          R4, R4, R10|20-235-10-4
+80|code|LDRD.W          R0, R1, [file,#0x38]|216-233-14-1
+84|code|ADC.W           R5, R5, #0|69-241-0-5
+88|code|LSLS            R2, R4, #9|98-2
+90|code|LSLS            R3, R5, #9|107-2
+92|code|ORR.W           R3, R3, R4,LSR#23|67-234-212-83
+96|code|CMP             R1, R3|153-66
+98|code|IT EQ|8-191
+100|code|CMPEQ           R0, R2|144-66
+102|code|BCS             loc_74|5-210
+104|code|SUBS            R2, R2, R0|18-26
+106|code|MOV             R1, R7|57-70
+108|code|SUBS            R0, R6, amount|176-26
+110|code|LDR             R3, =grub_memset|6-75
+112|code|ADD             R0, R9|72-68
+114|code|BLX             R3; grub_memset|152-71
+116|code|MOV             R0, R7|56-70
+118|code|POP.W           {R4-R10,PC}|189-232-240-135
+122|data|ALIGN 4|0-191
+124|data|DCD grub_file_seek|240-3-0-0
+128|data|DCD grub_file_read|252-3-0-0
+132|data|DCD grub_errno|244-3-0-0
+136|data|DCD grub_memset|248-3-0-0
+140|code|PUSH            {R4-R6,LR}|112-181
+142|code|MOV             R5, hook|5-70
+144|code|MOV             R6, hook_data|14-70
+146|code|CBZ             pull, loc_98|10-177
+148|code|MOVS            R0, #0|0-32
+150|code|POP             {R4-hook_data,PC}|112-189
+152|code|LDR             R3, =loopback_list|5-75
+154|code|LDR             R4, [R3]|28-104
+156|code|CMP             d, #0|0-44
+158|code|BEQ             loc_94|249-208
+160|code|LDR             R0, [d]|32-104
+162|code|MOV             R1, hook_data|49-70
+164|code|BLX             hook|168-71
+166|code|CBNZ            R0, loc_AC|8-185
+168|code|LDR             d, [d,#8]|164-104
+170|code|B               loc_9C|247-231
+172|code|MOVS            R0, #1|1-32
+174|code|POP             {d-hook_data,PC}|112-189
+176|data|DCD loopback_list|216-3-0-0
+180|code|PUSH            {R3-R7,LR}|248-181
+182|code|MOV             R6, name|6-70
+184|code|LDR             R3, =loopback_list|23-75
+186|code|MOV             R5, disk|13-70
+188|code|LDR             R7, =grub_strcmp|23-79
+190|code|LDR             R4, [R3]|28-104
+192|code|CBZ             dev, loc_CE|44-177
+194|code|LDR             R0, [dev]|32-104
+196|code|MOV             R1, name|49-70
+198|code|BLX             R7; grub_strcmp|184-71
+200|code|CBZ             R0, loc_D8|48-177
+202|code|LDR             dev, [dev,#8]|164-104
+204|code|B               loc_C0|248-231
+206|code|LDR             R1, =aCanTOpenDevice; "can't open device"|20-73
+208|code|MOVS            R0, #0xC|12-32
+210|code|LDR             R3, =grub_error|20-75
+212|code|BLX             R3; grub_error|152-71
+214|code|POP             {R3-R7,PC}|248-189
+216|code|LDR             R3, [dev,#4]|99-104
+218|code|LDRD.W          R0, R1, [R3,#0x38]|211-233-14-1
+222|code|ADDS            R3, R1, #1|75-28
+224|code|IT EQ|8-191
+226|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+230|code|BEQ             loc_102|12-208
+232|code|MOVW            R2, #0x1FF|64-242-255-18
+236|code|ADDS            R2, R2, R0|18-24
+238|code|MOV.W           R3, #0|79-240-0-3
+242|code|ADCS            R3, R1|75-65
+244|code|LSRS            R2, R2, #9|82-10
+246|code|ORR.W           R2, R2, R3,LSL#23|66-234-195-82
+250|code|LSRS            R3, R3, #9|91-10
+252|code|STR             R2, [disk,#8]|170-96
+254|code|STR             R3, [disk,#0xC]|235-96
+256|code|B               loc_106|1-224
+258|code|STRD.W          R0, R1, [disk,#8]|197-233-2-1
+262|code|MOV.W           R3, #0x4000|79-244-128-67
+266|code|STR             R3, [disk,#0x14]|107-97
+268|code|LDR             R3, [dev,#0xC]|227-104
+270|code|MOVS            R0, #0|0-32
+272|code|STR             dev, [disk,#0x28]|172-98
+274|code|STR             R3, [disk,#0x18]|171-97
+276|code|POP             {R3-R7,PC}|248-189
+278|data|ALIGN 4|0-191
+280|data|DCD loopback_list|216-3-0-0
+284|data|DCD grub_strcmp|0-4-0-0
+288|data|DCD aCanTOpenDevice; "can't open device"|240-2-0-0
+292|data|DCD grub_error|16-4-0-0
+296|code|CMP             argc, #0|0-41
+298|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+302|code|MOV             R8, args|144-70
+304|code|LDR             R3, [ctxt,#4]|67-104
+306|code|BGT             loc_13A|2-220
+308|code|MOVS            ctxt, #0x12|18-32
+310|code|LDR             argc, =aDeviceNameRequ; "device name required"|51-73
+312|code|B               loc_196|45-224
+314|code|LDR             state, [state]|27-104
+316|code|CBZ             R3, loc_15C|115-177
+318|code|LDR             R6, =loopback_list|50-78
+320|code|LDR             R7, [args]|23-104
+322|code|LDR.W           R8, =grub_strcmp|223-248-236-128
+326|code|LDR             R5, [R6]|53-104
+328|code|CBZ             R5, loc_192|29-179
+330|code|LDR             R0, [R5]|40-104
+332|code|MOV             R1, R7|57-70
+334|code|BLX             R8; grub_strcmp|192-71
+336|code|MOV             R4, R0|4-70
+338|code|CBZ             R0, loc_19E|32-179
+340|code|ADD.W           R6, R5, #8|5-241-8-6
+344|code|LDR             R5, [R5,#8]|173-104
+346|code|B               loc_148|245-231
+348|code|CMP             argc, #1|1-41
+350|code|BNE             loc_166|2-209
+352|code|MOVS            ctxt, #0x12|18-32
+354|code|LDR             argc, =aFilenameExpect; "filename expected"|42-73
+356|code|B               loc_196|23-224
+358|code|LDR             ctxt, [args,#4]|80-104
+360|code|LDR             R3, =grub_file_open|41-75
+362|code|BLX             R3; grub_file_open|152-71
+364|code|MOV             R7, file|7-70
+366|code|CBNZ            file, loc_178|24-185
+368|code|LDR             R3, =grub_errno|40-75
+370|code|LDR             file, [R3]|24-104
+372|code|POP.W           {R3-R9,PC}|189-232-248-131
+376|code|LDR             R6, =loopback_list|35-78
+378|code|LDR.W           R9, =grub_strcmp|223-248-180-144
+382|code|LDR             R5, [R6]|53-104
+384|code|CBZ             newdev, loc_1C2|253-177
+386|code|LDR             R0, [newdev]|40-104
+388|code|LDR.W           R1, [args]|216-248-0-16
+392|code|BLX             R9; grub_strcmp|200-71
+394|code|MOV             ret, R0|4-70
+396|code|CBZ             R0, loc_1B4|144-177
+398|code|LDR             newdev, [newdev,#8]|173-104
+400|code|B               loc_180|246-231
+402|code|LDR             R1, =aDeviceNotFound; "device not found"|33-73
+404|code|MOVS            R0, #0xD|13-32
+406|code|LDR             R3, =grub_error|33-75
+408|code|BLX             R3; grub_error|152-71
+410|code|POP.W           {R3-R9,PC}|189-232-248-131
+414|code|LDR             R3, [R5,#8]|171-104
+416|code|STR             R3, [R6]|51-96
+418|code|LDR             R6, =grub_free|31-78
+420|code|LDR             R0, [R5]|40-104
+422|code|BLX             R6; grub_free|176-71
+424|code|LDR             R0, [R5,#4]|104-104
+426|code|LDR             R3, =grub_file_close|30-75
+428|code|BLX             R3; grub_file_close|152-71
+430|code|MOV             R0, R5|40-70
+432|code|BLX             R6; grub_free|176-71
+434|code|B               loc_1BC|3-224
+436|code|LDR             R0, [newdev,#4]|104-104
+438|code|LDR             R3, =grub_file_close|27-75
+440|code|BLX             R3; grub_file_close|152-71
+442|code|STR             file, [newdev,#4]|111-96
+444|code|MOV             R0, ret|32-70
+446|code|POP.W           {R3-R9,PC}|189-232-248-131
+450|code|MOVS            R0, #0x10|16-32
+452|code|LDR             R3, =grub_malloc|24-75
+454|code|BLX             R3; grub_malloc|152-71
+456|code|MOV             ret, newdev|4-70
+458|code|CBZ             newdev, loc_1F6|160-177
+460|code|LDR.W           newdev, [args]|216-248-0-0
+464|code|LDR             R3, =grub_strdup|22-75
+466|code|BLX             R3; grub_strdup|152-71
+468|code|STR             R0, [ret]|32-96
+470|code|CBNZ            R0, loc_1E0|24-185
+472|code|MOV             R0, ret|32-70
+474|code|LDR             R3, =grub_free|17-75
+476|code|BLX             R3; grub_free|152-71
+478|code|B               loc_1F6|10-224
+480|code|LDR             R3, [R6,#(last_id - 0x3D8)]|115-104
+482|code|MOV             R0, R5|40-70
+484|code|STR             file, [ret,#4]|103-96
+486|code|ADDS            R2, R3, #1|90-28
+488|code|STR             R2, [R6,#(last_id - 0x3D8)]|114-96
+490|code|STR             R3, [ret,#0xC]|227-96
+492|code|LDR             R3, [R6]|51-104
+494|code|STR             ret, [R6]|52-96
+496|code|STR             R3, [ret,#8]|163-96
+498|code|POP.W           {R3-R9,PC}|189-232-248-131
+502|code|LDR             R3, =grub_errno|7-75
+504|code|MOV             R0, file|56-70
+506|code|LDR             ret, [R3]|28-104
+508|code|LDR             R3, =grub_file_close|9-75
+510|code|BLX             R3; grub_file_close|152-71
+512|code|B               loc_1BC|220-231
+514|data|ALIGN 4|0-191
+516|data|DCD aDeviceNameRequ; "device name required"|2-3-0-0
+520|data|DCD loopback_list|216-3-0-0
+524|data|DCD aFilenameExpect; "filename expected"|23-3-0-0
+528|data|DCD grub_file_open|12-4-0-0
+532|data|DCD grub_errno|244-3-0-0
+536|data|DCD aDeviceNotFound; "device not found"|41-3-0-0
+540|data|DCD grub_error|16-4-0-0
+544|data|DCD grub_free|20-4-0-0
+548|data|DCD grub_file_close|8-4-0-0
+552|data|DCD grub_malloc|4-4-0-0
+556|data|DCD grub_strdup|228-3-0-0
+560|data|DCD grub_strcmp|0-4-0-0
+564|code|LDR             R3, =aMakeAVirtualDr; "Make a virtual drive from a file."|8-75
+566|code|MOVS            R2, #0|0-34
+568|code|PUSH            {mod,R1,R4,LR}|19-181
+570|code|STR             R3, [SP,#0x10+var_10]|0-147
+572|code|LDR             R3, =options|7-75
+574|code|LDR             R1, =(grub_cmd_loopback+1)|8-73
+576|code|LDR             R4, =grub_register_extcmd|8-76
+578|code|STR             R3, [SP,#0x10+var_C]|1-147
+580|code|LDR             mod, =aLoopback; "loopback"|8-72
+582|code|LDR             R3, =aDDevicenameFil; "[-d] DEVICENAME FILE."|9-75
+584|code|BLX             R4; grub_register_extcmd|160-71
+586|code|LDR             R3, =loopback_list|9-75
+588|code|STR             R0, [R3,#(cmd - 0x3D8)]|152-96
+590|code|LDR             R0, =grub_loopback_dev|9-72
+592|code|LDR             R3, =grub_disk_dev_register|9-75
+594|code|BLX             R3; grub_disk_dev_register|152-71
+596|code|ADD             SP, SP, #8|2-176
+598|code|POP             {R4,PC}|16-189
+600|data|DCD aMakeAVirtualDr; "Make a virtual drive from a file."|89-3-0-0
+604|data|DCD options|160-2-0-0
+608|data|DCD grub_cmd_loopback+1|41-1-0-0
+612|data|DCD grub_register_extcmd|28-4-0-0
+616|data|DCD aLoopback; "loopback"|58-3-0-0
+620|data|DCD aDDevicenameFil; "[-d] DEVICENAME FILE."|67-3-0-0
+624|data|DCD loopback_list|216-3-0-0
+628|data|DCD grub_loopback_dev|168-3-0-0
+632|data|DCD grub_disk_dev_register|232-3-0-0
+636|code|PUSH            {R3,LR}|8-181
+638|code|LDR             R3, =loopback_list|4-75
+640|code|LDR             R0, [R3,#(cmd - 0x3D8)]|152-104
+642|code|LDR             R3, =grub_unregister_extcmd|4-75
+644|code|BLX             R3; grub_unregister_extcmd|152-71
+646|code|LDR             R0, =grub_loopback_dev|4-72
+648|code|LDR             R3, =grub_disk_dev_unregister|4-75
+650|code|BLX             R3; grub_disk_dev_unregister|152-71
+652|code|POP             {R3,PC}|8-189
+654|data|ALIGN 0x10|0-191
+656|data|DCD loopback_list|216-3-0-0
+660|data|DCD grub_unregister_extcmd|236-3-0-0
+664|data|DCD grub_loopback_dev|168-3-0-0
+668|data|DCD grub_disk_dev_unregister|24-4-0-0
+672|data|grub_arg_option <aDelete, 0x64, 0, aDeleteTheSpeci, 0, ARG_TYPE_NONE>; "delete" ...|123-3-0-0-100-0-0-0-0-0-0-0-130-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+720|data|DCB "loopback write is not supported",0|108-111-111-112-98-97-99-107-32-119-114-105-116-101-32-105-115-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+752|data|DCB "can't open device",0|99-97-110-39-116-32-111-112-101-110-32-100-101-118-105-99-101-0
+770|data|DCB "device name required",0|100-101-118-105-99-101-32-110-97-109-101-32-114-101-113-117-105-114-101-100-0
+791|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+809|data|DCB "device not found",0|100-101-118-105-99-101-32-110-111-116-32-102-111-117-110-100-0
+826|data|DCB "loopback",0|108-111-111-112-98-97-99-107-0
+835|data|DCB "[-d] DEVICENAME FILE.",0|91-45-100-93-32-68-69-86-73-67-69-78-65-77-69-32-70-73-76-69-46-0
+857|data|DCB "Make a virtual drive from a file.",0|77-97-107-101-32-97-32-118-105-114-116-117-97-108-32-100-114-105-118-101-32-102-114-111-109-32-97-32-102-105-108-101-46-0
+891|data|DCB "delete",0|100-101-108-101-116-101-0
+898|data|DCB "Delete the specified loopback drive.",0|68-101-108-101-116-101-32-116-104-101-32-115-112-101-99-105-102-105-101-100-32-108-111-111-112-98-97-99-107-32-100-114-105-118-101-46-0
+936|data|grub_disk_dev <aLoopback, GRUB_DISK_DEVICE_LOOPBACK_ID, \; "loopback"|58-3-0-0-2-0-0-0-141-0-0-0-181-0-0-0-0-0-0-0-21-0-0-0-1-0-0-0-0-0-0-0
+968|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+984|data|% 4|255-255-255-255
+988|data|% 4|255-255-255-255

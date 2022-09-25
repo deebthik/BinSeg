@@ -1,0 +1,322 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x3C|143-176
+6|code|ADD             R5, SP, #0x60+var_28|14-173
+8|code|MOVS            R4, #0|0-36
+10|code|MOV             argc, R4|33-70
+12|code|MOV             args, R4|34-70
+14|code|STR.W           R4, [R5,#-8]!|69-248-8-77
+18|code|ADD             R3, SP, #0x60+desc_size|13-171
+20|code|STR             R4, [SP,#0x60+var_60]|0-148
+22|code|MOV             cmd, R5|40-70
+24|code|LDR             R6, =grub_efi_get_memory_map|144-78
+26|code|BLX             R6; grub_efi_get_memory_map|176-71
+28|code|CMP             R0, R4|160-66
+30|code|BLT.W           loc_254|192-242-25-129
+34|code|LDR             R0, [SP,#0x60+map_size]|12-152
+36|code|LDR             R3, =grub_malloc|142-75
+38|code|BLX             R3; grub_malloc|152-71
+40|code|MOV             R11, memory_map|131-70
+42|code|CBNZ            memory_map, loc_32|16-185
+44|code|LDR             R3, =grub_errno|141-75
+46|code|LDR             memory_map, [R3]|24-104
+48|code|B               loc_256|17-225
+50|code|STR             R4, [SP,#0x60+var_60]|0-148
+52|code|MOV             memory_map, R5|40-70
+54|code|MOV             R1, memory_map|89-70
+56|code|MOV             R2, R4|34-70
+58|code|ADD             R3, SP, #0x60+desc_size|13-171
+60|code|BLX             R6; grub_efi_get_memory_map|176-71
+62|code|CMP             R0, #0|0-40
+64|code|BGT             loc_4C|4-220
+66|code|MOV             R0, memory_map|88-70
+68|code|LDR             R3, =grub_free|136-75
+70|code|BLX             R3; grub_free|152-71
+72|code|MOVS            R0, #0|0-32
+74|code|B               loc_256|4-225
+76|code|LDR             R5, =grub_printf|135-77
+78|code|MOV             R4, memory_map|92-70
+80|code|LDR             R0, =aTypePhysicalSt; "Type      Physical start  - end        "...|135-72
+82|code|BLX             R5; grub_printf|168-71
+84|code|LDR             R3, [SP,#0x60+map_size]|12-155
+86|code|MOV             R10, R5|170-70
+88|code|ADD             R3, memory_map|91-68
+90|code|STR             R3, [SP,#0x60+memory_map_end]|11-147
+92|code|LDR             R3, [SP,#0x60+memory_map_end]|11-155
+94|code|CMP             desc, R3|156-66
+96|code|BCS             fail|239-210
+98|code|LDRB            R1, [desc,#1]|97-120
+100|code|LDRB            R3, [desc]|35-120
+102|code|ORR.W           R1, R3, R1,LSL#8|67-234-1-33
+106|code|LDRB            R3, [desc,#2]|163-120
+108|code|ORR.W           R1, R1, R3,LSL#16|65-234-3-65
+112|code|LDRB            R3, [desc,#3]|227-120
+114|code|ORR.W           R1, R1, R3,LSL#24|65-234-3-97
+118|code|CMP             R1, #0xD|13-41
+120|code|ITTTT LS|159-191
+122|code|ADDLS.W         R1, R1, R1,LSL#3|1-235-193-1
+126|code|LDRLS           R3, =types_str.5492; "reserved"|125-75
+128|code|LDRLS           R0, =aS; "%s "|125-72
+130|code|ADDLS           R1, R1, R3|201-24
+132|code|IT HI|136-191
+134|code|LDRHI           R0, =aUnk02x; "Unk %02x   "|125-72
+136|code|BLX             R5; grub_printf|168-71
+138|code|LDRB            R2, [desc,#9]|98-122
+140|code|LDRB            R3, [desc,#8]|35-122
+142|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+146|code|LDRB            R2, [desc,#0xA]|162-122
+148|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+152|code|LDRB            R2, [desc,#0xB]|226-122
+154|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+158|code|STR             R3, [SP,#0x60+var_48]|6-147
+160|code|LDRB            R2, [desc,#0xD]|98-123
+162|code|LDRB            R3, [desc,#0xC]|35-123
+164|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+168|code|LDRB            R2, [desc,#0xE]|162-123
+170|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+174|code|LDRB            R2, [desc,#0xF]|226-123
+176|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+180|code|STR             R3, [SP,#0x60+var_44]|7-147
+182|code|LDRB            R2, [desc,#0x19]|98-126
+184|code|LDRB            R3, [desc,#0x18]|35-126
+186|code|LDRB            R1, [desc,#0x1D]|97-127
+188|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+192|code|LDRB            R2, [desc,#0x1A]|162-126
+194|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+198|code|LDRB            R2, [desc,#0x1B]|226-126
+200|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+204|code|LDRB            R2, [desc,#0x1C]|34-127
+206|code|ORR.W           R2, R2, R1,LSL#8|66-234-1-34
+210|code|LDRB            R1, [desc,#0x1E]|161-127
+212|code|ORR.W           R2, R2, R1,LSL#16|66-234-1-66
+216|code|LDRB            R1, [desc,#0x1F]|225-127
+218|code|STR             R3, [SP,#0x60+var_58]|2-147
+220|code|ORR.W           R2, R2, R1,LSL#24|66-234-1-98
+224|code|LDRD.W          R0, R1, [SP,#0x60+var_48]|221-233-6-1
+228|code|STR             R2, [SP,#0x60+var_54]|3-146
+230|code|ADDS.W          R0, R0, #0xFFFFFFFF|16-241-255-48
+234|code|ADC.W           R1, R1, #0xFFFFFFFF|65-241-255-49
+238|code|MOV             R6, R0|6-70
+240|code|MOV             R7, R1|15-70
+242|code|LSLS            R1, R2, #0xC|17-3
+244|code|ORR.W           R1, R1, R3,LSR#20|65-234-19-81
+248|code|STR             R1, [SP,#0x60+var_3C]|9-145
+250|code|LSLS            R1, R3, #0xC|25-3
+252|code|STR             R1, [SP,#0x60+var_40]|8-145
+254|code|LDRD.W          R0, R1, [SP,#0x60+var_40]|221-233-8-1
+258|code|LDRD.W          R2, R3, [SP,#0x60+var_48]|221-233-6-35
+262|code|ADDS            R6, R6, R0|54-24
+264|code|ADCS            R7, R1|79-65
+266|code|MOV             R0, R6|48-70
+268|code|MOV             R1, R7|57-70
+270|code|STRD.W          R0, R1, [SP,#0x60+var_60]|205-233-0-1
+274|code|LDR             R0, =a016llx016llx08; " %016llx-%016llx %08llx"|91-72
+276|code|BLX             R5; grub_printf|168-71
+278|code|LDRB            R2, [desc,#0x19]|98-126
+280|code|LDRB            R3, [desc,#0x18]|35-126
+282|code|LDRB            R1, [desc,#0x1D]|97-127
+284|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+288|code|LDRB            R2, [desc,#0x1A]|162-126
+290|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+294|code|LDRB            R2, [desc,#0x1B]|226-126
+296|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+300|code|LDRB            R2, [desc,#0x1C]|34-127
+302|code|ORR.W           R2, R2, R1,LSL#8|66-234-1-34
+306|code|LDRB            R1, [desc,#0x1E]|161-127
+308|code|ORR.W           R2, R2, R1,LSL#16|66-234-1-66
+312|code|LDRB            R1, [desc,#0x1F]|225-127
+314|code|ORR.W           R2, R2, R1,LSL#24|66-234-1-98
+318|code|LSLS            R2, R2, #2|146-0
+320|code|ORR.W           R2, R2, R3,LSR#30|66-234-147-114
+324|code|LSLS            R3, R3, #2|155-0
+326|code|STR             R2, [SP,#0x60+size+4]|5-146
+328|code|MOVW            R2, #0x3FF|64-242-255-50
+332|code|STR             R3, [SP,#0x60+size]|4-147
+334|code|MOVS            R3, #0|0-35
+336|code|LDRD.W          R0, R1, [SP,#0x60+size]|221-233-4-1
+340|code|CMP             R3, R1|139-66
+342|code|IT EQ|8-191
+344|code|CMPEQ           R2, R0|130-66
+346|code|BCC             loc_164|3-211
+348|code|LDR             R0, =a4llukb; " %4lluKB"|73-72
+350|code|LDRD.W          R2, R3, [SP,#0x60+size]|221-233-4-35
+354|code|B               loc_192|22-224
+356|code|LDR             R1, [SP,#0x60+size]|4-153
+358|code|MOV.W           R8, R1,LSR#10|79-234-145-40
+362|code|LDR             R1, [SP,#0x60+size+4]|5-153
+364|code|MOV.W           R9, R1,LSR#10|79-234-145-41
+368|code|ORR.W           R8, R8, R1,LSL#22|72-234-129-88
+372|code|CMP             R3, R9|75-69
+374|code|IT EQ|8-191
+376|code|CMPEQ           R2, R8|66-69
+378|code|ITTET CC|59-191
+380|code|MOVCC.W         R2, R8,LSR#10|79-234-152-34
+384|code|MOVCC.W         R3, R9,LSR#10|79-234-153-35
+388|code|LDRCS           R0, =a4llumb; " %4lluMB"|64-72
+390|code|ORRCC.W         R2, R2, R9,LSL#22|66-234-137-82
+394|code|ITEE CC|50-191
+396|code|LDRCC           R0, =a4llugb; " %4lluGB"|63-72
+398|code|MOVCS           R2, R8|66-70
+400|code|MOVCS           R3, R9|75-70
+402|code|BLX             R5; grub_printf|168-71
+404|code|LDRB.W          R2, [desc,#0x21]|148-248-33-32
+408|code|LDRB.W          R3, [desc,#0x20]|148-248-32-48
+412|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+416|code|LDRB.W          R2, [desc,#0x22]|148-248-34-32
+420|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+424|code|LDRB.W          R2, [desc,#0x23]|148-248-35-32
+428|code|ORR.W           R6, R3, R2,LSL#24|67-234-2-102
+432|code|LDRB.W          R2, [desc,#0x25]|148-248-37-32
+436|code|LDRB.W          R3, [desc,#0x24]|148-248-36-48
+440|code|CMP             R6, #0|0-46
+442|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+446|code|LDRB.W          R2, [desc,#0x26]|148-248-38-32
+450|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+454|code|LDRB.W          R2, [desc,#0x27]|148-248-39-32
+458|code|ORR.W           R7, R3, R2,LSL#24|67-234-2-103
+462|code|SBCS.W          R3, R7, #0|119-241-0-3
+466|code|BGE             loc_1D8|1-218
+468|code|LDR             R0, =aRt; " RT"|46-72
+470|code|BLX             R10; grub_printf|208-71
+472|code|AND.W           R2, R6, #1|6-240-1-2
+476|code|MOVS            R3, #0|0-35
+478|code|ORRS            R3, R2|19-67
+480|code|BEQ             loc_1E6|1-208
+482|code|LDR             R0, =aUc; " UC"|44-72
+484|code|BLX             R10; grub_printf|208-71
+486|code|AND.W           R2, R6, #2|6-240-2-2
+490|code|MOVS            R3, #0|0-35
+492|code|ORRS            R3, R2|19-67
+494|code|BEQ             loc_1F4|1-208
+496|code|LDR             R0, =aWc; " WC"|41-72
+498|code|BLX             R10; grub_printf|208-71
+500|code|AND.W           R2, R6, #4|6-240-4-2
+504|code|MOVS            R3, #0|0-35
+506|code|ORRS            R3, R2|19-67
+508|code|BEQ             loc_202|1-208
+510|code|LDR             R0, =aWt; " WT"|39-72
+512|code|BLX             R10; grub_printf|208-71
+514|code|AND.W           R2, R6, #8|6-240-8-2
+518|code|MOVS            R3, #0|0-35
+520|code|ORRS            R3, R2|19-67
+522|code|BEQ             loc_210|1-208
+524|code|LDR             R0, =aWb; " WB"|36-72
+526|code|BLX             R10; grub_printf|208-71
+528|code|AND.W           R2, R6, #0x10|6-240-16-2
+532|code|MOVS            R3, #0|0-35
+534|code|ORRS            R3, R2|19-67
+536|code|BEQ             loc_21E|1-208
+538|code|LDR             R0, =aUce; " UCE"|34-72
+540|code|BLX             R10; grub_printf|208-71
+542|code|AND.W           R2, R6, #0x1000|6-244-128-82
+546|code|MOVS            R3, #0|0-35
+548|code|ORRS            R3, R2|19-67
+550|code|BEQ             loc_22C|1-208
+552|code|LDR             R0, =aWp; " WP"|31-72
+554|code|BLX             R10; grub_printf|208-71
+556|code|AND.W           R2, R6, #0x2000|6-244-0-82
+560|code|MOVS            R3, #0|0-35
+562|code|ORRS            R3, R2|19-67
+564|code|BEQ             loc_23A|1-208
+566|code|LDR             R0, =aRp; " RP"|29-72
+568|code|BLX             R10; grub_printf|208-71
+570|code|AND.W           R6, R6, #0x4000|6-244-128-70
+574|code|MOVS            R7, #0|0-39
+576|code|ORRS.W          R3, R6, R7|86-234-7-3
+580|code|BEQ             loc_24A|1-208
+582|code|LDR             R0, =aXp; " XP"|26-72
+584|code|BLX             R10; grub_printf|208-71
+586|code|LDR             R0, =asc_42E; "\n"|26-72
+588|code|BLX             R10; grub_printf|208-71
+590|code|LDR             R3, [SP,#0x60+desc_size]|13-155
+592|code|ADD             desc, R3|28-68
+594|code|B               loc_5C|3-231
+596|code|MOV             R0, R4|32-70
+598|code|ADD             SP, SP, #0x3C ; '<'|15-176
+600|code|POP.W           {R4-R11,PC}|189-232-240-143
+604|data|DCD grub_efi_get_memory_map|124-4-0-0
+608|data|DCD grub_malloc|120-4-0-0
+612|data|DCD grub_errno|104-4-0-0
+616|data|DCD grub_free|128-4-0-0
+620|data|DCD grub_printf|112-4-0-0
+624|data|DCD aTypePhysicalSt; "Type      Physical start  - end        "...|126-3-0-0
+628|data|DCD types_str.5492; "reserved"|0-3-0-0
+632|data|DCD aS; "%s "|198-3-0-0
+636|data|DCD aUnk02x; "Unk %02x   "|202-3-0-0
+640|data|DCD a016llx016llx08; " %016llx-%016llx %08llx"|214-3-0-0
+644|data|DCD a4llukb; " %4lluKB"|238-3-0-0
+648|data|DCD a4llumb; " %4lluMB"|247-3-0-0
+652|data|DCD a4llugb; " %4lluGB"|0-4-0-0
+656|data|DCD aRt; " RT"|9-4-0-0
+660|data|DCD aUc; " UC"|13-4-0-0
+664|data|DCD aWc; " WC"|17-4-0-0
+668|data|DCD aWt; " WT"|21-4-0-0
+672|data|DCD aWb; " WB"|25-4-0-0
+676|data|DCD aUce; " UCE"|29-4-0-0
+680|data|DCD aWp; " WP"|34-4-0-0
+684|data|DCD aRp; " RP"|38-4-0-0
+688|data|DCD aXp; " XP"|42-4-0-0
+692|data|DCD asc_42E; "\n"|46-4-0-0
+696|code|PUSH            {mod,R1,R4,LR}|19-181
+698|code|MOVS            R3, #0|0-35
+700|code|LDR             R1, =(grub_cmd_lsefimmap+1)|5-73
+702|code|STR             R3, [SP,#0x10+var_10]|0-147
+704|code|LDR             R2, =unk_43A|5-74
+706|code|LDR             R3, =aDisplayEfiMemo; "Display EFI memory map."|6-75
+708|code|LDR             R4, =grub_register_command_prio|6-76
+710|code|LDR             mod, =aLsefimmap; "lsefimmap"|7-72
+712|code|BLX             R4; grub_register_command_prio|160-71
+714|code|LDR             R3, =cmd|7-75
+716|code|STR             R0, [R3]|24-96
+718|code|ADD             SP, SP, #8|2-176
+720|code|POP             {R4,PC}|16-189
+722|data|ALIGN 4|0-191
+724|data|DCD grub_cmd_lsefimmap+1|1-0-0-0
+728|data|DCD unk_43A|58-4-0-0
+732|data|DCD aDisplayEfiMemo; "Display EFI memory map."|59-4-0-0
+736|data|DCD grub_register_command_prio|108-4-0-0
+740|data|DCD aLsefimmap; "lsefimmap"|48-4-0-0
+744|data|DCD cmd|100-4-0-0
+748|code|PUSH            {R3,LR}|8-181
+750|code|LDR             R3, =cmd|2-75
+752|code|LDR             R0, [R3]|24-104
+754|code|LDR             R3, =grub_unregister_command|2-75
+756|code|BLX             R3; grub_unregister_command|152-71
+758|code|POP             {R3,PC}|8-189
+760|data|DCD cmd|100-4-0-0
+764|data|DCD grub_unregister_command|116-4-0-0
+768|data|DCB "reserved",0|114-101-115-101-114-118-101-100-0
+777|data|DCB "ldr-code",0|108-100-114-45-99-111-100-101-0
+786|data|DCB "ldr-data",0|108-100-114-45-100-97-116-97-0
+795|data|DCB "BS-code ",0|66-83-45-99-111-100-101-32-0
+804|data|DCB "BS-data ",0|66-83-45-100-97-116-97-32-0
+813|data|DCB "RT-code ",0|82-84-45-99-111-100-101-32-0
+822|data|DCB "RT-data ",0|82-84-45-100-97-116-97-32-0
+831|data|DCB "conv-mem",0|99-111-110-118-45-109-101-109-0
+840|data|DCB "unusable",0|117-110-117-115-97-98-108-101-0
+849|data|DCB "ACPI-rec",0|65-67-80-73-45-114-101-99-0
+858|data|DCB "ACPI-nvs",0|65-67-80-73-45-110-118-115-0
+867|data|DCB "MMIO    ",0|77-77-73-79-32-32-32-32-0
+876|data|DCB "IO-ports",0|73-79-45-112-111-114-116-115-0
+885|data|DCB "PAL-code",0|80-65-76-45-99-111-100-101-0
+894|data|DCB "Type      Physical start  - end             #Pages     Size Attr"|84-121-112-101-32-32-32-32-32-32-80-104-121-115-105-99-97-108-32-115-116-97-114-116-32-32-45-32-101-110-100-32-32-32-32-32-32-32-32-32-32-32-32-32-35-80-97-103-101-115-32-32-32-32-32-83-105-122-101-32-65-116-116-114-105-98-117-116-101-115-10-0
+966|data|DCB "%s ",0|37-115-32-0
+970|data|DCB "Unk %02x   ",0|85-110-107-32-37-48-50-120-32-32-32-0
+982|data|DCB " %016llx-%016llx %08llx",0|32-37-48-49-54-108-108-120-45-37-48-49-54-108-108-120-32-37-48-56-108-108-120-0
+1006|data|DCB " %4lluKB",0|32-37-52-108-108-117-75-66-0
+1015|data|DCB " %4lluMB",0|32-37-52-108-108-117-77-66-0
+1024|data|DCB " %4lluGB",0|32-37-52-108-108-117-71-66-0
+1033|data|DCB " RT",0|32-82-84-0
+1037|data|DCB " UC",0|32-85-67-0
+1041|data|DCB " WC",0|32-87-67-0
+1045|data|DCB " WT",0|32-87-84-0
+1049|data|DCB " WB",0|32-87-66-0
+1053|data|DCB " UCE",0|32-85-67-69-0
+1058|data|DCB " WP",0|32-87-80-0
+1062|data|DCB " RP",0|32-82-80-0
+1066|data|DCB " XP",0|32-88-80-0
+1070|data|DCB 0xA,0|10-0
+1072|data|DCB "lsefimmap",0|108-115-101-102-105-109-109-97-112-0
+1083|data|DCB "Display EFI memory map.",0|68-105-115-112-108-97-121-32-69-70-73-32-109-101-109-111-114-121-32-109-97-112-46-0
+1107|data||255
+1108|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

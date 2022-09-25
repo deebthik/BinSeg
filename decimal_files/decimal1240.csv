@@ -1,0 +1,135 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|ADD             size, data|10-68
+6|code|LDRD.W          R4, R5, [context]|208-233-0-69
+10|code|LDR             R3, =crc64_table|14-75
+12|code|MVNS            R4, R4|228-67
+14|code|MVNS            R5, R5|237-67
+16|code|CMP             data, R2|145-66
+18|code|BEQ             loc_36|16-208
+20|code|LDRB.W          R8, [data],#1|17-248-1-139
+24|code|LSRS            R6, R4, #8|38-10
+26|code|AND.W           R4, R4, #0xFF|4-240-255-4
+30|code|ORR.W           R6, R6, R5,LSL#24|70-234-5-102
+34|code|EOR.W           R8, R8, R4|136-234-4-8
+38|code|LSRS            R7, R5, #8|47-10
+40|code|ADD.W           R8, R3, R8,LSL#3|3-235-200-8
+44|code|LDRD.W          R4, R5, [R8]|216-233-0-69
+48|code|EORS            R4, R6|116-64
+50|code|EORS            R5, R7|125-64
+52|code|B               loc_10|236-231
+54|code|MVNS            R4, R4|228-67
+56|code|MVNS            R5, R5|237-67
+58|code|STRD.W          R4, R5, [context]|192-233-0-69
+62|code|POP.W           {R4-R9,PC}|189-232-240-131
+66|data|ALIGN 4|0-191
+68|data|DCD crc64_table|176-1-0-0
+72|code|BX              LR|112-71
+74|code|BX              LR|112-71
+76|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+80|code|MOV             R10, context|130-70
+82|code|LDR             R4, =crc64_table|57-76
+84|code|SUB             SP, SP, #0x14|133-176
+86|code|LDRD.W          R2, R3, [R4,#8]|212-233-2-35
+90|code|ORRS.W          R1, R2, R3|82-234-3-1
+94|code|BEQ             loc_6E|6-208
+96|code|MOVS            R2, #0|0-34
+98|code|MOVS            R3, #0|0-35
+100|code|STRD.W          R2, R3, [context]|202-233-0-35
+104|code|ADD             SP, SP, #0x14|5-176
+106|code|POP.W           {R4-R11,PC}|189-232-240-143
+110|code|LDR             R5, =__aeabi_llsl|51-77
+112|code|SUBS            R4, #8|8-60
+114|code|STRD.W          R2, R3, [SP,#0x38+var_30]|205-233-2-35
+118|code|LDRD.W          R8, R9, [SP,#0x38+var_30]|221-233-2-137
+122|code|MOV.W           R11, #7|79-240-7-11
+126|code|MOVS            R6, #0|0-38
+128|code|MOVS            R7, #0|0-39
+130|code|AND.W           R2, R8, #1|8-240-1-2
+134|code|MOVS            R3, #0|0-35
+136|code|ORRS            R3, R2|19-67
+138|code|BEQ             loc_98|5-208
+140|code|MOVS            R0, #1|1-32
+142|code|MOVS            R1, #0|0-33
+144|code|MOV             R2, R11|90-70
+146|code|BLX             R5; __aeabi_llsl|168-71
+148|code|ORRS            R6, R0|6-67
+150|code|ORRS            R7, R1|15-67
+152|code|MOVS.W          R9, R9,LSR#1|95-234-89-9
+156|code|MOV.W           R8, R8,RRX|79-234-56-8
+160|code|ADDS.W          R11, R11, #0xFFFFFFFF|27-241-255-59
+164|code|BCS             loc_82|237-210
+166|code|ADDS            R4, #8|8-52
+168|code|LSLS            R3, R6, #0x18|51-6
+170|code|MOVS            R6, #8|8-38
+172|code|STR             R3, [SP,#0x38+var_34]|1-147
+174|code|MOVS            R3, #0|0-35
+176|code|STR             R3, [SP,#0x38+var_38]|0-147
+178|code|LDRD.W          R2, R3, [SP,#0x38+var_38]|221-233-0-35
+182|code|MOV             R0, R2|16-70
+184|code|ADDS            R2, R2, R2|146-24
+186|code|MOV             R1, R3|25-70
+188|code|ADCS            R3, R3|91-65
+190|code|CMP             R0, #0|0-40
+192|code|SBCS.W          R1, R1, #0|113-241-0-1
+196|code|ITTEE LT|185-191
+198|code|ADRLT           R1, dword_130|26-161
+200|code|LDRDLT.W        R0, R1, [R1]|209-233-0-1
+204|code|MOVGE           R0, #0|0-32
+206|code|MOVGE           R1, #0|0-33
+208|code|SUBS            R6, #1|1-62
+210|code|EOR.W           R8, R0, R2|128-234-2-8
+214|code|EOR.W           R9, R1, R3|129-234-3-9
+218|code|STRD.W          R8, R9, [SP,#0x38+var_38]|205-233-0-137
+222|code|BNE             loc_B2|232-209
+224|code|MOV.W           R11, #0x3F ; '?'|79-240-63-11
+228|code|MOVS            R6, #0|0-38
+230|code|MOVS            R7, #0|0-39
+232|code|AND.W           R2, R8, #1|8-240-1-2
+236|code|MOVS            R3, #0|0-35
+238|code|ORRS            R3, R2|19-67
+240|code|BEQ             loc_FE|5-208
+242|code|MOVS            R0, #1|1-32
+244|code|MOVS            R1, #0|0-33
+246|code|MOV             R2, R11|90-70
+248|code|BLX             R5; __aeabi_llsl|168-71
+250|code|ORRS            R6, R0|6-67
+252|code|ORRS            R7, R1|15-67
+254|code|MOVS.W          R9, R9,LSR#1|95-234-89-9
+258|code|MOV.W           R8, R8,RRX|79-234-56-8
+262|code|ADDS.W          R11, R11, #0xFFFFFFFF|27-241-255-59
+266|code|BCS             loc_E8|237-210
+268|code|LDRD.W          R2, R3, [SP,#0x38+var_30]|221-233-2-35
+272|code|STRD.W          R6, R7, [R4]|196-233-0-103
+276|code|ADDS            R2, #1|1-50
+278|code|ADC.W           R3, R3, #0|67-241-0-3
+282|code|STRD.W          R2, R3, [SP,#0x38+var_30]|205-233-2-35
+286|code|CMP             R3, #0|0-43
+288|code|IT EQ|8-191
+290|code|CMPEQ.W         R2, #0x100|178-245-128-127
+294|code|BNE             loc_76|166-209
+296|code|B               loc_60|154-231
+298|data|ALIGN 4|0-191
+300|data|DCD 0x8000F3AF|175-243-0-128
+304|data|DCD 0xA9EA3693, 0x42F0E1EB|147-54-234-169-235-225-240-66
+312|data|DCD crc64_table|176-1-0-0
+316|data|DCD __aeabi_llsl|180-9-0-0
+320|code|PUSH            {R3,LR}|8-181
+322|code|LDR             mod, =_gcry_digest_spec_crc64|2-72
+324|code|LDR             R3, =grub_md_register|2-75
+326|code|BLX             R3; grub_md_register|152-71
+328|code|POP             {R3,PC}|8-189
+330|data|ALIGN 4|0-191
+332|data|DCD _gcry_digest_spec_crc64|112-1-0-0
+336|data|DCD grub_md_register|184-9-0-0
+340|code|PUSH            {R3,LR}|8-181
+342|code|LDR             R0, =_gcry_digest_spec_crc64|2-72
+344|code|LDR             R3, =grub_md_unregister|2-75
+346|code|BLX             R3; grub_md_unregister|152-71
+348|code|POP             {R3,PC}|8-189
+350|data|ALIGN 0x10|0-191
+352|data|DCD _gcry_digest_spec_crc64|112-1-0-0
+356|data|DCD grub_md_unregister|176-9-0-0
+360|data|DCB "CRC64",0|67-82-67-54-52-0
+368|data|gcry_md_spec_t <aCrc64, 0, 0, 0, 8, crc64_init+1, crc64_write+1, \; "CRC64"|104-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-8-0-0-0-77-0-0-0-1-0-0-0-75-0-0-0-73-0-0-0-8-0-0-0-64-0-0-0-0-0-0-0
+416|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

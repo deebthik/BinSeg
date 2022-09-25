@@ -1,0 +1,91 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+4|code|MOVS            cmd, #5|5-32
+6|code|LDR             R3, =grub_malloc|27-75
+8|code|MOV             R7, argc|15-70
+10|code|MOV             R6, args|22-70
+12|code|BLX             R3; grub_malloc|152-71
+14|code|MOV             R4, R0|4-70
+16|code|CBZ             R0, loc_6A|88-179
+18|code|LDR.W           R8, =grub_getkey|223-248-120-128
+22|code|MOVS            R5, #0|0-37
+24|code|LDR.W           R9, =grub_printf|223-248-116-144
+28|code|BLX             R8; grub_getkey|192-71
+30|code|UXTB            R1, R0|193-178
+32|code|CMP             R1, #0xA|10-41
+34|code|BEQ             loc_4E|20-208
+36|code|CMP             R1, #0xD|13-41
+38|code|BEQ             loc_4E|18-208
+40|code|SUB.W           R2, R1, #0x20 ; ' '|161-241-32-2
+44|code|STRB            R1, [R4,R5]|97-85
+46|code|CMP             R2, #0x5E ; '^'|94-42
+48|code|BHI             loc_36|1-216
+50|code|LDR             R0, =unk_DC|17-72
+52|code|BLX             R9; grub_printf|200-71
+54|code|ADDS            R5, #1|1-53
+56|code|MOV             R0, R4|32-70
+58|code|ADDS            R1, R5, #5|105-29
+60|code|LDR             R3, =grub_realloc|15-75
+62|code|BLX             R3; grub_realloc|152-71
+64|code|CBZ             R0, loc_46|8-177
+66|code|MOV             R4, R0|4-70
+68|code|B               loc_1C|234-231
+70|code|MOV             R0, R4|32-70
+72|code|LDR             R3, =grub_free|13-75
+74|code|BLX             R3; grub_free|152-71
+76|code|B               loc_6A|13-224
+78|code|MOVS            R3, #0|0-35
+80|code|CMP             argc, R3|159-66
+82|code|STRB            R3, [R4,R5]|99-85
+84|code|BLE             loc_5E|3-221
+86|code|LDR             R0, [args]|48-104
+88|code|MOV             R1, R4|33-70
+90|code|LDR             R3, =grub_env_set|10-75
+92|code|BLX             R3; grub_env_set|152-71
+94|code|MOV             R0, R4|32-70
+96|code|LDR             R3, =grub_free|7-75
+98|code|BLX             R3; grub_free|152-71
+100|code|MOVS            R0, #0|0-32
+102|code|POP.W           {R3-R9,PC}|189-232-248-131
+106|code|LDR             R3, =grub_errno|7-75
+108|code|LDR             R0, [R3]|24-104
+110|code|POP.W           {R3-R9,PC}|189-232-248-131
+114|data|ALIGN 4|0-191
+116|data|DCD grub_malloc|56-1-0-0
+120|data|DCD unk_DC|220-0-0-0
+124|data|DCD grub_realloc|32-1-0-0
+128|data|DCD grub_free|60-1-0-0
+132|data|DCD grub_env_set|64-1-0-0
+136|data|DCD grub_errno|36-1-0-0
+140|data|DCD grub_getkey|40-1-0-0
+144|data|DCD grub_printf|48-1-0-0
+148|code|PUSH            {mod,R1,R4,LR}|19-181
+150|code|MOVS            R3, #0|0-35
+152|code|LDR             R1, =(grub_cmd_read+1)|5-73
+154|code|STR             R3, [SP,#0x10+var_10]|0-147
+156|code|LDR             R2, =aEnvvar; "[ENVVAR]"|5-74
+158|code|LDR             R3, =aSetVariableWit; "Set variable with user input."|6-75
+160|code|LDR             R4, =grub_register_command_prio|6-76
+162|code|LDR             mod, =aRead; "read"|7-72
+164|code|BLX             R4; grub_register_command_prio|160-71
+166|code|LDR             R3, =cmd|7-75
+168|code|STR             R0, [R3]|24-96
+170|code|ADD             SP, SP, #8|2-176
+172|code|POP             {R4,PC}|16-189
+174|data|ALIGN 0x10|0-191
+176|data|DCD grub_cmd_read+1|1-0-0-0
+180|data|DCD aEnvvar; "[ENVVAR]"|228-0-0-0
+184|data|DCD aSetVariableWit; "Set variable with user input."|237-0-0-0
+188|data|DCD grub_register_command_prio|44-1-0-0
+192|data|DCD aRead; "read"|223-0-0-0
+196|data|DCD cmd|28-1-0-0
+200|code|PUSH            {R3,LR}|8-181
+202|code|LDR             R3, =cmd|2-75
+204|code|LDR             R0, [R3]|24-104
+206|code|LDR             R3, =grub_unregister_command|2-75
+208|code|BLX             R3; grub_unregister_command|152-71
+210|code|POP             {R3,PC}|8-189
+212|data|DCD cmd|28-1-0-0
+216|data|DCD grub_unregister_command|52-1-0-0
+267|data||255
+268|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

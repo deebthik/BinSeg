@@ -1,0 +1,139 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R7,LR}|240-181
+2|code|SUB             SP, SP, #0x1C|135-176
+4|code|LDR             R0, =aUnknownRegular; "Unknown Regular 16"|42-72
+6|code|LDR             R3, =grub_font_get|43-75
+8|code|BLX             R3; grub_font_get|152-71
+10|code|CMP             font, #0|0-40
+12|code|BEQ             loc_8A|61-208
+14|code|LDR             font, [font]|0-104
+16|code|LDR             R1, =aUnknownRegular; "Unknown Regular 16"|39-73
+18|code|LDR             R3, =grub_strcmp|41-75
+20|code|BLX             R3; grub_strcmp|152-71
+22|code|CMP             R0, #0|0-40
+24|code|BNE             loc_8A|55-209
+26|code|LDR             R6, =grub_test_video_modes|40-78
+28|code|MOVS            R4, #0|0-36
+30|code|LDR             R7, =grub_video_capture_start|40-79
+32|code|ADDS            R0, R4, R6|160-25
+34|code|LDR             R1, =grub_video_fbstd_colors|40-73
+36|code|LDR             R2, [R0,#0x18]|130-105
+38|code|BLX             R7; grub_video_capture_start|184-71
+40|code|MOV             R5, err|5-70
+42|code|CBZ             err, loc_48|104-177
+44|code|LDR             R3, =a0; "0"|38-75
+46|code|MOVS            err, #0|0-32
+48|code|LDR             R1, =aTestsVideotest; "tests/videotest_checksum.c"|38-73
+50|code|LDR             R2, =__FUNCTION__.5744; "videotest_checksum"|39-74
+52|code|STR             R3, [SP,#0x30+var_30]|0-147
+54|code|LDR             R3, =aCanTStartCaptu; "can't start capture: %s"|39-75
+56|code|LDR             err, =grub_test_assert_helper|39-77
+58|code|STR             R3, [SP,#0x30+var_2C]|1-147
+60|code|LDR             R3, =grub_errmsg|39-75
+62|code|STR             R3, [SP,#0x30+var_28]|2-147
+64|code|MOVS            R3, #0x3E ; '>'|62-35
+66|code|BLX             R5; grub_test_assert_helper|168-71
+68|code|LDR             R3, =grub_print_error|38-75
+70|code|B               loc_7C|25-224
+72|code|ADD             err, SP, #0x30+var_18|6-168
+74|code|MOVS            R1, #1|1-33
+76|code|MOVS            R3, #0xA|10-35
+78|code|STR.W           R3, [R0,#-8]!|64-248-8-61
+82|code|LDR             R3, =grub_terminal_input_fake_sequence|36-75
+84|code|BLX             R3; grub_terminal_input_fake_sequence|152-71
+86|code|LDR             R0, =aVideotest; "videotest"|36-72
+88|code|LDR             R3, =grub_video_checksum|36-75
+90|code|BLX             R3; grub_video_checksum|152-71
+92|code|LDR             R3, =grub_command_list|36-75
+94|code|LDR             R1, =aVideotest; "videotest"|34-73
+96|code|STR             err, [SP,#0x30+args]|5-149
+98|code|LDR             R0, [R3]|24-104
+100|code|LDR             R3, =grub_named_list_find|35-75
+102|code|BLX             R3; grub_named_list_find|152-71
+104|code|CBZ             R0, loc_72|24-177
+106|code|LDR             R3, [R0,#0x10]|3-105
+108|code|MOV             R1, err|41-70
+110|code|ADD             R2, SP, #0x30+args|5-170
+112|code|BLX             R3|152-71
+114|code|LDR             R3, =grub_terminal_input_fake_sequence_end|33-75
+116|code|BLX             R3; grub_terminal_input_fake_sequence_end|152-71
+118|code|LDR             R3, =grub_video_checksum_end|33-75
+120|code|BLX             R3; grub_video_checksum_end|152-71
+122|code|LDR             R3, =grub_video_capture_end|33-75
+124|code|ADDS            R4, #0x4C ; 'L'|76-52
+126|code|BLX             R3; grub_print_error|152-71
+128|code|MOVW            R3, #0x934|64-246-52-19
+132|code|CMP             R4, R3|156-66
+134|code|BNE             loc_20|203-209
+136|code|B               loc_AA|15-224
+138|code|LDR             R0, =aUnicode; "unicode"|30-72
+140|code|LDR             R3, =grub_font_load|30-75
+142|code|BLX             R3; grub_font_load|152-71
+144|code|CMP             font, #0|0-40
+146|code|BNE             loc_1A|194-209
+148|code|LDR             R3, =a0; "0"|12-75
+150|code|LDR             R1, =aTestsVideotest; "tests/videotest_checksum.c"|13-73
+152|code|LDR             R2, =__FUNCTION__.5744; "videotest_checksum"|13-74
+154|code|STR             R3, [SP,#0x30+var_30]|0-147
+156|code|LDR             R3, =aUnicodeFontNot; "unicode font not found: %s"|27-75
+158|code|LDR             R4, =grub_test_assert_helper|14-76
+160|code|STR             R3, [SP,#0x30+var_2C]|1-147
+162|code|LDR             R3, =grub_errmsg|14-75
+164|code|STR             R3, [SP,#0x30+var_28]|2-147
+166|code|MOVS            R3, #0x2E ; '.'|46-35
+168|code|BLX             R4; grub_test_assert_helper|160-71
+170|code|ADD             SP, SP, #0x1C|7-176
+172|code|POP             {R4-R7,PC}|240-189
+174|data|ALIGN 0x10|0-191
+176|data|DCD aUnknownRegular; "Unknown Regular 16"|79-1-0-0
+180|data|DCD grub_font_get|252-1-0-0
+184|data|DCD grub_strcmp|20-2-0-0
+188|data|DCD grub_test_video_modes|12-2-0-0
+192|data|DCD grub_video_capture_start|4-2-0-0
+196|data|DCD grub_video_fbstd_colors|36-2-0-0
+200|data|DCD a0; "0"|125-1-0-0
+204|data|DCD aTestsVideotest; "tests/videotest_checksum.c"|98-1-0-0
+208|data|DCD __FUNCTION__.5744; "videotest_checksum"|60-1-0-0
+212|data|DCD aCanTStartCaptu; "can't start capture: %s"|154-1-0-0
+216|data|DCD grub_test_assert_helper|44-2-0-0
+220|data|DCD grub_errmsg|232-1-0-0
+224|data|DCD grub_print_error|16-2-0-0
+228|data|DCD grub_terminal_input_fake_sequence|0-2-0-0
+232|data|DCD aVideotest; "videotest"|178-1-0-0
+236|data|DCD grub_video_checksum|40-2-0-0
+240|data|DCD grub_command_list|244-1-0-0
+244|data|DCD grub_named_list_find|32-2-0-0
+248|data|DCD grub_terminal_input_fake_sequence_end|236-1-0-0
+252|data|DCD grub_video_checksum_end|248-1-0-0
+256|data|DCD grub_video_capture_end|8-2-0-0
+260|data|DCD aUnicode; "unicode"|188-1-0-0
+264|data|DCD grub_font_load|240-1-0-0
+268|data|DCD aUnicodeFontNot; "unicode font not found: %s"|127-1-0-0
+272|code|PUSH            {R3,LR}|8-181
+274|code|LDR             mod, =aVideotestCheck; "videotest_checksum"|2-72
+276|code|LDR             R1, =(videotest_checksum+1)|2-73
+278|code|LDR             R3, =grub_test_register|3-75
+280|code|BLX             R3; grub_test_register|152-71
+282|code|POP             {R3,PC}|8-189
+284|data|DCD aVideotestCheck; "videotest_checksum"|196-1-0-0
+288|data|DCD videotest_checksum+1|1-0-0-0
+292|data|DCD grub_test_register|24-2-0-0
+296|code|PUSH            {R3,LR}|8-181
+298|code|LDR             R0, =aVideotestCheck; "videotest_checksum"|2-72
+300|code|LDR             R3, =grub_test_unregister|2-75
+302|code|BLX             R3; grub_test_unregister|152-71
+304|code|POP             {R3,PC}|8-189
+306|data|ALIGN 4|0-191
+308|data|DCD aVideotestCheck; "videotest_checksum"|196-1-0-0
+312|data|DCD grub_test_unregister|28-2-0-0
+316|data|DCB "videotest_checksum",0|118-105-100-101-111-116-101-115-116-95-99-104-101-99-107-115-117-109-0
+335|data|DCB "Unknown Regular 16",0|85-110-107-110-111-119-110-32-82-101-103-117-108-97-114-32-49-54-0
+354|data|DCB "tests/videotest_checksum.c",0|116-101-115-116-115-47-118-105-100-101-111-116-101-115-116-95-99-104-101-99-107-115-117-109-46-99-0
+381|data|DCB "0",0|48-0
+383|data|DCB "unicode font not found: %s",0|117-110-105-99-111-100-101-32-102-111-110-116-32-110-111-116-32-102-111-117-110-100-58-32-37-115-0
+410|data|DCB "can't start capture: %s",0|99-97-110-39-116-32-115-116-97-114-116-32-99-97-112-116-117-114-101-58-32-37-115-0
+434|data|DCB "videotest",0|118-105-100-101-111-116-101-115-116-0
+444|data|DCB "unicode",0|117-110-105-99-111-100-101-0
+452|data|DCB "videotest_checksum",0|118-105-100-101-111-116-101-115-116-95-99-104-101-99-107-115-117-109-0
+471|data||255
+472|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

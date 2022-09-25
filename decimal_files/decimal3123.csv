@@ -1,0 +1,952 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4,LR}|16-181
+2|code|LDR             R4, =grub_video_adapter_active|5-76
+4|code|LDR             R0, [R4]|32-104
+6|code|CBZ             R0, locret_14|40-177
+8|code|LDR             R3, [R0,#0x18]|131-105
+10|code|BLX             R3|152-71
+12|code|LDR             R3, =grub_errno|3-75
+14|code|LDR             R0, [R3]|24-104
+16|code|CBNZ            R0, locret_14|0-185
+18|code|STR             R0, [R4]|32-96
+20|code|POP             {R4,PC}|16-189
+22|data|ALIGN 4|0-191
+24|data|DCD grub_video_adapter_active|124-9-0-0
+28|data|DCD grub_errno|132-9-0-0
+32|code|LDR             R2, =grub_video_adapter_active|8-74
+34|code|PUSH            {R4,LR}|16-181
+36|code|LDR             R2, [R2]|18-104
+38|code|CBNZ            R2, loc_32|34-185
+40|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|7-73
+42|code|MOVS            mode_info, #0xD|13-32
+44|code|LDR             R3, =grub_error|7-75
+46|code|BLX             R3; grub_error|152-71
+48|code|POP             {R4,PC}|16-189
+50|code|CBNZ            mode_info, loc_3A|16-185
+52|code|LDR             R2, =grub_errno|6-74
+54|code|STR             mode_info, [R2]|16-96
+56|code|POP             {R4,PC}|16-189
+58|code|LDR             R3, [R2,#0x20]|19-106
+60|code|POP.W           {R4,LR}|189-232-16-64
+64|code|BX              R3|24-71
+66|data|ALIGN 4|0-191
+68|data|DCD grub_video_adapter_active|124-9-0-0
+72|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+76|data|DCD grub_error|152-9-0-0
+80|data|DCD grub_errno|132-9-0-0
+84|code|LDR             R3, =grub_video_adapter_active|2-75
+86|code|LDR             R0, [R3]|24-104
+88|code|CBZ             R0, locret_5C|0-177
+90|code|LDR             R0, [R0,#0xC]|192-104
+92|code|BX              LR|112-71
+94|data|ALIGN 0x10|0-191
+96|data|DCD grub_video_adapter_active|124-9-0-0
+100|code|PUSH            {R4,LR}|16-181
+102|code|LDR             R4, =grub_video_adapter_active|6-76
+104|code|LDR             R3, [R4]|35-104
+106|code|CBNZ            R3, loc_76|35-185
+108|code|LDR             framebuffer, =aNoVideoModeAct; "no video mode activated"|5-73
+110|code|MOVS            err, #0xD|13-32
+112|code|LDR             R3, =grub_error|5-75
+114|code|BLX             R3; grub_error|152-71
+116|code|POP             {R4,PC}|16-189
+118|code|LDR             R3, [R3,#0x24]|91-106
+120|code|BLX             R3|152-71
+122|code|CBNZ            err, locret_7E|0-185
+124|code|STR             err, [R4]|32-96
+126|code|POP             {R4,PC}|16-189
+128|data|DCD grub_video_adapter_active|124-9-0-0
+132|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+136|data|DCD grub_error|152-9-0-0
+140|code|LDR             R3, [mode_info,#0xC]|195-104
+142|code|CMP             R3, #0x20 ; ' '|32-43
+144|code|BNE             loc_D6|33-209
+146|code|LDR             R3, [mode_info,#0x24]|67-106
+148|code|CMP             R3, #8|8-43
+150|code|BNE             loc_16A|104-209
+152|code|LDR             R3, [mode_info,#0x28]|131-106
+154|code|CMP             R3, #0x10|16-43
+156|code|BNE             loc_B8|12-209
+158|code|LDR             R3, [mode_info,#0x2C]|195-106
+160|code|CMP             R3, #8|8-43
+162|code|BNE             loc_16A|98-209
+164|code|LDR             R3, [mode_info,#0x30]|3-107
+166|code|CMP             R3, #8|8-43
+168|code|BNE             loc_16A|95-209
+170|code|LDR             R3, [mode_info,#0x34]|67-107
+172|code|CMP             R3, #8|8-43
+174|code|BNE             loc_16A|92-209
+176|code|LDR             R3, [mode_info,#0x38]|131-107
+178|code|CMP             R3, #0|0-43
+180|code|BEQ             loc_176|95-208
+182|code|B               loc_16A|88-224
+184|code|CMP             R3, #0|0-43
+186|code|BNE             loc_16A|86-209
+188|code|LDR             R3, [mode_info,#0x2C]|195-106
+190|code|CMP             R3, #8|8-43
+192|code|BNE             loc_16A|83-209
+194|code|LDR             R3, [mode_info,#0x30]|3-107
+196|code|CMP             R3, #8|8-43
+198|code|BNE             loc_16A|80-209
+200|code|LDR             R3, [mode_info,#0x34]|67-107
+202|code|CMP             R3, #8|8-43
+204|code|BNE             loc_16A|77-209
+206|code|LDR             R3, [mode_info,#0x38]|131-107
+208|code|CMP             R3, #0x10|16-43
+210|code|BNE             loc_16A|74-209
+212|code|B               loc_17A|81-224
+214|code|CMP             R3, #0x18|24-43
+216|code|BNE             loc_11E|33-209
+218|code|LDR             R3, [mode_info,#0x24]|67-106
+220|code|CMP             R3, #8|8-43
+222|code|BNE             loc_16A|68-209
+224|code|LDR             R3, [mode_info,#0x28]|131-106
+226|code|CMP             R3, #0x10|16-43
+228|code|BNE             loc_100|12-209
+230|code|LDR             R3, [mode_info,#0x2C]|195-106
+232|code|CMP             R3, #8|8-43
+234|code|BNE             loc_16A|62-209
+236|code|LDR             R3, [mode_info,#0x30]|3-107
+238|code|CMP             R3, #8|8-43
+240|code|BNE             loc_16A|59-209
+242|code|LDR             R3, [mode_info,#0x34]|67-107
+244|code|CMP             R3, #8|8-43
+246|code|BNE             loc_16A|56-209
+248|code|LDR             R3, [mode_info,#0x38]|131-107
+250|code|CMP             R3, #0|0-43
+252|code|BEQ             loc_17E|63-208
+254|code|B               loc_16A|52-224
+256|code|CMP             R3, #0|0-43
+258|code|BNE             loc_16A|50-209
+260|code|LDR             R3, [mode_info,#0x2C]|195-106
+262|code|CMP             R3, #8|8-43
+264|code|BNE             loc_16A|47-209
+266|code|LDR             R3, [mode_info,#0x30]|3-107
+268|code|CMP             R3, #8|8-43
+270|code|BNE             loc_16A|44-209
+272|code|LDR             R3, [mode_info,#0x34]|67-107
+274|code|CMP             R3, #8|8-43
+276|code|BNE             loc_16A|41-209
+278|code|LDR             R3, [mode_info,#0x38]|131-107
+280|code|CMP             R3, #0x10|16-43
+282|code|BNE             loc_16A|38-209
+284|code|B               loc_182|49-224
+286|code|CMP             R3, #0x10|16-43
+288|code|BNE             loc_162|31-209
+290|code|LDR             R3, [mode_info,#0x24]|67-106
+292|code|CMP             R3, #5|5-43
+294|code|BNE             loc_16A|32-209
+296|code|LDR             R3, [mode_info,#0x28]|131-106
+298|code|CMP             R3, #0xB|11-43
+300|code|BNE             loc_146|11-209
+302|code|LDR             R3, [mode_info,#0x2C]|195-106
+304|code|CMP             R3, #6|6-43
+306|code|BNE             loc_16A|26-209
+308|code|LDR             R3, [mode_info,#0x30]|3-107
+310|code|CMP             R3, #5|5-43
+312|code|BNE             loc_16A|23-209
+314|code|LDR             R3, [mode_info,#0x34]|67-107
+316|code|CMP             R3, #5|5-43
+318|code|BNE             loc_16A|20-209
+320|code|LDR             R3, [mode_info,#0x38]|131-107
+322|code|CBZ             R3, loc_186|3-179
+324|code|B               loc_16A|17-224
+326|code|CBNZ            R3, loc_16A|131-185
+328|code|LDR             R3, [mode_info,#0x2C]|195-106
+330|code|CMP             R3, #6|6-43
+332|code|BNE             loc_16A|13-209
+334|code|LDR             R3, [mode_info,#0x30]|3-107
+336|code|CMP             R3, #5|5-43
+338|code|BNE             loc_16A|10-209
+340|code|LDR             R3, [mode_info,#0x34]|67-107
+342|code|CMP             R3, #5|5-43
+344|code|BNE             loc_16A|7-209
+346|code|LDR             R3, [mode_info,#0x38]|131-107
+348|code|CMP             R3, #0xB|11-43
+350|code|BNE             loc_16A|4-209
+352|code|B               loc_18A|19-224
+354|code|CMP             R3, #1|1-43
+356|code|BEQ             loc_18E|19-208
+358|code|CMP             R3, #8|8-43
+360|code|BLS             loc_192|19-217
+362|code|LDR             R3, [mode_info,#0x3C]|195-107
+364|code|CMP             R3, #0|0-43
+366|code|ITE NE|20-191
+368|code|MOVNE           mode_info, #0|0-32
+370|code|MOVEQ           R0, #3|3-32
+372|code|BX              LR|112-71
+374|code|MOVS            mode_info, #2|2-32
+376|code|BX              LR|112-71
+378|code|MOVS            mode_info, #1|1-32
+380|code|BX              LR|112-71
+382|code|MOVS            mode_info, #5|5-32
+384|code|BX              LR|112-71
+386|code|MOVS            mode_info, #4|4-32
+388|code|BX              LR|112-71
+390|code|MOVS            mode_info, #7|7-32
+392|code|BX              LR|112-71
+394|code|MOVS            mode_info, #6|6-32
+396|code|BX              LR|112-71
+398|code|MOVS            mode_info, #0xA|10-32
+400|code|BX              LR|112-71
+402|code|MOVS            mode_info, #8|8-32
+404|code|BX              LR|112-71
+406|code|LDR             R3, =grub_video_adapter_active|6-75
+408|code|PUSH            {R4,LR}|16-181
+410|code|LDR             R3, [R3]|27-104
+412|code|CBNZ            R3, loc_1A8|35-185
+414|code|LDR             count, =aNoVideoModeAct; "no video mode activated"|5-73
+416|code|MOVS            start, #0xD|13-32
+418|code|LDR             R3, =grub_error|5-75
+420|code|BLX             R3; grub_error|152-71
+422|code|POP             {R4,PC}|16-189
+424|code|LDR             R3, [R3,#0x28]|155-106
+426|code|POP.W           {R4,LR}|189-232-16-64
+430|code|BX              R3|24-71
+432|data|DCD grub_video_adapter_active|124-9-0-0
+436|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+440|data|DCD grub_error|152-9-0-0
+444|code|LDR             R3, =grub_video_adapter_active|6-75
+446|code|PUSH            {R4,LR}|16-181
+448|code|LDR             R3, [R3]|27-104
+450|code|CBNZ            R3, loc_1CE|35-185
+452|code|LDR             count, =aNoVideoModeAct; "no video mode activated"|5-73
+454|code|MOVS            start, #0xD|13-32
+456|code|LDR             R3, =grub_error|5-75
+458|code|BLX             R3; grub_error|152-71
+460|code|POP             {R4,PC}|16-189
+462|code|LDR             R3, [R3,#0x2C]|219-106
+464|code|POP.W           {R4,LR}|189-232-16-64
+468|code|BX              R3|24-71
+470|data|ALIGN 4|0-191
+472|data|DCD grub_video_adapter_active|124-9-0-0
+476|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+480|data|DCD grub_error|152-9-0-0
+484|code|PUSH            {R4,LR}|16-181
+486|code|LDR             R4, =grub_video_adapter_active|6-76
+488|code|LDR             R4, [R4]|36-104
+490|code|CBNZ            R4, loc_1F6|36-185
+492|code|LDR             y, =aNoVideoModeAct; "no video mode activated"|5-73
+494|code|MOVS            x, #0xD|13-32
+496|code|LDR             height, =grub_error|5-75
+498|code|BLX             R3; grub_error|152-71
+500|code|POP             {R4,PC}|16-189
+502|code|LDR             R4, [R4,#0x30]|36-107
+504|code|MOV             R12, R4|164-70
+506|code|POP.W           {R4,LR}|189-232-16-64
+510|code|BX              R12|96-71
+512|data|DCD grub_video_adapter_active|124-9-0-0
+516|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+520|data|DCD grub_error|152-9-0-0
+524|code|PUSH            {R4,LR}|16-181
+526|code|LDR             R4, =grub_video_adapter_active|6-76
+528|code|LDR             R4, [R4]|36-104
+530|code|CBNZ            R4, loc_21E|36-185
+532|code|LDR             y, =aNoVideoModeAct; "no video mode activated"|5-73
+534|code|MOVS            x, #0xD|13-32
+536|code|LDR             height, =grub_error|5-75
+538|code|BLX             R3; grub_error|152-71
+540|code|POP             {R4,PC}|16-189
+542|code|LDR             R4, [R4,#0x34]|100-107
+544|code|MOV             R12, R4|164-70
+546|code|POP.W           {R4,LR}|189-232-16-64
+550|code|BX              R12|96-71
+552|data|DCD grub_video_adapter_active|124-9-0-0
+556|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+560|data|DCD grub_error|152-9-0-0
+564|code|PUSH            {R4,LR}|16-181
+566|code|LDR             R4, =grub_video_adapter_active|6-76
+568|code|LDR             R4, [R4]|36-104
+570|code|CBNZ            R4, loc_246|36-185
+572|code|LDR             y, =aNoVideoModeAct; "no video mode activated"|5-73
+574|code|MOVS            x, #0xD|13-32
+576|code|LDR             height, =grub_error|5-75
+578|code|BLX             R3; grub_error|152-71
+580|code|POP             {R4,PC}|16-189
+582|code|LDR             R4, [R4,#0x38]|164-107
+584|code|MOV             R12, R4|164-70
+586|code|POP.W           {R4,LR}|189-232-16-64
+590|code|BX              R12|96-71
+592|data|DCD grub_video_adapter_active|124-9-0-0
+596|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+600|data|DCD grub_error|152-9-0-0
+604|code|PUSH            {R4,LR}|16-181
+606|code|LDR             R4, =grub_video_adapter_active|6-76
+608|code|LDR             R4, [R4]|36-104
+610|code|CBNZ            R4, loc_26E|36-185
+612|code|LDR             y, =aNoVideoModeAct; "no video mode activated"|5-73
+614|code|MOVS            x, #0xD|13-32
+616|code|LDR             height, =grub_error|5-75
+618|code|BLX             R3; grub_error|152-71
+620|code|POP             {R4,PC}|16-189
+622|code|LDR             R4, [R4,#0x3C]|228-107
+624|code|MOV             R12, R4|164-70
+626|code|POP.W           {R4,LR}|189-232-16-64
+630|code|BX              R12|96-71
+632|data|DCD grub_video_adapter_active|124-9-0-0
+636|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+640|data|DCD grub_error|152-9-0-0
+644|code|LDR             R3, =grub_video_adapter_active|6-75
+646|code|PUSH            {R4,LR}|16-181
+648|code|LDR             R3, [R3]|27-104
+650|code|CBNZ            R3, loc_296|35-185
+652|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|5-73
+654|code|MOVS            area_status, #0xD|13-32
+656|code|LDR             R3, =grub_error|5-75
+658|code|BLX             R3; grub_error|152-71
+660|code|POP             {R4,PC}|16-189
+662|code|LDR             R3, [R3,#0x40]|27-108
+664|code|POP.W           {R4,LR}|189-232-16-64
+668|code|BX              R3|24-71
+670|data|ALIGN 0x10|0-191
+672|data|DCD grub_video_adapter_active|124-9-0-0
+676|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+680|data|DCD grub_error|152-9-0-0
+684|code|LDR             R3, =grub_video_adapter_active|6-75
+686|code|PUSH            {R4,LR}|16-181
+688|code|LDR             R3, [R3]|27-104
+690|code|CBNZ            R3, loc_2BE|35-185
+692|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|5-73
+694|code|MOVS            area_status, #0xD|13-32
+696|code|LDR             R3, =grub_error|5-75
+698|code|BLX             R3; grub_error|152-71
+700|code|POP             {R4,PC}|16-189
+702|code|LDR             R3, [R3,#0x44]|91-108
+704|code|POP.W           {R4,LR}|189-232-16-64
+708|code|BX              R3|24-71
+710|data|ALIGN 4|0-191
+712|data|DCD grub_video_adapter_active|124-9-0-0
+716|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+720|data|DCD grub_error|152-9-0-0
+724|code|LDR             R3, =grub_video_adapter_active|3-75
+726|code|LDR             R3, [R3]|27-104
+728|code|CBZ             R3, loc_2DE|11-177
+730|code|LDR             R3, [R3,#0x48]|155-108
+732|code|BX              R3|24-71
+734|code|MOV             color_name, R3|24-70
+736|code|BX              LR|112-71
+738|data|ALIGN 4|0-191
+740|data|DCD grub_video_adapter_active|124-9-0-0
+744|code|LDR             R3, =grub_video_adapter_active|3-75
+746|code|LDR             R3, [R3]|27-104
+748|code|CBZ             R3, loc_2F2|11-177
+750|code|LDR             R3, [R3,#0x4C]|219-108
+752|code|BX              R3|24-71
+754|code|MOV             red, R3|24-70
+756|code|BX              LR|112-71
+758|data|ALIGN 4|0-191
+760|data|DCD grub_video_adapter_active|124-9-0-0
+764|code|PUSH            {R4,LR}|16-181
+766|code|LDR             R4, =grub_video_adapter_active|5-76
+768|code|LDR             R4, [R4]|36-104
+770|code|CBZ             R4, loc_30E|36-177
+772|code|LDR             R4, [R4,#0x50]|36-109
+774|code|MOV             R12, R4|164-70
+776|code|POP.W           {R4,LR}|189-232-16-64
+780|code|BX              R12|96-71
+782|code|MOV             red, R4|32-70
+784|code|POP             {R4,PC}|16-189
+786|data|ALIGN 4|0-191
+788|data|DCD grub_video_adapter_active|124-9-0-0
+792|code|PUSH            {R4-R6,LR}|112-181
+794|code|LDR             R4, =grub_video_adapter_active|7-76
+796|code|LDR             R5, [SP,#0x10+alpha]|4-157
+798|code|LDR             R4, [R4]|36-104
+800|code|CBNZ            R4, loc_32C|36-185
+802|code|LDR             red, =aNoVideoModeAct; "no video mode activated"|6-73
+804|code|MOVS            color, #0xD|13-32
+806|code|LDR             blue, =grub_error|6-75
+808|code|BLX             R3; grub_error|152-71
+810|code|POP             {R4-R6,PC}|112-189
+812|code|STR             R5, [SP,#0x10+alpha]|4-149
+814|code|LDR             R4, [R4,#0x54]|100-109
+816|code|MOV             R12, R4|164-70
+818|code|POP.W           {R4-R6,LR}|189-232-112-64
+822|code|BX              R12|96-71
+824|data|DCD grub_video_adapter_active|124-9-0-0
+828|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+832|data|DCD grub_error|152-9-0-0
+836|code|PUSH            {R4-R6,LR}|112-181
+838|code|LDR             R4, =grub_video_adapter_active|7-76
+840|code|LDR             R5, [SP,#0x10+height]|4-157
+842|code|LDR             R4, [R4]|36-104
+844|code|CBNZ            R4, loc_358|36-185
+846|code|LDR             x, =aNoVideoModeAct; "no video mode activated"|6-73
+848|code|MOVS            color, #0xD|13-32
+850|code|LDR             width, =grub_error|6-75
+852|code|BLX             R3; grub_error|152-71
+854|code|POP             {R4-R6,PC}|112-189
+856|code|STR             R5, [SP,#0x10+height]|4-149
+858|code|LDR             R4, [R4,#0x58]|164-109
+860|code|MOV             R12, R4|164-70
+862|code|POP.W           {R4-R6,LR}|189-232-112-64
+866|code|BX              R12|96-71
+868|data|DCD grub_video_adapter_active|124-9-0-0
+872|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+876|data|DCD grub_error|152-9-0-0
+880|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+884|code|LDR             R4, =grub_video_adapter_active|11-76
+886|code|LDR.W           LR, [SP,#0x18+offset_x]|221-248-24-224
+890|code|LDR             R7, [SP,#0x18+offset_y]|7-159
+892|code|LDR             R4, [R4]|36-104
+894|code|LDR             R6, [SP,#0x18+width]|8-158
+896|code|LDR             R5, [SP,#0x18+height]|9-157
+898|code|CBNZ            R4, loc_390|44-185
+900|code|LDR             oper, =aNoVideoModeAct; "no video mode activated"|8-73
+902|code|MOVS            bitmap, #0xD|13-32
+904|code|LDR             y, =grub_error|8-75
+906|code|BLX             R3; grub_error|152-71
+908|code|POP.W           {R4-R8,PC}|189-232-240-129
+912|code|STR.W           LR, [SP,#0x18+offset_x]|205-248-24-224
+916|code|STR             R7, [SP,#0x18+offset_y]|7-151
+918|code|STR             R6, [SP,#0x18+width]|8-150
+920|code|STR             R5, [SP,#0x18+height]|9-149
+922|code|LDR             R4, [R4,#0x5C]|228-109
+924|code|MOV             R12, R4|164-70
+926|code|POP.W           {R4-R8,LR}|189-232-240-65
+930|code|BX              R12|96-71
+932|data|DCD grub_video_adapter_active|124-9-0-0
+936|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+940|data|DCD grub_error|152-9-0-0
+944|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+948|code|LDR             R4, =grub_video_adapter_active|11-76
+950|code|LDR.W           LR, [SP,#0x18+offset_x]|221-248-24-224
+954|code|LDR             R7, [SP,#0x18+offset_y]|7-159
+956|code|LDR             R4, [R4]|36-104
+958|code|LDR             R6, [SP,#0x18+width]|8-158
+960|code|LDR             R5, [SP,#0x18+height]|9-157
+962|code|CBNZ            R4, loc_3D0|44-185
+964|code|LDR             oper, =aNoVideoModeAct; "no video mode activated"|8-73
+966|code|MOVS            target, #0xD|13-32
+968|code|LDR             y, =grub_error|8-75
+970|code|BLX             R3; grub_error|152-71
+972|code|POP.W           {R4-R8,PC}|189-232-240-129
+976|code|STR.W           LR, [SP,#0x18+offset_x]|205-248-24-224
+980|code|STR             R7, [SP,#0x18+offset_y]|7-151
+982|code|STR             R6, [SP,#0x18+width]|8-150
+984|code|STR             R5, [SP,#0x18+height]|9-149
+986|code|LDR             R4, [R4,#0x60]|36-110
+988|code|MOV             R12, R4|164-70
+990|code|POP.W           {R4-R8,LR}|189-232-240-65
+994|code|BX              R12|96-71
+996|data|DCD grub_video_adapter_active|124-9-0-0
+1000|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1004|data|DCD grub_error|152-9-0-0
+1008|code|LDR             R3, =grub_video_adapter_active|6-75
+1010|code|PUSH            {R4,LR}|16-181
+1012|code|LDR             R3, [R3]|27-104
+1014|code|CBNZ            R3, loc_402|35-185
+1016|code|LDR             dx, =aNoVideoModeAct; "no video mode activated"|5-73
+1018|code|MOVS            color, #0xD|13-32
+1020|code|LDR             R3, =grub_error|5-75
+1022|code|BLX             R3; grub_error|152-71
+1024|code|POP             {R4,PC}|16-189
+1026|code|LDR             R3, [R3,#0x64]|91-110
+1028|code|POP.W           {R4,LR}|189-232-16-64
+1032|code|BX              R3|24-71
+1034|data|ALIGN 4|0-191
+1036|data|DCD grub_video_adapter_active|124-9-0-0
+1040|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1044|data|DCD grub_error|152-9-0-0
+1048|code|LDR             R3, =grub_video_adapter_active|6-75
+1050|code|PUSH            {R4,LR}|16-181
+1052|code|LDR             R3, [R3]|27-104
+1054|code|CBNZ            R3, loc_42A|35-185
+1056|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|5-73
+1058|code|MOVS            R0, #0xD|13-32
+1060|code|LDR             R3, =grub_error|5-75
+1062|code|BLX             R3; grub_error|152-71
+1064|code|POP             {R4,PC}|16-189
+1066|code|LDR             R3, [R3,#0x68]|155-110
+1068|code|POP.W           {R4,LR}|189-232-16-64
+1072|code|BX              R3|24-71
+1074|data|ALIGN 4|0-191
+1076|data|DCD grub_video_adapter_active|124-9-0-0
+1080|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1084|data|DCD grub_error|152-9-0-0
+1088|code|PUSH            {R4-R6,LR}|112-181
+1090|code|MOVS            R5, #0|0-37
+1092|code|LDR             R4, =grub_video_adapter_active|6-76
+1094|code|STR             R5, [result]|5-96
+1096|code|LDR             R4, [R4]|36-104
+1098|code|CBNZ            R4, loc_456|36-185
+1100|code|LDR             width, =aNoVideoModeAct; "no video mode activated"|5-73
+1102|code|MOVS            result, #0xD|13-32
+1104|code|LDR             mode_type, =grub_error|5-75
+1106|code|BLX             R3; grub_error|152-71
+1108|code|POP             {R4-R6,PC}|112-189
+1110|code|LDR             R4, [R4,#0x6C]|228-110
+1112|code|MOV             R12, R4|164-70
+1114|code|POP.W           {R4-R6,LR}|189-232-112-64
+1118|code|BX              R12|96-71
+1120|data|DCD grub_video_adapter_active|124-9-0-0
+1124|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1128|data|DCD grub_error|152-9-0-0
+1132|code|PUSH            {R4,LR}|16-181
+1134|code|CBZ             target, locret_488|88-177
+1136|code|LDR             R3, =grub_video_adapter_active|6-75
+1138|code|LDR             R3, [R3]|27-104
+1140|code|CBNZ            R3, loc_480|35-185
+1142|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|6-73
+1144|code|MOVS            target, #0xD|13-32
+1146|code|LDR             R3, =grub_error|6-75
+1148|code|BLX             R3; grub_error|152-71
+1150|code|POP             {R4,PC}|16-189
+1152|code|LDR             R3, [R3,#0x70]|27-111
+1154|code|POP.W           {R4,LR}|189-232-16-64
+1158|code|BX              R3|24-71
+1160|code|POP             {R4,PC}|16-189
+1162|data|ALIGN 4|0-191
+1164|data|DCD grub_video_adapter_active|124-9-0-0
+1168|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1172|data|DCD grub_error|152-9-0-0
+1176|code|LDR             R3, =grub_video_adapter_active|6-75
+1178|code|PUSH            {R4,LR}|16-181
+1180|code|LDR             R3, [R3]|27-104
+1182|code|CBNZ            R3, loc_4AA|35-185
+1184|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|5-73
+1186|code|MOVS            target, #0xD|13-32
+1188|code|LDR             R3, =grub_error|5-75
+1190|code|BLX             R3; grub_error|152-71
+1192|code|POP             {R4,PC}|16-189
+1194|code|LDR             R3, [R3,#0x74]|91-111
+1196|code|POP.W           {R4,LR}|189-232-16-64
+1200|code|BX              R3|24-71
+1202|data|ALIGN 4|0-191
+1204|data|DCD grub_video_adapter_active|124-9-0-0
+1208|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1212|data|DCD grub_error|152-9-0-0
+1216|code|LDR             R3, =grub_video_adapter_active|6-75
+1218|code|PUSH            {R4,LR}|16-181
+1220|code|LDR             R3, [R3]|27-104
+1222|code|CBNZ            R3, loc_4D2|35-185
+1224|code|LDR             R1, =aNoVideoModeAct; "no video mode activated"|5-73
+1226|code|MOVS            target, #0xD|13-32
+1228|code|LDR             R3, =grub_error|5-75
+1230|code|BLX             R3; grub_error|152-71
+1232|code|POP             {R4,PC}|16-189
+1234|code|LDR             R3, [R3,#0x78]|155-111
+1236|code|POP.W           {R4,LR}|189-232-16-64
+1240|code|BX              R3|24-71
+1242|data|ALIGN 4|0-191
+1244|data|DCD grub_video_adapter_active|124-9-0-0
+1248|data|DCD aNoVideoModeAct; "no video mode activated"|188-8-0-0
+1252|data|DCD grub_error|152-9-0-0
+1256|code|PUSH            {R3,LR}|8-181
+1258|code|SUBS            R3, edid_bytes, #1|67-30
+1260|code|ADDS            edid_bytes, #0x7F|127-48
+1262|code|MOVS            R2, #0|0-34
+1264|code|LDRB.W          R1, [R3,#1]!|19-248-1-31
+1268|code|ADD             checksum, R1|10-68
+1270|code|CMP             R3, R0|131-66
+1272|code|UXTB            R2, R2|210-178
+1274|code|BNE             loc_4F0|249-209
+1276|code|CBZ             checksum, loc_508|34-177
+1278|code|LDR             R1, =aInvalidEdidChe; "invalid EDID checksum %d"|4-73
+1280|code|MOVS            R0, #0xD|13-32
+1282|code|LDR             R3, =grub_error|4-75
+1284|code|BLX             R3; grub_error|152-71
+1286|code|POP             {R3,PC}|8-189
+1288|code|LDR             R3, =grub_errno|3-75
+1290|code|MOV             R0, checksum|16-70
+1292|code|STR             checksum, [R3]|26-96
+1294|code|POP             {R3,PC}|8-189
+1296|data|DCD aInvalidEdidChe; "invalid EDID checksum %d"|212-8-0-0
+1300|data|DCD grub_error|152-9-0-0
+1304|data|DCD grub_errno|132-9-0-0
+1308|code|PUSH            {R4,LR}|16-181
+1310|code|LDRB            R3, [edid_info,#0x12]|131-124
+1312|code|CMP             R3, #1|1-43
+1314|code|BEQ             loc_52E|4-208
+1316|code|LDR             width, =aNoPreferredMod; "no preferred mode available"|19-73
+1318|code|MOVS            edid_info, #0xD|13-32
+1320|code|LDR             R3, =grub_error|19-75
+1322|code|BLX             R3; grub_error|152-71
+1324|code|POP             {R4,PC}|16-189
+1326|code|LDRB            R3, [edid_info,#0x18]|3-126
+1328|code|LSLS            R3, R3, #0x1E|155-7
+1330|code|BPL             loc_524|247-213
+1332|code|LDRB.W          R4, [edid_info,#0x37]|144-248-55-64
+1336|code|LDRB.W          R3, [edid_info,#0x36]|144-248-54-48
+1340|code|ORRS.W          R3, R3, R4,LSL#8|83-234-4-35
+1344|code|BEQ             loc_524|240-208
+1346|code|LDRB.W          R3, [edid_info,#0x3A]|144-248-58-48
+1350|code|AND.W           R4, R3, #0xF0|3-240-240-4
+1354|code|LDRB.W          R3, [edid_info,#0x38]|144-248-56-48
+1358|code|ORR.W           R3, R3, R4,LSL#4|67-234-4-19
+1362|code|STR             R3, [width]|11-96
+1364|code|LDRB.W          R3, [edid_info,#0x3D]|144-248-61-48
+1368|code|AND.W           R4, R3, #0xF0|3-240-240-4
+1372|code|LDRB.W          R3, [edid_info,#0x3B]|144-248-59-48
+1376|code|ORR.W           R3, R3, R4,LSL#4|67-234-4-19
+1380|code|STR             R3, [height]|19-96
+1382|code|LDR             height, [width]|10-104
+1384|code|CMP             R2, #0|0-42
+1386|code|BEQ             loc_524|219-208
+1388|code|CMP             R3, #0|0-43
+1390|code|BEQ             loc_524|217-208
+1392|code|MOVS            edid_info, #0|0-32
+1394|code|POP             {R4,PC}|16-189
+1396|data|DCD aNoPreferredMod; "no preferred mode available"|237-8-0-0
+1400|data|DCD grub_error|152-9-0-0
+1404|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1408|code|MOV             R6, modemask|14-70
+1410|code|LDR             modemask, =grub_video_adapter_active|153-73
+1412|code|SUB             SP, SP, #0x6C|155-176
+1414|code|LDR             R3, [R1]|11-104
+1416|code|STR             R1, [SP,#0x90+var_88]|2-145
+1418|code|CBZ             R3, loc_594|27-177
+1420|code|LDR             R3, [R3,#0xC]|219-104
+1422|code|CMP             R3, #0xD|13-43
+1424|code|BEQ.W           loc_890|0-240-126-129
+1428|code|LDR             R3, =grub_strdup|149-75
+1430|code|AND.W           R5, modevalue, modemask|2-234-6-5
+1434|code|BLX             R3; grub_strdup|152-71
+1436|code|MOV             R8, modevar|128-70
+1438|code|CBNZ            modevar, loc_5A6|16-185
+1440|code|LDR             R3, =grub_errno|147-75
+1442|code|LDR             modevar, [R3]|24-104
+1444|code|B               loc_8A4|126-225
+1446|code|LDR             R1, =aKeep; "keep"|147-73
+1448|code|MOVS            R2, #5|5-34
+1450|code|LDR             R4, =grub_memcmp|147-76
+1452|code|BLX             R4; grub_memcmp|160-71
+1454|code|CBNZ            R0, loc_5B8|24-185
+1456|code|LDR             R3, [SP,#0x90+var_88]|2-155
+1458|code|LDR             R3, [R3]|27-104
+1460|code|CBNZ            R3, loc_5D4|115-185
+1462|code|B               loc_602|36-224
+1464|code|MOV             R0, modevar|64-70
+1466|code|LDR             R1, =aKeep_0; "keep,"|144-73
+1468|code|MOVS            R2, #5|5-34
+1470|code|BLX             R4; grub_memcmp|160-71
+1472|code|CMP             R0, #0|0-40
+1474|code|BEQ             loc_5B0|245-208
+1476|code|MOV             R0, modevar|64-70
+1478|code|LDR             R1, =aKeep_1; "keep;"|142-73
+1480|code|MOVS            R2, #5|5-34
+1482|code|BLX             R4; grub_memcmp|160-71
+1484|code|CMP             R0, #0|0-40
+1486|code|BEQ             loc_5B0|239-208
+1488|code|MOV             R10, modevar|194-70
+1490|code|B               loc_618|33-224
+1492|code|ADD             R0, SP, #0x90+mode_info|7-168
+1494|code|MOVS            R1, #0|0-33
+1496|code|MOVS            R2, #0x4C ; 'L'|76-34
+1498|code|LDR             R3, =grub_memset|138-75
+1500|code|BLX             R3; grub_memset|152-71
+1502|code|ADD             R0, SP, #0x90+mode_info; mode_info|7-168
+1504|code|BL              grub_video_get_info|255-247-30-253
+1508|code|CBZ             err, loc_5EE|24-177
+1510|code|LDR             R2, =grub_errno|130-74
+1512|code|MOVS            R3, #0|0-35
+1514|code|STR             R3, [R2]|19-96
+1516|code|B               loc_5F0|0-224
+1518|code|MOVS            R3, #1|1-35
+1520|code|LDR             R2, [SP,#0x90+mode_info.mode_type]|9-154
+1522|code|ANDS            R2, modemask|50-64
+1524|code|CMP             R2, modevalue|170-66
+1526|code|BNE             loc_60A|8-209
+1528|code|CBZ             suitable, loc_60A|59-177
+1530|code|MOV             R0, modevar|64-70
+1532|code|LDR             R3, =grub_free|130-75
+1534|code|BLX             R3; grub_free|152-71
+1536|code|B               loc_890|70-225
+1538|code|LSLS            R4, modemask, #0x19|116-6
+1540|code|BPL             loc_5FA|249-213
+1542|code|LSLS            R0, modevalue, #0x19|104-6
+1544|code|BMI             loc_5FA|247-212
+1546|code|LDRB.W          R3, [modevar,#4]|152-248-4-48
+1550|code|CMP             R3, #0|0-43
+1552|code|BEQ.W           loc_880|0-240-54-129
+1556|code|ADD.W           R10, modevar, #5|8-241-5-10
+1560|code|LDR             R3, [SP,#0x90+var_88]|2-155
+1562|code|LDR             R3, [R3]|27-104
+1564|code|CMP             R3, #0|0-43
+1566|code|BEQ             loc_694|57-208
+1568|code|LDR             R3, [R3,#0x18]|155-105
+1570|code|BLX             R3|152-71
+1572|code|LDR             R2, =grub_errno|114-74
+1574|code|MOVS            R3, #0|0-35
+1576|code|LDR             R1, [R2]|17-104
+1578|code|CBZ             R1, loc_62E|1-177
+1580|code|STR             R3, [R2]|19-96
+1582|code|LDR             R2, [SP,#0x90+var_88]|2-154
+1584|code|STR             R3, [R2]|19-96
+1586|code|B               loc_694|47-224
+1588|code|ADDS            R3, #1|1-51
+1590|code|MOVS            R1, #0x78 ; 'x'|120-33
+1592|code|STR             R2, [SP,#0x90+var_80]|4-146
+1594|code|MOV             width_0, R3|24-70
+1596|code|STR             R3, [SP,#0x90+flagmask]|1-147
+1598|code|BLX             R9; grub_strchr|200-71
+1600|code|LDR             R3, [SP,#0x90+flagmask]|1-155
+1602|code|LDR             R2, [SP,#0x90+var_80]|4-154
+1604|code|MOV             R12, R0|132-70
+1606|code|CMP             R0, #0|0-40
+1608|code|BEQ             loc_740|122-208
+1610|code|STR             R0, [SP,#0x90+flagmask]|1-144
+1612|code|MOV             R1, R2|17-70
+1614|code|MOV             R0, R3|24-70
+1616|code|BLX             R11; grub_strtoul|216-71
+1618|code|LDR             R1, [R4]|33-104
+1620|code|LDR.W           R12, [SP,#0x90+flagmask]|221-248-4-192
+1624|code|MOV             R9, R0|129-70
+1626|code|CMP             R1, #0|0-41
+1628|code|BNE             loc_74E|119-209
+1630|code|ADD.W           height, R12, #1|12-241-1-0
+1634|code|MOV             R2, R1|10-70
+1636|code|BLX             R11; grub_strtoul|216-71
+1638|code|LDR             R3, [R4]|35-104
+1640|code|MOV             R11, R0|131-70
+1642|code|CMP             R3, #0|0-43
+1644|code|BNE             loc_75C|118-209
+1646|code|CMP.W           depth, #0xFFFFFFFF|187-241-255-63
+1650|code|BEQ.W           loc_782|0-240-134-128
+1654|code|TST.W           modemask, #0xFF00|22-244-127-79
+1658|code|MOV.W           depth, depth,LSL#8|79-234-11-43
+1662|code|BEQ             loc_76E|118-208
+1664|code|AND.W           R3, modevalue, #0xFF00|5-244-127-67
+1668|code|UXTH.W          R2, R11|31-250-139-242
+1672|code|CMP             R3, R2|147-66
+1674|code|BEQ             loc_76E|112-208
+1676|code|CMP.W           next_mode, #0|186-241-0-15
+1680|code|BEQ.W           loc_880|0-240-246-128
+1684|code|MOV             R4, next_mode|84-70
+1686|code|MOV             R2, next_mode|82-70
+1688|code|MOV             next_mode, R2|146-70
+1690|code|LDRB.W          R3, [next_mode],#1|18-248-1-59
+1694|code|CBZ             R3, loc_6AC|43-177
+1696|code|CMP             R3, #0x2C ; ','|44-43
+1698|code|BEQ.W           loc_89C|0-240-251-128
+1702|code|CMP             R3, #0x3B ; ';'|59-43
+1704|code|BNE             loc_698|246-209
+1706|code|B               loc_89C|247-224
+1708|code|MOV             next_mode, R3|154-70
+1710|code|MOV             R7, R4|39-70
+1712|code|LDR             R3, =grub_isspace|86-75
+1714|code|LDRB            R0, [R7]|56-120
+1716|code|ADDS            tmp, #1|1-52
+1718|code|BLX             R3; grub_isspace|152-71
+1720|code|CMP             R0, #0|0-40
+1722|code|BNE             loc_6AE|248-209
+1724|code|LDR             R1, =aText; "text"|84-73
+1726|code|MOV             R0, current_mode|56-70
+1728|code|LDR             R4, =grub_strcmp|84-76
+1730|code|BLX             R4; grub_strcmp|160-71
+1732|code|MOV             R1, R0|1-70
+1734|code|CBNZ            R0, loc_6E8|120-185
+1736|code|ADD             R0, SP, #0x90+mode_info|7-168
+1738|code|MOVS            R2, #0x4C ; 'L'|76-34
+1740|code|LDR             R3, =grub_memset|77-75
+1742|code|BLX             R3; grub_memset|152-71
+1744|code|LSLS            R1, modemask, #0x19|113-6
+1746|code|BPL             loc_6D8|1-213
+1748|code|LSLS            R2, modevalue, #0x19|106-6
+1750|code|BPL             loc_6E8|7-213
+1752|code|LDR             R3, [SP,#0x90+var_88]|2-155
+1754|code|MOVS            R4, #0|0-36
+1756|code|MOV             R0, modevar|64-70
+1758|code|STR             R4, [R3]|28-96
+1760|code|LDR             R3, =grub_free|73-75
+1762|code|BLX             R3; grub_free|152-71
+1764|code|MOV             R0, R4|32-70
+1766|code|B               loc_8A4|221-224
+1768|code|MOV             R0, current_mode|56-70
+1770|code|LDR             R1, =aAuto; "auto"|75-73
+1772|code|BLX             R4; grub_strcmp|160-71
+1774|code|CMP             R0, #0|0-40
+1776|code|BEQ             loc_77E|69-208
+1778|code|MOV             R0, current_mode|56-70
+1780|code|MOVS            R1, #0x78 ; 'x'|120-33
+1782|code|LDR.W           R9, =grub_strchr|223-248-48-145
+1786|code|BLX             R9; grub_strchr|200-71
+1788|code|CBNZ            R0, loc_714|80-185
+1790|code|MOV             R2, current_mode|58-70
+1792|code|MOVS            R0, #0x12|18-32
+1794|code|LDR             R1, =aInvalidVideoMo; "invalid video mode specification `%s'"|70-73
+1796|code|MOV.W           R9, #0xFFFFFFFF|79-240-255-57
+1800|code|LDR             R3, =grub_error|69-75
+1802|code|BLX             R3; grub_error|152-71
+1804|code|STR.W           R9, [SP,#0x90+width]|205-248-12-144
+1808|code|MOV             current_mode, R0|7-70
+1810|code|B               loc_894|191-224
+1812|code|MOVS            R1, #0|0-33
+1814|code|STR             R0, [SP,#0x90+flagmask]|1-144
+1816|code|MOV             R2, R1|10-70
+1818|code|MOV             R0, current_mode|56-70
+1820|code|LDR.W           R11, =grub_strtoul|223-248-12-177
+1824|code|BLX             R11; grub_strtoul|216-71
+1826|code|LDR             R4, =grub_errno|51-76
+1828|code|LDR             R3, [SP,#0x90+flagmask]|1-155
+1830|code|LDR             R2, [R4]|34-104
+1832|code|STR             R0, [SP,#0x90+width]|3-144
+1834|code|CMP             R2, #0|0-42
+1836|code|BEQ             loc_634|130-208
+1838|code|MOV             R2, current_mode|58-70
+1840|code|MOVS            width_0, #0x12|18-32
+1842|code|LDR             R1, =aInvalidVideoMo; "invalid video mode specification `%s'"|58-73
+1844|code|MOV.W           R9, #0xFFFFFFFF|79-240-255-57
+1848|code|LDR             R3, =grub_error|57-75
+1850|code|BLX             R3; grub_error|152-71
+1852|code|MOV             current_mode, R0|7-70
+1854|code|B               loc_894|169-224
+1856|code|MOV             R0, R3|24-70
+1858|code|MOV             R1, R12|97-70
+1860|code|MOV             R2, R12|98-70
+1862|code|BLX             R11; grub_strtoul|216-71
+1864|code|LDR             R3, [R4]|35-104
+1866|code|MOV             R9, R0|129-70
+1868|code|CBZ             R3, loc_782|203-177
+1870|code|MOV             R2, current_mode|58-70
+1872|code|MOVS            height, #0x12|18-32
+1874|code|LDR             R1, =aInvalidVideoMo; "invalid video mode specification `%s'"|50-73
+1876|code|LDR             R3, =grub_error|50-75
+1878|code|BLX             R3; grub_error|152-71
+1880|code|MOV             current_mode, R0|7-70
+1882|code|B               loc_894|155-224
+1884|code|MOV             R2, current_mode|58-70
+1886|code|MOVS            depth, #0x12|18-32
+1888|code|LDR             R1, =aInvalidVideoMo; "invalid video mode specification `%s'"|46-73
+1890|code|LDR             R3, =grub_error|47-75
+1892|code|BLX             R3; grub_error|152-71
+1894|code|MOV             current_mode, R0|7-70
+1896|code|CMP             R0, #0|0-40
+1898|code|BEQ             loc_66E|128-208
+1900|code|B               loc_79E|23-224
+1902|code|UXTH.W          R11, R11|31-250-139-251
+1906|code|ORR.W           R3, modemask, #0xFF00|70-244-127-67
+1910|code|ORR.W           R4, R11, modevalue|75-234-5-4
+1914|code|STR             R3, [SP,#0x90+flagmask]|1-147
+1916|code|B               loc_786|3-224
+1918|code|MOV             R9, R0|129-70
+1920|code|STR             R0, [SP,#0x90+width]|3-144
+1922|code|MOV             R4, modevalue|44-70
+1924|code|STR             modemask, [SP,#0x90+flagmask]|1-150
+1926|code|LDR             R3, =grub_video_adapter_list|39-75
+1928|code|LDR.W           R11, [R3]|211-248-0-176
+1932|code|EOR.W           R3, modevalue, #0x40|133-240-64-3
+1936|code|UBFX.W          R3, R3, #6, #1|195-243-128-19
+1940|code|STR             R3, [SP,#0x90+var_7C]|5-147
+1942|code|B               loc_7E0|35-224
+1944|code|LDR             R3, =grub_video_adapter_active|19-75
+1946|code|STR.W           p, [R3]|195-248-0-176
+1950|code|MOV             R0, modevar|64-70
+1952|code|LDR             R3, =grub_free|25-75
+1954|code|BLX             R3; grub_free|152-71
+1956|code|MOV             R0, R7|56-70
+1958|code|B               loc_8A4|125-224
+1960|code|MOVS            R1, #0|0-33
+1962|code|MOVS            R2, #0x4C ; 'L'|76-34
+1964|code|LDR             R3, =grub_memset|21-75
+1966|code|ADD             R0, SP, #0x90+mode_info|7-168
+1968|code|BLX             R3; grub_memset|152-71
+1970|code|LDR.W           R3, [p,#0x14]|219-248-20-48
+1974|code|BLX             R3|152-71
+1976|code|STR             err_0, [SP,#0x90+var_80]|4-144
+1978|code|CMP             err_0, #0|0-40
+1980|code|BNE             loc_87A|93-209
+1982|code|LDR.W           R7, [p,#0x1C]|219-248-28-112
+1986|code|MOV             R1, height|73-70
+1988|code|LDR             err_0, [SP,#0x90+width]|3-152
+1990|code|MOV             R2, flags|34-70
+1992|code|LDR             R3, [SP,#0x90+flagmask]|1-155
+1994|code|BLX             R7|184-71
+1996|code|MOV             R7, err_0|7-70
+1998|code|CBZ             err_0, loc_830|120-179
+2000|code|LDR.W           R3, [p,#0x18]|219-248-24-48
+2004|code|BLX             R3|152-71
+2006|code|LDR             R3, =grub_errno|6-75
+2008|code|LDR             R2, [SP,#0x90+var_80]|4-154
+2010|code|STR             R2, [R3]|26-96
+2012|code|LDR.W           p, [p]|219-248-0-176
+2016|code|CMP.W           p, #0|187-241-0-15
+2020|code|BNE             loc_7A8|224-209
+2022|code|B               loc_68C|81-231
+2024|data|DCD grub_video_adapter_active|124-9-0-0
+2028|data|DCD grub_strdup|128-9-0-0
+2032|data|DCD grub_errno|132-9-0-0
+2036|data|DCD aKeep; "keep"|9-9-0-0
+2040|data|DCD grub_memcmp|160-9-0-0
+2044|data|DCD aKeep_0; "keep,"|14-9-0-0
+2048|data|DCD aKeep_1; "keep;"|20-9-0-0
+2052|data|DCD grub_memset|136-9-0-0
+2056|data|DCD grub_free|156-9-0-0
+2060|data|DCD grub_isspace|148-9-0-0
+2064|data|DCD aText; "text"|55-9-0-0
+2068|data|DCD grub_strcmp|140-9-0-0
+2072|data|DCD aAuto; "auto"|60-9-0-0
+2076|data|DCD aInvalidVideoMo; "invalid video mode specification `%s'"|65-9-0-0
+2080|data|DCD grub_error|152-9-0-0
+2084|data|DCD grub_video_adapter_list|120-9-0-0
+2088|data|DCD grub_strchr|144-9-0-0
+2092|data|DCD grub_strtoul|164-9-0-0
+2096|code|LDR.W           R3, [p,#0x20]|219-248-32-48
+2100|code|ADD             err_0, SP, #0x90+mode_info|7-168
+2102|code|BLX             R3|152-71
+2104|code|CBZ             err_0, loc_846|40-177
+2106|code|LDR.W           R3, [p,#0x18]|219-248-24-48
+2110|code|BLX             R3|152-71
+2112|code|LDR             R3, =grub_errno|26-75
+2114|code|STR             R7, [R3]|31-96
+2116|code|B               loc_7DC|202-231
+2118|code|LDR             R4, [SP,#0x90+mode_info.bpp]|10-156
+2120|code|LDR             R3, [SP,#0x90+mode_info.mode_type]|9-155
+2122|code|LSLS            R4, R4, #8|36-2
+2124|code|BIC.W           R3, R3, #0xFF00|35-244-127-67
+2128|code|UXTH            R4, R4|164-178
+2130|code|ORRS            R4, flags|28-67
+2132|code|LSLS            R3, flags, #0x19|99-6
+2134|code|BPL             loc_866|6-213
+2136|code|ANDS.W          err_0, modemask, #0x40|22-240-64-0
+2140|code|IT NE|24-191
+2142|code|LDRNE           R0, [SP,#0x90+var_7C]|5-152
+2144|code|AND.W           R7, R0, #1|0-240-1-7
+2148|code|B               loc_870|4-224
+2150|code|AND.W           err_0, flags, modemask|4-234-6-0
+2154|code|SUBS            R7, R0, modevalue|71-27
+2156|code|IT NE|24-191
+2158|code|MOVNE           R7, #1|1-39
+2160|code|CMP             R7, #0|0-47
+2162|code|BEQ             loc_798|145-208
+2164|code|LDR.W           R3, [p,#0x18]|219-248-24-48
+2168|code|BLX             R3|152-71
+2170|code|MOVS            R2, #0|0-34
+2172|code|LDR             R3, =grub_errno|11-75
+2174|code|B               loc_7DA|172-231
+2176|code|MOV             R0, modevar|64-70
+2178|code|LDR             R3, =grub_free|11-75
+2180|code|BLX             R3; grub_free|152-71
+2182|code|LDR             R1, =aNoSuitableVide; "no suitable video mode found"|11-73
+2184|code|LDR             R3, =grub_error|11-75
+2186|code|MOVS            R0, #0x12|18-32
+2188|code|BLX             R3; grub_error|152-71
+2190|code|B               loc_8A4|9-224
+2192|code|MOVS            R0, #0|0-32
+2194|code|B               loc_8A4|7-224
+2196|code|CMP             R7, #0|0-47
+2198|code|BEQ.W           loc_782|63-244-116-175
+2202|code|B               loc_79E|128-231
+2204|code|MOVS            R3, #0|0-35
+2206|code|STRB.W          R3, [next_mode],#1|10-248-1-59
+2210|code|B               loc_6AE|4-231
+2212|code|ADD             SP, SP, #0x6C ; 'l'|27-176
+2214|code|POP.W           {R4-R11,PC}|189-232-240-143
+2218|data|ALIGN 4|0-191
+2220|data|DCD grub_errno|132-9-0-0
+2224|data|DCD grub_free|156-9-0-0
+2228|data|DCD aNoSuitableVide; "no suitable video mode found"|26-9-0-0
+2232|data|DCD grub_error|152-9-0-0
+2236|data|DCB "no video mode activated",0|110-111-32-118-105-100-101-111-32-109-111-100-101-32-97-99-116-105-118-97-116-101-100-0
+2260|data|DCB "invalid EDID checksum %d",0|105-110-118-97-108-105-100-32-69-68-73-68-32-99-104-101-99-107-115-117-109-32-37-100-0
+2285|data|DCB "no preferred mode available",0|110-111-32-112-114-101-102-101-114-114-101-100-32-109-111-100-101-32-97-118-97-105-108-97-98-108-101-0
+2313|data|DCB "keep",0|107-101-101-112-0
+2318|data|DCB "keep,",0|107-101-101-112-44-0
+2324|data|DCB "keep;",0|107-101-101-112-59-0
+2330|data|DCB "no suitable video mode found",0|110-111-32-115-117-105-116-97-98-108-101-32-118-105-100-101-111-32-109-111-100-101-32-102-111-117-110-100-0
+2359|data|DCB "text",0|116-101-120-116-0
+2364|data|DCB "auto",0|97-117-116-111-0
+2369|data|DCB "invalid video mode specification `%s'",0|105-110-118-97-108-105-100-32-118-105-100-101-111-32-109-111-100-101-32-115-112-101-99-105-102-105-99-97-116-105-111-110-32-96-37-115-39-0
+2407|data||255
+2408|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2424|data|% 4|255-255-255-255

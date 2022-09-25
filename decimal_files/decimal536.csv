@@ -1,0 +1,422 @@
+address|type|disassembly|bytes
+0|code|CMP             x, #1|1-40
+2|code|PUSH.W          {R3-R11,LR}|45-233-248-79
+6|code|MOV             R5, x|5-70
+8|code|BLS             locret_76|53-217
+10|code|MOV             R1, R5|41-70
+12|code|LDR             R7, =__aeabi_uidiv|28-79
+14|code|MOV.W           x, #0x10001|79-240-1-16
+18|code|LDR             R4, =__aeabi_uidivmod|28-76
+20|code|BLX             R7; __aeabi_uidiv|184-71
+22|code|MOV             R1, R5|41-70
+24|code|MOV             R8, R4|160-70
+26|code|UXTH            R6, R0|134-178
+28|code|MOV.W           R0, #0x10001|79-240-1-16
+32|code|BLX             R4; __aeabi_uidivmod|160-71
+34|code|CMP             R1, #1|1-41
+36|code|UXTH.W          R11, R1|31-250-129-251
+40|code|BEQ             loc_6C|32-208
+42|code|MOVS            R4, #1|1-36
+44|code|MOV             R10, R7|186-70
+46|code|MOV             R0, x|40-70
+48|code|MOV             R1, y|89-70
+50|code|BLX             R7; __aeabi_uidiv|184-71
+52|code|MOV             R1, y|89-70
+54|code|UXTH.W          R9, R0|31-250-128-249
+58|code|MOV             R0, x|40-70
+60|code|BLX             R8; __aeabi_uidivmod|192-71
+62|code|SMLABB.W        R3, q, t1, t0|25-251-6-67
+66|code|UXTH            t0, R3|156-178
+68|code|UXTH            x, R1|141-178
+70|code|CMP             x, #1|1-45
+72|code|BEQ             loc_7A|23-208
+74|code|MOV             R0, y|88-70
+76|code|MOV             R1, x|41-70
+78|code|BLX             R10; __aeabi_uidiv|208-71
+80|code|MOV             R1, x|41-70
+82|code|LDR             R3, =__aeabi_uidivmod|12-75
+84|code|UXTH.W          q, R0|31-250-128-249
+88|code|MOV             R0, y|88-70
+90|code|BLX             R3; __aeabi_uidivmod|152-71
+92|code|SMLABB.W        R0, t0, q, t1|20-251-9-96
+96|code|UXTH            t1, R0|134-178
+98|code|UXTH.W          y, R1|31-250-129-251
+102|code|CMP.W           y, #1|187-241-1-15
+106|code|BNE             loc_2E|224-209
+108|code|RSB.W           R0, t1, #1|198-241-1-0
+112|code|UXTH            R0, R0|128-178
+114|code|POP.W           {R3-y,PC}|189-232-248-143
+118|code|POP.W           {R3-R11,PC}|189-232-248-143
+122|code|MOV             R0, t0|32-70
+124|code|POP.W           {R3-y,PC}|189-232-248-143
+128|data|DCD __aeabi_uidiv|44-5-0-0
+132|data|DCD __aeabi_uidivmod|48-5-0-0
+136|code|PUSH.W          {outbuf,inbuf,R4-R10,LR}|45-233-243-71
+140|code|MOV             R8, key|144-70
+142|code|MOV             R7, outbuf|7-70
+144|code|MOVS            key, #8; n|8-34
+146|code|MOV             outbuf, SP; dest|104-70
+148|code|LDR             R6, =memcpy|115-78
+150|code|BLX             R6; memcpy|176-71
+152|code|LDRH.W          R5, [SP,#0x28+in]|189-248-0-80
+156|code|LDRH.W          R1, [SP,#0x28+in+2]|189-248-2-16
+160|code|ADD.W           R2, key, #0xC|8-241-12-2
+164|code|LDRH.W          R3, [SP,#0x28+in+4]|189-248-4-48
+168|code|REV16           R5, R5|109-186
+170|code|LDRH.W          R4, [SP,#0x28+in+6]|189-248-6-64
+174|code|REV16           R1, R1|73-186
+176|code|REV16           R3, R3|91-186
+178|code|STRH.W          R5, [SP,#0x28+in]|173-248-0-80
+182|code|REV16           R4, R4|100-186
+184|code|STRH.W          R1, [SP,#0x28+in+2]|173-248-2-16
+188|code|STRH.W          R3, [SP,#0x28+in+4]|173-248-4-48
+192|code|UXTH            R5, R5|173-178
+194|code|UXTH            R4, R4|164-178
+196|code|UXTH            R3, R3|155-178
+198|code|UXTH            R1, R1|137-178
+200|code|ADD.W           LR, key, #0x6C ; 'l'|8-241-108-14
+204|code|LDRH.W          R0, [R2,#-0xC]|50-248-12-12
+208|code|CBZ             _t16, loc_EE|104-177
+210|code|CBZ             R5, loc_E8|77-177
+212|code|MULS            _t16, R5|104-67
+214|code|UXTH.W          R12, _t32|31-250-128-252
+218|code|LSRS            _t32, _t32, #0x10|0-12
+220|code|RSB.W           R5, _t16, R12|192-235-12-5
+224|code|CMP             R12, _t16|132-69
+226|code|IT CC|56-191
+228|code|ADDCC           R5, #1|1-53
+230|code|B               loc_F2|4-224
+232|code|RSB.W           R5, _t16, #1|192-241-1-5
+236|code|B               loc_F2|1-224
+238|code|RSB.W           R5, R5, #1|197-241-1-5
+242|code|LDRH.W          _t16, [R2,#-0xA]|50-248-10-12
+246|code|UXTH            R5, R5|173-178
+248|code|ADD             R1, R0|1-68
+250|code|UXTH            R0, R1|136-178
+252|code|LDRH.W          R1, [R2,#-8]|50-248-8-28
+256|code|ADD             R1, R3|25-68
+258|code|LDRH.W          R3, [R2,#-6]|50-248-6-60
+262|code|UXTH.W          R12, R1|31-250-129-252
+266|code|CBZ             _t16, loc_12A|115-177
+268|code|CBZ             R4, loc_124|84-177
+270|code|MULS            R4, _t16|92-67
+272|code|UXTH.W          R9, _t32|31-250-132-249
+276|code|LSRS            _t16, _t32, #0x10|35-12
+278|code|RSB.W           R1, _t16, R9|195-235-9-1
+282|code|CMP             R9, _t16|153-69
+284|code|ITE CS|44-191
+286|code|MOVCS           _t32, R1|12-70
+288|code|ADDCC           _t32, R1, #1|76-28
+290|code|B               loc_12E|4-224
+292|code|RSB.W           R4, _t16, #1|195-241-1-4
+296|code|B               loc_12E|1-224
+298|code|RSB.W           R4, R4, #1|196-241-1-4
+302|code|LDRH.W          _t16, [R2,#-4]|50-248-4-60
+306|code|UXTH            R4, R4|164-178
+308|code|EOR.W           R1, R5, s3|133-234-12-1
+312|code|CBZ             _t16, loc_156|107-177
+314|code|CBZ             R1, loc_150|73-177
+316|code|MULS            _t16, R1|75-67
+318|code|UXTH.W          R9, _t32|31-250-131-249
+322|code|LSRS            R1, _t32, #0x10|25-12
+324|code|RSB.W           _t32, _t16, R9|193-235-9-3
+328|code|CMP             R9, _t16|137-69
+330|code|IT CC|56-191
+332|code|ADDCC           R3, #1|1-51
+334|code|B               loc_15A|4-224
+336|code|RSB.W           _t16, _t16, #1|195-241-1-3
+340|code|B               loc_15A|1-224
+342|code|RSB.W           _t16, R1, #1|193-241-1-3
+346|code|UXTH            R3, R3|155-178
+348|code|EOR.W           R1, R4, s2|132-234-0-1
+352|code|ADD             R1, R3|25-68
+354|code|UXTH.W          R9, R1|31-250-129-249
+358|code|LDRH.W          R1, [key,#-2]|50-248-2-28
+362|code|CBZ             _t16, loc_190|137-177
+364|code|CMP.W           R9, #0|185-241-0-15
+368|code|BEQ             loc_18A|11-208
+370|code|MUL.W           _t16, _t16, R9|1-251-9-241
+374|code|UXTH.W          R10, _t32|31-250-129-250
+378|code|MOV.W           R9, _t32,LSR#16|79-234-17-73
+382|code|RSB.W           _t32, _t16, R10|201-235-10-1
+386|code|CMP             R10, _t16|202-69
+388|code|IT CC|56-191
+390|code|ADDCC           R1, #1|1-49
+392|code|B               loc_194|4-224
+394|code|RSB.W           _t16, _t16, #1|193-241-1-1
+398|code|B               loc_194|1-224
+400|code|RSB.W           _t16, R9, #1|201-241-1-1
+404|code|UXTH            R1, R1|137-178
+406|code|ADDS            key, #0xC|12-50
+408|code|ADD             R3, R1|11-68
+410|code|CMP             R2, LR|114-69
+412|code|EOR.W           R5, R5, R1|133-234-1-5
+416|code|EOR.W           R1, R1, s3|129-234-12-1
+420|code|UXTH            R3, R3|155-178
+422|code|EOR.W           R4, R4, R3|132-234-3-4
+426|code|EOR.W           R3, R3, s2|131-234-0-3
+430|code|BNE             loc_CC|141-209
+432|code|LDRH.W          R2, [R8,#0x60]|184-248-96-32
+436|code|CBZ             _t16, loc_1D4|114-177
+438|code|CBZ             R5, loc_1CA|69-177
+440|code|MULS            R5, _t16|85-67
+442|code|UXTH            s2, _t32|168-178
+444|code|LSRS            _t32, _t32, #0x10|45-12
+446|code|SUBS            R2, R0, _t16|66-27
+448|code|CMP             R0, _t16|168-66
+450|code|ITE CS|44-191
+452|code|MOVCS           _t16, R2|21-70
+454|code|ADDCC           _t16, R2, #1|85-28
+456|code|B               loc_1D8|6-224
+458|code|RSB.W           _t16, _t16, #1|194-241-1-2
+462|code|STRH.W          R2, [SP,#0x28+in]|173-248-0-32
+466|code|B               loc_1DC|3-224
+468|code|RSB.W           R5, R5, #1|197-241-1-5
+472|code|STRH.W          R5, [SP,#0x28+in]|173-248-0-80
+476|code|LDRH.W          R2, [R8,#0x62]|184-248-98-32
+480|code|ADD             R3, R2|19-68
+482|code|LDRH.W          R2, [R8,#0x64]|184-248-100-32
+486|code|ADD             R1, R2|17-68
+488|code|LDRH.W          R2, [R8,#0x66]|184-248-102-32
+492|code|UXTH            R3, R3|155-178
+494|code|UXTH            R1, R1|137-178
+496|code|CBZ             _t16, loc_210|114-177
+498|code|CBZ             R4, loc_206|68-177
+500|code|MULS            R4, _t16|84-67
+502|code|UXTH            R0, _t32|160-178
+504|code|LSRS            _t32, _t32, #0x10|36-12
+506|code|SUBS            R2, R0, _t16|2-27
+508|code|CMP             R0, _t16|160-66
+510|code|ITE CS|44-191
+512|code|MOVCS           _t16, R2|20-70
+514|code|ADDCC           _t16, R2, #1|84-28
+516|code|B               loc_214|6-224
+518|code|RSB.W           _t16, _t16, #1|194-241-1-2
+522|code|STRH.W          R2, [SP,#0x28+in+6]|173-248-6-32
+526|code|B               loc_218|3-224
+528|code|RSB.W           R4, R4, #1|196-241-1-4
+532|code|STRH.W          R4, [SP,#0x28+in+6]|173-248-6-64
+536|code|LDRH.W          R2, [SP,#0x28+in]|189-248-0-32
+540|code|REV16           R3, R3|91-186
+542|code|STRH.W          R3, [SP,#0x28+in+4]|173-248-4-48
+546|code|REV16           R1, R1|73-186
+548|code|LDRH.W          R3, [SP,#0x28+in+6]|189-248-6-48
+552|code|REV16           R2, R2|82-186
+554|code|STRH.W          R1, [SP,#0x28+in+2]|173-248-2-16
+558|code|MOV             R0, outbuf; dest|56-70
+560|code|STRH.W          R2, [SP,#0x28+in]|173-248-0-32
+564|code|MOV             R1, SP; src|105-70
+566|code|MOVS            R2, #2; n|2-34
+568|code|REV16           R3, R3|91-186
+570|code|STRH.W          R3, [SP,#0x28+in+6]|173-248-6-48
+574|code|BLX             R6; memcpy|176-71
+576|code|ADD             R1, SP, #0x28+in+4; src|1-169
+578|code|ADDS            R0, outbuf, #2; dest|184-28
+580|code|MOVS            R2, #2; n|2-34
+582|code|BLX             R6; memcpy|176-71
+584|code|ADD.W           R1, SP, #0x28+in+2; src|13-241-2-1
+588|code|ADDS            R0, outbuf, #4; dest|56-29
+590|code|MOVS            R2, #2; n|2-34
+592|code|BLX             R6; memcpy|176-71
+594|code|ADDS            R0, outbuf, #6; dest|184-29
+596|code|ADD.W           R1, SP, #0x28+in+6; src|13-241-6-1
+600|code|MOVS            R2, #2; n|2-34
+602|code|BLX             R6; memcpy|176-71
+604|code|ADD             SP, SP, #8|2-176
+606|code|POP.W           {R4-R10,PC}|189-232-240-135
+610|data|ALIGN 4|0-191
+612|data|DCD memcpy|20-5-0-0
+616|code|PUSH            {R3,LR}|8-181
+618|code|MOV             R3, context|3-70
+620|code|MOV             ctx, out; outbuf|8-70
+622|code|MOV             out, in; inbuf|17-70
+624|code|MOV             in, ctx; key|26-70
+626|code|BL              cipher|255-247-9-255
+630|code|MOVS            R0, #0x24 ; '$'|36-32
+632|code|LDR             R3, =_gcry_burn_stack|1-75
+634|code|BLX             R3; _gcry_burn_stack|152-71
+636|code|POP             {R3,PC}|8-189
+638|data|ALIGN 0x10|0-191
+640|data|DCD _gcry_burn_stack|28-5-0-0
+644|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+648|code|MOV             R4, ek|4-70
+650|code|SUB             SP, SP, #0x6C|155-176
+652|code|LDRH            R0, [R0]; x|0-136
+654|code|MOV             R7, dk|15-70
+656|code|BL              mul_inv|255-247-182-254
+660|code|LDRH            R5, [R4,#2]|101-136
+662|code|ADD.W           R10, R4, #0x68 ; 'h'|4-241-104-10
+666|code|LDRH            R6, [R4,#4]|166-136
+668|code|NEGS            R5, R5|109-66
+670|code|NEGS            R6, R6|118-66
+672|code|UXTH            R5, R5|173-178
+674|code|UXTH            R6, R6|182-178
+676|code|MOV             R8, R0|128-70
+678|code|LDRH            R0, [R4,#6]; x|224-136
+680|code|BL              mul_inv|255-247-170-254
+684|code|STRH.W          t3_0, [SP,#0x90+t3]|173-248-100-96
+688|code|STRH.W          t2_0, [SP,#0x90+t2]|173-248-98-80
+692|code|ADD             t3_0, SP, #0x90+var_28|26-174
+694|code|ADD.W           t2_0, R4, #0x14|4-241-20-5
+698|code|STRH.W          t1, [R6,#-8]!|38-248-8-141
+702|code|STRH.W          R0, [SP,#0x90+var_2A]|173-248-102-0
+706|code|LDRH.W          R3, [R5,#-0xC]|53-248-12-60
+710|code|ADDS            R5, #0xC|12-53
+712|code|LDRH.W          R2, [R5,#-0x16]|53-248-22-44
+716|code|LDRH.W          R0, [R5,#-0x14]; x|53-248-20-12
+720|code|STRH.W          t1, [R6,#-4]|38-248-4-60
+724|code|STRH.W          R2, [R6,#-2]|38-248-2-44
+728|code|BL              mul_inv|255-247-146-254
+732|code|LDRH.W          R9, [R5,#-0x12]|53-248-18-156
+736|code|LDRH.W          R8, [R5,#-0x10]|53-248-16-140
+740|code|RSB.W           R9, R9, #0|201-241-0-9
+744|code|RSB.W           R8, R8, #0|200-241-0-8
+748|code|UXTH.W          R9, R9|31-250-137-249
+752|code|UXTH.W          R8, R8|31-250-136-248
+756|code|MOV             R11, R0|131-70
+758|code|LDRH.W          R0, [R5,#-0xE]; x|53-248-14-12
+762|code|BL              mul_inv|255-247-129-254
+766|code|CMP             R5, R10|85-69
+768|code|STRH.W          t2_0, [R6,#-8]|38-248-8-156
+772|code|STRH.W          t3_0, [R6,#-0xA]|38-248-10-140
+776|code|STRH.W          R0, [R6,#-6]|38-248-6-12
+780|code|STRH.W          t1, [R6,#-0xC]!|38-248-12-189
+784|code|BNE             loc_2C2|215-209
+786|code|LDRH.W          R3, [R4,#0x5C]|180-248-92-48
+790|code|LDRH.W          R2, [R4,#0x5E]|180-248-94-32
+794|code|LDRH.W          R0, [R4,#0x60]; x|180-248-96-0
+798|code|STRH.W          t1, [SP,#0x90+var_88]|173-248-8-48
+802|code|STRH.W          R2, [SP,#0x90+var_86]|173-248-10-32
+806|code|BL              mul_inv|255-247-107-254
+810|code|LDRH.W          R5, [R4,#0x62]|180-248-98-80
+814|code|LDRH.W          R6, [R4,#0x64]|180-248-100-96
+818|code|NEGS            R5, R5|109-66
+820|code|NEGS            R6, R6|118-66
+822|code|UXTH            R5, R5|173-178
+824|code|UXTH            R6, R6|182-178
+826|code|MOV             t3_0, R0|128-70
+828|code|LDRH.W          R0, [R4,#0x66]; x|180-248-102-0
+832|code|BL              mul_inv|255-247-94-254
+836|code|ADD             R4, SP, #0x90+var_28|26-172
+838|code|STRH.W          t3_0, [SP,#0x90+var_8C]|173-248-4-96
+842|code|MOVS            R2, #0x68 ; 'h'; n|104-34
+844|code|STRH.W          t1, [R4,#-0x68]!|36-248-104-141
+848|code|MOV             R1, R4; src|33-70
+850|code|STRH.W          t2_0, [SP,#0x90+var_8E]|173-248-2-80
+854|code|LDR             R3, =memcpy|6-75
+856|code|STRH.W          R0, [SP,#0x90+var_8A]|173-248-6-0
+860|code|MOV             R0, dk; dest|56-70
+862|code|BLX             R3; memcpy|152-71
+864|code|MOV             R0, R4; s|32-70
+866|code|MOVS            R1, #0; c|0-33
+868|code|MOVS            R2, #0x68 ; 'h'; n|104-34
+870|code|LDR             R3, =memset|3-75
+872|code|BLX             R3; memset|152-71
+874|code|ADD             SP, SP, #0x6C ; 'l'|27-176
+876|code|POP.W           {R4-R11,PC}|189-232-240-143
+880|data|DCD memcpy|20-5-0-0
+884|data|DCD memset|40-5-0-0
+888|code|PUSH            {R4-R6,LR}|112-181
+890|code|MOV             R5, in|21-70
+892|code|LDR.W           in, [ctx,#0xD0]|208-248-208-32
+896|code|MOV             R6, out|14-70
+898|code|ADD.W           R4, ctx, #0x68 ; 'h'|0-241-104-4
+902|code|CBNZ            R2, loc_394|42-185
+904|code|MOVS            R2, #1|1-34
+906|code|MOV             out, R4; dk|33-70
+908|code|STR.W           R2, [ctx,#0xD0]|192-248-208-32
+912|code|BL              invert_key|255-247-120-255
+916|code|MOV             R0, out; outbuf|48-70
+918|code|MOV             R1, in; inbuf|41-70
+920|code|MOV             R2, R4; key|34-70
+922|code|BL              cipher|255-247-117-254
+926|code|MOVS            R0, #0x24 ; '$'|36-32
+928|code|LDR             R3, =_gcry_burn_stack|1-75
+930|code|BLX             R3; _gcry_burn_stack|152-71
+932|code|POP             {R4-out,PC}|112-189
+934|data|ALIGN 4|0-191
+936|data|DCD _gcry_burn_stack|28-5-0-0
+940|code|PUSH            {R3-R7,LR}|248-181
+942|code|LDR             R3, =initialized.6203|35-75
+944|code|LDR             R4, [R3]|28-104
+946|code|CBNZ            R4, loc_3BA|20-185
+948|code|MOVS            R5, #1|1-37
+950|code|STR             R4, [R3,#(selftest_failed.6204 - 0x50C)]|92-96
+952|code|STR             R5, [R3]|29-96
+954|code|LDR             R3, [R3,#(selftest_failed.6204 - 0x50C)]|91-104
+956|code|CBNZ            R3, loc_430|195-187
+958|code|CMP             keylen, #0x10|16-42
+960|code|BEQ             loc_3CE|5-208
+962|code|LDR             ctx, =aKeylen16; "keylen == 16"|31-72
+964|code|MOVS            keylen, #0xFB|251-34
+966|code|LDR             key, =aGrubCoreLibLib; "../../../grub-core/lib/libgcrypt-grub/c"...|31-73
+968|code|LDR             R3, =__FUNCTION__.6205; "do_setkey"|31-75
+970|code|LDR             R4, =_gcry_assert_failed|32-76
+972|code|BLX             R4; _gcry_assert_failed|160-71
+974|code|STR.W           R3, [ctx,#0xD0]|192-248-208-48
+978|code|SUBS            R4, ctx, #2|132-30
+980|code|ADDS            R3, key, #2|139-28
+982|code|ADDS            key, #0x12|18-49
+984|code|LDRB.W          R5, [R3,#-2]|19-248-2-92
+988|code|ADDS            R3, #2|2-51
+990|code|LDRB.W          R2, [R3,#-3]|19-248-3-44
+994|code|CMP             R3, R1|139-66
+996|code|ADD.W           R2, R2, R5,LSL#8|2-235-5-34
+1000|code|STRH.W          R2, [R4,#2]!|36-248-2-47
+1004|code|BNE             loc_3D8|244-209
+1006|code|MOV             R2, ctx|2-70
+1008|code|MOVS            R4, #0x2C ; ','|44-36
+1010|code|MOVS            R3, #0|0-35
+1012|code|ADDS            R1, R3, #1|89-28
+1014|code|ADD.W           R6, R3, #8|3-241-8-6
+1018|code|ADDS            R3, #2|2-51
+1020|code|AND.W           R5, R1, #7|1-240-7-5
+1024|code|AND.W           R3, R3, #7|3-240-7-3
+1028|code|AND.W           R1, R1, #8|1-240-8-1
+1032|code|LDRH.W          R7, [R2,R5,LSL#1]|50-248-21-112
+1036|code|SUBS            R4, #1|1-60
+1038|code|LDRH.W          R3, [R2,R3,LSL#1]|50-248-19-48
+1042|code|MOV.W           R3, R3,LSR#7|79-234-211-19
+1046|code|ORR.W           R3, R3, R7,LSL#9|67-234-71-35
+1050|code|STRH.W          R3, [R2,R6,LSL#1]|34-248-22-48
+1054|code|ADD.W           R2, R2, R1,LSL#1|2-235-65-2
+1058|code|MOV             R3, R5|43-70
+1060|code|BNE             loc_3F4|230-209
+1062|code|ADD.W           R1, ctx, #0x68 ; 'h'; dk|0-241-104-1
+1066|code|BL              invert_key|255-247-43-255
+1070|code|B               loc_432|0-224
+1072|code|MOVS            R4, #0x1C|28-36
+1074|code|MOVS            R0, #0x2F ; '/'|47-32
+1076|code|LDR             R3, =_gcry_burn_stack|6-75
+1078|code|BLX             R3; _gcry_burn_stack|152-71
+1080|code|MOV             R0, R4|32-70
+1082|code|POP             {R3-R7,PC}|248-189
+1084|data|DCD initialized.6203|12-5-0-0
+1088|data|DCD aKeylen16; "keylen == 16"|134-4-0-0
+1092|data|DCD aGrubCoreLibLib; "../../../grub-core/lib/libgcrypt-grub/c"...|147-4-0-0
+1096|data|DCD __FUNCTION__.6205; "do_setkey"|124-4-0-0
+1100|data|DCD _gcry_assert_failed|32-5-0-0
+1104|data|DCD _gcry_burn_stack|28-5-0-0
+1108|code|PUSH            {R3,LR}|8-181
+1110|code|LDR             mod, =_gcry_cipher_spec_idea|2-72
+1112|code|LDR             R3, =grub_cipher_register|2-75
+1114|code|BLX             R3; grub_cipher_register|152-71
+1116|code|POP             {R3,PC}|8-189
+1118|data|ALIGN 0x10|0-191
+1120|data|DCD _gcry_cipher_spec_idea|204-4-0-0
+1124|data|DCD grub_cipher_register|36-5-0-0
+1128|code|PUSH            {R3,LR}|8-181
+1130|code|LDR             R0, =_gcry_cipher_spec_idea|2-72
+1132|code|LDR             R3, =grub_cipher_unregister|2-75
+1134|code|BLX             R3; grub_cipher_unregister|152-71
+1136|code|POP             {R3,PC}|8-189
+1138|data|ALIGN 4|0-191
+1140|data|DCD _gcry_cipher_spec_idea|204-4-0-0
+1144|data|DCD grub_cipher_unregister|24-5-0-0
+1148|data|DCB "do_setkey",0|100-111-95-115-101-116-107-101-121-0
+1158|data|DCB "keylen == 16",0|107-101-121-108-101-110-32-61-61-32-49-54-0
+1171|data|DCB "../../../grub-core/lib/libgcrypt-grub/cipher/idea.c",0|46-46-47-46-46-47-46-46-47-103-114-117-98-45-99-111-114-101-47-108-105-98-47-108-105-98-103-99-114-121-112-116-45-103-114-117-98-47-99-105-112-104-101-114-47-105-100-101-97-46-99-0
+1223|data|DCB "IDEA",0|73-68-69-65-0
+1228|data|gcry_cipher_spec_t <aIdea, 0, 0, 8, 0x80, 0xD4, idea_setkey+1, \; "IDEA"|199-4-0-0-0-0-0-0-0-0-0-0-8-0-0-0-128-0-0-0-212-0-0-0-173-3-0-0-105-2-0-0-121-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+1276|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+1292|data|% 4|255-255-255-255

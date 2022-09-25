@@ -1,0 +1,168 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [pq,#0x10]|3-105
+2|code|LDR             pq, [pq]|0-104
+4|code|PUSH            {R4,LR}|16-181
+6|code|MLA.W           m, R0, m, R3|0-251-1-49
+10|code|MLA.W           p2, R0, p2, R3|0-251-2-50
+14|code|ADD             l, R1|8-68
+16|code|CMP             p1, R0|129-66
+18|code|BEQ             locret_22|6-208
+20|code|LDRB            R3, [p1]|11-120
+22|code|LDRB            R4, [p2]|20-120
+24|code|STRB.W          R4, [p1],#1|1-248-1-75
+28|code|STRB.W          t, [p2],#1|2-248-1-59
+32|code|B               loc_10|246-231
+34|code|POP             {R4,PC}|16-189
+36|code|LDR             R3, [pq,#8]|131-104
+38|code|CBZ             R3, loc_2C|11-177
+40|code|LDR             pq, [pq,#0x10]|0-105
+42|code|BX              LR|112-71
+44|code|MOV             pq, R3|24-70
+46|code|BX              LR|112-71
+48|code|PUSH            {R3-R5,LR}|56-181
+50|code|MOV             R5, pq|5-70
+52|code|LDR             R4, =grub_free|2-76
+54|code|LDR             pq, [pq,#0x10]|0-105
+56|code|BLX             R4; grub_free|160-71
+58|code|MOV             R0, pq|40-70
+60|code|BLX             R4; grub_free|160-71
+62|code|POP             {R3-pq,PC}|56-189
+64|data|DCD grub_free|160-1-0-0
+68|code|PUSH            {R3-R7,LR}|248-181
+70|code|MOV             R6, elsize|6-70
+72|code|LDR             R5, =grub_malloc|11-77
+74|code|LSLS            elsize, elsize, #3|192-0
+76|code|MOV             R7, cmp|15-70
+78|code|BLX             R5; grub_malloc|168-71
+80|code|MOV             R4, els|4-70
+82|code|CBZ             els, locret_76|128-177
+84|code|MOVS            els, #0x14|20-32
+86|code|BLX             R5; grub_malloc|168-71
+88|code|MOV             R5, ret|5-70
+90|code|CBNZ            ret, loc_64|24-185
+92|code|MOV             ret, els|32-70
+94|code|LDR             R3, =grub_free|7-75
+96|code|BLX             R3; grub_free|152-71
+98|code|B               loc_72|6-224
+100|code|MOVS            R3, #8|8-35
+102|code|STR             elsize, [ret]|6-96
+104|code|STR             R3, [ret,#4]|67-96
+106|code|MOVS            R3, #0|0-35
+108|code|STR             cmp, [ret,#0xC]|199-96
+110|code|STR             R3, [ret,#8]|131-96
+112|code|STR             els, [ret,#0x10]|4-97
+114|code|MOV             R0, ret|40-70
+116|code|POP             {R3-cmp,PC}|248-189
+118|code|POP             {R3-cmp,PC}|248-189
+120|data|DCD grub_malloc|156-1-0-0
+124|data|DCD grub_free|160-1-0-0
+128|code|LDR             R2, [pq,#8]|130-104
+130|code|LDR             R3, [pq,#4]|67-104
+132|code|PUSH            {R4-R6,LR}|112-181
+134|code|CMP             R2, R3|154-66
+136|code|MOV             R4, pq|4-70
+138|code|MOV             R5, el|13-70
+140|code|BNE             loc_AC|14-209
+142|code|LDR             R3, [pq]|3-104
+144|code|LDR             pq, [pq,#0x10]|0-105
+146|code|MUL.W           el, R3, R2|3-251-2-241
+150|code|LDR             R3, =grub_realloc|22-75
+152|code|LSLS            R1, R1, #1|73-0
+154|code|BLX             R3; grub_realloc|152-71
+156|code|CBNZ            els, loc_A4|16-185
+158|code|LDR             R3, =grub_errno|21-75
+160|code|LDR             els, [R3]|24-104
+162|code|POP             {pq-R6,PC}|112-189
+164|code|LDR             R3, [pq,#4]|99-104
+166|code|STR             els, [pq,#0x10]|32-97
+168|code|LSLS            R3, R3, #1|91-0
+170|code|STR             R3, [pq,#4]|99-96
+172|code|LDR             R3, [pq,#8]|163-104
+174|code|MOV             R1, el|41-70
+176|code|LDR             R0, [pq,#0x10]|32-105
+178|code|ADDS            R2, R3, #1|90-28
+180|code|STR             R2, [pq,#8]|162-96
+182|code|LDR             R2, [pq]|34-104
+184|code|MLA.W           R0, R3, R2, R0|3-251-2-0
+188|code|LDR             R3, =grub_memmove|14-75
+190|code|BLX             R3; grub_memmove|152-71
+192|code|LDR             el, [pq,#8]|165-104
+194|code|SUBS            R5, #1|1-61
+196|code|CBZ             p, loc_DE|93-177
+198|code|SUBS            R6, p, #1|110-30
+200|code|LDR             R3, [pq,#0x10]|35-105
+202|code|LDR             R1, [pq]|33-104
+204|code|LSRS            R6, R6, #1|118-8
+206|code|LDR             R2, [pq,#0xC]|226-104
+208|code|MLA.W           R0, R1, p, R3|1-251-5-48
+212|code|MLA.W           R1, R1, R6, R3|1-251-6-49
+216|code|BLX             R2|144-71
+218|code|CMP             R0, #0|0-40
+220|code|BGT             loc_E2|1-220
+222|code|MOVS            R0, #0|0-32
+224|code|POP             {pq-R6,PC}|112-189
+226|code|MOV             R1, p; m|41-70
+228|code|MOV             R0, pq; pq|32-70
+230|code|MOV             R2, R6; n|50-70
+232|code|MOV             p, R6|53-70
+234|code|BL              swap|255-247-137-255
+238|code|B               loc_C4|233-231
+240|data|DCD grub_realloc|144-1-0-0
+244|data|DCD grub_errno|152-1-0-0
+248|data|DCD grub_memmove|148-1-0-0
+252|code|LDR             R2, [pq,#8]|130-104
+254|code|MOVS            R1, #0; m|0-33
+256|code|PUSH            {R3-R7,LR}|248-181
+258|code|SUBS            R2, #1; n|1-58
+260|code|MOV             R4, pq|4-70
+262|code|BL              swap|255-247-123-255
+266|code|LDR             R3, [pq,#8]|163-104
+268|code|MOVS            R7, #0|0-39
+270|code|SUBS            R3, #1|1-59
+272|code|STR             R3, [pq,#8]|163-96
+274|code|LSLS            R5, p, #1|125-0
+276|code|LDR             R3, [pq,#8]|163-104
+278|code|ADDS            R6, R5, #1|110-28
+280|code|CMP             R6, R3|158-66
+282|code|BCS             locret_17A|46-210
+284|code|LDR             R3, [pq,#0x10]|35-105
+286|code|ADDS            R5, #2|2-53
+288|code|LDR             R1, [pq]|33-104
+290|code|LDR             R2, [pq,#0xC]|226-104
+292|code|MLA.W           R0, R1, R6, R3|1-251-6-48
+296|code|MLA.W           R1, R1, p, R3|1-251-7-49
+300|code|BLX             R2|144-71
+302|code|CMP             R0, #0|0-40
+304|code|BLE             loc_150|14-221
+306|code|LDR             R3, [pq,#8]|163-104
+308|code|CMP             R5, R3|157-66
+310|code|BCS             loc_16C|25-210
+312|code|LDR             R3, [pq,#0x10]|35-105
+314|code|LDR             R1, [pq]|33-104
+316|code|LDR             R2, [pq,#0xC]|226-104
+318|code|MLA.W           R0, R1, R6, R3|1-251-6-48
+322|code|MLA.W           R1, R1, R5, R3|1-251-5-49
+326|code|BLX             R2|144-71
+328|code|CMP             R0, #0|0-40
+330|code|IT LE|216-191
+332|code|MOVLE           R6, R5|46-70
+334|code|B               loc_16C|13-224
+336|code|LDR             R3, [pq,#8]|163-104
+338|code|CMP             R5, R3|157-66
+340|code|BCS             locret_17A|17-210
+342|code|LDR             R3, [pq,#0x10]|35-105
+344|code|LDR             R1, [pq]|33-104
+346|code|LDR             R2, [pq,#0xC]|226-104
+348|code|MLA.W           R0, R1, R5, R3|1-251-5-48
+352|code|MLA.W           R1, R1, p, R3|1-251-7-49
+356|code|BLX             R2|144-71
+358|code|CMP             R0, #0|0-40
+360|code|BGT             loc_132|227-220
+362|code|POP             {R3-p,PC}|248-189
+364|code|MOV             R1, p; m|57-70
+366|code|MOV             R0, pq; pq|32-70
+368|code|MOV             R2, c; n|50-70
+370|code|MOV             p, c|55-70
+372|code|BL              swap|255-247-68-255
+376|code|B               loc_112|203-231
+378|code|POP             {R3-p,PC}|248-189

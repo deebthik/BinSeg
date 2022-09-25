@@ -1,0 +1,576 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x14|133-176
+6|code|MOV             R4, args|12-70
+8|code|MOV             R6, enabled|22-70
+10|code|MOV             R8, disabled|152-70
+12|code|LDR.W           R9, [SP,#0x38+autoloads]|221-248-56-144
+16|code|MOV             R7, argc|7-70
+18|code|CMP             argc, #0|0-40
+20|code|BNE             loc_CE|91-209
+22|code|LDR             argc, [SP,#0x38+active_str]|15-152
+24|code|LDR             R4, =grub_puts_|148-76
+26|code|BLX             R4; grub_puts_|160-71
+28|code|LDR.W           R10, =grub_printf|223-248-80-162
+32|code|LDR             argc, [enabled]|55-104
+34|code|LDR             R5, =grub_printf|147-77
+36|code|CBZ             term, loc_30|39-177
+38|code|LDR             R1, [term,#8]|185-104
+40|code|LDR             R0, =unk_5D0|146-72
+42|code|BLX             R10; grub_printf|208-71
+44|code|LDR             term, [term]|63-104
+46|code|B               loc_22|248-231
+48|code|LDR             R0, =unk_5D4|145-72
+50|code|BLX             R5; grub_printf|168-71
+52|code|LDR             R0, [SP,#0x38+available_str]|16-152
+54|code|BLX             R4; grub_puts_|160-71
+56|code|LDR.W           R4, [disabled]|216-248-0-64
+60|code|CBZ             term, loc_48|36-177
+62|code|LDR             R1, [term,#8]|161-104
+64|code|LDR             R0, =unk_5D0|140-72
+66|code|BLX             R5; grub_printf|168-71
+68|code|LDR             term, [term]|36-104
+70|code|B               loc_3C|249-231
+72|code|LDR.W           R10, =grub_strcmp|223-248-56-162
+76|code|LDR             R7, =grub_strlen|139-79
+78|code|CMP.W           aut, #0|185-241-0-15
+82|code|BEQ             loc_C6|56-208
+84|code|LDR.W           R4, [disabled]|216-248-0-64
+88|code|CMP             term, #0|0-44
+90|code|BEQ.W           loc_3AC|0-240-167-129
+94|code|LDR             R0, [term,#8]|160-104
+96|code|LDR.W           R1, [aut,#4]|217-248-4-16
+100|code|BLX             R10; grub_strcmp|208-71
+102|code|CBZ             R0, loc_C0|88-179
+104|code|LDR.W           R11, [aut,#4]|217-248-4-176
+108|code|LDRB.W          R2, [R11]|155-248-0-32
+112|code|CBZ             R2, loc_9A|154-177
+114|code|MOV             R0, R11|88-70
+116|code|BLX             R7; grub_strlen|184-71
+118|code|ADD             R0, R11|88-68
+120|code|LDRB.W          R3, [R0,#-1]|16-248-1-60
+124|code|CMP             R3, #0x2A ; '*'|42-43
+126|code|BNE             loc_9A|12-209
+128|code|LDR.W           R1, [aut,#4]|217-248-4-16
+132|code|LDR.W           R11, [term,#8]|212-248-8-176
+136|code|MOV             R0, R1|8-70
+138|code|STR             R1, [SP,#0x38+next]|1-145
+140|code|BLX             R7; grub_strlen|184-71
+142|code|LDR             R1, [SP,#0x38+next]|1-153
+144|code|LDR             R3, =grub_memcmp|123-75
+146|code|SUBS            R2, R0, #1|66-30
+148|code|MOV             R0, R11|88-70
+150|code|BLX             R3; grub_memcmp|152-71
+152|code|CBZ             R0, loc_C0|144-177
+154|code|LDR             term, [term]|36-104
+156|code|B               loc_58|220-231
+158|code|LDR.W           R11, [aut,#4]|217-248-4-176
+162|code|LDRB.W          R2, [R11]|155-248-0-32
+166|code|CMP             R2, #0|0-42
+168|code|BNE.W           loc_3B0|64-240-130-129
+172|code|LDR             term, [term]|36-104
+174|code|CMP             term, #0|0-44
+176|code|BEQ.W           loc_3E0|0-240-150-129
+180|code|LDR             R0, [term,#8]|160-104
+182|code|LDR.W           R1, [aut,#4]|217-248-4-16
+186|code|BLX             R10; grub_strcmp|208-71
+188|code|CMP             R0, #0|0-40
+190|code|BNE             loc_9E|238-209
+192|code|LDR.W           aut, [aut]|217-248-0-144
+196|code|B               loc_4E|195-231
+198|code|LDR             R0, =unk_5D4|108-72
+200|code|BLX             R5; grub_printf|168-71
+202|code|MOV             R0, aut|72-70
+204|code|B               loc_4C2|249-225
+206|code|LDR             argc, [args]|8-104
+208|code|LDR             R5, =grub_strcmp|108-77
+210|code|LDR             args, =aAppend; "--append"|109-73
+212|code|BLX             R5; grub_strcmp|168-71
+214|code|CBNZ            R0, loc_E0|24-185
+216|code|CMP             argc, #1|1-47
+218|code|BEQ             loc_F6|12-208
+220|code|MOVS            R3, #1|1-35
+222|code|B               loc_EC|5-224
+224|code|LDR             R0, [args]|32-104
+226|code|LDR             R1, =aRemove; "--remove"|106-73
+228|code|BLX             R5; grub_strcmp|168-71
+230|code|CMP             R0, #0|0-40
+232|code|BEQ             loc_D8|246-208
+234|code|MOVS            R3, #0|0-35
+236|code|STR             R3, [SP,#0x38+next]|1-147
+238|code|LDR             R3, [SP,#0x38+next]|1-155
+240|code|ADD.W           R10, args, R3,LSL#2|4-235-131-10
+244|code|B               loc_18A|73-224
+246|code|MOVS            R0, #0x12|18-32
+248|code|LDR             R1, =aNoTerminalSpec; "no terminal specified"|101-73
+250|code|B               loc_384|67-225
+252|code|LDR.W           R0, [R10]|218-248-0-0
+256|code|LDR             R1, =aOfconsole; "ofconsole"|100-73
+258|code|LDR             R3, =grub_strcmp|96-75
+260|code|BLX             R3; grub_strcmp|152-71
+262|code|CMP             R0, #0|0-40
+264|code|BEQ.W           loc_450|0-240-162-129
+268|code|LDR.W           R3, [aut,#4]|219-248-4-48
+272|code|LDRB            R2, [R3]|26-120
+274|code|CMP             R2, #0|0-42
+276|code|BNE.W           loc_462|64-240-165-129
+280|code|LDR.W           aut, [aut]|219-248-0-176
+284|code|CMP.W           aut, #0|187-241-0-15
+288|code|BEQ             loc_144|16-208
+290|code|LDR.W           R0, [R10]|218-248-0-0
+294|code|LDR.W           R1, [aut,#4]|219-248-4-16
+298|code|BLX             R5; grub_strcmp|168-71
+300|code|CMP             R0, #0|0-40
+302|code|BNE             loc_FC|229-209
+304|code|LDR.W           R0, [aut,#8]|219-248-8-0
+308|code|LDR             R3, =grub_dl_load|88-75
+310|code|BLX             R3; grub_dl_load|152-71
+312|code|CBZ             mod, loc_13E|8-177
+314|code|LDR             R3, =grub_dl_ref|88-75
+316|code|BLX             R3; grub_dl_ref|152-71
+318|code|LDR             R3, =grub_errno|88-75
+320|code|MOVS            R2, #0|0-34
+322|code|STR             R2, [R3]|26-96
+324|code|LDR.W           R0, [R10]|218-248-0-0
+328|code|MOVS            R2, #0xA|10-34
+330|code|LDR             R1, =aSerialUsb; "serial_usb"|86-73
+332|code|LDR             R3, =grub_memcmp|76-75
+334|code|BLX             R3; grub_memcmp|152-71
+336|code|CMP             R0, #0|0-40
+338|code|BNE.W           loc_436|64-240-112-129
+342|code|LDR             R3, =grub_term_poll_usb|84-75
+344|code|LDR             R3, [R3]|27-104
+346|code|CMP             R3, #0|0-43
+348|code|BEQ.W           loc_436|0-240-107-129
+352|code|MOVS            R0, #1|1-32
+354|code|BLX             R3|152-71
+356|code|MOVS            R3, #1|1-35
+358|code|LDR.W           R11, [disabled]|216-248-0-176
+362|code|STR             R3, [SP,#0x38+again]|2-147
+364|code|CMP.W           term, #0|187-241-0-15
+368|code|BEQ.W           loc_3EA|0-240-59-129
+372|code|LDR.W           R0, [R10]|218-248-0-0
+376|code|LDR.W           R1, [term,#8]|219-248-8-16
+380|code|BLX             R5; grub_strcmp|168-71
+382|code|CBNZ            R0, loc_194|72-185
+384|code|LDR             R3, [SP,#0x38+next]|1-155
+386|code|ADD.W           R10, R10, #4|10-241-4-10
+390|code|ADDS            R3, #1|1-51
+392|code|STR             R3, [SP,#0x38+next]|1-147
+394|code|LDR             R3, [SP,#0x38+next]|1-155
+396|code|CMP             R3, argc|187-66
+398|code|BGE             loc_1B4|17-218
+400|code|MOVS            R3, #0|0-35
+402|code|B               loc_166|232-231
+404|code|LDR.W           R0, [R10]|218-248-0-0
+408|code|LDR             R1, =aOfconsole; "ofconsole"|62-73
+410|code|LDR             R3, =grub_strcmp|58-75
+412|code|BLX             R3; grub_strcmp|152-71
+414|code|CBNZ            R0, loc_1AE|48-185
+416|code|LDR             R0, =aConsole; "console"|66-72
+418|code|LDR.W           R1, [term,#8]|219-248-8-16
+422|code|LDR             R3, =grub_strcmp|55-75
+424|code|BLX             R3; grub_strcmp|152-71
+426|code|CMP             R0, #0|0-40
+428|code|BEQ             loc_180|232-208
+430|code|LDR.W           term, [term]|219-248-0-176
+434|code|B               loc_16C|219-231
+436|code|LDR             R0, [args]|32-104
+438|code|LDR             R1, =aAppend; "--append"|52-73
+440|code|LDR.W           R9, =grub_strcmp|223-248-200-144
+444|code|BLX             R5; grub_strcmp|168-71
+446|code|CBNZ            R0, loc_222|128-187
+448|code|MOV.W           R10, #1|79-240-1-10
+452|code|MOV             R11, R9|203-70
+454|code|CMP             i_0, argc|186-69
+456|code|BGE             loc_21E|41-218
+458|code|LDR.W           R9, [disabled]|216-248-0-144
+462|code|CMP.W           term, #0|185-241-0-15
+466|code|BEQ             loc_218|33-208
+468|code|LDR.W           R0, [args,i_0,LSL#2]|84-248-42-0
+472|code|LDR.W           R1, [term,#8]|217-248-8-16
+476|code|BLX             R5; grub_strcmp|168-71
+478|code|CBZ             R0, loc_1FA|96-177
+480|code|LDR.W           R0, [args,i_0,LSL#2]|84-248-42-0
+484|code|LDR             R1, =aOfconsole; "ofconsole"|43-73
+486|code|BLX             R11; grub_strcmp|216-71
+488|code|CBNZ            R0, loc_1F4|32-185
+490|code|LDR             R0, =aConsole; "console"|48-72
+492|code|LDR.W           R1, [term,#8]|217-248-8-16
+496|code|BLX             R11; grub_strcmp|216-71
+498|code|CBZ             R0, loc_1FA|16-177
+500|code|LDR.W           term, [term]|217-248-0-144
+504|code|B               loc_1CE|233-231
+506|code|LDR.W           R3, [term,#0xC]|217-248-12-48
+510|code|CBZ             R3, loc_20A|35-177
+512|code|MOV             R0, term|72-70
+514|code|BLX             R3|152-71
+516|code|CMP             R0, #0|0-40
+518|code|BNE.W           loc_4AC|64-240-81-129
+522|code|MOV             R0, term|72-70
+524|code|LDR             R3, =grub_list_remove|40-75
+526|code|BLX             R3; grub_list_remove|152-71
+528|code|MOV             R0, enabled|48-70
+530|code|MOV             R1, term|73-70
+532|code|LDR             R3, =grub_list_push|39-75
+534|code|BLX             R3; grub_list_push|152-71
+536|code|ADD.W           i_0, i_0, #1|10-241-1-10
+540|code|B               loc_1C6|211-231
+542|code|MOVS            R0, #0|0-32
+544|code|B               loc_4C2|79-225
+546|code|LDR             R0, [args]|32-104
+548|code|LDR             R1, =aRemove; "--remove"|25-73
+550|code|BLX             R9; grub_strcmp|200-71
+552|code|CBZ             R0, loc_232|24-177
+554|code|MOV.W           R10, #0|79-240-0-10
+558|code|MOV             R11, R9|203-70
+560|code|B               loc_30A|107-224
+562|code|MOV.W           R10, #1|79-240-1-10
+566|code|MOV             R11, R9|203-70
+568|code|CMP             i_0, argc|186-69
+570|code|BGE             loc_21E|240-218
+572|code|LDR.W           R9, [enabled]|214-248-0-144
+576|code|CMP.W           term, #0|185-241-0-15
+580|code|BEQ             loc_2DC|74-208
+582|code|LDR.W           R0, [args,i_0,LSL#2]|84-248-42-0
+586|code|LDR.W           R1, [term,#8]|217-248-8-16
+590|code|BLX             R5; grub_strcmp|168-71
+592|code|CBZ             R0, loc_2B8|144-179
+594|code|LDR.W           R0, [args,i_0,LSL#2]|84-248-42-0
+598|code|LDR             R1, =aOfconsole; "ofconsole"|15-73
+600|code|BLX             R11; grub_strcmp|216-71
+602|code|CBNZ            R0, loc_266|32-185
+604|code|LDR             R0, =aConsole; "console"|19-72
+606|code|LDR.W           R1, [term,#8]|217-248-8-16
+610|code|BLX             R11; grub_strcmp|216-71
+612|code|CBZ             R0, loc_2B8|64-179
+614|code|LDR.W           term, [term]|217-248-0-144
+618|code|B               loc_240|233-231
+620|data|DCD grub_puts_|116-7-0-0
+624|data|DCD grub_printf|144-7-0-0
+628|data|DCD unk_5D0|208-5-0-0
+632|data|DCD unk_5D4|212-5-0-0
+636|data|DCD grub_strlen|112-7-0-0
+640|data|DCD grub_memcmp|180-7-0-0
+644|data|DCD grub_strcmp|160-7-0-0
+648|data|DCD aAppend; "--append"|214-5-0-0
+652|data|DCD aRemove; "--remove"|223-5-0-0
+656|data|DCD aNoTerminalSpec; "no terminal specified"|232-5-0-0
+660|data|DCD aOfconsole; "ofconsole"|254-5-0-0
+664|data|DCD grub_dl_load|120-7-0-0
+668|data|DCD grub_dl_ref|124-7-0-0
+672|data|DCD grub_errno|128-7-0-0
+676|data|DCD aSerialUsb; "serial_usb"|42-6-0-0
+680|data|DCD grub_term_poll_usb|164-7-0-0
+684|data|DCD aConsole; "console"|8-6-0-0
+688|data|DCD grub_list_remove|172-7-0-0
+692|data|DCD grub_list_push|176-7-0-0
+696|code|LDR.W           R3, [term]|217-248-0-48
+700|code|CBNZ            R3, loc_2C4|19-185
+702|code|LDR             R3, [enabled]|51-104
+704|code|CMP             term, R3|153-69
+706|code|BEQ             loc_380|93-208
+708|code|LDR             R3, =grub_list_remove|128-75
+710|code|MOV             R0, term|72-70
+712|code|BLX             R3; grub_list_remove|152-71
+714|code|LDR.W           R3, [term,#0x10]|217-248-16-48
+718|code|CBZ             R3, loc_2D4|11-177
+720|code|MOV             R0, term|72-70
+722|code|BLX             R3|152-71
+724|code|MOV             R0, disabled|64-70
+726|code|MOV             R1, term|73-70
+728|code|LDR             R3, =grub_list_push|124-75
+730|code|BLX             R3; grub_list_push|152-71
+732|code|ADD.W           i_0, i_0, #1|10-241-1-10
+736|code|B               loc_238|170-231
+738|code|LDR.W           R0, [args,i_0,LSL#2]|84-248-42-0
+742|code|LDR.W           R1, [term,#8]|217-248-8-16
+746|code|BLX             R5; grub_strcmp|168-71
+748|code|CMP             R0, #0|0-40
+750|code|BEQ.W           loc_4A0|0-240-215-128
+754|code|LDR.W           R0, [args,i_0,LSL#2]|84-248-42-0
+758|code|LDR             R1, =aOfconsole; "ofconsole"|118-73
+760|code|BLX             R11; grub_strcmp|216-71
+762|code|CBZ             R0, loc_314|88-177
+764|code|LDR.W           term, [term]|217-248-0-144
+768|code|CMP.W           term, #0|185-241-0-15
+772|code|BNE             loc_2E2|237-209
+774|code|ADD.W           i_0, i_0, #1|10-241-1-10
+778|code|CMP             i_0, argc|186-69
+780|code|BGE             loc_322|9-218
+782|code|LDR.W           R9, [disabled]|216-248-0-144
+786|code|B               loc_300|245-231
+788|code|LDR             R0, =aConsole; "console"|111-72
+790|code|LDR.W           R1, [term,#8]|217-248-8-16
+794|code|BLX             R11; grub_strcmp|216-71
+796|code|CMP             R0, #0|0-40
+798|code|BNE             loc_2FC|237-209
+800|code|B               loc_4A0|190-224
+802|code|LDR.W           R11, [enabled]|214-248-0-176
+806|code|B               loc_344|13-224
+808|code|LDR             R2, =grub_list_remove|103-74
+810|code|MOV             R0, term|88-70
+812|code|BLX             R2; grub_list_remove|144-71
+814|code|LDR.W           R2, [term,#0x10]|219-248-16-32
+818|code|CBZ             R2, loc_338|10-177
+820|code|MOV             R0, term|88-70
+822|code|BLX             R2|144-71
+824|code|MOV             R0, disabled|64-70
+826|code|MOV             R1, term|89-70
+828|code|LDR             R3, =grub_list_push|99-75
+830|code|BLX             R3; grub_list_push|152-71
+832|code|LDR.W           term, [SP,#0x38+next]|221-248-4-176
+836|code|CMP.W           term, #0|187-241-0-15
+840|code|BEQ.W           loc_21E|63-244-105-175
+844|code|LDR.W           R3, [term]|219-248-0-48
+848|code|MOV             R10, args|162-70
+850|code|MOV.W           R9, #0|79-240-0-9
+854|code|STR             R3, [SP,#0x38+next]|1-147
+856|code|CMP             i_0, argc|185-69
+858|code|BGE             loc_36E|8-218
+860|code|LDR.W           R0, [R10]|218-248-0-0
+864|code|LDR.W           R1, [term,#8]|219-248-8-16
+868|code|STR.W           R10, [SP,#0x38+again]|205-248-8-160
+872|code|BLX             R5; grub_strcmp|168-71
+874|code|LDR             R2, [SP,#0x38+again]|2-154
+876|code|CBNZ            R0, loc_38A|104-185
+878|code|CMP             i_0, argc|185-69
+880|code|BNE             loc_340|230-209
+882|code|LDR.W           R2, [term]|219-248-0-32
+886|code|CMP             R2, #0|0-42
+888|code|BNE             loc_328|214-209
+890|code|LDR             R2, [enabled]|50-104
+892|code|CMP             term, R2|147-69
+894|code|BNE             loc_328|211-209
+896|code|LDR             R1, =aCanTRemoveTheL; "can't remove the last terminal"|85-73
+898|code|MOVS            R0, #0x12|18-32
+900|code|LDR             R3, =grub_error|85-75
+902|code|BLX             R3; grub_error|152-71
+904|code|B               loc_4C2|155-224
+906|code|LDR             R0, [R2]|16-104
+908|code|ADD.W           R10, R10, #4|10-241-4-10
+912|code|LDR             R1, =aOfconsole; "ofconsole"|79-73
+914|code|LDR             R3, =grub_strcmp|83-75
+916|code|BLX             R3; grub_strcmp|152-71
+918|code|CBNZ            R0, loc_3A6|48-185
+920|code|LDR             R0, =aConsole; "console"|78-72
+922|code|LDR.W           R1, [term,#8]|219-248-8-16
+926|code|LDR             R3, =grub_strcmp|80-75
+928|code|BLX             R3; grub_strcmp|152-71
+930|code|CMP             R0, #0|0-40
+932|code|BEQ             loc_36E|227-208
+934|code|ADD.W           i_0, i_0, #1|9-241-1-9
+938|code|B               loc_358|213-231
+940|code|LDR             term, [enabled]|52-104
+942|code|B               loc_AE|126-230
+944|code|MOV             R0, R11|88-70
+946|code|BLX             R7; grub_strlen|184-71
+948|code|ADD             R0, R11|88-68
+950|code|LDRB.W          R3, [R0,#-1]|16-248-1-60
+954|code|CMP             R3, #0x2A ; '*'|42-43
+956|code|BNE.W           loc_AC|127-244-118-174
+960|code|LDR.W           R1, [aut,#4]|217-248-4-16
+964|code|LDR.W           R11, [term,#8]|212-248-8-176
+968|code|MOV             R0, R1|8-70
+970|code|STR             R1, [SP,#0x38+next]|1-145
+972|code|BLX             R7; grub_strlen|184-71
+974|code|LDR             R1, [SP,#0x38+next]|1-153
+976|code|LDR             R3, =grub_memcmp|68-75
+978|code|SUBS            R2, R0, #1|66-30
+980|code|MOV             R0, R11|88-70
+982|code|BLX             R3; grub_memcmp|152-71
+984|code|CMP             R0, #0|0-40
+986|code|BNE.W           loc_AC|127-244-103-174
+990|code|B               loc_C0|111-230
+992|code|LDR.W           R1, [aut,#4]|217-248-4-16
+996|code|LDR             R0, =unk_5D0|64-72
+998|code|BLX             R5; grub_printf|168-71
+1000|code|B               loc_C0|106-230
+1002|code|LDR.W           term, [enabled]|214-248-0-176
+1006|code|CMP.W           term, #0|187-241-0-15
+1010|code|BEQ             loc_426|24-208
+1012|code|LDR.W           R0, [R10]|218-248-0-0
+1016|code|LDR.W           R1, [term,#8]|219-248-8-16
+1020|code|BLX             R5; grub_strcmp|168-71
+1022|code|CMP             R0, #0|0-40
+1024|code|BEQ.W           loc_180|63-244-190-174
+1028|code|LDR.W           R0, [R10]|218-248-0-0
+1032|code|LDR             R1, =aOfconsole; "ofconsole"|49-73
+1034|code|LDR             R3, =grub_strcmp|53-75
+1036|code|BLX             R3; grub_strcmp|152-71
+1038|code|CBNZ            R0, loc_420|56-185
+1040|code|LDR             R0, =aConsole; "console"|48-72
+1042|code|LDR.W           R1, [term,#8]|219-248-8-16
+1046|code|LDR             R3, =grub_strcmp|50-75
+1048|code|BLX             R3; grub_strcmp|152-71
+1050|code|CMP             R0, #0|0-40
+1052|code|BEQ.W           loc_180|63-244-176-174
+1056|code|LDR.W           term, [term]|219-248-0-176
+1060|code|B               loc_3EE|227-231
+1062|code|LDR             R3, [SP,#0x38+again]|2-155
+1064|code|CBZ             R3, loc_44C|131-177
+1066|code|LDR             R3, [SP,#0x38+next]|1-155
+1068|code|MOVS            R0, #0x12|18-32
+1070|code|LDR             R1, =aTerminalSIsnTF; "terminal `%s' isn't found"|47-73
+1072|code|LDR.W           R2, [args,R3,LSL#2]|84-248-35-32
+1076|code|B               loc_446|7-224
+1078|code|CMP.W           aut, #0|187-241-0-15
+1082|code|BNE.W           loc_164|127-244-147-174
+1086|code|LDR             R1, =aTerminalSIsnTF; "terminal `%s' isn't found"|43-73
+1088|code|MOVS            R0, #0x12|18-32
+1090|code|LDR.W           R2, [R10]|218-248-0-32
+1094|code|LDR             R3, =grub_error|37-75
+1096|code|BLX             R3; grub_error|152-71
+1098|code|B               loc_4C2|58-224
+1100|code|MOV             R11, R9|203-70
+1102|code|B               loc_11C|101-230
+1104|code|LDR             R0, =aConsole; "console"|32-72
+1106|code|LDR.W           R1, [aut,#4]|219-248-4-16
+1110|code|LDR             R3, =grub_strcmp|34-75
+1112|code|BLX             R3; grub_strcmp|152-71
+1114|code|CMP             R0, #0|0-40
+1116|code|BNE.W           loc_10C|127-244-86-174
+1120|code|B               loc_130|102-230
+1122|code|LDR             R2, =grub_strlen|35-74
+1124|code|MOV             R0, R3|24-70
+1126|code|STR             R3, [SP,#0x38+var_2C]|3-147
+1128|code|STR             R2, [SP,#0x38+again]|2-146
+1130|code|BLX             R2; grub_strlen|144-71
+1132|code|LDR             R3, [SP,#0x38+var_2C]|3-155
+1134|code|LDR             R2, [SP,#0x38+again]|2-154
+1136|code|ADD             R0, R3|24-68
+1138|code|LDRB.W          R3, [R0,#-1]|16-248-1-60
+1142|code|CMP             R3, #0x2A ; '*'|42-43
+1144|code|BNE.W           loc_118|127-244-78-174
+1148|code|LDR.W           R1, [aut,#4]|219-248-4-16
+1152|code|LDR.W           R3, [R10]|218-248-0-48
+1156|code|MOV             R0, R1|8-70
+1158|code|STR             R1, [SP,#0x38+again]|2-145
+1160|code|STR             R3, [SP,#0x38+var_2C]|3-147
+1162|code|BLX             R2|144-71
+1164|code|LDR             R3, [SP,#0x38+var_2C]|3-155
+1166|code|LDR             R1, [SP,#0x38+again]|2-153
+1168|code|SUBS            R2, R0, #1|66-30
+1170|code|MOV             R0, R3|24-70
+1172|code|LDR             R3, =grub_memcmp|19-75
+1174|code|BLX             R3; grub_memcmp|152-71
+1176|code|CMP             R0, #0|0-40
+1178|code|BNE.W           loc_118|127-244-61-174
+1182|code|B               loc_130|71-230
+1184|code|LDR.W           R3, [term,#0xC]|217-248-12-48
+1188|code|CBZ             R3, loc_4B2|43-177
+1190|code|MOV             R0, term|72-70
+1192|code|BLX             R3|152-71
+1194|code|CBZ             R0, loc_4B2|16-177
+1196|code|LDR             R3, =grub_errno|17-75
+1198|code|LDR             R0, [R3]|24-104
+1200|code|B               loc_4C2|7-224
+1202|code|MOV             R0, term|72-70
+1204|code|LDR             R3, =grub_list_remove|4-75
+1206|code|BLX             R3; grub_list_remove|152-71
+1208|code|MOV             R0, enabled|48-70
+1210|code|MOV             R1, term|73-70
+1212|code|LDR             R3, =grub_list_push|3-75
+1214|code|BLX             R3; grub_list_push|152-71
+1216|code|B               loc_306|33-231
+1218|code|ADD             SP, SP, #0x14|5-176
+1220|code|POP.W           {R4-R11,PC}|189-232-240-143
+1224|data|DCD grub_list_remove|172-7-0-0
+1228|data|DCD grub_list_push|176-7-0-0
+1232|data|DCD aOfconsole; "ofconsole"|254-5-0-0
+1236|data|DCD aConsole; "console"|8-6-0-0
+1240|data|DCD aCanTRemoveTheL; "can't remove the last terminal"|53-6-0-0
+1244|data|DCD grub_error|168-7-0-0
+1248|data|DCD grub_strcmp|160-7-0-0
+1252|data|DCD grub_memcmp|180-7-0-0
+1256|data|DCD unk_5D0|208-5-0-0
+1260|data|DCD aTerminalSIsnTF; "terminal `%s' isn't found"|16-6-0-0
+1264|data|DCD grub_strlen|112-7-0-0
+1268|data|DCD grub_errno|128-7-0-0
+1272|code|PUSH            {cmd-R4,LR}|31-181
+1274|code|MOV             cmd, argc; argc|8-70
+1276|code|LDR             R3, =grub_term_output_autoload|7-75
+1278|code|MOV             argc, args; args|17-70
+1280|code|LDR             args, =grub_term_outputs; enabled|7-74
+1282|code|LDR             R3, [R3]|27-104
+1284|code|STR             R3, [SP,#0x18+autoloads]; autoloads|0-147
+1286|code|LDR             R3, =aActiveOutputTe; "Active output terminals:"|7-75
+1288|code|STR             R3, [SP,#0x18+active_str]; active_str|1-147
+1290|code|LDR             R3, =aAvailableOutpu; "Available output terminals:"|7-75
+1292|code|STR             R3, [SP,#0x18+available_str]; available_str|2-147
+1294|code|LDR             R3, =grub_term_outputs_disabled; disabled|7-75
+1296|code|BL              handle_command|255-247-118-253
+1300|code|ADD             SP, SP, #0x14|5-176
+1302|code|POP.W           {PC}|93-248-4-251
+1306|data|ALIGN 4|0-191
+1308|data|DCD grub_term_output_autoload|96-7-0-0
+1312|data|DCD grub_term_outputs|152-7-0-0
+1316|data|DCD aActiveOutputTe; "Active output terminals:"|84-6-0-0
+1320|data|DCD aAvailableOutpu; "Available output terminals:"|109-6-0-0
+1324|data|DCD grub_term_outputs_disabled|132-7-0-0
+1328|code|PUSH            {cmd-R4,LR}|31-181
+1330|code|MOV             cmd, argc; argc|8-70
+1332|code|LDR             R3, =grub_term_output_autoload|7-75
+1334|code|MOV             argc, args; args|17-70
+1336|code|LDR             args, =grub_term_inputs; enabled|7-74
+1338|code|LDR             R3, [R3,#(grub_term_input_autoload - 0x760)]|91-104
+1340|code|STR             R3, [SP,#0x18+autoloads]; autoloads|0-147
+1342|code|LDR             R3, =aActiveInputTer; "Active input terminals:"|7-75
+1344|code|STR             R3, [SP,#0x18+active_str]; active_str|1-147
+1346|code|LDR             R3, =aAvailableInput; "Available input terminals:"|7-75
+1348|code|STR             R3, [SP,#0x18+available_str]; available_str|2-147
+1350|code|LDR             R3, =grub_term_inputs_disabled; disabled|7-75
+1352|code|BL              handle_command|255-247-90-253
+1356|code|ADD             SP, SP, #0x14|5-176
+1358|code|POP.W           {PC}|93-248-4-251
+1362|data|ALIGN 4|0-191
+1364|data|DCD grub_term_output_autoload|96-7-0-0
+1368|data|DCD grub_term_inputs|140-7-0-0
+1372|data|DCD aActiveInputTer; "Active input terminals:"|137-6-0-0
+1376|data|DCD aAvailableInput; "Available input terminals:"|161-6-0-0
+1380|data|DCD grub_term_inputs_disabled|156-7-0-0
+1384|code|PUSH            {mod-R2,R4-R7,LR}|247-181
+1386|code|MOVS            R7, #0|0-39
+1388|code|LDR             R6, =aAppendRemoveTe; "[--append|--remove] [TERMINAL1] [TERMIN"...|9-78
+1390|code|LDR             R5, =grub_register_command_prio|10-77
+1392|code|STR             R7, [SP,#0x20+var_20]|0-151
+1394|code|MOV             R2, R6|50-70
+1396|code|LDR             R1, =(grub_cmd_terminal_input+1)|9-73
+1398|code|LDR             R3, =aListOrSelectAn; "List or select an input terminal."|10-75
+1400|code|LDR             mod, =aTerminalInput; "terminal_input"|10-72
+1402|code|BLX             R5; grub_register_command_prio|168-71
+1404|code|LDR             R4, =grub_term_output_autoload|10-76
+1406|code|STR             R7, [SP,#0x20+var_20]|0-151
+1408|code|MOV             R2, R6|50-70
+1410|code|LDR             R1, =(grub_cmd_terminal_output+1)|10-73
+1412|code|LDR             R3, =aListOrSelectAn_0; "List or select an output terminal."|10-75
+1414|code|STR             R0, [R4,#(cmd_terminal_input - 0x760)]|160-96
+1416|code|LDR             R0, =aTerminalOutput; "terminal_output"|10-72
+1418|code|BLX             R5; grub_register_command_prio|168-71
+1420|code|STR             R0, [R4,#(cmd_terminal_output - 0x760)]|224-96
+1422|code|ADD             SP, SP, #0xC|3-176
+1424|code|POP             {R4-R7,PC}|240-189
+1426|data|ALIGN 4|0-191
+1428|data|DCD aAppendRemoveTe; "[--append|--remove] [TERMINAL1] [TERMIN"...|203-6-0-0
+1432|data|DCD grub_register_command_prio|136-7-0-0
+1436|data|DCD grub_cmd_terminal_input+1|49-5-0-0
+1440|data|DCD aListOrSelectAn; "List or select an input terminal."|251-6-0-0
+1444|data|DCD aTerminalInput; "terminal_input"|188-6-0-0
+1448|data|DCD grub_term_output_autoload|96-7-0-0
+1452|data|DCD grub_cmd_terminal_output+1|249-4-0-0
+1456|data|DCD aListOrSelectAn_0; "List or select an output terminal."|45-7-0-0
+1460|data|DCD aTerminalOutput; "terminal_output"|29-7-0-0
+1464|code|PUSH            {R3-R5,LR}|56-181
+1466|code|LDR             R5, =grub_term_output_autoload|3-77
+1468|code|LDR             R4, =grub_unregister_command|3-76
+1470|code|LDR             R0, [R5,#(cmd_terminal_input - 0x760)]|168-104
+1472|code|BLX             R4; grub_unregister_command|160-71
+1474|code|LDR             R0, [R5,#(cmd_terminal_output - 0x760)]|232-104
+1476|code|BLX             R4; grub_unregister_command|160-71
+1478|code|POP             {R3-R5,PC}|56-189
+1480|data|DCD grub_term_output_autoload|96-7-0-0
+1484|data|DCD grub_unregister_command|148-7-0-0
+1873|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+1888|data|% 4|255-255-255-255
+1892|data|% 4|255-255-255-255
+1896|data|% 4|255-255-255-255

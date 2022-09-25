@@ -1,0 +1,245 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =bitmap_readers_list|2-75
+2|code|LDR             R2, [R3]|26-104
+4|code|STR             reader, [R3]|24-96
+6|code|STR             R2, [reader,#8]|130-96
+8|code|BX              LR|112-71
+10|data|ALIGN 4|0-191
+12|data|DCD bitmap_readers_list|148-2-0-0
+16|code|LDR             R2, =bitmap_readers_list|6-74
+18|code|LDR             R3, [R2]|19-104
+20|code|CBZ             q, locret_28|67-177
+22|code|CMP             q, reader|131-66
+24|code|BNE             loc_20|2-209
+26|code|LDR             q, [q,#8]|155-104
+28|code|STR             R3, [R2]|19-96
+30|code|BX              LR|112-71
+32|code|ADD.W           R2, q, #8|3-241-8-2
+36|code|LDR             q, [q,#8]|155-104
+38|code|B               loc_14|245-231
+40|code|BX              LR|112-71
+42|data|ALIGN 4|0-191
+44|data|DCD bitmap_readers_list|148-2-0-0
+48|code|PUSH.W          {blit_format-R9,LR}|45-233-248-67
+52|code|MOV             R9, width|137-70
+54|code|MOV             R8, height|144-70
+56|code|MOV             R7, blit_format|31-70
+58|code|MOV             R6, bitmap|6-70
+60|code|CBZ             bitmap, loc_46|24-177
+62|code|MOVS            R5, #0|0-37
+64|code|STR             R5, [bitmap]|5-96
+66|code|CBZ             width, loc_46|1-177
+68|code|CBNZ            height, loc_4C|18-185
+70|code|MOVS            bitmap, #0x26 ; '&'|38-32
+72|code|LDR             width, =aInvalidArgumen; "invalid argument"|53-73
+74|code|B               loc_EA|78-224
+76|code|MOVS            bitmap, #0x50 ; 'P'|80-32
+78|code|LDR             blit_format, =grub_malloc|53-75
+80|code|BLX             R3; grub_malloc|152-71
+82|code|MOV             R4, R0|4-70
+84|code|STR             R0, [bitmap]|48-96
+86|code|CMP             R0, #0|0-40
+88|code|BEQ             loc_110|90-208
+90|code|CMP             blit_format, #4|4-47
+92|code|STR.W           width, [mode_info]|192-248-0-144
+96|code|STR.W           height, [mode_info,#4]|192-248-4-128
+100|code|STR             blit_format, [mode_info,#0x20]|7-98
+102|code|BEQ             loc_9A|24-208
+104|code|CMP             blit_format, #8|8-47
+106|code|BEQ             loc_BE|40-208
+108|code|CMP             blit_format, #1|1-47
+110|code|BNE             loc_E0|55-209
+112|code|MOVS            R3, #0x21 ; '!'|33-35
+114|code|MOVS            R2, #0x10|16-34
+116|code|STR             R3, [mode_info,#8]|131-96
+118|code|MOVS            R3, #0x20 ; ' '|32-35
+120|code|STR             R5, [mode_info,#0x28]|133-98
+122|code|STR             R3, [mode_info,#0xC]|195-96
+124|code|MOVS            R3, #4|4-35
+126|code|STR             R2, [mode_info,#0x38]|130-99
+128|code|STR             R3, [mode_info,#0x10]|3-97
+130|code|MOV.W           R3, #0x100|79-244-128-115
+134|code|STR             R3, [mode_info,#0x18]|131-97
+136|code|MOVS            R3, #8|8-35
+138|code|STR             R3, [mode_info,#0x24]|67-98
+140|code|STR             R3, [mode_info,#0x2C]|195-98
+142|code|STR             R3, [mode_info,#0x30]|3-99
+144|code|STR             R3, [mode_info,#0x34]|67-99
+146|code|STR             R3, [mode_info,#0x3C]|195-99
+148|code|MOVS            R3, #0x18|24-35
+150|code|STR             R3, [mode_info,#0x40]|3-100
+152|code|B               loc_F2|43-224
+154|code|MOVS            R3, #1|1-35
+156|code|STR             R5, [mode_info,#0x28]|133-98
+158|code|STR             R3, [mode_info,#8]|131-96
+160|code|MOVS            R3, #0x18|24-35
+162|code|STR             R3, [mode_info,#0xC]|195-96
+164|code|MOVS            R3, #3|3-35
+166|code|STR             R3, [mode_info,#0x10]|3-97
+168|code|MOV.W           R3, #0x100|79-244-128-115
+172|code|STR             R3, [mode_info,#0x18]|131-97
+174|code|MOVS            R3, #8|8-35
+176|code|STR             R3, [mode_info,#0x24]|67-98
+178|code|STR             R3, [mode_info,#0x2C]|195-98
+180|code|STR             R3, [mode_info,#0x30]|3-99
+182|code|STR             R3, [mode_info,#0x34]|67-99
+184|code|MOVS            R3, #0x10|16-35
+186|code|STR             R3, [mode_info,#0x38]|131-99
+188|code|B               loc_DA|13-224
+190|code|MOVS            R3, #2|2-35
+192|code|STR             blit_format, [mode_info,#0xC]|199-96
+194|code|STR             R3, [mode_info,#8]|131-96
+196|code|MOVS            R3, #1|1-35
+198|code|STR             R5, [mode_info,#0x24]|69-98
+200|code|STR             R3, [mode_info,#0x10]|3-97
+202|code|MOV.W           R3, #0x100|79-244-128-115
+206|code|STR             R5, [mode_info,#0x28]|133-98
+208|code|STR             R3, [mode_info,#0x18]|131-97
+210|code|STR             R5, [mode_info,#0x2C]|197-98
+212|code|STR             R5, [mode_info,#0x30]|5-99
+214|code|STR             R5, [mode_info,#0x34]|69-99
+216|code|STR             R5, [mode_info,#0x38]|133-99
+218|code|STR             R5, [R4,#0x3C]|229-99
+220|code|STR             R5, [R4,#0x40]|37-100
+222|code|B               loc_F2|8-224
+224|code|LDR             R3, =grub_free|17-75
+226|code|BLX             R3; grub_free|152-71
+228|code|LDR             R1, =aUnsupportedBit; "unsupported bitmap format"|17-73
+230|code|MOVS            R0, #0x18|24-32
+232|code|STR             R5, [bitmap]|53-96
+234|code|LDR             R3, =grub_error|17-75
+236|code|BLX             R3; grub_error|152-71
+238|code|POP.W           {R3-width,PC}|189-232-248-131
+242|code|LDR             R3, [R4,#0x10]|35-105
+244|code|MUL.W           mode_info, R3, width|3-251-9-240
+248|code|LDR             R3, =grub_zalloc|14-75
+250|code|STR             R0, [mode_info,#0x14]|96-97
+252|code|MUL.W           R0, height, R0|8-251-0-240
+256|code|BLX             R3; grub_zalloc|152-71
+258|code|STR             R0, [mode_info,#0x4C]|224-100
+260|code|LDR             R0, [bitmap]|48-104
+262|code|LDR             mode_info, [R0,#0x4C]|196-108
+264|code|CBNZ            R4, loc_118|52-185
+266|code|LDR             R3, =grub_free|7-75
+268|code|BLX             R3; grub_free|152-71
+270|code|STR             R4, [bitmap]|52-96
+272|code|LDR             R3, =grub_errno|9-75
+274|code|LDR             R0, [R3]|24-104
+276|code|POP.W           {R3-width,PC}|189-232-248-131
+280|code|MOVS            R0, #0|0-32
+282|code|POP.W           {R3-width,PC}|189-232-248-131
+286|data|ALIGN 0x10|0-191
+288|data|DCD aInvalidArgumen; "invalid argument"|44-2-0-0
+292|data|DCD grub_malloc|168-2-0-0
+296|data|DCD grub_free|176-2-0-0
+300|data|DCD aUnsupportedBit; "unsupported bitmap format"|61-2-0-0
+304|data|DCD grub_error|172-2-0-0
+308|data|DCD grub_zalloc|164-2-0-0
+312|data|DCD grub_errno|160-2-0-0
+316|code|PUSH            {R3-R5,LR}|56-181
+318|code|MOV             R4, bitmap|4-70
+320|code|CBZ             bitmap, loc_14C|32-177
+322|code|LDR             bitmap, [bitmap,#0x4C]|192-108
+324|code|LDR             R5, =grub_free|2-77
+326|code|BLX             R5; grub_free|168-71
+328|code|MOV             R0, bitmap|32-70
+330|code|BLX             R5; grub_free|168-71
+332|code|MOVS            R0, #0|0-32
+334|code|POP             {R3-R5,PC}|56-189
+336|data|DCD grub_free|176-2-0-0
+340|code|LDR             R3, =bitmap_readers_list|40-75
+342|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+346|code|MOV             R8, filename|136-70
+348|code|LDR             R7, [R3]|31-104
+350|code|MOV             R9, bitmap|129-70
+352|code|CBNZ            bitmap, loc_16E|40-185
+354|code|LDR             filename, =aInvalidArgumen; "invalid argument"|38-73
+356|code|MOVS            bitmap, #0x26 ; '&'|38-32
+358|code|LDR             R3, =grub_error|38-75
+360|code|BLX             R3; grub_error|152-71
+362|code|POP.W           {R4-R10,PC}|189-232-240-135
+366|code|LDR             R6, =grub_strlen|37-78
+368|code|MOVS            R3, #0|0-35
+370|code|STR             R3, [bitmap]|3-96
+372|code|CMP             reader, #0|0-47
+374|code|BEQ             loc_1E8|55-208
+376|code|MOV             R0, filename|64-70
+378|code|LDR             R5, [reader]|61-104
+380|code|BLX             R6; grub_strlen|176-71
+382|code|MOV             R4, R0|4-70
+384|code|MOV             R0, R5|40-70
+386|code|BLX             R6; grub_strlen|176-71
+388|code|CBZ             R4, loc_1E4|116-179
+390|code|CBZ             R0, loc_1E4|104-179
+392|code|CMP             R0, R4|160-66
+394|code|BGT             loc_1E4|43-220
+396|code|SUBS            R4, R4, R0|36-26
+398|code|MOV             R1, R5|41-70
+400|code|SUBS            R4, #1|1-60
+402|code|ADD             R4, filename|68-68
+404|code|LDRB.W          R3, [R4,#1]!|20-248-1-63
+408|code|MOV             R12, R1|140-70
+410|code|SUB.W           R0, R3, #0x41 ; 'A'|163-241-65-0
+414|code|CBZ             R3, loc_1C0|123-177
+416|code|LDRB.W          R2, [R1],#1|17-248-1-43
+420|code|CBZ             R2, loc_1C0|98-177
+422|code|MOV             R5, R2|21-70
+424|code|CMP             R0, #0x19|25-40
+426|code|SUB.W           R2, R2, #0x41 ; 'A'|162-241-65-2
+430|code|MOV             LR, R3|158-70
+432|code|IT LS|152-191
+434|code|ADDLS.W         LR, R3, #0x20 ; ' '|3-241-32-14
+438|code|CMP             R2, #0x19|25-42
+440|code|IT LS|152-191
+442|code|ADDLS           R5, #0x20 ; ' '|32-53
+444|code|CMP             LR, R5|174-69
+446|code|BEQ             loc_194|233-208
+448|code|LDRB.W          R2, [R12]|156-248-0-32
+452|code|CMP             R0, #0x19|25-40
+454|code|IT LS|152-191
+456|code|ADDLS           R3, #0x20 ; ' '|32-51
+458|code|SUB.W           R1, R2, #0x41 ; 'A'|162-241-65-1
+462|code|CMP             R1, #0x19|25-41
+464|code|IT LS|152-191
+466|code|ADDLS           R2, #0x20 ; ' '|32-50
+468|code|CMP             R3, R2|147-66
+470|code|BNE             loc_1E4|5-209
+472|code|LDR             R3, [reader,#4]|123-104
+474|code|MOV             R0, bitmap|72-70
+476|code|MOV             R1, filename|65-70
+478|code|POP.W           {R4-R10,LR}|189-232-240-71
+482|code|BX              R3|24-71
+484|code|LDR             reader, [reader,#8]|191-104
+486|code|B               loc_174|197-231
+488|code|LDR             R1, =aBitmapFileSIsO; "bitmap file `%s' is of unsupported form"...|7-73
+490|code|MOV             R2, filename|66-70
+492|code|LDR             R3, =grub_error|4-75
+494|code|MOVS            R0, #4|4-32
+496|code|BLX             R3; grub_error|152-71
+498|code|POP.W           {R4-R10,PC}|189-232-240-135
+502|data|ALIGN 4|0-191
+504|data|DCD bitmap_readers_list|148-2-0-0
+508|data|DCD aInvalidArgumen; "invalid argument"|44-2-0-0
+512|data|DCD grub_error|172-2-0-0
+516|data|DCD grub_strlen|152-2-0-0
+520|data|DCD aBitmapFileSIsO; "bitmap file `%s' is of unsupported form"...|87-2-0-0
+524|code|PUSH            {R3,LR}|8-181
+526|code|MOV             R3, bitmap|3-70
+528|code|CBZ             bitmap, locret_21C|32-177
+530|code|MOV             bitmap, mode_info; dest|8-70
+532|code|MOVS            R2, #0x4C ; 'L'; n|76-34
+534|code|MOV             mode_info, bitmap; src|25-70
+536|code|LDR             bitmap, =memcpy|1-75
+538|code|BLX             R3; memcpy|152-71
+540|code|POP             {R3,PC}|8-189
+542|data|ALIGN 0x10|0-191
+544|data|DCD memcpy|156-2-0-0
+548|code|CBZ             bitmap, locret_228|0-177
+550|code|LDR             bitmap, [bitmap,#0x4C]|192-108
+552|code|BX              LR|112-71
+554|data|ALIGN 4|0-191
+556|data|DCB "invalid argument",0|105-110-118-97-108-105-100-32-97-114-103-117-109-101-110-116-0
+573|data|DCB "unsupported bitmap format",0|117-110-115-117-112-112-111-114-116-101-100-32-98-105-116-109-97-112-32-102-111-114-109-97-116-0
+599|data|DCB "bitmap file `%s' is of unsupported format",0|98-105-116-109-97-112-32-102-105-108-101-32-96-37-115-39-32-105-115-32-111-102-32-117-110-115-117-112-112-111-114-116-101-100-32-102-111-114-109-97-116-0
+641|data||255
+642|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,849 @@
+address|type|disassembly|bytes
+32768|data|DCD 0x464C457F; File format: \x7FELF|127-69-76-70
+32772|data|DCB 1; File class: 32-bit|1
+32773|data|DCB 1; Data encoding: little-endian|1
+32774|data|DCB 1; File version|1
+32775|data|DCB 0; OS/ABI: UNIX System V ABI|0
+32776|data|DCB 0; ABI Version|0
+32777|data|DCB 0, 0, 0, 0, 0, 0, 0; Padding|0-0-0-0-0-0-0
+32784|data|DCW 2; File type: Executable|2-0
+32786|data|DCW 0x28; Machine: ARM|40-0
+32788|data|DCD 1; File version|1-0-0-0
+32792|data|DCD start; Entry point|180-131-0-0
+32796|data|DCD 0x34; PHT file offset|52-0-0-0
+32800|data|DCD 0xB1C; SHT file offset|28-11-0-0
+32804|data|DCD 0x5000002; Processor-specific flags|2-0-0-5
+32808|data|DCW 0x34; ELF header size|52-0
+32810|data|DCW 0x20; PHT entry size|32-0
+32812|data|DCW 4; Number of entries in PHT|4-0
+32814|data|DCW 0x28; SHT entry size|40-0
+32816|data|DCW 7; Number of entries in SHT|7-0
+32818|data|DCW 6; SHT entry index for string table|6-0
+32820|data|DCD 1; Type: LOAD|1-0-0-0
+32824|data|DCD 0; File offset|0-0-0-0
+32828|data|DCD dword_8000; Virtual address|0-128-0-0
+32832|data|DCD 0x8000; Physical address|0-128-0-0
+32836|data|DCD 0xAA9; Size in file image|169-10-0-0
+32840|data|DCD 0xAA9; Size in memory image|169-10-0-0
+32844|data|DCD 5; Flags|5-0-0-0
+32848|data|DCD 0x8000; Alignment|0-128-0-0
+32852|data|DCD 1; Type: LOAD|1-0-0-0
+32856|data|DCD 0xB00; File offset|0-11-0-0
+32860|data|DCD dword_10B00; Virtual address|0-11-1-0
+32864|data|DCD 0x10B00; Physical address|0-11-1-0
+32868|data|DCD 0; Size in file image|0-0-0-0
+32872|data|DCD 0x224; Size in memory image|36-2-0-0
+32876|data|DCD 6; Flags|6-0-0-0
+32880|data|DCD 0x8000; Alignment|0-128-0-0
+32884|data|DCD 4; Type: NOTE|4-0-0-0
+32888|data|DCD 0xB4; File offset|180-0-0-0
+32892|data|DCD dword_80B4; Virtual address|180-128-0-0
+32896|data|DCD 0x80B4; Physical address|180-128-0-0
+32900|data|DCD 0x24; Size in file image|36-0-0-0
+32904|data|DCD 0x24; Size in memory image|36-0-0-0
+32908|data|DCD 4; Flags|4-0-0-0
+32912|data|DCD 4; Alignment|4-0-0-0
+32916|data|DCD 0x6474E551; Type: STACK|81-229-116-100
+32920|data|DCD 0; File offset|0-0-0-0
+32924|data|DCD 0; Virtual address|0-0-0-0
+32928|data|DCD 0; Physical address|0-0-0-0
+32932|data|DCD 0; Size in file image|0-0-0-0
+32936|data|DCD 0; Size in memory image|0-0-0-0
+32940|data|DCD 7; Flags|7-0-0-0
+32944|data|DCD 4; Alignment|4-0-0-0
+32948|data|DCD 4; Name Size|4-0-0-0
+32952|data|DCD 0x14; Desc Size|20-0-0-0
+32956|data|DCD 3; Type: NT_GNU_BUILD_ID|3-0-0-0
+32960|data|DCB "GNU",0; Name|71-78-85-0
+32964|data|DCB 0x9B, 0xA4, 0xB3, 0x4F, 0xE6, 5, 0xAB, 0xBB, 0xFA; Desc|155-164-179-79-230-5-171-187-250-21-131-137-69-51-57-172-217-169-151-187
+32984|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+32988|code|SUB.W           SP, SP, #0x2E8|173-245-58-125
+32992|code|LDR             R2, =off_8980; "checkpassword"|159-74
+32994|code|MOV             R5, R1|13-70
+32996|code|ADD             R7, SP, #8|2-175
+32998|code|LDR             R4, [R1,#4]|76-104
+33000|code|ADD.W           R3, R7, #0x2CC|7-245-51-115
+33004|code|LDM             R2, {R0-R2}; "checkpassword"|7-202
+33006|code|STM.W           R3, {R0-R2}|131-232-7-0
+33010|code|B               loc_80F6|0-224
+33012|code|LDR             R4, [R5,#4]|108-104
+33014|code|CBZ             R4, loc_8102|36-177
+33016|code|LDRB            R3, [R4]|35-120
+33018|code|ADDS            R5, #4|4-53
+33020|code|CMP             R3, #0x2D ; '-'|45-43
+33022|code|BEQ             loc_80F4|249-208
+33024|code|B               loc_8148|34-224
+33026|code|LDR             R0, =aHost; "HOST"|152-72
+33028|code|BL              sub_8510|0-240-4-250
+33032|code|MOV             R5, R0|5-70
+33034|code|CBZ             R0, loc_8122|80-177
+33036|code|BLX             sub_8634|0-240-146-234
+33040|code|MOVS            R3, #0x20 ; ' '|32-35
+33042|code|MOV             R1, R5|41-70
+33044|code|MOV             R6, R0|6-70
+33046|code|STRB            R3, [R5,R0]|43-84
+33048|code|ADDS            R2, R0, #1|66-28
+33050|code|MOV             R0, R4|32-70
+33052|code|BLX             sub_8464|0-240-162-233
+33056|code|STRB            R4, [R5,R6]|172-85
+33058|code|LDR             R0, =aLogin; "login: "|145-72
+33060|code|BL              sub_867C|0-240-170-250
+33064|code|MOVS            R0, #0|0-32
+33066|code|MOVS            R2, #9|9-34
+33068|code|ADD.W           R1, R7, #0x204|7-245-1-113
+33072|code|BLX             sub_845C|0-240-148-233
+33076|code|CMP             R0, #0|0-40
+33078|code|BLT             loc_81C6|70-219
+33080|code|ADD.W           R3, R7, #0x2E0|7-245-56-115
+33084|code|ADD.W           R4, R7, #0x204|7-245-1-116
+33088|code|ADDS            R0, R3, R0|24-24
+33090|code|MOVS            R3, #0|0-35
+33092|code|STRB.W          R3, [R0,#-0xDD]|0-248-221-60
+33096|code|MOV             R0, R4|32-70
+33098|code|LDR.W           R8, =unk_10D00|223-248-100-130
+33102|code|BLX             sub_8634|0-240-114-234
+33106|code|MOV             R1, R4|33-70
+33108|code|ADDS            R0, #0x22 ; '"'|34-48
+33110|code|BIC.W           R0, R0, #7|32-240-7-0
+33114|code|SUB.W           SP, SP, R0|173-235-0-13
+33118|code|ADD             R5, SP, #0x2E8+var_2E0|2-173
+33120|code|MOV             R0, R5|40-70
+33122|code|BLX             sub_85D8|0-240-58-234
+33126|code|LDR             R1, =aSPassword; "'s password: "|129-73
+33128|code|MOV             R0, R5|40-70
+33130|code|BL              sub_85A8|0-240-29-250
+33134|code|MOV             R0, R5|40-70
+33136|code|BL              sub_867C|0-240-132-250
+33140|code|MOVS            R0, #0|0-32
+33142|code|MOV             R1, R8|65-70
+33144|code|BL              sub_8650|0-240-106-250
+33148|code|MOV             R6, R0|6-70
+33150|code|CBZ             R0, loc_8186|16-177
+33152|code|LDR             R0, =aTcgetattrFaile; "tcgetattr failed"|123-72
+33154|code|BL              loc_83E4|0-240-47-249
+33158|code|MOV             R12, R8|196-70
+33160|code|ADDS            R5, R7, #4|61-29
+33162|code|LDM.W           R12!, {R0-R3}|188-232-15-0
+33166|code|MOV             LR, R5|174-70
+33168|code|STM.W           LR!, {R0-R3}|174-232-15-0
+33172|code|LDM.W           R12!, {R0-R3}|188-232-15-0
+33176|code|STM.W           LR!, {R0-R3}|174-232-15-0
+33180|code|MOV             R1, R6|49-70
+33182|code|LDR.W           R3, [R12]|220-248-0-48
+33186|code|MOV             R2, R5|42-70
+33188|code|MOV             R0, R6|48-70
+33190|code|STR.W           R3, [LR]|206-248-0-48
+33194|code|LDR             R3, [R5,#0xC]|235-104
+33196|code|BIC.W           R3, R3, #0x78|35-240-120-3
+33200|code|STR             R3, [R5,#0xC]|235-96
+33202|code|BL              sub_865A|0-240-82-250
+33206|code|MOVS            R2, #0x63 ; 'c'|99-34
+33208|code|MOV             R0, R6|48-70
+33210|code|ADD.W           R1, R7, #0x268|7-245-26-113
+33214|code|BLX             sub_845C|0-240-78-233
+33218|code|CMP             R0, #0|0-40
+33220|code|BGE             loc_81CA|1-218
+33222|code|LDR             R0, =aReadFailed; "read failed"|107-72
+33224|code|B               loc_8182|219-231
+33226|code|ADD.W           R3, R7, #0x2E0|7-245-56-115
+33230|code|MOV             R1, R6|49-70
+33232|code|ADDS            R0, R3, R0|24-24
+33234|code|LDR.W           R3, [R8,#0xC]|216-248-12-48
+33238|code|MOV             R2, R8|66-70
+33240|code|ORR.W           R3, R3, #0x38|67-240-56-3
+33244|code|STRB.W          R6, [R0,#-0x79]|0-248-121-108
+33248|code|STR.W           R3, [R8,#0xC]|200-248-12-48
+33252|code|MOV             R0, R6|48-70
+33254|code|BL              sub_865A|0-240-56-250
+33258|code|LDR             R0, =(aUtmpfd4Wtmpfd5+0x16); "\n"|99-72
+33260|code|BL              sub_867C|0-240-70-250
+33264|code|ADD.W           R0, R7, #0x2D8|7-245-54-112
+33268|code|BLX             sub_8454|0-240-46-233
+33272|code|CBZ             R0, loc_81FE|8-177
+33274|code|LDR             R0, =aPipeFailed; "pipe failed"|96-72
+33276|code|B               loc_8182|193-231
+33278|code|LDR.W           R8, [R7,#0x2E0+var_8]|215-248-216-130
+33282|code|CMP.W           R8, #3|184-241-3-15
+33286|code|IT NE|24-191
+33288|code|LDRNE           R0, =aPipeDidNotRetu; "pipe did not return fd 3"|93-72
+33290|code|BNE             loc_8182|186-209
+33292|code|BLX             sub_8444|0-240-26-233
+33296|code|ADDS            R1, R0, #1|65-28
+33298|code|MOV             R6, R0|6-70
+33300|code|BEQ             loc_821A|1-208
+33302|code|CBZ             R0, loc_821E|16-177
+33304|code|B               loc_8298|62-224
+33306|code|LDR             R0, =aLoginCouldNotF; "login: could not fork"|90-72
+33308|code|B               loc_8182|177-231
+33310|code|MOV             R0, R8|64-70
+33312|code|BLX             sub_842C|0-240-4-233
+33316|code|MOV             R0, R4|32-70
+33318|code|BLX             sub_8634|0-240-6-234
+33322|code|MOV             R1, R4|33-70
+33324|code|ADD.W           R8, R0, #1|0-241-1-8
+33328|code|MOV             R0, R5|40-70
+33330|code|BLX             sub_85D8|0-240-210-233
+33334|code|RSB.W           R2, R8, #0x200|200-245-0-114
+33338|code|ADD.W           R1, R7, #0x268|7-245-26-113
+33342|code|ADD.W           R0, R5, R8|5-235-8-0
+33346|code|BL              sub_85F4|0-240-215-249
+33350|code|ADD.W           R0, R7, #0x268|7-245-26-112
+33354|code|BLX             sub_8634|0-240-244-233
+33358|code|ADDS            R4, R0, #1|68-28
+33360|code|MOV             R0, R6|48-70
+33362|code|BL              sub_84F2|0-240-78-249
+33366|code|ADD             R4, R8|68-68
+33368|code|RSB.W           R1, R4, #0x200|196-245-0-113
+33372|code|MOVS            R3, #0xA|10-35
+33374|code|STR             R6, [SP,#0x2E8+var_2E8]|0-150
+33376|code|MOV             R2, R0|2-70
+33378|code|ADDS            R0, R5, R4|40-25
+33380|code|BL              sub_846C|0-240-2-249
+33384|code|ADDS            R4, R4, R0|36-24
+33386|code|CMP.W           R4, #0x190|180-245-200-127
+33390|code|STRB            R6, [R5,R4]|46-85
+33392|code|BGE             loc_827E|5-218
+33394|code|ADDS            R0, R4, #1|96-28
+33396|code|LDR             R1, =aNosetuid; "nosetuid"|68-73
+33398|code|ADDS            R0, R5, R0|40-24
+33400|code|ADDS            R4, #9|9-52
+33402|code|BLX             sub_85D8|0-240-174-233
+33406|code|MOVS            R0, #4|4-32
+33408|code|ADDS            R2, R4, #1|98-28
+33410|code|ADDS            R1, R7, R0|57-24
+33412|code|BLX             sub_8464|0-240-238-232
+33416|code|MOVS            R0, #4|4-32
+33418|code|BLX             sub_842C|0-240-208-232
+33422|code|ADD.W           R7, R7, #0x2E0|7-245-56-119
+33426|code|MOV             SP, R7|189-70
+33428|code|POP.W           {R4-R8,PC}|189-232-240-129
+33432|code|MOVS            R0, #4|4-32
+33434|code|BLX             sub_842C|0-240-200-232
+33438|code|MOVS            R1, #2|2-33
+33440|code|LDR             R0, =aVarRunUtmp; "/var/run/utmp"|58-72
+33442|code|BLX             sub_844C|0-240-212-232
+33446|code|ADDS            R2, R0, #1|66-28
+33448|code|MOV             R5, R0|5-70
+33450|code|BNE             loc_82B6|4-209
+33452|code|LDR             R0, =aDevNull; "/dev/null"|56-72
+33454|code|MOVS            R1, #2|2-33
+33456|code|BLX             sub_844C|0-240-204-232
+33460|code|MOV             R5, R0|5-70
+33462|code|CMP             R5, #0|0-45
+33464|code|ITE LE|212-191
+33466|code|MOVLE           R3, #0|0-35
+33468|code|MOVGT           R3, #1|1-35
+33470|code|CMP             R5, #4|4-45
+33472|code|ITE EQ|12-191
+33474|code|MOVEQ           R3, #0|0-35
+33476|code|ANDNE.W         R3, R3, #1|3-240-1-3
+33480|code|CBZ             R3, loc_82DA|59-177
+33482|code|MOV             R0, R5|40-70
+33484|code|MOVS            R1, #4|4-33
+33486|code|BLX             sub_8434|0-240-178-232
+33490|code|MOV             R0, R5|40-70
+33492|code|BLX             sub_842C|0-240-170-232
+33496|code|MOVS            R5, #4|4-37
+33498|code|LDR             R0, =aVarLogWtmp; "/var/log/wtmp"|46-72
+33500|code|MOVW            R1, #0x401|64-242-1-65
+33504|code|BLX             sub_844C|0-240-180-232
+33508|code|ADDS            R3, R0, #1|67-28
+33510|code|MOV             R4, R0|4-70
+33512|code|BNE             loc_82F4|4-209
+33514|code|LDR             R0, =aDevNull; "/dev/null"|41-72
+33516|code|MOVS            R1, #1|1-33
+33518|code|BLX             sub_844C|0-240-174-232
+33522|code|MOV             R4, R0|4-70
+33524|code|CMP             R4, #0|0-44
+33526|code|ITE LE|212-191
+33528|code|MOVLE           R3, #0|0-35
+33530|code|MOVGT           R3, #1|1-35
+33532|code|CMP             R4, #5|5-44
+33534|code|ITE EQ|12-191
+33536|code|MOVEQ           R3, #0|0-35
+33538|code|ANDNE.W         R3, R3, #1|3-240-1-3
+33542|code|CBZ             R3, loc_8318|59-177
+33544|code|MOV             R0, R4|32-70
+33546|code|MOVS            R1, #5|5-33
+33548|code|BLX             sub_8434|0-240-146-232
+33552|code|MOV             R0, R4|32-70
+33554|code|BLX             sub_842C|0-240-140-232
+33558|code|MOVS            R4, #5|5-36
+33560|code|SUBS            R3, R5, #4|43-31
+33562|code|IT NE|24-191
+33564|code|MOVNE           R3, #1|1-35
+33566|code|CMP             R4, #5|5-44
+33568|code|IT NE|24-191
+33570|code|ORRNE.W         R3, R3, #1|67-240-1-3
+33574|code|CBZ             R3, loc_833A|67-177
+33576|code|MOV             R0, R5|40-70
+33578|code|BLX             sub_842C|0-240-128-232
+33582|code|MOV             R0, R4|32-70
+33584|code|BLX             sub_842C|0-240-124-232
+33588|code|LDR             R0, =aUtmpfd4Wtmpfd5; "utmpfd!=4 || wtmpfd!=5\n"|24-72
+33590|code|BL              sub_8692|0-240-172-249
+33594|code|LDR             R4, =dword_10B00|24-76
+33596|code|ADD.W           R1, R7, #0x2CC|7-245-51-113
+33600|code|LDR             R0, =aBinCheckpasswo; "/bin/checkpassword.login"|23-72
+33602|code|LDR             R2, [R4]|34-104
+33604|code|BLX             sub_843C|0-240-122-232
+33608|code|LDR             R3, =dword_10C00|22-75
+33610|code|LDR             R3, [R3]|27-104
+33612|code|CMP             R3, #2|2-43
+33614|code|BNE             loc_835C|5-209
+33616|code|LDR             R0, =aBinCheckpasswo_0; "/bin/checkpassword"|21-72
+33618|code|ADD.W           R1, R7, #0x2CC|7-245-51-113
+33622|code|LDR             R2, [R4]|34-104
+33624|code|BLX             sub_843C|0-240-112-232
+33628|code|LDR             R0, =aLoginCouldNotE; "login: could not exec checkpassword"|19-72
+33630|code|B               loc_8182|16-231
+33632|data|DCD off_8980; "checkpassword"|128-137-0-0
+33636|data|DCD aHost; "HOST"|140-137-0-0
+33640|data|DCD aLogin; "login: "|145-137-0-0
+33644|data|DCD aSPassword; "'s password: "|165-137-0-0
+33648|data|DCD aTcgetattrFaile; "tcgetattr failed"|179-137-0-0
+33652|data|DCD aReadFailed; "read failed"|153-137-0-0
+33656|data|DCD aUtmpfd4Wtmpfd5+0x16; "\n"|68-138-0-0
+33660|data|DCD aPipeFailed; "pipe failed"|196-137-0-0
+33664|data|DCD aPipeDidNotRetu; "pipe did not return fd 3"|208-137-0-0
+33668|data|DCD aLoginCouldNotF; "login: could not fork"|233-137-0-0
+33672|data|DCD aNosetuid; "nosetuid"|255-137-0-0
+33676|data|DCD aVarRunUtmp; "/var/run/utmp"|8-138-0-0
+33680|data|DCD aDevNull; "/dev/null"|22-138-0-0
+33684|data|DCD aVarLogWtmp; "/var/log/wtmp"|32-138-0-0
+33688|data|DCD aUtmpfd4Wtmpfd5; "utmpfd!=4 || wtmpfd!=5\n"|46-138-0-0
+33692|data|DCD dword_10B00|0-11-1-0
+33696|data|DCD aBinCheckpasswo; "/bin/checkpassword.login"|70-138-0-0
+33700|data|DCD dword_10C00|0-12-1-0
+33704|data|DCD aBinCheckpasswo_0; "/bin/checkpassword"|95-138-0-0
+33708|data|DCD aLoginCouldNotE; "login: could not exec checkpassword"|114-138-0-0
+33712|data|DCD unk_10D00|0-13-1-0
+33716|code|MOV             R11, #0|0-176-160-227
+33720|code|LDR             R0, [SP,#arg_0]|0-0-157-229
+33724|code|ADD             R1, SP, #arg_4|4-16-141-226
+33728|code|LDR             R12, =dword_10B00|24-192-159-229
+33732|code|ADD             R2, R1, R0,LSL#2|0-33-129-224
+33736|code|ADD             R2, R2, #4|4-32-130-226
+33740|code|STR             R2, [R12]|0-32-140-229
+33744|code|BLX             sub_80D8|64-255-255-250
+33748|code|BL              loc_83D8|255-255-255-235
+33752|code|MOV             R7, #1|1-112-160-227
+33756|code|SVC             0|0-0-0-239
+33760|data|DCD dword_10B00|0-11-1-0
+33764|code|PUSH            {R3,LR}|8-181
+33766|code|BL              sub_8692|0-240-84-249
+33770|code|LDR             R0, =(aUtmpfd4Wtmpfd5+0x16); "\n"|3-72
+33772|code|BL              sub_8692|0-240-81-249
+33776|code|MOVS            R0, #1|1-32
+33778|code|BLX             loc_83D8|255-247-242-239
+33782|code|NOP|0-191
+33784|data|DCD aUtmpfd4Wtmpfd5+0x16; "\n"|68-138-0-0
+33788|code|PUSH            {R4,R5,R7,LR}|176-64-45-233
+33792|code|MOV             R7, R12|12-112-160-225
+33796|code|LDRD            R4, R5, [SP,#0x10+arg_0]|208-65-205-225
+33800|code|SVC             0|0-0-0-239
+33804|code|CMN             R0, #0x1000|1-10-112-227
+33808|code|RSBCS           R2, R0, #0|0-32-96-34
+33812|code|LDRCS           R3, =dword_10C00|8-48-159-37
+33816|code|MOVCS           R0, #0xFFFFFFFF|0-0-224-35
+33820|code|STRCS           R2, [R3]|0-32-131-37
+33824|code|POP             {R4,R5,R7,PC}|176-128-189-232
+33828|data|DCD dword_10C00|0-12-1-0
+33832|code|BX              LR|30-255-47-225
+33836|code|MOV             R12, #6|6-192-160-227
+33840|code|B               sub_83FC|241-255-255-234
+33844|code|MOV             R12, #0x3F ; '?'|63-192-160-227
+33848|code|B               sub_83FC|239-255-255-234
+33852|code|MOV             R12, #0xB|11-192-160-227
+33856|code|B               sub_83FC|237-255-255-234
+33860|code|MOV             R12, #2|2-192-160-227
+33864|code|B               sub_83FC|235-255-255-234
+33868|code|MOV             R12, #5|5-192-160-227
+33872|code|B               sub_83FC|233-255-255-234
+33876|code|MOV             R12, #0x2A ; '*'|42-192-160-227
+33880|code|B               sub_83FC|231-255-255-234
+33884|code|MOV             R12, #3|3-192-160-227
+33888|code|B               sub_83FC|229-255-255-234
+33892|code|MOV             R12, #4|4-192-160-227
+33896|code|B               sub_83FC|227-255-255-234
+33900|code|SUBS            R1, #1|1-57
+33902|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+33906|code|MOV             R8, R3|152-70
+33908|code|ADD.W           R3, R3, #0xFFFFFFFF|3-241-255-51
+33912|code|MOVS            R5, #0|0-37
+33914|code|MOV             R4, R0|4-70
+33916|code|MOV             R6, R2|22-70
+33918|code|LDR.W           R9, [SP,#0x20+arg_0]|221-248-32-144
+33922|code|ADDS            R7, R0, R1|71-24
+33924|code|STRB            R5, [R0,R1]|69-84
+33926|code|CMP             R3, #0x23 ; '#'|35-43
+33928|code|IT HI|136-191
+33930|code|MOVHI.W         R8, #0xA|79-240-10-8
+33934|code|CBNZ            R2, loc_84CE|242-185
+33936|code|MOVS            R3, #0x30 ; '0'|48-35
+33938|code|MOVS            R5, #1|1-37
+33940|code|STRB.W          R3, [R7,#-1]|7-248-1-60
+33944|code|SUBS            R7, #1|1-63
+33946|code|B               loc_84CE|24-224
+33948|code|MOV             R0, R6|48-70
+33950|code|MOV             R1, R8|65-70
+33952|code|BL              sub_891C|0-240-60-250
+33956|code|ADDS            R1, #0x30 ; '0'|48-49
+33958|code|UXTB            R1, R1|201-178
+33960|code|STRB.W          R1, [R7,#-1]|7-248-1-28
+33964|code|CMP             R1, #0x39 ; '9'|57-41
+33966|code|BLS             loc_84C0|7-217
+33968|code|CMP.W           R9, #0|185-241-0-15
+33972|code|ITE EQ|12-191
+33974|code|MOVEQ           R3, #0x27 ; '''|39-35
+33976|code|MOVNE           R3, #7|7-35
+33978|code|ADDS            R1, R3, R1|89-24
+33980|code|STRB.W          R1, [R7,#-1]|7-248-1-28
+33984|code|MOV             R0, R6|48-70
+33986|code|MOV             R1, R8|65-70
+33988|code|BL              sub_86C0|0-240-252-248
+33992|code|ADDS            R5, #1|1-53
+33994|code|SUBS            R7, #1|1-63
+33996|code|MOV             R6, R0|6-70
+33998|code|MOVS            R3, R6|51-28
+34000|code|IT NE|24-191
+34002|code|MOVNE           R3, #1|1-35
+34004|code|CMP             R4, R7|188-66
+34006|code|ITE CS|44-191
+34008|code|MOVCS           R3, #0|0-35
+34010|code|ANDCC.W         R3, R3, #1|3-240-1-3
+34014|code|CMP             R3, #0|0-43
+34016|code|BNE             loc_849C|220-209
+34018|code|ADDS            R2, R5, #1|106-28
+34020|code|MOV             R0, R4|32-70
+34022|code|MOV             R1, R7|57-70
+34024|code|BL              sub_8576|0-240-69-248
+34028|code|MOV             R0, R5|40-70
+34030|code|POP.W           {R3-R9,PC}|189-232-248-131
+34034|code|PUSH            {R0,R1,R4,LR}|19-181
+34036|code|MOVS            R1, #0|0-33
+34038|code|MOV             R4, R0|4-70
+34040|code|MOV             R0, SP|104-70
+34042|code|BLX             sub_86A8|0-240-214-232
+34046|code|CMP             R0, #0|0-40
+34048|code|ITT LT|188-191
+34050|code|MOVLT.W         R3, #0xFFFFFFFF|79-240-255-51
+34054|code|STRLT           R3, [SP,#0x10+var_10]|0-147
+34056|code|LDR             R0, [SP,#0x10+var_10]|0-152
+34058|code|CBZ             R4, locret_850E|4-177
+34060|code|STR             R0, [R4]|32-96
+34062|code|POP             {R2-R4,PC}|28-189
+34064|code|PUSH            {R3-R7,LR}|248-181
+34066|code|MOV             R6, R0|6-70
+34068|code|LDR             R3, =dword_10B00|16-75
+34070|code|LDR             R7, [R3]|31-104
+34072|code|RSBS.W          R3, R7, #1|215-241-1-3
+34076|code|IT CC|56-191
+34078|code|MOVCC           R3, #0|0-35
+34080|code|CMP             R0, #0|0-40
+34082|code|IT EQ|8-191
+34084|code|ORREQ.W         R3, R3, #1|67-240-1-3
+34088|code|CBNZ            R3, loc_8554|163-185
+34090|code|BLX             sub_8634|0-240-132-232
+34094|code|MOV             R5, R0|5-70
+34096|code|B               loc_8548|10-224
+34098|code|MOV             R1, R6|49-70
+34100|code|MOV             R2, R5|42-70
+34102|code|BL              sub_855C|0-240-17-248
+34106|code|CBNZ            R0, loc_8548|40-185
+34108|code|LDRB            R3, [R4,R5]|99-93
+34110|code|CMP             R3, #0x3D ; '='|61-43
+34112|code|BNE             loc_8548|2-209
+34114|code|ADDS            R5, #1|1-53
+34116|code|ADDS            R0, R4, R5|96-25
+34118|code|POP             {R3-R7,PC}|248-189
+34120|code|LDR.W           R4, [R7],#4|87-248-4-75
+34124|code|MOV             R0, R4|32-70
+34126|code|CMP             R4, #0|0-44
+34128|code|BNE             loc_8532|239-209
+34130|code|POP             {R3-R7,PC}|248-189
+34132|code|MOVS            R0, #0|0-32
+34134|code|POP             {R3-R7,PC}|248-189
+34136|data|DCD dword_10B00|0-11-1-0
+34140|code|PUSH            {R4,R5,LR}|48-181
+34142|code|MOV             R3, R0|3-70
+34144|code|MOVS            R4, #0|0-36
+34146|code|B               loc_856E|4-224
+34148|code|LDRB            R5, [R3,R4]|29-93
+34150|code|LDRB            R0, [R1,R4]|8-93
+34152|code|ADDS            R4, #1|1-52
+34154|code|SUBS            R0, R5, R0|40-26
+34156|code|BNE             locret_8574|2-209
+34158|code|CMP             R4, R2|148-66
+34160|code|BNE             loc_8564|248-209
+34162|code|MOVS            R0, #0|0-32
+34164|code|POP             {R4,R5,PC}|48-189
+34166|code|CMP             R1, R0|129-66
+34168|code|PUSH            {R4,LR}|16-181
+34170|code|BEQ             locret_85A6|20-208
+34172|code|BHI             loc_8588|4-216
+34174|code|B               loc_8590|7-224
+34176|code|LDRB            R4, [R1,R3]|204-92
+34178|code|STRB            R4, [R0,R3]|196-84
+34180|code|ADDS            R3, #1|1-51
+34182|code|B               loc_858A|0-224
+34184|code|MOVS            R3, #0|0-35
+34186|code|CMP             R3, R2|147-66
+34188|code|BNE             loc_8580|248-209
+34190|code|POP             {R4,PC}|16-189
+34192|code|SUBS            R3, R2, #1|83-30
+34194|code|ADDS            R4, R0, R3|196-24
+34196|code|ADDS            R1, R1, R3|201-24
+34198|code|B               loc_85A2|4-224
+34200|code|LDRB.W          R3, [R1],#-1|17-248-1-57
+34204|code|SUBS            R2, #1|1-58
+34206|code|STRB.W          R3, [R4],#-1|4-248-1-57
+34210|code|CMP             R2, #0|0-42
+34212|code|BNE             loc_8598|248-209
+34214|code|POP             {R4,PC}|16-189
+34216|code|PUSH            {R3-R5,LR}|56-181
+34218|code|MOV             R4, R0|4-70
+34220|code|MOV             R5, R1|13-70
+34222|code|BLX             sub_8634|0-240-66-232
+34226|code|ADDS            R0, R4, R0|32-24
+34228|code|LDRB            R3, [R5]|43-120
+34230|code|STRB            R3, [R0]|3-112
+34232|code|CBZ             R3, loc_85D2|91-177
+34234|code|LDRB            R3, [R5,#1]|107-120
+34236|code|STRB            R3, [R0,#1]|67-112
+34238|code|CBZ             R3, loc_85D2|67-177
+34240|code|LDRB            R3, [R5,#2]|171-120
+34242|code|STRB            R3, [R0,#2]|131-112
+34244|code|CBZ             R3, loc_85D2|43-177
+34246|code|LDRB            R3, [R5,#3]|235-120
+34248|code|STRB            R3, [R0,#3]|195-112
+34250|code|CBZ             R3, loc_85D2|19-177
+34252|code|ADDS            R0, #4|4-48
+34254|code|ADDS            R5, #4|4-53
+34256|code|B               loc_85B4|240-231
+34258|code|MOV             R0, R4|32-70
+34260|code|POP             {R3-R5,PC}|56-189
+34262|data|ALIGN 4|0-0
+34264|code|LDRB            R2, [R1],#1|1-32-209-228
+34268|code|MOV             R3, R0|0-48-160-225
+34272|code|STRB            R2, [R3],#1|1-32-195-228
+34276|code|TST             R2, #0xFF|255-0-18-227
+34280|code|LDRBNE          R2, [R1],#1|1-32-209-20
+34284|code|BNE             loc_85E0|251-255-255-26
+34288|code|BX              LR|30-255-47-225
+34292|code|PUSH            {R4-R6,LR}|112-181
+34294|code|MOV             R3, R1|11-70
+34296|code|CBZ             R2, loc_8620|146-177
+34298|code|SUBS            R2, #1|1-58
+34300|code|ITT EQ|4-191
+34302|code|MOVEQ           R3, R1|11-70
+34304|code|MOVEQ           R5, R0|5-70
+34306|code|BEQ             loc_861C|11-208
+34308|code|MOV             R4, R1|12-70
+34310|code|LDRB.W          R6, [R4],#1|20-248-1-107
+34314|code|STRB.W          R6, [R0],#1|0-248-1-107
+34318|code|MOV             R3, R4|35-70
+34320|code|MOV             R5, R0|5-70
+34322|code|CBZ             R6, loc_861A|22-177
+34324|code|SUBS            R2, #1|1-58
+34326|code|BNE             loc_8606|246-209
+34328|code|B               loc_861C|0-224
+34330|code|CBNZ            R2, loc_862C|58-185
+34332|code|MOVS            R2, #0|0-34
+34334|code|STRB            R2, [R5]|42-112
+34336|code|MOV             R2, R3|26-70
+34338|code|LDRB.W          R0, [R2],#1|18-248-1-11
+34342|code|MOV             R3, R2|19-70
+34344|code|CMP             R0, #0|0-40
+34346|code|BNE             loc_8622|250-209
+34348|code|SUBS            R1, R3, R1|89-26
+34350|code|SUBS            R0, R1, #1|72-30
+34352|code|POP             {R4-R6,PC}|112-189
+34354|data|ALIGN 4|0-0
+34356|code|LDRB            R2, [R0],#1|1-32-208-228
+34360|code|MOV             R1, R0|0-16-160-225
+34364|code|TST             R2, #0xFF|255-0-18-227
+34368|code|LDRBNE          R2, [R0],#1|1-32-208-20
+34372|code|BNE             loc_863C|252-255-255-26
+34376|code|SUB             R0, R0, R1|1-0-64-224
+34380|code|BX              LR|30-255-47-225
+34384|code|MOV             R2, R1|10-70
+34386|code|MOVW            R1, #0x5401|69-242-1-65
+34390|code|B.W             sub_8970|0-240-139-185
+34394|code|CMP             R1, #2|2-41
+34396|code|PUSH            {R3,LR}|8-181
+34398|code|BHI             loc_866E|6-216
+34400|code|ADD.W           R1, R1, #0x5400|1-245-168-65
+34404|code|ADDS            R1, #2|2-49
+34406|code|POP.W           {R3,LR}|189-232-8-64
+34410|code|B.W             sub_8970|0-240-129-185
+34414|code|BL              sub_86B8|0-240-35-248
+34418|code|MOVS            R3, #0x16|22-35
+34420|code|STR             R3, [R0]|3-96
+34422|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+34426|code|POP             {R3,PC}|8-189
+34428|code|PUSH            {R4,LR}|16-181
+34430|code|MOV             R4, R0|4-70
+34432|code|BLX             sub_8634|255-247-216-239
+34436|code|MOV             R1, R4|33-70
+34438|code|MOV             R2, R0|2-70
+34440|code|MOVS            R0, #1|1-32
+34442|code|POP.W           {R4,LR}|189-232-16-64
+34446|code|B.W             sub_8978|0-240-115-185
+34450|code|PUSH            {R4,LR}|16-181
+34452|code|MOV             R4, R0|4-70
+34454|code|BLX             sub_8634|255-247-206-239
+34458|code|MOV             R1, R4|33-70
+34460|code|MOV             R2, R0|2-70
+34462|code|MOVS            R0, #2|2-32
+34464|code|POP.W           {R4,LR}|189-232-16-64
+34468|code|B.W             sub_8978|0-240-104-185
+34472|code|MOV             R12, #0x4E ; 'N'|78-192-160-227
+34476|code|B               sub_83FC|82-255-255-234
+34480|code|MOV             R12, #0x36 ; '6'|54-192-160-227
+34484|code|B               sub_83FC|80-255-255-234
+34488|code|LDR             R0, =dword_10C00|0-72
+34490|code|BX              LR|112-71
+34492|data|DCD dword_10C00|0-12-1-0
+34496|code|SUBS            R2, R1, #1|74-30
+34498|code|IT EQ|8-191
+34500|code|BXEQ            LR|112-71
+34502|code|BCC.W           loc_8912|192-240-36-129
+34506|code|CMP             R0, R1|136-66
+34508|code|BLS.W           loc_88FC|64-242-22-129
+34512|code|TST             R1, R2|17-66
+34514|code|BEQ.W           loc_8904|0-240-23-129
+34518|code|CLZ.W           R3, R0|176-250-128-243
+34522|code|CLZ.W           R2, R1|177-250-129-242
+34526|code|SUB.W           R3, R2, R3|162-235-3-3
+34530|code|RSB.W           R3, R3, #0x1F|195-241-31-3
+34534|code|ADR             R2, loc_86F8|4-162
+34536|code|ADD.W           R3, R2, R3,LSL#4|2-235-3-19
+34540|code|MOV.W           R2, #0|79-240-0-2
+34544|code|MOV             PC, R3|159-70
+34546|data|ALIGN 4|0-191
+34548|code|NOP.W|175-243-0-128
+34552|code|CMP.W           R0, R1,LSL#31|176-235-193-127
+34556|code|NOP|0-191
+34558|code|ADC.W           R2, R2, R2|66-235-2-2
+34562|code|IT CS|40-191
+34564|code|SUBCS.W         R0, R0, R1,LSL#31|160-235-193-112
+34568|code|CMP.W           R0, R1,LSL#30|176-235-129-127
+34572|code|NOP|0-191
+34574|code|ADC.W           R2, R2, R2|66-235-2-2
+34578|code|IT CS|40-191
+34580|code|SUBCS.W         R0, R0, R1,LSL#30|160-235-129-112
+34584|code|CMP.W           R0, R1,LSL#29|176-235-65-127
+34588|code|NOP|0-191
+34590|code|ADC.W           R2, R2, R2|66-235-2-2
+34594|code|IT CS|40-191
+34596|code|SUBCS.W         R0, R0, R1,LSL#29|160-235-65-112
+34600|code|CMP.W           R0, R1,LSL#28|176-235-1-127
+34604|code|NOP|0-191
+34606|code|ADC.W           R2, R2, R2|66-235-2-2
+34610|code|IT CS|40-191
+34612|code|SUBCS.W         R0, R0, R1,LSL#28|160-235-1-112
+34616|code|CMP.W           R0, R1,LSL#27|176-235-193-111
+34620|code|NOP|0-191
+34622|code|ADC.W           R2, R2, R2|66-235-2-2
+34626|code|IT CS|40-191
+34628|code|SUBCS.W         R0, R0, R1,LSL#27|160-235-193-96
+34632|code|CMP.W           R0, R1,LSL#26|176-235-129-111
+34636|code|NOP|0-191
+34638|code|ADC.W           R2, R2, R2|66-235-2-2
+34642|code|IT CS|40-191
+34644|code|SUBCS.W         R0, R0, R1,LSL#26|160-235-129-96
+34648|code|CMP.W           R0, R1,LSL#25|176-235-65-111
+34652|code|NOP|0-191
+34654|code|ADC.W           R2, R2, R2|66-235-2-2
+34658|code|IT CS|40-191
+34660|code|SUBCS.W         R0, R0, R1,LSL#25|160-235-65-96
+34664|code|CMP.W           R0, R1,LSL#24|176-235-1-111
+34668|code|NOP|0-191
+34670|code|ADC.W           R2, R2, R2|66-235-2-2
+34674|code|IT CS|40-191
+34676|code|SUBCS.W         R0, R0, R1,LSL#24|160-235-1-96
+34680|code|CMP.W           R0, R1,LSL#23|176-235-193-95
+34684|code|NOP|0-191
+34686|code|ADC.W           R2, R2, R2|66-235-2-2
+34690|code|IT CS|40-191
+34692|code|SUBCS.W         R0, R0, R1,LSL#23|160-235-193-80
+34696|code|CMP.W           R0, R1,LSL#22|176-235-129-95
+34700|code|NOP|0-191
+34702|code|ADC.W           R2, R2, R2|66-235-2-2
+34706|code|IT CS|40-191
+34708|code|SUBCS.W         R0, R0, R1,LSL#22|160-235-129-80
+34712|code|CMP.W           R0, R1,LSL#21|176-235-65-95
+34716|code|NOP|0-191
+34718|code|ADC.W           R2, R2, R2|66-235-2-2
+34722|code|IT CS|40-191
+34724|code|SUBCS.W         R0, R0, R1,LSL#21|160-235-65-80
+34728|code|CMP.W           R0, R1,LSL#20|176-235-1-95
+34732|code|NOP|0-191
+34734|code|ADC.W           R2, R2, R2|66-235-2-2
+34738|code|IT CS|40-191
+34740|code|SUBCS.W         R0, R0, R1,LSL#20|160-235-1-80
+34744|code|CMP.W           R0, R1,LSL#19|176-235-193-79
+34748|code|NOP|0-191
+34750|code|ADC.W           R2, R2, R2|66-235-2-2
+34754|code|IT CS|40-191
+34756|code|SUBCS.W         R0, R0, R1,LSL#19|160-235-193-64
+34760|code|CMP.W           R0, R1,LSL#18|176-235-129-79
+34764|code|NOP|0-191
+34766|code|ADC.W           R2, R2, R2|66-235-2-2
+34770|code|IT CS|40-191
+34772|code|SUBCS.W         R0, R0, R1,LSL#18|160-235-129-64
+34776|code|CMP.W           R0, R1,LSL#17|176-235-65-79
+34780|code|NOP|0-191
+34782|code|ADC.W           R2, R2, R2|66-235-2-2
+34786|code|IT CS|40-191
+34788|code|SUBCS.W         R0, R0, R1,LSL#17|160-235-65-64
+34792|code|CMP.W           R0, R1,LSL#16|176-235-1-79
+34796|code|NOP|0-191
+34798|code|ADC.W           R2, R2, R2|66-235-2-2
+34802|code|IT CS|40-191
+34804|code|SUBCS.W         R0, R0, R1,LSL#16|160-235-1-64
+34808|code|CMP.W           R0, R1,LSL#15|176-235-193-63
+34812|code|NOP|0-191
+34814|code|ADC.W           R2, R2, R2|66-235-2-2
+34818|code|IT CS|40-191
+34820|code|SUBCS.W         R0, R0, R1,LSL#15|160-235-193-48
+34824|code|CMP.W           R0, R1,LSL#14|176-235-129-63
+34828|code|NOP|0-191
+34830|code|ADC.W           R2, R2, R2|66-235-2-2
+34834|code|IT CS|40-191
+34836|code|SUBCS.W         R0, R0, R1,LSL#14|160-235-129-48
+34840|code|CMP.W           R0, R1,LSL#13|176-235-65-63
+34844|code|NOP|0-191
+34846|code|ADC.W           R2, R2, R2|66-235-2-2
+34850|code|IT CS|40-191
+34852|code|SUBCS.W         R0, R0, R1,LSL#13|160-235-65-48
+34856|code|CMP.W           R0, R1,LSL#12|176-235-1-63
+34860|code|NOP|0-191
+34862|code|ADC.W           R2, R2, R2|66-235-2-2
+34866|code|IT CS|40-191
+34868|code|SUBCS.W         R0, R0, R1,LSL#12|160-235-1-48
+34872|code|CMP.W           R0, R1,LSL#11|176-235-193-47
+34876|code|NOP|0-191
+34878|code|ADC.W           R2, R2, R2|66-235-2-2
+34882|code|IT CS|40-191
+34884|code|SUBCS.W         R0, R0, R1,LSL#11|160-235-193-32
+34888|code|CMP.W           R0, R1,LSL#10|176-235-129-47
+34892|code|NOP|0-191
+34894|code|ADC.W           R2, R2, R2|66-235-2-2
+34898|code|IT CS|40-191
+34900|code|SUBCS.W         R0, R0, R1,LSL#10|160-235-129-32
+34904|code|CMP.W           R0, R1,LSL#9|176-235-65-47
+34908|code|NOP|0-191
+34910|code|ADC.W           R2, R2, R2|66-235-2-2
+34914|code|IT CS|40-191
+34916|code|SUBCS.W         R0, R0, R1,LSL#9|160-235-65-32
+34920|code|CMP.W           R0, R1,LSL#8|176-235-1-47
+34924|code|NOP|0-191
+34926|code|ADC.W           R2, R2, R2|66-235-2-2
+34930|code|IT CS|40-191
+34932|code|SUBCS.W         R0, R0, R1,LSL#8|160-235-1-32
+34936|code|CMP.W           R0, R1,LSL#7|176-235-193-31
+34940|code|NOP|0-191
+34942|code|ADC.W           R2, R2, R2|66-235-2-2
+34946|code|IT CS|40-191
+34948|code|SUBCS.W         R0, R0, R1,LSL#7|160-235-193-16
+34952|code|CMP.W           R0, R1,LSL#6|176-235-129-31
+34956|code|NOP|0-191
+34958|code|ADC.W           R2, R2, R2|66-235-2-2
+34962|code|IT CS|40-191
+34964|code|SUBCS.W         R0, R0, R1,LSL#6|160-235-129-16
+34968|code|CMP.W           R0, R1,LSL#5|176-235-65-31
+34972|code|NOP|0-191
+34974|code|ADC.W           R2, R2, R2|66-235-2-2
+34978|code|IT CS|40-191
+34980|code|SUBCS.W         R0, R0, R1,LSL#5|160-235-65-16
+34984|code|CMP.W           R0, R1,LSL#4|176-235-1-31
+34988|code|NOP|0-191
+34990|code|ADC.W           R2, R2, R2|66-235-2-2
+34994|code|IT CS|40-191
+34996|code|SUBCS.W         R0, R0, R1,LSL#4|160-235-1-16
+35000|code|CMP.W           R0, R1,LSL#3|176-235-193-15
+35004|code|NOP|0-191
+35006|code|ADC.W           R2, R2, R2|66-235-2-2
+35010|code|IT CS|40-191
+35012|code|SUBCS.W         R0, R0, R1,LSL#3|160-235-193-0
+35016|code|CMP.W           R0, R1,LSL#2|176-235-129-15
+35020|code|NOP|0-191
+35022|code|ADC.W           R2, R2, R2|66-235-2-2
+35026|code|IT CS|40-191
+35028|code|SUBCS.W         R0, R0, R1,LSL#2|160-235-129-0
+35032|code|CMP.W           R0, R1,LSL#1|176-235-65-15
+35036|code|NOP|0-191
+35038|code|ADC.W           R2, R2, R2|66-235-2-2
+35042|code|IT CS|40-191
+35044|code|SUBCS.W         R0, R0, R1,LSL#1|160-235-65-0
+35048|code|CMP.W           R0, R1|176-235-1-15
+35052|code|NOP|0-191
+35054|code|ADC.W           R2, R2, R2|66-235-2-2
+35058|code|IT CS|40-191
+35060|code|SUBCS.W         R0, R0, R1|160-235-1-0
+35064|code|MOV             R0, R2|16-70
+35066|code|BX              LR|112-71
+35068|code|ITE EQ|12-191
+35070|code|MOVEQ           R0, #1|1-32
+35072|code|MOVNE           R0, #0|0-32
+35074|code|BX              LR|112-71
+35076|code|CLZ.W           R2, R1|177-250-129-242
+35080|code|RSB.W           R2, R2, #0x1F|194-241-31-2
+35084|code|LSR.W           R0, R0, R2|32-250-2-240
+35088|code|BX              LR|112-71
+35090|code|CBZ             R0, loc_8918|8-177
+35092|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+35096|code|B.W             sub_8938|0-240-14-184
+35100|code|CMP             R1, #0|0-41
+35102|code|BEQ             loc_8912|248-208
+35104|code|PUSH.W          {R0,R1,LR}|45-233-3-64
+35108|code|BL              sub_86C0|255-247-204-254
+35112|code|POP.W           {R1,R2,LR}|189-232-6-64
+35116|code|MUL.W           R3, R2, R0|2-251-0-243
+35120|code|SUB.W           R1, R1, R3|161-235-3-1
+35124|code|BX              LR|112-71
+35126|data|ALIGN 4|0-191
+35128|code|PUSH            {R1,LR}|2-181
+35130|code|MOV.W           R0, #8|79-240-8-0
+35134|code|BL              sub_8944|0-240-1-248
+35138|code|POP             {R1,PC}|2-189
+35140|code|PUSH            {R4,LR}|16-181
+35142|code|MOV             R4, R0|4-70
+35144|code|BLX             sub_8958|0-240-6-232
+35148|code|MOV             R1, R4|33-70
+35150|code|POP.W           {R4,LR}|189-232-16-64
+35154|code|B.W             sub_8968|0-240-9-184
+35158|data|ALIGN 4|0-0
+35160|code|MOV             R12, #0x14|20-192-160-227
+35164|code|B               sub_83FC|166-254-255-234
+35168|code|MOV             R12, #0x25 ; '%'|37-192-160-227
+35172|code|B               sub_83FC|164-254-255-234
+35176|code|BX              PC|120-71
+35178|data|ALIGN 4|192-70
+35180|code|B               sub_8960|251-255-255-234
+35184|code|BX              PC|120-71
+35186|data|ALIGN 4|192-70
+35188|code|B               sub_86B0|77-255-255-234
+35192|code|BX              PC|120-71
+35194|data|ALIGN 4|192-70
+35196|code|B               sub_8464|184-254-255-234
+35200|data|DCD aLoginCouldNotE+0x16; "checkpassword"|136-138-0-0
+35204|data|DCD aBinFgettyLogin; "/bin/fgetty-login2"|150-138-0-0
+35212|data|DCB "HOST",0|72-79-83-84-0
+35217|data|DCB "login: ",0|108-111-103-105-110-58-32-0
+35225|data|DCB "read failed",0|114-101-97-100-32-102-97-105-108-101-100-0
+35237|data|DCB "'s password: ",0|39-115-32-112-97-115-115-119-111-114-100-58-32-0
+35251|data|DCB "tcgetattr failed",0|116-99-103-101-116-97-116-116-114-32-102-97-105-108-101-100-0
+35268|data|DCB "pipe failed",0|112-105-112-101-32-102-97-105-108-101-100-0
+35280|data|DCB "pipe did not return fd 3",0|112-105-112-101-32-100-105-100-32-110-111-116-32-114-101-116-117-114-110-32-102-100-32-51-0
+35305|data|DCB "login: could not fork",0|108-111-103-105-110-58-32-99-111-117-108-100-32-110-111-116-32-102-111-114-107-0
+35327|data|DCB "nosetuid",0|110-111-115-101-116-117-105-100-0
+35336|data|DCB "/var/run/utmp",0|47-118-97-114-47-114-117-110-47-117-116-109-112-0
+35350|data|DCB "/dev/null",0|47-100-101-118-47-110-117-108-108-0
+35360|data|DCB "/var/log/wtmp",0|47-118-97-114-47-108-111-103-47-119-116-109-112-0
+35374|data|DCB "utmpfd!=4 || wtmpfd!=5",0xA,0|117-116-109-112-102-100-33-61-52-32-124-124-32-119-116-109-112-102-100-33-61-53-10-0
+35398|data|DCB "/bin/checkpassword.login",0|47-98-105-110-47-99-104-101-99-107-112-97-115-115-119-111-114-100-46-108-111-103-105-110-0
+35423|data|DCB "/bin/checkpassword",0|47-98-105-110-47-99-104-101-99-107-112-97-115-115-119-111-114-100-0
+35442|data|DCB "login: could not exec checkpassword",0|108-111-103-105-110-58-32-99-111-117-108-100-32-110-111-116-32-101-120-101-99-32-99-104-101-99-107-112-97-115-115-119-111-114-100-0

@@ -1,0 +1,219 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R7,LR}|240-181
+2|code|SUB             SP, SP, #0x2C|139-176
+4|code|MOV             R4, datetime|4-70
+6|code|MOVS            R2, #0x18; n|24-34
+8|code|LDR             R6, =memcpy|53-78
+10|code|MOV             R5, nix|13-70
+12|code|ADD             datetime, SP, #0x40+monthssum; dest|4-168
+14|code|LDR             nix, =unk_208; src|53-73
+16|code|BLX             R6; memcpy|176-71
+18|code|LDR             R1, =unk_220; src|53-73
+20|code|ADD             R0, SP, #0x40+months; dest|1-168
+22|code|MOVS            R2, #0xC; n|12-34
+24|code|BLX             R6; memcpy|176-71
+26|code|LDRH            R1, [datetime]|33-136
+28|code|SUBW            R3, R1, #0x76D|161-242-109-115
+32|code|CMP             R3, #0x89|137-43
+34|code|BHI             loc_D8|89-216
+36|code|LDRB.W          LR, [datetime,#2]|148-248-2-224
+40|code|ADD.W           R6, LR, #0xFFFFFFFF|14-241-255-54
+44|code|UXTB            R3, R6|243-178
+46|code|CMP             R3, #0xB|11-43
+48|code|BHI             loc_D8|82-216
+50|code|SUBS            R3, R1, #1|75-30
+52|code|MOV             R2, #0xFFFFFE13|111-244-246-114
+56|code|SUBW            R0, R1, #0x7B5|161-242-181-112
+60|code|ASRS            R3, R3, #2|155-16
+62|code|ADD             R3, R2|19-68
+64|code|LDR             R2, =0x7861F80|42-74
+66|code|SUB.W           R0, R0, y4,LSL#2|160-235-131-0
+70|code|MULS            y4, R2|83-67
+72|code|LDR             R2, =0x5A4EC00|41-74
+74|code|CMP             ay, #3|3-40
+76|code|ADD             R2, R3|26-68
+78|code|LDR             R3, =0x1E13380|41-75
+80|code|MLA.W           R7, R3, ay, ret|3-251-0-39
+84|code|ADD             R3, SP, #0x40+var_18|10-171
+86|code|ADD.W           R3, R3, R6,LSL#1|3-235-70-3
+90|code|LDR             R2, =0x15180|39-74
+92|code|LDRH.W          R3, [R3,#-0x18]|51-248-24-60
+96|code|MLA.W           R2, R2, R3, ret|2-251-3-114
+100|code|BNE             loc_74|6-209
+102|code|CMP.W           LR, #2|190-241-2-15
+106|code|ITT HI|132-191
+108|code|ADDHI.W         ret, ret, #0x15000|2-245-168-50
+112|code|ADDHI.W         R2, R2, #0x180|2-245-192-114
+116|code|ADD             R7, SP, #0x40+var_18|10-175
+118|code|LDRB            R3, [datetime,#3]|227-120
+120|code|ADD             R6, R7|62-68
+122|code|LDRB.W          R6, [R6,#-0x24]|22-248-36-108
+126|code|CMP             R6, R3|158-66
+128|code|BCS             loc_8E|5-210
+130|code|CBZ             ay, loc_DA|80-179
+132|code|LDRH            R6, [datetime,#2]|102-136
+134|code|MOVW            ay, #0x1D02|65-246-2-80
+138|code|CMP             R6, R0|134-66
+140|code|BNE             loc_D8|36-209
+142|code|CBZ             R3, loc_D8|27-179
+144|code|LDRB            R6, [datetime,#4]|38-121
+146|code|CMP             R6, #0x17|23-46
+148|code|BHI             loc_D8|32-216
+150|code|LDRB            R7, [datetime,#5]|103-121
+152|code|CMP             R7, #0x3B ; ';'|59-47
+154|code|BHI             loc_D8|29-216
+156|code|LDRB            datetime, [datetime,#6]|164-121
+158|code|CMP             R4, #0x3C ; '<'|60-44
+160|code|BHI             loc_D8|26-216
+162|code|LDR             R0, =0x15180|21-72
+164|code|SUBS            R3, #1|1-59
+166|code|MLA.W           R0, R0, R3, R2|0-251-3-32
+170|code|MOV.W           R3, #0xE10|79-244-97-99
+174|code|MLA.W           R0, R3, R6, R0|3-251-6-0
+178|code|MOVS            R3, #0x3C ; '<'|60-35
+180|code|SMLABB.W        R0, R3, R7, R0|19-251-7-0
+184|code|MOVW            R3, #0x7BC|64-242-188-115
+188|code|CMP             R1, R3|153-66
+190|code|ADD             R0, R4|32-68
+192|code|BLS             loc_C8|2-217
+194|code|CMP             R0, #0|0-40
+196|code|BGE             loc_D2|5-218
+198|code|B               loc_D8|7-224
+200|code|CMP.W           R1, #0x7A8|177-245-245-111
+204|code|BCS             loc_D2|1-210
+206|code|CMP             R0, #0|0-40
+208|code|BGT             loc_D8|2-220
+210|code|STR             R0, [nix]|40-96
+212|code|MOVS            R0, #1|1-32
+214|code|B               loc_DA|0-224
+216|code|MOVS            R0, #0|0-32
+218|code|ADD             SP, SP, #0x2C ; ','|11-176
+220|code|POP             {R4-R7,PC}|240-189
+222|data|ALIGN 0x10|0-191
+224|data|DCD memcpy|104-3-0-0
+228|data|DCD unk_208|8-2-0-0
+232|data|DCD unk_220|32-2-0-0
+236|data|DCD 0x7861F80|128-31-134-7
+240|data|DCD 0x5A4EC00|0-236-164-5
+244|data|DCD 0x1E13380|128-51-225-1
+248|data|DCD 0x15180|128-81-1-0
+252|code|PUSH            {R4-R7,LR}|240-181
+254|code|SUB             SP, SP, #0x2C|139-176
+256|code|LDR             R7, =grub_get_datetime|40-79
+258|code|ADD             R0, SP, #0x40+st|6-168
+260|code|MOVS            R3, #0|0-35
+262|code|STR             R3, [SP,#0x40+stu]|4-147
+264|code|STR             R3, [SP,#0x40+enu]|5-147
+266|code|BLX             R7; grub_get_datetime|184-71
+268|code|LDR             R3, =aGrubGetDatetim; "!grub_get_datetime (&st)"|38-75
+270|code|LDR             R6, =aTestsSleepTest; "tests/sleep_test.c"|39-78
+272|code|LDR             R5, =__FUNCTION__.5319; "sleep_test"|39-77
+274|code|STR             R3, [SP,#0x40+var_40]|0-147
+276|code|LDR             R3, =aCouldnTRetriev; "Couldn't retrieve start time"|39-75
+278|code|MOV             R1, R6|49-70
+280|code|LDR             R4, =grub_test_assert_helper|39-76
+282|code|MOV             R2, R5|42-70
+284|code|STR             R3, [SP,#0x40+var_3C]|1-147
+286|code|MOVS            R3, #0x24 ; '$'|36-35
+288|code|CLZ.W           R0, R0|176-250-128-240
+292|code|LSRS            R0, R0, #5|64-9
+294|code|BLX             R4; grub_test_assert_helper|160-71
+296|code|LDR             R3, =grub_millisleep|36-75
+298|code|MOVW            R0, #0x2710|66-242-16-112
+302|code|BLX             R3; grub_millisleep|152-71
+304|code|ADD             R0, SP, #0x40+en|8-168
+306|code|BLX             R7; grub_get_datetime|184-71
+308|code|LDR             R3, =aGrubGetDatetim_0; "!grub_get_datetime (&en)"|34-75
+310|code|MOV             R2, R5|42-70
+312|code|MOV             R1, R6|49-70
+314|code|LDR             R7, =aInvalidDate; "Invalid date"|34-79
+316|code|STR             R3, [SP,#0x40+var_40]|0-147
+318|code|LDR             R3, =aCouldnTRetriev_0; "Couldn't retrieve end time"|34-75
+320|code|STR             R3, [SP,#0x40+var_3C]|1-147
+322|code|MOVS            R3, #0x26 ; '&'|38-35
+324|code|CLZ.W           R0, R0|176-250-128-240
+328|code|LSRS            R0, R0, #5|64-9
+330|code|BLX             R4; grub_test_assert_helper|160-71
+332|code|ADD             R1, SP, #0x40+stu; nix|4-169
+334|code|ADD             R0, SP, #0x40+st; datetime|6-168
+336|code|BL              grub_datetime2unixtime|255-247-86-255
+340|code|LDR             R3, =aGrubDatetime2u; "grub_datetime2unixtime (&st, &stu)"|29-75
+342|code|MOV             R2, R5|42-70
+344|code|MOV             R1, R6|49-70
+346|code|STR             R7, [SP,#0x40+var_3C]|1-151
+348|code|STR             R3, [SP,#0x40+var_40]|0-147
+350|code|MOVS            R3, #0x27 ; '''|39-35
+352|code|BLX             R4; grub_test_assert_helper|160-71
+354|code|ADD             R1, SP, #0x40+enu; nix|5-169
+356|code|ADD             R0, SP, #0x40+en; datetime|8-168
+358|code|BL              grub_datetime2unixtime|255-247-75-255
+362|code|LDR             R3, =aGrubDatetime2u_0; "grub_datetime2unixtime (&en, &enu)"|25-75
+364|code|MOV             R1, R6|49-70
+366|code|MOV             R2, R5|42-70
+368|code|STMEA.W         SP, {R3,R7}|141-232-136-0
+372|code|MOVS            R3, #0x28 ; '('|40-35
+374|code|BLX             R4; grub_test_assert_helper|160-71
+376|code|LDR             R2, [SP,#0x40+stu]|4-154
+378|code|LDR             R3, [SP,#0x40+enu]|5-155
+380|code|MOV             R1, R6|49-70
+382|code|SUBS            R3, R3, R2|155-26
+384|code|LDR             R2, =aEnuStu9EnuStu1; "enu - stu >= 9 && enu - stu <= 11"|20-74
+386|code|SUB.W           R0, R3, #9|163-241-9-0
+390|code|STR             R3, [SP,#0x40+var_38]|2-147
+392|code|CMP             R0, #2|2-40
+394|code|MOV.W           R3, #0x29 ; ')'|79-240-41-3
+398|code|STR             R2, [SP,#0x40+var_40]|0-146
+400|code|LDR             R2, =aIntervalOutOfR; "Interval out of range: %d"|17-74
+402|code|ITE HI|140-191
+404|code|MOVHI           R0, #0|0-32
+406|code|MOVLS           R0, #1|1-32
+408|code|STR             R2, [SP,#0x40+var_3C]|1-146
+410|code|MOV             R2, R5|42-70
+412|code|BLX             R4; grub_test_assert_helper|160-71
+414|code|ADD             SP, SP, #0x2C ; ','|11-176
+416|code|POP             {R4-R7,PC}|240-189
+418|data|ALIGN 4|0-191
+420|data|DCD grub_get_datetime|100-3-0-0
+424|data|DCD aGrubGetDatetim; "!grub_get_datetime (&st)"|75-2-0-0
+428|data|DCD aTestsSleepTest; "tests/sleep_test.c"|56-2-0-0
+432|data|DCD __FUNCTION__.5319; "sleep_test"|44-2-0-0
+436|data|DCD aCouldnTRetriev; "Couldn't retrieve start time"|100-2-0-0
+440|data|DCD grub_test_assert_helper|116-3-0-0
+444|data|DCD grub_millisleep|96-3-0-0
+448|data|DCD aGrubGetDatetim_0; "!grub_get_datetime (&en)"|129-2-0-0
+452|data|DCD aInvalidDate; "Invalid date"|216-2-0-0
+456|data|DCD aCouldnTRetriev_0; "Couldn't retrieve end time"|154-2-0-0
+460|data|DCD aGrubDatetime2u; "grub_datetime2unixtime (&st, &stu)"|181-2-0-0
+464|data|DCD aGrubDatetime2u_0; "grub_datetime2unixtime (&en, &enu)"|229-2-0-0
+468|data|DCD aEnuStu9EnuStu1; "enu - stu >= 9 && enu - stu <= 11"|8-3-0-0
+472|data|DCD aIntervalOutOfR; "Interval out of range: %d"|42-3-0-0
+476|code|PUSH            {R3,LR}|8-181
+478|code|LDR             mod, =aSleepTest; "sleep_test"|2-72
+480|code|LDR             R1, =(sleep_test+1)|2-73
+482|code|LDR             R3, =grub_test_register|3-75
+484|code|BLX             R3; grub_test_register|152-71
+486|code|POP             {R3,PC}|8-189
+488|data|DCD aSleepTest; "sleep_test"|68-3-0-0
+492|data|DCD sleep_test+1|253-0-0-0
+496|data|DCD grub_test_register|108-3-0-0
+500|code|PUSH            {R3,LR}|8-181
+502|code|LDR             R0, =aSleepTest; "sleep_test"|2-72
+504|code|LDR             R3, =grub_test_unregister|2-75
+506|code|BLX             R3; grub_test_unregister|152-71
+508|code|POP             {R3,PC}|8-189
+510|data|ALIGN 0x10|0-191
+512|data|DCD aSleepTest; "sleep_test"|68-3-0-0
+516|data|DCD grub_test_unregister|112-3-0-0
+568|data|DCB "tests/sleep_test.c",0|116-101-115-116-115-47-115-108-101-101-112-95-116-101-115-116-46-99-0
+587|data|DCB "!grub_get_datetime (&st)",0|33-103-114-117-98-95-103-101-116-95-100-97-116-101-116-105-109-101-32-40-38-115-116-41-0
+612|data|DCB "Couldn't retrieve start time",0|67-111-117-108-100-110-39-116-32-114-101-116-114-105-101-118-101-32-115-116-97-114-116-32-116-105-109-101-0
+641|data|DCB "!grub_get_datetime (&en)",0|33-103-114-117-98-95-103-101-116-95-100-97-116-101-116-105-109-101-32-40-38-101-110-41-0
+666|data|DCB "Couldn't retrieve end time",0|67-111-117-108-100-110-39-116-32-114-101-116-114-105-101-118-101-32-101-110-100-32-116-105-109-101-0
+693|data|DCB "grub_datetime2unixtime (&st, &stu)",0|103-114-117-98-95-100-97-116-101-116-105-109-101-50-117-110-105-120-116-105-109-101-32-40-38-115-116-44-32-38-115-116-117-41-0
+728|data|DCB "Invalid date",0|73-110-118-97-108-105-100-32-100-97-116-101-0
+741|data|DCB "grub_datetime2unixtime (&en, &enu)",0|103-114-117-98-95-100-97-116-101-116-105-109-101-50-117-110-105-120-116-105-109-101-32-40-38-101-110-44-32-38-101-110-117-41-0
+776|data|DCB "enu - stu >= 9 && enu - stu <= 11",0|101-110-117-32-45-32-115-116-117-32-62-61-32-57-32-38-38-32-101-110-117-32-45-32-115-116-117-32-60-61-32-49-49-0
+810|data|DCB "Interval out of range: %d",0|73-110-116-101-114-118-97-108-32-111-117-116-32-111-102-32-114-97-110-103-101-58-32-37-100-0
+836|data|DCB "sleep_test",0|115-108-101-101-112-95-116-101-115-116-0
+847|data||255
+848|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

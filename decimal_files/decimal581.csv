@@ -1,0 +1,180 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+4|code|SUBS            R7, argc, #0|15-30
+6|code|SUB             SP, SP, #0x70|156-176
+8|code|MOV             R5, args|21-70
+10|code|BGT             loc_16|4-220
+12|code|LDR             argc, =aUuidRequired; "UUID required"|65-73
+14|code|MOVS            cmd, #0x12|18-32
+16|code|LDR             R3, =grub_error|65-75
+18|code|BLX             R3; grub_error|152-71
+20|code|B               loc_10C|122-224
+22|code|CMP             R7, #1|1-47
+24|code|BEQ             loc_2E|9-208
+26|code|LDR             cmd, [args]|16-104
+28|code|LDR             argc, =aL; "-l"|63-73
+30|code|LDR             R3, =grub_strcmp|64-75
+32|code|BLX             R3; grub_strcmp|152-71
+34|code|CBNZ            R0, loc_2E|32-185
+36|code|SUBS            argc, #1|1-63
+38|code|ADDS            args, #4|4-53
+40|code|MOV.W           R8, #1|79-240-1-8
+44|code|B               loc_32|1-224
+46|code|MOV.W           R8, #0|79-240-0-8
+50|code|MOVS            R2, #0x10|16-34
+52|code|LDR             R3, =grub_strtoull|59-75
+54|code|LDR             R0, [args]|40-104
+56|code|MOVS            R1, #0|0-33
+58|code|BLX             R3; grub_strtoull|152-71
+60|code|LDR             R4, =_gcry_digest_spec_md5|58-76
+62|code|LDR             R3, =grub_zalloc|59-75
+64|code|REV             R0, R0|0-186
+66|code|STR             R0, [SP,#0x88+serial+4]|17-144
+68|code|LDR             R0, [R4,#0x24]|96-106
+70|code|REV             R1, R1|9-186
+72|code|STR             R1, [SP,#0x88+serial]|16-145
+74|code|BLX             R3; grub_zalloc|152-71
+76|code|MOV             R6, ctx|6-70
+78|code|CBNZ            ctx, loc_56|16-185
+80|code|LDR             R3, =grub_errno|55-75
+82|code|LDR             ctx, [R3]|24-104
+84|code|B               loc_10C|90-224
+86|code|LDR             R3, [R4,#0x14]|99-105
+88|code|BLX             R3|152-71
+90|code|LDR             R3, [R4,#0x18]|163-105
+92|code|MOV             R0, ctx|48-70
+94|code|LDR             R1, =hash_prefix|53-73
+96|code|MOVS            R2, #0x10|16-34
+98|code|BLX             R3|152-71
+100|code|ADD             R1, SP, #0x88+serial|16-169
+102|code|MOVS            R2, #8|8-34
+104|code|LDR             R3, [R4,#0x18]|163-105
+106|code|MOV             R0, ctx|48-70
+108|code|BLX             R3|152-71
+110|code|LDR             R3, [R4,#0x1C]|227-105
+112|code|MOV             R0, ctx|48-70
+114|code|BLX             R3|152-71
+116|code|LDR             R3, [R4,#0x20]|35-106
+118|code|MOV             R0, ctx|48-70
+120|code|LDR             R4, =grub_snprintf|47-76
+122|code|BLX             R3|152-71
+124|code|MOVS            R1, #0x25 ; '%'|37-33
+126|code|LDRB            R2, [xnu_uuid,#1]|66-120
+128|code|LDRB            R3, [xnu_uuid]|3-120
+130|code|STR             R2, [SP,#0x88+var_88]|0-146
+132|code|LDRB            R2, [xnu_uuid,#2]|130-120
+134|code|STR             R2, [SP,#0x88+var_84]|1-146
+136|code|LDRB            R2, [xnu_uuid,#3]|194-120
+138|code|STR             R2, [SP,#0x88+var_80]|2-146
+140|code|LDRB            R2, [xnu_uuid,#4]|2-121
+142|code|STR             R2, [SP,#0x88+var_7C]|3-146
+144|code|LDRB            R2, [xnu_uuid,#5]|66-121
+146|code|STR             R2, [SP,#0x88+var_78]|4-146
+148|code|LDRB            R2, [xnu_uuid,#6]|130-121
+150|code|AND.W           R2, R2, #0xF|2-240-15-2
+154|code|ORR.W           R2, R2, #0x30|66-240-48-2
+158|code|STR             R2, [SP,#0x88+var_74]|5-146
+160|code|LDRB            R2, [xnu_uuid,#7]|194-121
+162|code|STR             R2, [SP,#0x88+var_70]|6-146
+164|code|LDRB            R2, [xnu_uuid,#8]|2-122
+166|code|AND.W           R2, R2, #0x3F|2-240-63-2
+170|code|ORR.W           R2, R2, #0x80|66-240-128-2
+174|code|STR             R2, [SP,#0x88+var_6C]|7-146
+176|code|LDRB            R2, [xnu_uuid,#9]|66-122
+178|code|STR             R2, [SP,#0x88+var_68]|8-146
+180|code|LDRB            R2, [xnu_uuid,#0xA]|130-122
+182|code|STR             R2, [SP,#0x88+var_64]|9-146
+184|code|LDRB            R2, [xnu_uuid,#0xB]|194-122
+186|code|STR             R2, [SP,#0x88+var_60]|10-146
+188|code|LDRB            R2, [xnu_uuid,#0xC]|2-123
+190|code|STR             R2, [SP,#0x88+var_5C]|11-146
+192|code|LDRB            R2, [xnu_uuid,#0xD]|66-123
+194|code|STR             R2, [SP,#0x88+var_58]|12-146
+196|code|LDRB            R2, [xnu_uuid,#0xE]|130-123
+198|code|STR             R2, [SP,#0x88+var_54]|13-146
+200|code|LDRB            R2, [xnu_uuid,#0xF]|194-123
+202|code|ADD             xnu_uuid, SP, #0x88+uuid_string|18-168
+204|code|STR             R2, [SP,#0x88+var_50]|14-146
+206|code|LDR             R2, =a02x02x02x02x02; "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x"...|27-74
+208|code|BLX             R4; grub_snprintf|160-71
+210|code|CMP.W           low, #0|184-241-0-15
+214|code|BEQ             loc_E4|5-208
+216|code|CMP             argc, #1|1-47
+218|code|BNE             loc_FC|15-209
+220|code|LDR             R0, =aS; "%s\n"|24-72
+222|code|ADD             R1, SP, #0x88+uuid_string|18-169
+224|code|LDR             R3, =grub_printf|24-75
+226|code|B               loc_102|14-224
+228|code|ADD             R2, SP, #0x88+uuid_string|18-170
+230|code|LDRB            R3, [ptr]|19-120
+232|code|CMP             R3, #0|0-43
+234|code|BEQ             loc_D8|245-208
+236|code|SUB.W           R1, R3, #0x61 ; 'a'|163-241-97-1
+240|code|CMP             R1, #0x19|25-41
+242|code|IT LS|152-191
+244|code|SUBLS           R3, #0x20 ; ' '|32-59
+246|code|STRB.W          R3, [ptr],#1|2-248-1-59
+250|code|B               loc_E6|244-231
+252|code|LDR             R0, [args,#4]|104-104
+254|code|ADD             R1, SP, #0x88+uuid_string|18-169
+256|code|LDR             R3, =grub_env_set|17-75
+258|code|BLX             R3; grub_env_set|152-71
+260|code|MOV             R0, ctx|48-70
+262|code|LDR             R3, =grub_free|17-75
+264|code|BLX             R3; grub_free|152-71
+266|code|MOVS            R0, #0|0-32
+268|code|ADD             SP, SP, #0x70 ; 'p'|28-176
+270|code|POP.W           {R4-R8,PC}|189-232-240-129
+274|data|ALIGN 4|0-191
+276|data|DCD aUuidRequired; "UUID required"|152-1-0-0
+280|data|DCD grub_error|192-2-0-0
+284|data|DCD aL; "-l"|166-1-0-0
+288|data|DCD grub_strcmp|188-2-0-0
+292|data|DCD grub_strtoull|156-2-0-0
+296|data|DCD _gcry_digest_spec_md5|160-2-0-0
+300|data|DCD grub_zalloc|184-2-0-0
+304|data|DCD grub_errno|168-2-0-0
+308|data|DCD hash_prefix|120-2-0-0
+312|data|DCD grub_snprintf|164-2-0-0
+316|data|DCD a02x02x02x02x02; "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x"...|169-1-0-0
+320|data|DCD aS; "%s\n"|238-1-0-0
+324|data|DCD grub_printf|176-2-0-0
+328|data|DCD grub_env_set|200-2-0-0
+332|data|DCD grub_free|196-2-0-0
+336|code|PUSH            {mod,R1,R4,LR}|19-181
+338|code|MOVS            R3, #0|0-35
+340|code|LDR             R1, =(grub_cmd_xnu_uuid+1)|5-73
+342|code|STR             R3, [SP,#0x10+var_10]|0-147
+344|code|LDR             R2, =aLGrubuuidVarna; "[-l] GRUBUUID [VARNAME]"|5-74
+346|code|LDR             R3, =aTransform64Bit; "Transform 64-bit UUID to format suitabl"...|6-75
+348|code|LDR             R4, =grub_register_command_prio|6-76
+350|code|LDR             mod, =aXnuUuid; "xnu_uuid"|7-72
+352|code|BLX             R4; grub_register_command_prio|160-71
+354|code|LDR             R3, =cmd|7-75
+356|code|STR             R0, [R3]|24-96
+358|code|ADD             SP, SP, #8|2-176
+360|code|POP             {R4,PC}|16-189
+362|data|ALIGN 4|0-191
+364|data|DCD grub_cmd_xnu_uuid+1|1-0-0-0
+368|data|DCD aLGrubuuidVarna; "[-l] GRUBUUID [VARNAME]"|251-1-0-0
+372|data|DCD aTransform64Bit; "Transform 64-bit UUID to format suitabl"...|19-2-0-0
+376|data|DCD grub_register_command_prio|172-2-0-0
+380|data|DCD aXnuUuid; "xnu_uuid"|242-1-0-0
+384|data|DCD cmd|152-2-0-0
+388|code|PUSH            {R3,LR}|8-181
+390|code|LDR             R3, =cmd|2-75
+392|code|LDR             R0, [R3]|24-104
+394|code|LDR             R3, =grub_unregister_command|2-75
+396|code|BLX             R3; grub_unregister_command|152-71
+398|code|POP             {R3,PC}|8-189
+400|data|DCD cmd|152-2-0-0
+404|data|DCD grub_unregister_command|180-2-0-0
+408|data|DCB "UUID required",0|85-85-73-68-32-114-101-113-117-105-114-101-100-0
+422|data|DCB "-l",0|45-108-0
+425|data|DCB "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x"|37-48-50-120-37-48-50-120-37-48-50-120-37-48-50-120-45-37-48-50-120-37-48-50-120-45-37-48-50-120-37-48-50-120-45-37-48-50-120-37-48-50-120-45-37-48-50-120-37-48-50-120-37-48-50-120-37-48-50-120-37-48-50-120-37-48-50-120-0
+494|data|DCB "%s",0xA,0|37-115-10-0
+498|data|DCB "xnu_uuid",0|120-110-117-95-117-117-105-100-0
+507|data|DCB "[-l] GRUBUUID [VARNAME]",0|91-45-108-93-32-71-82-85-66-85-85-73-68-32-91-86-65-82-78-65-77-69-93-0
+531|data|DCB "Transform 64-bit UUID to format suitable for XNU. If -l is given"|84-114-97-110-115-102-111-114-109-32-54-52-45-98-105-116-32-85-85-73-68-32-116-111-32-102-111-114-109-97-116-32-115-117-105-116-97-98-108-101-32-102-111-114-32-88-78-85-46-32-73-102-32-45-108-32-105-115-32-103-105-118-101-110-32-107-101-101-112-32-105-116-32-108-111-119-101-114-99-97-115-101-32-97-115-32-100-111-110-101-32-98-121-32-98-108-107-105-100-46-0
+632|data|DCB 0xB3, 0xE2, 0xF, 0x39, 0xF2, 0x92, 0x11, 0xD6, 0x97|179-226-15-57-242-146-17-214-151-164-0-48-101-67-236-172
+648|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

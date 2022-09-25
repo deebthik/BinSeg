@@ -1,0 +1,213 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|MOV             R7, dev|7-70
+6|code|LDR             dev, [dev]|0-104
+8|code|SUB.W           SP, SP, #0x214|173-245-5-125
+12|code|MOV             R9, args|137-70
+14|code|MOV.W           R10, #0|79-240-0-10
+18|code|MOV.W           args, #0x200|79-244-0-113
+22|code|MOV.W           R11, #0|79-240-0-11
+26|code|LDR             R4, [R0,#0x1C]|196-105
+28|code|ADD             R6, SP, #0x238+mbr|4-174
+30|code|LDR             R3, [R4,#0x24]|99-106
+32|code|LDR.W           R8, [R4,#0x20]|212-248-32-128
+36|code|STR             R3, [R0,#0x1C]|195-97
+38|code|LDRD.W          R2, R3, [part,#0x18]|212-233-6-35
+42|code|STR             R1, [SP,#0x238+var_230]|2-145
+44|code|STRD.W          R10, R11, [SP,#0x238+var_238]|205-233-0-171
+48|code|STR             R6, [SP,#0x238+var_22C]|3-150
+50|code|LDR             R1, =grub_disk_read|38-73
+52|code|BLX             R1; grub_disk_read|136-71
+54|code|MOV             R5, R0|5-70
+56|code|CBZ             R0, loc_44|32-177
+58|code|LDR             R3, [dev]|59-104
+60|code|STR             part, [R3,#0x1C]|220-97
+62|code|LDR             R3, =grub_errno|36-75
+64|code|LDR             R5, [R3]|29-104
+66|code|B               loc_C2|62-224
+68|code|LDR.W           R3, [args]|217-248-0-48
+72|code|CBZ             R3, loc_5A|59-177
+74|code|MOV             R1, R5|41-70
+76|code|LDR.W           R0, [args,#4]|217-248-4-0
+80|code|MOV             R2, R5|42-70
+82|code|LDR             R3, =grub_strtoul|32-75
+84|code|BLX             R3; grub_strtoul|152-71
+86|code|UXTB            R1, R0|193-178
+88|code|B               loc_62|3-224
+90|code|ADD.W           R3, R6, index,LSL#4|6-235-8-19
+94|code|LDRB.W          R1, [R3,#0x1C2]|147-248-194-17
+98|code|LDR.W           R2, [args,#8]|217-248-8-32
+102|code|CBZ             R2, loc_78|58-177
+104|code|LDR.W           R2, [args,#0xC]|217-248-12-32
+108|code|CBZ             R2, loc_74|18-177
+110|code|ORR.W           type, type, #0x10|65-240-16-1
+114|code|B               loc_7A|2-224
+116|code|AND.W           type, type, #0xEF|1-240-239-1
+120|code|CBZ             type, loc_86|41-177
+122|code|AND.W           R2, type, #0x7F|1-240-127-2
+126|code|CMP             R2, #5|5-42
+128|code|BEQ             loc_86|1-208
+130|code|CMP             type, #0xF|15-41
+132|code|BNE             loc_96|7-209
+134|code|LDR             R3, [dev]|59-104
+136|code|MOVS            R0, #0x12|18-32
+138|code|LDR             type, =aThePartitionTy; "the partition type 0x%x isn't valid"|19-73
+140|code|STR             part, [R3,#0x1C]|220-97
+142|code|LDR             R3, =grub_error|19-75
+144|code|BLX             R3; grub_error|152-71
+146|code|MOV             R5, R0|5-70
+148|code|B               loc_C2|21-224
+150|code|ADD.W           index, R6, index,LSL#4|6-235-8-24
+154|code|LDR             R3, =grub_printf_|17-75
+156|code|LDR             R0, =aSettingPartiti; "Setting partition type to 0x%x\n"|17-72
+158|code|STRB.W          type, [R8,#0x1C2]|136-248-194-17
+162|code|BLX             R3; grub_printf_|152-71
+164|code|LDRD.W          R2, R3, [part,#0x18]|212-233-6-35
+168|code|MOVS            R0, #0|0-32
+170|code|MOVS            R1, #0|0-33
+172|code|STR             R6, [SP,#0x238+var_22C]|3-150
+174|code|STRD.W          R0, R1, [SP,#0x238+var_238]|205-233-0-1
+178|code|MOV.W           R1, #0x200|79-244-0-113
+182|code|STR             R1, [SP,#0x238+var_230]|2-145
+184|code|LDR             R0, [dev]|56-104
+186|code|LDR             R1, =grub_disk_write|11-73
+188|code|BLX             R1; grub_disk_write|136-71
+190|code|LDR             R3, [dev]|59-104
+192|code|STR             part, [R3,#0x1C]|220-97
+194|code|MOV             R0, R5|40-70
+196|code|ADD.W           SP, SP, #0x214|13-245-5-125
+200|code|POP.W           {part-R11,PC}|189-232-240-143
+204|data|DCD grub_disk_read|104-3-0-0
+208|data|DCD grub_errno|112-3-0-0
+212|data|DCD grub_strtoul|132-3-0-0
+216|data|DCD aThePartitionTy; "the partition type 0x%x isn't valid"|16-2-0-0
+220|data|DCD grub_error|124-3-0-0
+224|data|DCD grub_printf_|128-3-0-0
+228|data|DCD aSettingPartiti; "Setting partition type to 0x%x\n"|52-2-0-0
+232|data|DCD grub_disk_write|120-3-0-0
+236|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+240|code|MOV             R7, dev|7-70
+242|code|LDR             dev, [dev]|0-104
+244|code|MOV             R9, args|137-70
+246|code|SUB.W           SP, SP, #0x214|173-245-5-125
+250|code|LDR             R6, [R0,#0x1C]|198-105
+252|code|LDRD.W          R2, R3, [R6,#0x18]|214-233-6-35
+256|code|ORRS.W          args, R2, R3|82-234-3-1
+260|code|BEQ             loc_112|5-208
+262|code|MOVS            R0, #0x12|18-32
+264|code|LDR             R1, =aNotAPrimaryPar; "not a primary partition"|37-73
+266|code|LDR             R3, =grub_error|38-75
+268|code|BLX             R3; grub_error|152-71
+270|code|MOV             R4, R0|4-70
+272|code|B               loc_196|65-224
+274|code|LDR             R1, [R6,#0x24]|113-106
+276|code|ADD             R5, SP, #0x230+mbr|4-173
+278|code|LDR.W           R8, [R6,#0x20]|214-248-32-128
+282|code|STR             R1, [R0,#0x1C]|193-97
+284|code|MOV.W           R1, #0x200|79-244-0-113
+288|code|STRD.W          R2, R3, [SP,#0x230+var_230]|205-233-0-35
+292|code|STR             R1, [SP,#0x230+var_228]|2-145
+294|code|STR             R5, [SP,#0x230+var_224]|3-149
+296|code|LDR             R1, =grub_disk_read|31-73
+298|code|BLX             R1; grub_disk_read|136-71
+300|code|MOV             R4, R0|4-70
+302|code|CBZ             R0, loc_13A|32-177
+304|code|LDR             R3, [dev]|59-104
+306|code|STR             part, [R3,#0x1C]|222-97
+308|code|LDR             R3, =grub_errno|29-75
+310|code|LDR             R4, [R3]|28-104
+312|code|B               loc_196|45-224
+314|code|LDR.W           R2, [args]|217-248-0-32
+318|code|MOV.W           R3, index,LSL#4|79-234-8-19
+322|code|CBZ             R2, loc_16A|146-177
+324|code|LDR.W           R2, [args,#4]|217-248-4-32
+328|code|CBZ             R2, loc_16A|122-177
+330|code|ADD             R3, R5|43-68
+332|code|STRB.W          R0, [R5,#0x1BE]|133-248-190-1
+336|code|STRB.W          R0, [R5,#0x1CE]|133-248-206-1
+340|code|MOVS            R2, #0x80|128-34
+342|code|STRB.W          R0, [R5,#0x1DE]|133-248-222-1
+346|code|MOV             R1, index|65-70
+348|code|STRB.W          R0, [R5,#0x1EE]|133-248-238-1
+352|code|STRB.W          R2, [R3,#0x1BE]|131-248-190-33
+356|code|LDR             R0, =aPartitionDIsAc; "Partition %d is active now. \n"|18-72
+358|code|LDR             R3, =grub_printf_|19-75
+360|code|B               loc_17A|7-224
+362|code|ADD.W           R3, R3, #0x1B8|3-245-220-115
+366|code|MOVS            R2, #0|0-34
+368|code|ADD             R3, R5|43-68
+370|code|LDR             R0, =aClearedActiveF; "Cleared active flag on %d. \n"|17-72
+372|code|MOV             R1, index|65-70
+374|code|STRB            R2, [R3,#6]|154-113
+376|code|LDR             R3, =grub_printf|16-75
+378|code|BLX             R3; grub_printf_|152-71
+380|code|MOVS            R3, #0|0-35
+382|code|MOVS            R2, #0|0-34
+384|code|MOV.W           R1, #0x200|79-244-0-113
+388|code|STRD.W          R2, R3, [SP,#0x230+var_230]|205-233-0-35
+392|code|STR             R1, [SP,#0x230+var_228]|2-145
+394|code|STR             R5, [SP,#0x230+var_224]|3-149
+396|code|LDR             R0, [dev]|56-104
+398|code|LDR             R1, =grub_disk_write|12-73
+400|code|BLX             R1; grub_disk_write|136-71
+402|code|LDR             R3, [dev]|59-104
+404|code|STR             part, [R3,#0x1C]|222-97
+406|code|MOV             R0, R4|32-70
+408|code|ADD.W           SP, SP, #0x214|13-245-5-125
+412|code|POP.W           {R4-args,PC}|189-232-240-131
+416|data|DCD aNotAPrimaryPar; "not a primary partition"|84-2-0-0
+420|data|DCD grub_error|124-3-0-0
+424|data|DCD grub_disk_read|104-3-0-0
+428|data|DCD grub_errno|112-3-0-0
+432|data|DCD aPartitionDIsAc; "Partition %d is active now. \n"|108-2-0-0
+436|data|DCD grub_printf_|128-3-0-0
+440|data|DCD aClearedActiveF; "Cleared active flag on %d. \n"|138-2-0-0
+444|data|DCD grub_printf|116-3-0-0
+448|data|DCD grub_disk_write|120-3-0-0
+452|code|PUSH            {R4-R6,LR}|112-181
+454|code|LDR             R4, =grub_pcpart_bootargs|7-76
+456|code|LDR             R6, =aMsdos; "msdos"|7-78
+458|code|LDR             R1, =(grub_pcpart_boot+1)|8-73
+460|code|MOV             R2, R4|34-70
+462|code|LDR             R5, =grub_parttool_register|8-77
+464|code|MOV             mod, R6|48-70
+466|code|BLX             R5; grub_parttool_register|168-71
+468|code|LDR             R1, =(grub_pcpart_type+1)|7-73
+470|code|ADD.W           R2, R4, #0x1C|4-241-28-2
+474|code|STR             R0, [R4,#(activate_table_handle - 0x310)]|160-97
+476|code|MOV             R0, R6|48-70
+478|code|BLX             R5; grub_parttool_register|168-71
+480|code|STR             R0, [R4,#(type_table_handle - 0x310)]|32-100
+482|code|POP             {R4-R6,PC}|112-189
+484|data|DCD grub_pcpart_bootargs|16-3-0-0
+488|data|DCD aMsdos; "msdos"|167-2-0-0
+492|data|DCD grub_pcpart_boot+1|237-0-0-0
+496|data|DCD grub_parttool_register|100-3-0-0
+500|data|DCD grub_pcpart_type+1|1-0-0-0
+504|code|PUSH            {R3-R5,LR}|56-181
+506|code|LDR             R5, =grub_pcpart_bootargs|3-77
+508|code|LDR             R4, =grub_parttool_unregister|3-76
+510|code|LDR             R0, [R5,#(activate_table_handle - 0x310)]|168-105
+512|code|BLX             R4; grub_parttool_unregister|160-71
+514|code|LDR             R0, [R5,#(type_table_handle - 0x310)]|40-108
+516|code|BLX             R4; grub_parttool_unregister|160-71
+518|code|POP             {R3-R5,PC}|56-189
+520|data|DCD grub_pcpart_bootargs|16-3-0-0
+524|data|DCD grub_parttool_unregister|108-3-0-0
+528|data|DCB "the partition type 0x%x isn't valid",0|116-104-101-32-112-97-114-116-105-116-105-111-110-32-116-121-112-101-32-48-120-37-120-32-105-115-110-39-116-32-118-97-108-105-100-0
+564|data|DCB "Setting partition type to 0x%x",0xA,0|83-101-116-116-105-110-103-32-112-97-114-116-105-116-105-111-110-32-116-121-112-101-32-116-111-32-48-120-37-120-10-0
+596|data|DCB "not a primary partition",0|110-111-116-32-97-32-112-114-105-109-97-114-121-32-112-97-114-116-105-116-105-111-110-0
+620|data|DCB "Partition %d is active now. ",0xA,0|80-97-114-116-105-116-105-111-110-32-37-100-32-105-115-32-97-99-116-105-118-101-32-110-111-119-46-32-10-0
+650|data|DCB "Cleared active flag on %d. ",0xA,0|67-108-101-97-114-101-100-32-97-99-116-105-118-101-32-102-108-97-103-32-111-110-32-37-100-46-32-10-0
+679|data|DCB "msdos",0|109-115-100-111-115-0
+685|data|DCB "type",0|116-121-112-101-0
+690|data|DCB "Change partition type",0|67-104-97-110-103-101-32-112-97-114-116-105-116-105-111-110-32-116-121-112-101-0
+712|data|DCB "hidden",0|104-105-100-100-101-110-0
+719|data|DCB "Set `hidden' flag in partition type",0|83-101-116-32-96-104-105-100-100-101-110-39-32-102-108-97-103-32-105-110-32-112-97-114-116-105-116-105-111-110-32-116-121-112-101-0
+755|data|DCB "boot",0|98-111-111-116-0
+760|data|DCB "Make partition active",0|77-97-107-101-32-112-97-114-116-105-116-105-111-110-32-97-99-116-105-118-101-0
+784|data|grub_parttool_argdesc <aBoot, aMakePartitionA, GRUB_PARTTOOL_ARG_BOOL>; "boot" ...|243-2-0-0-248-2-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+808|data|DCD 0xFFFFFFFF|255-255-255-255
+812|data|grub_parttool_argdesc <aType, aChangePartitio, GRUB_PARTTOOL_ARG_VAL>; "type" ...|173-2-0-0-178-2-0-0-2-0-0-0-200-2-0-0-207-2-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+848|data|DCD 0xFFFFFFFF|255-255-255-255
+852|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-50-43-0

@@ -1,0 +1,165 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [ptr,#4]|67-104
+2|code|BICS.W          R2, R3, #0x7F000000|51-240-254-66
+6|code|BNE             loc_C|1-209
+8|code|REV             R3, R3|27-186
+10|code|B               loc_E|0-224
+12|code|MOVS            R3, #0x80|128-35
+14|code|SUBS            R2, ptr, #4|2-31
+16|code|MOVS            ptr, #0|0-32
+18|code|CBZ             sz, locret_20|43-177
+20|code|LDR.W           R1, [R2,#4]!|82-248-4-31
+24|code|SUBS            sz, #1|1-59
+26|code|REV             R1, R1|9-186
+28|code|ADD             r, R1|8-68
+30|code|B               loc_12|248-231
+32|code|BX              LR|112-71
+34|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+38|code|MOVS            R4, #0|0-36
+40|code|LDR.W           R9, =grub_disk_read|223-248-32-145
+44|code|SUBW            SP, SP, #0x454|173-242-84-77
+48|code|MOVS            R5, #0|0-37
+50|code|MOV             R8, disk|128-70
+52|code|MOV             R10, R4|162-70
+54|code|MOV             R11, R5|171-70
+56|code|STR             hook_0, [SP,#0x454+hook]|5-145
+58|code|STR             hook_data_0, [SP,#0x454+hook_data]|6-146
+60|code|MOV.W           R3, #0x200|79-244-0-115
+64|code|ADD             R7, SP, #0x50|20-175
+66|code|STR             R3, [SP,#0x454+var_44C]|2-147
+68|code|MOV             R0, disk|64-70
+70|code|STMEA.W         SP, {R10,R11}|141-232-0-12
+74|code|MOV             R2, pos|34-70
+76|code|STR             R7, [SP,#0x454+var_448]|3-151
+78|code|MOV             R3, R5|43-70
+80|code|BLX             R9; grub_disk_read|200-71
+82|code|CMP             R0, #0|0-40
+84|code|BNE             loc_124|102-209
+86|code|MOV             R0, R7|56-70
+88|code|LDR             R1, =aRdsk; "RDSK"|57-73
+90|code|MOVS            R2, #4|4-34
+92|code|LDR             R6, =grub_memcmp|57-78
+94|code|BLX             R6; grub_memcmp|176-71
+96|code|CBNZ            R0, loc_74|64-185
+98|code|MOV             R0, R7; buf|56-70
+100|code|BL              amiga_partition_map_checksum|255-247-204-255
+104|code|CBNZ            R0, loc_74|32-185
+106|code|LDR             pos, [R7,#0x404+rdsk.partitionlst]|252-105
+108|code|REV             R4, R4|36-186
+110|code|ADDS            R2, next, #1|98-28
+112|code|BNE             loc_88|10-209
+114|code|B               loc_82|6-224
+116|code|ADDS            R4, #1|1-52
+118|code|ADC.W           R5, R5, #0|69-241-0-5
+122|code|CMP             R5, #0|0-45
+124|code|IT EQ|8-191
+126|code|CMPEQ           pos, #0xF|15-44
+128|code|BNE             loc_3C|220-209
+130|code|MOVS            R0, #0x13|19-32
+132|code|LDR             R1, =aAmigaPartition; "Amiga partition map not found"|48-73
+134|code|B               loc_D0|35-224
+136|code|MOV             R7, R0|7-70
+138|code|MOV.W           R10, #0|79-240-0-10
+142|code|MOV.W           R11, #0|79-240-0-11
+146|code|STR             R6, [SP,#0x454+var_438]|7-150
+148|code|ASRS            R5, next, #0x1F|229-23
+150|code|MOV.W           R3, #0x200|79-244-0-115
+154|code|STRD.W          R10, R11, [SP,#0x454+var_454]|205-233-0-171
+158|code|ADD.W           R9, SP, #0x454+apart|13-245-20-121
+162|code|STR             R3, [SP,#0x454+var_44C]|2-147
+164|code|MOV             R0, disk|64-70
+166|code|STR.W           R9, [SP,#0x454+var_448]|205-248-12-144
+170|code|MOV             R2, next|34-70
+172|code|MOV             R3, R5|43-70
+174|code|LDR             R1, =grub_disk_read|39-73
+176|code|BLX             R1; grub_disk_read|136-71
+178|code|MOV             R6, R0|6-70
+180|code|CMP             R0, #0|0-40
+182|code|BNE             loc_124|53-209
+184|code|MOV             R0, R9|72-70
+186|code|LDR             R1, =aPart; "PART"|37-73
+188|code|MOVS            R2, #4|4-34
+190|code|LDR             R3, [SP,#0x454+var_438]|7-155
+192|code|BLX             R3|152-71
+194|code|CBNZ            R0, loc_CC|24-185
+196|code|MOV             R0, R9; buf|72-70
+198|code|BL              amiga_partition_map_checksum|255-247-155-255
+202|code|CBZ             R0, loc_D8|40-177
+204|code|LDR             R1, =aInvalidAmigaPa; "invalid Amiga partition map"|33-73
+206|code|MOVS            R0, #0x13|19-32
+208|code|LDR             R3, =grub_error|33-75
+210|code|BLX             R3; grub_error|152-71
+212|code|MOV             R6, R0|6-70
+214|code|B               loc_136|46-224
+216|code|LDR.W           R0, [R9,#0xA4]|217-248-164-0
+220|code|LDR.W           R2, [R9,#0x8C]|217-248-140-32
+224|code|LDR.W           R1, [R9,#0x94]|217-248-148-16
+228|code|REV             R0, R0|0-186
+230|code|REV             R2, R2|18-186
+232|code|STR             R6, [SP,#0x454+part.start+4]|11-150
+234|code|REV.W           LR, R1|145-250-129-254
+238|code|LDR             R3, [SP,#0x454+hook]|5-155
+240|code|MUL.W           R1, R0, R2|0-251-2-241
+244|code|MUL.W           R2, R2, LR|2-251-14-242
+248|code|MUL.W           R1, LR, R1|14-251-1-241
+252|code|STR             R1, [SP,#0x454+part.start]|10-145
+254|code|LDR.W           R1, [R9,#0xA8]|217-248-168-16
+258|code|STR             R6, [SP,#0x454+part.len+4]|13-150
+260|code|REV             R1, R1|9-186
+262|code|STRD.W          next, R5, [SP,#0x454+part.offset]|205-233-14-69
+266|code|SUBS            R1, R1, R0|9-26
+268|code|STR             partno, [SP,#0x454+part]|8-151
+270|code|STR             R6, [SP,#0x454+part.index]|16-150
+272|code|MOV             R0, disk|64-70
+274|code|MLA.W           R2, R1, R2, R2|1-251-2-34
+278|code|ADD             R1, SP, #0x454+part|8-169
+280|code|STR             R2, [SP,#0x454+part.len]|12-146
+282|code|LDR             R2, =grub_amiga_partition_map|16-74
+284|code|STR             R2, [SP,#0x454+part.partmap]|18-146
+286|code|LDR             R2, [SP,#0x454+hook_data]|6-154
+288|code|BLX             R3|152-71
+290|code|CBZ             R0, loc_12A|16-177
+292|code|LDR             R3, =grub_errno|14-75
+294|code|LDR             R6, [R3]|30-104
+296|code|B               loc_136|5-224
+298|code|LDR.W           next, [R9,#0x10]|217-248-16-64
+302|code|ADDS            partno, #1|1-55
+304|code|REV             R4, R4|36-186
+306|code|ADDS            R3, next, #1|99-28
+308|code|BNE             loc_94|174-209
+310|code|MOV             R0, R6|48-70
+312|code|ADDW            SP, SP, #0x454|13-242-84-77
+316|code|POP.W           {R4-R11,PC}|189-232-240-143
+320|data|DCD aRdsk; "RDSK"|144-1-0-0
+324|data|DCD grub_memcmp|20-2-0-0
+328|data|DCD aAmigaPartition; "Amiga partition map not found"|149-1-0-0
+332|data|DCD grub_disk_read|0-2-0-0
+336|data|DCD aPart; "PART"|179-1-0-0
+340|data|DCD aInvalidAmigaPa; "invalid Amiga partition map"|184-1-0-0
+344|data|DCD grub_error|8-2-0-0
+348|data|DCD grub_amiga_partition_map|220-1-0-0
+352|data|DCD grub_errno|4-2-0-0
+356|code|PUSH            {R3,LR}|8-181
+358|code|LDR             mod, =grub_partition_map_list|2-72
+360|code|LDR             R1, =grub_amiga_partition_map|2-73
+362|code|LDR             R3, =grub_list_push|3-75
+364|code|BLX             R3; grub_list_push|152-71
+366|code|POP             {R3,PC}|8-189
+368|data|DCD grub_partition_map_list|252-1-0-0
+372|data|DCD grub_amiga_partition_map|220-1-0-0
+376|data|DCD grub_list_push|16-2-0-0
+380|code|PUSH            {R3,LR}|8-181
+382|code|LDR             R0, =grub_amiga_partition_map|2-72
+384|code|LDR             R3, =grub_list_remove|2-75
+386|code|BLX             R3; grub_list_remove|152-71
+388|code|POP             {R3,PC}|8-189
+390|data|ALIGN 4|0-191
+392|data|DCD grub_amiga_partition_map|220-1-0-0
+396|data|DCD grub_list_remove|12-2-0-0
+400|data|DCB "RDSK",0|82-68-83-75-0
+405|data|DCB "Amiga partition map not found",0|65-109-105-103-97-32-112-97-114-116-105-116-105-111-110-32-109-97-112-32-110-111-116-32-102-111-117-110-100-0
+435|data|DCB "PART",0|80-65-82-84-0
+440|data|DCB "invalid Amiga partition map",0|105-110-118-97-108-105-100-32-65-109-105-103-97-32-112-97-114-116-105-116-105-111-110-32-109-97-112-0
+468|data|DCB "amiga",0|97-109-105-103-97-0
+476|data|grub_partition_map <0, 0, aAmiga, amiga_partition_map_iterate+1>; "amiga"|0-0-0-0-0-0-0-0-212-1-0-0-35-0-0-0
+492|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

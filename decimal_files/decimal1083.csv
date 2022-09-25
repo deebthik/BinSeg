@@ -1,0 +1,144 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUBW            SP, SP, #0x414|173-242-20-77
+8|code|MOVS            R7, #0|0-39
+10|code|MOV.W           R3, #0x200|79-244-0-115
+14|code|LDR             R4, =grub_disk_read|67-76
+16|code|MOV             R9, hook_data|145-70
+18|code|STR             R3, [SP,#0x438+var_430]|2-147
+20|code|ADD             R5, SP, #0x438+part|132-173
+22|code|STR             R7, [SP,#0x438+var_438]|0-151
+24|code|MOVS            hook_data, #6|6-34
+26|code|STR             R7, [SP,#0x438+var_434]|1-151
+28|code|MOVS            R3, #0|0-35
+30|code|STR             R5, [SP,#0x438+var_42C]|3-149
+32|code|MOV             R8, disk|128-70
+34|code|STR             hook_0, [SP,#0x438+hook]|4-145
+36|code|BLX             R4; grub_disk_read|160-71
+38|code|MOV             R1, R4|33-70
+40|code|CMP             R0, #0|0-40
+42|code|BNE             loc_B0|65-209
+44|code|LDRB.W          R3, [R5,#0x1FC]|149-248-252-49
+48|code|AND.W           R3, R3, #0xF|3-240-15-3
+52|code|CMP             R3, #9|9-43
+54|code|BNE             loc_9C|49-209
+56|code|MOV             R3, R0|3-70
+58|code|MOVW            R2, #0x1FF|64-242-255-18
+62|code|UXTB            R4, R3|220-178
+64|code|ADD.W           R3, R4, R3,LSR#8|4-235-19-35
+68|code|LDRB            R4, [R5,R0]|44-92
+70|code|ADDS            R0, #1|1-48
+72|code|CMP             R0, R2|144-66
+74|code|ADD             R3, R4|35-68
+76|code|BNE             loc_3E|247-209
+78|code|LDRB.W          R2, [R5,#0x1FF]|149-248-255-33
+82|code|UXTB            R3, R3|219-178
+84|code|CMP             R2, R3|154-66
+86|code|BNE             loc_9C|33-209
+88|code|LDR.W           R3, [R5,#0x1FC]|213-248-252-49
+92|code|MOV.W           R11, #0|79-240-0-11
+96|code|LDRB.W          R2, [R5,#0x1C1]|149-248-193-33
+100|code|UBFX.W          R3, R3, #8, #0x10|195-243-15-35
+104|code|MUL.W           R0, R2, R3|2-251-3-240
+108|code|LDRB.W          R2, [R5,#0x1C8]|149-248-200-33
+112|code|LDRB.W          R3, [R5,#0x1C2]|149-248-194-49
+116|code|UBFX.W          R2, R2, #6, #1|194-243-128-18
+120|code|ADD             R3, R2|19-68
+122|code|MOVS            R2, #0|0-34
+124|code|MULS            R3, R0|67-67
+126|code|MOV             R0, disk|64-70
+128|code|MOV             R10, R3|154-70
+130|code|MOVS            R3, #0|0-35
+132|code|STRD.W          R2, R3, [SP,#0x438+var_438]|205-233-0-35
+136|code|MOV.W           R3, #0x1F8|79-244-252-115
+140|code|MOV             R2, R10|82-70
+142|code|STR             R3, [SP,#0x438+var_430]|2-147
+144|code|ADD             R3, SP, #0x438+map|6-171
+146|code|STR             R3, [SP,#0x438+var_42C]|3-147
+148|code|MOV             R3, R11|91-70
+150|code|BLX             R1; grub_disk_read|136-71
+152|code|MOV             R4, R0|4-70
+154|code|B               loc_B6|12-224
+156|code|MOVS            R0, #0x13|19-32
+158|code|LDR             R1, =aLinuxAdfsParti; "Linux/ADFS partition map not found"|32-73
+160|code|LDR             R3, =grub_error|32-75
+162|code|MOV.W           R10, #0|79-240-0-10
+166|code|BLX             R3; grub_error|152-71
+168|code|MOV.W           R11, #0|79-240-0-11
+172|code|MOV             R4, R0|4-70
+174|code|B               loc_B6|2-224
+176|code|MOV             R4, R0|4-70
+178|code|MOV             R10, R7|186-70
+180|code|MOV             R11, R7|187-70
+182|code|CBNZ            R4, loc_110|92-187
+184|code|LDR             R3, =grub_acorn_partition_map|27-75
+186|code|ADD             R7, SP, #0x438+map.start|7-175
+188|code|MOV             R6, R4|38-70
+190|code|STR             R3, [R5,#0x28]|171-98
+192|code|LDR             R3, =0xDEAFAB1E|26-75
+194|code|LDR.W           R2, [R7,#-4]|87-248-4-44
+198|code|LDR             R1, =0xDEAFA1DE|26-73
+200|code|CMP             R2, R1|138-66
+202|code|BEQ             loc_D0|1-208
+204|code|CMP             R2, R3|154-66
+206|code|BNE             loc_110|31-209
+208|code|LDR             R2, [R7]|58-104
+210|code|STR             R3, [SP,#0x438+var_424]|5-147
+212|code|MOVS            R3, #0|0-35
+214|code|ADDS.W          R0, R10, R2|26-235-2-0
+218|code|LDR             R2, [R7,#4]|122-104
+220|code|ADC.W           R1, R11, #0|75-241-0-1
+224|code|STR             i, [R5,#0x20]|46-98
+226|code|STRD.W          R0, R1, [R5,#8]|197-233-2-1
+230|code|MOV             R0, disk|64-70
+232|code|STR             R2, [R5,#0x10]|42-97
+234|code|MOV             R1, R5|41-70
+236|code|MOVS            R2, #0|0-34
+238|code|STR             i, [R5]|46-96
+240|code|STR             R2, [R5,#0x14]|106-97
+242|code|MOVS            R2, #6|6-34
+244|code|STRD.W          R2, R3, [R5,#0x18]|197-233-6-35
+248|code|MOV             R2, hook_data|74-70
+250|code|LDR             R3, [SP,#0x438+hook]|4-155
+252|code|BLX             R3|152-71
+254|code|LDR             R3, [SP,#0x438+var_424]|5-155
+256|code|CBZ             R0, loc_108|16-177
+258|code|LDR             R3, =grub_errno|12-75
+260|code|LDR             R4, [R3]|28-104
+262|code|B               loc_110|3-224
+264|code|ADDS            i, #1|1-54
+266|code|ADDS            R7, #0xC|12-55
+268|code|CMP             i, #0x2A ; '*'|42-46
+270|code|BNE             loc_C2|216-209
+272|code|MOV             R0, R4|32-70
+274|code|ADDW            SP, SP, #0x414|13-242-20-77
+278|code|POP.W           {R4-R11,PC}|189-232-240-143
+282|data|ALIGN 4|0-191
+284|data|DCD grub_disk_read|180-1-0-0
+288|data|DCD aLinuxAdfsParti; "Linux/ADFS partition map not found"|100-1-0-0
+292|data|DCD grub_error|188-1-0-0
+296|data|DCD grub_acorn_partition_map|144-1-0-0
+300|data|DCD 0xDEAFAB1E|30-171-175-222
+304|data|DCD 0xDEAFA1DE|222-161-175-222
+308|data|DCD grub_errno|184-1-0-0
+312|code|PUSH            {R3,LR}|8-181
+314|code|LDR             mod, =grub_partition_map_list|2-72
+316|code|LDR             R1, =grub_acorn_partition_map|2-73
+318|code|LDR             R3, =grub_list_push|3-75
+320|code|BLX             R3; grub_list_push|152-71
+322|code|POP             {R3,PC}|8-189
+324|data|DCD grub_partition_map_list|176-1-0-0
+328|data|DCD grub_acorn_partition_map|144-1-0-0
+332|data|DCD grub_list_push|196-1-0-0
+336|code|PUSH            {R3,LR}|8-181
+338|code|LDR             R0, =grub_acorn_partition_map|2-72
+340|code|LDR             R3, =grub_list_remove|2-75
+342|code|BLX             R3; grub_list_remove|152-71
+344|code|POP             {R3,PC}|8-189
+346|data|ALIGN 4|0-191
+348|data|DCD grub_acorn_partition_map|144-1-0-0
+352|data|DCD grub_list_remove|192-1-0-0
+356|data|DCB "Linux/ADFS partition map not found",0|76-105-110-117-120-47-65-68-70-83-32-112-97-114-116-105-116-105-111-110-32-109-97-112-32-110-111-116-32-102-111-117-110-100-0
+391|data|DCB "acorn",0|97-99-111-114-110-0
+400|data|grub_partition_map <0, 0, aAcorn, acorn_partition_map_iterate+1>; "acorn"|0-0-0-0-0-0-0-0-135-1-0-0-1-0-0-0
+416|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,889 @@
+address|type|disassembly|bytes
+0|code|MOVS            info, #1|1-32
+2|code|STR             R0, [have_usable_mode]|8-96
+4|code|BX              LR|112-71
+6|code|LDR             R3, [in,#0xC]|195-104
+8|code|PUSH            {R4,LR}|16-181
+10|code|CMP             R3, #1|1-43
+12|code|BLS             loc_4A|29-217
+14|code|CMP             R3, #2|2-43
+16|code|BNE             loc_4E|29-209
+18|code|LDR             R3, [in,#0x10]|3-105
+20|code|LDR             R2, [in,#0x14]|66-105
+22|code|ANDS.W          R4, R2, R3|18-234-3-4
+26|code|BNE             loc_4E|24-209
+28|code|LDR             R1, [in,#0x18]|129-105
+30|code|ORRS            R2, R3|26-67
+32|code|ANDS.W          R3, R2, R1|18-234-1-3
+36|code|BNE             loc_52|21-209
+38|code|LDR             in, [in,#0x1C]|192-105
+40|code|ORRS            R2, R1|10-67
+42|code|TST             R2, R0|2-66
+44|code|BNE             loc_56|19-209
+46|code|ORRS            R2, R0|2-67
+48|code|MOVS            R4, #0x1F|31-36
+50|code|MOVS            R1, #1|1-33
+52|code|LSL.W           R3, R1, i|1-250-4-243
+56|code|ANDS.W          R0, R3, total_mask|19-234-2-0
+60|code|BEQ             loc_42|1-208
+62|code|ADDS            R0, i, #1|96-28
+64|code|POP             {i,PC}|16-189
+66|code|ADDS.W          i, i, #0xFFFFFFFF|20-241-255-52
+70|code|BCS             loc_34|245-210
+72|code|POP             {R4,PC}|16-189
+74|code|MOVS            in, #0x20 ; ' '|32-32
+76|code|POP             {R4,PC}|16-189
+78|code|MOVS            in, #0|0-32
+80|code|POP             {R4,PC}|16-189
+82|code|MOV             in, R4|32-70
+84|code|POP             {R4,PC}|16-189
+86|code|MOV             R0, R3|24-70
+88|code|POP             {R4,PC}|16-189
+90|code|PUSH            {R4-R6,LR}|112-181
+92|code|MOVS            R3, #0x1F|31-35
+94|code|MOVS            R5, #1|1-37
+96|code|LSL.W           R4, R5, i|5-250-3-244
+100|code|ANDS            R4, mask|4-64
+102|code|BNE             loc_74|5-209
+104|code|ADDS.W          i, i, #0xFFFFFFFF|19-241-255-51
+108|code|BCS             loc_60|248-210
+110|code|STR             R4, [field_pos]|20-96
+112|code|STR             R4, [mask_size]|12-96
+114|code|POP             {R4-R6,PC}|112-189
+116|code|MOV             R4, i|28-70
+118|code|MOVS            R5, #1|1-37
+120|code|LSL.W           R6, R5, i|5-250-4-246
+124|code|TST             R6, mask|6-66
+126|code|BEQ             loc_86|2-208
+128|code|ADDS.W          i, i, #0xFFFFFFFF|20-241-255-52
+132|code|BCS             loc_78|248-210
+134|code|ADDS            R4, #1|1-52
+136|code|ADDS            last_p, #1|1-51
+138|code|STR             R4, [field_pos]|20-96
+140|code|SUBS            R3, R3, R4|27-27
+142|code|STR             R3, [mask_size]|11-96
+144|code|POP             {R4-R6,PC}|112-189
+146|code|PUSH            {R4,LR}|16-181
+148|code|SUB             SP, SP, #0x18|134-176
+150|code|LDR             R4, =framebuffer|10-76
+152|code|LDR             R1, [R4,#(framebuffer.offscreen - 0xAF0)]|97-109
+154|code|CBZ             R1, loc_B8|105-177
+156|code|LDR             R2, [R4]|34-104
+158|code|MOVS            R3, #0|0-35
+160|code|LDR             R0, [R4,#(gop - 0xAF0)]|160-109
+162|code|STR             R3, [SP,#0x20+var_20]|0-147
+164|code|STR             R2, [SP,#0x20+var_14]|3-146
+166|code|LSLS            R2, R2, #2|146-0
+168|code|STR             R3, [SP,#0x20+var_1C]|1-147
+170|code|STR             R3, [SP,#0x20+var_18]|2-147
+172|code|LDR             R4, [R4,#(framebuffer.mode_info.height - 0xAF0)]|100-104
+174|code|STR             R2, [SP,#0x20+var_C]|5-146
+176|code|MOVS            R2, #2|2-34
+178|code|STR             R4, [SP,#0x20+var_10]|4-148
+180|code|LDR             R4, [R0,#8]|132-104
+182|code|BLX             R4|160-71
+184|code|MOVS            R0, #0|0-32
+186|code|ADD             SP, SP, #0x18|6-176
+188|code|POP             {R4,PC}|16-189
+190|data|ALIGN 0x10|0-191
+192|data|DCD framebuffer|240-10-0-0
+196|code|PUSH            {R3,LR}|8-181
+198|code|CBNZ            target, loc_CC|8-185
+200|code|LDR             R3, =framebuffer|2-75
+202|code|LDR             target, [R3,#(framebuffer.render_target - 0xAF0)]|216-108
+204|code|LDR             R3, =grub_video_fb_set_active_render_target|2-75
+206|code|BLX             R3; grub_video_fb_set_active_render_target|152-71
+208|code|POP             {R3,PC}|8-189
+210|data|ALIGN 4|0-191
+212|data|DCD framebuffer|240-10-0-0
+216|data|DCD grub_video_fb_set_active_render_target|196-11-0-0
+220|code|PUSH            {R4,LR}|16-181
+222|code|LDR             R4, =framebuffer|8-76
+224|code|LDR             R3, [R4,#(restore_needed - 0xAF0)]|227-109
+226|code|CBZ             R3, loc_F0|43-177
+228|code|LDR             R0, [R4,#(gop - 0xAF0)]|160-109
+230|code|LDR             R1, [R4,#(old_mode - 0xAF0)]|33-110
+232|code|LDR             R3, [R0,#4]|67-104
+234|code|BLX             R3|152-71
+236|code|MOVS            R3, #0|0-35
+238|code|STR             R3, [R4,#(restore_needed - 0xAF0)]|227-101
+240|code|LDR             R0, [R4,#(framebuffer.offscreen - 0xAF0)]|96-109
+242|code|LDR             R3, =grub_free|4-75
+244|code|BLX             R3; grub_free|152-71
+246|code|MOVS            R3, #0|0-35
+248|code|STR             R3, [R4,#(framebuffer.offscreen - 0xAF0)]|99-101
+250|code|LDR             R3, =grub_video_fb_fini|3-75
+252|code|BLX             R3; grub_video_fb_fini|152-71
+254|code|POP             {R4,PC}|16-189
+256|data|DCD framebuffer|240-10-0-0
+260|data|DCD grub_free|220-11-0-0
+264|data|DCD grub_video_fb_fini|92-11-0-0
+268|code|PUSH            {R3,LR}|8-181
+270|code|MOVS            R1, #0|0-33
+272|code|MOVS            R2, #0x58 ; 'X'|88-34
+274|code|LDR             R3, =grub_memset|3-75
+276|code|LDR             R0, =framebuffer|3-72
+278|code|BLX             R3; grub_memset|152-71
+280|code|LDR             R3, =grub_video_fb_init|3-75
+282|code|BLX             R3; grub_video_fb_init|152-71
+284|code|POP             {R3,PC}|8-189
+286|data|ALIGN 0x10|0-191
+288|data|DCD grub_memset|148-11-0-0
+292|data|DCD framebuffer|240-10-0-0
+296|data|DCD grub_video_fb_init|172-11-0-0
+300|code|PUSH            {R3-R7,LR}|248-181
+302|code|MOV             R4, mode_info|4-70
+304|code|LDR             R6, =framebuffer|56-78
+306|code|MOV             R7, framebuf|15-70
+308|code|LDR             R3, [R6,#(gop - 0xAF0)]|179-109
+310|code|LDR             R3, [R3,#0xC]|219-104
+312|code|LDR             R5, [R3,#8]|157-104
+314|code|LDR             R3, [R3,#4]|91-104
+316|code|STR             R3, [mode_info,#0x1C]|195-97
+318|code|MOV.W           R3, #0x100|79-244-128-115
+322|code|STR             R3, [mode_info,#0x18]|131-97
+324|code|LDR             R3, [R5,#4]|107-104
+326|code|STR             R3, [mode_info]|3-96
+328|code|LDR             R3, [R5,#8]|171-104
+330|code|STR             R3, [mode_info,#4]|67-96
+332|code|MOVS            R3, #1|1-35
+334|code|STR             R3, [mode_info,#8]|131-96
+336|code|MOV             mode_info, R5; in|40-70
+338|code|BL              grub_video_gop_get_bpp|255-247-88-255
+342|code|LSRS            R2, R0, #3|194-8
+344|code|STR             R0, [mode_info,#0xC]|224-96
+346|code|STR             R2, [mode_info,#0x10]|34-97
+348|code|CMP             R0, #0|0-40
+350|code|BEQ             loc_1D8|59-208
+352|code|LDR             R3, [R5,#0x20]|43-106
+354|code|MULS            R3, R2|83-67
+356|code|STR             R3, [mode_info,#0x14]|99-97
+358|code|LDR             R3, [R5,#0xC]|235-104
+360|code|CMP             R3, #1|1-43
+362|code|BEQ             loc_1BE|40-208
+364|code|BCC             loc_1AC|30-211
+366|code|CMP             R3, #2|2-43
+368|code|BNE             loc_1D8|50-209
+370|code|LDR             R0, [R5,#0x10]; mask|40-105
+372|code|ADD.W           R1, mode_info, #0x24 ; '$'; mask_size|4-241-36-1
+376|code|ADD.W           R2, mode_info, #0x28 ; '('; field_pos|4-241-40-2
+380|code|BL              grub_video_gop_get_bitmask|255-247-109-255
+384|code|LDR             R0, [R5,#0x14]; mask|104-105
+386|code|ADD.W           R1, mode_info, #0x2C ; ','; mask_size|4-241-44-1
+390|code|ADD.W           R2, mode_info, #0x30 ; '0'; field_pos|4-241-48-2
+394|code|BL              grub_video_gop_get_bitmask|255-247-102-255
+398|code|LDR             R0, [R5,#0x18]; mask|168-105
+400|code|ADD.W           R1, mode_info, #0x34 ; '4'; mask_size|4-241-52-1
+404|code|ADD.W           R2, mode_info, #0x38 ; '8'; field_pos|4-241-56-2
+408|code|BL              grub_video_gop_get_bitmask|255-247-95-255
+412|code|LDR             R0, [R5,#0x1C]; mask|232-105
+414|code|ADD.W           R1, mode_info, #0x3C ; '<'; mask_size|4-241-60-1
+418|code|ADD.W           R2, mode_info, #0x40 ; '@'; field_pos|4-241-64-2
+422|code|BL              grub_video_gop_get_bitmask|255-247-88-255
+426|code|B               loc_1F4|35-224
+428|code|MOVS            R3, #8|8-35
+430|code|MOVS            R2, #0|0-34
+432|code|STR             R3, [mode_info,#0x24]|99-98
+434|code|STR             R2, [mode_info,#0x28]|162-98
+436|code|MOVS            R2, #0x10|16-34
+438|code|STR             R3, [mode_info,#0x2C]|227-98
+440|code|STR             R3, [mode_info,#0x30]|35-99
+442|code|STR             R3, [mode_info,#0x34]|99-99
+444|code|B               loc_1CE|7-224
+446|code|MOVS            R2, #0x10|16-34
+448|code|STR             R2, [mode_info,#0x28]|162-98
+450|code|MOVS            R2, #0|0-34
+452|code|MOVS            R3, #8|8-35
+454|code|STR             R3, [mode_info,#0x24]|99-98
+456|code|STR             R3, [mode_info,#0x2C]|227-98
+458|code|STR             R3, [mode_info,#0x30]|35-99
+460|code|STR             R3, [mode_info,#0x34]|99-99
+462|code|STR             R3, [mode_info,#0x3C]|227-99
+464|code|MOVS            R3, #0x18|24-35
+466|code|STR             R2, [mode_info,#0x38]|162-99
+468|code|STR             R3, [mode_info,#0x40]|35-100
+470|code|B               loc_1F4|13-224
+472|code|MOVS            R0, #0x1D|29-32
+474|code|LDR             R1, =aUnsupportedVid; "unsupported video mode"|15-73
+476|code|LDR             R3, =grub_error|15-75
+478|code|BLX             R3; grub_error|152-71
+480|code|MOV             mode_info, R0|4-70
+482|code|CBZ             R0, loc_1FC|88-177
+484|code|LDR             R0, =aVideoEfiGopC; "video/efi_gop.c"|14-72
+486|code|MOVW            R1, #0x22E|64-242-46-33
+490|code|LDR             R2, =aVideo; "video"|14-74
+492|code|LDR             R3, =aGopCouldnTFill; "GOP: couldn't fill mode info\n"|14-75
+494|code|LDR             R5, =grub_real_dprintf|15-77
+496|code|BLX             R5; grub_real_dprintf|168-71
+498|code|B               loc_20E|12-224
+500|code|MOV             R0, mode_info|32-70
+502|code|LDR             R3, =grub_video_get_blit_format|14-75
+504|code|BLX             R3; grub_video_get_blit_format|152-71
+506|code|STR             R0, [mode_info,#0x20]|32-98
+508|code|LDR             R3, [R6,#(framebuffer.ptr - 0xAF0)]|51-109
+510|code|MOVS            R4, #0|0-36
+512|code|STR             R3, [framebuf]|59-96
+514|code|LDR             R3, =grub_video_fb_fini|12-75
+516|code|BLX             R3; grub_video_fb_fini|152-71
+518|code|LDR             R0, [R6,#(framebuffer.offscreen - 0xAF0)]|112-109
+520|code|LDR             R3, =grub_free|11-75
+522|code|BLX             R3; grub_free|152-71
+524|code|STR             R4, [R6,#(framebuffer.offscreen - 0xAF0)]|116-101
+526|code|MOV             R0, R4|32-70
+528|code|POP             {R3-framebuf,PC}|248-189
+530|data|ALIGN 4|0-191
+532|data|DCD framebuffer|240-10-0-0
+536|data|DCD aUnsupportedVid; "unsupported video mode"|4-8-0-0
+540|data|DCD grub_error|212-11-0-0
+544|data|DCD aVideoEfiGopC; "video/efi_gop.c"|27-8-0-0
+548|data|DCD aVideo; "video"|43-8-0-0
+552|data|DCD aGopCouldnTFill; "GOP: couldn't fill mode info\n"|49-8-0-0
+556|data|DCD grub_real_dprintf|192-11-0-0
+560|data|DCD grub_video_get_blit_format|96-11-0-0
+564|data|DCD grub_video_fb_fini|92-11-0-0
+568|data|DCD grub_free|220-11-0-0
+572|code|PUSH            {R4-R6,LR}|112-181
+574|code|MOVS            R1, #0|0-33
+576|code|LDR             R5, =framebuffer|34-77
+578|code|SUB             SP, SP, #0x18|134-176
+580|code|LDR             R3, =grub_memset|34-75
+582|code|MOVS            R2, #0x80|128-34
+584|code|MOV             R6, edid_info|6-70
+586|code|LDR             R4, =grub_efi_open_protocol|34-76
+588|code|BLX             R3; grub_memset|152-71
+590|code|LDR             R0, [R5,#(gop_handle - 0xAF0)]|104-110
+592|code|LDR             R1, =active_edid_guid|33-73
+594|code|MOVS            R2, #2|2-34
+596|code|BLX             R4; grub_efi_open_protocol|160-71
+598|code|MOV             R3, edid|3-70
+600|code|CBZ             edid, loc_25E|8-177
+602|code|LDR             R2, [edid]|2-104
+604|code|CBNZ            R2, loc_284|146-185
+606|code|LDR             edid, [R5,#(gop_handle - 0xAF0)]|104-110
+608|code|MOVS            R2, #2|2-34
+610|code|LDR             R1, =discovered_edid_guid|30-73
+612|code|BLX             R4; grub_efi_open_protocol|160-71
+614|code|MOV             R3, edid|3-70
+616|code|CBNZ            edid, loc_284|96-185
+618|code|LDR             R1, =aAgpInternalEdi; "agp-internal-edid"|29-73
+620|code|MOVS            R2, #0x12; n|18-34
+622|code|LDR             R3, =memcpy|29-75
+624|code|ADD             edid, SP, #0x28+edidname; dest|1-168
+626|code|BLX             R3; memcpy|152-71
+628|code|ADD             R0, SP, #0x28+edidname|1-168
+630|code|LDR             R1, =efi_var_guid|28-73
+632|code|MOV             R2, SP|106-70
+634|code|LDR             R3, =grub_efi_get_variable|28-75
+636|code|BLX             R3; grub_efi_get_variable|152-71
+638|code|MOV             R4, data|4-70
+640|code|CBNZ            data, loc_29A|88-185
+642|code|B               loc_2BA|26-224
+644|code|LDR             R2, [R3]|26-104
+646|code|CMP             R2, #0|0-42
+648|code|BEQ             loc_26A|239-208
+650|code|CMP             R2, #0x80|128-42
+652|code|LDR             R1, [R3,#4]|89-104
+654|code|MOV             edid, edid_info|48-70
+656|code|LDR             edid, =grub_memmove|23-75
+658|code|IT CS|40-191
+660|code|MOVCS           R2, #0x80|128-34
+662|code|BLX             R3; grub_memmove|152-71
+664|code|B               loc_2C4|20-224
+666|code|LDR             R2, [SP,#0x28+datasize]|0-154
+668|code|CMP             R2, #0x10|16-42
+670|code|BLS             loc_2BA|12-217
+672|code|SUBS            R2, #0x10|16-58
+674|code|MOV             data, edid_info|48-70
+676|code|CMP             R2, #0x80|128-42
+678|code|ADD.W           R1, data, #0x10|4-241-16-1
+682|code|LDR             R3, =grub_memmove|17-75
+684|code|IT CS|40-191
+686|code|MOVCS           R2, #0x80|128-34
+688|code|BLX             R3; grub_memmove|152-71
+690|code|MOV             R0, data|32-70
+692|code|LDR             R3, =grub_free|15-75
+694|code|BLX             R3; grub_free|152-71
+696|code|B               loc_2C4|4-224
+698|code|LDR             R1, =aEdidInformatio; "EDID information not available"|15-73
+700|code|MOVS            data, #0xD|13-32
+702|code|LDR             R3, =grub_error|15-75
+704|code|BLX             R3; grub_error|152-71
+706|code|B               loc_2C6|0-224
+708|code|MOVS            R0, #0|0-32
+710|code|ADD             SP, SP, #0x18|6-176
+712|code|POP             {R4-edid_info,PC}|112-189
+714|data|ALIGN 4|0-191
+716|data|DCD framebuffer|240-10-0-0
+720|data|DCD grub_memset|148-11-0-0
+724|data|DCD grub_efi_open_protocol|188-11-0-0
+728|data|DCD active_edid_guid|24-10-0-0
+732|data|DCD discovered_edid_guid|40-10-0-0
+736|data|DCD aAgpInternalEdi; "agp-internal-edid"|110-8-0-0
+740|data|DCD memcpy|120-11-0-0
+744|data|DCD efi_var_guid|56-10-0-0
+748|data|DCD grub_efi_get_variable|140-11-0-0
+752|data|DCD grub_memmove|128-11-0-0
+756|data|DCD grub_free|220-11-0-0
+760|data|DCD aEdidInformatio; "EDID information not available"|79-8-0-0
+764|data|DCD grub_error|212-11-0-0
+768|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+772|code|MOVS            R4, #0|0-36
+774|code|LDR             R5, =framebuffer|30-77
+776|code|SUB             SP, SP, #0x58|150-176
+778|code|MOV             R6, hook|6-70
+780|code|MOV             R7, hook_arg|15-70
+782|code|MOV             R8, R4|160-70
+784|code|LDR             R0, [R5,#(gop - 0xAF0)]|168-109
+786|code|LDR             R3, [R0,#0xC]|195-104
+788|code|LDR             R3, [R3]|27-104
+790|code|CMP             mode, R3|156-66
+792|code|BCS             loc_378|46-210
+794|code|ADD             R3, SP, #0x70+var_18|22-171
+796|code|LDR.W           R12, [R0]|208-248-0-192
+800|code|MOV             R1, mode|33-70
+802|code|ADD             R2, SP, #0x70+size|1-170
+804|code|STR.W           R8, [R3,#-0x50]!|67-248-80-141
+808|code|BLX             R12|224-71
+810|code|CBNZ            status_0, loc_374|24-187
+812|code|LDR             R2, [SP,#0x70+info]|2-154
+814|code|MOV.W           R3, #0x100|79-244-128-115
+818|code|STR             R3, [SP,#0x70+var_4C]|9-147
+820|code|MOV             R1, hook_arg|57-70
+822|code|STR             mode, [SP,#0x70+var_48]|10-148
+824|code|LDR             R3, [R2,#4]|83-104
+826|code|LDR             R2, [R2,#8]|146-104
+828|code|STR             status_0, [SP,#0x70+status]|17-144
+830|code|ADD             status_0, SP, #0x70+var_64|3-168
+832|code|STR             R3, [SP,#0x70+var_64]|3-147
+834|code|LSLS            R3, R3, #2|155-0
+836|code|STR             R2, [SP,#0x70+var_60]|4-146
+838|code|MOVS            R2, #4|4-34
+840|code|STR             R3, [SP,#0x70+var_50]|8-147
+842|code|MOVS            R3, #8|8-35
+844|code|STR             R2, [SP,#0x70+var_54]|7-146
+846|code|MOVS            R2, #0x20 ; ' '|32-34
+848|code|STR             R3, [SP,#0x70+var_40]|12-147
+850|code|STR             R2, [SP,#0x70+var_58]|6-146
+852|code|MOVS            R2, #0x10|16-34
+854|code|STR             R3, [SP,#0x70+var_38]|14-147
+856|code|STR             R3, [SP,#0x70+var_34]|15-147
+858|code|STR             R3, [SP,#0x70+var_30]|16-147
+860|code|STR             R3, [SP,#0x70+var_28]|18-147
+862|code|MOVS            R3, #0x18|24-35
+864|code|STR             R2, [SP,#0x70+var_3C]|13-146
+866|code|STR             R3, [SP,#0x70+var_24]|19-147
+868|code|MOVS            R3, #2|2-35
+870|code|STR             R3, [SP,#0x70+var_44]|11-147
+872|code|MOVS            R3, #0x91|145-35
+874|code|STR             R3, [SP,#0x70+var_5C]|5-147
+876|code|BLX             hook|176-71
+878|code|CBZ             R0, loc_374|8-177
+880|code|MOVS            R0, #1|1-32
+882|code|B               loc_37A|2-224
+884|code|ADDS            mode, #1|1-52
+886|code|B               loc_310|203-231
+888|code|MOVS            R0, #0|0-32
+890|code|ADD             SP, SP, #0x58 ; 'X'|22-176
+892|code|POP.W           {mode-R8,PC}|189-232-240-129
+896|data|DCD framebuffer|240-10-0-0
+900|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+904|code|SUB             SP, SP, #0xB4|173-176
+906|code|MOVS            mode_mask, #0|0-35
+908|code|MOV             R7, height|15-70
+910|code|STR             R3, [SP,#0xD8+info]|9-147
+912|code|UBFX.W          R9, mode_type, #8, #8|194-243-7-41
+916|code|STR             R3, [SP,#0xD8+preferred_width]|10-147
+918|code|MOV             R6, width|6-70
+920|code|STR             R3, [SP,#0xD8+preferred_height]|11-147
+922|code|CBNZ            width, loc_3DC|248-185
+924|code|CBNZ            height, loc_3DC|241-185
+926|code|ADD             width, SP, #0xD8+size; edid_info|12-168
+928|code|BL              grub_video_gop_get_edid|255-247-76-255
+932|code|CBNZ            R0, loc_3B8|64-185
+934|code|ADD             R0, SP, #0xD8+size|12-168
+936|code|LDR             R3, =grub_video_edid_checksum|153-75
+938|code|BLX             R3; grub_video_edid_checksum|152-71
+940|code|CBNZ            R0, loc_3B8|32-185
+942|code|ADD             R0, SP, #0xD8+size|12-168
+944|code|ADD             R1, SP, #0xD8+preferred_width|10-169
+946|code|ADD             R2, SP, #0xD8+preferred_height|11-170
+948|code|LDR             R3, =grub_video_edid_preferred_mode|151-75
+950|code|BLX             R3; grub_video_edid_preferred_mode|152-71
+952|code|CBNZ            R0, loc_3CA|56-185
+954|code|LDR             R3, [SP,#0xD8+preferred_width]|10-155
+956|code|CMP.W           R3, #0x1000|179-245-128-95
+960|code|BCS             loc_3CA|3-210
+962|code|LDR             R3, [SP,#0xD8+preferred_height]|11-155
+964|code|CMP.W           R3, #0x1000|179-245-128-95
+968|code|BCC             loc_3DC|8-211
+970|code|MOV.W           R3, #0x320|79-244-72-115
+974|code|STR             R3, [SP,#0xD8+preferred_width]|10-147
+976|code|MOV.W           R3, #0x258|79-244-22-115
+980|code|STR             R3, [SP,#0xD8+preferred_height]|11-147
+982|code|LDR             R3, =grub_errno|144-75
+984|code|MOVS            R2, #0|0-34
+986|code|STR             R2, [R3]|26-96
+988|code|LDR             R4, =framebuffer|143-76
+990|code|LDR.W           R10, =grub_real_dprintf|223-248-84-162
+994|code|LDR             R3, [R4,#(gop - 0xAF0)]|163-109
+996|code|LDR.W           R8, [R3,#0xC]|211-248-12-128
+1000|code|LDR.W           R5, [R8,#8]|216-248-8-80
+1004|code|CMP             R5, #0|0-45
+1006|code|BEQ.W           loc_58C|0-240-205-128
+1010|code|MOV             R0, R5; in|40-70
+1012|code|BL              grub_video_gop_get_bpp|255-247-7-254
+1016|code|CMP             bpp_0, #0|0-40
+1018|code|BEQ.W           loc_58C|0-240-199-128
+1022|code|LDR             R3, [R5,#4]|107-104
+1024|code|CMP             width, R3|158-66
+1026|code|BNE             loc_40A|2-209
+1028|code|LDR             R3, [R5,#8]|171-104
+1030|code|CMP             height, R3|159-66
+1032|code|BEQ             loc_416|5-208
+1034|code|CMP             width, #0|0-46
+1036|code|BNE.W           loc_58C|64-240-190-128
+1040|code|CMP             height, #0|0-47
+1042|code|BNE.W           loc_58C|64-240-187-128
+1046|code|CMP             depth, bpp_0|129-69
+1048|code|BEQ             loc_422|3-208
+1050|code|CMP.W           depth, #0|185-241-0-15
+1054|code|BNE.W           loc_58C|64-240-181-128
+1058|code|LDR.W           R3, [R8,#4]|216-248-4-48
+1062|code|MOV.W           R1, #0x184|79-244-194-113
+1066|code|LDR             bpp_0, =aVideoEfiGopC; "video/efi_gop.c"|125-72
+1068|code|LDR             R2, =aVideo; "video"|125-74
+1070|code|STR             R3, [SP,#0xD8+var_D8]|0-147
+1072|code|LDR             R3, =aGopKeepingMode; "GOP: keeping mode %d\n"|125-75
+1074|code|BLX             R10; grub_real_dprintf|208-71
+1076|code|LDR             R3, [R4,#(gop - 0xAF0)]|163-109
+1078|code|LDR             R3, [R3,#0xC]|219-104
+1080|code|LDR.W           R8, [R3,#4]|211-248-4-128
+1084|code|LDR             R0, [R4,#(gop - 0xAF0)]|160-109
+1086|code|LDR             R3, =framebuffer|119-75
+1088|code|LDR             R2, [R0,#0xC]|194-104
+1090|code|LDR             R2, [R2,#4]|82-104
+1092|code|CMP             R8, R2|144-69
+1094|code|BEQ             loc_458|7-208
+1096|code|LDR             R1, [R3,#(restore_needed - 0xAF0)]|217-109
+1098|code|CBNZ            R1, loc_452|17-185
+1100|code|STR             R2, [R3,#(old_mode - 0xAF0)]|26-102
+1102|code|MOVS            R2, #1|1-34
+1104|code|STR             R2, [R3,#(restore_needed - 0xAF0)]|218-101
+1106|code|LDR             R3, [R0,#4]|67-104
+1108|code|MOV             R1, R8|65-70
+1110|code|BLX             R3|152-71
+1112|code|LDR             R3, [R4,#(gop - 0xAF0)]|163-109
+1114|code|MOV.W           R11, #0x100|79-244-128-123
+1118|code|MOVS            width, #8|8-38
+1120|code|MOV.W           R10, #4|79-240-4-10
+1124|code|MOV.W           depth, #0x20 ; ' '|79-240-32-9
+1128|code|MOV.W           R8, #0x10|79-240-16-8
+1132|code|LDR             R2, [R3,#0xC]|218-104
+1134|code|LDR             R5, =framebuffer|107-77
+1136|code|LDR             R3, [R2,#8]|147-104
+1138|code|LDR             R1, [R2,#4]|81-104
+1140|code|STR.W           R11, [R4,#(framebuffer.mode_info.number_of_colors - 0xAF0)]|196-248-24-176
+1144|code|STR             R3, [SP,#0xD8+info]|9-147
+1146|code|STR             R1, [R4,#(framebuffer.mode_info.mode_number - 0xAF0)]|225-97
+1148|code|LDR             R0, [R3,#4]|88-104
+1150|code|LDR             R3, [R3,#8]|155-104
+1152|code|LDR             R2, [R2,#0x10]|18-105
+1154|code|LSLS            R1, R0, #2|129-0
+1156|code|STR             R0, [R4]|32-96
+1158|code|MULS            R0, R3|88-67
+1160|code|STR             R3, [R4,#(framebuffer.mode_info.height - 0xAF0)]|99-96
+1162|code|STR             R1, [R4,#(framebuffer.mode_info.pitch - 0xAF0)]|97-97
+1164|code|MOVS            R1, #0|0-33
+1166|code|STR.W           R10, [R4,#(framebuffer.mode_info.bytes_per_pixel - 0xAF0)]|196-248-16-160
+1170|code|STR             R1, [R4,#(framebuffer.mode_info.blue_field_pos - 0xAF0)]|161-99
+1172|code|MOVS            R1, #0x18|24-33
+1174|code|STR.W           R9, [R4,#(framebuffer.mode_info.bpp - 0xAF0)]|196-248-12-144
+1178|code|STR             R1, [R4,#(framebuffer.mode_info.reserved_field_pos - 0xAF0)]|33-100
+1180|code|LSLS            R0, R0, #2|128-0
+1182|code|MOVS            R1, #2|2-33
+1184|code|STR             R6, [R4,#(framebuffer.mode_info.red_mask_size - 0xAF0)]|102-98
+1186|code|STR             R1, [R4,#(framebuffer.mode_info.blit_format - 0xAF0)]|33-98
+1188|code|MOVS            R1, #0x91|145-33
+1190|code|STR.W           R8, [R4,#(framebuffer.mode_info.red_field_pos - 0xAF0)]|196-248-40-128
+1194|code|STR             R6, [R4,#(framebuffer.mode_info.green_mask_size - 0xAF0)]|230-98
+1196|code|STR             R6, [R4,#(framebuffer.mode_info.green_field_pos - 0xAF0)]|38-99
+1198|code|STR             R6, [R4,#(framebuffer.mode_info.blue_mask_size - 0xAF0)]|102-99
+1200|code|STR             R6, [R4,#(framebuffer.mode_info.reserved_mask_size - 0xAF0)]|230-99
+1202|code|STR             R1, [R4,#(framebuffer.mode_info.mode_type - 0xAF0)]|161-96
+1204|code|LDR             R3, =grub_malloc|93-75
+1206|code|STR             R2, [R4,#(framebuffer.ptr - 0xAF0)]|34-101
+1208|code|BLX             R3; grub_malloc|152-71
+1210|code|MOV             height, R0|7-70
+1212|code|STR             R0, [R4,#(framebuffer.offscreen - 0xAF0)]|96-101
+1214|code|CMP             buffer, #0|0-40
+1216|code|BNE             loc_514|40-209
+1218|code|LDR             R2, =aVideo; "video"|88-74
+1220|code|MOVW            R1, #0x1E7|64-242-231-17
+1224|code|LDR             R3, =aGopCouldnTAllo; "GOP: couldn't allocate shadow\n"|89-75
+1226|code|LDR             buffer, =aVideoEfiGopC; "video/efi_gop.c"|85-72
+1228|code|LDR             R4, =grub_real_dprintf|89-76
+1230|code|BLX             R4; grub_real_dprintf|160-71
+1232|code|LDR             R3, =grub_errno|81-75
+1234|code|LDR             R2, [SP,#0xD8+info]|9-154
+1236|code|STR             buffer, [R3]|31-96
+1238|code|LDR             R3, [R5,#(gop - 0xAF0)]|171-109
+1240|code|LDR             R3, [R3,#0xC]|219-104
+1242|code|LDR             R3, [R3,#4]|91-104
+1244|code|STR.W           R11, [R5,#(framebuffer.mode_info.number_of_colors - 0xAF0)]|197-248-24-176
+1248|code|STR             R3, [R5,#(framebuffer.mode_info.mode_number - 0xAF0)]|235-97
+1250|code|LDR             R3, [R2,#4]|83-104
+1252|code|LDR             R2, [R2,#8]|146-104
+1254|code|STR             buffer, [R5,#(framebuffer.mode_info.blue_field_pos - 0xAF0)]|175-99
+1256|code|LDR             buffer, [R5,#(framebuffer.ptr - 0xAF0)]|47-109
+1258|code|STR             R3, [R5]|43-96
+1260|code|LSLS            R3, R3, #2|155-0
+1262|code|STR             R2, [R5,#(framebuffer.mode_info.height - 0xAF0)]|106-96
+1264|code|STR             R3, [R5,#(framebuffer.mode_info.pitch - 0xAF0)]|107-97
+1266|code|MOVS            R3, #0x18|24-35
+1268|code|STR.W           R10, [R5,#(framebuffer.mode_info.bytes_per_pixel - 0xAF0)]|197-248-16-160
+1272|code|STR             R3, [R5,#(framebuffer.mode_info.reserved_field_pos - 0xAF0)]|43-100
+1274|code|MOVS            R3, #2|2-35
+1276|code|STR.W           R9, [R5,#(framebuffer.mode_info.bpp - 0xAF0)]|197-248-12-144
+1280|code|STR             R3, [R5,#(framebuffer.mode_info.blit_format - 0xAF0)]|43-98
+1282|code|MOVS            R3, #0x91|145-35
+1284|code|STR             R6, [R5,#(framebuffer.mode_info.red_mask_size - 0xAF0)]|110-98
+1286|code|STR.W           R8, [R5,#(framebuffer.mode_info.red_field_pos - 0xAF0)]|197-248-40-128
+1290|code|STR             R6, [R5,#(framebuffer.mode_info.green_mask_size - 0xAF0)]|238-98
+1292|code|STR             R6, [R5,#(framebuffer.mode_info.green_field_pos - 0xAF0)]|46-99
+1294|code|STR             R6, [R5,#(framebuffer.mode_info.blue_mask_size - 0xAF0)]|110-99
+1296|code|STR             R6, [R5,#(framebuffer.mode_info.reserved_mask_size - 0xAF0)]|238-99
+1298|code|STR             R3, [R5,#(framebuffer.mode_info.mode_type - 0xAF0)]|171-96
+1300|code|LDR             R5, =framebuffer|65-77
+1302|code|MOV.W           R1, #0x1F0|79-244-248-113
+1306|code|LDR             R0, =aVideoEfiGopC; "video/efi_gop.c"|65-72
+1308|code|LDR             R2, =aVideo; "video"|65-74
+1310|code|LDR             R3, [R5,#(framebuffer.ptr - 0xAF0)]|43-109
+1312|code|LDR             R6, =grub_real_dprintf|68-78
+1314|code|STR             R3, [SP,#0xD8+var_D8]|0-147
+1316|code|LDR             R3, [R5]|43-104
+1318|code|STR             R3, [SP,#0xD8+bpp]|1-147
+1320|code|LDR             R3, [R5,#(framebuffer.mode_info.height - 0xAF0)]|107-104
+1322|code|STR             R3, [SP,#0xD8+var_D0]|2-147
+1324|code|LDR             R3, [R5,#(framebuffer.mode_info.bpp - 0xAF0)]|235-104
+1326|code|STR             R3, [SP,#0xD8+var_CC]|3-147
+1328|code|LDR             R3, =aGopInitialisin; "GOP: initialising FB @ %p %dx%dx%d\n"|65-75
+1330|code|BLX             R6; grub_real_dprintf|176-71
+1332|code|ADD.W           R0, R5, #0x4C ; 'L'|5-241-76-0
+1336|code|MOV             R1, R5|41-70
+1338|code|MOV             R2, buffer|58-70
+1340|code|LDR             R3, =grub_video_fb_create_render_target_from_pointer|63-75
+1342|code|BLX             R3; grub_video_fb_create_render_target_from_pointer|152-71
+1344|code|MOV             R4, err|4-70
+1346|code|CBZ             err, loc_550|40-177
+1348|code|LDR             err, =aVideoEfiGopC; "video/efi_gop.c"|54-72
+1350|code|MOVW            R1, #0x1F7|64-242-247-17
+1354|code|LDR             R2, =aVideo; "video"|54-74
+1356|code|LDR             R3, =aGopCouldnTCrea; "GOP: Couldn't create FB target\n"|60-75
+1358|code|B               loc_586|26-224
+1360|code|LDR             err, [R5,#(framebuffer.render_target - 0xAF0)]|232-108
+1362|code|LDR             R3, =grub_video_fb_set_active_render_target|60-75
+1364|code|BLX             R3; grub_video_fb_set_active_render_target|152-71
+1366|code|MOV             R4, err|4-70
+1368|code|CBZ             err, loc_566|40-177
+1370|code|LDR             err, =aVideoEfiGopC; "video/efi_gop.c"|49-72
+1372|code|MOVW            R1, #0x1FF|64-242-255-17
+1376|code|LDR             R2, =aVideo; "video"|48-74
+1378|code|LDR             R3, =aGopCouldnTSetF; "GOP: Couldn't set FB target\n"|57-75
+1380|code|B               loc_586|15-224
+1382|code|MOVS            R1, #0x10|16-33
+1384|code|LDR             R2, =grub_video_fbstd_colors|56-74
+1386|code|LDR             R3, =grub_video_fb_set_palette|57-75
+1388|code|BLX             R3; grub_video_fb_set_palette|152-71
+1390|code|MOV             R4, err|4-70
+1392|code|LDR             err, =aVideoEfiGopC; "video/efi_gop.c"|43-72
+1394|code|CBZ             err, loc_57E|36-177
+1396|code|MOVW            R1, #0x207|64-242-7-33
+1400|code|LDR             R2, =aVideo; "video"|42-74
+1402|code|LDR             R3, =aGopCouldnTSetP; "GOP: Couldn't set palette\n"|54-75
+1404|code|B               loc_586|3-224
+1406|code|LDR             R2, =aVideo; "video"|41-74
+1408|code|MOVW            R1, #0x209|64-242-9-33
+1412|code|LDR             R3, =aGopSuccess; "GOP: Success\n"|52-75
+1414|code|BLX             R6; grub_real_dprintf|176-71
+1416|code|MOV             R0, err|32-70
+1418|code|B               loc_70A|190-224
+1420|code|LDR.W           R3, [R8]|216-248-0-48
+1424|code|MOVS            R5, #0|0-37
+1426|code|LDR.W           R11, =grub_real_dprintf|223-248-160-176
+1430|code|MOVW            R1, #0x18D|64-242-141-17
+1434|code|LDR             R2, =aVideo; "video"|34-74
+1436|code|MOV             R8, R5|168-70
+1438|code|STR             R3, [SP,#0xD8+var_D8]|0-147
+1440|code|LDR             R0, =aVideoEfiGopC; "video/efi_gop.c"|31-72
+1442|code|LDR             R3, =aGopDModesDetec; "GOP: %d modes detected\n"|46-75
+1444|code|BLX             R10; grub_real_dprintf|208-71
+1446|code|MOV             R10, R11|218-70
+1448|code|MOVS            R2, #0|0-34
+1450|code|MOVS            R3, #0|0-35
+1452|code|STR             R5, [SP,#0xD8+found]|6-149
+1454|code|STRD.W          R2, R3, [SP,#0xD8+best_volume]|205-233-4-35
+1458|code|LDR             R0, [R4,#(gop - 0xAF0)]|160-109
+1460|code|LDR             R3, [R0,#0xC]|195-104
+1462|code|LDR             R3, [R3]|27-104
+1464|code|CMP             mode, R3|157-66
+1466|code|BCS.W           loc_6EC|128-240-151-128
+1470|code|LDR.W           R12, [R0]|208-248-0-192
+1474|code|MOV             R1, mode|41-70
+1476|code|ADD             R2, SP, #0xD8+size|12-170
+1478|code|ADD             R3, SP, #0xD8+info|9-171
+1480|code|BLX             R12|224-71
+1482|code|CBZ             status, loc_5D2|16-177
+1484|code|MOVS            R3, #0|0-35
+1486|code|STR             R3, [SP,#0xD8+info]|9-147
+1488|code|B               loc_6E8|138-224
+1490|code|LDR             R3, [SP,#0xD8+info]|9-155
+1492|code|MOVW            R1, #0x19B|64-242-155-17
+1496|code|STR             mode, [SP,#0xD8+var_D8]|0-149
+1498|code|LDR             status, =aVideoEfiGopC; "video/efi_gop.c"|17-72
+1500|code|LDR             R2, [R3,#4]|90-104
+1502|code|STR             R2, [SP,#0xD8+bpp]|1-146
+1504|code|LDR             R3, [R3,#8]|155-104
+1506|code|LDR             R2, =aVideo; "video"|16-74
+1508|code|STR             R3, [SP,#0xD8+var_D0]|2-147
+1510|code|LDR             R3, =aGopModeDDxD; "GOP: mode %d: %dx%d\n"|30-75
+1512|code|BLX             R11; grub_real_dprintf|216-71
+1514|code|LDR             R2, [SP,#0xD8+preferred_width]|10-154
+1516|code|CMP             R2, #0|0-42
+1518|code|BEQ             loc_668|59-208
+1520|code|LDR             R3, [SP,#0xD8+info]|9-155
+1522|code|LDR             R1, [R3,#4]|89-104
+1524|code|CMP             R1, R2|145-66
+1526|code|BHI             loc_600|3-216
+1528|code|LDR             R2, [R3,#8]|154-104
+1530|code|LDR             R3, [SP,#0xD8+preferred_height]|11-155
+1532|code|CMP             R2, R3|154-66
+1534|code|BLS             loc_668|51-217
+1536|code|STR             mode, [SP,#0xD8+var_D8]|0-149
+1538|code|MOV.W           R1, #0x1A0|79-244-208-113
+1542|code|LDR             R0, =aVideoEfiGopC; "video/efi_gop.c"|6-72
+1544|code|LDR             R2, =aVideo; "video"|6-74
+1546|code|LDR             R3, =aGopModeDTooLar; "GOP: mode %d: too large\n"|22-75
+1548|code|B               loc_67C|54-224
+1550|data|ALIGN 0x10|0-191
+1552|data|DCD grub_video_edid_checksum|156-11-0-0
+1556|data|DCD grub_video_edid_preferred_mode|236-11-0-0
+1560|data|DCD grub_errno|144-11-0-0
+1564|data|DCD framebuffer|240-10-0-0
+1568|data|DCD aVideoEfiGopC; "video/efi_gop.c"|27-8-0-0
+1572|data|DCD aVideo; "video"|43-8-0-0
+1576|data|DCD aGopKeepingMode; "GOP: keeping mode %d\n"|128-8-0-0
+1580|data|DCD grub_malloc|184-11-0-0
+1584|data|DCD aGopCouldnTAllo; "GOP: couldn't allocate shadow\n"|70-9-0-0
+1588|data|DCD grub_real_dprintf|192-11-0-0
+1592|data|DCD aGopInitialisin; "GOP: initialising FB @ %p %dx%dx%d\n"|101-9-0-0
+1596|data|DCD grub_video_fb_create_render_target_from_pointer|104-11-0-0
+1600|data|DCD aGopCouldnTCrea; "GOP: Couldn't create FB target\n"|137-9-0-0
+1604|data|DCD grub_video_fb_set_active_render_target|196-11-0-0
+1608|data|DCD aGopCouldnTSetF; "GOP: Couldn't set FB target\n"|169-9-0-0
+1612|data|DCD grub_video_fbstd_colors|224-11-0-0
+1616|data|DCD grub_video_fb_set_palette|164-11-0-0
+1620|data|DCD aGopCouldnTSetP; "GOP: Couldn't set palette\n"|198-9-0-0
+1624|data|DCD aGopSuccess; "GOP: Success\n"|225-9-0-0
+1628|data|DCD aGopDModesDetec; "GOP: %d modes detected\n"|239-9-0-0
+1632|data|DCD aGopModeDDxD; "GOP: mode %d: %dx%d\n"|150-8-0-0
+1636|data|DCD aGopModeDTooLar; "GOP: mode %d: too large\n"|171-8-0-0
+1640|code|LDR             R0, [SP,#0xD8+info]; in|9-152
+1642|code|BL              grub_video_gop_get_bpp|255-247-204-252
+1646|code|STR             mode, [SP,#0xD8+var_D8]|0-149
+1648|code|CBNZ            bpp_0, loc_680|48-185
+1650|code|LDR             bpp_0, =aVideoEfiGopC; "video/efi_gop.c"|39-72
+1652|code|MOV.W           R1, #0x1A8|79-244-212-113
+1656|code|LDR             R2, =aVideo; "video"|38-74
+1658|code|LDR             R3, =aGopModeDIncomp; "GOP: mode %d: incompatible pixel mode\n"|39-75
+1660|code|BLX             R10; grub_real_dprintf|208-71
+1662|code|B               loc_6E8|51-224
+1664|code|STR             bpp_0, [SP,#0xD8+bpp]|1-144
+1666|code|MOV.W           R1, #0x1AC|79-244-214-113
+1670|code|STR             bpp_0, [SP,#0xD8+var_BC]|7-144
+1672|code|LDR             R3, =aGopModeDDepthD; "GOP: mode %d: depth %d\n"|36-75
+1674|code|LDR             bpp_0, =aVideoEfiGopC; "video/efi_gop.c"|33-72
+1676|code|LDR             R2, =aVideo; "video"|33-74
+1678|code|BLX             R10; grub_real_dprintf|208-71
+1680|code|LDR             R3, [SP,#0xD8+info]|9-155
+1682|code|LDR.W           R12, [SP,#0xD8+var_BC]|221-248-28-192
+1686|code|LDR             R0, [R3,#4]|88-104
+1688|code|CMP             R0, width|176-66
+1690|code|BNE             loc_6A2|2-209
+1692|code|LDR             R2, [R3,#8]|154-104
+1694|code|CMP             R2, height|186-66
+1696|code|BEQ             loc_6A6|1-208
+1698|code|CBNZ            width, loc_6B0|46-185
+1700|code|CBNZ            height, loc_6B0|39-185
+1702|code|CMP             R12, depth|204-69
+1704|code|BEQ             loc_6C0|10-208
+1706|code|CMP.W           depth, #0|185-241-0-15
+1710|code|BEQ             loc_6C0|7-208
+1712|code|STR             mode, [SP,#0xD8+var_D8]|0-149
+1714|code|MOV.W           R1, #0x1B2|79-244-217-113
+1718|code|LDR             R0, =aVideoEfiGopC; "video/efi_gop.c"|22-72
+1720|code|LDR             R2, =aVideo; "video"|22-74
+1722|code|LDR             R3, =aGopModeDReject; "GOP: mode %d: rejected\n"|25-75
+1724|code|BLX             R11; grub_real_dprintf|216-71
+1726|code|B               loc_6E8|19-224
+1728|code|LDR             R3, [R3,#8]|155-104
+1730|code|UMULL.W         R0, R1, R3, R0|163-251-0-1
+1734|code|UMULL.W         R2, R3, R0, R12|160-251-12-35
+1738|code|MLA.W           R3, R12, R1, R3|12-251-1-51
+1742|code|LDRD.W          R0, R1, [SP,#0xD8+best_volume]|221-233-4-1
+1746|code|CMP             R1, R3|153-66
+1748|code|IT EQ|8-191
+1750|code|CMPEQ           R0, R2|144-66
+1752|code|IT CC|56-191
+1754|code|STRDCC.W        R2, R3, [SP,#0xD8+best_volume]|205-233-4-35
+1758|code|MOV.W           R3, #1|79-240-1-3
+1762|code|IT CC|56-191
+1764|code|MOVCC           R8, mode|168-70
+1766|code|STR             R3, [SP,#0xD8+found]|6-147
+1768|code|ADDS            mode, #1|1-53
+1770|code|B               loc_5B2|98-231
+1772|code|LDR             R3, [SP,#0xD8+found]|6-155
+1774|code|CMP             R3, #0|0-43
+1776|code|BNE.W           loc_43C|127-244-164-174
+1780|code|LDR             R0, =aVideoEfiGopC; "video/efi_gop.c"|6-72
+1782|code|MOVW            R1, #0x1C5|64-242-197-17
+1786|code|LDR             R3, =aGopNoModeFound; "GOP: no mode found\n"|10-75
+1788|code|LDR             R2, =aVideo; "video"|5-74
+1790|code|LDR             R4, =grub_real_dprintf|10-76
+1792|code|BLX             R4; grub_real_dprintf|160-71
+1794|code|MOVS            R0, #0xC|12-32
+1796|code|LDR             R1, =aNoMatchingMode; "no matching mode found"|9-73
+1798|code|LDR             R3, =grub_error|10-75
+1800|code|BLX             R3; grub_error|152-71
+1802|code|ADD             SP, SP, #0xB4|45-176
+1804|code|POP.W           {R4-R11,PC}|189-232-240-143
+1808|data|DCD aVideoEfiGopC; "video/efi_gop.c"|27-8-0-0
+1812|data|DCD aVideo; "video"|43-8-0-0
+1816|data|DCD aGopModeDIncomp; "GOP: mode %d: incompatible pixel mode\n"|196-8-0-0
+1820|data|DCD aGopModeDDepthD; "GOP: mode %d: depth %d\n"|235-8-0-0
+1824|data|DCD aGopModeDReject; "GOP: mode %d: rejected\n"|3-9-0-0
+1828|data|DCD aGopNoModeFound; "GOP: no mode found\n"|27-9-0-0
+1832|data|DCD grub_real_dprintf|192-11-0-0
+1836|data|DCD aNoMatchingMode; "no matching mode found"|47-9-0-0
+1840|data|DCD grub_error|212-11-0-0
+1844|code|PUSH            {mod-R2,R4-R7,LR}|247-181
+1846|code|MOVS            R4, #0|0-36
+1848|code|LDR             R5, =grub_efi_locate_handle|30-77
+1850|code|MOVS            mod, #2|2-32
+1852|code|LDR             R1, =graphics_output_guid|30-73
+1854|code|MOV             R2, R4|34-70
+1856|code|MOV             R3, SP|107-70
+1858|code|STR             R4, [SP,#0x20+hook_arg]|1-148
+1860|code|BLX             R5; grub_efi_locate_handle|168-71
+1862|code|MOV             R5, R0|5-70
+1864|code|CMP             R0, #0|0-40
+1866|code|BEQ             loc_7AE|48-208
+1868|code|LDR             R3, [SP,#0x20+var_20]|0-155
+1870|code|CMP             R3, #0|0-43
+1872|code|BEQ             loc_7AE|45-208
+1874|code|LDR             R6, =framebuffer|26-78
+1876|code|LDR             R7, =grub_efi_open_protocol|26-79
+1878|code|LDR             R3, [SP,#0x20+var_20]|0-155
+1880|code|CMP             R4, R3|156-66
+1882|code|LDR             R3, =framebuffer|24-75
+1884|code|BCS             loc_78A|21-210
+1886|code|LDR.W           R0, [R5,R4,LSL#2]|85-248-36-0
+1890|code|MOVS            R2, #2|2-34
+1892|code|LDR             R1, =graphics_output_guid|20-73
+1894|code|STR             R0, [R6,#(gop_handle - 0xAF0)]|112-102
+1896|code|BLX             R7; grub_efi_open_protocol|184-71
+1898|code|ADD             R1, SP, #0x20+hook_arg; hook_arg|1-169
+1900|code|STR             R0, [R6,#(gop - 0xAF0)]|176-101
+1902|code|LDR             R0, =(check_protocol_hook+1); hook|21-72
+1904|code|BL              grub_video_gop_iterate|255-247-198-253
+1908|code|LDR             R3, [SP,#0x20+hook_arg]|1-155
+1910|code|CBZ             R3, loc_786|51-177
+1912|code|MOV             R0, R5|40-70
+1914|code|LDR             R3, =grub_free|19-75
+1916|code|BLX             R3; grub_free|152-71
+1918|code|LDR             R3, =active_edid_guid|19-75
+1920|code|LDR             R2, =grub_video_adapter_list|19-74
+1922|code|LDR             R0, [R3,#(grub_video_gop_adapter.prio - 0xA18)]|24-109
+1924|code|B               loc_79A|9-224
+1926|code|ADDS            R4, #1|1-52
+1928|code|B               loc_756|229-231
+1930|code|MOVS            R2, #0|0-34
+1932|code|STR             R2, [R3,#(gop - 0xAF0)]|154-101
+1934|code|STR             R2, [R3,#(gop_handle - 0xAF0)]|90-102
+1936|code|B               loc_7AE|13-224
+1938|code|LDR             R4, [R1,#0x10]|12-105
+1940|code|CMP             R4, R0|132-66
+1942|code|BLS             loc_7A0|3-217
+1944|code|MOV             R2, R1|10-70
+1946|code|LDR             R1, [R2]|17-104
+1948|code|CMP             R1, #0|0-41
+1950|code|BNE             loc_792|248-209
+1952|code|STR             R1, [R3,#(grub_video_gop_adapter - 0xA18)]|25-100
+1954|code|LDR             R1, =grub_video_gop_adapter|12-73
+1956|code|STR             R1, [R2]|17-96
+1958|code|STR             R2, [R3,#(grub_video_gop_adapter.prev - 0xA18)]|90-100
+1960|code|LDR             R3, [R3,#(grub_video_gop_adapter - 0xA18)]|27-108
+1962|code|CBZ             R3, loc_7AE|3-177
+1964|code|STR             R1, [R3,#locret_4]|89-96
+1966|code|ADD             SP, SP, #0xC|3-176
+1968|code|POP             {R4-R7,PC}|240-189
+1970|data|ALIGN 4|0-191
+1972|data|DCD grub_efi_locate_handle|180-11-0-0
+1976|data|DCD graphics_output_guid|72-10-0-0
+1980|data|DCD framebuffer|240-10-0-0
+1984|data|DCD grub_efi_open_protocol|188-11-0-0
+1988|data|DCD check_protocol_hook+1|1-0-0-0
+1992|data|DCD grub_free|220-11-0-0
+1996|data|DCD active_edid_guid|24-10-0-0
+2000|data|DCD grub_video_adapter_list|152-11-0-0
+2004|data|DCD grub_video_gop_adapter|88-10-0-0
+2008|code|PUSH            {R4,LR}|16-181
+2010|code|LDR             R4, =framebuffer|7-76
+2012|code|LDR             R3, [R4,#(restore_needed - 0xAF0)]|227-109
+2014|code|CBZ             R3, loc_7EC|43-177
+2016|code|LDR             R0, [R4,#(gop - 0xAF0)]|160-109
+2018|code|LDR             R1, [R4,#(old_mode - 0xAF0)]|33-110
+2020|code|LDR             R3, [R0,#4]|67-104
+2022|code|BLX             R3|152-71
+2024|code|MOVS            R3, #0|0-35
+2026|code|STR             R3, [R4,#(restore_needed - 0xAF0)]|227-101
+2028|code|LDR             R3, [R4,#(gop - 0xAF0)]|163-109
+2030|code|CBZ             R3, locret_7F6|19-177
+2032|code|LDR             R0, =grub_video_gop_adapter|2-72
+2034|code|LDR             R3, =grub_list_remove|3-75
+2036|code|BLX             R3; grub_list_remove|152-71
+2038|code|POP             {R4,PC}|16-189
+2040|data|DCD framebuffer|240-10-0-0
+2044|data|DCD grub_video_gop_adapter|88-10-0-0
+2048|data|DCD grub_list_remove|216-11-0-0
+2052|data|DCB "unsupported video mode",0|117-110-115-117-112-112-111-114-116-101-100-32-118-105-100-101-111-32-109-111-100-101-0
+2075|data|DCB "video/efi_gop.c",0|118-105-100-101-111-47-101-102-105-95-103-111-112-46-99-0
+2091|data|DCB "video",0|118-105-100-101-111-0
+2097|data|DCB "GOP: couldn't fill mode info",0xA,0|71-79-80-58-32-99-111-117-108-100-110-39-116-32-102-105-108-108-32-109-111-100-101-32-105-110-102-111-10-0
+2127|data|DCB "EDID information not available",0|69-68-73-68-32-105-110-102-111-114-109-97-116-105-111-110-32-110-111-116-32-97-118-97-105-108-97-98-108-101-0
+2158|data|DCB "agp-internal-edid",0|97-103-112-45-105-110-116-101-114-110-97-108-45-101-100-105-100-0
+2176|data|DCB "GOP: keeping mode %d",0xA,0|71-79-80-58-32-107-101-101-112-105-110-103-32-109-111-100-101-32-37-100-10-0
+2198|data|DCB "GOP: mode %d: %dx%d",0xA,0|71-79-80-58-32-109-111-100-101-32-37-100-58-32-37-100-120-37-100-10-0
+2219|data|DCB "GOP: mode %d: too large",0xA,0|71-79-80-58-32-109-111-100-101-32-37-100-58-32-116-111-111-32-108-97-114-103-101-10-0
+2244|data|DCB "GOP: mode %d: incompatible pixel mode",0xA,0|71-79-80-58-32-109-111-100-101-32-37-100-58-32-105-110-99-111-109-112-97-116-105-98-108-101-32-112-105-120-101-108-32-109-111-100-101-10-0
+2283|data|DCB "GOP: mode %d: depth %d",0xA,0|71-79-80-58-32-109-111-100-101-32-37-100-58-32-100-101-112-116-104-32-37-100-10-0
+2307|data|DCB "GOP: mode %d: rejected",0xA,0|71-79-80-58-32-109-111-100-101-32-37-100-58-32-114-101-106-101-99-116-101-100-10-0
+2331|data|DCB "GOP: no mode found",0xA,0|71-79-80-58-32-110-111-32-109-111-100-101-32-102-111-117-110-100-10-0
+2351|data|DCB "no matching mode found",0|110-111-32-109-97-116-99-104-105-110-103-32-109-111-100-101-32-102-111-117-110-100-0
+2374|data|DCB "GOP: couldn't allocate shadow",0xA,0|71-79-80-58-32-99-111-117-108-100-110-39-116-32-97-108-108-111-99-97-116-101-32-115-104-97-100-111-119-10-0
+2405|data|DCB "GOP: initialising FB @ %p %dx%dx%d",0xA,0|71-79-80-58-32-105-110-105-116-105-97-108-105-115-105-110-103-32-70-66-32-64-32-37-112-32-37-100-120-37-100-120-37-100-10-0
+2441|data|DCB "GOP: Couldn't create FB target",0xA,0|71-79-80-58-32-67-111-117-108-100-110-39-116-32-99-114-101-97-116-101-32-70-66-32-116-97-114-103-101-116-10-0
+2473|data|DCB "GOP: Couldn't set FB target",0xA,0|71-79-80-58-32-67-111-117-108-100-110-39-116-32-115-101-116-32-70-66-32-116-97-114-103-101-116-10-0
+2502|data|DCB "GOP: Couldn't set palette",0xA,0|71-79-80-58-32-67-111-117-108-100-110-39-116-32-115-101-116-32-112-97-108-101-116-116-101-10-0
+2529|data|DCB "GOP: Success",0xA,0|71-79-80-58-32-83-117-99-99-101-115-115-10-0
+2543|data|DCB "GOP: %d modes detected",0xA,0|71-79-80-58-32-37-100-32-109-111-100-101-115-32-100-101-116-101-99-116-101-100-10-0
+2567|data|DCB "EFI GOP driver",0|69-70-73-32-71-79-80-32-100-114-105-118-101-114-0
+2584|data|DCD 0xBD8C1056          ; data1|86-16-140-189-54-159-236-68-146-168-166-51-127-129-121-134
+2600|data|DCD 0x1C0C34F6          ; data1|246-52-12-28-128-211-250-65-160-73-138-208-108-26-102-170
+2616|data|DCD 0x8BE4DF61          ; data1|97-223-228-139-202-147-210-17-170-13-0-224-152-3-43-140
+2632|data|DCD 0x9042A9DE          ; data1|222-169-66-144-220-35-56-74-150-251-122-222-208-128-81-106
+2648|data|grub_video_adapter <0, 0, aEfiGopDriver, GRUB_VIDEO_DRIVER_EFI_GOP, \; "EFI GOP driver"|0-0-0-0-0-0-0-0-7-10-0-0-3-0-0-0-80-0-0-0-13-1-0-0-221-0-0-0-133-3-0-0-240-11-0-0-45-1-0-0-164-11-0-0-160-11-0-0-232-11-0-0-136-11-0-0-204-11-0-0-100-11-0-0-200-11-0-0-176-11-0-0-168-11-0-0-112-11-0-0-88-11-0-0-108-11-0-0-124-11-0-0-132-11-0-0-244-11-0-0-116-11-0-0-147-0-0-0-248-11-0-0-208-11-0-0-197-0-0-0-228-11-0-0-1-3-0-0-61-2-0-0-0-0-0-0
+2784|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2800|data|$E4DFCDB47979D2176CF05049BFA8C393 <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+2888|data|% 4|255-255-255-255
+2892|data|% 4|255-255-255-255
+2896|data|% 4|255-255-255-255

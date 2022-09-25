@@ -1,0 +1,244 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_efi_system_table_0|120-75
+2|code|PUSH.W          {cmd-args,R4-R11,LR}|45-233-247-79
+6|code|LDR             R6, [R3]|30-104
+8|code|LDR             R5, =grub_printf|119-77
+10|code|LDR             cmd, =aSignature016ll; "Signature: %016llx revision: %08x\n"|120-72
+12|code|LDR             R3, [st,#8]|179-104
+14|code|STR             R3, [SP,#0x30+var_30]|0-147
+16|code|LDRD.W          args, R3, [st]|214-233-0-35
+20|code|BLX             R5; grub_printf|168-71
+22|code|LDR             R0, =aVendor; "Vendor: "|118-72
+24|code|BLX             R5; grub_printf|168-71
+26|code|LDR             R0, [st,#0x18]|176-105
+28|code|MOV             R3, vendor_utf16|3-70
+30|code|MOV             R4, R3|28-70
+32|code|ADDS            vendor_utf16, #2|2-51
+34|code|LDRH.W          R8, [vendor_utf16]|180-248-0-128
+38|code|CMP.W           R8, #0|184-241-0-15
+42|code|BNE             loc_1E|248-209
+44|code|SUBS            R0, vendor_utf16, R0|32-26
+46|code|LDR             R3, =grub_malloc|113-75
+48|code|LSLS            R0, R0, #1|64-0
+50|code|ADDS            R0, #1|1-48
+52|code|BLX             R3; grub_malloc|152-71
+54|code|MOV             R7, vendor|7-70
+56|code|CBNZ            vendor, loc_40|16-185
+58|code|LDR             R3, =grub_errno|111-75
+60|code|LDR             vendor, [R3]|24-104
+62|code|B               loc_1DE|206-224
+64|code|LDR             R2, [st,#0x18]|178-105
+66|code|MOV             R1, vendor|1-70
+68|code|MOV             R12, R8|196-70
+70|code|MOVS            vendor, #0x3F ; '?'|63-32
+72|code|SUBS            vendor_utf16, vendor_utf16, R2|164-26
+74|code|ASRS            R4, R4, #1|100-16
+76|code|ADDS.W          R4, R4, #0xFFFFFFFF|20-241-255-52
+80|code|BCC             loc_122|103-211
+82|code|ADD.W           LR, R2, #2|2-241-2-14
+86|code|LDRH            R3, [R2]|19-136
+88|code|CMP.W           R12, #0|188-241-0-15
+92|code|BEQ             loc_B2|41-208
+94|code|SUB.W           R8, R3, #0xDC00|163-245-92-72
+98|code|CMP.W           R8, #0x400|184-245-128-111
+102|code|BCS             loc_A6|30-210
+104|code|ADD.W           R3, R3, R12,LSL#10|3-235-140-35
+108|code|ADDS            R1, #4|4-49
+110|code|SUB.W           R3, R3, #0x35C0000|163-241-87-115
+114|code|SUB.W           R3, R3, #0x3DC00|163-245-119-51
+118|code|LSRS            R2, R3, #0x12|154-12
+120|code|ORN.W           R2, R2, #0xF|98-240-15-2
+124|code|STRB.W          R2, [R1,#-4]|1-248-4-44
+128|code|UBFX.W          R2, R3, #0xC, #6|195-243-5-50
+132|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+136|code|STRB.W          R2, [R1,#-3]|1-248-3-44
+140|code|UBFX.W          R2, R3, #6, #6|195-243-133-18
+144|code|AND.W           R3, R3, #0x3F|3-240-63-3
+148|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+152|code|ORN.W           R3, R3, #0x7F|99-240-127-3
+156|code|STRB.W          R2, [R1,#-2]|1-248-2-44
+160|code|STRB.W          R3, [R1,#-1]|1-248-1-60
+164|code|B               loc_AC|2-224
+166|code|STRB            R0, [R1]|8-112
+168|code|ADDS            R1, #1|1-49
+170|code|MOV             LR, R2|150-70
+172|code|MOV.W           R12, #0|79-240-0-12
+176|code|B               loc_11E|53-224
+178|code|CMP             R3, #0x7F|127-43
+180|code|BHI             loc_BA|1-216
+182|code|STRB            R3, [R1]|11-112
+184|code|B               loc_F2|27-224
+186|code|CMP.W           R3, #0x800|179-245-0-111
+190|code|BCS             loc_DC|13-210
+192|code|MOV.W           R8, R3,LSR#6|79-234-147-24
+196|code|MOV             R2, R1|10-70
+198|code|AND.W           R3, R3, #0x3F|3-240-63-3
+202|code|ORN.W           R8, R8, #0x3F ; '?'|104-240-63-8
+206|code|ORN.W           R3, R3, #0x7F|99-240-127-3
+210|code|STRB.W          R8, [R2],#2|2-248-2-139
+214|code|STRB            R3, [R1,#1]|75-112
+216|code|MOV             R1, R2|17-70
+218|code|B               loc_11E|32-224
+220|code|SUB.W           R2, R3, #0xD800|163-245-88-66
+224|code|CMP.W           R2, #0x400|178-245-128-111
+228|code|BCC             loc_11C|26-211
+230|code|SUB.W           R2, R3, #0xDC00|163-245-92-66
+234|code|CMP.W           R2, #0x400|178-245-128-111
+238|code|BCS             loc_F6|2-210
+240|code|STRB            R0, [R1]|8-112
+242|code|ADDS            R1, #1|1-49
+244|code|B               loc_11E|19-224
+246|code|LSRS            R2, R3, #0xC|26-11
+248|code|ADDS            R1, #3|3-49
+250|code|ORN.W           R2, R2, #0x1F|98-240-31-2
+254|code|STRB.W          R2, [R1,#-3]|1-248-3-44
+258|code|UBFX.W          R2, R3, #6, #6|195-243-133-18
+262|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+266|code|STRB.W          R2, [R1,#-2]|1-248-2-44
+270|code|AND.W           R2, R3, #0x3F|3-240-63-2
+274|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+278|code|STRB.W          R2, [R1,#-1]|1-248-1-44
+282|code|B               loc_11E|0-224
+284|code|MOV             R12, R3|156-70
+286|code|MOV             R2, LR|114-70
+288|code|B               loc_4C|148-231
+290|code|MOV.W           R8, #0|79-240-0-8
+294|code|LDR             R0, =aS; "%s"|53-72
+296|code|STRB.W          R8, [R1]|129-248-0-128
+300|code|MOV             R1, vendor|57-70
+302|code|BLX             R5; grub_printf|168-71
+304|code|MOV             R0, vendor|56-70
+306|code|LDR             R3, =grub_free|51-75
+308|code|MOV             vendor, R8|71-70
+310|code|BLX             R3; grub_free|152-71
+312|code|LDR             R1, [st,#0x1C]|241-105
+314|code|LDR             R0, =aVersionX; ", Version=%x\n"|50-72
+316|code|BLX             R5; grub_printf|168-71
+318|code|LDR             R0, =aLldTables; "%lld tables:\n"|50-72
+320|code|LDR             R2, [st,#0x40]|50-108
+322|code|MOV             R3, R8|67-70
+324|code|BLX             R5; grub_printf|168-71
+326|code|LDR.W           R9, =guid_mappings|223-248-216-144
+330|code|LDR             R4, [st,#0x44]|116-108
+332|code|LDR             R3, [st,#0x40]|51-108
+334|code|CMP             i, R3|159-66
+336|code|BCS             loc_1DC|68-210
+338|code|LDRB            R1, [t,#0x11]|97-124
+340|code|MOV             R8, t|160-70
+342|code|LDRB            R3, [t,#0x10]|35-124
+344|code|LDR             R0, =aP; "%p  "|44-72
+346|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+350|code|LDRB            R1, [t,#0x12]|161-124
+352|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+356|code|LDRB            R1, [t,#0x13]|225-124
+358|code|ORR.W           R1, R3, R1,LSL#24|67-234-1-97
+362|code|BLX             R5; grub_printf|168-71
+364|code|LDRB            R1, [t,#1]|97-120
+366|code|LDRB            R3, [t]|35-120
+368|code|LDRB.W          R10, [t,#3]|148-248-3-160
+372|code|ORR.W           R1, R3, R1,LSL#8|67-234-1-33
+376|code|LDRB            R3, [t,#2]|163-120
+378|code|LDRB.W          R12, [t,#5]|148-248-5-192
+382|code|LDRB.W          LR, [R8,#7]!|24-248-7-239
+386|code|ORR.W           R1, R1, R3,LSL#16|65-234-3-65
+390|code|LDRB            R2, [t,#4]|34-121
+392|code|LDRB            R3, [t,#6]|163-121
+394|code|ORR.W           R1, R1, R10,LSL#24|65-234-10-97
+398|code|LDR             R0, =a08x04x04x; "%08x-%04x-%04x-"|32-72
+400|code|ORR.W           R2, R2, R12,LSL#8|66-234-12-34
+404|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+408|code|ADD.W           R10, t, #0xF|4-241-15-10
+412|code|BLX             R5; grub_printf|168-71
+414|code|LDRB.W          R1, [R8,#1]!|24-248-1-31
+418|code|LDR             R0, =a02x; "%02x"|28-72
+420|code|BLX             R5; grub_printf|168-71
+422|code|CMP             R8, R10|208-69
+424|code|BNE             loc_19E|249-209
+426|code|LDR.W           R11, =grub_memcmp|223-248-120-176
+430|code|MOV.W           R8, #0|79-240-0-8
+434|code|ADD.W           R10, R9, R8|9-235-8-10
+438|code|MOV             R1, t|33-70
+440|code|MOVS            R2, #0x10|16-34
+442|code|MOV             R0, R10|80-70
+444|code|BLX             R11; grub_memcmp|216-71
+446|code|CBNZ            R0, loc_1C8|24-185
+448|code|LDR             R0, =aS_0; "   %s"|21-72
+450|code|LDR.W           R1, [R10,#0x10]|218-248-16-16
+454|code|BLX             R5; grub_printf|168-71
+456|code|ADD.W           R8, R8, #0x18|8-241-24-8
+460|code|CMP.W           R8, #0x90|184-241-144-15
+464|code|BNE             loc_1B2|239-209
+466|code|LDR             R0, =asc_36B; "\n"|18-72
+468|code|ADDS            t, #0x14|20-52
+470|code|BLX             R5; grub_printf|168-71
+472|code|ADDS            i, #1|1-55
+474|code|B               loc_14C|183-231
+476|code|MOVS            R0, #0|0-32
+478|code|ADD             SP, SP, #0xC|3-176
+480|code|POP.W           {R4-R11,PC}|189-232-240-143
+484|data|DCD grub_efi_system_table_0|208-3-0-0
+488|data|DCD grub_printf|220-3-0-0
+492|data|DCD aSignature016ll; "Signature: %016llx revision: %08x\n"|0-3-0-0
+496|data|DCD aVendor; "Vendor: "|35-3-0-0
+500|data|DCD grub_malloc|228-3-0-0
+504|data|DCD grub_errno|212-3-0-0
+508|data|DCD aS; "%s"|44-3-0-0
+512|data|DCD grub_free|232-3-0-0
+516|data|DCD aVersionX; ", Version=%x\n"|47-3-0-0
+520|data|DCD aLldTables; "%lld tables:\n"|61-3-0-0
+524|data|DCD aP; "%p  "|75-3-0-0
+528|data|DCD a08x04x04x; "%08x-%04x-%04x-"|80-3-0-0
+532|data|DCD a02x; "%02x"|96-3-0-0
+536|data|DCD aS_0; "   %s"|101-3-0-0
+540|data|DCD asc_36B; "\n"|107-3-0-0
+544|data|DCD guid_mappings|112-2-0-0
+548|data|DCD grub_memcmp|236-3-0-0
+552|code|PUSH            {mod,R1,R4,LR}|19-181
+554|code|MOVS            R3, #0|0-35
+556|code|LDR             R1, =(grub_cmd_lsefisystab+1)|5-73
+558|code|STR             R3, [SP,#0x10+var_10]|0-147
+560|code|LDR             R2, =unk_379|5-74
+562|code|LDR             R3, =aDisplayEfiSyst; "Display EFI system tables."|6-75
+564|code|LDR             R4, =grub_register_command_prio|6-76
+566|code|LDR             mod, =aLsefisystab; "lsefisystab"|7-72
+568|code|BLX             R4; grub_register_command_prio|160-71
+570|code|LDR             R3, =cmd|7-75
+572|code|STR             R0, [R3]|24-96
+574|code|ADD             SP, SP, #8|2-176
+576|code|POP             {R4,PC}|16-189
+578|data|ALIGN 4|0-191
+580|data|DCD grub_cmd_lsefisystab+1|1-0-0-0
+584|data|DCD unk_379|121-3-0-0
+588|data|DCD aDisplayEfiSyst; "Display EFI system tables."|122-3-0-0
+592|data|DCD grub_register_command_prio|216-3-0-0
+596|data|DCD aLsefisystab; "lsefisystab"|109-3-0-0
+600|data|DCD cmd|204-3-0-0
+604|code|PUSH            {R3,LR}|8-181
+606|code|LDR             R3, =cmd|2-75
+608|code|LDR             R0, [R3]|24-104
+610|code|LDR             R3, =grub_unregister_command|2-75
+612|code|BLX             R3; grub_unregister_command|152-71
+614|code|POP             {R3,PC}|8-189
+616|data|DCD cmd|204-3-0-0
+620|data|DCD grub_unregister_command|224-3-0-0
+624|data|DCD 0x8868E871          ; guid.data1; "ACPI-2.0" ...|113-232-104-136-241-228-211-17-188-34-0-128-199-60-136-129-149-3-0-0-0-0-0-0-48-45-157-235-136-45-211-17-154-22-0-144-39-63-193-77-158-3-0-0-0-0-0-0-50-45-157-235-136-45-211-17-154-22-0-144-39-63-193-77-167-3-0-0-0-0-0-0-49-45-157-235-136-45-211-17-154-22-0-144-39-63-193-77-171-3-0-0-0-0-0-0-47-45-157-235-136-45-211-17-154-22-0-144-39-63-193-77-178-3-0-0-0-0-0-0-141-147-81-249-11-98-239-66-130-121-168-75-121-97-120-152-182-3-0-0-0-0-0-0
+768|data|DCB "Signature: %016llx revision: %08x",0xA,0|83-105-103-110-97-116-117-114-101-58-32-37-48-49-54-108-108-120-32-114-101-118-105-115-105-111-110-58-32-37-48-56-120-10-0
+803|data|DCB "Vendor: ",0|86-101-110-100-111-114-58-32-0
+812|data|DCB "%s",0|37-115-0
+815|data|DCB ", Version=%x",0xA,0|44-32-86-101-114-115-105-111-110-61-37-120-10-0
+829|data|DCB "%lld tables:",0xA,0|37-108-108-100-32-116-97-98-108-101-115-58-10-0
+843|data|DCB "%p  ",0|37-112-32-32-0
+848|data|DCB "%08x-%04x-%04x-",0|37-48-56-120-45-37-48-52-120-45-37-48-52-120-45-0
+864|data|DCB "%02x",0|37-48-50-120-0
+869|data|DCB "   %s",0|32-32-32-37-115-0
+875|data|DCB 0xA,0|10-0
+877|data|DCB "lsefisystab",0|108-115-101-102-105-115-121-115-116-97-98-0
+890|data|DCB "Display EFI system tables.",0|68-105-115-112-108-97-121-32-69-70-73-32-115-121-115-116-101-109-32-116-97-98-108-101-115-46-0
+917|data|DCB "ACPI-2.0",0|65-67-80-73-45-50-46-48-0
+926|data|DCB "ACPI-1.0",0|65-67-80-73-45-49-46-48-0
+935|data|DCB "SAL",0|83-65-76-0
+939|data|DCB "SMBIOS",0|83-77-66-73-79-83-0
+946|data|DCB "MPS",0|77-80-83-0
+950|data|DCB "HCDP",0|72-67-68-80-0
+955|data||255
+956|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

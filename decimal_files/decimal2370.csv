@@ -1,0 +1,261 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+4|code|SUBS            R3, argc, #2|139-30
+6|code|CMP             R3, #1|1-43
+8|code|MOV             R8, cmd|128-70
+10|code|MOV             R7, argc|15-70
+12|code|MOV             R6, argv|22-70
+14|code|BLS             loc_1C|5-217
+16|code|LDR             argc, =aTwoArgumentsEx; "two arguments expected"|33-73
+18|code|MOVS            cmd, #0x12|18-32
+20|code|LDR             R3, =grub_error|33-75
+22|code|BLX             R3; grub_error|152-71
+24|code|POP.W           {R3-R9,PC}|189-232-248-131
+28|code|MOVS            argc, #0|0-33
+30|code|LDR             cmd, [argv]|16-104
+32|code|LDR             R5, =grub_strtoul|31-77
+34|code|MOV             argv, R1|10-70
+36|code|BLX             R5; grub_strtoul|168-71
+38|code|MOVS            R1, #0|0-33
+40|code|MOV             R2, R1|10-70
+42|code|MOV             R4, R0|4-70
+44|code|LDR             addr, [argv,#4]|112-104
+46|code|BLX             R5; grub_strtoul|168-71
+48|code|CMP             argc, #3|3-47
+50|code|MOV             R9, R0|129-70
+52|code|BNE             loc_42|5-209
+54|code|MOVS            R1, #0|0-33
+56|code|LDR             value, [argv,#8]|176-104
+58|code|MOV             R2, R1|10-70
+60|code|BLX             R5; grub_strtoul|168-71
+62|code|MOV             R1, R0|1-70
+64|code|B               loc_46|1-224
+66|code|MOV.W           R1, #0xFFFFFFFF|79-240-255-49
+70|code|LDR.W           R2, [cmd,#8]|216-248-8-32
+74|code|AND.W           R3, mask, value|1-234-9-3
+78|code|LDRB            R2, [R2,#6]|146-121
+80|code|CMP             R2, #0x64 ; 'd'|100-42
+82|code|BEQ             loc_6E|12-208
+84|code|CMP             R2, #0x77 ; 'w'|119-42
+86|code|BEQ             loc_7C|17-208
+88|code|CMP             R2, #0x62 ; 'b'|98-42
+90|code|BNE             loc_92|26-209
+92|code|UXTB            R2, mask|202-178
+94|code|CMP             R2, #0xFF|255-42
+96|code|ITTT NE|30-191
+98|code|LDRBNE          R2, [addr]|34-120
+100|code|BICNE           R2, mask|138-67
+102|code|ORRNE           value, R2|19-67
+104|code|UXTB            R3, R3|219-178
+106|code|STRB            R3, [addr]|35-112
+108|code|B               loc_92|17-224
+110|code|ADDS            R2, mask, #1|74-28
+112|code|ITTT NE|30-191
+114|code|LDRNE           R2, [addr]|34-104
+116|code|BICNE           R2, mask|138-67
+118|code|ORRNE           value, R2|19-67
+120|code|STR             R3, [addr]|35-96
+122|code|B               loc_92|10-224
+124|code|UXTH            R0, mask|136-178
+126|code|MOVW            R2, #0xFFFF|79-246-255-114
+130|code|CMP             R0, R2|144-66
+132|code|ITTTT NE|31-191
+134|code|LDRHNE          R2, [addr]|34-136
+136|code|UXTHNE          R2, R2|146-178
+138|code|BICNE           R2, mask|138-67
+140|code|ORRNE           value, R2|19-67
+142|code|UXTH            R3, R3|155-178
+144|code|STRH            R3, [addr]|35-128
+146|code|MOVS            R0, #0|0-32
+148|code|POP.W           {R3-R9,PC}|189-232-248-131
+152|data|DCD aTwoArgumentsEx; "two arguments expected"|104-2-0-0
+156|data|DCD grub_error|12-4-0-0
+160|data|DCD grub_strtoul|24-4-0-0
+164|code|CMP             argc, #1|1-41
+166|code|PUSH            {R4,R5,LR}|48-181
+168|code|MOV             R4, ctxt|4-70
+170|code|SUB             SP, SP, #0x14|133-176
+172|code|BEQ             loc_B8|4-208
+174|code|LDR             argc, =aOneArgumentExp; "one argument expected"|24-73
+176|code|MOVS            ctxt, #0x12|18-32
+178|code|LDR             R3, =grub_error|24-75
+180|code|BLX             R3; grub_error|152-71
+182|code|B               loc_10C|41-224
+184|code|MOVS            argc, #0|0-33
+186|code|LDR             ctxt, [argv]|16-104
+188|code|LDR             R3, =grub_strtoul|22-75
+190|code|MOV             argv, R1|10-70
+192|code|BLX             R3; grub_strtoul|152-71
+194|code|LDR             R3, [ctxt]|35-104
+196|code|LDR             R3, [R3]|27-104
+198|code|LDR             R3, [R3,#8]|155-104
+200|code|LDRB            R3, [R3,#5]|91-121
+202|code|CMP             R3, #0x64 ; 'd'|100-43
+204|code|BEQ             loc_DC|6-208
+206|code|CMP             R3, #0x77 ; 'w'|119-43
+208|code|BEQ             loc_E0|6-208
+210|code|CMP             R3, #0x62 ; 'b'|98-43
+212|code|BNE             loc_E6|7-209
+214|code|LDRB            R3, [addr]|3-120
+216|code|UXTB            R3, R3|219-178
+218|code|B               loc_E8|5-224
+220|code|LDR             R3, [addr]|3-104
+222|code|B               loc_E8|3-224
+224|code|LDRH            R3, [addr]|3-136
+226|code|UXTH            R3, R3|155-178
+228|code|B               loc_E8|0-224
+230|code|MOVS            R3, #0|0-35
+232|code|LDR             R2, [ctxt,#4]|98-104
+234|code|LDR             R2, [R2]|18-104
+236|code|CBZ             R2, loc_102|74-177
+238|code|MOVS            R1, #9|9-33
+240|code|ADD             addr, SP, #0x20+buf|1-168
+242|code|LDR             R2, =aX; "%x"|10-74
+244|code|LDR             R5, =grub_snprintf|10-77
+246|code|BLX             R5; grub_snprintf|168-71
+248|code|LDR             R3, [ctxt,#4]|99-104
+250|code|ADD             R1, SP, #0x20+buf|1-169
+252|code|LDR             R0, [R3,#4]|88-104
+254|code|LDR             R3, =grub_env_set|9-75
+256|code|B               loc_108|2-224
+258|code|MOV             R1, value|25-70
+260|code|LDR             addr, =a0xX; "0x%x\n"|8-72
+262|code|LDR             value, =grub_printf|9-75
+264|code|BLX             R3; grub_env_set|152-71
+266|code|MOVS            R0, #0|0-32
+268|code|ADD             SP, SP, #0x14|5-176
+270|code|POP             {ctxt,R5,PC}|48-189
+272|data|DCD aOneArgumentExp; "one argument expected"|127-2-0-0
+276|data|DCD grub_error|12-4-0-0
+280|data|DCD grub_strtoul|24-4-0-0
+284|data|DCD aX; "%x"|149-2-0-0
+288|data|DCD grub_snprintf|248-3-0-0
+292|data|DCD grub_env_set|20-4-0-0
+296|data|DCD a0xX; "0x%x\n"|152-2-0-0
+300|data|DCD grub_printf|4-4-0-0
+304|code|PUSH.W          {mod,R1,R4-R8,LR}|45-233-243-65
+308|code|MOVS            R2, #0|0-34
+310|code|LDR             R7, =(grub_cmd_read+1)|32-79
+312|code|LDR             R6, =aAddr; "ADDR"|32-78
+314|code|LDR.W           R8, =options|223-248-200-128
+318|code|LDR             R3, =aRead8BitValueF; "Read 8-bit value from ADDR."|32-75
+320|code|MOV             R1, R7|57-70
+322|code|LDR             R5, =grub_register_extcmd|32-77
+324|code|STR.W           R8, [SP,#0x20+var_1C]|205-248-4-128
+328|code|STR             R3, [SP,#0x20+var_20]|0-147
+330|code|MOV             R3, R6|51-70
+332|code|LDR             mod, =aReadByte; "read_byte"|30-72
+334|code|BLX             R5; grub_register_extcmd|168-71
+336|code|LDR             R4, =cmd_read_byte|30-76
+338|code|LDR             R3, =aRead16BitValue; "Read 16-bit value from ADDR."|31-75
+340|code|MOV             R1, R7|57-70
+342|code|MOVS            R2, #0|0-34
+344|code|STMEA.W         SP, {R3,R8}|141-232-8-1
+348|code|MOV             R3, R6|51-70
+350|code|STR             R0, [R4]|32-96
+352|code|LDR             R0, =aReadWord; "read_word"|28-72
+354|code|BLX             R5; grub_register_extcmd|168-71
+356|code|LDR             R3, =aRead32BitValue; "Read 32-bit value from ADDR."|28-75
+358|code|MOV             R1, R7|57-70
+360|code|MOVS            R2, #0|0-34
+362|code|LDR             R7, =(grub_cmd_write+1)|28-79
+364|code|STMEA.W         SP, {R3,R8}|141-232-8-1
+368|code|MOV             R3, R6|51-70
+370|code|LDR             R6, =aAddrValueMask; "ADDR VALUE [MASK]"|27-78
+372|code|MOV.W           R8, #0|79-240-0-8
+376|code|STR             R0, [R4,#(cmd_read_word - 0x3E0)]|96-96
+378|code|LDR             R0, =aReadDword; "read_dword"|26-72
+380|code|BLX             R5; grub_register_extcmd|168-71
+382|code|LDR             R5, =grub_register_command_prio|26-77
+384|code|MOV             R1, R7|57-70
+386|code|MOV             R2, R6|50-70
+388|code|STR.W           R8, [SP,#0x20+var_20]|205-248-0-128
+392|code|LDR             R3, =aWrite8BitValue; "Write 8-bit VALUE to ADDR."|24-75
+394|code|STR             R0, [R4,#(cmd_read_dword - 0x3E0)]|160-96
+396|code|LDR             R0, =aWriteByte; "write_byte"|24-72
+398|code|BLX             R5; grub_register_command_prio|168-71
+400|code|MOV             R1, R7|57-70
+402|code|MOV             R2, R6|50-70
+404|code|STR.W           R8, [SP,#0x20+var_20]|205-248-0-128
+408|code|LDR             R3, =aWrite16BitValu; "Write 16-bit VALUE to ADDR."|22-75
+410|code|STR             R0, [R4,#(cmd_write_byte - 0x3E0)]|224-96
+412|code|LDR             R0, =aWriteWord; "write_word"|22-72
+414|code|BLX             R5; grub_register_command_prio|168-71
+416|code|STR.W           R8, [SP,#0x20+var_20]|205-248-0-128
+420|code|MOV             R1, R7|57-70
+422|code|MOV             R2, R6|50-70
+424|code|LDR             R3, =aWrite32BitValu; "Write 32-bit VALUE to ADDR."|20-75
+426|code|STR             R0, [R4,#(cmd_write_word - 0x3E0)]|32-97
+428|code|LDR             R0, =aWriteDword; "write_dword"|20-72
+430|code|BLX             R5; grub_register_command_prio|168-71
+432|code|STR             R0, [R4,#(cmd_write_dword - 0x3E0)]|96-97
+434|code|ADD             SP, SP, #8|2-176
+436|code|POP.W           {R4-R8,PC}|189-232-240-129
+440|data|DCD grub_cmd_read+1|165-0-0-0
+444|data|DCD aAddr; "ADDR"|168-2-0-0
+448|data|DCD aRead8BitValueF; "Read 8-bit value from ADDR."|173-2-0-0
+452|data|DCD grub_register_extcmd|16-4-0-0
+456|data|DCD aReadByte; "read_byte"|158-2-0-0
+460|data|DCD cmd_read_byte|224-3-0-0
+464|data|DCD aRead16BitValue; "Read 16-bit value from ADDR."|211-2-0-0
+468|data|DCD aReadWord; "read_word"|201-2-0-0
+472|data|DCD aRead32BitValue; "Read 32-bit value from ADDR."|251-2-0-0
+476|data|DCD grub_cmd_write+1|1-0-0-0
+480|data|DCD aAddrValueMask; "ADDR VALUE [MASK]"|35-3-0-0
+484|data|DCD aReadDword; "read_dword"|240-2-0-0
+488|data|DCD grub_register_command_prio|0-4-0-0
+492|data|DCD aWrite8BitValue; "Write 8-bit VALUE to ADDR."|53-3-0-0
+496|data|DCD aWriteByte; "write_byte"|24-3-0-0
+500|data|DCD aWrite16BitValu; "Write 16-bit VALUE to ADDR."|91-3-0-0
+504|data|DCD aWriteWord; "write_word"|80-3-0-0
+508|data|DCD aWrite32BitValu; "Write 32-bit VALUE to ADDR."|131-3-0-0
+512|data|DCD aWriteDword; "write_dword"|119-3-0-0
+516|data|DCD options|56-2-0-0
+520|code|PUSH            {R3-R5,LR}|56-181
+522|code|LDR             R4, =cmd_read_byte|8-76
+524|code|LDR             R5, =grub_unregister_extcmd|8-77
+526|code|LDR             R0, [R4]|32-104
+528|code|BLX             R5; grub_unregister_extcmd|168-71
+530|code|LDR             R0, [R4,#(cmd_read_word - 0x3E0)]|96-104
+532|code|BLX             R5; grub_unregister_extcmd|168-71
+534|code|LDR             R0, [R4,#(cmd_read_dword - 0x3E0)]|160-104
+536|code|BLX             R5; grub_unregister_extcmd|168-71
+538|code|LDR             R0, [R4,#(cmd_write_byte - 0x3E0)]|224-104
+540|code|LDR             R5, =grub_unregister_command|5-77
+542|code|BLX             R5; grub_unregister_command|168-71
+544|code|LDR             R0, [R4,#(cmd_write_word - 0x3E0)]|32-105
+546|code|BLX             R5; grub_unregister_command|168-71
+548|code|LDR             R0, [R4,#(cmd_write_dword - 0x3E0)]|96-105
+550|code|BLX             R5; grub_unregister_command|168-71
+552|code|POP             {R3-R5,PC}|56-189
+554|data|ALIGN 4|0-191
+556|data|DCD cmd_read_byte|224-3-0-0
+560|data|DCD grub_unregister_extcmd|252-3-0-0
+564|data|DCD grub_unregister_command|8-4-0-0
+568|data|grub_arg_option <0, 0x76, 0, aSaveReadValueI, aVarname, \; "Save read value into variable VARNAME." ...|0-0-0-0-118-0-0-0-0-0-0-0-159-3-0-0-198-3-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+616|data|DCB "two arguments expected",0|116-119-111-32-97-114-103-117-109-101-110-116-115-32-101-120-112-101-99-116-101-100-0
+639|data|DCB "one argument expected",0|111-110-101-32-97-114-103-117-109-101-110-116-32-101-120-112-101-99-116-101-100-0
+661|data|DCB "%x",0|37-120-0
+664|data|DCB "0x%x",0xA,0|48-120-37-120-10-0
+670|data|DCB "read_byte",0|114-101-97-100-95-98-121-116-101-0
+680|data|DCB "ADDR",0|65-68-68-82-0
+685|data|DCB "Read 8-bit value from ADDR.",0|82-101-97-100-32-56-45-98-105-116-32-118-97-108-117-101-32-102-114-111-109-32-65-68-68-82-46-0
+713|data|DCB "read_word",0|114-101-97-100-95-119-111-114-100-0
+723|data|DCB "Read 16-bit value from ADDR.",0|82-101-97-100-32-49-54-45-98-105-116-32-118-97-108-117-101-32-102-114-111-109-32-65-68-68-82-46-0
+752|data|DCB "read_dword",0|114-101-97-100-95-100-119-111-114-100-0
+763|data|DCB "Read 32-bit value from ADDR.",0|82-101-97-100-32-51-50-45-98-105-116-32-118-97-108-117-101-32-102-114-111-109-32-65-68-68-82-46-0
+792|data|DCB "write_byte",0|119-114-105-116-101-95-98-121-116-101-0
+803|data|DCB "ADDR VALUE [MASK]",0|65-68-68-82-32-86-65-76-85-69-32-91-77-65-83-75-93-0
+821|data|DCB "Write 8-bit VALUE to ADDR.",0|87-114-105-116-101-32-56-45-98-105-116-32-86-65-76-85-69-32-116-111-32-65-68-68-82-46-0
+848|data|DCB "write_word",0|119-114-105-116-101-95-119-111-114-100-0
+859|data|DCB "Write 16-bit VALUE to ADDR.",0|87-114-105-116-101-32-49-54-45-98-105-116-32-86-65-76-85-69-32-116-111-32-65-68-68-82-46-0
+887|data|DCB "write_dword",0|119-114-105-116-101-95-100-119-111-114-100-0
+899|data|DCB "Write 32-bit VALUE to ADDR.",0|87-114-105-116-101-32-51-50-45-98-105-116-32-86-65-76-85-69-32-116-111-32-65-68-68-82-46-0
+927|data|DCB "Save read value into variable VARNAME.",0|83-97-118-101-32-114-101-97-100-32-118-97-108-117-101-32-105-110-116-111-32-118-97-114-105-97-98-108-101-32-86-65-82-78-65-77-69-46-0
+966|data|DCB "VARNAME",0|86-65-82-78-65-77-69-0
+975|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+992|data|% 4|255-255-255-255
+996|data|% 4|255-255-255-255
+1000|data|% 4|255-255-255-255
+1004|data|% 4|255-255-255-255
+1008|data|% 4|255-255-255-255

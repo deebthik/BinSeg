@@ -1,0 +1,120 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [ctxt,#4]|67-104
+2|code|PUSH            {ctxt-args,R4-R7,LR}|247-181
+4|code|LDR             args, [state]|26-104
+6|code|CMP             R2, #0|0-42
+8|code|LDR             R2, [state,#8]|154-104
+10|code|ITE EQ|12-191
+12|code|MOVEQ           R4, #0|0-36
+14|code|MOVNE           R4, #3|3-36
+16|code|CBZ             R2, loc_16|10-177
+18|code|ORR.W           expect_mods, expect_mods, #0x104|68-244-130-116
+22|code|LDR             state, [state,#0x10]|27-105
+24|code|CBZ             R3, loc_1E|11-177
+26|code|ORR.W           expect_mods, expect_mods, #0x208|68-244-2-116
+30|code|LDR             mods, =grub_real_dprintf|25-77
+32|code|MOVS            argc, #0x48 ; 'H'|72-33
+34|code|STR             expect_mods, [SP,#0x20+var_20]|0-148
+36|code|LDR             ctxt, =aCommandsKeysta; "commands/keystatus.c"|24-72
+38|code|LDR             R2, =aKeystatus; "keystatus"|25-74
+40|code|MOV             R7, mods|47-70
+42|code|LDR             R3, =aExpectModsD; "expect_mods: %d\n"|25-75
+44|code|BLX             mods; grub_real_dprintf|168-71
+46|code|LDR             mods, =grub_term_inputs|25-77
+48|code|CBNZ            expect_mods, loc_46|76-185
+50|code|LDR             R3, [mods]|43-104
+52|code|CBZ             term, loc_40|35-177
+54|code|LDR             R2, [term,#0x18]|154-105
+56|code|CBZ             R2, loc_78|242-177
+58|code|ADDS            nterms, #1|1-52
+60|code|LDR             term, [term]|27-104
+62|code|B               loc_34|249-231
+64|code|CBZ             nterms, loc_78|212-177
+66|code|MOVS            R0, #0|0-32
+68|code|B               loc_80|28-224
+70|code|LDR             R3, =grub_term_poll_usb|20-75
+72|code|LDR             R3, [R3]|27-104
+74|code|CBZ             R3, loc_50|11-177
+76|code|MOVS            R0, #0|0-32
+78|code|BLX             R3|152-71
+80|code|LDR             R6, [mods]|46-104
+82|code|MOVS            mods, #0|0-37
+84|code|CBZ             R6, loc_64|54-177
+86|code|LDR             R3, [R6,#0x18]|179-105
+88|code|CBZ             R3, loc_60|19-177
+90|code|MOV             R0, R6|48-70
+92|code|BLX             R3|152-71
+94|code|ORRS            mods, R0|5-67
+96|code|LDR             R6, [R6]|54-104
+98|code|B               loc_54|247-231
+100|code|STR             mods, [SP,#0x20+var_20]|0-149
+102|code|MOVS            R1, #0x5C ; '\'|92-33
+104|code|LDR             R0, =aCommandsKeysta; "commands/keystatus.c"|7-72
+106|code|LDR             R2, =aKeystatus; "keystatus"|8-74
+108|code|LDR             R3, =aModsD; "mods: %d\n"|11-75
+110|code|BLX             R7; grub_real_dprintf|184-71
+112|code|CMP             mods, #0|0-45
+114|code|BLT             loc_78|1-219
+116|code|TST             mods, expect_mods|37-66
+118|code|BNE             loc_42|228-209
+120|code|MOVS            R0, #1|1-32
+122|code|LDR             R1, =aFalse; "false"|9-73
+124|code|LDR             R3, =grub_error|9-75
+126|code|BLX             R3; grub_error|152-71
+128|code|ADD             SP, SP, #0xC|3-176
+130|code|POP             {R4-R7,PC}|240-189
+132|data|DCD grub_real_dprintf|44-2-0-0
+136|data|DCD aCommandsKeysta; "commands/keystatus.c"|88-1-0-0
+140|data|DCD aKeystatus; "keystatus"|109-1-0-0
+144|data|DCD aExpectModsD; "expect_mods: %d\n"|119-1-0-0
+148|data|DCD grub_term_inputs|40-2-0-0
+152|data|DCD grub_term_poll_usb|48-2-0-0
+156|data|DCD aModsD; "mods: %d\n"|142-1-0-0
+160|data|DCD aFalse; "false"|136-1-0-0
+164|data|DCD grub_error|52-2-0-0
+168|code|LDR             R3, =aCheckKeyModifi; "Check key modifier status."|7-75
+170|code|MOVS            R2, #0|0-34
+172|code|PUSH            {mod,R1,R4,LR}|19-181
+174|code|STR             R3, [SP,#0x10+var_10]|0-147
+176|code|LDR             R3, =options|6-75
+178|code|LDR             R1, =(grub_cmd_keystatus+1)|7-73
+180|code|LDR             R4, =grub_register_extcmd|7-76
+182|code|STR             R3, [SP,#0x10+var_C]|1-147
+184|code|LDR             mod, =aKeystatus; "keystatus"|7-72
+186|code|LDR             R3, =aShiftCtrlAlt; "[--shift] [--ctrl] [--alt]"|8-75
+188|code|BLX             R4; grub_register_extcmd|160-71
+190|code|LDR             R3, =cmd|8-75
+192|code|STR             R0, [R3]|24-96
+194|code|ADD             SP, SP, #8|2-176
+196|code|POP             {R4,PC}|16-189
+198|data|ALIGN 4|0-191
+200|data|DCD aCheckKeyModifi; "Check key modifier status."|179-1-0-0
+204|data|DCD options|248-0-0-0
+208|data|DCD grub_cmd_keystatus+1|1-0-0-0
+212|data|DCD grub_register_extcmd|56-2-0-0
+216|data|DCD aKeystatus; "keystatus"|109-1-0-0
+220|data|DCD aShiftCtrlAlt; "[--shift] [--ctrl] [--alt]"|152-1-0-0
+224|data|DCD cmd|32-2-0-0
+228|code|PUSH            {R3,LR}|8-181
+230|code|LDR             R3, =cmd|2-75
+232|code|LDR             R0, [R3]|24-104
+234|code|LDR             R3, =grub_unregister_extcmd|2-75
+236|code|BLX             R3; grub_unregister_extcmd|152-71
+238|code|POP             {R3,PC}|8-189
+240|data|DCD cmd|32-2-0-0
+244|data|DCD grub_unregister_extcmd|36-2-0-0
+248|data|grub_arg_option <aShift, 0x73, 0, aCheckShiftKey, 0, ARG_TYPE_NONE>; "shift" ...|206-1-0-0-115-0-0-0-0-0-0-0-212-1-0-0-0-0-0-0-0-0-0-0-229-1-0-0-99-0-0-0-0-0-0-0-234-1-0-0-0-0-0-0-0-0-0-0-253-1-0-0-97-0-0-0-0-0-0-0-1-2-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+344|data|DCB "commands/keystatus.c",0|99-111-109-109-97-110-100-115-47-107-101-121-115-116-97-116-117-115-46-99-0
+365|data|DCB "keystatus",0|107-101-121-115-116-97-116-117-115-0
+375|data|DCB "expect_mods: %d",0xA,0|101-120-112-101-99-116-95-109-111-100-115-58-32-37-100-10-0
+392|data|DCB "false",0|102-97-108-115-101-0
+398|data|DCB "mods: %d",0xA,0|109-111-100-115-58-32-37-100-10-0
+408|data|DCB "[--shift] [--ctrl] [--alt]",0|91-45-45-115-104-105-102-116-93-32-91-45-45-99-116-114-108-93-32-91-45-45-97-108-116-93-0
+435|data|DCB "Check key modifier status.",0|67-104-101-99-107-32-107-101-121-32-109-111-100-105-102-105-101-114-32-115-116-97-116-117-115-46-0
+462|data|DCB "shift",0|115-104-105-102-116-0
+468|data|DCB "Check Shift key.",0|67-104-101-99-107-32-83-104-105-102-116-32-107-101-121-46-0
+485|data|DCB "ctrl",0|99-116-114-108-0
+490|data|DCB "Check Control key.",0|67-104-101-99-107-32-67-111-110-116-114-111-108-32-107-101-121-46-0
+509|data|DCB "alt",0|97-108-116-0
+513|data|DCB "Check Alt key.",0|67-104-101-99-107-32-65-108-116-32-107-101-121-46-0
+529|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

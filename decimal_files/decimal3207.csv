@@ -1,0 +1,167 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|MOV             R4, args|20-70
+6|code|SUB             SP, SP, #0x24|137-176
+8|code|LDR             R3, [ctxt,#4]|67-104
+10|code|CBNZ            argc, loc_12|17-185
+12|code|MOVS            ctxt, #0x12|18-32
+14|code|LDR             argc, =aFilenameExpect; "filename expected"|58-73
+16|code|B               loc_2A|11-224
+18|code|LDR             args, [state]|26-104
+20|code|CBZ             R2, loc_30|98-177
+22|code|MOVS            argc, #0|0-33
+24|code|LDR             ctxt, [state,#4]|88-104
+26|code|MOV             R2, R1|10-70
+28|code|LDR             state, =grub_strtoul|55-75
+30|code|BLX             R3; grub_strtoul|152-71
+32|code|SUBS.W          R9, block_size, #0|176-241-0-9
+36|code|BGT             loc_34|6-220
+38|code|LDR             R1, =aInvalidBlockSi; "invalid block size"|54-73
+40|code|MOVS            block_size, #0x12|18-32
+42|code|LDR             R3, =grub_error|54-75
+44|code|BLX             R3; grub_error|152-71
+46|code|B               loc_F2|96-224
+48|code|MOV.W           R9, #0x10000|79-244-128-57
+52|code|MOV             R0, block_size|72-70
+54|code|LDR             R3, =grub_malloc|52-75
+56|code|BLX             R3; grub_malloc|152-71
+58|code|MOV             R6, buffer|6-70
+60|code|CMP             buffer, #0|0-40
+62|code|BEQ             loc_EE|86-208
+64|code|LDR             buffer, [args]|32-104
+66|code|LDR             R3, =grub_file_open|50-75
+68|code|BLX             R3; grub_file_open|152-71
+70|code|MOV             R7, file|7-70
+72|code|CMP             file, #0|0-40
+74|code|BEQ             quit|77-208
+76|code|LDR.W           R8, =grub_get_time_ms|223-248-224-128
+80|code|MOVS            args, #0|0-36
+82|code|BLX             R8; grub_get_time_ms|192-71
+84|code|LDR.W           R10, =grub_file_read|223-248-220-160
+88|code|MOVS            R5, #0|0-37
+90|code|STRD.W          R0, R1, [SP,#0x48+start]|205-233-2-1
+94|code|MOV             R0, file|56-70
+96|code|MOV             R1, buffer|49-70
+98|code|MOV             R2, block_size|74-70
+100|code|BLX             R10; grub_file_read|208-71
+102|code|CMP             size, #0|0-40
+104|code|BLE             loc_72|3-221
+106|code|ADDS            R4, R4, size|36-24
+108|code|ADC.W           R5, R5, size,ASR#31|69-235-224-117
+112|code|B               loc_5E|245-231
+114|code|BLX             R8; grub_get_time_ms|192-71
+116|code|LDR             R3, =grub_file_close|38-75
+118|code|LDR.W           R10, =grub_get_human_size|223-248-192-160
+122|code|LDR.W           R11, =grub_divmod64|223-248-192-176
+126|code|MOV             R8, R0|128-70
+128|code|MOV             R0, file|56-70
+130|code|MOV             block_size, R1|137-70
+132|code|BLX             R3; grub_file_close|152-71
+134|code|MOVS            R2, #0|0-34
+136|code|MOV             R1, R5|41-70
+138|code|MOV             R0, R4|32-70
+140|code|LDR             file, =grub_printf_|33-79
+142|code|BLX             R10; grub_get_human_size|208-71
+144|code|MOV             R1, R0|1-70
+146|code|LDR             R0, =aFileSizeS; "File size: %s\n"|33-72
+148|code|BLX             R7; grub_printf_|184-71
+150|code|LDRD.W          R2, R3, [SP,#0x48+start]|221-233-2-35
+154|code|SUBS.W          R2, R8, R2|184-235-2-2
+158|code|SBC.W           R3, R9, R3|105-235-3-3
+162|code|STRD.W          R2, R3, [SP,#0x48+var_38]|205-233-4-35
+166|code|LDRD.W          R0, R1, [SP,#0x48+var_38]|221-233-4-1
+170|code|ADD             R3, SP, #0x48+fraction|6-171
+172|code|MOV.W           R2, #0x3E8|79-244-122-114
+176|code|STR             R3, [SP,#0x48+var_48]|0-147
+178|code|MOVS            R3, #0|0-35
+180|code|BLX             R11; grub_divmod64|216-71
+182|code|LDR             R2, [SP,#0x48+fraction]|6-154
+184|code|MOV             R1, R0|1-70
+186|code|LDR             R0, =aElapsedTimeD03; "Elapsed time: %d.%03d s \n"|24-72
+188|code|BLX             R7; grub_printf_|184-71
+190|code|LDRD.W          R2, R3, [SP,#0x48+start]|221-233-2-35
+194|code|CMP             R9, R3|153-69
+196|code|IT EQ|8-191
+198|code|CMPEQ           R8, R2|144-69
+200|code|BEQ             quit|14-208
+202|code|LDR             R3, =0x186A0|21-75
+204|code|UMULL.W         R0, R1, R4, R3|164-251-3-1
+208|code|MLA.W           R1, R3, R5, R1|3-251-5-17
+212|code|MOVS            R3, #0|0-35
+214|code|STR             R3, [SP,#0x48+var_48]|0-147
+216|code|LDRD.W          R2, R3, [SP,#0x48+var_38]|221-233-4-35
+220|code|BLX             R11; grub_divmod64|216-71
+222|code|MOVS            R2, #2|2-34
+224|code|BLX             R10; grub_get_human_size|208-71
+226|code|MOV             R1, R0|1-70
+228|code|LDR             R0, =aSpeedS; "Speed: %s \n"|15-72
+230|code|BLX             R7; grub_printf_|184-71
+232|code|MOV             R0, buffer|48-70
+234|code|LDR             R3, =grub_free|15-75
+236|code|BLX             R3; grub_free|152-71
+238|code|LDR             R3, =grub_errno|15-75
+240|code|LDR             R0, [R3]|24-104
+242|code|ADD             SP, SP, #0x24 ; '$'|9-176
+244|code|POP.W           {R4-R11,PC}|189-232-240-143
+248|data|DCD aFilenameExpect; "filename expected"|192-1-0-0
+252|data|DCD grub_strtoul|192-2-0-0
+256|data|DCD aInvalidBlockSi; "invalid block size"|210-1-0-0
+260|data|DCD grub_error|176-2-0-0
+264|data|DCD grub_malloc|160-2-0-0
+268|data|DCD grub_file_open|172-2-0-0
+272|data|DCD grub_file_close|168-2-0-0
+276|data|DCD grub_printf_|184-2-0-0
+280|data|DCD aFileSizeS; "File size: %s\n"|229-1-0-0
+284|data|DCD aElapsedTimeD03; "Elapsed time: %d.%03d s \n"|244-1-0-0
+288|data|DCD 0x186A0|160-134-1-0
+292|data|DCD aSpeedS; "Speed: %s \n"|14-2-0-0
+296|data|DCD grub_free|180-2-0-0
+300|data|DCD grub_errno|152-2-0-0
+304|data|DCD grub_get_time_ms|164-2-0-0
+308|data|DCD grub_file_read|156-2-0-0
+312|data|DCD grub_get_human_size|140-2-0-0
+316|data|DCD grub_divmod64|144-2-0-0
+320|code|LDR             R3, =aTestFileReadSp; "Test file read speed."|7-75
+322|code|MOVS            R2, #0|0-34
+324|code|PUSH            {mod,R1,R4,LR}|19-181
+326|code|STR             R3, [SP,#0x10+var_10]|0-147
+328|code|LDR             R3, =options|6-75
+330|code|LDR             R1, =(grub_cmd_testspeed+1)|7-73
+332|code|LDR             R4, =grub_register_extcmd|7-76
+334|code|STR             R3, [SP,#0x10+var_C]|1-147
+336|code|LDR             mod, =aTestspeed; "testspeed"|7-72
+338|code|LDR             R3, =aSSizeFilename; "[-s SIZE] FILENAME"|8-75
+340|code|BLX             R4; grub_register_extcmd|160-71
+342|code|LDR             R3, =cmd|8-75
+344|code|STR             R0, [R3]|24-96
+346|code|ADD             SP, SP, #8|2-176
+348|code|POP             {R4,PC}|16-189
+350|data|ALIGN 0x10|0-191
+352|data|DCD aTestFileReadSp; "Test file read speed."|55-2-0-0
+356|data|DCD options|144-1-0-0
+360|data|DCD grub_cmd_testspeed+1|1-0-0-0
+364|data|DCD grub_register_extcmd|188-2-0-0
+368|data|DCD aTestspeed; "testspeed"|26-2-0-0
+372|data|DCD aSSizeFilename; "[-s SIZE] FILENAME"|36-2-0-0
+376|data|DCD cmd|136-2-0-0
+380|code|PUSH            {R3,LR}|8-181
+382|code|LDR             R3, =cmd|2-75
+384|code|LDR             R0, [R3]|24-104
+386|code|LDR             R3, =grub_unregister_extcmd|2-75
+388|code|BLX             R3; grub_unregister_extcmd|152-71
+390|code|POP             {R3,PC}|8-189
+392|data|DCD cmd|136-2-0-0
+396|data|DCD grub_unregister_extcmd|148-2-0-0
+400|data|grub_arg_option <aSize, 0x73, 0, aSpecifySizeFor, 0, ARG_TYPE_INT>; "size" ...|77-2-0-0-115-0-0-0-0-0-0-0-82-2-0-0-0-0-0-0-2-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+448|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+466|data|DCB "invalid block size",0|105-110-118-97-108-105-100-32-98-108-111-99-107-32-115-105-122-101-0
+485|data|DCB "File size: %s",0xA,0|70-105-108-101-32-115-105-122-101-58-32-37-115-10-0
+500|data|DCB "Elapsed time: %d.%03d s ",0xA,0|69-108-97-112-115-101-100-32-116-105-109-101-58-32-37-100-46-37-48-51-100-32-115-32-10-0
+526|data|DCB "Speed: %s ",0xA,0|83-112-101-101-100-58-32-37-115-32-10-0
+538|data|DCB "testspeed",0|116-101-115-116-115-112-101-101-100-0
+548|data|DCB "[-s SIZE] FILENAME",0|91-45-115-32-83-73-90-69-93-32-70-73-76-69-78-65-77-69-0
+567|data|DCB "Test file read speed.",0|84-101-115-116-32-102-105-108-101-32-114-101-97-100-32-115-112-101-101-100-46-0
+589|data|DCB "size",0|115-105-122-101-0
+594|data|DCB "Specify size for each read operation",0|83-112-101-99-105-102-121-32-115-105-122-101-32-102-111-114-32-101-97-99-104-32-114-101-97-100-32-111-112-101-114-97-116-105-111-110-0
+631|data||255
+632|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,142 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [disk,#0x1C]|195-105
+2|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+6|code|MOV             R5, disk|5-70
+8|code|SUB             SP, SP, #0x94|165-176
+10|code|MOV             R7, id|15-70
+12|code|MOV             R8, start_sector|144-70
+14|code|CMP             R3, #0|0-43
+16|code|BNE             loc_E8|106-209
+18|code|LDR             R3, =grub_disk_get_size|55-75
+20|code|BLX             R3; grub_disk_get_size|152-71
+22|code|MOV             R3, R1|11-70
+24|code|ADDS            R1, #1|1-49
+26|code|MOV             R2, R0|2-70
+28|code|IT EQ|8-191
+30|code|CMPEQ.W         R2, #0xFFFFFFFF|178-241-255-63
+34|code|BEQ             loc_E8|97-208
+36|code|SUBS            R2, #2|2-58
+38|code|MOV.W           R0, #0|79-240-0-0
+42|code|MOV.W           R1, #0|79-240-0-1
+46|code|ADD             R4, SP, #0xB0+sb|7-172
+48|code|STRD.W          R0, R1, [SP,#0xB0+var_B0]|205-233-0-1
+52|code|ADC.W           R3, R3, #0xFFFFFFFF|67-241-255-51
+56|code|MOVS            R1, #0x74 ; 't'|116-33
+58|code|STR             R4, [SP,#0xB0+var_A4]|3-148
+60|code|STR             R1, [SP,#0xB0+var_A8]|2-145
+62|code|MOV             R0, disk|40-70
+64|code|LDR             R1, =grub_disk_read|44-73
+66|code|BLX             R1; grub_disk_read|136-71
+68|code|CMP             R0, #0|0-40
+70|code|BNE             loc_E8|79-209
+72|code|MOV             R0, R4|32-70
+74|code|LDR             R1, =aNvidia; "NVIDIA"|43-73
+76|code|MOVS            R2, #6|6-34
+78|code|LDR             R3, =grub_memcmp|43-75
+80|code|BLX             R3; grub_memcmp|152-71
+82|code|MOV             R4, R0|4-70
+84|code|CMP             R0, #0|0-40
+86|code|BNE             loc_E8|71-209
+88|code|LDRH.W          R2, [SP,#0xB0+sb.version]|189-248-44-32
+92|code|CMP             R2, #0x64 ; 'd'|100-42
+94|code|BEQ             loc_66|2-208
+96|code|MOVS            R0, #0x18|24-32
+98|code|LDR             R1, =aUnknownVersion; "unknown version: %d.%d"|39-73
+100|code|B               loc_A0|28-224
+102|code|LDR             R2, [SP,#0xB0+sb.array.raid_level]|26-154
+104|code|CMP             R2, #0x81|129-42
+106|code|BEQ             loc_84|11-208
+108|code|CMP             R2, #0x85|133-42
+110|code|BEQ             loc_8A|12-208
+112|code|CMP             R2, #0x80|128-42
+114|code|BNE             loc_9C|19-209
+116|code|LDR             R0, [SP,#0xB0+sb.capacity]|12-152
+118|code|MOV             disk, R4|37-70
+120|code|LDRB.W          R1, [SP,#0xB0+sb.array.total_volumes]|157-248-102-16
+124|code|LDR             R3, =__aeabi_uidiv|33-75
+126|code|BLX             R3; __aeabi_uidiv|152-71
+128|code|MOV             R6, R0|6-70
+130|code|B               loc_A8|17-224
+132|code|LDR             R6, [SP,#0xB0+sb.capacity]|12-158
+134|code|MOVS            disk, #1|1-37
+136|code|B               loc_A8|14-224
+138|code|LDRB.W          R1, [SP,#0xB0+sb.array.total_volumes]|157-248-102-16
+142|code|MOVS            disk, #5|5-37
+144|code|LDR             R0, [SP,#0xB0+sb.capacity]|12-152
+146|code|SUBS            R1, #1|1-57
+148|code|LDR             R3, =__aeabi_uidiv|27-75
+150|code|BLX             R3; __aeabi_uidiv|152-71
+152|code|MOV             R6, R0|6-70
+154|code|B               loc_A8|5-224
+156|code|LDR             R1, =aUnsupportedRai; "unsupported RAID level: %d"|26-73
+158|code|MOVS            R0, #0x18|24-32
+160|code|LDR             R3, =grub_error|26-75
+162|code|BLX             R3; grub_error|152-71
+164|code|MOV             R0, R4|32-70
+166|code|B               loc_EA|32-224
+168|code|MOVS            R0, #0x10|16-32
+170|code|LDR             R3, =grub_malloc|25-75
+172|code|BLX             R3; grub_malloc|152-71
+174|code|MOV             R9, uuid|129-70
+176|code|CBZ             uuid, loc_E8|208-177
+178|code|ADD             R1, SP, #0xB0+sb.array.signature|21-169
+180|code|MOVS            R2, #0x10|16-34
+182|code|LDR             R3, =grub_memmove|23-75
+184|code|BLX             R3; grub_memmove|152-71
+186|code|LDRB.W          R2, [SP,#0xB0+sb.unit_number]|157-248-46-32
+190|code|MOVS            R3, #0|0-35
+192|code|STR             R3, [id,#4]|123-96
+194|code|MOVS            R0, #0|0-32
+196|code|MOVS            R1, #0|0-33
+198|code|STR             R2, [id]|58-96
+200|code|STRD.W          R0, R1, [start_sector]|200-233-0-1
+204|code|MOVS            R0, #0x10|16-32
+206|code|LDR             R1, [SP,#0xB0+sb.array.stripe_block_size]|27-153
+208|code|STR             R4, [SP,#0xB0+var_AC]|1-148
+210|code|LDRB.W          R2, [SP,#0xB0+sb.array.total_volumes]|157-248-102-32
+214|code|STR             R1, [SP,#0xB0+var_A8]|2-145
+216|code|MOV             R1, uuid|73-70
+218|code|STR             R6, [SP,#0xB0+var_B0]|0-150
+220|code|STR             R3, [SP,#0xB0+var_A4]|3-147
+222|code|STR             R3, [SP,#0xB0+var_A0]|4-147
+224|code|STR             level, [SP,#0xB0+var_9C]|5-149
+226|code|LDR             R4, =grub_diskfilter_make_raid|13-76
+228|code|BLX             R4; grub_diskfilter_make_raid|160-71
+230|code|B               loc_EA|0-224
+232|code|MOVS            R0, #0|0-32
+234|code|ADD             SP, SP, #0x94|37-176
+236|code|POP.W           {R4-R9,PC}|189-232-240-131
+240|data|DCD grub_disk_get_size|172-1-0-0
+244|data|DCD grub_disk_read|180-1-0-0
+248|data|DCD aNvidia; "NVIDIA"|72-1-0-0
+252|data|DCD grub_memcmp|212-1-0-0
+256|data|DCD aUnknownVersion; "unknown version: %d.%d"|79-1-0-0
+260|data|DCD __aeabi_uidiv|188-1-0-0
+264|data|DCD aUnsupportedRai; "unsupported RAID level: %d"|102-1-0-0
+268|data|DCD grub_error|200-1-0-0
+272|data|DCD grub_malloc|184-1-0-0
+276|data|DCD grub_memmove|176-1-0-0
+280|data|DCD grub_diskfilter_make_raid|192-1-0-0
+284|code|PUSH            {R3,LR}|8-181
+286|code|LDR             mod, =grub_diskfilter_list|2-72
+288|code|LDR             R1, =grub_dmraid_nv_dev|2-73
+290|code|LDR             R3, =grub_list_push|3-75
+292|code|BLX             R3; grub_list_push|152-71
+294|code|POP             {R3,PC}|8-189
+296|data|DCD grub_diskfilter_list|196-1-0-0
+300|data|DCD grub_dmraid_nv_dev|140-1-0-0
+304|data|DCD grub_list_push|208-1-0-0
+308|code|PUSH            {R3,LR}|8-181
+310|code|LDR             R0, =grub_dmraid_nv_dev|2-72
+312|code|LDR             R3, =grub_list_remove|2-75
+314|code|BLX             R3; grub_list_remove|152-71
+316|code|POP             {R3,PC}|8-189
+318|data|ALIGN 0x10|0-191
+320|data|DCD grub_dmraid_nv_dev|140-1-0-0
+324|data|DCD grub_list_remove|204-1-0-0
+328|data|DCB "NVIDIA",0|78-86-73-68-73-65-0
+335|data|DCB "unknown version: %d.%d",0|117-110-107-110-111-119-110-32-118-101-114-115-105-111-110-58-32-37-100-46-37-100-0
+358|data|DCB "unsupported RAID level: %d",0|117-110-115-117-112-112-111-114-116-101-100-32-82-65-73-68-32-108-101-118-101-108-58-32-37-100-0
+385|data|DCB "dmraid_nv",0|100-109-114-97-105-100-95-110-118-0
+396|data|grub_diskfilter <0, 0, aDmraidNv, grub_dmraid_nv_detect+1>; "dmraid_nv"|0-0-0-0-0-0-0-0-129-1-0-0-1-0-0-0
+412|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,179 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB.W           SP, SP, #0x25C|173-245-23-125
+8|code|LDR             R3, =grub_apple_partition_map|78-75
+10|code|ADD             R4, SP, #0x280+part|10-172
+12|code|MOV             R10, hook|138-70
+14|code|MOV             R11, hook_data|147-70
+16|code|MOVS            hook, #4|4-33
+18|code|MOVS            hook_data, #0|0-34
+20|code|STR             R3, [R4,#0x28]|163-98
+22|code|ADD             R6, SP, #0x280+aheader|9-174
+24|code|MOVS            R3, #0|0-35
+26|code|STR             R1, [SP,#0x280+var_278]|2-145
+28|code|STRD.W          R2, R3, [SP,#0x280+var_280]|205-233-0-35
+32|code|MOV             R9, disk|129-70
+34|code|STR             R6, [SP,#0x280+var_274]|3-150
+36|code|LDR             R1, =grub_disk_read|72-73
+38|code|BLX             R1; grub_disk_read|136-71
+40|code|CMP             R0, #0|0-40
+42|code|BNE             loc_116|116-209
+44|code|LDRH            R3, [R6]|51-136
+46|code|MOVW            R2, #0x4552|68-242-82-82
+50|code|REV16           R3, R3|91-186
+52|code|UXTH            R3, R3|155-178
+54|code|CMP             R3, R2|147-66
+56|code|BEQ             loc_4C|8-208
+58|code|STR             R3, [SP,#0x280+var_280]|0-147
+60|code|MOVS            R1, #0x7B ; '{'|123-33
+62|code|STR             R2, [SP,#0x280+var_27C]|1-146
+64|code|LDR             R0, =aPartmapAppleC; "partmap/apple.c"|66-72
+66|code|LDR             R2, =aPartition; "partition"|67-74
+68|code|LDR             R3, =aBadMagicFound0; "bad magic (found 0x%x; wanted 0x%x)\n"|67-75
+70|code|LDR             R4, =grub_real_dprintf|68-76
+72|code|BLX             R4; grub_real_dprintf|160-71
+74|code|B               fail|113-224
+76|code|LDRH            R6, [R6,#2]|118-136
+78|code|MOV             R5, R0|5-70
+80|code|MOV             R7, R0|7-70
+82|code|REV16           R6, R6|118-186
+84|code|UXTH            R6, R6|182-178
+86|code|UBFX.W          R0, pos, #0, #9|198-243-8-0
+90|code|LSRS            R2, pos, #9|114-10
+92|code|STR             R0, [R4,#0x20]|32-98
+94|code|MOVS            R3, #0|0-35
+96|code|STR             R2, [R4,#0x18]|162-97
+98|code|ASRS            R1, R0, #0x1F|193-23
+100|code|STR             R3, [R4,#0x1C]|227-97
+102|code|MOV.W           R3, #0x200|79-244-0-115
+106|code|STRD.W          R0, R1, [SP,#0x280+var_280]|205-233-0-1
+110|code|ADD             R1, SP, #0x280+apart|22-169
+112|code|STR             R3, [SP,#0x280+var_278]|2-147
+114|code|MOV             R0, disk|72-70
+116|code|STR             R1, [SP,#0x280+var_274]|3-145
+118|code|MOVS            R3, #0|0-35
+120|code|LDR.W           R12, =grub_disk_read|223-248-204-192
+124|code|STR             R1, [SP,#0x280+var_264]|7-145
+126|code|BLX             R12; grub_disk_read|224-71
+128|code|LDR             R1, [SP,#0x280+var_264]|7-153
+130|code|MOV             R8, R0|128-70
+132|code|CMP             R0, #0|0-40
+134|code|BNE             loc_116|70-209
+136|code|LDRH            R3, [R1]|11-136
+138|code|MOVW            R2, #0x504D|69-242-77-2
+142|code|REV16           R3, R3|91-186
+144|code|UXTH            R3, R3|155-178
+146|code|CMP             R3, R2|147-66
+148|code|BEQ             loc_AE|11-208
+150|code|STR             R3, [SP,#0x280+var_27C]|1-147
+152|code|MOVS            R1, #0x8F|143-33
+154|code|STR             R2, [SP,#0x280+var_278]|2-146
+156|code|STR             partno, [SP,#0x280+var_280]|0-151
+158|code|LDR             R0, =aPartmapAppleC; "partmap/apple.c"|43-72
+160|code|LDR             R2, =aPartition; "partition"|43-74
+162|code|LDR             R3, =aPartitionDBadM; "partition %d: bad magic (found 0x%x; wa"...|46-75
+164|code|LDR             R4, =grub_real_dprintf|44-76
+166|code|BLX             R4; grub_real_dprintf|160-71
+168|code|CMP             partno, #0|0-47
+170|code|BEQ             fail|65-208
+172|code|B               loc_13A|69-224
+174|code|CBNZ            partnum, loc_B4|13-185
+176|code|LDR             partnum, [R1,#4]|77-104
+178|code|REV             R5, R5|45-186
+180|code|LDRH.W          R2, [SP,#0x280+aheader.blocksize]|189-248-38-32
+184|code|LDR             R0, [R1,#8]|136-104
+186|code|REV16           R2, R2|82-186
+188|code|LDR             R1, [R1,#0xC]|201-104
+190|code|REV             R0, R0|0-186
+192|code|STR             pos, [R4,#0x18]|166-97
+194|code|UXTH.W          LR, R2|31-250-130-254
+198|code|REV             R1, R1|9-186
+200|code|STR             partno, [R4,#0x20]|39-98
+202|code|UMULL.W         R2, R3, R0, LR|160-251-14-35
+206|code|STR             partno, [R4]|39-96
+208|code|LDR.W           R12, =grub_real_dprintf|223-248-132-192
+212|code|LSRS            R2, R2, #9|82-10
+214|code|ORR.W           R2, R2, R3,LSL#23|66-234-195-82
+218|code|LSRS            R3, R3, #9|91-10
+220|code|STR             R2, [R4,#8]|162-96
+222|code|STR             R3, [R4,#0xC]|227-96
+224|code|UMULL.W         R2, R3, R1, LR|161-251-14-35
+228|code|LSRS            R2, R2, #9|82-10
+230|code|ORR.W           R2, R2, R3,LSL#23|66-234-195-82
+234|code|LSRS            R3, R3, #9|91-10
+236|code|STR             R2, [R4,#0x10]|34-97
+238|code|STR             R3, [R4,#0x14]|99-97
+240|code|MOVS            R3, #0|0-35
+242|code|LDR             R2, =aPartition; "partition"|23-74
+244|code|STR             R3, [R4,#0x1C]|227-97
+246|code|ADD             R3, SP, #0x280+apart.partname|26-171
+248|code|STR             R0, [SP,#0x280+var_274]|3-144
+250|code|STR             R3, [SP,#0x280+var_27C]|1-147
+252|code|ADD             R3, SP, #0x280+apart.parttype|34-171
+254|code|STR             R1, [SP,#0x280+var_270]|4-145
+256|code|MOVS            R1, #0xA4|164-33
+258|code|STR             R3, [SP,#0x280+var_278]|2-147
+260|code|LDR             R0, =aPartmapAppleC; "partmap/apple.c"|17-72
+262|code|STR             partno, [SP,#0x280+var_280]|0-151
+264|code|LDR             R3, =aPartitionDName; "partition %d: name %s, type %s, start 0"...|21-75
+266|code|BLX             R12; grub_real_dprintf|224-71
+268|code|MOV             R0, disk|72-70
+270|code|MOV             R1, R4|33-70
+272|code|MOV             R2, hook_data|90-70
+274|code|BLX             hook|208-71
+276|code|CBZ             R0, loc_11E|24-177
+278|code|LDR             R3, =grub_errno|19-75
+280|code|LDR.W           R8, [R3]|211-248-0-128
+284|code|B               loc_13A|13-224
+286|code|LDRH.W          R3, [SP,#0x280+aheader.blocksize]|189-248-38-48
+290|code|ADDS            partno, #1|1-55
+292|code|CMP             R7, partnum|175-66
+294|code|REV16           R3, R3|91-186
+296|code|UXTAH.W         pos, pos, R3|22-250-131-246
+300|code|BLT             loc_56|147-219
+302|code|B               loc_13A|4-224
+304|code|MOVS            R0, #0x13|19-32
+306|code|LDR             R1, =aApplePartition; "Apple partition map not found"|13-73
+308|code|LDR             R3, =grub_error|13-75
+310|code|BLX             R3; grub_error|152-71
+312|code|MOV             R8, R0|128-70
+314|code|MOV             R0, R8|64-70
+316|code|ADD.W           SP, SP, #0x25C|13-245-23-125
+320|code|POP.W           {R4-hook_data,PC}|189-232-240-143
+324|data|DCD grub_apple_partition_map|104-2-0-0
+328|data|DCD grub_disk_read|140-2-0-0
+332|data|DCD aPartmapAppleC; "partmap/apple.c"|156-1-0-0
+336|data|DCD aPartition; "partition"|172-1-0-0
+340|data|DCD aBadMagicFound0; "bad magic (found 0x%x; wanted 0x%x)\n"|182-1-0-0
+344|data|DCD grub_real_dprintf|148-2-0-0
+348|data|DCD aPartitionDBadM; "partition %d: bad magic (found 0x%x; wa"...|219-1-0-0
+352|data|DCD aPartitionDName; "partition %d: name %s, type %s, start 0"...|14-2-0-0
+356|data|DCD grub_errno|144-2-0-0
+360|data|DCD aApplePartition; "Apple partition map not found"|68-2-0-0
+364|data|DCD grub_error|152-2-0-0
+368|code|PUSH            {R3,LR}|8-181
+370|code|LDR             mod, =grub_partition_map_list|2-72
+372|code|LDR             R1, =grub_apple_partition_map|2-73
+374|code|LDR             R3, =grub_list_push|3-75
+376|code|BLX             R3; grub_list_push|152-71
+378|code|POP             {R3,PC}|8-189
+380|data|DCD grub_partition_map_list|136-2-0-0
+384|data|DCD grub_apple_partition_map|104-2-0-0
+388|data|DCD grub_list_push|160-2-0-0
+392|code|PUSH            {R3,LR}|8-181
+394|code|LDR             R0, =grub_apple_partition_map|2-72
+396|code|LDR             R3, =grub_list_remove|2-75
+398|code|BLX             R3; grub_list_remove|152-71
+400|code|POP             {R3,PC}|8-189
+402|data|ALIGN 4|0-191
+404|data|DCD grub_apple_partition_map|104-2-0-0
+408|data|DCD grub_list_remove|156-2-0-0
+412|data|DCB "partmap/apple.c",0|112-97-114-116-109-97-112-47-97-112-112-108-101-46-99-0
+428|data|DCB "partition",0|112-97-114-116-105-116-105-111-110-0
+438|data|DCB "bad magic (found 0x%x; wanted 0x%x)",0xA,0|98-97-100-32-109-97-103-105-99-32-40-102-111-117-110-100-32-48-120-37-120-59-32-119-97-110-116-101-100-32-48-120-37-120-41-10-0
+475|data|DCB "partition %d: bad magic (found 0x%x; wanted 0x%x)",0xA,0|112-97-114-116-105-116-105-111-110-32-37-100-58-32-98-97-100-32-109-97-103-105-99-32-40-102-111-117-110-100-32-48-120-37-120-59-32-119-97-110-116-101-100-32-48-120-37-120-41-10-0
+526|data|DCB "partition %d: name %s, type %s, start 0x%x, len 0x%x",0xA,0|112-97-114-116-105-116-105-111-110-32-37-100-58-32-110-97-109-101-32-37-115-44-32-116-121-112-101-32-37-115-44-32-115-116-97-114-116-32-48-120-37-120-44-32-108-101-110-32-48-120-37-120-10-0
+580|data|DCB "Apple partition map not found",0|65-112-112-108-101-32-112-97-114-116-105-116-105-111-110-32-109-97-112-32-110-111-116-32-102-111-117-110-100-0
+610|data|DCB "apple",0|97-112-112-108-101-0
+616|data|grub_partition_map <0, 0, aApple, apple_partition_map_iterate+1>; "apple"|0-0-0-0-0-0-0-0-98-2-0-0-1-0-0-0
+632|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

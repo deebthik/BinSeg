@@ -1,0 +1,581 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|SUBS            R5, str, #1|69-30
+4|code|LDR             R6, =grub_printf|8-78
+6|code|MOV             R4, len|12-70
+8|code|LDRB.W          R1, [R5,#1]!|21-248-1-31
+12|code|CBZ             R1, loc_18|33-177
+14|code|CBZ             len, loc_18|28-177
+16|code|LDR             R0, =unk_620|6-72
+18|code|SUBS            len, #1|1-60
+20|code|BLX             R6; grub_printf|176-71
+22|code|B               loc_8|247-231
+24|code|LDR             str, =grub_printf|3-77
+26|code|ADDS            len, #1|1-52
+28|code|CBZ             len, locret_26|28-177
+30|code|LDR             R0, =unk_623|4-72
+32|code|SUBS            len, #1|1-60
+34|code|BLX             R5; grub_printf|168-71
+36|code|B               loc_1C|250-231
+38|code|POP             {len-R6,PC}|112-189
+40|data|DCD grub_printf|64-10-0-0
+44|data|DCD unk_620|32-6-0-0
+48|data|DCD unk_623|35-6-0-0
+52|code|PUSH            {R3-R5,LR}|56-181
+54|code|MOVS            R1, #8; len|8-33
+56|code|MOV             R4, rsdp|4-70
+58|code|BL              print_strn|255-247-225-255
+62|code|MOV             R0, rsdp|32-70
+64|code|MOVS            R1, #0x14|20-33
+66|code|LDR             R3, =grub_byte_checksum|16-75
+68|code|LDRB            R5, [rsdp,#8]|37-122
+70|code|BLX             R3; grub_byte_checksum|152-71
+72|code|LDR             R3, =aValid; "valid"|15-75
+74|code|LDR             R2, =aInvalid; "invalid"|16-74
+76|code|MOV             R1, R5|41-70
+78|code|LDR             R5, =grub_printf|16-77
+80|code|CMP             R0, #0|0-40
+82|code|IT EQ|8-191
+84|code|MOVEQ           R2, R3|26-70
+86|code|LDR             R0, =aChksum02xSOemI; "chksum:%02x (%s), OEM-ID: "|15-72
+88|code|BLX             R5; grub_printf|168-71
+90|code|ADD.W           R0, rsdp, #9; str|4-241-9-0
+94|code|MOVS            R1, #6; len|6-33
+96|code|BL              print_strn|255-247-206-255
+100|code|LDRB            R1, [rsdp,#0xF]|225-123
+102|code|LDR             R0, =aRevD; "rev=%d\n"|12-72
+104|code|BLX             R5; grub_printf|168-71
+106|code|LDRB            R1, [rsdp,#0x11]|97-124
+108|code|LDRB            R3, [rsdp,#0x10]|35-124
+110|code|LDR             R0, =aRsdt08x; "RSDT=%08x\n"|11-72
+112|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+116|code|LDRB            R1, [rsdp,#0x12]|161-124
+118|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+122|code|LDRB            R1, [rsdp,#0x13]|225-124
+124|code|ORR.W           R1, R3, R1,LSL#24|67-234-1-97
+128|code|BLX             R5; grub_printf|168-71
+130|code|POP             {R3-R5,PC}|56-189
+132|data|DCD grub_byte_checksum|52-10-0-0
+136|data|DCD aValid; "valid"|37-6-0-0
+140|data|DCD aInvalid; "invalid"|43-6-0-0
+144|data|DCD grub_printf|64-10-0-0
+148|data|DCD aChksum02xSOemI; "chksum:%02x (%s), OEM-ID: "|51-6-0-0
+152|data|DCD aRevD; "rev=%d\n"|78-6-0-0
+156|data|DCD aRsdt08x; "RSDT=%08x\n"|86-6-0-0
+160|code|PUSH            {t-R2,R4-R7,LR}|247-181
+162|code|MOV             R4, t|4-70
+164|code|MOVS            R1, #4; len|4-33
+166|code|BL              print_strn|255-247-171-255
+170|code|LDRB            R5, [t,#5]|101-121
+172|code|LDRB            R1, [t,#4]|33-121
+174|code|MOV             R0, t|32-70
+176|code|LDR             R3, =grub_byte_checksum|35-75
+178|code|ORR.W           R5, R1, R5,LSL#8|65-234-5-37
+182|code|LDRB            R1, [t,#6]|161-121
+184|code|LDRB            R7, [t,#8]|39-122
+186|code|LDRB            R6, [t,#9]|102-122
+188|code|ORR.W           R1, R5, R1,LSL#16|69-234-1-65
+192|code|LDRB            R5, [t,#7]|229-121
+194|code|ORR.W           R5, R1, R5,LSL#24|65-234-5-101
+198|code|MOV             R1, R5|41-70
+200|code|BLX             R3; grub_byte_checksum|152-71
+202|code|LDR             R3, =aInvalid; "invalid"|30-75
+204|code|LDR             R1, =aValid; "valid"|30-73
+206|code|MOV             R2, R7|58-70
+208|code|CMP             R0, #0|0-40
+210|code|ITE EQ|12-191
+212|code|MOVEQ           R0, R1|8-70
+214|code|MOVNE           R0, R3|24-70
+216|code|MOV             R3, R6|51-70
+218|code|STR             R0, [SP,#0x20+var_20]|0-144
+220|code|MOV             R1, R5|41-70
+222|code|LDR             R0, =a4ubRevUChksum0; "%4uB rev=%u chksum=0x%02x (%s) OEM="|27-72
+224|code|LDR             R5, =grub_printf|27-77
+226|code|BLX             R5; grub_printf|168-71
+228|code|ADD.W           R0, t, #0xA; str|4-241-10-0
+232|code|MOVS            R1, #6; len|6-33
+234|code|BL              print_strn|255-247-137-255
+238|code|ADD.W           R0, t, #0x10; str|4-241-16-0
+242|code|MOVS            R1, #8; len|8-33
+244|code|BL              print_strn|255-247-132-255
+248|code|LDRB            R1, [t,#0x19]|97-126
+250|code|LDRB            R3, [t,#0x18]|35-126
+252|code|LDR             R0, =aOemrev08x; "OEMrev=%08x "|21-72
+254|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+258|code|LDRB            R1, [t,#0x1A]|161-126
+260|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+264|code|LDRB            R1, [t,#0x1B]|225-126
+266|code|ORR.W           R1, R3, R1,LSL#24|67-234-1-97
+270|code|BLX             R5; grub_printf|168-71
+272|code|ADD.W           R0, t, #0x1C; str|4-241-28-0
+276|code|MOVS            R1, #4; len|4-33
+278|code|BL              print_strn|255-247-115-255
+282|code|LDRB.W          R1, [t,#0x21]|148-248-33-16
+286|code|LDRB.W          R3, [t,#0x20]|148-248-32-48
+290|code|LDR             R0, =a08x; " %08x\n"|13-72
+292|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+296|code|LDRB.W          R1, [t,#0x22]|148-248-34-16
+300|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+304|code|LDRB.W          R1, [t,#0x23]|148-248-35-16
+308|code|ORR.W           R1, R3, R1,LSL#24|67-234-1-97
+312|code|BLX             R5; grub_printf|168-71
+314|code|ADD             SP, SP, #0xC|3-176
+316|code|POP             {t-R7,PC}|240-189
+318|data|ALIGN 0x10|0-191
+320|data|DCD grub_byte_checksum|52-10-0-0
+324|data|DCD aInvalid; "invalid"|43-6-0-0
+328|data|DCD aValid; "valid"|37-6-0-0
+332|data|DCD a4ubRevUChksum0; "%4uB rev=%u chksum=0x%02x (%s) OEM="|97-6-0-0
+336|data|DCD grub_printf|64-10-0-0
+340|data|DCD aOemrev08x; "OEMrev=%08x "|133-6-0-0
+344|data|DCD a08x; " %08x\n"|146-6-0-0
+348|code|PUSH.W          {t,R1,R4-R8,LR}|45-233-243-65
+352|code|MOV             R4, t|4-70
+354|code|BL              disp_acpi_table|255-247-157-255
+358|code|LDR             R5, =grub_printf|94-77
+360|code|ADDS            t, #0x2C ; ','|44-52
+362|code|LDR.W           R1, [R4,#-8]|84-248-8-28
+366|code|LDR.W           R2, [R4,#-4]|84-248-4-44
+370|code|LDR             R0, =aLocalApic08xFl; "Local APIC=%08x  Flags=%08x\n"|92-72
+372|code|BLX             R5; grub_printf|168-71
+374|code|LDR.W           R6, [R4,#-0x28]|84-248-40-108
+378|code|SUBS            R6, #0x2C ; ','|44-62
+380|code|CMP             len, #0|0-46
+382|code|BEQ.W           loc_2D8|0-240-171-128
+386|code|LDRB            R1, [d]|33-120
+388|code|CMP             R1, #8; switch 9 cases|8-41
+390|code|BHI.W           def_18A; jumptable 0000018A default case, cases 3,5|0-242-158-128
+394|code|TBB.W           [PC,R1]; switch jump|223-232-1-240
+398|data|DCB 5; jump table for switch statement|5
+399|data|DCB 0x11|17
+400|data|DCB 0x1C|28
+401|data|DCB 0x9C|156
+402|data|DCB 0x38|56
+403|data|DCB 0x9C|156
+404|data|DCB 0x46|70
+405|data|DCB 0x5B|91
+406|data|DCB 0x87|135
+407|data|ALIGN 2|0
+408|code|LDRB            R1, [dt,#2]; jumptable 0000018A case 0|161-120
+410|code|LDR             R0, =aLapicAcpiId02x; "  LAPIC ACPI_ID=%02x APIC_ID=%02x Flags"...|83-72
+412|code|LDRB            R2, [dt,#3]|226-120
+414|code|LDR             R3, [dt,#4]|99-104
+416|code|BLX             R5; grub_printf|168-71
+418|code|LDRB            R1, [dt,#1]|97-120
+420|code|CMP             R1, #8|8-41
+422|code|BEQ.W           loc_2D0|0-240-147-128
+426|code|LDR             R0, =aTableSizeMisma; "   table size mismatch %d != %d\n"|80-72
+428|code|MOVS            R2, #8|8-34
+430|code|B               loc_1F8|35-224
+432|code|LDRB            R1, [dt,#2]; jumptable 0000018A case 1|161-120
+434|code|LDR             R0, =aIoapicId02xAdd; "  IOAPIC ID=%02x address=%08x GSI=%08x"...|79-72
+436|code|LDR             R2, [dt,#4]|98-104
+438|code|LDR             R3, [dt,#8]|163-104
+440|code|BLX             R5; grub_printf|168-71
+442|code|LDRB            R1, [dt,#1]|97-120
+444|code|CMP             R1, #0xC|12-41
+446|code|BEQ             loc_238|59-208
+448|code|LDR             R0, =aTableSizeMisma; "   table size mismatch %d != %d\n"|74-72
+450|code|MOVS            R2, #0xC|12-34
+452|code|B               loc_234|54-224
+454|code|LDRB            R0, [dt,#5]; jumptable 0000018A case 2|96-121
+456|code|LDRB            R3, [dt,#4]|35-121
+458|code|LDRB            R7, [dt,#7]|231-121
+460|code|ORR.W           R3, R3, R0,LSL#8|67-234-0-35
+464|code|LDRB            R0, [dt,#6]|160-121
+466|code|LDRB.W          LR, [dt,#9]|148-248-9-224
+470|code|LDRB            R1, [dt,#2]|161-120
+472|code|ORR.W           R3, R3, R0,LSL#16|67-234-0-67
+476|code|LDRB            R0, [dt,#8]|32-122
+478|code|LDRB            R2, [dt,#3]|226-120
+480|code|ORR.W           R3, R3, R7,LSL#24|67-234-7-99
+484|code|ORR.W           R0, R0, LR,LSL#8|64-234-14-32
+488|code|STR             R0, [SP,#0x20+var_20]|0-144
+490|code|LDR             R0, =aIntOverrideBus; "  Int Override bus=%x src=%x GSI=%08x F"...|66-72
+492|code|BLX             R5; grub_printf|168-71
+494|code|LDRB            R1, [dt,#1]|97-120
+496|code|CMP             R1, #0xA|10-41
+498|code|BEQ             loc_2D0|109-208
+500|code|LDR             R0, =aTableSizeMisma; "   table size mismatch %d != %d\n"|61-72
+502|code|MOVS            R2, #0xA|10-34
+504|code|LDR             R3, =grub_printf|57-75
+506|code|BLX             R3; grub_printf|152-71
+508|code|B               loc_2D0|104-224
+510|code|LDRB            R2, [dt,#4]; jumptable 0000018A case 4|34-121
+512|code|LDRB            R3, [dt,#3]|227-120
+514|code|LDRB            R1, [dt,#2]|161-120
+516|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+520|code|LDR             R0, =aLapicNmiAcpiId; "  LAPIC_NMI ACPI_ID=%02x Flags=%04x lin"...|59-72
+522|code|LDRB            R3, [dt,#5]|99-121
+524|code|BLX             R5; grub_printf|168-71
+526|code|LDRB            R1, [dt,#1]|97-120
+528|code|CMP             R1, #6|6-41
+530|code|BEQ             loc_2D0|93-208
+532|code|LDR             R0, =aTableSizeMisma; "   table size mismatch %d != %d\n"|53-72
+534|code|MOVS            R2, #6|6-34
+536|code|B               loc_1F8|238-231
+538|code|LDRD.W          R2, R3, [dt,#8]; jumptable 0000018A case 6|212-233-2-35
+542|code|LDRB            R1, [dt,#2]|161-120
+544|code|LDR             R0, =aIosapicId02xGs; "  IOSAPIC Id=%02x GSI=%08x Addr=%016llx"...|54-72
+546|code|STRD.W          R2, R3, [SP,#0x20+var_20]|205-233-0-35
+550|code|LDR             R2, [dt,#4]|98-104
+552|code|BLX             R5; grub_printf|168-71
+554|code|LDRB            R1, [dt,#1]|97-120
+556|code|CMP             R1, #0x10|16-41
+558|code|BEQ             loc_238|3-208
+560|code|LDR             R0, =aTableSizeMisma; "   table size mismatch %d != %d\n"|46-72
+562|code|MOVS            R2, #0x10|16-34
+564|code|LDR             R3, =grub_printf|42-75
+566|code|BLX             R3; grub_printf|152-71
+568|code|LDRB            R1, [d,#3]|225-120
+570|code|CMP             R1, #0|0-41
+572|code|BEQ             loc_2D0|72-208
+574|code|LDR             R0, =aNonZeroPad02x; "   non-zero pad: %02x\n"|48-72
+576|code|BLX             R5; grub_printf|168-71
+578|code|B               loc_2D0|69-224
+580|code|LDR             R0, [dt,#8]; jumptable 0000018A case 7|160-104
+582|code|LDRB            R1, [dt,#2]|161-120
+584|code|LDRB            R2, [dt,#3]|226-120
+586|code|LDRB            R3, [dt,#4]|35-121
+588|code|STR             R0, [SP,#0x20+var_20]|0-144
+590|code|LDR             R0, =aLsapicProcid02; "  LSAPIC ProcId=%02x ID=%02x EID=%02x F"...|45-72
+592|code|BLX             R5; grub_printf|168-71
+594|code|LDR             R3, [dt,#8]|163-104
+596|code|LDR             R7, =grub_printf|34-79
+598|code|LSLS            R3, R3, #0x1F|219-7
+600|code|ITE MI|76-191
+602|code|LDRMI           R0, =aEnabled; " Enabled\n"|43-72
+604|code|LDRPL           R0, =aDisabled; " Disabled\n"|43-72
+606|code|BLX             R7; grub_printf|184-71
+608|code|LDRB            R3, [dt,#1]|99-120
+610|code|ADD.W           R7, dt, #0x10|4-241-16-7
+614|code|CMP             R3, #0x10|16-43
+616|code|BLS             loc_272|3-217
+618|code|LDR             R0, =aUidVal08xStrS; "  UID val=%08x, Str=%s\n"|41-72
+620|code|MOV             R2, R7|58-70
+622|code|LDR             R1, [dt,#0xC]|225-104
+624|code|BLX             R5; grub_printf|168-71
+626|code|MOV             R0, R7|56-70
+628|code|LDR             R3, =grub_strlen|39-75
+630|code|LDRB.W          R8, [dt,#1]|148-248-1-128
+634|code|BLX             R3; grub_strlen|152-71
+636|code|ADDS            R0, #0x11|17-48
+638|code|CMP             R8, R0|128-69
+640|code|BEQ             loc_28A|3-208
+642|code|LDR             R0, =aTableSizeMisma; "   table size mismatch %d != %d\n"|26-72
+644|code|MOVS            R2, #0x10|16-34
+646|code|LDRB            R1, [dt,#1]|97-120
+648|code|BLX             R5; grub_printf|168-71
+650|code|LDR             R3, [dt,#4]|99-104
+652|code|BICS.W          R3, R3, #0xFF|51-240-255-3
+656|code|BEQ             loc_2D0|30-208
+658|code|LDR             R0, =aNonZeroPad02x0; "   non-zero pad: %02x%02x%02x\n"|33-72
+660|code|LDRB            R1, [dt,#5]|97-121
+662|code|LDRB            R2, [dt,#6]|162-121
+664|code|LDRB            R3, [dt,#7]|227-121
+666|code|B               loc_2C2|18-224
+668|code|LDRB            R2, [dt,#4]; jumptable 0000018A case 8|34-121
+670|code|LDRB            R0, [dt,#5]|96-121
+672|code|CMP             R2, #3|3-42
+674|code|LDRH            R1, [dt,#2]|97-136
+676|code|IT LS|152-191
+678|code|LDRLS           R3, =platint_type.6005|29-75
+680|code|STR             R0, [SP,#0x20+var_20]|0-144
+682|code|LDRB            R0, [dt,#6]|160-121
+684|code|ITE LS|148-191
+686|code|LDRLS.W         R3, [R3,R2,LSL#2]|83-248-34-48
+690|code|LDRHI           R3, =asc_699; "??"|27-75
+692|code|STR             R0, [SP,#0x20+var_1C]|1-144
+694|code|LDR             R0, =aPlatformIntFla; "  Platform INT flags=%04x type=%02x (%s"...|27-72
+696|code|BLX             R5; grub_printf|168-71
+698|code|LDR             R0, =aIosapicVec02xG; "  IOSAPIC Vec=%02x GSI=%08x source flag"...|27-72
+700|code|LDRB            R1, [dt,#7]|225-121
+702|code|LDR             R2, [dt,#8]|162-104
+704|code|LDR             R3, [dt,#0xC]|227-104
+706|code|BLX             R5; grub_printf|168-71
+708|code|B               loc_2D0|4-224
+710|code|LDR             R0, =aTypeXLU; jumptable 0000018A default case, cases 3,5|25-72
+712|code|LDRB            R2, [d,#1]|98-120
+714|code|BLX             R5; grub_printf|168-71
+716|code|LDR             R0, =asc_8C6; " ??\n"|24-72
+718|code|BLX             R5; grub_printf|168-71
+720|code|LDRB            R3, [d,#1]|99-120
+722|code|SUBS            len, len, R3|246-26
+724|code|ADD             d, R3|28-68
+726|code|B               loc_17C|81-231
+728|code|ADD             SP, SP, #8|2-176
+730|code|POP.W           {d-R8,PC}|189-232-240-129
+734|data|ALIGN 0x10|0-191
+736|data|DCD grub_printf|64-10-0-0
+740|data|DCD aLocalApic08xFl; "Local APIC=%08x  Flags=%08x\n"|156-6-0-0
+744|data|DCD aLapicAcpiId02x; "  LAPIC ACPI_ID=%02x APIC_ID=%02x Flags"...|185-6-0-0
+748|data|DCD aTableSizeMisma; "   table size mismatch %d != %d\n"|231-6-0-0
+752|data|DCD aIoapicId02xAdd; "  IOAPIC ID=%02x address=%08x GSI=%08x"...|8-7-0-0
+756|data|DCD aIntOverrideBus; "  Int Override bus=%x src=%x GSI=%08x F"...|71-7-0-0
+760|data|DCD aLapicNmiAcpiId; "  LAPIC_NMI ACPI_ID=%02x Flags=%04x lin"...|121-7-0-0
+764|data|DCD aIosapicId02xGs; "  IOSAPIC Id=%02x GSI=%08x Addr=%016llx"...|168-7-0-0
+768|data|DCD aNonZeroPad02x; "   non-zero pad: %02x\n"|48-7-0-0
+772|data|DCD aLsapicProcid02; "  LSAPIC ProcId=%02x ID=%02x EID=%02x F"...|209-7-0-0
+776|data|DCD aEnabled; " Enabled\n"|0-8-0-0
+780|data|DCD aDisabled; " Disabled\n"|10-8-0-0
+784|data|DCD aUidVal08xStrS; "  UID val=%08x, Str=%s\n"|21-8-0-0
+788|data|DCD grub_strlen|48-10-0-0
+792|data|DCD aNonZeroPad02x0; "   non-zero pad: %02x%02x%02x\n"|45-8-0-0
+796|data|DCD platint_type.6005|200-5-0-0
+800|data|DCD asc_699; "??"|153-6-0-0
+804|data|DCD aPlatformIntFla; "  Platform INT flags=%04x type=%02x (%s"...|76-8-0-0
+808|data|DCD aIosapicVec02xG; "  IOSAPIC Vec=%02x GSI=%08x source flag"...|135-8-0-0
+812|data|DCD aTypeXLU; "  type=%x l=%u "|182-8-0-0
+816|data|DCD asc_8C6; " ??\n"|198-8-0-0
+820|code|LDR             R3, [ctxt,#4]|67-104
+822|code|PUSH.W          {ctxt-args,R4-R11,LR}|45-233-247-79
+826|code|MOV             R6, ctxt|6-70
+828|code|LDR             R3, [R3,#8]|155-104
+830|code|CMP             R3, #0|0-43
+832|code|BNE             loc_3C0|62-209
+834|code|LDR             R3, =grub_acpi_get_rsdpv1|123-75
+836|code|BLX             R3; grub_acpi_get_rsdpv1|152-71
+838|code|LDR             R3, =grub_printf|123-75
+840|code|MOV             R4, rsdp1|4-70
+842|code|CBNZ            rsdp1, loc_352|16-185
+844|code|LDR             rsdp1, =aNoRsdpv1; "No RSDPv1\n"|122-72
+846|code|BLX             R3; grub_printf|152-71
+848|code|B               loc_3C0|54-224
+850|code|LDR             rsdp1, =aRsdpv1Signatur; "RSDPv1 signature:"|122-72
+852|code|BLX             R3; grub_printf|152-71
+854|code|MOV             R0, rsdp1; rsdp|32-70
+856|code|BL              disp_acpi_rsdpv1|255-247-108-254
+860|code|LDRB            R7, [rsdp1,#0x11]|103-124
+862|code|LDRB            R3, [rsdp1,#0x10]|35-124
+864|code|LDR.W           R8, =grub_memcmp|223-248-16-130
+868|code|ORR.W           R7, R3, R7,LSL#8|67-234-7-39
+872|code|LDRB            R3, [rsdp1,#0x12]|163-124
+874|code|ORR.W           R3, R7, R3,LSL#16|71-234-3-67
+878|code|LDRB            R7, [rsdp1,#0x13]|231-124
+880|code|ORR.W           R7, R3, R7,LSL#24|67-234-7-103
+884|code|ADD.W           R5, R7, #0x20 ; ' '|7-241-32-5
+888|code|MOV             R0, R7; t|56-70
+890|code|BL              disp_acpi_table|255-247-145-254
+894|code|LDRB            rsdp1, [R7,#5]|124-121
+896|code|LDRB            R3, [R7,#4]|59-121
+898|code|ORR.W           R4, R3, R4,LSL#8|67-234-4-36
+902|code|LDRB            R3, [R7,#6]|187-121
+904|code|ORR.W           R4, R4, R3,LSL#16|68-234-3-68
+908|code|LDRB            R3, [R7,#7]|251-121
+910|code|ORR.W           R4, R4, R3,LSL#24|68-234-3-100
+914|code|SUBS            R4, #0x24 ; '$'|36-60
+916|code|BIC.W           R4, R4, #3|36-240-3-4
+920|code|ADD             R4, R5|44-68
+922|code|CMP             R5, R4|165-66
+924|code|BEQ             loc_3C0|16-208
+926|code|LDR.W           R7, [R5,#4]!|85-248-4-127
+930|code|CMP             R7, #0|0-47
+932|code|BEQ             loc_39A|249-208
+934|code|MOV             R0, R7|56-70
+936|code|LDR             R1, =aApic; "APIC"|101-73
+938|code|MOVS            R2, #4|4-34
+940|code|BLX             R8; grub_memcmp|192-71
+942|code|CBNZ            R0, loc_3B8|24-185
+944|code|MOV             R0, R7; t|56-70
+946|code|BL              disp_madt_table|255-247-211-254
+950|code|B               loc_39A|240-231
+952|code|MOV             R0, R7; t|56-70
+954|code|BL              disp_acpi_table|255-247-113-254
+958|code|B               loc_39A|236-231
+960|code|LDR             R3, [ctxt,#4]|115-104
+962|code|LDR             R3, [R3]|27-104
+964|code|CMP             R3, #0|0-43
+966|code|BNE.W           loc_526|64-240-174-128
+970|code|LDR             R3, =grub_acpi_get_rsdpv2|94-75
+972|code|BLX             R3; grub_acpi_get_rsdpv2|152-71
+974|code|LDR             R5, =grub_printf|89-77
+976|code|MOV             R4, rsdp2|4-70
+978|code|CBNZ            rsdp2, loc_3D8|8-185
+980|code|LDR             rsdp2, =aNoRsdpv2; "No RSDPv2\n"|92-72
+982|code|B               loc_524|165-224
+984|code|LDRB            R2, [rsdp2,#0x19]|66-126
+986|code|LDRB            R3, [rsdp2,#0x18]|3-126
+988|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+992|code|LDRB            R2, [rsdp2,#0x1A]|130-126
+994|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+998|code|LDRB            R2, [rsdp2,#0x1B]|194-126
+1000|code|ORR.W           rsdp2, R3, R2,LSL#24|67-234-2-96
+1004|code|LDRB            R2, [rsdp2,#0x1D]|98-127
+1006|code|LDRB            R3, [rsdp2,#0x1C]|35-127
+1008|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+1012|code|LDRB            R2, [rsdp2,#0x1E]|162-127
+1014|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+1018|code|LDRB            R2, [rsdp2,#0x1F]|226-127
+1020|code|ORR.W           R1, R3, R2,LSL#24|67-234-2-97
+1024|code|CMP             R1, #1|1-41
+1026|code|IT EQ|8-191
+1028|code|CMPEQ           R0, #0|0-40
+1030|code|BCC             loc_40C|1-211
+1032|code|LDR             R0, =aUnreachableRsd; "Unreachable RSDPv2\n"|80-72
+1034|code|B               loc_524|139-224
+1036|code|LDR             R0, =aRsdpv2Signatur; "RSDPv2 signature:"|80-72
+1038|code|BLX             R5; grub_printf|168-71
+1040|code|MOV             R0, rsdp2; rsdp|32-70
+1042|code|BL              disp_acpi_rsdpv1|255-247-15-254
+1046|code|LDRB            ctxt, [rsdp2,#0x15]|102-125
+1048|code|LDRB            R3, [rsdp2,#0x14]|35-125
+1050|code|MOV             R0, rsdp2|32-70
+1052|code|LDRB.W          R8, [rsdp2,#0x20]|148-248-32-128
+1056|code|ORR.W           R6, R3, R6,LSL#8|67-234-6-38
+1060|code|LDRB            R3, [rsdp2,#0x16]|163-125
+1062|code|ORR.W           R3, R6, R3,LSL#16|70-234-3-67
+1066|code|LDRB            R6, [rsdp2,#0x17]|230-125
+1068|code|ORR.W           R6, R3, R6,LSL#24|67-234-6-102
+1072|code|LDR             R3, =grub_byte_checksum|72-75
+1074|code|MOV             R1, R6|49-70
+1076|code|BLX             R3; grub_byte_checksum|152-71
+1078|code|LDR             R2, =aValid; "valid"|72-74
+1080|code|LDR             R3, =aInvalid; "invalid"|72-75
+1082|code|LDRB            R7, [rsdp2,#0x19]|103-126
+1084|code|LDRB            R1, [rsdp2,#0x1A]|161-126
+1086|code|CMP             R0, #0|0-40
+1088|code|IT EQ|8-191
+1090|code|MOVEQ           R3, R2|19-70
+1092|code|LDRB            R2, [rsdp2,#0x18]|34-126
+1094|code|LDR             R0, =aLenDChksum02xS; "len=%d chksum=%02x (%s) XSDT=%016llx\n"|70-72
+1096|code|ORR.W           R7, R2, R7,LSL#8|66-234-7-39
+1100|code|LDRB            R2, [rsdp2,#0x1D]|98-127
+1102|code|ORR.W           R1, R7, R1,LSL#16|71-234-1-65
+1106|code|LDRB            R7, [rsdp2,#0x1B]|231-126
+1108|code|ORR.W           R7, R1, R7,LSL#24|65-234-7-103
+1112|code|LDRB            R1, [rsdp2,#0x1C]|33-127
+1114|code|ORR.W           R1, R1, R2,LSL#8|65-234-2-33
+1118|code|LDRB            R2, [rsdp2,#0x1E]|162-127
+1120|code|ORR.W           R1, R1, R2,LSL#16|65-234-2-65
+1124|code|LDRB            R2, [rsdp2,#0x1F]|226-127
+1126|code|STR             R7, [SP,#0x30+var_30]|0-151
+1128|code|ORR.W           R1, R1, R2,LSL#24|65-234-2-97
+1132|code|MOV             R2, R8|66-70
+1134|code|STR             R1, [SP,#0x30+var_2C]|1-145
+1136|code|MOV             R1, R6|49-70
+1138|code|BLX             R5; grub_printf|168-71
+1140|code|LDRB            R1, [rsdp2,#0x15]|97-125
+1142|code|LDRB            R3, [rsdp2,#0x14]|35-125
+1144|code|ORR.W           R1, R3, R1,LSL#8|67-234-1-33
+1148|code|LDRB            R3, [rsdp2,#0x16]|163-125
+1150|code|ORR.W           R1, R1, R3,LSL#16|65-234-3-65
+1154|code|LDRB            R3, [rsdp2,#0x17]|227-125
+1156|code|ORR.W           R1, R1, R3,LSL#24|65-234-3-97
+1160|code|CMP             R1, #0x24 ; '$'|36-41
+1162|code|BEQ             loc_492|2-208
+1164|code|LDR             R0, =aLengthMismatch; " length mismatch %d != %d\n"|53-72
+1166|code|MOVS            R2, #0x24 ; '$'|36-34
+1168|code|BLX             R5; grub_printf|168-71
+1170|code|LDRB.W          R1, [rsdp2,#0x21]|148-248-33-16
+1174|code|LDRB.W          R2, [rsdp2,#0x22]|148-248-34-32
+1178|code|LDRB.W          R3, [rsdp2,#0x23]|148-248-35-48
+1182|code|CBNZ            R1, loc_4A4|9-185
+1184|code|CBNZ            R2, loc_4A4|2-185
+1186|code|CBZ             R3, loc_4A8|11-177
+1188|code|LDR             R0, =aNonZeroReserve; " non-zero reserved %02x%02x%02x\n"|48-72
+1190|code|BLX             R5; grub_printf|168-71
+1192|code|LDRB            R6, [rsdp2,#0x19]|102-126
+1194|code|MOVS            R7, #0|0-39
+1196|code|LDRB            R3, [rsdp2,#0x18]|35-126
+1198|code|LDR.W           R11, =grub_memcmp|223-248-196-176
+1202|code|ORR.W           R6, R3, R6,LSL#8|67-234-6-38
+1206|code|LDRB            R3, [rsdp2,#0x1A]|163-126
+1208|code|ORR.W           R3, R6, R3,LSL#16|70-234-3-67
+1212|code|LDRB            R6, [rsdp2,#0x1B]|230-126
+1214|code|ORR.W           R6, R3, R6,LSL#24|67-234-6-102
+1218|code|ADD.W           R10, R6, #0x1C|6-241-28-10
+1222|code|MOV             R0, R6; t|48-70
+1224|code|BL              disp_acpi_table|255-247-234-253
+1228|code|LDRB            rsdp2, [R6,#5]|116-121
+1230|code|LDRB            R3, [R6,#4]|51-121
+1232|code|ORR.W           R4, R3, R4,LSL#8|67-234-4-36
+1236|code|LDRB            R3, [R6,#6]|179-121
+1238|code|ORR.W           R4, R4, R3,LSL#16|68-234-3-68
+1242|code|LDRB            R3, [R6,#7]|243-121
+1244|code|MOV.W           R6, #0xFFFFFFFF|79-240-255-54
+1248|code|ORR.W           R4, R4, R3,LSL#24|68-234-3-100
+1252|code|SUBS            R4, #0x24 ; '$'|36-60
+1254|code|BIC.W           R4, R4, #7|36-240-7-4
+1258|code|ADD             R4, R10|84-68
+1260|code|CMP             R10, R4|162-69
+1262|code|BEQ             loc_522|24-208
+1264|code|LDRD.W          R8, R9, [R10,#8]!|250-233-2-137
+1268|code|CMP             R7, R9|79-69
+1270|code|IT EQ|8-191
+1272|code|CMPEQ           R6, R8|70-69
+1274|code|BCS             loc_502|2-210
+1276|code|LDR             R0, =aUnreachableTab; "Unreachable table\n"|27-72
+1278|code|BLX             R5; grub_printf|168-71
+1280|code|B               loc_4EC|244-231
+1282|code|ORRS.W          R3, R8, R9|88-234-9-3
+1286|code|BEQ             loc_4EC|241-208
+1288|code|MOV             R0, R8|64-70
+1290|code|LDR             R1, =aApic; "APIC"|13-73
+1292|code|MOVS            R2, #4|4-34
+1294|code|BLX             R11; grub_memcmp|216-71
+1296|code|CBNZ            R0, loc_51A|24-185
+1298|code|MOV             R0, R8; t|64-70
+1300|code|BL              disp_madt_table|255-247-34-254
+1304|code|B               loc_4EC|232-231
+1306|code|MOV             R0, R8; t|64-70
+1308|code|BL              disp_acpi_table|255-247-192-253
+1312|code|B               loc_4EC|228-231
+1314|code|LDR             R0, =asc_993; "\n"|19-72
+1316|code|BLX             R5; grub_printf|168-71
+1318|code|MOVS            R0, #0|0-32
+1320|code|ADD             SP, SP, #0xC|3-176
+1322|code|POP.W           {R4-R11,PC}|189-232-240-143
+1326|data|ALIGN 0x10|0-191
+1328|data|DCD grub_acpi_get_rsdpv1|56-10-0-0
+1332|data|DCD grub_printf|64-10-0-0
+1336|data|DCD aNoRsdpv1; "No RSDPv1\n"|203-8-0-0
+1340|data|DCD aRsdpv1Signatur; "RSDPv1 signature:"|214-8-0-0
+1344|data|DCD aApic; "APIC"|232-8-0-0
+1348|data|DCD grub_acpi_get_rsdpv2|68-10-0-0
+1352|data|DCD aNoRsdpv2; "No RSDPv2\n"|237-8-0-0
+1356|data|DCD aUnreachableRsd; "Unreachable RSDPv2\n"|248-8-0-0
+1360|data|DCD aRsdpv2Signatur; "RSDPv2 signature:"|12-9-0-0
+1364|data|DCD grub_byte_checksum|52-10-0-0
+1368|data|DCD aValid; "valid"|37-6-0-0
+1372|data|DCD aInvalid; "invalid"|43-6-0-0
+1376|data|DCD aLenDChksum02xS; "len=%d chksum=%02x (%s) XSDT=%016llx\n"|30-9-0-0
+1380|data|DCD aLengthMismatch; " length mismatch %d != %d\n"|68-9-0-0
+1384|data|DCD aNonZeroReserve; " non-zero reserved %02x%02x%02x\n"|95-9-0-0
+1388|data|DCD aUnreachableTab; "Unreachable table\n"|128-9-0-0
+1392|data|DCD asc_993; "\n"|147-9-0-0
+1396|data|DCD grub_memcmp|76-10-0-0
+1400|code|LDR             R3, =aShowAcpiInform; "Show ACPI information."|7-75
+1402|code|MOVS            R2, #0|0-34
+1404|code|PUSH            {mod,R1,R4,LR}|19-181
+1406|code|STR             R3, [SP,#0x10+var_10]|0-147
+1408|code|LDR             R3, =options|6-75
+1410|code|LDR             R1, =(grub_cmd_lsacpi+1)|7-73
+1412|code|LDR             R4, =grub_register_extcmd|7-76
+1414|code|STR             R3, [SP,#0x10+var_C]|1-147
+1416|code|LDR             mod, =aLsacpi; "lsacpi"|7-72
+1418|code|LDR             R3, =a12; "[-1|-2]"|8-75
+1420|code|BLX             R4; grub_register_extcmd|160-71
+1422|code|LDR             R3, =cmd|8-75
+1424|code|STR             R0, [R3]|24-96
+1426|code|ADD             SP, SP, #8|2-176
+1428|code|POP             {R4,PC}|16-189
+1430|data|ALIGN 4|0-191
+1432|data|DCD aShowAcpiInform; "Show ACPI information."|164-9-0-0
+1436|data|DCD options|216-5-0-0
+1440|data|DCD grub_cmd_lsacpi+1|53-3-0-0
+1444|data|DCD grub_register_extcmd|72-10-0-0
+1448|data|DCD aLsacpi; "lsacpi"|149-9-0-0
+1452|data|DCD a12; "[-1|-2]"|156-9-0-0
+1456|data|DCD cmd|44-10-0-0
+1460|code|PUSH            {R3,LR}|8-181
+1462|code|LDR             R3, =cmd|2-75
+1464|code|LDR             R0, [R3]|24-104
+1466|code|LDR             R3, =grub_unregister_extcmd|2-75
+1468|code|BLX             R3; grub_unregister_extcmd|152-71
+1470|code|POP             {R3,PC}|8-189
+1472|data|DCD cmd|44-10-0-0
+1476|data|DCD grub_unregister_extcmd|60-10-0-0
+1480|data|DCD aNul, aPmi, aInit, aCpei; "Nul" ...|187-9-0-0-191-9-0-0-195-9-0-0-200-9-0-0
+1496|data|grub_arg_option <aV1, 0x31, 0, aShowVersion1Ta, 0, ARG_TYPE_NONE>; "v1" ...|205-9-0-0-49-0-0-0-0-0-0-0-208-9-0-0-0-0-0-0-0-0-0-0-236-9-0-0-50-0-0-0-0-0-0-0-239-9-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+2585|data||255
+2586|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

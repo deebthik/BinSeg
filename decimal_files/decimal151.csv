@@ -1,0 +1,309 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+4|code|MOV             R7, R3|31-70
+6|code|LDR             R3, =0x27C57B|22-75
+8|code|MOV             R5, dev_id|5-70
+10|code|RSB.W           dev_id, dev_id, dev_id,LSL#19|192-235-192-64
+14|code|BIC.W           R6, R2, #0x3F|34-240-63-6
+18|code|MOV             R8, disk_id|136-70
+20|code|MLA.W           R0, R3, disk_id, R0|3-251-1-0
+24|code|LSRS            R3, R6, #6|179-9
+26|code|ORR.W           R3, R3, R7,LSL#26|67-234-135-99
+30|code|MOVW            disk_id, #0x3FD|64-242-253-49
+34|code|ADD             R0, R3|24-68
+36|code|LDR             R3, =__aeabi_uidivmod|15-75
+38|code|BLX             R3; __aeabi_uidivmod|152-71
+40|code|MOVS            R3, #0x18|24-35
+42|code|LDR             R2, =grub_disk_cache_table|15-74
+44|code|MULS            R1, R3|89-67
+46|code|ADDS            R4, R1, R2|140-24
+48|code|LDR             R3, [R1,R2]|139-88
+50|code|CMP             R3, dev_id|171-66
+52|code|BNE             locret_5A|17-209
+54|code|LDR             R3, [cache,#4]|99-104
+56|code|CMP             R3, disk_id|67-69
+58|code|BNE             locret_5A|14-209
+60|code|LDRD.W          R2, R3, [cache,#8]|212-233-2-35
+64|code|CMP             R3, R7|187-66
+66|code|IT EQ|8-191
+68|code|CMPEQ           R2, R6|178-66
+70|code|BNE             locret_5A|8-209
+72|code|LDR             R0, [cache,#0x10]|32-105
+74|code|CBZ             R0, locret_5A|48-177
+76|code|MOVS            R3, #1|1-35
+78|code|STR             R3, [cache,#0x14]|99-97
+80|code|LDR             R3, =grub_free|6-75
+82|code|BLX             R3; grub_free|152-71
+84|code|MOVS            R3, #0|0-35
+86|code|STR             R3, [cache,#0x10]|35-97
+88|code|STR             R3, [cache,#0x14]|99-97
+90|code|POP.W           {cache-disk_id,PC}|189-232-240-129
+94|data|ALIGN 0x10|0-191
+96|data|DCD 0x27C57B|123-197-39-0
+100|data|DCD __aeabi_uidivmod|208-3-0-0
+104|data|DCD grub_disk_cache_table|216-3-0-0
+108|data|DCD grub_free|212-3-0-0
+112|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+116|code|SUB             SP, SP, #0x1C|135-176
+118|code|MOV             R5, R3|29-70
+120|code|LDR             R3, [disk]|3-104
+122|code|LDRD.W          R6, R7, [SP,#0x40+offset]|221-233-16-103
+126|code|MOV             R10, disk|130-70
+128|code|MOV             R4, R2|20-70
+130|code|LDR             disk, =aLibDiskC; "lib/disk.c"|145-72
+132|code|STR             R3, [SP,#0x40+var_40]|0-147
+134|code|MOVS            R1, #0x3D ; '='|61-33
+136|code|LDR             R2, =aDisk; "disk"|144-74
+138|code|LDR             R3, =aWritingS; "Writing `%s'...\n"|145-75
+140|code|LDR.W           R12, =grub_real_dprintf|223-248-108-194
+144|code|LDR.W           R11, [SP,#0x40+size]|221-248-72-176
+148|code|BLX             R12; grub_real_dprintf|224-71
+150|code|LSRS            R2, R6, #9|114-10
+152|code|LSRS            R3, R7, #9|123-10
+154|code|ORR.W           R2, R2, R7,LSL#23|66-234-199-82
+158|code|LDR.W           LR, [disk,#0x1C]|218-248-28-224
+162|code|ADDS            R4, R4, R2|164-24
+164|code|MOVW            R2, #0x1FF|64-242-255-18
+168|code|AND.W           R6, R6, R2|6-234-2-6
+172|code|ADCS            R5, R3|93-65
+174|code|MOVS            R3, #0|0-35
+176|code|ADDS            R2, R2, R6|146-25
+178|code|AND.W           R7, R7, R3|7-234-3-7
+182|code|ADCS            R3, R7|123-65
+184|code|ADDS.W          R2, R2, R11|18-235-11-2
+188|code|ADC.W           R3, R3, #0|67-241-0-3
+192|code|MOV.W           R8, R2,LSR#9|79-234-82-40
+196|code|ORR.W           R8, R8, R3,LSL#23|72-234-195-88
+200|code|MOV.W           R9, R3,LSR#9|79-234-83-41
+204|code|CMP.W           LR, #0|190-241-0-15
+208|code|BEQ             loc_104|24-208
+210|code|LDRD.W          R2, R3, [LR,#0x10]|222-233-4-35
+214|code|LDRD.W          R0, R1, [LR,#8]|222-233-2-1
+218|code|CMP             R5, R3|157-66
+220|code|IT EQ|8-191
+222|code|CMPEQ           R4, R2|148-66
+224|code|BCC             loc_EC|4-211
+226|code|LDR             R1, =aAttemptToReadO; "attempt to read or write outside of par"...|124-73
+228|code|MOVS            R0, #0xB|11-32
+230|code|LDR             R3, =grub_error|124-75
+232|code|BLX             R3; grub_error|152-71
+234|code|B               loc_166|60-224
+236|code|SUBS            R2, R2, R4|18-27
+238|code|SBC.W           R3, R3, R5|99-235-5-3
+242|code|CMP             R3, R9|75-69
+244|code|IT EQ|8-191
+246|code|CMPEQ           R2, R8|66-69
+248|code|BCC             loc_E2|243-211
+250|code|ADDS            R4, R4, R0|36-24
+252|code|LDR.W           LR, [LR,#0x24]|222-248-36-224
+256|code|ADCS            R5, R1|77-65
+258|code|B               loc_CC|227-231
+260|code|LDRD.W          R0, R1, [disk,#8]|218-233-2-1
+264|code|ADDS            R3, R1, #1|75-28
+266|code|IT EQ|8-191
+268|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+272|code|BNE             loc_13A|19-209
+274|code|LDR.W           R2, [disk,#0x10]|218-248-16-32
+278|code|MOVS            R0, #1|1-32
+280|code|LDR             R7, =__aeabi_llsl|112-79
+282|code|MOVS            R1, #0|0-33
+284|code|SUBS            R2, #9|9-58
+286|code|BLX             R7; __aeabi_llsl|184-71
+288|code|STR             R7, [SP,#0x40+var_2C]|5-151
+290|code|NEGS            R0, R0|64-66
+292|code|AND.W           R8, R4, R0|4-234-0-8
+296|code|SBC.W           R1, R1, R1,LSL#1|97-235-65-1
+300|code|RSB.W           R4, R8, R4|200-235-4-4
+304|code|AND.W           R9, R5, R1|5-234-1-9
+308|code|ADD.W           R6, R6, R4,LSL#9|6-235-68-38
+312|code|B               loc_190|42-224
+314|code|LDR.W           R2, [disk,#0x10]|218-248-16-32
+318|code|LDR             R3, =__aeabi_llsl|103-75
+320|code|SUBS            R2, #9|9-58
+322|code|BLX             R3; __aeabi_llsl|152-71
+324|code|CMP             R5, R1|141-66
+326|code|IT EQ|8-191
+328|code|CMPEQ           R4, R0|132-66
+330|code|BCS             loc_15A|6-210
+332|code|SUBS            R0, R0, R4|0-27
+334|code|SBC.W           R1, R1, R5|97-235-5-1
+338|code|CMP             R1, R9|73-69
+340|code|IT EQ|8-191
+342|code|CMPEQ           R0, R8|64-69
+344|code|BCS             loc_112|219-210
+346|code|MOVS            R0, #0xB|11-32
+348|code|LDR             R1, =aAttemptToReadO_0; "attempt to read or write outside of dis"...|96-73
+350|code|LDR.W           R2, [disk]|218-248-0-32
+354|code|LDR             R3, =grub_error|93-75
+356|code|BLX             R3; grub_error|152-71
+358|code|CMP             R0, #0|0-40
+360|code|BEQ             loc_112|211-208
+362|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+366|code|B               loc_2C0|167-224
+368|code|MOV             R0, tmp_buf|32-70
+370|code|RSB.W           size_0, len, size_0|197-235-11-11
+374|code|BLX             R3; grub_free|152-71
+376|code|LDR.W           R3, [disk,#0x10]|218-248-16-48
+380|code|SUBS            R3, #9|9-59
+382|code|LSLS            R7, R3|159-64
+384|code|LDR             R3, [SP,#0x40+buf]|19-155
+386|code|ADDS.W          R8, R8, R7|24-235-7-8
+390|code|ADC.W           R9, R9, #0|73-241-0-9
+394|code|ADD             R3, len|43-68
+396|code|STR             R3, [SP,#0x40+buf]|19-147
+398|code|MOVS            R6, #0|0-38
+400|code|CMP.W           size_0, #0|187-241-0-15
+404|code|BEQ.W           finish|0-240-146-128
+408|code|LDR.W           R5, [disk,#0x10]|218-248-16-80
+412|code|CBNZ            real_offset, loc_1A4|22-185
+414|code|LSRS.W          R7, size_0, R5|59-250-5-247
+418|code|BNE             loc_242|78-209
+420|code|MOVS            R7, #1|1-39
+422|code|LDR             R3, =grub_malloc|79-75
+424|code|LSL.W           R0, R7, R5|7-250-5-240
+428|code|BLX             R3; grub_malloc|152-71
+430|code|MOV             R4, tmp_buf|4-70
+432|code|CMP             tmp_buf, #0|0-40
+434|code|BEQ.W           finish|0-240-131-128
+438|code|LDR.W           R5, [disk,#0x1C]|218-248-28-80
+442|code|MOVS            R3, #0|0-35
+444|code|MOVS            R2, #0|0-34
+446|code|STR.W           R3, [disk,#0x1C]|202-248-28-48
+450|code|MOVS            R3, #0|0-35
+452|code|STRD.W          R2, R3, [SP,#0x40+var_40]|205-233-0-35
+456|code|LDR.W           R3, [disk,#0x10]|218-248-16-48
+460|code|MOV             R2, R8|66-70
+462|code|STR             tmp_buf, [SP,#0x40+var_34]|3-144
+464|code|MOV             tmp_buf, disk|80-70
+466|code|LSL.W           R3, R7, R3|7-250-3-243
+470|code|LDR             R1, =grub_disk_read|68-73
+472|code|STR             R3, [SP,#0x40+var_38]|2-147
+474|code|MOV             R3, R9|75-70
+476|code|BLX             R1; grub_disk_read|136-71
+478|code|STR.W           part, [disk,#0x1C]|202-248-28-80
+482|code|CBZ             R0, loc_1EA|16-177
+484|code|MOV             R0, tmp_buf|32-70
+486|code|LDR             R3, =grub_free|65-75
+488|code|B               loc_23E|41-224
+490|code|LDR.W           R3, [disk,#0x10]|218-248-16-48
+494|code|ADDS            R0, tmp_buf, real_offset|160-25
+496|code|LDR             R1, [SP,#0x40+buf]|19-153
+498|code|LSL.W           part, R7, R3|7-250-3-245
+502|code|LDR             R3, =grub_memmove|62-75
+504|code|SUBS            R5, R5, real_offset|173-27
+506|code|CMP             len, size_0|93-69
+508|code|IT CS|40-191
+510|code|MOVCS           len, size_0|93-70
+512|code|MOV             R2, len|42-70
+514|code|BLX             R3; grub_memmove|152-71
+516|code|LDR.W           R3, [disk,#4]|218-248-4-48
+520|code|LDR.W           R1, [disk,#0x18]; disk_id|218-248-24-16
+524|code|MOV             R2, R8; sector|66-70
+526|code|LDR             R0, [R3,#4]; dev_id|88-104
+528|code|MOV             R3, R9; sector|75-70
+530|code|BL              grub_disk_cache_invalidate|255-247-245-254
+534|code|LDR.W           R2, [disk,#0x10]|218-248-16-32
+538|code|LDR             R3, =__aeabi_llsr|54-75
+540|code|MOV             R0, R8|64-70
+542|code|SUBS            R2, #9|9-58
+544|code|MOV             R1, R9|73-70
+546|code|BLX             R3; __aeabi_llsr|152-71
+548|code|LDR.W           real_offset, [disk,#4]|218-248-4-96
+552|code|STR             R7, [SP,#0x40+var_40]|0-151
+554|code|STR             tmp_buf, [SP,#0x40+var_3C]|1-148
+556|code|MOV             R3, R1|11-70
+558|code|MOV             R2, R0|2-70
+560|code|LDR             R1, [R6,#0x18]|177-105
+562|code|MOV             R0, disk|80-70
+564|code|BLX             R1|136-71
+566|code|LDR             R3, =grub_free|45-75
+568|code|CMP             R0, #0|0-40
+570|code|BEQ             loc_170|153-208
+572|code|MOV             R0, tmp_buf|32-70
+574|code|BLX             R3; grub_free|152-71
+576|code|B               finish|60-224
+578|code|MOV             R2, R5|42-70
+580|code|LDR             R3, [SP,#0x40+var_2C]|5-155
+582|code|MOVS            R0, #1|1-32
+584|code|MOVS            R1, #0|0-33
+586|code|BLX             R3|152-71
+588|code|LDR.W           R4, [disk,#0x14]|218-248-20-64
+592|code|RSB.W           R3, R5, #0xF|197-241-15-3
+596|code|SUB.W           R2, R5, #9|165-241-9-2
+600|code|MOV             R1, R9|73-70
+602|code|LSLS            R4, R3|156-64
+604|code|LDR             R3, =__aeabi_llsr|37-75
+606|code|CMP             R4, R7|188-66
+608|code|IT CS|40-191
+610|code|MOVCS           R4, R7|60-70
+612|code|LDR.W           R7, [disk,#4]|218-248-4-112
+616|code|NEGS            R0, R0|64-66
+618|code|AND.W           real_offset, size_0, R0|11-234-0-6
+622|code|MOV             R0, R8|64-70
+624|code|BLX             R3; __aeabi_llsr|152-71
+626|code|STR             n, [SP,#0x40+var_40]|0-148
+628|code|MOV             R3, R1|11-70
+630|code|LDR             R1, [SP,#0x40+buf]|19-153
+632|code|MOV             R2, R0|2-70
+634|code|MOV             R0, disk|80-70
+636|code|STR             R1, [SP,#0x40+var_3C]|1-145
+638|code|LDR             R1, [R7,#0x18]|185-105
+640|code|BLX             R1|136-71
+642|code|CBNZ            R0, finish|216-185
+644|code|MOVS            R5, #1|1-37
+646|code|CBZ             R4, loc_2B0|156-177
+648|code|LDR.W           R3, [disk,#4]|218-248-4-48
+652|code|MOV             R2, R8; sector|66-70
+654|code|LDR.W           R1, [disk,#0x18]; disk_id|218-248-24-16
+658|code|SUBS            R4, #1|1-60
+660|code|LDR             R0, [R3,#4]; dev_id|88-104
+662|code|MOV             R3, R9; sector|75-70
+664|code|BL              grub_disk_cache_invalidate|255-247-178-254
+668|code|LDR.W           R3, [disk,#0x10]|218-248-16-48
+672|code|SUBS            R3, #9|9-59
+674|code|LSL.W           R3, R5, R3|5-250-3-243
+678|code|ADDS.W          R8, R8, R3|24-235-3-8
+682|code|ADC.W           R9, R9, #0|73-241-0-9
+686|code|B               loc_286|234-231
+688|code|LDR             R3, [SP,#0x40+buf]|19-155
+690|code|RSB.W           R11, len, R11|198-235-11-11
+694|code|ADD             R3, len|51-68
+696|code|STR             R3, [SP,#0x40+buf]|19-147
+698|code|B               loc_18E|104-231
+700|code|LDR             R3, =grub_errno|14-75
+702|code|LDR             R0, [R3]|24-104
+704|code|ADD             SP, SP, #0x1C|7-176
+706|code|POP.W           {R4-R11,PC}|189-232-240-143
+710|data|ALIGN 4|0-191
+712|data|DCD aLibDiskC; "lib/disk.c"|28-3-0-0
+716|data|DCD aDisk; "disk"|39-3-0-0
+720|data|DCD aWritingS; "Writing `%s'...\n"|44-3-0-0
+724|data|DCD aAttemptToReadO; "attempt to read or write outside of par"...|61-3-0-0
+728|data|DCD grub_error|200-3-0-0
+732|data|DCD __aeabi_llsl|204-3-0-0
+736|data|DCD aAttemptToReadO_0; "attempt to read or write outside of dis"...|107-3-0-0
+740|data|DCD grub_malloc|192-3-0-0
+744|data|DCD grub_disk_read|184-3-0-0
+748|data|DCD grub_free|212-3-0-0
+752|data|DCD grub_memmove|176-3-0-0
+756|data|DCD __aeabi_llsr|172-3-0-0
+760|data|DCD grub_errno|188-3-0-0
+764|data|DCD grub_real_dprintf|196-3-0-0
+768|code|LDR             R2, =(grub_disk_write+1)|1-74
+770|code|LDR             R3, =grub_disk_write_weak|2-75
+772|code|STR             R2, [R3]|26-96
+774|code|BX              LR|112-71
+776|data|DCD grub_disk_write+1|113-0-0-0
+780|data|DCD grub_disk_write_weak|180-3-0-0
+784|code|LDR             R3, =grub_disk_write_weak|1-75
+786|code|MOVS            R2, #0|0-34
+788|code|STR             R2, [R3]|26-96
+790|code|BX              LR|112-71
+792|data|DCD grub_disk_write_weak|180-3-0-0
+796|data|DCB "lib/disk.c",0|108-105-98-47-100-105-115-107-46-99-0
+807|data|DCB "disk",0|100-105-115-107-0
+812|data|DCB "Writing `%s'...",0xA,0|87-114-105-116-105-110-103-32-96-37-115-39-46-46-46-10-0
+829|data|DCB "attempt to read or write outside of partition",0|97-116-116-101-109-112-116-32-116-111-32-114-101-97-100-32-111-114-32-119-114-105-116-101-32-111-117-116-115-105-100-101-32-111-102-32-112-97-114-116-105-116-105-111-110-0
+875|data|DCB "attempt to read or write outside of disk `%s'",0|97-116-116-101-109-112-116-32-116-111-32-114-101-97-100-32-111-114-32-119-114-105-116-101-32-111-117-116-115-105-100-101-32-111-102-32-100-105-115-107-32-96-37-115-39-0
+921|data||255
+922|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,351 @@
+address|type|disassembly|bytes
+0|code|ADD             size, str|1-68
+2|code|MOVS            R2, #0|0-34
+4|code|MOVS            R3, #0|0-35
+6|code|PUSH            {R4-R7,LR}|240-181
+8|code|CMP             str, R1|136-66
+10|code|BEQ             loc_2C|15-208
+12|code|LDRB.W          R4, [str],#1|16-248-1-75
+16|code|SUB.W           R5, R4, #0x30 ; '0'|164-241-48-5
+20|code|CMP             R5, #7|7-45
+22|code|BHI             loc_2C|9-216
+24|code|LSLS            R7, R3, #3|223-0
+26|code|LSLS            R6, R2, #3|214-0
+28|code|ORR.W           R7, R7, R2,LSR#29|71-234-82-119
+32|code|AND.W           R4, R4, #0xF|4-240-15-4
+36|code|ORR.W           R2, R6, R4|70-234-4-2
+40|code|MOV             R3, R7|59-70
+42|code|B               loc_8|237-231
+44|code|MOV             R0, R2|16-70
+46|code|MOV             R1, R3|25-70
+48|code|POP             {R4-R7,PC}|240-189
+50|code|MOVS            R2, #0|0-34
+52|code|MOVS            R3, #0|0-35
+54|code|STRD.W          R2, R3, [data,#0x10]|192-233-4-35
+58|code|BX              LR|112-71
+60|code|PUSH            {R3,LR}|8-181
+62|code|LDR             file, [file,#0x44]|64-108
+64|code|LDR             R3, =grub_free|2-75
+66|code|BLX             R3; grub_free|152-71
+68|code|LDR             R3, =grub_errno|2-75
+70|code|LDR             R0, [R3]|24-104
+72|code|POP             {R3,PC}|8-189
+74|data|ALIGN 4|0-191
+76|data|DCD grub_free|12-4-0-0
+80|data|DCD grub_errno|240-3-0-0
+84|code|PUSH            {R4-R7,LR}|240-181
+86|code|MOV             R3, file|3-70
+88|code|LDR             R4, [file,#0x44]|68-108
+90|code|MOV             R5, len|21-70
+92|code|LDR             len, [R3,#0x48]|154-108
+94|code|SUB             SP, SP, #0x14|133-176
+96|code|LDR             file, [data]|32-104
+98|code|LDRD.W          R6, R7, [data,#0x18]|212-233-6-103
+102|code|STR             R2, [R0,#0x20]|2-98
+104|code|LDR             R2, [file,#0x4C]|218-108
+106|code|STR             R2, [R0,#0x24]|66-98
+108|code|LDRD.W          R2, file, [file,#0x10]|211-233-4-35
+112|code|STR             buf_0, [SP,#0x28+buf]|3-145
+114|code|ADDS            R6, R6, R2|182-24
+116|code|STR             len, [SP,#0x28+var_20]|2-149
+118|code|ADCS            R7, file|95-65
+120|code|MOVS            R2, #0|0-34
+122|code|STRD.W          R6, R7, [SP,#0x28+var_28]|205-233-0-103
+126|code|MOVS            file, #0|0-35
+128|code|LDR             buf_0, =grub_disk_read|5-73
+130|code|BLX             R1; grub_disk_read|136-71
+132|code|LDR             R3, [data]|35-104
+134|code|MOVS            R2, #0|0-34
+136|code|STR             R2, [R3,#0x20]|26-98
+138|code|CMP             R0, #0|0-40
+140|code|ITE EQ|12-191
+142|code|MOVEQ           R0, len|40-70
+144|code|MOVNE.W         R0, #0xFFFFFFFF|79-240-255-48
+148|code|ADD             SP, SP, #0x14|5-176
+150|code|POP             {data-R7,PC}|240-189
+152|data|DCD grub_disk_read|236-3-0-0
+156|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+160|code|MOV             R8, mtime|144-70
+162|code|MOV             R9, mode|153-70
+164|code|LDRD.W          mtime, mode, [data,#0x10]|208-233-4-35
+168|code|SUB             SP, SP, #0x64|153-176
+170|code|MOV             R4, data|4-70
+172|code|ADD             R7, SP, #0x14|5-175
+174|code|LDR             R5, =grub_disk_read|68-77
+176|code|STRD.W          R2, mode, [data,#8]|192-233-2-35
+180|code|MOV             R6, name|14-70
+182|code|STRD.W          R2, mode, [SP,#0x64+var_64]|205-233-0-35
+186|code|MOVS            mode, #0x4C ; 'L'|76-35
+188|code|STR             R7, [SP,#0x64+var_58]|3-151
+190|code|MOVS            R2, #0|0-34
+192|code|STR             R3, [SP,#0x64+var_5C]|2-147
+194|code|MOVS            R3, #0|0-35
+196|code|LDR             data, [data]|0-104
+198|code|BLX             R5; grub_disk_read|168-71
+200|code|CMP             R0, #0|0-40
+202|code|BNE             loc_15A|70-209
+204|code|MOV             R0, R7|56-70
+206|code|LDR             R1, =a070707; "070707"|61-73
+208|code|MOVS            R2, #6|6-34
+210|code|LDR             R7, =grub_memcmp|61-79
+212|code|BLX             R7; grub_memcmp|184-71
+214|code|CBZ             R0, loc_E4|40-177
+216|code|MOVS            R0, #9|9-32
+218|code|LDR             R1, =aInvalidCpioArc; "invalid cpio archive"|60-73
+220|code|LDR             R3, =grub_error|60-75
+222|code|BLX             R3; grub_error|152-71
+224|code|MOV             R5, R0|5-70
+226|code|B               loc_1B6|104-224
+228|code|ADD.W           R0, SP, #0x64+hd.filesize; str|13-241-85-0
+232|code|MOVS            R1, #0xB; size|11-33
+234|code|BL              read_number|255-247-137-255
+238|code|STRD.W          R0, R1, [data,#0x20]|196-233-8-1
+242|code|CMP.W           mtime, #0|184-241-0-15
+246|code|BEQ             loc_104|5-208
+248|code|ADD             R0, SP, #0x64+hd.mtime; str|17-168
+250|code|MOVS            R1, #0xB; size|11-33
+252|code|BL              read_number|255-247-128-255
+256|code|STR.W           R0, [mtime]|200-248-0-0
+260|code|ADD.W           R0, SP, #0x64+hd.mode; str|13-241-38-0
+264|code|MOVS            R1, #6; size|6-33
+266|code|BL              read_number|255-247-121-255
+270|code|MOVS            R1, #6; size|6-33
+272|code|MOV             R10, R0|130-70
+274|code|ADD.W           modeval, SP, #0x64+hd.namesize; str|13-241-79-0
+278|code|BL              read_number|255-247-115-255
+282|code|MOV             mtime, R0|128-70
+284|code|MOV             R11, R0|131-70
+286|code|CMP.W           mode, #0|185-241-0-15
+290|code|BEQ             loc_128|1-208
+292|code|STR.W           modeval, [mode]|201-248-0-160
+296|code|ADD.W           namesize, R8, #1|8-241-1-0
+300|code|LDR             R3, =grub_malloc|41-75
+302|code|BLX             R3; grub_malloc|152-71
+304|code|STR             R0, [name]|48-96
+306|code|CBZ             R0, loc_15A|144-177
+308|code|LDRD.W          R2, R3, [data,#8]|212-233-2-35
+312|code|STR             R0, [SP,#0x64+var_58]|3-144
+314|code|ADDS            R2, #0x4C ; 'L'|76-50
+316|code|STR.W           namesize, [SP,#0x64+var_5C]|205-248-8-128
+320|code|ADC.W           R3, R3, #0|67-241-0-3
+324|code|LDR             R0, [data]|32-104
+326|code|STRD.W          R2, R3, [SP,#0x64+var_64]|205-233-0-35
+330|code|MOVS            R2, #0|0-34
+332|code|MOVS            R3, #0|0-35
+334|code|BLX             R5; grub_disk_read|168-71
+336|code|MOV             R5, R0|5-70
+338|code|CBZ             R0, loc_160|40-177
+340|code|LDR             R0, [name]|48-104
+342|code|LDR             R3, =grub_free|32-75
+344|code|BLX             R3; grub_free|152-71
+346|code|LDR             R3, =grub_errno|32-75
+348|code|LDR             R5, [R3]|29-104
+350|code|B               loc_1B6|42-224
+352|code|LDR             R3, [name]|51-104
+354|code|STRB.W          R0, [R3,R11]|3-248-11-0
+358|code|LDRD.W          R2, R3, [data,#0x20]|212-233-8-35
+362|code|ORRS            R3, R2|19-67
+364|code|BNE             loc_194|18-209
+366|code|CMP.W           modeval, #0|186-241-0-15
+370|code|BNE             loc_194|15-209
+372|code|CMP.W           namesize, #0xB|184-241-11-15
+376|code|BNE             loc_194|12-209
+378|code|LDR             R0, [name]|48-104
+380|code|MOV             R2, namesize|66-70
+382|code|LDR             R1, =aTrailer; "TRAILER!!!"|24-73
+384|code|BLX             R7; grub_memcmp|184-71
+386|code|CBNZ            R0, loc_194|56-185
+388|code|MOV.W           R3, #0xFFFFFFFF|79-240-255-51
+392|code|LDR             R0, [name]|48-104
+394|code|STR.W           R3, [mode]|201-248-0-48
+398|code|LDR             R3, =grub_free|18-75
+400|code|BLX             R3; grub_free|152-71
+402|code|B               loc_1B6|16-224
+404|code|LDRD.W          name, R7, [data,#8]|212-233-2-103
+408|code|LDRD.W          R2, R3, [data,#0x20]|212-233-8-35
+412|code|ADDS            R6, #0x4C ; 'L'|76-54
+414|code|ADC.W           R7, R7, #0|71-241-0-7
+418|code|ADDS.W          R6, R6, namesize|22-235-8-6
+422|code|ADC.W           R7, R7, #0|71-241-0-7
+426|code|ADDS            R2, R2, R6|146-25
+428|code|ADCS            R3, R7|123-65
+430|code|STRD.W          R6, R7, [data,#0x18]|196-233-6-103
+434|code|STRD.W          R2, R3, [data,#0x10]|196-233-4-35
+438|code|MOV             R0, R5|40-70
+440|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+442|code|POP.W           {data-R11,PC}|189-232-240-143
+446|data|ALIGN 0x10|0-191
+448|data|DCD grub_disk_read|236-3-0-0
+452|data|DCD a070707; "070707"|96-3-0-0
+456|data|DCD grub_memcmp|24-4-0-0
+460|data|DCD aInvalidCpioArc; "invalid cpio archive"|103-3-0-0
+464|data|DCD grub_error|4-4-0-0
+468|data|DCD grub_malloc|252-3-0-0
+472|data|DCD grub_free|12-4-0-0
+476|data|DCD grub_errno|240-3-0-0
+480|data|DCD aTrailer; "TRAILER!!!"|124-3-0-0
+484|code|PUSH            {R4,R5,LR}|48-181
+486|code|MOV             R5, data|5-70
+488|code|LDRD.W          data, R1, [data,#0x20]|208-233-8-1
+492|code|SUB             SP, SP, #0x14|133-176
+494|code|ORRS.W          R3, R0, R1|80-234-1-3
+498|code|BNE             loc_1FC|3-209
+500|code|LDR             R3, =grub_strdup|15-75
+502|code|LDR             R0, =unk_387|16-72
+504|code|BLX             R3; grub_strdup|152-71
+506|code|B               loc_230|25-224
+508|code|ADDS            R0, #1|1-48
+510|code|LDR             R3, =grub_malloc|15-75
+512|code|BLX             R3; grub_malloc|152-71
+514|code|MOV             R4, ret|4-70
+516|code|CBZ             ret, loc_22E|152-177
+518|code|LDRD.W          R2, R3, [data,#0x18]|213-233-6-35
+522|code|STR             ret, [SP,#0x20+var_14]|3-144
+524|code|LDR             R1, =grub_disk_read|12-73
+526|code|STRD.W          R2, R3, [SP,#0x20+var_20]|205-233-0-35
+530|code|MOVS            R2, #0|0-34
+532|code|LDR             R3, [data,#0x20]|43-106
+534|code|LDR             ret, [data]|40-104
+536|code|STR             R3, [SP,#0x20+var_18]|2-147
+538|code|MOVS            R3, #0|0-35
+540|code|BLX             R1; grub_disk_read|136-71
+542|code|CBZ             err, loc_22A|32-177
+544|code|MOV             err, ret|32-70
+546|code|LDR             R3, =grub_free|8-75
+548|code|BLX             R3; grub_free|152-71
+550|code|MOVS            R0, #0|0-32
+552|code|B               loc_230|2-224
+554|code|LDR             R3, [data,#0x20]|43-106
+556|code|STRB            err, [ret,R3]|224-84
+558|code|MOV             R0, ret|32-70
+560|code|ADD             SP, SP, #0x14|5-176
+562|code|POP             {R4,data,PC}|48-189
+564|data|DCD grub_strdup|232-3-0-0
+568|data|DCD unk_387|135-3-0-0
+572|data|DCD grub_malloc|252-3-0-0
+576|data|DCD grub_disk_read|236-3-0-0
+580|data|DCD grub_free|12-4-0-0
+584|code|PUSH            {R4,R5,LR}|48-181
+586|code|SUB             SP, SP, #0x64|153-176
+588|code|MOVS            R1, #0x4C ; 'L'|76-33
+590|code|MOVS            R2, #0|0-34
+592|code|MOVS            R3, #0|0-35
+594|code|STR             R1, [SP,#0x70+var_68]|2-145
+596|code|ADD             R4, SP, #0x70+hd|5-172
+598|code|STRD.W          R2, R3, [SP,#0x70+var_70]|205-233-0-35
+602|code|STR             R4, [SP,#0x70+var_64]|3-148
+604|code|MOV             R5, disk|5-70
+606|code|LDR             R1, =grub_disk_read|11-73
+608|code|BLX             R1; grub_disk_read|136-71
+610|code|CBNZ            R0, loc_27C|88-185
+612|code|MOV             R0, R4|32-70
+614|code|LDR             R1, =a070707; "070707"|10-73
+616|code|MOVS            R2, #6|6-34
+618|code|LDR             R3, =grub_memcmp|10-75
+620|code|BLX             R3; grub_memcmp|152-71
+622|code|CBNZ            R0, loc_27C|40-185
+624|code|MOVS            R0, #0x28 ; '('|40-32
+626|code|LDR             R3, =grub_zalloc|9-75
+628|code|BLX             R3; grub_zalloc|152-71
+630|code|CBZ             data, loc_27C|8-177
+632|code|STR             disk, [data]|5-96
+634|code|B               loc_286|4-224
+636|code|MOVS            R0, #9|9-32
+638|code|LDR             R1, =aNotAOdcFilesys; "not a odc filesystem"|7-73
+640|code|LDR             R3, =grub_error|7-75
+642|code|BLX             R3; grub_error|152-71
+644|code|MOVS            R0, #0|0-32
+646|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+648|code|POP             {R4,disk,PC}|48-189
+650|data|ALIGN 4|0-191
+652|data|DCD grub_disk_read|236-3-0-0
+656|data|DCD a070707; "070707"|96-3-0-0
+660|data|DCD grub_memcmp|24-4-0-0
+664|data|DCD grub_zalloc|248-3-0-0
+668|data|DCD aNotAOdcFilesys; "not a odc filesystem"|136-3-0-0
+672|data|DCD grub_error|4-4-0-0
+676|code|LDR             R3, [file,#4]|67-104
+678|code|PUSH            {R4-R6,LR}|112-181
+680|code|MOV             R5, file|5-70
+682|code|LDR             file, [R3]; disk|24-104
+684|code|MOV             R4, name_in|12-70
+686|code|BL              grub_cpio_mount|255-247-203-255
+690|code|MOV             R6, data|6-70
+692|code|CBNZ            data, loc_2BC|16-185
+694|code|LDR             R3, =grub_errno|10-75
+696|code|LDR             data, [R3]|24-104
+698|code|POP             {name_in-data,PC}|112-189
+700|code|MOV             R2, name_in|34-70
+702|code|LDR             R1, =arcops|9-73
+704|code|LDR             R3, =grub_archelp_open|9-75
+706|code|BLX             R3; grub_archelp_open|152-71
+708|code|MOV             name_in, err|4-70
+710|code|CBZ             err, loc_2D0|24-177
+712|code|MOV             err, data|48-70
+714|code|LDR             R3, =grub_free|8-75
+716|code|BLX             R3; grub_free|152-71
+718|code|B               loc_2DA|4-224
+720|code|LDRD.W          R2, R3, [data,#0x20]|214-233-8-35
+724|code|STR             data, [file,#0x44]|110-100
+726|code|STRD.W          R2, R3, [file,#0x38]|197-233-14-35
+730|code|MOV             R0, err|32-70
+732|code|POP             {err-data,PC}|112-189
+734|data|ALIGN 0x10|0-191
+736|data|DCD grub_errno|240-3-0-0
+740|data|DCD arcops|164-3-0-0
+744|data|DCD grub_archelp_open|0-4-0-0
+748|data|DCD grub_free|12-4-0-0
+752|code|PUSH            {device-hook,R4-R7,LR}|247-181
+754|code|MOV             R6, path_in|14-70
+756|code|LDR             device, [device]; disk|0-104
+758|code|MOV             R4, hook|20-70
+760|code|MOV             R7, hook_data|31-70
+762|code|BL              grub_cpio_mount|255-247-165-255
+766|code|MOV             R5, data|5-70
+768|code|CBNZ            data, loc_308|16-185
+770|code|LDR             R3, =grub_errno|8-75
+772|code|LDR             data, [R3]|24-104
+774|code|B               loc_31E|10-224
+776|code|MOV             R3, hook|35-70
+778|code|LDR             R1, =arcops|7-73
+780|code|MOV             R2, path_in|50-70
+782|code|LDR             hook, =grub_archelp_dir|7-76
+784|code|STR             hook_data, [SP,#0x20+var_20]|0-151
+786|code|BLX             R4; grub_archelp_dir|160-71
+788|code|LDR             R3, =grub_free|6-75
+790|code|MOV             R4, R0|4-70
+792|code|MOV             err, data|40-70
+794|code|BLX             R3; grub_free|152-71
+796|code|MOV             R0, err|32-70
+798|code|ADD             SP, SP, #0xC|3-176
+800|code|POP             {R4-hook_data,PC}|240-189
+802|data|ALIGN 4|0-191
+804|data|DCD grub_errno|240-3-0-0
+808|data|DCD arcops|164-3-0-0
+812|data|DCD grub_archelp_dir|16-4-0-0
+816|data|DCD grub_free|12-4-0-0
+820|code|PUSH            {R3,LR}|8-181
+822|code|LDR             mod, =grub_fs_list|2-72
+824|code|LDR             R1, =grub_cpio_fs|2-73
+826|code|LDR             R3, =grub_list_push|3-75
+828|code|BLX             R3; grub_list_push|152-71
+830|code|POP             {R3,PC}|8-189
+832|data|DCD grub_fs_list|244-3-0-0
+836|data|DCD grub_cpio_fs|176-3-0-0
+840|data|DCD grub_list_push|20-4-0-0
+844|code|PUSH            {R3,LR}|8-181
+846|code|LDR             R0, =grub_cpio_fs|2-72
+848|code|LDR             R3, =grub_list_remove|2-75
+850|code|BLX             R3; grub_list_remove|152-71
+852|code|POP             {R3,PC}|8-189
+854|data|ALIGN 4|0-191
+856|data|DCD grub_cpio_fs|176-3-0-0
+860|data|DCD grub_list_remove|8-4-0-0
+864|data|DCB "070707",0|48-55-48-55-48-55-0
+871|data|DCB "invalid cpio archive",0|105-110-118-97-108-105-100-32-99-112-105-111-32-97-114-99-104-105-118-101-0
+892|data|DCB "TRAILER!!!",0|84-82-65-73-76-69-82-33-33-33-0
+904|data|DCB "not a odc filesystem",0|110-111-116-32-97-32-111-100-99-32-102-105-108-101-115-121-115-116-101-109-0
+925|data|DCB "odc",0|111-100-99-0
+932|data|grub_archelp_ops <grub_cpio_find_file+1, grub_cpio_get_link_target+1, \|157-0-0-0-229-1-0-0-51-0-0-0
+944|data|grub_fs <0, 0, aOdc, grub_cpio_dir+1, grub_cpio_open+1, \; "odc"|0-0-0-0-0-0-0-0-157-3-0-0-241-2-0-0-165-2-0-0-85-0-0-0-61-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+984|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

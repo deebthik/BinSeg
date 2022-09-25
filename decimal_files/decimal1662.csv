@@ -1,0 +1,246 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+4|code|MOV             R7, offset|31-70
+6|code|LDR             R5, [SP,#0x20+ctx]|9-157
+8|code|MOV             R10, num|146-70
+10|code|MOV             R8, R0|128-70
+12|code|MOV             R9, R1|137-70
+14|code|LDR             R6, [SP,#0x20+length]|8-158
+16|code|LDR             offset, [R5,#8]|171-104
+18|code|LDR             R4, =grub_printf|14-76
+20|code|ADDS            num, R3, #1|90-28
+22|code|STR             R2, [R5,#8]|170-96
+24|code|CBZ             R3, loc_1E|11-177
+26|code|LDR             R0, =unk_274|13-72
+28|code|BLX             R4; grub_printf|160-71
+30|code|LDRD.W          R2, R3, [R5,#0x10]|213-233-4-35
+34|code|LDR             R0, =aLlu; "%llu"|12-72
+36|code|SUBS.W          R2, R8, R2|184-235-2-2
+40|code|SBC.W           R3, R9, R3|105-235-3-3
+44|code|BLX             R4; grub_printf|160-71
+46|code|CMP.W           num, #0|186-241-0-15
+50|code|BEQ             loc_3C|3-208
+52|code|LDR             R0, =aU; "+%u"|8-72
+54|code|MOV             R1, num|81-70
+56|code|LDR             R3, =grub_printf|4-75
+58|code|BLX             R3; grub_printf|152-71
+60|code|CBNZ            offset, loc_40|7-185
+62|code|CBZ             R6, locret_48|30-177
+64|code|LDR             R0, =aUU; "[%u-%u]"|6-72
+66|code|MOV             R1, offset|57-70
+68|code|ADDS            R2, offset, R6|186-25
+70|code|BLX             R4; grub_printf|160-71
+72|code|POP.W           {R4-num,PC}|189-232-240-135
+76|data|DCD grub_printf|8-3-0-0
+80|data|DCD unk_274|116-2-0-0
+84|data|DCD aLlu; "%llu"|118-2-0-0
+88|data|DCD aU; "+%u"|123-2-0-0
+92|data|DCD aUU; "[%u-%u]"|127-2-0-0
+96|code|PUSH            {R4-R7,LR}|240-181
+98|code|SUB.W           SP, SP, #0x224; length|173-245-9-125
+102|code|ADD             R5, SP, #0x238+ctx|2-173
+104|code|MOV             R6, argc|14-70
+106|code|MOV             R4, args|20-70
+108|code|MOVS            argc, #0; c|0-33
+110|code|MOV             cmd, R5; s|40-70
+112|code|MOVS            args, #0x18; n|24-34
+114|code|LDR             R3, =memset|32-75
+116|code|BLX             R3; memset|152-71
+118|code|CMP             argc, #0|0-46
+120|code|BGT             loc_80|2-220
+122|code|MOVS            R0, #0x12|18-32
+124|code|LDR             R1, =aFilenameExpect; "filename expected"|30-73
+126|code|B               loc_9E|14-224
+128|code|LDR             R3, =grub_file_filters_enabled|30-75
+130|code|MOVS            R1, #0|0-33
+132|code|STR             R1, [R3,#4]|89-96
+134|code|STR             R1, [R3,#8]|153-96
+136|code|STR             R1, [R3,#0xC]|217-96
+138|code|LDR             R3, =grub_file_open|29-75
+140|code|LDR             R0, [args]|32-104
+142|code|BLX             R3; grub_file_open|152-71
+144|code|MOV             args, file|4-70
+146|code|CBZ             file, loc_EA|80-179
+148|code|LDR             R3, [file,#4]|67-104
+150|code|LDR             R3, [R3]|27-104
+152|code|CBNZ            R3, loc_A4|35-185
+154|code|LDR             R1, =aThisCommandIsA; "this command is available only for disk"...|26-73
+156|code|MOVS            file, #0xD|13-32
+158|code|LDR             R3, =grub_error|26-75
+160|code|BLX             R3; grub_error|152-71
+162|code|B               loc_EE|36-224
+164|code|LDR             R3, [R3,#0x1C]|219-105
+166|code|MOVS            argc, #0|0-38
+168|code|MOVS            R7, #0|0-39
+170|code|CBZ             R3, loc_B8|43-177
+172|code|LDRD.W          R0, R1, [R3,#8]|211-233-2-1
+176|code|LDR             R3, [R3,#0x24]|91-106
+178|code|ADDS            R6, R6, R0|54-24
+180|code|ADCS            R7, R1|79-65
+182|code|B               loc_AA|248-231
+184|code|STRD.W          R6, R7, [R5,#0x10]|197-233-4-103
+188|code|LDR             R3, =(read_blocklist+1)|19-75
+190|code|LDR             R6, =grub_file_read|20-78
+192|code|STR             R5, [file,#0x4C]|229-100
+194|code|STR             R3, [file,#0x48]|163-100
+196|code|MOV             R0, file|32-70
+198|code|ADD             R1, SP, #0x238+buf|8-169
+200|code|MOV.W           R2, #0x200|79-244-0-114
+204|code|BLX             R6; grub_file_read|176-71
+206|code|CMP             R0, #0|0-40
+208|code|BGT             loc_C4|248-220
+210|code|LDR             R2, [R5,#4]; num|106-104
+212|code|CBZ             R2, loc_E4|50-177
+214|code|MOVS            R1, #0; sector|0-33
+216|code|LDR             R0, [R5]; sector|40-104
+218|code|MOV             R3, R1; offset|11-70
+220|code|STMEA.W         SP, {R1,R5}|141-232-34-0
+224|code|BL              print_blocklist|255-247-142-255
+228|code|MOV             R0, file|32-70
+230|code|LDR             R3, =grub_file_close|11-75
+232|code|BLX             R3; grub_file_close|152-71
+234|code|LDR             R3, =grub_errno|11-75
+236|code|LDR             R0, [R3]|24-104
+238|code|ADD.W           SP, SP, #0x224|13-245-9-125
+242|code|POP             {R4-R7,PC}|240-189
+244|data|DCD memset|20-3-0-0
+248|data|DCD aFilenameExpect; "filename expected"|135-2-0-0
+252|data|DCD grub_file_filters_enabled|32-3-0-0
+256|data|DCD grub_file_open|28-3-0-0
+260|data|DCD aThisCommandIsA; "this command is available only for disk"...|153-2-0-0
+264|data|DCD grub_error|36-3-0-0
+268|data|DCD read_blocklist+1|29-1-0-0
+272|data|DCD grub_file_read|16-3-0-0
+276|data|DCD grub_file_close|24-3-0-0
+280|data|DCD grub_errno|0-3-0-0
+284|code|PUSH.W          {R0,R1,R4-R10,LR}|45-233-243-71
+288|code|MOV             R10, offset|146-70
+290|code|LDR             ctx, [SP,#0x28+data]|10-157
+292|code|MOV             R6, R0|6-70
+294|code|MOV             R7, R1|15-70
+296|code|MOV             R4, length|28-70
+298|code|LDR             offset, [ctx,#4]; num|106-104
+300|code|CBZ             R2, loc_182|74-179
+302|code|LDR             R0, [ctx]; sector|40-104
+304|code|MOV.W           R9, #0|79-240-0-9
+308|code|CMP             R9, R1|137-69
+310|code|ADD.W           R8, R0, R2|0-235-2-8
+314|code|IT EQ|8-191
+316|code|CMPEQ           R8, R6|176-69
+318|code|BNE             loc_160|15-209
+320|code|CMP.W           offset, #0|186-241-0-15
+324|code|BNE             loc_1F2|85-209
+326|code|CMP.W           length, #0x200|179-245-0-127
+330|code|BCC             loc_20C|95-211
+332|code|LSRS            length, length, #9|91-10
+334|code|UBFX.W          length, length, #0, #9|196-243-8-4
+338|code|ADDS.W          R8, R8, R3|24-235-3-8
+342|code|ADD             R2, R3|26-68
+344|code|ADC.W           R9, R9, #0|73-241-0-9
+348|code|STR             R2, [ctx,#4]|106-96
+350|code|B               loc_20C|85-224
+352|code|CMP             length, #0|0-43
+354|code|BEQ             loc_226|96-208
+356|code|MOV.W           R8, #0|79-240-0-8
+360|code|STR             ctx, [SP,#0x28+var_24]; ctx|1-149
+362|code|STR.W           R8, [SP,#0x28+var_28]; length|205-248-0-128
+366|code|MOV             R1, R8; sector|65-70
+368|code|MOV             length, R8; offset|67-70
+370|code|BL              print_blocklist|255-247-69-255
+374|code|STR.W           R8, [ctx,#4]|197-248-4-128
+378|code|CMP.W           offset, #0|186-241-0-15
+382|code|BEQ             loc_1B4|25-208
+384|code|B               loc_188|2-224
+386|code|CMP.W           offset, #0|186-241-0-15
+390|code|BEQ             loc_1B0|19-208
+392|code|ADD.W           R8, length, offset|4-235-10-8
+396|code|MOV             R0, R6; sector|48-70
+398|code|UBFX.W          l, l, #0, #9|200-243-8-8
+402|code|MOV             R1, R7; sector|57-70
+404|code|RSB.W           l, offset, l|202-235-8-8
+408|code|STR             ctx, [SP,#0x28+var_24]; ctx|1-149
+410|code|STR.W           l, [SP,#0x28+var_28]; length|205-248-0-128
+414|code|MOVS            R2, #0; num|0-34
+416|code|MOV             R3, offset; offset|83-70
+418|code|RSB.W           length, l, length|200-235-4-4
+422|code|BL              print_blocklist|255-247-43-255
+426|code|ADDS            R6, #1|1-54
+428|code|ADC.W           R7, R7, #0|71-241-0-7
+432|code|CMP             length, #0|0-44
+434|code|BEQ             loc_226|56-208
+436|code|UBFX.W          R8, length, #0, #9|196-243-8-8
+440|code|LSRS            length, length, #9|100-10
+442|code|CMP.W           R8, #0|184-241-0-15
+446|code|BEQ             loc_1EC|21-208
+448|code|CBZ             R4, loc_1D8|84-177
+450|code|MOVS            R3, #0; offset|0-35
+452|code|MOV             R0, R6; sector|48-70
+454|code|MOV             R1, R7; sector|57-70
+456|code|STMEA.W         SP, {R3,ctx}|141-232-40-0
+460|code|MOV             R2, R4; num|34-70
+462|code|BL              print_blocklist|255-247-23-255
+466|code|ADDS            R6, R6, R4|54-25
+468|code|ADC.W           R7, R7, #0|71-241-0-7
+472|code|MOVS            R2, #0; num|0-34
+474|code|STR.W           R8, [SP,#0x28+var_28]; length|205-248-0-128
+478|code|STR             ctx, [SP,#0x28+var_24]; ctx|1-149
+480|code|MOV             R0, R6; sector|48-70
+482|code|MOV             R1, R7; sector|57-70
+484|code|MOV             R3, R2; offset|19-70
+486|code|BL              print_blocklist|255-247-11-255
+490|code|B               loc_226|28-224
+492|code|STR             R6, [ctx]|46-96
+494|code|STR             R4, [ctx,#4]|108-96
+496|code|B               loc_226|25-224
+498|code|CBZ             length, loc_226|195-177
+500|code|MOV.W           R8, #0|79-240-0-8
+504|code|STR             ctx, [SP,#0x28+var_24]; ctx|1-149
+506|code|STR.W           R8, [SP,#0x28+var_28]; length|205-248-0-128
+510|code|MOV             R1, R8; sector|65-70
+512|code|MOV             length, R8; offset|67-70
+514|code|BL              print_blocklist|255-247-253-254
+518|code|STR.W           R8, [ctx,#4]|197-248-4-128
+522|code|B               loc_188|189-231
+524|code|CBZ             length, loc_226|92-177
+526|code|MOVS            R6, #0|0-38
+528|code|STR             ctx, [SP,#0x28+var_24]; ctx|1-149
+530|code|STR             R6, [SP,#0x28+var_28]; length|0-150
+532|code|MOV             R1, R6; sector|49-70
+534|code|MOV             R3, R6; offset|51-70
+536|code|LDR             R2, [ctx,#4]; num|106-104
+538|code|BL              print_blocklist|255-247-241-254
+542|code|MOV             R7, R9|79-70
+544|code|STR             R6, [ctx,#4]|110-96
+546|code|MOV             R6, R8|70-70
+548|code|B               loc_1B4|198-231
+550|code|ADD             SP, SP, #8|2-176
+552|code|POP.W           {R4-R10,PC}|189-232-240-135
+556|code|PUSH            {mod,R1,R4,LR}|19-181
+558|code|MOVS            R3, #0|0-35
+560|code|LDR             R1, =(grub_cmd_blocklist+1)|5-73
+562|code|STR             R3, [SP,#0x10+var_10]|0-147
+564|code|LDR             R2, =aFile; "FILE"|5-74
+566|code|LDR             R3, =aPrintABlockLis; "Print a block list."|6-75
+568|code|LDR             R4, =grub_register_command_prio|6-76
+570|code|LDR             mod, =aBlocklist; "blocklist"|7-72
+572|code|BLX             R4; grub_register_command_prio|160-71
+574|code|LDR             R3, =cmd|7-75
+576|code|STR             R0, [R3]|24-96
+578|code|ADD             SP, SP, #8|2-176
+580|code|POP             {R4,PC}|16-189
+582|data|ALIGN 4|0-191
+584|data|DCD grub_cmd_blocklist+1|97-0-0-0
+588|data|DCD aFile; "FILE"|211-2-0-0
+592|data|DCD aPrintABlockLis; "Print a block list."|216-2-0-0
+596|data|DCD grub_register_command_prio|4-3-0-0
+600|data|DCD aBlocklist; "blocklist"|201-2-0-0
+604|data|DCD cmd|252-2-0-0
+608|code|PUSH            {R3,LR}|8-181
+610|code|LDR             R3, =cmd|2-75
+612|code|LDR             R0, [R3]|24-104
+614|code|LDR             R3, =grub_unregister_command|2-75
+616|code|BLX             R3; grub_unregister_command|152-71
+618|code|POP             {R3,PC}|8-189
+620|data|DCD cmd|252-2-0-0
+624|data|DCD grub_unregister_command|12-3-0-0
+749|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

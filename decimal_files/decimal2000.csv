@@ -1,0 +1,1352 @@
+address|type|disassembly|bytes
+0|code|MOVS            R3, #0|0-35
+2|code|MOV             R1, R3|25-70
+4|code|MOV             R2, R3|26-70
+6|code|PUSH            {R4,R5,LR}|48-181
+8|code|LDR             R4, [ht,#0x10]|4-105
+10|code|CMP             i, R4|163-66
+12|code|BGE             locret_2A|13-218
+14|code|LDR             R4, [ht,#4]|68-104
+16|code|LDR.W           R5, [R4,i,LSL#2]|84-248-35-80
+20|code|ADD             base, R5|42-68
+22|code|STR.W           base, [R4,i,LSL#2]|68-248-35-32
+26|code|LDR             R4, [ht,#8]|132-104
+28|code|ADD             ofs, R5|41-68
+30|code|SUBS            R5, ofs, base|141-26
+32|code|LSLS            base, base, #1|82-0
+34|code|STR.W           R5, [R4,i,LSL#2]|68-248-35-80
+38|code|ADDS            i, #1|1-51
+40|code|B               loc_8|238-231
+42|code|POP             {R4,R5,PC}|48-189
+44|code|PUSH.W          {R3-R11,LR}|45-233-248-79
+48|code|MOV             R5, data|5-70
+50|code|LDR             R3, [data,#0x24]|67-106
+52|code|SUBS            R3, #1|1-59
+54|code|STR             R3, [data,#0x24]|67-98
+56|code|CMP             R3, #0|0-43
+58|code|BGE             loc_42|2-218
+60|code|MOVS            data, #4|4-32
+62|code|LDR             n, =aImageSizeOverf; "image size overflown"|101-73
+64|code|B               loc_52|7-224
+66|code|MOVW            R3, #0x8970|72-246-112-19
+70|code|LDR             R3, [data,R3]|195-88
+72|code|CBNZ            R3, loc_62|91-185
+74|code|CMP             n, #4|4-41
+76|code|BLS             loc_5A|5-217
+78|code|LDR             n, =aInvalidFilterV; "invalid filter value"|98-73
+80|code|MOVS            data, #4|4-32
+82|code|LDR             R3, =grub_error|98-75
+84|code|BLX             R3; grub_error|152-71
+86|code|POP.W           {R3-R11,PC}|189-232-248-143
+90|code|MOVW            R3, #0x8974|72-246-116-19
+94|code|STR             n, [data,R3]|193-80
+96|code|B               loc_6E|5-224
+98|code|MOVW            R2, #0x896C|72-246-108-18
+102|code|LDR             R3, [data,R2]|131-88
+104|code|ADDS            data, R3, #1|88-28
+106|code|STR             R0, [data,R2]|168-80
+108|code|STRB            n, [R3]|25-112
+110|code|MOVW            R2, #0x8970|72-246-112-18
+114|code|LDR             R0, [data,#0x34]|104-107
+116|code|LDR             R3, [data,R2]|171-88
+118|code|ADDS            R3, #1|1-51
+120|code|STR             R3, [data,R2]|171-80
+122|code|ADDS            R2, R0, #1|66-28
+124|code|CMP             R3, R2|147-66
+126|code|BNE.W           loc_1CA|64-240-164-128
+130|code|MOVW            R2, #0x896C|72-246-108-18
+134|code|NEGS            R3, R0|67-66
+136|code|LDR             R4, [data,R2]|172-88
+138|code|MOVW            R2, #0x8978|72-246-120-18
+142|code|LDR             R2, [data,R2]|170-88
+144|code|ADD             R4, R3|28-68
+146|code|CBZ             R2, loc_A2|50-177
+148|code|LDR             R3, =grub_zalloc|82-75
+150|code|BLX             R3; grub_zalloc|152-71
+152|code|CMP             blank_line, #0|0-40
+154|code|BEQ.W           loc_1CA|0-240-150-128
+158|code|MOV             R3, blank_line|3-70
+160|code|B               loc_A6|1-224
+162|code|ADD             R3, left|35-68
+164|code|MOV             R0, R2|16-70
+166|code|MOVW            R2, #0x8974|72-246-116-18
+170|code|LDR             R2, [data,R2]|170-88
+172|code|SUBS            R2, #1; switch 4 cases|1-58
+174|code|CMP             R2, #3|3-42
+176|code|BHI.W           def_B4; jumptable 000000B4 default case|0-242-130-128
+180|code|TBB.W           [PC,R2]; switch jump|223-232-2-240
+184|data|DCB 0xA; jump table for switch statement|10
+185|data|DCB 7|7
+186|data|DCB 5|5
+187|data|DCB 2|2
+188|code|MOV             R1, up; jumptable 000000B4 case 4|25-70
+190|code|MOV             R2, left|34-70
+192|code|B               loc_13E|61-224
+194|code|MOV             R2, left; jumptable 000000B4 case 3|34-70
+196|code|B               loc_100|28-224
+198|code|SUBS            up, #1; jumptable 000000B4 case 2|1-59
+200|code|MOV             R2, left|34-70
+202|code|B               loc_EA|14-224
+204|code|LDR             up, [data,#0x1C]; jumptable 000000B4 case 1|235-105
+206|code|SUBS            R1, left, #1|97-30
+208|code|ADD             left, i|28-68
+210|code|SUBS            i, i, cur|27-27
+212|code|LDR             R6, [data,#0x34]|110-107
+214|code|ADDS            R2, cur, R3|226-24
+216|code|CMP             R2, R6|178-66
+218|code|BGE             def_B4; jumptable 000000B4 default case|109-218
+220|code|LDRB            R6, [cur]|38-120
+222|code|LDRB.W          R2, [R1,#1]!|17-248-1-47
+226|code|ADD             R2, R6|50-68
+228|code|STRB.W          R2, [cur],#1|4-248-1-43
+232|code|B               loc_D4|244-231
+234|code|LDR             R6, [data,#0x34]|110-107
+236|code|SUBS            R1, cur, left|17-27
+238|code|CMP             R1, R6|177-66
+240|code|BGE             def_B4; jumptable 000000B4 default case|98-218
+242|code|LDRB            R6, [cur]|22-120
+244|code|LDRB.W          R1, [R3,#1]!|19-248-1-31
+248|code|ADD             R1, R6|49-68
+250|code|STRB.W          R1, [cur],#1|2-248-1-27
+254|code|B               loc_EA|244-231
+256|code|LDR             R6, [data,#0x1C]|238-105
+258|code|SUBS            R1, R2, left|17-27
+260|code|MOV             R7, R3|31-70
+262|code|CMP             i, R6|177-66
+264|code|BGE             loc_11A|7-218
+266|code|LDRB            R6, [R7]|62-120
+268|code|ADDS            up, #1|1-51
+270|code|LDRB            i, [cur]|17-120
+272|code|ADD.W           R1, R1, R6,LSR#1|1-235-86-1
+276|code|STRB.W          R1, [cur],#1|2-248-1-27
+280|code|B               loc_100|242-231
+282|code|SUBS            up, #1|1-59
+284|code|SUBS            left, #1|1-60
+286|code|SUBS            i, i, cur|137-26
+288|code|LDR             R7, [data,#0x34]|111-107
+290|code|ADDS            R6, cur, R1|86-24
+292|code|CMP             R6, R7|190-66
+294|code|BGE             def_B4; jumptable 000000B4 default case|71-218
+296|code|LDRB.W          R6, [R4,#1]!|20-248-1-111
+300|code|LDRB.W          R7, [R3,#1]!|19-248-1-127
+304|code|ADD             R7, R6|55-68
+306|code|LDRB            R6, [cur]|22-120
+308|code|ADD.W           R6, R6, R7,ASR#1|6-235-103-6
+312|code|STRB.W          R6, [cur],#1|2-248-1-107
+316|code|B               loc_120|240-231
+318|code|LDR             R6, [data,#0x1C]|238-105
+320|code|RSB.W           R12, left, R2|196-235-2-12
+324|code|MOV             R7, R1|15-70
+326|code|CMP             i, R6|180-69
+328|code|BGE             loc_158|6-218
+330|code|LDRB            R7, [R7]|63-120
+332|code|ADDS            up, #1|1-49
+334|code|LDRB            R6, [cur]|22-120
+336|code|ADD             R6, R7|62-68
+338|code|STRB.W          R6, [cur],#1|2-248-1-107
+342|code|B               loc_13E|242-231
+344|code|SUBS            left, #1|1-60
+346|code|SUBS            R6, up, #1|78-30
+348|code|SUBS            R3, #1|1-59
+350|code|RSB.W           i, cur, i|194-235-12-12
+354|code|LDR             R1, [data,#0x34]|105-107
+356|code|ADD.W           R7, cur, R12|2-235-12-7
+360|code|CMP             R7, R1|143-66
+362|code|BGE             def_B4; jumptable 000000B4 default case|37-218
+364|code|LDRB.W          R9, [R3,#1]!|19-248-1-159
+368|code|LDRB.W          R10, [R6,#1]!|22-248-1-175
+372|code|LDRB.W          R8, [R4,#1]!|20-248-1-143
+376|code|RSB.W           LR, c, R10|201-235-10-14
+380|code|LDRB.W          R11, [cur]|146-248-0-176
+384|code|RSB.W           R7, c, R8|201-235-8-7
+388|code|CMP.W           LR, #0|190-241-0-15
+392|code|ADD.W           R1, LR, pb|14-235-7-1
+396|code|IT LT|184-191
+398|code|RSBLT.W         LR, LR, #0|206-241-0-14
+402|code|CMP             pb, #0|0-47
+404|code|IT LT|184-191
+406|code|NEGLT           pb, pb|127-66
+408|code|CMP             pc, #0|0-41
+410|code|IT LT|184-191
+412|code|NEGLT           pc, pc|73-66
+414|code|CMP             LR, pb|190-69
+416|code|BGT             loc_1A6|1-220
+418|code|CMP             LR, pc|142-69
+420|code|BLE             loc_1AE|3-221
+422|code|CMP             pb, pc|143-66
+424|code|ITE LE|212-191
+426|code|MOVLE           R8, R10|208-70
+428|code|MOVGT           R8, c|200-70
+430|code|ADD.W           pc, R8, R11|8-235-11-1
+434|code|STRB.W          R1, [cur],#1|2-248-1-27
+438|code|B               loc_162|212-231
+440|code|LDR             R3, =grub_free; jumptable 000000B4 default case|10-75
+442|code|BLX             R3; grub_free|152-71
+444|code|MOVW            R2, #0x8970|72-246-112-18
+448|code|MOVS            R3, #0|0-35
+450|code|STR             R3, [data,R2]|171-80
+452|code|MOVW            R2, #0x8978|72-246-120-18
+456|code|STR             R3, [data,R2]|171-80
+458|code|LDR             R3, =grub_errno|7-75
+460|code|LDR             R0, [R3]|24-104
+462|code|POP.W           {R3-R11,PC}|189-232-248-143
+466|data|ALIGN 4|0-191
+468|data|DCD aImageSizeOverf; "image size overflown"|188-14-0-0
+472|data|DCD aInvalidFilterV; "invalid filter value"|209-14-0-0
+476|data|DCD grub_error|208-16-0-0
+480|data|DCD grub_zalloc|188-16-0-0
+484|data|DCD grub_free|220-16-0-0
+488|data|DCD grub_errno|176-16-0-0
+492|code|PUSH            {R3-R7,LR}|248-181
+494|code|LDR             R6, [ht,#0x10]|6-105
+496|code|CMP             len, R6|178-66
+498|code|BGT             loc_1FC|3-220
+500|code|LSLS            R4, len, #2|148-0
+502|code|MOVS            R5, #0|0-37
+504|code|MOV             R3, R4|35-70
+506|code|B               loc_206|4-224
+508|code|LDR             code, =aPngInvalidCode; "png: invalid code length"|19-73
+510|code|MOVS            ht, #4|4-32
+512|code|LDR             R3, =grub_error|19-75
+514|code|BLX             R3; grub_error|152-71
+516|code|POP             {R3-R7,PC}|248-189
+518|code|CMP             i, R6|178-66
+520|code|BEQ             loc_216|5-208
+522|code|LDR             R7, [ht,#4]|71-104
+524|code|ADDS            i, #1|1-50
+526|code|LDR             R7, [R7,R3]|255-88
+528|code|ADDS            R3, #4|4-51
+530|code|ADD             n, R7|61-68
+532|code|B               loc_206|247-231
+534|code|MOVS            i, #0|0-34
+536|code|CMP             i, n|170-66
+538|code|LDR             R6, [ht]|6-104
+540|code|LDR             R3, [ht,#0xC]|195-104
+542|code|BGE             loc_232|8-218
+544|code|SUBS            R3, R3, i|155-26
+546|code|ADDS            i, #1|1-50
+548|code|ADD.W           R7, R6, R3,LSL#2|6-235-131-7
+552|code|LDR.W           R7, [R7,#-4]|87-248-4-124
+556|code|STR.W           R7, [R6,R3,LSL#2]|70-248-35-112
+560|code|B               loc_218|242-231
+562|code|SUBS            R3, R3, n|91-27
+564|code|STR.W           code, [R6,R3,LSL#2]|70-248-35-16
+568|code|LDR             R3, [ht,#0xC]|195-104
+570|code|LDR             code, [ht,#4]|65-104
+572|code|ADDS            R3, #1|1-51
+574|code|STR             R3, [ht,#0xC]|195-96
+576|code|SUBS            R3, R4, #4|35-31
+578|code|LDR             i, [R1,R3]|202-88
+580|code|ADDS            R2, #1|1-50
+582|code|STR             R2, [R1,R3]|202-80
+584|code|POP             {R3-R7,PC}|248-189
+586|data|ALIGN 4|0-191
+588|data|DCD aPngInvalidCode; "png: invalid code length"|230-14-0-0
+592|data|DCD grub_error|208-16-0-0
+596|code|PUSH            {R0-R2,LR}|7-181
+598|code|ADD             R1, SP, #0x10+var_8|2-169
+600|code|MOVS            R3, #0|0-35
+602|code|MOVS            R2, #4|4-34
+604|code|STR.W           R3, [R1,#-4]!|65-248-4-61
+608|code|LDR             R3, =grub_file_read|3-75
+610|code|BLX             R3; grub_file_read|152-71
+612|code|LDR             R0, [SP,#0x10+r]|1-152
+614|code|REV             R0, R0|0-186
+616|code|ADD             SP, SP, #0xC|3-176
+618|code|POP.W           {PC}|93-248-4-251
+622|data|ALIGN 0x10|0-191
+624|data|DCD grub_file_read|184-16-0-0
+628|code|LDR             R3, [data,#0x40]|3-108
+630|code|PUSH.W          {data,R1,R4-R6,R8,R9,LR}|45-233-115-67
+634|code|MOV             R4, data|4-70
+636|code|CBZ             R3, loc_2D2|75-179
+638|code|LDR             R3, [data,#0x44]|67-108
+640|code|CBNZ            R3, loc_2D2|59-187
+642|code|LDR             R6, =0x49444154|29-78
+644|code|LDR             R0, [data]; data|32-104
+646|code|MOV.W           R9, #0|79-240-0-9
+650|code|BL              grub_png_get_dword|255-247-227-255
+654|code|LDR             R3, [data,#0x10]|35-105
+656|code|LDR             R0, [data]; data|32-104
+658|code|MOV             R8, R3|152-70
+660|code|LDRD.W          R2, R3, [R0,#0x10]|208-233-4-35
+664|code|CMP             R3, R9|75-69
+666|code|IT EQ|8-191
+668|code|CMPEQ           R2, R8|66-69
+670|code|BEQ             loc_2A6|2-208
+672|code|MOVS            R0, #4|4-32
+674|code|LDR             R1, =aPngChunkSizeEr; "png: chunk size error"|22-73
+676|code|B               loc_2BA|9-224
+678|code|BL              grub_png_get_dword|255-247-213-255
+682|code|MOV             R5, R0|5-70
+684|code|LDR             len, [data]; data|32-104
+686|code|BL              grub_png_get_dword|255-247-209-255
+690|code|CMP             type, R6|176-66
+692|code|BEQ             loc_2C2|5-208
+694|code|LDR             R1, =aPngUnexpectedE; "png: unexpected end of data"|18-73
+696|code|MOVS            type, #4|4-32
+698|code|LDR             R3, =grub_error|18-75
+700|code|BLX             R3; grub_error|152-71
+702|code|MOVS            R0, #0|0-32
+704|code|B               loc_2F0|22-224
+706|code|LDR             R3, [data]|35-104
+708|code|LDR             R3, [R3,#0x10]|27-105
+710|code|ADDS            R3, #4|4-51
+712|code|ADD             R3, len|43-68
+714|code|STR             R3, [data,#0x10]|35-97
+716|code|CMP             len, #0|0-45
+718|code|BEQ             loc_284|217-208
+720|code|STR             len, [data,#0x44]|101-100
+722|code|ADD             R1, SP, #0x20+var_18|2-169
+724|code|MOVS            R3, #0|0-35
+726|code|LDR             R0, [data]|32-104
+728|code|MOVS            R2, #1|1-34
+730|code|STRB.W          R3, [R1,#-1]!|1-248-1-61
+734|code|LDR             R3, =grub_file_read|10-75
+736|code|BLX             R3; grub_file_read|152-71
+738|code|LDR             R3, [data,#0x40]|35-108
+740|code|CBZ             R3, loc_2EC|19-177
+742|code|LDR             R3, [data,#0x44]|99-108
+744|code|SUBS            R3, #1|1-59
+746|code|STR             R3, [data,#0x44]|99-100
+748|code|LDRB.W          R0, [SP,#0x20+r]|157-248-7-0
+752|code|ADD             SP, SP, #8|2-176
+754|code|POP.W           {data-R6,R8,R9,PC}|189-232-112-131
+758|data|ALIGN 4|0-191
+760|data|DCD 0x49444154|84-65-68-73
+764|data|DCD aPngChunkSizeEr; "png: chunk size error"|255-14-0-0
+768|data|DCD aPngUnexpectedE; "png: unexpected end of data"|21-15-0-0
+772|data|DCD grub_error|208-16-0-0
+776|data|DCD grub_file_read|184-16-0-0
+780|code|LDR             R3, [data,#8]|131-104
+782|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+786|code|MOV             R4, data|4-70
+788|code|MOV             R6, num|14-70
+790|code|CBNZ            R3, loc_322|35-185
+792|code|BL              grub_png_get_byte|255-247-172-255
+796|code|MOVS            R3, #8|8-35
+798|code|STR             R3, [data,#8]|163-96
+800|code|STR             R0, [data,#0xC]|224-96
+802|code|LDR.W           R8, =grub_errno|223-248-84-128
+806|code|MOVS            R5, #0|0-37
+808|code|MOV             R7, R5|47-70
+810|code|MOV.W           R10, #1|79-240-1-10
+814|code|MOV.W           R9, #8|79-240-8-9
+818|code|LDR.W           R3, [R8]|216-248-0-48
+822|code|CBNZ            R3, loc_372|227-185
+824|code|LDR             R0, [data,#8]|160-104
+826|code|MOV             R2, num|50-70
+828|code|LDR             R1, [data,#0xC]|225-104
+830|code|CMP             num, n|134-66
+832|code|IT GE|168-191
+834|code|MOVGE           R2, n|2-70
+836|code|LSL.W           R3, R10, n|10-250-2-243
+840|code|SUBS            R3, #1|1-59
+842|code|SUBS            num, num, n|182-26
+844|code|AND.W           R3, R3, R1|3-234-1-3
+848|code|LSL.W           R3, R3, shift|3-250-5-243
+852|code|ADD             code, R3|31-68
+854|code|BNE             loc_362|4-209
+856|code|SUBS            R0, R0, n|128-26
+858|code|ASRS            R1, n|17-65
+860|code|STR             R0, [data,#8]|160-96
+862|code|STR             R1, [data,#0xC]|225-96
+864|code|B               loc_372|7-224
+866|code|MOV             R0, data; data|32-70
+868|code|ADD             shift, n|21-68
+870|code|BL              grub_png_get_byte|255-247-133-255
+874|code|STR.W           R9, [data,#8]|196-248-8-144
+878|code|STR             R0, [data,#0xC]|224-96
+880|code|B               loc_332|223-231
+882|code|MOV             R0, code|56-70
+884|code|POP.W           {data-R10,PC}|189-232-240-135
+888|data|DCD grub_errno|176-16-0-0
+892|code|PUSH            {R3-R7,LR}|248-181
+894|code|MOVS            R4, #0|0-36
+896|code|MOV             R7, data|7-70
+898|code|MOV             R6, ht|14-70
+900|code|MOV             R3, R4|35-70
+902|code|LDR             R2, [ht,#0x10]|50-105
+904|code|CMP             i, R2|148-66
+906|code|BGE             loc_3B6|20-218
+908|code|MOVS            R1, #1; num|1-33
+910|code|MOV             R0, data; data|56-70
+912|code|LSLS            R5, code, #1|93-0
+914|code|BL              grub_png_get_bits|255-247-187-255
+918|code|LDR             R1, [ht,#4]|113-104
+920|code|LSLS            R2, i, #2|162-0
+922|code|LDR.W           R1, [R1,i,LSL#2]|81-248-36-16
+926|code|ADDS            R3, R5, R0|43-24
+928|code|CMP             code, R1|139-66
+930|code|BGE             loc_3B2|6-218
+932|code|LDR             R1, [ht,#8]|177-104
+934|code|LDR             R0, [R1,R2]|136-88
+936|code|LDR             R2, [ht]|50-104
+938|code|ADD             code, R0|3-68
+940|code|LDR.W           R0, [R2,R3,LSL#2]|82-248-35-0
+944|code|POP             {R3-data,PC}|248-189
+946|code|ADDS            i, #1|1-52
+948|code|B               loc_386|231-231
+950|code|MOVS            R0, #0|0-32
+952|code|POP             {code-data,PC}|248-189
+954|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+958|code|MOV             R4, data|4-70
+960|code|LDR             R7, =grub_errno|55-79
+962|code|LDR             R6, =cplens|56-78
+964|code|LDR             R3, [R7]|59-104
+966|code|CMP             R3, #0|0-43
+968|code|BNE             loc_498|102-209
+970|code|MOV             R0, data; data|32-70
+972|code|ADD.W           R1, data, #0x940; ht|4-245-20-97
+976|code|BL              grub_png_get_huff_code|255-247-212-255
+980|code|CMP             n, #0xFF|255-40
+982|code|BGT             loc_3FC|17-220
+984|code|ADD.W           R5, data, #0x8900|4-245-9-69
+988|code|UXTB            R1, n; n|193-178
+990|code|MOV             n, data; data|32-70
+992|code|LDR             R3, [R5,#0x68]|171-110
+994|code|ADD             R3, data|35-68
+996|code|STRB.W          R1, [R3,#0x968]|131-248-104-25
+1000|code|BL              grub_png_output_byte|255-247-32-254
+1004|code|LDR             R3, [R5,#0x68]|171-110
+1006|code|ADDS            R3, #1|1-51
+1008|code|CMP.W           R3, #0x8000|179-245-0-79
+1012|code|IT GE|168-191
+1014|code|MOVGE           R3, #0|0-35
+1016|code|STR             R3, [R5,#0x68]|171-102
+1018|code|B               loc_3C4|227-231
+1020|code|CMP.W           n, #0x100|176-245-128-127
+1024|code|BEQ             loc_498|74-208
+1026|code|MOV             R3, #0xFFFFFEFF|111-244-128-115
+1030|code|ADDS            R1, n, R3|193-24
+1032|code|LDR.W           R9, =cplens|223-248-152-144
+1036|code|LDR.W           R8, [R6,n,LSL#2]|86-248-33-128
+1040|code|ADD             n, R6|49-68
+1042|code|LDRB.W          R1, [R1,#0x7C]; num|145-248-124-16
+1046|code|CBZ             R1, loc_420|25-177
+1048|code|MOV             R0, data; data|32-70
+1050|code|BL              grub_png_get_bits|255-247-119-255
+1054|code|ADD             len, R0|128-68
+1056|code|ADDW            R1, data, #0x954; ht|4-246-84-17
+1060|code|MOV             R0, data; data|32-70
+1062|code|BL              grub_png_get_huff_code|255-247-169-255
+1066|code|ADD.W           R3, R9, n,LSL#2|9-235-128-3
+1070|code|ADD             n, R9|72-68
+1072|code|LDRB.W          R1, [R0,#0x114]; num|144-248-20-17
+1076|code|LDR.W           R5, [R3,#0x9C]|211-248-156-80
+1080|code|CBZ             R1, loc_442|25-177
+1082|code|MOV             R0, data; data|32-70
+1084|code|BL              grub_png_get_bits|255-247-102-255
+1088|code|ADD             dist, R0|5-68
+1090|code|ADD.W           R9, data, #0x8900|4-245-9-73
+1094|code|MOV.W           R10, #0|79-240-0-10
+1098|code|ADD.W           R9, R9, #0x68 ; 'h'|9-241-104-9
+1102|code|LDR.W           R3, [R9]|217-248-0-48
+1106|code|SUBS            dist, R3, dist|93-27
+1108|code|IT MI|72-191
+1110|code|ADDMI.W         pos, pos, #0x8000|5-245-0-69
+1114|code|CMP.W           len, #0|184-241-0-15
+1118|code|BLE             loc_3C4|177-221
+1120|code|ADDS            R3, data, pos|99-25
+1122|code|MOV             R0, data; data|32-70
+1124|code|ADDS            pos, #1|1-53
+1126|code|ADD.W           len, len, #0xFFFFFFFF|8-241-255-56
+1130|code|LDRB.W          R1, [R3,#0x968]; n|147-248-104-25
+1134|code|LDR.W           R3, [R9]|217-248-0-48
+1138|code|ADD             R3, data|35-68
+1140|code|STRB.W          R1, [R3,#0x968]|131-248-104-25
+1144|code|BL              grub_png_output_byte|255-247-216-253
+1148|code|LDR.W           R3, [R9]|217-248-0-48
+1152|code|ADDS            R3, #1|1-51
+1154|code|CMP.W           R3, #0x8000|179-245-0-79
+1158|code|IT GE|168-191
+1160|code|MOVGE           R3, R10|83-70
+1162|code|CMP.W           pos, #0x8000|181-245-0-79
+1166|code|STR.W           R3, [R9]|201-248-0-48
+1170|code|IT GE|168-191
+1172|code|MOVGE           pos, #0|0-37
+1174|code|B               loc_45A|224-231
+1176|code|LDR             R3, =grub_errno|1-75
+1178|code|LDR             R0, [R3]|24-104
+1180|code|POP.W           {data-R10,PC}|189-232-240-135
+1184|data|DCD grub_errno|176-16-0-0
+1188|data|DCD cplens|108-13-0-0
+1192|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1196|code|SUB             SP, SP, #0xDC|183-176
+1198|code|LDR             R3, =grub_buffile_open|154-75
+1200|code|STR             bitmap_0, [SP,#0x100+bitmap]|0-144
+1202|code|MOV             bitmap_0, filename|8-70
+1204|code|MOVS            filename, #0|0-33
+1206|code|BLX             R3; grub_buffile_open|152-71
+1208|code|MOV             R6, file|6-70
+1210|code|CBNZ            file, loc_4C4|24-185
+1212|code|LDR             R3, =grub_errno|151-75
+1214|code|LDR             file, [R3]|24-104
+1216|code|B.W             loc_D1A|0-240-43-188
+1220|code|MOVW            file, #0x897C|72-246-124-16
+1224|code|LDR             R3, =grub_zalloc|149-75
+1226|code|BLX             R3; grub_zalloc|152-71
+1228|code|MOV             R4, data|4-70
+1230|code|CMP             data, #0|0-40
+1232|code|BEQ.W           loc_CFC|0-240-20-132
+1236|code|LDR             R3, [SP,#0x100+bitmap]|0-155
+1238|code|MOVS            R2, #8|8-34
+1240|code|STR             file, [data]|6-96
+1242|code|ADD             R1, SP, #0x100+var_E4|7-169
+1244|code|STR             R3, [data,#4]|67-96
+1246|code|MOV             data, file|48-70
+1248|code|LDR             R3, =grub_file_read|144-75
+1250|code|BLX             R3; grub_file_read|152-71
+1252|code|CMP             R0, #8|8-40
+1254|code|MOV             R2, R0|2-70
+1256|code|BNE.W           loc_CF2|64-240-3-132
+1260|code|ADD             R0, SP, #0x100+var_E4|7-168
+1262|code|LDR             R1, =png_magic|142-73
+1264|code|LDR             R3, =grub_memcmp|142-75
+1266|code|BLX             R3; grub_memcmp|152-71
+1268|code|CBZ             R0, loc_4FC|16-177
+1270|code|MOVS            R0, #4|4-32
+1272|code|LDR             R1, =aPngNotAPngFile; "png: not a png file"|141-73
+1274|code|B               loc_CEE|248-227
+1276|code|LDR             R0, [data]; data|32-104
+1278|code|BL              grub_png_get_dword|255-247-169-254
+1282|code|MOV             R7, R0|7-70
+1284|code|LDR             R0, [data]; data|32-104
+1286|code|BL              grub_png_get_dword|255-247-165-254
+1290|code|MOV             R1, R0|1-70
+1292|code|LDR             R0, [data]; data|32-104
+1294|code|LDRD.W          R2, R3, [R0,#0x10]|208-233-4-35
+1298|code|ADDS            R5, R2, #4|21-29
+1300|code|ADD             R5, R7|61-68
+1302|code|STR             R5, [data,#0x10]|37-97
+1304|code|LDR             R5, =0x49454E44|134-77
+1306|code|CMP             R1, R5|169-66
+1308|code|BEQ.W           loc_AAC|0-240-198-130
+1312|code|BHI             loc_530|6-216
+1314|code|SUB.W           R5, R5, #0x10C00|165-245-134-53
+1318|code|SUBS            R5, #0xF0|240-61
+1320|code|CMP             R1, R5|169-66
+1322|code|BEQ.W           loc_6E2|0-240-218-128
+1326|code|B               loc_CC0|199-227
+1328|code|LDR             R5, =0x49484452|129-77
+1330|code|CMP             R1, R5|169-66
+1332|code|BEQ             loc_54A|9-208
+1334|code|ADD.W           R5, R5, #0x7000000|5-241-224-101
+1338|code|ADD.W           R5, R5, #0x40800|5-245-129-37
+1342|code|ADDW            R5, R5, #0x7F3|5-242-243-117
+1346|code|CMP             R1, R5|169-66
+1348|code|BEQ.W           loc_68A|0-240-161-128
+1352|code|B               loc_CC0|186-227
+1354|code|BL              grub_png_get_dword|255-247-131-254
+1358|code|STR             R0, [data,#0x14]|96-97
+1360|code|LDR             R0, [data]; data|32-104
+1362|code|BL              grub_png_get_dword|255-247-127-254
+1366|code|STR             R0, [data,#0x18]|160-97
+1368|code|CBZ             R0, loc_55E|8-177
+1370|code|LDR             R3, [data,#0x14]|99-105
+1372|code|CBNZ            R3, loc_564|19-185
+1374|code|MOVS            R0, #4|4-32
+1376|code|LDR             R1, =aPngInvalidImag; "png: invalid image size"|118-73
+1378|code|B               loc_588|17-224
+1380|code|MOV             R0, data; data|32-70
+1382|code|BL              grub_png_get_byte|255-247-133-254
+1386|code|MOV             R5, R0|5-70
+1388|code|SUBS            R0, #0x10|16-56
+1390|code|NEGS            R3, R0|67-66
+1392|code|ADCS            R3, R0|67-65
+1394|code|MOV             R0, data; data|32-70
+1396|code|STR             R3, [data,#0x20]|35-98
+1398|code|BL              grub_png_get_byte|255-247-125-254
+1402|code|BICS.W          R3, R0, #6|48-240-6-3
+1406|code|BEQ             loc_58E|6-208
+1408|code|CMP             R0, #3|3-40
+1410|code|BEQ             loc_592|6-208
+1412|code|LDR             R1, =aPngColorTypeNo; "png: color type not supported"|110-73
+1414|code|MOVS            R0, #4|4-32
+1416|code|LDR             R3, =grub_error|110-75
+1418|code|BLX             R3; grub_error|152-71
+1420|code|B               loc_CD0|160-227
+1422|code|CMP             R0, #3|3-40
+1424|code|BNE             loc_596|1-209
+1426|code|MOVS            R3, #1|1-35
+1428|code|STR             R3, [data,#0x30]|35-99
+1430|code|LDR             R3, [data,#0x20]|35-106
+1432|code|LDR             R2, [data,#0x30]|34-107
+1434|code|CBZ             R3, loc_5A0|11-177
+1436|code|CMP             R2, #0|0-42
+1438|code|BNE             loc_584|241-209
+1440|code|AND.W           R3, R0, #4|0-240-4-3
+1444|code|AND.W           R7, R3, #0xFF|3-240-255-7
+1448|code|CMP             R3, #0|0-43
+1450|code|ITE NE|20-191
+1452|code|MOVNE           R3, #1|1-35
+1454|code|MOVEQ           R3, #4|4-35
+1456|code|CBZ             R2, loc_5B6|10-177
+1458|code|MOVS            R1, #1|1-33
+1460|code|B               loc_5C0|4-224
+1462|code|LSLS            R1, R0, #0x1E|129-7
+1464|code|ITEE MI|78-191
+1466|code|MOVMI           R1, #3|3-33
+1468|code|MOVPL           R1, #1|1-33
+1470|code|STRPL           R1, [data,#0x28]|161-98
+1472|code|CMP             R5, #8|8-45
+1474|code|STR             R1, [data,#0x1C]|225-97
+1476|code|BEQ             loc_5DA|9-208
+1478|code|CMP             R5, #0x10|16-45
+1480|code|BEQ             loc_5DA|7-208
+1482|code|CMP             R5, #4|4-45
+1484|code|BNE             loc_5D4|2-209
+1486|code|LDR             R1, [data,#0x28]|161-106
+1488|code|CBNZ            R1, loc_5DA|25-185
+1490|code|CBNZ            R2, loc_5DA|18-185
+1492|code|MOVS            R0, #4|4-32
+1494|code|LDR             R1, =aPngBitDepthMus; "png: bit depth must be 8 or 16"|92-73
+1496|code|B               loc_588|214-231
+1498|code|CBZ             R7, loc_5E2|23-177
+1500|code|LDR             R2, [data,#0x1C]|226-105
+1502|code|ADDS            R2, #1|1-50
+1504|code|STR             R2, [data,#0x1C]|226-97
+1506|code|LDR             R0, [data,#4]|96-104
+1508|code|LDR             R1, [data,#0x14]|97-105
+1510|code|LDR             R2, [data,#0x18]|162-105
+1512|code|LDR             R7, =grub_video_bitmap_create|88-79
+1514|code|BLX             R7; grub_video_bitmap_create|184-71
+1516|code|CMP             R0, #0|0-40
+1518|code|BNE.W           loc_CD0|64-240-111-131
+1522|code|LDR             R2, [data,#0x20]|34-106
+1524|code|CBZ             R2, loc_5FC|18-177
+1526|code|LDR             R3, [data,#0x1C]|227-105
+1528|code|LSLS            R3, R3, #1|91-0
+1530|code|STR             R3, [data,#0x1C]|227-97
+1532|code|LDR             R3, [data,#0x14]|99-105
+1534|code|CMP             R5, #4|4-45
+1536|code|LDR             R1, [data,#0x1C]|225-105
+1538|code|STR             R5, [data,#0x38]|165-99
+1540|code|ITETT LE|215-191
+1542|code|MULLE           R3, R5|107-67
+1544|code|MULGT           R3, R1|75-67
+1546|code|ADDLE           R3, #7|7-51
+1548|code|LSRLE           R3, R3, #3|219-8
+1550|code|STR             R3, [data,#0x34]|99-99
+1552|code|CBNZ            R2, loc_61A|26-185
+1554|code|LDR             R3, [data,#0x28]|163-106
+1556|code|CBNZ            R3, loc_61A|11-185
+1558|code|LDR             R3, [data,#0x30]|35-107
+1560|code|CBZ             R3, loc_638|115-177
+1562|code|LDR             R3, [data,#0x34]|99-107
+1564|code|LDR             R0, [data,#0x18]|160-105
+1566|code|MULS            R0, R3|88-67
+1568|code|LDR             R3, =grub_malloc|75-75
+1570|code|BLX             R3; grub_malloc|152-71
+1572|code|LDR             R3, =grub_errno|61-75
+1574|code|LDR             R3, [R3]|27-104
+1576|code|STR             R0, [data,#0x3C]|224-99
+1578|code|CMP             R3, #0|0-43
+1580|code|BNE.W           loc_CD0|64-240-80-131
+1584|code|ADD.W           R3, data, #0x8900|4-245-9-67
+1588|code|STR             R0, [R3,#0x6C]|216-102
+1590|code|B               loc_646|6-224
+1592|code|STR             R2, [data,#0x3C]|226-99
+1594|code|ADD.W           R3, data, #0x8900|4-245-9-67
+1598|code|LDR             R2, [data,#4]|98-104
+1600|code|LDR             R2, [R2]|18-104
+1602|code|LDR             R2, [R2,#0x4C]|210-108
+1604|code|STR             R2, [R3,#0x6C]|218-102
+1606|code|LDR             R2, [data,#0x34]|98-107
+1608|code|MOV             R0, data; data|32-70
+1610|code|LDR             R3, [data,#0x18]|163-105
+1612|code|MLA.W           R3, R2, R3, R3|2-251-3-51
+1616|code|MOVS            R2, #0|0-34
+1618|code|STR             R3, [data,#0x24]|99-98
+1620|code|ADD.W           R3, data, #0x8900|4-245-9-67
+1624|code|STR             R2, [R3,#0x70]|26-103
+1626|code|ADD.W           R3, data, #0x8900|4-245-9-67
+1630|code|MOVS            R2, #1|1-34
+1632|code|STR             R2, [R3,#0x78]|154-103
+1634|code|BL              grub_png_get_byte|255-247-7-254
+1638|code|CBZ             R0, loc_66E|16-177
+1640|code|MOVS            R0, #4|4-32
+1642|code|LDR             R1, =aPngCompression; "png: compression method not supported"|58-73
+1644|code|B               loc_588|140-231
+1646|code|MOV             R0, data; data|32-70
+1648|code|BL              grub_png_get_byte|255-247-0-254
+1652|code|CBZ             R0, loc_67C|16-177
+1654|code|MOVS            R0, #4|4-32
+1656|code|LDR             R1, =aPngFilterMetho; "png: filter method not supported"|55-73
+1658|code|B               loc_588|133-231
+1660|code|MOV             R0, data; data|32-70
+1662|code|BL              grub_png_get_byte|255-247-249-253
+1666|code|CBZ             R0, loc_6DA|80-179
+1668|code|MOVS            R0, #4|4-32
+1670|code|LDR             R1, =aPngInterlaceMe; "png: interlace method not supported"|53-73
+1672|code|B               loc_588|126-231
+1674|code|CMP             R7, #0|0-47
+1676|code|BEQ.W           loc_CD0|0-240-32-131
+1680|code|MOV             R0, R7|56-70
+1682|code|MOVS            R1, #3|3-33
+1684|code|LDR             R3, =__aeabi_uidivmod|50-75
+1686|code|BLX             R3; __aeabi_uidivmod|152-71
+1688|code|CMP             R1, #0|0-41
+1690|code|BNE.W           loc_CD0|64-240-25-131
+1694|code|MOV             R5, R1|13-70
+1696|code|CMP             R5, R7|189-66
+1698|code|BCS             loc_6CC|19-210
+1700|code|CMP.W           R5, #0x300|181-245-64-127
+1704|code|BEQ             loc_6CC|16-208
+1706|code|MOV.W           R9, #0|79-240-0-9
+1710|code|MOV             R0, data; data|32-70
+1712|code|BL              grub_png_get_byte|255-247-224-253
+1716|code|ADD.W           R3, R9, R5|9-235-5-3
+1720|code|ADD.W           R9, R9, #1|9-241-1-9
+1724|code|ADD             R3, data|35-68
+1726|code|CMP.W           R9, #3|185-241-3-15
+1730|code|STRB.W          R0, [R3,#0x640]|131-248-64-6
+1734|code|BNE             loc_6AE|242-209
+1736|code|ADDS            R5, #3|3-53
+1738|code|B               loc_6A0|233-231
+1740|code|CMP             R5, R7|189-66
+1742|code|BCS             loc_6DA|4-210
+1744|code|MOV             R0, data; data|32-70
+1746|code|ADDS            R5, #1|1-53
+1748|code|BL              grub_png_get_byte|255-247-206-253
+1752|code|B               loc_6CC|248-231
+1754|code|LDR             R0, [data]; data|32-104
+1756|code|BL              grub_png_get_dword|255-247-186-253
+1760|code|B               loc_CD0|246-226
+1762|code|MOVS            R3, #1|1-35
+1764|code|STR             R7, [data,#0x44]|103-100
+1766|code|STR             R3, [data,#0x40]|35-100
+1768|code|MOV             R0, data; data|32-70
+1770|code|MOVS            R3, #0|0-35
+1772|code|STR             R3, [data,#8]|163-96
+1774|code|BL              grub_png_get_byte|255-247-193-253
+1778|code|MOV             R5, R0|5-70
+1780|code|MOV             R0, data; data|32-70
+1782|code|AND.W           R5, R5, #0xF|5-240-15-5
+1786|code|BL              grub_png_get_byte|255-247-187-253
+1790|code|CMP             R5, #8|8-45
+1792|code|BEQ             loc_708|2-208
+1794|code|MOVS            R0, #4|4-32
+1796|code|LDR             R1, =aPngOnlySupport; "png: only support deflate compression m"...|23-73
+1798|code|B               loc_710|3-224
+1800|code|LSLS            R3, R0, #0x1A|131-6
+1802|code|BPL             loc_7B8|85-213
+1804|code|LDR             R1, =aPngDictionaryN; "png: dictionary not supported"|22-73
+1806|code|MOVS            R0, #4|4-32
+1808|code|LDR             R3, =grub_error|12-75
+1810|code|BLX             R3; grub_error|152-71
+1812|code|B               loc_A8E|187-225
+1814|data|ALIGN 4|0-191
+1816|data|DCD grub_buffile_open|204-16-0-0
+1820|data|DCD grub_errno|176-16-0-0
+1824|data|DCD grub_zalloc|188-16-0-0
+1828|data|DCD grub_file_read|184-16-0-0
+1832|data|DCD png_magic|158-14-0-0
+1836|data|DCD grub_memcmp|224-16-0-0
+1840|data|DCD aPngNotAPngFile; "png: not a png file"|49-15-0-0
+1844|data|DCD 0x49454E44|68-78-69-73
+1848|data|DCD 0x49484452|82-68-72-73
+1852|data|DCD aPngInvalidImag; "png: invalid image size"|69-15-0-0
+1856|data|DCD aPngColorTypeNo; "png: color type not supported"|93-15-0-0
+1860|data|DCD grub_error|208-16-0-0
+1864|data|DCD aPngBitDepthMus; "png: bit depth must be 8 or 16"|123-15-0-0
+1868|data|DCD grub_video_bitmap_create|164-16-0-0
+1872|data|DCD grub_malloc|192-16-0-0
+1876|data|DCD aPngCompression; "png: compression method not supported"|154-15-0-0
+1880|data|DCD aPngFilterMetho; "png: filter method not supported"|192-15-0-0
+1884|data|DCD aPngInterlaceMe; "png: interlace method not supported"|225-15-0-0
+1888|data|DCD __aeabi_uidivmod|216-16-0-0
+1892|data|DCD aPngOnlySupport; "png: only support deflate compression m"...|5-16-0-0
+1896|data|DCD aPngDictionaryN; "png: dictionary not supported"|50-16-0-0
+1900|code|CMP             R0, #2|2-40
+1902|code|BNE             loc_7D2|48-209
+1904|code|MOVS            R1, #5; num|5-33
+1906|code|MOV             R0, data; data|32-70
+1908|code|BL              grub_png_get_bits|255-247-202-253
+1912|code|MOVS            R1, #5; num|5-33
+1914|code|ADDW            R7, R0, #0x101|0-242-1-23
+1918|code|MOV             R0, data; data|32-70
+1920|code|BL              grub_png_get_bits|255-247-196-253
+1924|code|MOVS            R1, #4; num|4-33
+1926|code|ADD.W           R9, R0, #1|0-241-1-9
+1930|code|MOV             R0, data; data|32-70
+1932|code|BL              grub_png_get_bits|255-247-190-253
+1936|code|CMP.W           R7, #0x120|183-245-144-127
+1940|code|BLE.W           loc_8D2|64-243-157-128
+1944|code|MOVS            R0, #4|4-32
+1946|code|LDR             R1, =aPngTooMuchData; "png: too much data"|190-73
+1948|code|LDR             R3, =grub_error|190-75
+1950|code|BLX             R3; grub_error|152-71
+1952|code|MOV             R0, data; data|32-70
+1954|code|BL              grub_png_read_dynamic_block|255-247-10-254
+1958|code|LDR             R3, [SP,#0x100+var_F4]|3-155
+1960|code|CMP             R3, #0|0-43
+1962|code|BNE.W           loc_A82|64-240-106-129
+1966|code|LDR             R3, =grub_errno|187-75
+1968|code|LDR             R3, [R3]|27-104
+1970|code|CMP             R3, #0|0-43
+1972|code|BNE.W           loc_A82|64-240-101-129
+1976|code|MOVS            R1, #1; num|1-33
+1978|code|MOV             R0, data; data|32-70
+1980|code|BL              grub_png_get_bits|255-247-166-253
+1984|code|MOVS            R1, #2; num|2-33
+1986|code|STR             R0, [SP,#0x100+var_F4]|3-144
+1988|code|MOV             R0, data; data|32-70
+1990|code|BL              grub_png_get_bits|255-247-161-253
+1994|code|CMP             R0, #1|1-40
+1996|code|MOV             R7, R0|7-70
+1998|code|BNE             loc_76C|205-209
+2000|code|B               loc_812|31-224
+2002|code|CMP             R0, #0|0-40
+2004|code|BNE.W           loc_A7C|64-240-82-129
+2008|code|STR             R0, [data,#8]|160-96
+2010|code|MOV             R0, data; data|32-70
+2012|code|BL              grub_png_get_byte|255-247-74-253
+2016|code|UXTH            R5, R0|133-178
+2018|code|MOV             R0, data; data|32-70
+2020|code|BL              grub_png_get_byte|255-247-70-253
+2024|code|ADD.W           R0, R5, R0,LSL#8|5-235-0-32
+2028|code|UXTH            R5, R0|133-178
+2030|code|MOV             R0, data; data|32-70
+2032|code|BL              grub_png_get_byte|255-247-64-253
+2036|code|MOV             R0, data; data|32-70
+2038|code|BL              grub_png_get_byte|255-247-61-253
+2042|code|UXTH            R3, R7|187-178
+2044|code|CMP             R3, R5|171-66
+2046|code|BCS             loc_7A6|210-210
+2048|code|MOV             R0, data; data|32-70
+2050|code|ADDS            R7, #1|1-55
+2052|code|BL              grub_png_get_byte|255-247-54-253
+2056|code|MOV             R1, R0; n|1-70
+2058|code|MOV             R0, data; data|32-70
+2060|code|BL              grub_png_output_byte|255-247-14-252
+2064|code|B               loc_7FA|243-231
+2066|code|MOVS            R7, #0|0-39
+2068|code|ADD.W           R3, data, #0x48 ; 'H'|4-241-72-3
+2072|code|ADD.W           R0, data, #0x4C8|4-245-153-96
+2076|code|STR.W           R3, [data,#0x940]|196-248-64-57
+2080|code|STR.W           R0, [data,#0x944]|196-248-68-9
+2084|code|ADD.W           R3, data, #0x508|4-245-161-99
+2088|code|STR.W           R7, [data,#0x94C]|196-248-76-121
+2092|code|MOV             R1, R7|57-70
+2094|code|STR.W           R3, [data,#0x948]|196-248-72-57
+2098|code|MOVS            R2, #0x40 ; '@'|64-34
+2100|code|MOVS            R3, #0x10|16-35
+2102|code|STR.W           R3, [data,#0x950]|196-248-80-57
+2106|code|LDR             R3, =grub_memset|153-75
+2108|code|ADD.W           R5, data, #0x940|4-245-20-101
+2112|code|BLX             R3; grub_memset|152-71
+2114|code|MOV             R1, R7; code|57-70
+2116|code|MOV             R0, R5; ht|40-70
+2118|code|MOVS            R2, #8; len|8-34
+2120|code|ADDS            R7, #1|1-55
+2122|code|BL              grub_png_insert_huff_item|255-247-207-252
+2126|code|CMP             R7, #0x90|144-47
+2128|code|BNE             loc_842|247-209
+2130|code|MOV             R1, R7; code|57-70
+2132|code|MOV             R0, R5; ht|40-70
+2134|code|MOVS            R2, #9; len|9-34
+2136|code|ADDS            R7, #1|1-55
+2138|code|BL              grub_png_insert_huff_item|255-247-199-252
+2142|code|CMP.W           R7, #0x100|183-245-128-127
+2146|code|BNE             loc_852|246-209
+2148|code|MOV             R1, R7; code|57-70
+2150|code|MOV             R0, R5; ht|40-70
+2152|code|MOVS            R2, #7; len|7-34
+2154|code|ADDS            R7, #1|1-55
+2156|code|BL              grub_png_insert_huff_item|255-247-190-252
+2160|code|CMP.W           R7, #0x118|183-245-140-127
+2164|code|BNE             loc_864|246-209
+2166|code|MOV             R1, R7; code|57-70
+2168|code|MOV             R0, R5; ht|40-70
+2170|code|MOVS            R2, #8; len|8-34
+2172|code|ADDS            R7, #1|1-55
+2174|code|BL              grub_png_insert_huff_item|255-247-181-252
+2178|code|CMP.W           R7, #0x120|183-245-144-127
+2182|code|BNE             loc_876|246-209
+2184|code|MOV             R0, R5; ht|40-70
+2186|code|MOVS            R7, #0|0-39
+2188|code|BL              grub_png_build_huff_table|255-247-184-251
+2192|code|ADD.W           R3, data, #0x548|4-245-169-99
+2196|code|ADD.W           R0, data, #0x5C0|4-245-184-96
+2200|code|STR.W           R3, [data,#0x954]|196-248-84-57
+2204|code|STR.W           R0, [data,#0x958]|196-248-88-9
+2208|code|ADD.W           R3, data, #0x600|4-245-192-99
+2212|code|STR.W           R7, [data,#0x960]|196-248-96-121
+2216|code|MOV             R1, R7|57-70
+2218|code|STR.W           R3, [data,#0x95C]|196-248-92-57
+2222|code|MOVS            R2, #0x40 ; '@'|64-34
+2224|code|MOVS            R3, #0x10|16-35
+2226|code|STR.W           R3, [data,#0x964]|196-248-100-57
+2230|code|LDR             R3, =grub_memset|122-75
+2232|code|ADDW            R5, data, #0x954|4-246-84-21
+2236|code|BLX             R3; grub_memset|152-71
+2238|code|MOV             R1, R7; code|57-70
+2240|code|MOV             R0, R5; ht|40-70
+2242|code|MOVS            R2, #5; len|5-34
+2244|code|ADDS            R7, #1|1-55
+2246|code|BL              grub_png_insert_huff_item|255-247-145-252
+2250|code|CMP             R7, #0x1E|30-47
+2252|code|BNE             loc_8BE|247-209
+2254|code|MOV             R0, R5|40-70
+2256|code|B               loc_A76|209-224
+2258|code|CMP.W           R9, #0x1E|185-241-30-15
+2262|code|BGT.W           loc_798|63-247-95-175
+2266|code|ADDS            R5, R0, #4|5-29
+2268|code|CMP             R5, #0x13|19-45
+2270|code|BGT.W           loc_798|63-247-91-175
+2274|code|MOV.W           R10, #0|79-240-0-10
+2278|code|ADD             R3, SP, #0x100+var_74|35-171
+2280|code|ADD             R0, SP, #0x100+var_B4|19-168
+2282|code|STR             R3, [SP,#0x100+ht]|14-147
+2284|code|MOV             R1, R10|81-70
+2286|code|ADD             R3, SP, #0x100+var_94|27-171
+2288|code|MOVS            R2, #0x20 ; ' '|32-34
+2290|code|STR             R3, [SP,#0x100+ht.offset]|16-147
+2292|code|MOVS            R3, #8|8-35
+2294|code|STR             R3, [SP,#0x100+ht.max_length]|18-147
+2296|code|LDR             R3, =grub_memset|105-75
+2298|code|STR             R0, [SP,#0x100+ht.maxval]|15-144
+2300|code|STR.W           R10, [SP,#0x100+ht.num_values]|205-248-68-160
+2304|code|BLX             R3; grub_memset|152-71
+2306|code|LDR.W           R11, =bitorder|223-248-160-177
+2310|code|CMP             R10, R5|170-69
+2312|code|BGE             loc_924|12-218
+2314|code|MOV             R0, data; data|32-70
+2316|code|MOVS            R1, #3; num|3-33
+2318|code|LDRB.W          R8, [R10,R11]|26-248-11-128
+2322|code|BL              grub_png_get_bits|255-247-251-252
+2326|code|ADD             R3, SP, #0x100+var_28|54-171
+2328|code|ADD.W           R10, R10, #1|10-241-1-10
+2332|code|ADD             R3, R8|67-68
+2334|code|STRB.W          R0, [R3,#-0xB4]|3-248-180-12
+2338|code|B               loc_906|240-231
+2340|code|LDR             R1, =bitorder|95-73
+2342|code|MOVS            R2, #0|0-34
+2344|code|CMP.W           R10, #0x13|186-241-19-15
+2348|code|BEQ             loc_940|8-208
+2350|code|LDRB.W          R3, [R10,R1]|26-248-1-48
+2354|code|ADD             R0, SP, #0x100+var_28|54-168
+2356|code|ADD.W           R10, R10, #1|10-241-1-10
+2360|code|ADD             R3, R0|3-68
+2362|code|STRB.W          R2, [R3,#-0xB4]|3-248-180-44
+2366|code|B               loc_928|243-231
+2368|code|MOVS            R5, #0|0-37
+2370|code|ADD             R3, SP, #0x100+var_DC|9-171
+2372|code|LDRB            R2, [R5,R3]; len|234-92
+2374|code|CBZ             R2, loc_950|26-177
+2376|code|ADD             R0, SP, #0x100+ht; ht|14-168
+2378|code|MOV             R1, R5; code|41-70
+2380|code|BL              grub_png_insert_huff_item|255-247-78-252
+2384|code|ADDS            R5, #1|1-53
+2386|code|CMP             R5, #0x13|19-45
+2388|code|BNE             loc_942|245-209
+2390|code|MOVS            R5, #0|0-37
+2392|code|ADD             R0, SP, #0x100+ht; ht|14-168
+2394|code|BL              grub_png_build_huff_table|255-247-81-251
+2398|code|MOV.W           R10, #0x10|79-240-16-10
+2402|code|ADD.W           R3, data, #0x940|4-245-20-99
+2406|code|ADD.W           R0, data, #0x4C8|4-245-153-96
+2410|code|STR             R3, [SP,#0x100+var_FC]|1-147
+2412|code|MOV             R1, R5|41-70
+2414|code|ADD.W           R3, data, #0x48 ; 'H'|4-241-72-3
+2418|code|MOVS            R2, #0x40 ; '@'|64-34
+2420|code|STR.W           R3, [data,#0x940]|196-248-64-57
+2424|code|ADD.W           R3, data, #0x508|4-245-161-99
+2428|code|STR.W           R0, [data,#0x944]|196-248-68-9
+2432|code|MOV             R11, R5|171-70
+2434|code|STR.W           R3, [data,#0x948]|196-248-72-57
+2438|code|STR.W           R5, [data,#0x94C]|196-248-76-89
+2442|code|LDR             R3, =grub_memset|69-75
+2444|code|STR.W           R10, [data,#0x950]|196-248-80-169
+2448|code|BLX             R3; grub_memset|152-71
+2450|code|ADDW            R3, data, #0x954|4-246-84-19
+2454|code|ADD.W           R0, data, #0x5C0|4-245-184-96
+2458|code|STR             R3, [SP,#0x100+var_F8]|2-147
+2460|code|STR.W           R0, [data,#0x958]|196-248-88-9
+2464|code|ADD.W           R3, data, #0x548|4-245-169-99
+2468|code|STR.W           R5, [data,#0x960]|196-248-96-89
+2472|code|MOV             R1, R5|41-70
+2474|code|STR.W           R3, [data,#0x954]|196-248-84-57
+2478|code|MOVS            R2, #0x40 ; '@'|64-34
+2480|code|ADD.W           R3, data, #0x600|4-245-192-99
+2484|code|STR.W           R10, [data,#0x964]|196-248-100-169
+2488|code|STR.W           R3, [data,#0x95C]|196-248-92-57
+2492|code|LDR             R3, =grub_memset|56-75
+2494|code|BLX             R3; grub_memset|152-71
+2496|code|ADD.W           R3, R7, R9|7-235-9-3
+2500|code|STR             R3, [SP,#0x100+var_F0]|4-147
+2502|code|LDR             R3, [SP,#0x100+var_F0]|4-155
+2504|code|CMP             R11, R3|155-69
+2506|code|BGE             loc_A6E|80-218
+2508|code|LDR             R3, =grub_errno|51-75
+2510|code|LDR             R2, [R3]|26-104
+2512|code|CMP             R2, #0|0-42
+2514|code|BNE.W           loc_7A0|127-244-229-174
+2518|code|CMP             R11, R7|187-69
+2520|code|MOV             R0, data; data|32-70
+2522|code|ADD             R1, SP, #0x100+ht; ht|14-169
+2524|code|ITTEE GE|167-191
+2526|code|RSBGE.W         R8, R7, R11|199-235-11-8
+2530|code|LDRGE.W         R10, [SP,#0x100+var_F8]|221-248-8-160
+2534|code|MOVLT           R8, R11|216-70
+2536|code|LDRLT.W         R10, [SP,#0x100+var_FC]|221-248-4-160
+2540|code|BL              grub_png_get_huff_code|255-247-198-252
+2544|code|CMP             R0, #0xF|15-40
+2546|code|MOV             R9, R0|129-70
+2548|code|BGT             loc_A04|6-220
+2550|code|CBZ             R0, loc_A66|176-179
+2552|code|MOV             R0, R10; ht|80-70
+2554|code|MOV             R1, R8; code|65-70
+2556|code|MOV             R2, R9; len|74-70
+2558|code|BL              grub_png_insert_huff_item|255-247-245-251
+2562|code|B               loc_A66|48-224
+2564|code|CMP.W           R9, #0x10|185-241-16-15
+2568|code|MOV             R0, data; data|32-70
+2570|code|BNE             loc_A4A|30-209
+2572|code|MOVS            R1, #2; num|2-33
+2574|code|RSB.W           R11, R8, R11|200-235-11-11
+2578|code|BL              grub_png_get_bits|255-247-123-252
+2582|code|MOV             R1, R8; code|65-70
+2584|code|ADD.W           R9, R0, #3|0-241-3-9
+2588|code|CMP.W           R9, #0|185-241-0-15
+2592|code|ADD.W           R2, R11, R1|11-235-1-2
+2596|code|BLE             loc_A44|14-221
+2598|code|ADD.W           R12, R1, #1|1-241-1-12
+2602|code|CBZ             R5, loc_A3C|61-177
+2604|code|MOV             R0, R10; ht|80-70
+2606|code|MOV             R2, R5; len|42-70
+2608|code|STR.W           R12, [SP,#0x100+var_EC]|205-248-20-192
+2612|code|BL              grub_png_insert_huff_item|255-247-218-251
+2616|code|LDR.W           R12, [SP,#0x100+var_EC]|221-248-20-192
+2620|code|ADD.W           R9, R9, #0xFFFFFFFF|9-241-255-57
+2624|code|MOV             R1, R12|97-70
+2626|code|B               loc_A1C|235-231
+2628|code|ADD.W           R11, R2, #0xFFFFFFFF|2-241-255-59
+2632|code|B               loc_A64|12-224
+2634|code|CMP.W           R9, #0x11|185-241-17-15
+2638|code|BNE             loc_A5A|4-209
+2640|code|MOVS            R1, #3; num|3-33
+2642|code|BL              grub_png_get_bits|255-247-91-252
+2646|code|ADDS            R0, #2|2-48
+2648|code|B               loc_A62|3-224
+2650|code|MOVS            R1, #7; num|7-33
+2652|code|BL              grub_png_get_bits|255-247-86-252
+2656|code|ADDS            R0, #0xA|10-48
+2658|code|ADD             R11, R0|131-68
+2660|code|MOV             R9, R5|169-70
+2662|code|ADD.W           R11, R11, #1|11-241-1-11
+2666|code|MOV             R5, R9|77-70
+2668|code|B               loc_9C6|171-231
+2670|code|LDR             R0, [SP,#0x100+var_FC]; ht|1-152
+2672|code|BL              grub_png_build_huff_table|255-247-198-250
+2676|code|LDR             R0, [SP,#0x100+var_F8]; ht|2-152
+2678|code|BL              grub_png_build_huff_table|255-247-195-250
+2682|code|B               loc_7A0|145-230
+2684|code|MOVS            R0, #4|4-32
+2686|code|LDR             R1, =aPngUnknownBloc; "png: unknown block type"|10-73
+2688|code|B               loc_710|70-230
+2690|code|LDR             R0, [data]; data|32-104
+2692|code|BL              grub_png_get_dword|255-247-230-251
+2696|code|LDR             R0, [data]; data|32-104
+2698|code|BL              grub_png_get_dword|255-247-227-251
+2702|code|MOVS            R3, #0|0-35
+2704|code|STR             R3, [data,#0x40]|35-100
+2706|code|B               loc_CD0|29-225
+2708|data|DCD aPngTooMuchData; "png: too much data"|80-16-0-0
+2712|data|DCD grub_error|208-16-0-0
+2716|data|DCD grub_errno|176-16-0-0
+2720|data|DCD grub_memset|180-16-0-0
+2724|data|DCD bitorder|166-14-0-0
+2728|data|DCD aPngUnknownBloc; "png: unknown block type"|99-16-0-0
+2732|code|LDR             R7, [data,#0x3C]|231-107
+2734|code|CMP             R7, #0|0-47
+2736|code|BEQ.W           loc_CF2|0-240-31-129
+2740|code|LDR             R3, [data,#4]|99-104
+2742|code|LDR             R1, [data,#0x20]|33-106
+2744|code|LDR             R3, [R3]|27-104
+2746|code|ADD             R7, R1|15-68
+2748|code|LDR             R5, [R3,#0x4C]|221-108
+2750|code|LDR             R3, [data,#0x38]|163-107
+2752|code|CMP             R3, #4|4-43
+2754|code|BGT             loc_B8A|98-220
+2756|code|LDR             R2, [data,#0x28]|162-106
+2758|code|MOV.W           R9, #1|79-240-1-9
+2762|code|LSL.W           R9, R9, R3|9-250-3-249
+2766|code|ADD.W           R9, R9, #0xFFFFFFFF|9-241-255-57
+2770|code|CBZ             R2, loc_B0C|218-177
+2772|code|LDR             R2, =__aeabi_uidiv|146-74
+2774|code|ADD.W           R11, SP, #0x100+var_73|13-241-141-11
+2778|code|MOV.W           R10, #0|79-240-0-10
+2782|code|LSRS.W          R1, R10, R3|58-250-3-241
+2786|code|ADD.W           R11, R11, #3|11-241-3-11
+2790|code|BNE             loc_B18|23-209
+2792|code|STR             R3, [SP,#0x100+var_F8]|2-147
+2794|code|RSB.W           R0, R10, R10,LSL#8|202-235-10-32
+2798|code|STR             R2, [SP,#0x100+var_FC]|1-146
+2800|code|MOV             R1, R9|73-70
+2802|code|BLX             R2; __aeabi_uidiv|144-71
+2804|code|ADD.W           R10, R10, #1|10-241-1-10
+2808|code|LDR             R3, [SP,#0x100+var_F8]|2-155
+2810|code|LDR             R2, [SP,#0x100+var_FC]|1-154
+2812|code|UXTB            R0, R0|192-178
+2814|code|STRB.W          R0, [R11,#-4]|11-248-4-12
+2818|code|STRB.W          R0, [R11,#-3]|11-248-3-12
+2822|code|STRB.W          R0, [R11,#-2]|11-248-2-12
+2826|code|B               loc_ADE|232-231
+2828|code|ADD             R0, SP, #0x100+var_74|35-168
+2830|code|ADD.W           R1, data, #0x640|4-245-200-97
+2834|code|MOVS            R2, #0x30 ; '0'|48-34
+2836|code|LDR             R3, =grub_memmove|131-75
+2838|code|BLX             R3; grub_memmove|152-71
+2840|code|MOVS            R0, #0|0-32
+2842|code|LDR             R3, [data,#0x18]|163-105
+2844|code|CMP             R0, R3|152-66
+2846|code|BCS.W           loc_CF2|128-240-232-128
+2850|code|LDR             R2, [data,#0x38]|162-107
+2852|code|ADDS            R1, R5, #3|233-28
+2854|code|MOV             R12, R7|188-70
+2856|code|MOV.W           LR, #0|79-240-0-14
+2860|code|RSB.W           R2, R2, #8|194-241-8-2
+2864|code|LDR             R3, [data,#0x14]|99-105
+2866|code|CMP             LR, R3|158-69
+2868|code|BCS             loc_B7C|34-210
+2870|code|LDRB.W          R3, [R12]|156-248-0-48
+2874|code|ADD.W           LR, LR, #1|14-241-1-14
+2878|code|ADDS            R1, #3|3-49
+2880|code|ASRS            R3, R2|19-65
+2882|code|AND.W           R3, R3, R9|3-234-9-3
+2886|code|UXTB            R3, R3|219-178
+2888|code|ADD.W           R3, R3, R3,LSL#1|3-235-67-3
+2892|code|ADDW            R10, R3, #0x642|3-242-66-106
+2896|code|LDRB.W          R10, [data,R10]|20-248-10-160
+2900|code|STRB.W          R10, [R1,#-4]|1-248-4-172
+2904|code|ADDW            R10, R3, #0x641|3-242-65-106
+2908|code|ADD.W           R3, R3, #0x640|3-245-200-99
+2912|code|LDRB.W          R10, [data,R10]|20-248-10-160
+2916|code|STRB.W          R10, [R1,#-5]|1-248-5-172
+2920|code|LDRB            R3, [data,R3]|227-92
+2922|code|STRB.W          R3, [R1,#-6]|1-248-6-60
+2926|code|LDR             R3, [data,#0x38]|163-107
+2928|code|SUBS            R2, R2, R3|210-26
+2930|code|ITT MI|68-191
+2932|code|ADDMI.W         R12, R12, #1|12-241-1-12
+2936|code|ADDMI           R2, #8|8-50
+2938|code|B               loc_B30|217-231
+2940|code|ADD.W           R3, R3, R3,LSL#1|3-235-67-3
+2944|code|ADDS            R0, #1|1-48
+2946|code|ADD             R5, R3|29-68
+2948|code|LDR             R3, [data,#0x34]|99-107
+2950|code|ADD             R7, R3|31-68
+2952|code|B               loc_B1A|199-231
+2954|code|LDR             R3, [data,#0x30]|35-107
+2956|code|CBZ             R3, loc_BD4|19-179
+2958|code|MOV             R2, R7|58-70
+2960|code|LDR             R0, [data,#0x18]|160-105
+2962|code|SUBS            R1, R2, R7|209-27
+2964|code|LDR             R3, [data,#0x14]|99-105
+2966|code|ADDS            R5, #3|3-53
+2968|code|MULS            R3, R0|67-67
+2970|code|CMP             R1, R3|153-66
+2972|code|BCS.W           loc_CF2|128-240-169-128
+2976|code|LDRB            R3, [R2]|19-120
+2978|code|ADD.W           R3, R3, R3,LSL#1|3-235-67-3
+2982|code|ADDW            R3, R3, #0x642|3-242-66-99
+2986|code|LDRB            R3, [data,R3]|227-92
+2988|code|STRB.W          R3, [R5,#-1]|5-248-1-60
+2992|code|LDRB            R3, [R2]|19-120
+2994|code|ADD.W           R3, R3, R3,LSL#1|3-235-67-3
+2998|code|ADDW            R3, R3, #0x641|3-242-65-99
+3002|code|LDRB            R3, [data,R3]|227-92
+3004|code|STRB.W          R3, [R5,#-2]|5-248-2-60
+3008|code|LDRB.W          R3, [R2],#1|18-248-1-59
+3012|code|ADD.W           R3, R3, R3,LSL#1|3-235-67-3
+3016|code|ADD.W           R3, R3, #0x640|3-245-200-99
+3020|code|LDRB            R3, [data,R3]|227-92
+3022|code|STRB.W          R3, [R5,#-3]|5-248-3-60
+3026|code|B               loc_B90|221-231
+3028|code|LDR             R2, [data,#0x28]|162-106
+3030|code|CBNZ            R2, loc_BDC|10-185
+3032|code|MOV             R3, R2|19-70
+3034|code|B               loc_CA4|99-224
+3036|code|LDR             R2, [data,#0x1C]|226-105
+3038|code|CMP             R2, #2|2-42
+3040|code|BEQ             loc_C20|30-208
+3042|code|CMP             R2, #4|4-42
+3044|code|BEQ             loc_BF0|4-208
+3046|code|CMP             R2, #1|1-42
+3048|code|BNE.W           loc_CF2|64-240-131-128
+3052|code|MOV             R3, R7|59-70
+3054|code|B               loc_C80|71-224
+3056|code|LDR             R1, [data,#0x18]|161-105
+3058|code|ADDS            R5, #4|4-53
+3060|code|LDR             R2, [data,#0x14]|98-105
+3062|code|MULS            R2, R1|74-67
+3064|code|CMP             R3, R2|147-66
+3066|code|BCS             loc_CF2|122-210
+3068|code|LDRB            R2, [R7,#3]|250-120
+3070|code|ADDS            R3, #1|1-51
+3072|code|ADDS            R7, #4|4-55
+3074|code|STRB.W          R2, [R5,#-1]|5-248-1-44
+3078|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3082|code|STRB.W          R2, [R5,#-2]|5-248-2-44
+3086|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3090|code|STRB.W          R2, [R5,#-3]|5-248-3-44
+3094|code|LDRB.W          R2, [R7,#-3]|23-248-3-44
+3098|code|STRB.W          R2, [R5,#-4]|5-248-4-44
+3102|code|B               loc_BF0|231-231
+3104|code|CBNZ            R1, loc_C26|9-185
+3106|code|MOV             R3, R1|11-70
+3108|code|B               loc_C4E|19-224
+3110|code|LDR             R1, [data,#0x18]|161-105
+3112|code|ADDS            R5, #4|4-53
+3114|code|LDR             R2, [data,#0x14]|98-105
+3116|code|MULS            R2, R1|74-67
+3118|code|CMP             R3, R2|147-66
+3120|code|BCS             loc_CF2|95-210
+3122|code|LDRB            R2, [R7,#1]|122-120
+3124|code|ADDS            R3, #1|1-51
+3126|code|ADDS            R7, #2|2-55
+3128|code|STRB.W          R2, [R5,#-2]|5-248-2-44
+3132|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3136|code|STRB.W          R2, [R5,#-3]|5-248-3-44
+3140|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3144|code|STRB.W          R2, [R5,#-4]|5-248-4-44
+3148|code|B               loc_C26|235-231
+3150|code|LDR             R1, [data,#0x18]|161-105
+3152|code|ADDS            R7, #2|2-55
+3154|code|LDR             R2, [data,#0x14]|98-105
+3156|code|ADDS            R5, #4|4-53
+3158|code|MULS            R2, R1|74-67
+3160|code|CMP             R3, R2|147-66
+3162|code|BCS             loc_CF2|74-210
+3164|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3168|code|ADDS            R3, #1|1-51
+3170|code|STRB.W          R2, [R5,#-1]|5-248-1-44
+3174|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3178|code|STRB.W          R2, [R5,#-2]|5-248-2-44
+3182|code|LDRB.W          R2, [R7,#-1]|23-248-1-44
+3186|code|STRB.W          R2, [R5,#-3]|5-248-3-44
+3190|code|LDRB.W          R2, [R7,#-2]|23-248-2-44
+3194|code|STRB.W          R2, [R5,#-4]|5-248-4-44
+3198|code|B               loc_C4E|230-231
+3200|code|LDR             R0, [data,#0x18]|160-105
+3202|code|SUBS            R1, R3, R7|217-27
+3204|code|LDR             R2, [data,#0x14]|98-105
+3206|code|ADDS            R5, #3|3-53
+3208|code|MULS            R2, R0|66-67
+3210|code|CMP             R1, R2|145-66
+3212|code|BCS             loc_CF2|49-210
+3214|code|LDRB            R2, [R3]|26-120
+3216|code|STRB.W          R2, [R5,#-1]|5-248-1-44
+3220|code|LDRB            R2, [R3]|26-120
+3222|code|STRB.W          R2, [R5,#-2]|5-248-2-44
+3226|code|LDRB.W          R2, [R3],#1|19-248-1-43
+3230|code|STRB.W          R2, [R5,#-3]|5-248-3-44
+3234|code|B               loc_C80|237-231
+3236|code|LDR             R2, [data,#0x14]|98-105
+3238|code|LDR             R1, [data,#0x18]|161-105
+3240|code|MULS            R1, R2|81-67
+3242|code|LDR             R2, [data,#0x1C]|226-105
+3244|code|MULS            R2, R1|74-67
+3246|code|CMP.W           R3, R2,LSR#1|179-235-82-15
+3250|code|BCS             loc_CF2|30-210
+3252|code|LDRB.W          R2, [R7,R3,LSL#1]|23-248-19-32
+3256|code|ADDS            R3, #1|1-51
+3258|code|STRB.W          R2, [R5],#1|5-248-1-43
+3262|code|B               loc_CA4|241-231
+3264|code|ADDS            R2, #4|4-50
+3266|code|LDR             R1, =grub_file_seek|25-73
+3268|code|ADC.W           R3, R3, #0|67-241-0-3
+3272|code|ADDS            R2, R2, R7|210-25
+3274|code|ADC.W           R3, R3, #0|67-241-0-3
+3278|code|BLX             R1; grub_file_seek|136-71
+3280|code|LDR             R3, =grub_errno|22-75
+3282|code|LDR             R3, [R3]|27-104
+3284|code|CBNZ            R3, loc_CF2|107-185
+3286|code|LDR             R1, [data]|33-104
+3288|code|MOVS            R3, #0|0-35
+3290|code|LDR             R2, [data,#0x10]|34-105
+3292|code|LDRD.W          R0, R1, [R1,#0x10]|209-233-4-1
+3296|code|CMP             R1, R3|153-66
+3298|code|IT EQ|8-191
+3300|code|CMPEQ           R0, R2|144-66
+3302|code|BEQ.W           loc_4FC|63-244-9-172
+3306|code|LDR             R1, =aPngChunkSizeEr; "png: chunk size error"|17-73
+3308|code|MOVS            R0, #4|4-32
+3310|code|LDR             R3, =grub_error|17-75
+3312|code|BLX             R3; grub_error|152-71
+3314|code|LDR             R0, [data,#0x3C]|224-107
+3316|code|LDR             R5, =grub_free|16-77
+3318|code|BLX             R5; grub_free|168-71
+3320|code|MOV             R0, data|32-70
+3322|code|BLX             R5; grub_free|168-71
+3324|code|LDR             R3, =grub_errno|11-75
+3326|code|LDR             R2, [R3]|26-104
+3328|code|MOV             data, R3|28-70
+3330|code|CBZ             R2, loc_D12|50-177
+3332|code|LDR             R3, [SP,#0x100+bitmap]|0-155
+3334|code|LDR             R0, [R3]|24-104
+3336|code|LDR             R3, =grub_video_bitmap_destroy|12-75
+3338|code|BLX             R3; grub_video_bitmap_destroy|152-71
+3340|code|LDR             R2, [SP,#0x100+bitmap]|0-154
+3342|code|MOVS            R3, #0|0-35
+3344|code|STR             R3, [R2]|19-96
+3346|code|MOV             R0, file|48-70
+3348|code|LDR             R3, =grub_file_close|10-75
+3350|code|BLX             R3; grub_file_close|152-71
+3352|code|LDR             R0, [R4]|32-104
+3354|code|ADD             SP, SP, #0xDC|55-176
+3356|code|POP.W           {R4-R11,PC}|189-232-240-143
+3360|data|DCD __aeabi_uidiv|196-16-0-0
+3364|data|DCD grub_memmove|160-16-0-0
+3368|data|DCD grub_file_seek|168-16-0-0
+3372|data|DCD grub_errno|176-16-0-0
+3376|data|DCD aPngChunkSizeEr; "png: chunk size error"|255-14-0-0
+3380|data|DCD grub_error|208-16-0-0
+3384|data|DCD grub_free|220-16-0-0
+3388|data|DCD grub_video_bitmap_destroy|172-16-0-0
+3392|data|DCD grub_file_close|200-16-0-0
+3396|code|PUSH            {R3,LR}|8-181
+3398|code|LDR             mod, =png_reader|2-72
+3400|code|LDR             R3, =grub_video_bitmap_reader_register|2-75
+3402|code|BLX             R3; grub_video_bitmap_reader_register|152-71
+3404|code|POP             {R3,PC}|8-189
+3406|data|ALIGN 0x10|0-191
+3408|data|DCD png_reader|128-16-0-0
+3412|data|DCD grub_video_bitmap_reader_register|156-16-0-0
+3416|code|PUSH            {R3,LR}|8-181
+3418|code|LDR             R0, =png_reader|2-72
+3420|code|LDR             R3, =grub_video_bitmap_reader_unregister|2-75
+3422|code|BLX             R3; grub_video_bitmap_reader_unregister|152-71
+3424|code|POP             {R3,PC}|8-189
+3426|data|ALIGN 4|0-191
+3428|data|DCD png_reader|128-16-0-0
+3432|data|DCD grub_video_bitmap_reader_unregister|212-16-0-0
+3436|data|DCD 3, 4, 5, 6, 7, 8, 9, 0xA, 0xB, 0xD, 0xF, 0x11, 0x13|3-0-0-0-4-0-0-0-5-0-0-0-6-0-0-0-7-0-0-0-8-0-0-0-9-0-0-0-10-0-0-0-11-0-0-0-13-0-0-0-15-0-0-0-17-0-0-0-19-0-0-0-23-0-0-0-27-0-0-0-31-0-0-0-35-0-0-0-43-0-0-0-51-0-0-0-59-0-0-0-67-0-0-0-83-0-0-0-99-0-0-0-115-0-0-0-131-0-0-0-163-0-0-0-195-0-0-0-227-0-0-0-2-1-0-0-0-0-0-0-0-0-0-0
+3560|data|DCB 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3|0-0-0-0-0-0-0-0-1-1-1-1-2-2-2-2-3-3-3-3-4-4-4-4-5-5-5-5-0-99-99
+3591|data|ALIGN 4|0
+3592|data|DCD 1, 2, 3, 4, 5, 7, 9, 0xD, 0x11, 0x19, 0x21, 0x31, 0x41|1-0-0-0-2-0-0-0-3-0-0-0-4-0-0-0-5-0-0-0-7-0-0-0-9-0-0-0-13-0-0-0-17-0-0-0-25-0-0-0-33-0-0-0-49-0-0-0-65-0-0-0-97-0-0-0-129-0-0-0-193-0-0-0-1-1-0-0-129-1-0-0-1-2-0-0-1-3-0-0-1-4-0-0-1-6-0-0-1-8-0-0-1-12-0-0-1-16-0-0-1-24-0-0-1-32-0-0-1-48-0-0-1-64-0-0-1-96-0-0
+3712|data|DCB 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7|0-0-0-0-1-1-2-2-3-3-4-4-5-5-6-6-7-7-8-8-9-9-10-10-11-11-12-12-13-13
+3742|data|DCB 0x89, 0x50, 0x4E, 0x47, 0xD, 0xA, 0x1A, 0xA|137-80-78-71-13-10-26-10
+3750|data|DCB 0x10, 0x11, 0x12, 0, 8, 7, 9, 6, 0xA, 5, 0xB, 4, 0xC|16-17-18-0-8-7-9-6-10-5-11-4-12-3-13-2-14-1-15
+3769|data|ALIGN 4|0-0-0
+3772|data|DCB "image size overflown",0|105-109-97-103-101-32-115-105-122-101-32-111-118-101-114-102-108-111-119-110-0
+3793|data|DCB "invalid filter value",0|105-110-118-97-108-105-100-32-102-105-108-116-101-114-32-118-97-108-117-101-0
+3814|data|DCB "png: invalid code length",0|112-110-103-58-32-105-110-118-97-108-105-100-32-99-111-100-101-32-108-101-110-103-116-104-0
+3839|data|DCB "png: chunk size error",0|112-110-103-58-32-99-104-117-110-107-32-115-105-122-101-32-101-114-114-111-114-0
+3861|data|DCB "png: unexpected end of data",0|112-110-103-58-32-117-110-101-120-112-101-99-116-101-100-32-101-110-100-32-111-102-32-100-97-116-97-0
+3889|data|DCB "png: not a png file",0|112-110-103-58-32-110-111-116-32-97-32-112-110-103-32-102-105-108-101-0
+3909|data|DCB "png: invalid image size",0|112-110-103-58-32-105-110-118-97-108-105-100-32-105-109-97-103-101-32-115-105-122-101-0
+3933|data|DCB "png: color type not supported",0|112-110-103-58-32-99-111-108-111-114-32-116-121-112-101-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+3963|data|DCB "png: bit depth must be 8 or 16",0|112-110-103-58-32-98-105-116-32-100-101-112-116-104-32-109-117-115-116-32-98-101-32-56-32-111-114-32-49-54-0
+3994|data|DCB "png: compression method not supported",0|112-110-103-58-32-99-111-109-112-114-101-115-115-105-111-110-32-109-101-116-104-111-100-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+4032|data|DCB "png: filter method not supported",0|112-110-103-58-32-102-105-108-116-101-114-32-109-101-116-104-111-100-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+4065|data|DCB "png: interlace method not supported",0|112-110-103-58-32-105-110-116-101-114-108-97-99-101-32-109-101-116-104-111-100-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+4101|data|DCB "png: only support deflate compression method",0|112-110-103-58-32-111-110-108-121-32-115-117-112-112-111-114-116-32-100-101-102-108-97-116-101-32-99-111-109-112-114-101-115-115-105-111-110-32-109-101-116-104-111-100-0
+4146|data|DCB "png: dictionary not supported",0|112-110-103-58-32-100-105-99-116-105-111-110-97-114-121-32-110-111-116-32-115-117-112-112-111-114-116-101-100-0
+4176|data|DCB "png: too much data",0|112-110-103-58-32-116-111-111-32-109-117-99-104-32-100-97-116-97-0
+4195|data|DCB "png: unknown block type",0|112-110-103-58-32-117-110-107-110-111-119-110-32-98-108-111-99-107-32-116-121-112-101-0
+4219|data|DCB ".png",0|46-112-110-103-0
+4224|data|grub_video_bitmap_reader <aPng, grub_video_reader_png+1, 0>; ".png"|123-16-0-0-169-4-0-0-0-0-0-0
+4236|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,521 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x64|153-176
+6|code|ADD             R4, SP, #0x88+r|22-172
+8|code|MOV             R9, R3|153-70
+10|code|STR             R4, [SP,#0x88+var_88]|0-148
+12|code|MOV             R8, R2|144-70
+14|code|LDR             R4, =grub_divmod64|154-76
+16|code|STRD.W          R0, R1, [SP,#0x88+a]|205-233-10-1
+20|code|BLX             R4; grub_divmod64|160-71
+22|code|LDRD.W          R2, R3, [SP,#0x88+r]|221-233-22-35
+26|code|LDR.W           R10, =aTestsDivTestC; "tests/div_test.c"|223-248-144-162
+30|code|LDR             R5, =__FUNCTION__.5119; "test64"|151-77
+32|code|CMP             R3, R9|75-69
+34|code|IT EQ|8-191
+36|code|CMPEQ           R2, R8|66-69
+38|code|LDR             R4, =grub_test_assert_helper|150-76
+40|code|STRD.W          R2, R3, [SP,#0x88+var_70]|205-233-6-35
+44|code|MOV.W           R3, #0x40 ; '@'|79-240-64-3
+48|code|MOV             R2, R5|42-70
+50|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+54|code|LDR.W           R11, =aDivisionOverfl; "division overflow in 0x%llx, 0x%llx"|223-248-120-178
+58|code|MOV             R7, R1|15-70
+60|code|LDR             R1, =aRB; "r < b"|145-73
+62|code|MOV             R6, R0|6-70
+64|code|STR             R1, [SP,#0x88+var_88]|0-145
+66|code|LDR             R1, =aRemainderIsLar; "remainder is larger than dividend: 0x%l"...|145-73
+68|code|STR             R1, [SP,#0x88+var_84]|1-145
+70|code|LDRD.W          R0, R1, [SP,#0x88+a]|221-233-10-1
+74|code|STRD.W          R0, R1, [SP,#0x88+var_80]|205-233-2-1
+78|code|ITE CC|52-191
+80|code|MOVCC           R0, #1|1-32
+82|code|MOVCS           R0, #0|0-32
+84|code|MOV             R1, R10|81-70
+86|code|BLX             R4; grub_test_assert_helper|160-71
+88|code|MUL.W           LR, R6, R9|6-251-9-254
+92|code|LDRD.W          R0, R1, [SP,#0x88+r]|221-233-22-1
+96|code|MLA.W           LR, R8, R7, LR|8-251-7-238
+100|code|STRD.W          R6, R7, [SP,#0x88+var_80]|205-233-2-103
+104|code|UMULL.W         R2, R3, R6, R8|166-251-8-35
+108|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+112|code|ADD             R3, LR|115-68
+114|code|ADDS            R0, R0, R2|128-24
+116|code|ADCS            R1, R3|89-65
+118|code|MOV             R2, R0|2-70
+120|code|MOV             R3, R1|11-70
+122|code|LDRD.W          R0, R1, [SP,#0x88+a]|221-233-10-1
+126|code|CMP             R3, R1|139-66
+128|code|LDR             R3, =aQBRA; "q * b + r == a"|130-75
+130|code|IT EQ|8-191
+132|code|CMPEQ           R2, R0|130-66
+134|code|STR             R3, [SP,#0x88+var_88]|0-147
+136|code|LDR             R3, =aDivisionDoesnT; "division doesn't satisfy base property:"...|129-75
+138|code|STR             R3, [SP,#0x88+var_84]|1-147
+140|code|LDRD.W          R2, R3, [SP,#0x88+r]|221-233-22-35
+144|code|STRD.W          R2, R3, [SP,#0x88+var_70]|205-233-6-35
+148|code|MOV             R2, R0|2-70
+150|code|MOV             R3, R1|11-70
+152|code|ITE EQ|12-191
+154|code|MOVEQ           R0, #1|1-32
+156|code|MOVNE           R0, #0|0-32
+158|code|STRD.W          R2, R3, [SP,#0x88+var_68]|205-233-8-35
+162|code|MOV             R1, R10|81-70
+164|code|MOV             R2, R5|42-70
+166|code|MOVS            R3, #0x42 ; 'B'|66-35
+168|code|BLX             R4; grub_test_assert_helper|160-71
+170|code|UMULL.W         R2, R3, R7, R9|167-251-9-35
+174|code|MOV             R1, R10|81-70
+176|code|STR.W           R11, [SP,#0x88+var_84]|205-248-4-176
+180|code|ORRS            R3, R2|19-67
+182|code|LDR             R3, =aQ32B320; "(q >> 32) * (b >> 32) == 0"|119-75
+184|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+188|code|ITE EQ|12-191
+190|code|MOVEQ           R0, #1|1-32
+192|code|MOVNE           R0, #0|0-32
+194|code|STR             R3, [SP,#0x88+var_88]|0-147
+196|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+200|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+204|code|MOV             R2, R5|42-70
+206|code|MOVS            R3, #0x45 ; 'E'|69-35
+208|code|BLX             R4; grub_test_assert_helper|160-71
+210|code|MOV             R2, R8|66-70
+212|code|MOVS            R3, #0|0-35
+214|code|STRD.W          R2, R3, [SP,#0x88+var_58]|205-233-12-35
+218|code|LDR             R3, [SP,#0x88+var_58]|12-155
+220|code|MOV             R1, R10|81-70
+222|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+226|code|UMULL.W         R2, R3, R7, R3|167-251-3-35
+230|code|STRD.W          R2, R3, [SP,#0x88+x2]|205-233-14-35
+234|code|LDR             R2, [SP,#0x88+x2+4]|15-154
+236|code|LDR             R3, [SP,#0x88+var_54]|13-155
+238|code|MLA.W           R3, R7, R3, R2|7-251-3-35
+242|code|MOVS            R7, #0|0-39
+244|code|STR             R3, [SP,#0x88+x2+4]|15-147
+246|code|LDRD.W          R2, R3, [SP,#0x88+x2]|221-233-14-35
+250|code|CMP             R3, #1|1-43
+252|code|LDR             R3, =aX11ll32; "x1 < (1LL << 32)"|102-75
+254|code|IT EQ|8-191
+256|code|CMPEQ           R2, #0|0-42
+258|code|STMEA.W         SP, {R3,R11}|141-232-8-8
+262|code|IT CC|56-191
+264|code|MOVCC           R0, #1|1-32
+266|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+270|code|IT CS|40-191
+272|code|MOVCS           R0, #0|0-32
+274|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+278|code|MOV             R2, R5|42-70
+280|code|MOVS            R3, #0x48 ; 'H'|72-35
+282|code|BLX             R4; grub_test_assert_helper|160-71
+284|code|LDR             R3, [SP,#0x88+x2]|14-155
+286|code|MOV             R1, R10|81-70
+288|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+292|code|STR             R3, [SP,#0x88+x1_0+4]|17-147
+294|code|MOVS            R3, #0|0-35
+296|code|STR             R3, [SP,#0x88+x1_0]|16-147
+298|code|UMULL.W         R2, R3, R6, R9|166-251-9-35
+302|code|STRD.W          R2, R3, [SP,#0x88+x2]|205-233-14-35
+306|code|LDR             R3, [SP,#0x88+x2+4]|15-155
+308|code|MLA.W           R3, R9, R7, R3|9-251-7-51
+312|code|STR             R3, [SP,#0x88+x2+4]|15-147
+314|code|LDRD.W          R2, R3, [SP,#0x88+x2]|221-233-14-35
+318|code|CMP             R3, #1|1-43
+320|code|LDR             R3, =aX21ll32; "x2 < (1LL << 32)"|86-75
+322|code|IT EQ|8-191
+324|code|CMPEQ           R2, #0|0-42
+326|code|STMEA.W         SP, {R3,R11}|141-232-8-8
+330|code|IT CC|56-191
+332|code|MOVCC           R0, #1|1-32
+334|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+338|code|IT CS|40-191
+340|code|MOVCS           R0, #0|0-32
+342|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+346|code|MOV             R2, R5|42-70
+348|code|MOVS            R3, #0x4C ; 'L'|76-35
+350|code|BLX             R4; grub_test_assert_helper|160-71
+352|code|LDR             R3, [SP,#0x88+x2]|14-155
+354|code|LDRD.W          R0, R1, [SP,#0x88+x1_0]|221-233-16-1
+358|code|LDR.W           R12, =aX1X2; "x1 <= ~x2"|223-248-76-193
+362|code|STR             R3, [SP,#0x88+x2_0+4]|19-147
+364|code|MOVS            R3, #0|0-35
+366|code|STR             R3, [SP,#0x88+x2_0]|18-147
+368|code|LDRD.W          R2, R3, [SP,#0x88+x2_0]|221-233-18-35
+372|code|STR.W           R12, [SP,#0x88+var_88]|205-248-0-192
+376|code|STR.W           R11, [SP,#0x88+var_84]|205-248-4-176
+380|code|MVNS            R3, R3|219-67
+382|code|CMP             R3, R1|139-66
+384|code|MVN.W           R2, R2|111-234-2-2
+388|code|IT EQ|8-191
+390|code|CMPEQ           R2, R0|130-66
+392|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+396|code|MOV             R1, R10|81-70
+398|code|ITE CS|44-191
+400|code|MOVCS           R0, #1|1-32
+402|code|MOVCC           R0, #0|0-32
+404|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+408|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+412|code|MOV             R2, R5|42-70
+414|code|MOVS            R3, #0x4F ; 'O'|79-35
+416|code|STR.W           R12, [SP,#0x88+var_34]|205-248-84-192
+420|code|BLX             R4; grub_test_assert_helper|160-71
+422|code|LDRD.W          R0, R1, [SP,#0x88+x1_0]|221-233-16-1
+426|code|LDRD.W          R2, R3, [SP,#0x88+x2_0]|221-233-18-35
+430|code|LDR.W           R12, [SP,#0x88+var_34]|221-248-84-192
+434|code|ADDS            R2, R2, R0|18-24
+436|code|STR.W           R11, [SP,#0x88+var_84]|205-248-4-176
+440|code|ADCS            R3, R1|75-65
+442|code|STRD.W          R2, R3, [SP,#0x88+x2]|205-233-14-35
+446|code|LDR             R3, [SP,#0x88+var_54]|13-155
+448|code|LDR             R2, [SP,#0x88+var_58]|12-154
+450|code|LDRD.W          R0, R1, [SP,#0x88+x2]|221-233-14-1
+454|code|MULS            R3, R6|115-67
+456|code|STR.W           R12, [SP,#0x88+var_88]|205-248-0-192
+460|code|MLA.W           R3, R2, R7, R3|2-251-7-51
+464|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+468|code|UMULL.W         R6, R7, R6, R2|166-251-2-103
+472|code|ADD             R7, R3|31-68
+474|code|MVNS            R3, R7|251-67
+476|code|CMP             R3, R1|139-66
+478|code|MVN.W           R2, R6|111-234-6-2
+482|code|IT EQ|8-191
+484|code|CMPEQ           R2, R0|130-66
+486|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+490|code|MOV             R1, R10|81-70
+492|code|ITE CS|44-191
+494|code|MOVCS           R0, #1|1-32
+496|code|MOVCC           R0, #0|0-32
+498|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+502|code|MOV             R2, R5|42-70
+504|code|MOVS            R3, #0x53 ; 'S'|83-35
+506|code|BLX             R4; grub_test_assert_helper|160-71
+508|code|LDRD.W          R2, R3, [SP,#0x88+x2]|221-233-14-35
+512|code|MOV             R1, R10|81-70
+514|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+518|code|ADDS            R2, R2, R6|146-25
+520|code|ADCS            R3, R7|123-65
+522|code|MOV             R6, R2|22-70
+524|code|MOV             R7, R3|31-70
+526|code|LDRD.W          R2, R3, [SP,#0x88+r]|221-233-22-35
+530|code|MVNS            R3, R3|219-67
+532|code|CMP             R3, R7|187-66
+534|code|LDR             R3, =aX1R; "x1 <= ~r"|34-75
+536|code|MVN.W           R2, R2|111-234-2-2
+540|code|IT EQ|8-191
+542|code|CMPEQ           R2, R6|178-66
+544|code|STMEA.W         SP, {R3,R11}|141-232-8-8
+548|code|IT CS|40-191
+550|code|MOVCS           R0, #1|1-32
+552|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+556|code|IT CC|56-191
+558|code|MOVCC           R0, #0|0-32
+560|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+564|code|MOV             R2, R5|42-70
+566|code|MOVS            R3, #0x56 ; 'V'|86-35
+568|code|BLX             R4; grub_test_assert_helper|160-71
+570|code|LDRD.W          R2, R3, [SP,#0x88+r]|221-233-22-35
+574|code|STRD.W          R8, R9, [SP,#0x88+var_78]|205-233-4-137
+578|code|MOV             R1, R10|81-70
+580|code|ADDS            R6, R6, R2|182-24
+582|code|ADCS            R7, R3|95-65
+584|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+588|code|CMP             R3, R7|187-66
+590|code|LDR             R3, =aAX1; "a == x1"|21-75
+592|code|IT EQ|8-191
+594|code|CMPEQ           R2, R6|178-66
+596|code|STR             R3, [SP,#0x88+var_88]|0-147
+598|code|IT EQ|8-191
+600|code|MOVEQ           R0, #1|1-32
+602|code|LDR             R3, =aDivisionOverfl_0; "division overflow test failure in 0x%ll"...|19-75
+604|code|IT NE|24-191
+606|code|MOVNE           R0, #0|0-32
+608|code|STR             R3, [SP,#0x88+var_84]|1-147
+610|code|LDRD.W          R2, R3, [SP,#0x88+a]|221-233-10-35
+614|code|STRD.W          R2, R3, [SP,#0x88+var_80]|205-233-2-35
+618|code|MOV             R2, R5|42-70
+620|code|MOVS            R3, #0x59 ; 'Y'|89-35
+622|code|BLX             R4; grub_test_assert_helper|160-71
+624|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+626|code|POP.W           {R4-R11,PC}|189-232-240-143
+630|data|ALIGN 4|0-191
+632|data|DCD grub_divmod64|168-7-0-0
+636|data|DCD __FUNCTION__.5119; "test64"|64-5-0-0
+640|data|DCD grub_test_assert_helper|188-7-0-0
+644|data|DCD aRB; "r < b"|177-5-0-0
+648|data|DCD aRemainderIsLar; "remainder is larger than dividend: 0x%l"...|183-5-0-0
+652|data|DCD aQBRA; "q * b + r == a"|244-5-0-0
+656|data|DCD aDivisionDoesnT; "division doesn't satisfy base property:"...|3-6-0-0
+660|data|DCD aQ32B320; "(q >> 32) * (b >> 32) == 0"|78-6-0-0
+664|data|DCD aX11ll32; "x1 < (1LL << 32)"|141-6-0-0
+668|data|DCD aX21ll32; "x2 < (1LL << 32)"|158-6-0-0
+672|data|DCD aX1R; "x1 <= ~r"|185-6-0-0
+676|data|DCD aAX1; "a == x1"|194-6-0-0
+680|data|DCD aDivisionOverfl_0; "division overflow test failure in 0x%ll"...|202-6-0-0
+684|data|DCD aTestsDivTestC; "tests/div_test.c"|160-5-0-0
+688|data|DCD aDivisionOverfl; "division overflow in 0x%llx, 0x%llx"|105-6-0-0
+692|data|DCD aX1X2; "x1 <= ~x2"|175-6-0-0
+696|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+700|code|SUB             SP, SP, #0x3C|143-176
+702|code|MOV             R5, b|13-70
+704|code|MOV             R2, a|2-70
+706|code|MOV.W           R9, #0|79-240-0-9
+710|code|MOVS            R3, #0|0-35
+712|code|STRD.W          R2, R3, [SP,#0x60+var_38]|205-233-10-35
+716|code|MOV             R10, a|130-70
+718|code|ADD             R3, SP, #0x60+r|12-171
+720|code|MOV             R2, R5|42-70
+722|code|STR             R3, [SP,#0x60+var_60]|0-147
+724|code|MOV             R3, R9|75-70
+726|code|LDRD.W          a, b, [SP,#0x60+var_38]|221-233-10-1
+730|code|LDR             R4, =grub_divmod64|83-76
+732|code|BLX             R4; grub_divmod64|160-71
+734|code|LDRD.W          R2, R3, [SP,#0x60+r]|221-233-12-35
+738|code|LDR.W           R11, =aTestsDivTestC; "tests/div_test.c"|223-248-120-177
+742|code|MOVS            R4, #0|0-36
+744|code|CMP             R3, R9|75-69
+746|code|LDR.W           R9, =__FUNCTION__.5110; "test32"|223-248-116-145
+750|code|IT EQ|8-191
+752|code|CMPEQ           R2, b|170-66
+754|code|LDR.W           R8, =grub_test_assert_helper|223-248-112-129
+758|code|STRD.W          R2, R3, [SP,#0x60+var_48]|205-233-6-35
+762|code|MOV.W           R3, #0x27 ; '''|79-240-39-3
+766|code|MOV             R2, R9|74-70
+768|code|STR.W           a, [SP,#0x60+var_58]|205-248-8-160
+772|code|STR             R4, [SP,#0x60+var_54]|3-148
+774|code|STR             b, [SP,#0x60+var_50]|4-149
+776|code|STR             R4, [SP,#0x60+var_4C]|5-148
+778|code|MOV             R7, R1|15-70
+780|code|LDR             R1, =aRB; "r < b"|71-73
+782|code|MOV             R6, R0|6-70
+784|code|ITE CS|44-191
+786|code|MOVCS           R0, R4|32-70
+788|code|MOVCC           R0, #1|1-32
+790|code|STR             R1, [SP,#0x60+var_60]|0-145
+792|code|LDR             R1, =aRemainderIsLar; "remainder is larger than dividend: 0x%l"...|69-73
+794|code|STR             R1, [SP,#0x60+var_5C]|1-145
+796|code|MOV             R1, R11|89-70
+798|code|BLX             R8; grub_test_assert_helper|192-71
+800|code|UMULL.W         R2, R3, R6, b|166-251-5-35
+804|code|LDRD.W          R0, R1, [SP,#0x60+r]|221-233-12-1
+808|code|STRD.W          R6, R7, [SP,#0x60+var_58]|205-233-2-103
+812|code|ADDS            R0, R0, R2|128-24
+814|code|STR             b, [SP,#0x60+var_50]|4-149
+816|code|STR             R4, [SP,#0x60+var_4C]|5-148
+818|code|MOV             R2, R0|2-70
+820|code|STR.W           a, [SP,#0x60+var_40]|205-248-32-160
+824|code|MLA.W           R3, b, R7, R3|5-251-7-51
+828|code|STR             R4, [SP,#0x60+var_3C]|9-148
+830|code|ADCS            R1, R3|89-65
+832|code|MOV             R3, R1|11-70
+834|code|LDRD.W          R0, R1, [SP,#0x60+var_38]|221-233-10-1
+838|code|CMP             R3, R1|139-66
+840|code|LDR             R3, =aQBRA; "q * b + r == a"|58-75
+842|code|IT EQ|8-191
+844|code|CMPEQ           R2, R0|130-66
+846|code|MOV             R1, R11|89-70
+848|code|STR             R3, [SP,#0x60+var_60]|0-147
+850|code|IT NE|24-191
+852|code|MOVNE           R0, R4|32-70
+854|code|LDR             R3, =aDivisionDoesnT; "division doesn't satisfy base property:"...|56-75
+856|code|IT EQ|8-191
+858|code|MOVEQ           R0, #1|1-32
+860|code|STR             R3, [SP,#0x60+var_5C]|1-147
+862|code|LDRD.W          R2, R3, [SP,#0x60+r]|221-233-12-35
+866|code|STRD.W          R2, R3, [SP,#0x60+var_48]|205-233-6-35
+870|code|MOV             R2, R9|74-70
+872|code|MOVS            R3, #0x29 ; ')'|41-35
+874|code|BLX             R8; grub_test_assert_helper|192-71
+876|code|LDR.W           R12, =aDivisionOverfl; "division overflow in 0x%llx, 0x%llx"|223-248-248-192
+880|code|LDR             R3, =aQ320; "(q >> 32) == 0"|50-75
+882|code|CLZ.W           R0, R7|183-250-135-240
+886|code|MOV             R1, R11|89-70
+888|code|MOV             R2, R9|74-70
+890|code|STR.W           R12, [SP,#0x60+var_5C]|205-248-4-192
+894|code|LSRS            R0, R0, #5|64-9
+896|code|STR             R3, [SP,#0x60+var_60]|0-147
+898|code|MOVS            R3, #0x2C ; ','|44-35
+900|code|STR.W           a, [SP,#0x60+var_58]|205-248-8-160
+904|code|STR             R4, [SP,#0x60+var_54]|3-148
+906|code|STR             b, [SP,#0x60+var_50]|4-149
+908|code|STR             R4, [SP,#0x60+var_4C]|5-148
+910|code|STR.W           R12, [SP,#0x60+var_38]|205-248-40-192
+914|code|BLX             R8; grub_test_assert_helper|192-71
+916|code|LDR             R0, [SP,#0x60+r+4]|13-152
+918|code|MOV             R2, R9|74-70
+920|code|LDR.W           R12, [SP,#0x60+var_38]|221-248-40-192
+924|code|MOV             R1, R11|89-70
+926|code|LDR             R3, =aR320; "(r >> 32) == 0"|40-75
+928|code|CLZ.W           R0, R0|176-250-128-240
+932|code|STR.W           a, [SP,#0x60+var_58]|205-248-8-160
+936|code|STR.W           R12, [SP,#0x60+var_5C]|205-248-4-192
+940|code|LSRS            R0, R0, #5|64-9
+942|code|STR             R3, [SP,#0x60+var_60]|0-147
+944|code|MOVS            R3, #0x2E ; '.'|46-35
+946|code|STR             R4, [SP,#0x60+var_54]|3-148
+948|code|STR             b, [SP,#0x60+var_50]|4-149
+950|code|STR             R4, [SP,#0x60+var_4C]|5-148
+952|code|BLX             R8; grub_test_assert_helper|192-71
+954|code|MOV             R1, b|41-70
+956|code|MOV             R0, a|80-70
+958|code|LDR             R3, =__aeabi_uidiv|33-75
+960|code|BLX             R3; __aeabi_uidiv|152-71
+962|code|LDR             R3, =aQAB; "q == (a / b)"|33-75
+964|code|MOVS            R1, #0|0-33
+966|code|CMP             R7, R1|143-66
+968|code|MOV             R2, R9|74-70
+970|code|MOV             R1, R11|89-70
+972|code|STR             R3, [SP,#0x60+var_60]|0-147
+974|code|LDR             R3, =aCCompilerDivis; "C compiler division failure in 0x%llx, "...|31-75
+976|code|STR.W           a, [SP,#0x60+var_58]|205-248-8-160
+980|code|STR             R4, [SP,#0x60+var_54]|3-148
+982|code|STR             R3, [SP,#0x60+var_5C]|1-147
+984|code|MOV.W           R3, #0x34 ; '4'|79-240-52-3
+988|code|STR             b, [SP,#0x60+var_50]|4-149
+990|code|STR             R4, [SP,#0x60+var_4C]|5-148
+992|code|ITET EQ|10-191
+994|code|CMPEQ           R6, R0|134-66
+996|code|MOVNE           R0, R4|32-70
+998|code|MOVEQ           R0, #1|1-32
+1000|code|BLX             R8; grub_test_assert_helper|192-71
+1002|code|MOV             R0, a|80-70
+1004|code|MOV             R1, b|41-70
+1006|code|LDR             R3, =__aeabi_uidivmod|24-75
+1008|code|BLX             R3; __aeabi_uidivmod|152-71
+1010|code|LDRD.W          R2, R3, [SP,#0x60+r]|221-233-12-35
+1014|code|STR.W           a, [SP,#0x60+var_58]|205-248-8-160
+1018|code|STR             R4, [SP,#0x60+var_54]|3-148
+1020|code|STR             b, [SP,#0x60+var_50]|4-149
+1022|code|STR             R4, [SP,#0x60+var_4C]|5-148
+1024|code|MOV             R0, R1|8-70
+1026|code|MOVS            R1, #0|0-33
+1028|code|CMP             R3, R1|139-66
+1030|code|LDR             R3, =aRAB; "r == (a % b)"|19-75
+1032|code|IT EQ|8-191
+1034|code|CMPEQ           R2, R0|130-66
+1036|code|MOV             R1, R11|89-70
+1038|code|MOV             R2, R9|74-70
+1040|code|STR             R3, [SP,#0x60+var_60]|0-147
+1042|code|IT EQ|8-191
+1044|code|MOVEQ           R0, #1|1-32
+1046|code|LDR             R3, =aCCompilerModul; "C compiler modulo failure in 0x%llx, 0x"...|16-75
+1048|code|IT NE|24-191
+1050|code|MOVNE           R0, R4|32-70
+1052|code|STR             R3, [SP,#0x60+var_5C]|1-147
+1054|code|MOVS            R3, #0x36 ; '6'|54-35
+1056|code|BLX             R8; grub_test_assert_helper|192-71
+1058|code|ADD             SP, SP, #0x3C ; '<'|15-176
+1060|code|POP.W           {R4-R11,PC}|189-232-240-143
+1064|data|DCD grub_divmod64|168-7-0-0
+1068|data|DCD aRB; "r < b"|177-5-0-0
+1072|data|DCD aRemainderIsLar; "remainder is larger than dividend: 0x%l"...|183-5-0-0
+1076|data|DCD aQBRA; "q * b + r == a"|244-5-0-0
+1080|data|DCD aDivisionDoesnT; "division doesn't satisfy base property:"...|3-6-0-0
+1084|data|DCD aQ320; "(q >> 32) == 0"|251-6-0-0
+1088|data|DCD aR320; "(r >> 32) == 0"|10-7-0-0
+1092|data|DCD __aeabi_uidiv|172-7-0-0
+1096|data|DCD aQAB; "q == (a / b)"|25-7-0-0
+1100|data|DCD aCCompilerDivis; "C compiler division failure in 0x%llx, "...|38-7-0-0
+1104|data|DCD __aeabi_uidivmod|184-7-0-0
+1108|data|DCD aRAB; "r == (a % b)"|84-7-0-0
+1112|data|DCD aCCompilerModul; "C compiler modulo failure in 0x%llx, 0x"...|97-7-0-0
+1116|data|DCD aTestsDivTestC; "tests/div_test.c"|160-5-0-0
+1120|data|DCD __FUNCTION__.5110; "test32"|71-5-0-0
+1124|data|DCD grub_test_assert_helper|188-7-0-0
+1128|data|DCD aDivisionOverfl; "division overflow in 0x%llx, 0x%llx"|105-6-0-0
+1132|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+1136|code|LDR             R4, =(vectors+8)|39-76
+1138|code|ADD.W           R7, R4, #0x50 ; 'P'|4-241-80-7
+1142|code|LDR.W           R6, [R4,#-8]|84-248-8-108
+1146|code|ADDS            R4, #0x10|16-52
+1148|code|LDR.W           R5, [R4,#-0x10]|84-248-16-92
+1152|code|LDR.W           R1, [R4,#-0x14]; a|84-248-20-28
+1156|code|LDR.W           R3, [R4,#-0xC]; b|84-248-12-60
+1160|code|MOV             R0, R6; a|48-70
+1162|code|MOV             R2, R5; b|42-70
+1164|code|BL              test64|255-247-184-253
+1168|code|MOV             R0, R6; a|48-70
+1170|code|MOV             R1, R5; b|41-70
+1172|code|BL              test32|255-247-16-255
+1176|code|CMP             R4, R7|188-66
+1178|code|BNE             loc_476|236-209
+1180|code|MOVW            R8, #0x9C40|73-246-64-72
+1184|code|MOVS            R4, #7|7-36
+1186|code|MOVS            R5, #0|0-37
+1188|code|MOV.W           R6, #0x194|79-244-202-118
+1192|code|MOVS            R7, #0|0-39
+1194|code|MOV.W           R9, #0x11|79-240-17-9
+1198|code|MOV.W           R10, #0xD|79-240-13-10
+1202|code|UMULL.W         R2, R3, R6, R9|166-251-9-35
+1206|code|MOVS            R1, #0x1D|29-33
+1208|code|MLA.W           R3, R9, R7, R3|9-251-7-51
+1212|code|UMULL.W         R6, R7, R4, R10|164-251-10-103
+1216|code|ADDS            R6, R6, R2|182-24
+1218|code|MLA.W           R7, R10, R5, R7|10-251-5-119
+1222|code|ADCS            R7, R3|95-65
+1224|code|UMULL.W         R2, R3, R4, R1|164-251-1-35
+1228|code|MLA.W           R3, R1, R5, R3|1-251-5-51
+1232|code|MOVS            R1, #0x17|23-33
+1234|code|UMULL.W         R4, R5, R6, R1|166-251-1-69
+1238|code|ADDS            R4, R4, R2|164-24
+1240|code|MLA.W           R5, R1, R7, R5|1-251-7-85
+1244|code|ADCS            R5, R3|93-65
+1246|code|ORRS.W          R3, R4, R5|84-234-5-3
+1250|code|ITT EQ|4-191
+1252|code|MOVEQ           R4, #1|1-36
+1254|code|MOVEQ           R5, #0|0-37
+1256|code|ORRS.W          R3, R6, R7|86-234-7-3
+1260|code|MOV             R2, R4; b|34-70
+1262|code|MOV             R3, R5; b|43-70
+1264|code|ITT EQ|4-191
+1266|code|MOVEQ           R6, #1|1-38
+1268|code|MOVEQ           R7, #0|0-39
+1270|code|MOV             R0, R6; a|48-70
+1272|code|MOV             R1, R7; a|57-70
+1274|code|BL              test64|255-247-129-253
+1278|code|MOV             R0, R6; a|48-70
+1280|code|MOV             R1, R4; b|33-70
+1282|code|BL              test32|255-247-217-254
+1286|code|SUBS.W          R8, R8, #1|184-241-1-8
+1290|code|BNE             loc_4B2|210-209
+1292|code|POP.W           {R4-R10,PC}|189-232-240-135
+1296|data|DCD vectors+8|88-5-0-0
+1300|code|PUSH            {R3,LR}|8-181
+1302|code|LDR             mod, =aDivTest; "div_test"|2-72
+1304|code|LDR             R1, =(div_test+1)|2-73
+1306|code|LDR             R3, =grub_test_register|3-75
+1308|code|BLX             R3; grub_test_register|152-71
+1310|code|POP             {R3,PC}|8-189
+1312|data|DCD aDivTest; "div_test"|141-7-0-0
+1316|data|DCD div_test+1|109-4-0-0
+1320|data|DCD grub_test_register|176-7-0-0
+1324|code|PUSH            {R3,LR}|8-181
+1326|code|LDR             R0, =aDivTest; "div_test"|2-72
+1328|code|LDR             R3, =grub_test_unregister|2-75
+1330|code|BLX             R3; grub_test_unregister|152-71
+1332|code|POP             {R3,PC}|8-189
+1334|data|ALIGN 4|0-191
+1336|data|DCD aDivTest; "div_test"|141-7-0-0
+1340|data|DCD grub_test_unregister|180-7-0-0
+1344|data|DCB "test64",0|116-101-115-116-54-52-0
+1351|data|DCB "test32",0|116-101-115-116-51-50-0
+1358|data|ALIGN 0x10|0-0
+1360|data|DCQ 0xFFFFFFFFFFFFFFFF, 1, 1, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF|255-255-255-255-255-255-255-255-1-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-1-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-2-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0
+1440|data|DCB "tests/div_test.c",0|116-101-115-116-115-47-100-105-118-95-116-101-115-116-46-99-0
+1457|data|DCB "r < b",0|114-32-60-32-98-0
+1463|data|DCB "remainder is larger than dividend: 0x%llx %% 0x%llx = 0x%llx",0|114-101-109-97-105-110-100-101-114-32-105-115-32-108-97-114-103-101-114-32-116-104-97-110-32-100-105-118-105-100-101-110-100-58-32-48-120-37-108-108-120-32-37-37-32-48-120-37-108-108-120-32-61-32-48-120-37-108-108-120-0
+1524|data|DCB "q * b + r == a",0|113-32-42-32-98-32-43-32-114-32-61-61-32-97-0
+1539|data|DCB "division doesn't satisfy base property: 0x%llx * 0x%llx + 0x%llx"|100-105-118-105-115-105-111-110-32-100-111-101-115-110-39-116-32-115-97-116-105-115-102-121-32-98-97-115-101-32-112-114-111-112-101-114-116-121-58-32-48-120-37-108-108-120-32-42-32-48-120-37-108-108-120-32-43-32-48-120-37-108-108-120-32-33-61-32-48-120-37-108-108-120-0
+1614|data|DCB "(q >> 32) * (b >> 32) == 0",0|40-113-32-62-62-32-51-50-41-32-42-32-40-98-32-62-62-32-51-50-41-32-61-61-32-48-0
+1641|data|DCB "division overflow in 0x%llx, 0x%llx",0|100-105-118-105-115-105-111-110-32-111-118-101-114-102-108-111-119-32-105-110-32-48-120-37-108-108-120-44-32-48-120-37-108-108-120-0
+1677|data|DCB "x1 < (1LL << 32)",0|120-49-32-60-32-40-49-76-76-32-60-60-32-51-50-41-0
+1694|data|DCB "x2 < (1LL << 32)",0|120-50-32-60-32-40-49-76-76-32-60-60-32-51-50-41-0
+1711|data|DCB "x1 <= ~x2",0|120-49-32-60-61-32-126-120-50-0
+1721|data|DCB "x1 <= ~r",0|120-49-32-60-61-32-126-114-0
+1730|data|DCB "a == x1",0|97-32-61-61-32-120-49-0
+1738|data|DCB "division overflow test failure in 0x%llx, 0x%llx",0|100-105-118-105-115-105-111-110-32-111-118-101-114-102-108-111-119-32-116-101-115-116-32-102-97-105-108-117-114-101-32-105-110-32-48-120-37-108-108-120-44-32-48-120-37-108-108-120-0
+1787|data|DCB "(q >> 32) == 0",0|40-113-32-62-62-32-51-50-41-32-61-61-32-48-0
+1802|data|DCB "(r >> 32) == 0",0|40-114-32-62-62-32-51-50-41-32-61-61-32-48-0
+1817|data|DCB "q == (a / b)",0|113-32-61-61-32-40-97-32-47-32-98-41-0
+1830|data|DCB "C compiler division failure in 0x%llx, 0x%llx",0|67-32-99-111-109-112-105-108-101-114-32-100-105-118-105-115-105-111-110-32-102-97-105-108-117-114-101-32-105-110-32-48-120-37-108-108-120-44-32-48-120-37-108-108-120-0
+1876|data|DCB "r == (a % b)",0|114-32-61-61-32-40-97-32-37-32-98-41-0
+1889|data|DCB "C compiler modulo failure in 0x%llx, 0x%llx",0|67-32-99-111-109-112-105-108-101-114-32-109-111-100-117-108-111-32-102-97-105-108-117-114-101-32-105-110-32-48-120-37-108-108-120-44-32-48-120-37-108-108-120-0
+1933|data|DCB "div_test",0|100-105-118-95-116-101-115-116-0

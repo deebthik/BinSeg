@@ -1,0 +1,277 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|MOV             R12, ctx|132-70
+6|code|LDRB            R5, [inbuf,#1]|85-120
+8|code|MOV.W           LR, #0|79-240-0-14
+12|code|LDRB            R3, [inbuf]|19-120
+14|code|LDRB            R6, [inbuf,#3]|214-120
+16|code|ORR.W           R5, R3, R5,LSL#8|67-234-5-37
+20|code|LDRB            R3, [inbuf,#2]|147-120
+22|code|LDRB            R4, [inbuf,#5]|84-121
+24|code|ORR.W           R6, R3, R6,LSL#8|67-234-6-38
+28|code|LDRB            R3, [inbuf,#4]|19-121
+30|code|LDRB            R7, [inbuf,#7]|215-121
+32|code|ORR.W           R4, R3, R4,LSL#8|67-234-4-36
+36|code|LDRB            R3, [inbuf,#6]|147-121
+38|code|ORR.W           R3, R3, R7,LSL#8|67-234-7-35
+42|code|LDRH.W          R2, [ctx,LR,LSL#3]|48-248-62-32
+46|code|UXTH.W          R8, word3|31-250-131-248
+50|code|AND.W           R7, word3, word2|3-234-4-7
+54|code|CMP.W           LR, #4|190-241-4-15
+58|code|ADD             R7, R2|23-68
+60|code|BIC.W           R2, word1, R8|38-234-8-2
+64|code|ADD             R2, R7|58-68
+66|code|LDRH.W          R7, [R12,#2]|188-248-2-112
+70|code|ADD             word0, R2|21-68
+72|code|ADD             word1, R7|62-68
+74|code|UXTH            R5, R5|173-178
+76|code|MOV.W           R2, word0,LSR#15|79-234-213-50
+80|code|ORR.W           word0, R2, word0,LSL#1|66-234-69-5
+84|code|UXTH            R2, R5|170-178
+86|code|UXTH            R5, R2|149-178
+88|code|AND.W           R7, word0, word3|5-234-3-7
+92|code|ADD             R6, R7|62-68
+94|code|BIC.W           R7, word2, R2|36-234-2-7
+98|code|UXTAH.W         R6, R7, R6|23-250-134-246
+102|code|LDRH.W          R7, [R12,#4]|188-248-4-112
+106|code|UXTH            R6, R6|182-178
+108|code|ADD             word2, R7|60-68
+110|code|MOV.W           R9, word1,LSR#14|79-234-150-57
+114|code|ORR.W           word1, R9, word1,LSL#2|73-234-134-6
+118|code|UXTH.W          R9, R6|31-250-134-249
+122|code|UXTH.W          R6, R9|31-250-137-246
+126|code|AND.W           R7, word1, word0|6-234-5-7
+130|code|ADD             R7, R4|39-68
+132|code|BIC.W           R4, R8, R9|40-234-9-4
+136|code|UXTAH.W         R4, R4, R7|20-250-135-244
+140|code|LDRH.W          R7, [R12,#6]|188-248-6-112
+144|code|UXTH            R4, R4|164-178
+146|code|ADD             word3, R7|59-68
+148|code|MOV.W           word3, word2,LSR#13|79-234-84-56
+152|code|ORR.W           word2, R8, word2,LSL#3|72-234-196-4
+156|code|UXTH.W          R8, R4|31-250-132-248
+160|code|BIC.W           R2, R2, R8|34-234-8-2
+164|code|UXTH.W          R4, R8|31-250-136-244
+168|code|AND.W           R7, word2, word1|4-234-6-7
+172|code|ADD             R3, R7|59-68
+174|code|UXTAH.W         R2, R2, R3|18-250-131-242
+178|code|UXTH            R2, R2|146-178
+180|code|MOV.W           R3, word3,LSR#11|79-234-210-35
+184|code|ORR.W           R3, R3, word3,LSL#5|67-234-66-19
+188|code|UXTH            R3, R3|155-178
+190|code|BEQ             loc_C6|2-208
+192|code|CMP.W           LR, #0xA|190-241-10-15
+196|code|BNE             loc_F6|23-209
+198|code|AND.W           R2, word3, #0x3F|3-240-63-2
+202|code|LDRH.W          R2, [ctx,R2,LSL#1]|48-248-18-32
+206|code|ADD             word0, R2|21-68
+208|code|UXTH            R5, R5|173-178
+210|code|AND.W           R2, word0, #0x3F|5-240-63-2
+214|code|LDRH.W          R2, [ctx,R2,LSL#1]|48-248-18-32
+218|code|ADD             word1, R2|22-68
+220|code|UXTH            R6, R6|182-178
+222|code|AND.W           R2, word1, #0x3F|6-240-63-2
+226|code|LDRH.W          R2, [ctx,R2,LSL#1]|48-248-18-32
+230|code|ADD             word2, R2|20-68
+232|code|UXTH            R4, R4|164-178
+234|code|AND.W           R2, word2, #0x3F|4-240-63-2
+238|code|LDRH.W          R2, [ctx,R2,LSL#1]|48-248-18-32
+242|code|ADD             word3, R2|19-68
+244|code|UXTH            R3, R3|155-178
+246|code|ADD.W           LR, LR, #1|14-241-1-14
+250|code|ADD.W           R12, R12, #8|12-241-8-12
+254|code|CMP.W           LR, #0x10|190-241-16-15
+258|code|BNE             loc_2A|146-209
+260|code|STRB            word0, [outbuf]|13-112
+262|code|LSRS            word0, word0, #8|45-10
+264|code|STRB            word1, [outbuf,#2]|142-112
+266|code|LSRS            word1, word1, #8|54-10
+268|code|STRB            word2, [outbuf,#4]|12-113
+270|code|LSRS            word2, word2, #8|36-10
+272|code|STRB            word3, [outbuf,#6]|139-113
+274|code|LSRS            word3, word3, #8|27-10
+276|code|STRB            R5, [outbuf,#1]|77-112
+278|code|STRB            R6, [outbuf,#3]|206-112
+280|code|STRB            R4, [outbuf,#5]|76-113
+282|code|STRB            R3, [outbuf,#7]|203-113
+284|code|POP.W           {R4-R9,PC}|189-232-240-131
+288|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+292|code|MOV             R7, ctx|7-70
+294|code|LDRB            R5, [inbuf,#1]|85-120
+296|code|MOV.W           LR, #0xF|79-240-15-14
+300|code|LDRB            R3, [inbuf]|19-120
+302|code|LDRB            R4, [inbuf,#3]|212-120
+304|code|ORR.W           R5, R3, R5,LSL#8|67-234-5-37
+308|code|LDRB            R3, [inbuf,#2]|147-120
+310|code|LDRB            R6, [inbuf,#5]|86-121
+312|code|ORR.W           R4, R3, R4,LSL#8|67-234-4-36
+316|code|LDRB            R3, [inbuf,#4]|19-121
+318|code|ORR.W           R3, R3, R6,LSL#8|67-234-6-35
+322|code|LDRB            R6, [inbuf,#7]|214-121
+324|code|LDRB            inbuf, [inbuf,#6]|146-121
+326|code|ORR.W           R2, R2, R6,LSL#8|66-234-6-34
+330|code|LSRS            R6, word3, #5|86-9
+332|code|AND.W           R12, word2, word1|3-234-4-12
+336|code|ORR.W           R6, R6, word3,LSL#11|70-234-194-38
+340|code|LDRH.W          R2, [R7,#0x7E]|183-248-126-32
+344|code|UXTH.W          R8, word0|31-250-133-248
+348|code|AND.W           R9, word1, word0|4-234-5-9
+352|code|ADD             R2, R12|98-68
+354|code|CMP.W           LR, #5|190-241-5-15
+358|code|SUB.W           R2, word3, R2|166-235-2-2
+362|code|BIC.W           word3, R8, word2|40-234-3-6
+366|code|SUB.W           R2, R2, R6|162-235-6-2
+370|code|MOV.W           R6, word2,LSR#3|79-234-211-6
+374|code|ORR.W           R6, R6, word2,LSL#13|70-234-67-54
+378|code|LDRH.W          word2, [R7,#0x7C]|183-248-124-48
+382|code|UXTH            R2, R2|146-178
+384|code|ADD             R3, R9|75-68
+386|code|UXTH.W          R12, word3|31-250-130-252
+390|code|SUB.W           R3, word2, R3|166-235-3-3
+394|code|BIC.W           word2, R12, word1|44-234-4-6
+398|code|SUB.W           R3, R3, R6|163-235-6-3
+402|code|MOV.W           R6, word1,LSR#2|79-234-148-6
+406|code|ORR.W           R6, R6, word1,LSL#14|70-234-132-54
+410|code|LDRH.W          word1, [R7,#0x7A]|183-248-122-64
+414|code|UXTH            R3, R3|155-178
+416|code|UXTH            R6, R6|182-178
+418|code|SUB.W           word1, word1, R4|166-235-4-6
+422|code|AND.W           R4, word3, word0|2-234-5-4
+426|code|SUB.W           R6, R6, R4|166-235-4-6
+430|code|BIC.W           R4, word2, R8|35-234-8-4
+434|code|SUB.W           R4, R6, R4|166-235-4-4
+438|code|MOV.W           R6, word0,LSR#1|79-234-85-6
+442|code|ORR.W           R6, R6, word0,LSL#15|70-234-197-54
+446|code|LDRH.W          word0, [R7,#0x78]|183-248-120-80
+450|code|UXTH            R4, R4|164-178
+452|code|UXTH            R6, R6|182-178
+454|code|SUB.W           word0, word0, R5|166-235-5-6
+458|code|AND.W           R5, word2, word3|3-234-2-5
+462|code|SUB.W           R6, R6, R5|166-235-5-6
+466|code|BIC.W           R5, word1, R12|36-234-12-5
+470|code|SUB.W           R5, R6, R5|166-235-5-5
+474|code|UXTH            R5, R5|173-178
+476|code|BEQ             loc_1E4|2-208
+478|code|CMP.W           LR, #0xB|190-241-11-15
+482|code|BNE             loc_214|23-209
+484|code|AND.W           R6, word2, #0x3F|3-240-63-6
+488|code|LDRH.W          R6, [ctx,R6,LSL#1]|48-248-22-96
+492|code|SUBS            word3, word3, R6|146-27
+494|code|AND.W           R6, word1, #0x3F|4-240-63-6
+498|code|LDRH.W          R6, [ctx,R6,LSL#1]|48-248-22-96
+502|code|UXTH            R2, R2|146-178
+504|code|SUBS            word2, word2, R6|155-27
+506|code|AND.W           R6, word0, #0x3F|5-240-63-6
+510|code|LDRH.W          R6, [ctx,R6,LSL#1]|48-248-22-96
+514|code|UXTH            R3, R3|155-178
+516|code|SUBS            word1, word1, R6|164-27
+518|code|AND.W           R6, word3, #0x3F|2-240-63-6
+522|code|LDRH.W          R6, [ctx,R6,LSL#1]|48-248-22-96
+526|code|UXTH            R4, R4|164-178
+528|code|SUBS            word0, word0, R6|173-27
+530|code|UXTH            R5, R5|173-178
+532|code|ADD.W           LR, LR, #0xFFFFFFFF|14-241-255-62
+536|code|SUBS            R7, #8|8-63
+538|code|CMP.W           LR, #0xFFFFFFFF|190-241-255-63
+542|code|BNE             loc_14A|148-209
+544|code|STRB            word0, [outbuf]|13-112
+546|code|LSRS            word0, word0, #8|45-10
+548|code|STRB            word1, [outbuf,#2]|140-112
+550|code|LSRS            word1, word1, #8|36-10
+552|code|STRB            word2, [outbuf,#4]|11-113
+554|code|LSRS            word2, word2, #8|27-10
+556|code|STRB            word3, [outbuf,#6]|138-113
+558|code|LSRS            word3, word3, #8|18-10
+560|code|STRB            R5, [outbuf,#1]|77-112
+562|code|STRB            R4, [outbuf,#3]|204-112
+564|code|STRB            R3, [outbuf,#5]|75-113
+566|code|STRB            R2, [outbuf,#7]|202-113
+568|code|POP.W           {R4-R9,PC}|189-232-240-131
+572|code|LDR             R3, =initialized.6176|34-75
+574|code|PUSH            {R4-R6,LR}|112-181
+576|code|LDR             R4, [R3]|28-104
+578|code|CBNZ            R4, loc_24A|20-185
+580|code|MOVS            R5, #1|1-37
+582|code|STR             R4, [R3,#(selftest_failed.6177 - 0x46C)]|92-96
+584|code|STR             R5, [R3]|29-96
+586|code|LDR             R3, [R3,#(selftest_failed.6177 - 0x46C)]|91-104
+588|code|CMP             R3, #0|0-43
+590|code|BNE             loc_2C0|55-209
+592|code|CMP             keylen, #4|4-42
+594|code|BLS             loc_2C4|55-217
+596|code|LDRB            R4, [key,R3]|204-92
+598|code|STRB            R4, [context,R3]|196-84
+600|code|ADDS            R3, #1|1-51
+602|code|CMP             R3, keylen|147-66
+604|code|BNE             loc_254|250-209
+606|code|LDR             R5, =rfc2268_sbox|27-77
+608|code|ADDS            R3, context, keylen|131-24
+610|code|NEGS            R6, keylen|86-66
+612|code|SUBS            R1, R3, context|25-26
+614|code|LDR             R4, =rfc2268_sbox|25-76
+616|code|CMP             R1, #0x7F|127-41
+618|code|BHI             loc_27E|8-216
+620|code|LDRB            R4, [R3,R6]|156-93
+622|code|LDRB.W          R1, [R3,#-1]|19-248-1-28
+626|code|ADD             R1, R4|33-68
+628|code|UXTB            R1, R1|201-178
+630|code|LDRB            R1, [R5,R1]|105-92
+632|code|STRB.W          R1, [R3],#1|3-248-1-27
+636|code|B               loc_264|242-231
+638|code|LDRB            R3, [context]|3-120
+640|code|SBFX.W          keylen, keylen, #0, #0x1D|66-243-28-2
+644|code|LDRB            R3, [R4,R3]|227-92
+646|code|STRB            R3, [context]|3-112
+648|code|RSB.W           R3, R2, #0x80|194-241-128-3
+652|code|LDRB            R1, [context,R3]|193-92
+654|code|LDRB            R1, [R4,R1]|97-92
+656|code|STRB            R1, [context,R3]|193-84
+658|code|ADD             R3, context|3-68
+660|code|CMP             R3, context|131-66
+662|code|BEQ             loc_2A8|7-208
+664|code|ADDS            R5, R3, R2|157-24
+666|code|LDRB.W          R5, [R5,#-1]|21-248-1-92
+670|code|EORS            R1, R5|105-64
+672|code|LDRB            R1, [R4,R1]|97-92
+674|code|STRB.W          R1, [R3,#-1]!|3-248-1-29
+678|code|B               loc_294|245-231
+680|code|MOVS            R3, #0|0-35
+682|code|ADDS            R2, context, R3|194-24
+684|code|LDRB            R1, [R2,#1]|81-120
+686|code|LDRB            R2, [context,R3]|194-92
+688|code|ORR.W           R2, R2, R1,LSL#8|66-234-1-34
+692|code|STRH            R2, [context,R3]|194-82
+694|code|ADDS            R3, #2|2-51
+696|code|CMP             R3, #0x80|128-43
+698|code|BNE             loc_2AA|246-209
+700|code|MOVS            context, #0|0-32
+702|code|POP             {R4-R6,PC}|112-189
+704|code|MOVS            context, #0x1C|28-32
+706|code|POP             {R4-R6,PC}|112-189
+708|code|MOVS            context, #0xD|13-32
+710|code|POP             {R4-R6,PC}|112-189
+712|data|DCD initialized.6176|108-4-0-0
+716|data|DCD rfc2268_sbox|248-2-0-0
+720|code|PUSH            {R3,LR}|8-181
+722|code|LDR             mod, =_gcry_cipher_spec_rfc2268_40|2-72
+724|code|LDR             R3, =grub_cipher_register|2-75
+726|code|BLX             R3; grub_cipher_register|152-71
+728|code|POP             {R3,PC}|8-189
+730|data|ALIGN 4|0-191
+732|data|DCD _gcry_cipher_spec_rfc2268_40|28-4-0-0
+736|data|DCD grub_cipher_register|120-4-0-0
+740|code|PUSH            {R3,LR}|8-181
+742|code|LDR             R0, =_gcry_cipher_spec_rfc2268_40|2-72
+744|code|LDR             R3, =grub_cipher_unregister|2-75
+746|code|BLX             R3; grub_cipher_unregister|152-71
+748|code|POP             {R3,PC}|8-189
+750|data|ALIGN 0x10|0-191
+752|data|DCD _gcry_cipher_spec_rfc2268_40|28-4-0-0
+756|data|DCD grub_cipher_unregister|116-4-0-0
+760|data|DCB 0xD9, 0x78, 0xF9, 0xC4, 0x19, 0xDD, 0xB5, 0xED, 0x28|217-120-249-196-25-221-181-237-40-233-253-121-74-160-216-157-198-126-55-131-43-118-83-142-98-76-100-136-68-139-251-162-23-154-89-245-135-179-79-19-97-69-109-141-9-129-125-50-189-143-64-235-134-183-123-11-240-149-33-34-92-107-78-130-84-214-101-147-206-96-178-28-115-86-192-20-167-140-241-220-18-117-202-31-59-190-228-209-66-61-212-48-163-60-182-38-111-191-14-218-70-105-7-87-39-242-29-155-188-148-67-3-248-17-199-246-144-239-62-231-6-195-213-47-200-102-30-215-8-232-234-222-128-82-238-247-132-170-114-172-53-77-106-42-150-26-210-113-90-21-73-116-75-159-208-94-4-24-164-236-194-224-65-110-15-81-203-204-36-145-175-80-161-244-112-57-153-124-58-133-35-184-180-122-252-2-54-91-37-85-151-49-45-93-250-152-227-138-146-174-5-223-41-16-103-108-186-201-211-0-230-207-225-158-168-44-99-22-1-63-88-226-137-169-13-56-52-27-171-51-255-176-187-72-12-95-185-177-205-46-197-243-219-71-229-165-156-119-10-166-32-104-254-127-193-173
+1016|data|DCB "RFC2268_40",0|82-70-67-50-50-54-56-95-52-48-0
+1027|data|DCB "1.2.840.113549.1.12.1.6",0|49-46-50-46-56-52-48-46-49-49-51-53-52-57-46-49-46-49-50-46-49-46-54-0
+1052|data|gcry_cipher_spec_t <aRfc226840, 0, oids_rfc2268_40, 8, 0x28, 0x80, \; "RFC2268_40"|248-3-0-0-0-0-0-0-76-4-0-0-8-0-0-0-40-0-0-0-128-0-0-0-61-2-0-0-1-0-0-0-33-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+1100|data|gcry_cipher_oid_spec_t <a12840113549112, 3>; "1.2.840.113549.1.12.1.6"|3-4-0-0-3-0-0-0-0-0-0-0-0-0-0-0
+1116|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+1132|data|% 4|255-255-255-255

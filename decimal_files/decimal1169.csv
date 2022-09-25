@@ -1,0 +1,160 @@
+address|type|disassembly|bytes
+0|code|CMP             argc, #1|1-41
+2|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+6|code|SUB             SP, SP, #0x14|133-176
+8|code|LDR.W           R8, [ctxt,#4]|208-248-4-128
+12|code|BEQ             loc_18|4-208
+14|code|LDR             argc, =aOneArgumentExp; "one argument expected"|56-73
+16|code|MOVS            ctxt, #0x12|18-32
+18|code|LDR             R3, =grub_error|56-75
+20|code|BLX             R3; grub_error|152-71
+22|code|B               loc_EA|104-224
+24|code|LDR             ctxt, [args]|16-104
+26|code|MOVS            argc, #0|0-33
+28|code|MOVS            args, #0xA|10-34
+30|code|LDR             R3, =grub_strtoul|54-75
+32|code|BLX             R3; grub_strtoul|152-71
+34|code|MOV             R4, n|4-70
+36|code|CBNZ            n, loc_2A|8-185
+38|code|MOVS            R0, #0|0-32
+40|code|B               loc_EA|95-224
+42|code|LDR             R5, =grub_refresh|52-77
+44|code|BLX             R5; grub_refresh|168-71
+46|code|LDR             R3, =grub_term_save_pos|52-75
+48|code|BLX             R3; grub_term_save_pos|152-71
+50|code|LDR             R6, =pos|52-78
+52|code|STR             R0, [R6]|48-96
+54|code|LDR.W           R3, [state]|216-248-0-48
+58|code|CBZ             R3, loc_4C|59-177
+60|code|LDR             R0, [R6]|48-104
+62|code|LDR             R3, =grub_term_restore_pos|50-75
+64|code|BLX             R3; grub_term_restore_pos|152-71
+66|code|MOV             R1, n|33-70
+68|code|LDR             R3, =grub_printf|49-75
+70|code|LDR             R0, =aD; "%d    "|50-72
+72|code|BLX             R3; grub_printf|152-71
+74|code|BLX             R5; grub_refresh|168-71
+76|code|LDR.W           R3, [state,#8]|216-248-8-48
+80|code|CMP             R3, #0|0-43
+82|code|BEQ             loc_C0|53-208
+84|code|LDR             R7, =grub_get_time_ms|47-79
+86|code|BLX             R7; grub_get_time_ms|184-71
+88|code|LDR.W           R10, =grub_term_poll_usb|223-248-196-160
+92|code|LDR.W           R11, =grub_term_inputs|223-248-196-176
+96|code|STRD.W          R0, R1, [SP,#0x38+var_38]|205-233-0-1
+100|code|BLX             R7; grub_get_time_ms|184-71
+102|code|LDRD.W          R2, R3, [SP,#0x38+var_38]|221-233-0-35
+106|code|SUBS            R2, R0, R2|130-26
+108|code|SBC.W           R3, R1, R3|97-235-3-3
+112|code|MOV             R0, R2|16-70
+114|code|MOVW            R2, #0x3E7|64-242-231-50
+118|code|MOV             R1, R3|25-70
+120|code|MOVS            R3, #0|0-35
+122|code|CMP             R3, R1|139-66
+124|code|IT EQ|8-191
+126|code|CMPEQ           R2, R0|130-66
+128|code|BCC             loc_C8|34-211
+130|code|LDR.W           R3, [R10]|218-248-0-48
+134|code|CBZ             R3, loc_8C|11-177
+136|code|MOVS            R0, #0|0-32
+138|code|BLX             R3|152-71
+140|code|LDR.W           R3, [R11]|219-248-0-48
+144|code|MOV.W           R9, #0|79-240-0-9
+148|code|CBZ             R3, loc_AA|75-177
+150|code|LDR             R1, [R3,#0x18]|153-105
+152|code|CBZ             R1, loc_A6|41-177
+154|code|MOV             R0, R3|24-70
+156|code|STR             R3, [SP,#0x38+var_2C]|3-147
+158|code|BLX             R1|136-71
+160|code|LDR             R3, [SP,#0x38+var_2C]|3-155
+162|code|ORR.W           R9, R9, R0|73-234-0-9
+166|code|LDR             R3, [R3]|27-104
+168|code|B               loc_94|244-231
+170|code|CMP.W           R9, #0|185-241-0-15
+174|code|BLT             loc_B6|2-219
+176|code|TST.W           R9, #3|25-240-3-15
+180|code|BNE             loc_E8|24-209
+182|code|LDR             R3, =grub_getkey_noblock|24-75
+184|code|BLX             R3; grub_getkey_noblock|152-71
+186|code|CMP             R0, #0x1B|27-40
+188|code|BNE             loc_64|210-209
+190|code|B               loc_E8|19-224
+192|code|MOV.W           R0, #0x3E8|79-244-122-112
+196|code|LDR             R3, =grub_millisleep|21-75
+198|code|BLX             R3; grub_millisleep|152-71
+200|code|SUBS            R4, #1|1-60
+202|code|BNE             loc_36|180-209
+204|code|LDR.W           R3, [state]|216-248-0-48
+208|code|CMP             R3, #0|0-43
+210|code|BEQ             loc_26|168-208
+212|code|LDR             R0, [R6]|48-104
+214|code|LDR             R3, =grub_term_restore_pos|12-75
+216|code|BLX             R3; grub_term_restore_pos|152-71
+218|code|MOV             R1, n|33-70
+220|code|LDR             R3, =grub_printf|11-75
+222|code|LDR             R0, =aD; "%d    "|12-72
+224|code|BLX             R3; grub_printf|152-71
+226|code|BLX             R5; grub_refresh|168-71
+228|code|MOV             R0, n|32-70
+230|code|B               loc_EA|0-224
+232|code|MOVS            R0, #1|1-32
+234|code|ADD             SP, SP, #0x14|5-176
+236|code|POP.W           {R4-R11,PC}|189-232-240-143
+240|data|DCD aOneArgumentExp; "one argument expected"|192-1-0-0
+244|data|DCD grub_error|160-2-0-0
+248|data|DCD grub_strtoul|172-2-0-0
+252|data|DCD grub_refresh|148-2-0-0
+256|data|DCD grub_term_save_pos|132-2-0-0
+260|data|DCD pos|116-2-0-0
+264|data|DCD grub_term_restore_pos|128-2-0-0
+268|data|DCD grub_printf|144-2-0-0
+272|data|DCD aD; "%d    "|214-1-0-0
+276|data|DCD grub_get_time_ms|152-2-0-0
+280|data|DCD grub_getkey_noblock|168-2-0-0
+284|data|DCD grub_millisleep|124-2-0-0
+288|data|DCD grub_term_poll_usb|156-2-0-0
+292|data|DCD grub_term_inputs|140-2-0-0
+296|code|LDR             R3, =aWaitForASpecif; "Wait for a specified number of seconds."|7-75
+298|code|MOVS            R2, #0|0-34
+300|code|PUSH            {mod,R1,R4,LR}|19-181
+302|code|STR             R3, [SP,#0x10+var_10]|0-147
+304|code|LDR             R3, =options|6-75
+306|code|LDR             R1, =(grub_cmd_sleep+1)|7-73
+308|code|LDR             R4, =grub_register_extcmd|7-76
+310|code|STR             R3, [SP,#0x10+var_C]|1-147
+312|code|LDR             mod, =aSleep; "sleep"|7-72
+314|code|LDR             R3, =aNumberOfSecond; "NUMBER_OF_SECONDS"|8-75
+316|code|BLX             R4; grub_register_extcmd|160-71
+318|code|LDR             R3, =pos|8-75
+320|code|STR             R0, [R3,#(cmd - 0x274)]|88-96
+322|code|ADD             SP, SP, #8|2-176
+324|code|POP             {R4,PC}|16-189
+326|data|ALIGN 4|0-191
+328|data|DCD aWaitForASpecif; "Wait for a specified number of seconds."|245-1-0-0
+332|data|DCD options|120-1-0-0
+336|data|DCD grub_cmd_sleep+1|1-0-0-0
+340|data|DCD grub_register_extcmd|164-2-0-0
+344|data|DCD aSleep; "sleep"|221-1-0-0
+348|data|DCD aNumberOfSecond; "NUMBER_OF_SECONDS"|227-1-0-0
+352|data|DCD pos|116-2-0-0
+356|code|PUSH            {R3,LR}|8-181
+358|code|LDR             R3, =pos|2-75
+360|code|LDR             R0, [R3,#(cmd - 0x274)]|88-104
+362|code|LDR             R3, =grub_unregister_extcmd|2-75
+364|code|BLX             R3; grub_unregister_extcmd|152-71
+366|code|POP             {R3,PC}|8-189
+368|data|DCD pos|116-2-0-0
+372|data|DCD grub_unregister_extcmd|136-2-0-0
+376|data|grub_arg_option <aVerbose, 0x76, 0, aVerboseCountdo, 0, ARG_TYPE_NONE>; "verbose" ...|29-2-0-0-118-0-0-0-0-0-0-0-37-2-0-0-0-0-0-0-0-0-0-0-56-2-0-0-105-0-0-0-0-0-0-0-70-2-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+448|data|DCB "one argument expected",0|111-110-101-32-97-114-103-117-109-101-110-116-32-101-120-112-101-99-116-101-100-0
+470|data|DCB "%d    ",0|37-100-32-32-32-32-0
+477|data|DCB "sleep",0|115-108-101-101-112-0
+483|data|DCB "NUMBER_OF_SECONDS",0|78-85-77-66-69-82-95-79-70-95-83-69-67-79-78-68-83-0
+501|data|DCB "Wait for a specified number of seconds.",0|87-97-105-116-32-102-111-114-32-97-32-115-112-101-99-105-102-105-101-100-32-110-117-109-98-101-114-32-111-102-32-115-101-99-111-110-100-115-46-0
+541|data|DCB "verbose",0|118-101-114-98-111-115-101-0
+549|data|DCB "Verbose countdown.",0|86-101-114-98-111-115-101-32-99-111-117-110-116-100-111-119-110-46-0
+568|data|DCB "interruptible",0|105-110-116-101-114-114-117-112-116-105-98-108-101-0
+582|data|DCB "Allow to interrupt with ESC.",0|65-108-108-111-119-32-116-111-32-105-110-116-101-114-114-117-112-116-32-119-105-116-104-32-69-83-67-46-0
+611|data||255
+612|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+628|data|% 4|255-255-255-255

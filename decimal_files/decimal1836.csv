@@ -1,0 +1,609 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =0x3C6EF372|11-75
+2|code|LDR             R1, =0x6A09E667|12-73
+4|code|LDR             R2, =0xBB67AE85|12-74
+6|code|LDR.W           R12, =0xA54FF53A|223-248-64-192
+10|code|STM.W           hd, {R1-R3,R12}|128-232-14-16
+14|code|LDR             R3, =0x510E527F|11-75
+16|code|STR             R3, [hd,#0x10]|3-97
+18|code|LDR             R3, =0x9B05688C|11-75
+20|code|STR             R3, [hd,#0x14]|67-97
+22|code|LDR             R3, =0x1F83D9AB|11-75
+24|code|STR             R3, [hd,#0x18]|131-97
+26|code|ADD.W           R3, R3, #0x3D000000|3-241-116-83
+30|code|SUB.W           R3, R3, #0xA30000|163-245-35-3
+34|code|SUBW            R3, R3, #0xC92|163-246-146-67
+38|code|STR             R3, [hd,#0x1C]|195-97
+40|code|MOVS            R3, #0|0-35
+42|code|STR             R3, [hd,#0x20]|3-98
+44|code|STR             R3, [hd,#0x64]|67-102
+46|code|BX              LR|112-71
+48|data|DCD 0x3C6EF372|114-243-110-60
+52|data|DCD 0x6A09E667|103-230-9-106
+56|data|DCD 0xBB67AE85|133-174-103-187
+60|data|DCD 0x510E527F|127-82-14-81
+64|data|DCD 0x9B05688C|140-104-5-155
+68|data|DCD 0x1F83D9AB|171-217-131-31
+72|data|DCD 0xA54FF53A|58-245-79-165
+76|code|LDR             R3, =0xC1059ED8|14-75
+78|code|STR             R3, [hd]|3-96
+80|code|LDR             R3, =0x367CD507|14-75
+82|code|STR             R3, [hd,#4]|67-96
+84|code|ADD.W           R3, R3, #0xF9000000|3-241-121-67
+88|code|ADD.W           R3, R3, #0xF40000|3-245-116-3
+92|code|ADD.W           R3, R3, #0x810|3-245-1-99
+96|code|STR             R3, [hd,#8]|131-96
+98|code|LDR             R3, =0xF70E5939|11-75
+100|code|STR             R3, [hd,#0xC]|195-96
+102|code|LDR             R3, =0xFFC00B31|11-75
+104|code|STR             R3, [hd,#0x10]|3-97
+106|code|ADD.W           R3, R3, #0x68800000|3-241-209-67
+110|code|ADD.W           R3, R3, #0x180000|3-245-192-19
+114|code|ADD.W           R3, R3, #0x9E0|3-245-30-99
+118|code|STR             R3, [hd,#0x14]|67-97
+120|code|LDR             R3, =0x64F98FA7|7-75
+122|code|STR             R3, [hd,#0x18]|131-97
+124|code|LDR             R3, =0xBEFA4FA4|7-75
+126|code|STR             R3, [hd,#0x1C]|195-97
+128|code|MOVS            R3, #0|0-35
+130|code|STR             R3, [hd,#0x20]|3-98
+132|code|STR             R3, [hd,#0x64]|67-102
+134|code|BX              LR|112-71
+136|data|DCD 0xC1059ED8|216-158-5-193
+140|data|DCD 0x367CD507|7-213-124-54
+144|data|DCD 0xF70E5939|57-89-14-247
+148|data|DCD 0xFFC00B31|49-11-192-255
+152|data|DCD 0x64F98FA7|167-143-249-100
+156|data|DCD 0xBEFA4FA4|164-79-250-190
+160|code|MOV.W           R3, x,ROR#2|79-234-176-3
+164|code|EOR.W           R3, R3, x,ROR#13|131-234-112-51
+168|code|EOR.W           x, R3, x,ROR#22|131-234-176-80
+172|code|BX              LR|112-71
+174|code|MOV.W           R3, x,ROR#6|79-234-176-19
+178|code|EOR.W           R3, R3, x,ROR#11|131-234-240-35
+182|code|EOR.W           x, R3, x,ROR#25|131-234-112-96
+186|code|BX              LR|112-71
+188|code|LDR             R3, [hd_0]|3-104
+190|code|MOV             R12, hd_0|132-70
+192|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+196|code|SUB             SP, SP, #0x174|221-176
+198|code|ADD             R2, SP, #0x198+x+4|13-170
+200|code|STR             R3, [SP,#0x198+var_18C]|3-147
+202|code|LDR             a_0, [hd_0,#4]|67-104
+204|code|STR             R3, [SP,#0x198+var_188]|4-147
+206|code|LDR             b, [hd_0,#8]|131-104
+208|code|STR             R3, [SP,#0x198+var_184]|5-147
+210|code|LDR             c, [hd_0,#0xC]|195-104
+212|code|STR             R3, [SP,#0x198+var_180]|6-147
+214|code|LDR             d_0, [hd_0,#0x10]|3-105
+216|code|STR             R3, [SP,#0x198+var_17C]|7-147
+218|code|LDR             e_0, [hd_0,#0x14]|67-105
+220|code|STR             R3, [SP,#0x198+var_178]|8-147
+222|code|LDR             f, [hd_0,#0x18]|131-105
+224|code|STR             R3, [SP,#0x198+var_174]|9-147
+226|code|LDR             g, [hd_0,#0x1C]|195-105
+228|code|STR             R3, [SP,#0x198+var_170]|10-147
+230|code|ADDS            h_0, data, #4|11-29
+232|code|ADDS            data, #0x44 ; 'D'|68-49
+234|code|LDRB.W          R0, [R3,#-4]|19-248-4-12
+238|code|ADDS            R3, #4|4-51
+240|code|ADDS            R2, #4|4-50
+242|code|STRB.W          R0, [R2,#-5]|2-248-5-12
+246|code|LDRB.W          R0, [R3,#-7]|19-248-7-12
+250|code|STRB.W          R0, [R2,#-6]|2-248-6-12
+254|code|LDRB.W          R0, [R3,#-6]|19-248-6-12
+258|code|STRB.W          R0, [R2,#-7]|2-248-7-12
+262|code|LDRB.W          R0, [R3,#-5]|19-248-5-12
+266|code|CMP             R3, R1|139-66
+268|code|STRB.W          R0, [R2,#-8]|2-248-8-12
+272|code|BNE             loc_EA|235-209
+274|code|ADD             R1, SP, #0x198+w|28-169
+276|code|MOVS            R2, #0|0-34
+278|code|ADD             R3, SP, #0x198+x|12-171
+280|code|LDR.W           R3, [R3,i,LSL#2]|83-248-34-48
+284|code|STR.W           R3, [R1,i,LSL#2]|65-248-34-48
+288|code|ADDS            i, #1|1-50
+290|code|CMP             i, #0x10|16-42
+292|code|BNE             loc_116|247-209
+294|code|MOVS            R0, #0x30 ; '0'|48-32
+296|code|LDR             R5, [R1,#0x38]|141-107
+298|code|SUBS            R0, #1|1-56
+300|code|LDM.W           R1, {R2,R4}|145-232-20-0
+304|code|ADD.W           R1, R1, #4|1-241-4-1
+308|code|LDR             R3, [R1,#0x20]|11-106
+310|code|MOV.W           R6, R5,ROR#17|79-234-117-70
+314|code|ADD             R3, R2|19-68
+316|code|EOR.W           R6, R6, R5,ROR#19|134-234-245-70
+320|code|MOV.W           R2, R4,ROR#7|79-234-244-18
+324|code|EOR.W           R5, R6, R5,LSR#10|134-234-149-37
+328|code|EOR.W           R2, R2, R4,ROR#18|130-234-180-66
+332|code|ADD             R3, R5|43-68
+334|code|EOR.W           R4, R2, R4,LSR#3|130-234-212-4
+338|code|ADD             R3, R4|35-68
+340|code|STR             R3, [R1,#0x3C]|203-99
+342|code|BNE             loc_128|231-209
+344|code|LDR             R3, [SP,#0x198+var_170]|10-155
+346|code|ADD.W           R11, SP, #0x198+w+4|13-241-116-11
+350|code|LDR.W           R10, =(K.6184+4)|223-248-132-162
+354|code|LDR             R4, [SP,#0x198+var_174]|9-156
+356|code|LDR.W           R9, [SP,#0x198+var_178]|221-248-32-144
+360|code|LDR             R1, [SP,#0x198+var_17C]|7-153
+362|code|LDR             R6, [SP,#0x198+var_180]|6-158
+364|code|LDR             R7, [SP,#0x198+var_184]|5-159
+366|code|LDR.W           R8, [SP,#0x198+var_188]|221-248-16-128
+370|code|LDR             R5, [SP,#0x198+var_18C]|3-157
+372|code|STR             R3, [SP,#0x198+t1]|1-147
+374|code|MOV             R0, R1; x|8-70
+376|code|STR.W           hd_0, [SP,#0x198+hd]|205-248-44-192
+380|code|STR             R1, [SP,#0x198+e]|2-145
+382|code|BL              Sum1|255-247-150-255
+386|code|LDR.W           R2, [R10,#-4]|90-248-4-44
+390|code|ADD.W           R10, R10, #0x20 ; ' '|10-241-32-10
+394|code|LDR.W           R3, [R11,#-4]|91-248-4-60
+398|code|ADD.W           R11, R11, #0x20 ; ' '|11-241-32-11
+402|code|LDR             R1, [SP,#0x198+e]|2-153
+404|code|ADD             R3, R2|19-68
+406|code|LDR             R2, [SP,#0x198+t1]|1-154
+408|code|ADD             R0, R3|24-68
+410|code|EOR.W           R3, g, f|132-234-9-3
+414|code|ANDS            R3, R1|11-64
+416|code|EOR.W           LR, R3, g|131-234-4-14
+420|code|ADD.W           R3, R0, LR|0-235-14-3
+424|code|MOV             R0, a_0; x|40-70
+426|code|ADD             R3, R2|19-68
+428|code|STR             R3, [SP,#0x198+t1]|1-147
+430|code|BL              Sum0|255-247-119-255
+434|code|LDR             R3, [SP,#0x198+t1]|1-155
+436|code|ADDS            R2, d_0, R3|242-24
+438|code|ORR.W           d_0, b, a_0|72-234-5-6
+442|code|STR             R2, [SP,#0x198+t1]|1-146
+444|code|ANDS            R6, c|62-64
+446|code|AND.W           d_0, b, a_0|8-234-5-2
+450|code|ORRS            R6, R2|22-67
+452|code|ADD             R0, R6|48-68
+454|code|ADDS            R6, t2, t1_0|198-24
+456|code|LDR             t2, [SP,#0x198+t1]; x|1-152
+458|code|BL              Sum1|255-247-112-255
+462|code|LDR.W           R3, [R10,#-0x20]|90-248-32-60
+466|code|LDR             R1, [SP,#0x198+e]|2-153
+468|code|ADD             R0, g|32-68
+470|code|ADDS            g, R0, R3|196-24
+472|code|LDR.W           R3, [R11,#-0x20]|91-248-32-60
+476|code|ADDS            R0, R4, R3|224-24
+478|code|LDR             R3, [SP,#0x198+t1]|1-155
+480|code|EOR.W           R4, f, R1|137-234-1-4
+484|code|ANDS            R4, R3|28-64
+486|code|EOR.W           R3, R4, f|132-234-9-3
+490|code|ADDS            R4, R0, R3|196-24
+492|code|MOV             R0, h_0; x|48-70
+494|code|BL              Sum0|255-247-87-255
+498|code|ORR.W           R2, h_0, a_0|70-234-5-2
+502|code|AND.W           R2, R2, b|2-234-8-2
+506|code|AND.W           R3, h_0, a_0|6-234-5-3
+510|code|ORRS            R3, R2|19-67
+512|code|ADD             c, t1_0|39-68
+514|code|ADD             t1_0, R3|28-68
+516|code|ADD             R4, R0|4-68
+518|code|MOV             R0, c; x|56-70
+520|code|BL              Sum1|255-247-81-255
+524|code|LDR.W           R3, [R10,#-0x1C]|90-248-28-60
+528|code|LDR             R1, [SP,#0x198+e]|2-153
+530|code|ADD             R0, f|72-68
+532|code|ADD.W           f, R0, R3|0-235-3-9
+536|code|LDR.W           R3, [R11,#-0x1C]|91-248-28-60
+540|code|ADD.W           R0, R9, R3|9-235-3-0
+544|code|LDR             R3, [SP,#0x198+t1]|1-155
+546|code|EOR.W           R9, R3, R1|131-234-1-9
+550|code|AND.W           R9, c, R9|7-234-9-9
+554|code|EOR.W           R3, R9, R1|137-234-1-3
+558|code|ADD.W           R9, R0, R3|0-235-3-9
+562|code|MOV             R0, g; x|32-70
+564|code|BL              Sum0|255-247-52-255
+568|code|ADD             b, t1_0|200-68
+570|code|AND.W           R3, g, h_0|4-234-6-3
+574|code|ADD             R0, t1_0|72-68
+576|code|ORR.W           t1_0, g, h_0|68-234-6-9
+580|code|AND.W           R9, R9, a_0|9-234-5-9
+584|code|ORR.W           R9, R9, R3|73-234-3-9
+588|code|ADD             R9, R0|129-68
+590|code|MOV             R0, b; x|64-70
+592|code|BL              Sum1|255-247-45-255
+596|code|LDR             R1, [SP,#0x198+e]|2-153
+598|code|LDR.W           R3, [R10,#-0x18]|90-248-24-60
+602|code|ADD             R0, R1|8-68
+604|code|ADDS            R1, R0, R3|193-24
+606|code|LDR.W           R3, [R11,#-0x18]|91-248-24-60
+610|code|ADDS            R0, R1, R3|200-24
+612|code|LDR             R3, [SP,#0x198+t1]|1-155
+614|code|EOR.W           R1, c, R3|135-234-3-1
+618|code|AND.W           R1, b, R1|8-234-1-1
+622|code|EORS            R3, R1|75-64
+624|code|ADDS            R1, R0, R3|193-24
+626|code|MOV             R0, f; x|72-70
+628|code|STR             R1, [SP,#0x198+e]|2-145
+630|code|BL              Sum0|255-247-19-255
+634|code|LDR             R1, [SP,#0x198+e]|2-153
+636|code|ADDS            R3, R1, a_0|75-25
+638|code|STR             R3, [SP,#0x198+e]|2-147
+640|code|AND.W           a_0, f, g|9-234-4-3
+644|code|ADD             R0, t1_0|8-68
+646|code|ORR.W           t1_0, f, g|73-234-4-1
+650|code|ANDS            R1, h_0|49-64
+652|code|ORRS            R1, R3|25-67
+654|code|ADDS            R5, R0, R1|69-24
+656|code|LDR             R0, [SP,#0x198+e]; x|2-152
+658|code|BL              Sum1|255-247-12-255
+662|code|LDR.W           R2, [R10,#-0x14]|90-248-20-44
+666|code|LDR.W           R3, [R11,#-0x14]|91-248-20-60
+670|code|ADD             R3, R2|19-68
+672|code|LDR             R2, [SP,#0x198+e]|2-154
+674|code|ADD             R0, R3|24-68
+676|code|LDR             R3, [SP,#0x198+t1]|1-155
+678|code|ADD             R0, R3|24-68
+680|code|EOR.W           R3, b, c|136-234-7-3
+684|code|ANDS            R3, R2|19-64
+686|code|EORS            R3, c|123-64
+688|code|ADD             R3, R0|3-68
+690|code|MOV             R0, e_0; x|40-70
+692|code|STR             R3, [SP,#0x198+t1]|1-147
+694|code|BL              Sum0|255-247-243-254
+698|code|LDR             R3, [SP,#0x198+t1]|1-155
+700|code|ADDS            R2, R3, h_0|154-25
+702|code|ORR.W           h_0, e_0, f|69-234-9-6
+706|code|ANDS            R6, g|38-64
+708|code|STR             R2, [SP,#0x198+t1]|1-146
+710|code|ADD             R0, t1_0|24-68
+712|code|AND.W           t1_0, e_0, f|5-234-9-3
+716|code|ORRS            R6, R3|30-67
+718|code|ADD             R6, R0|6-68
+720|code|MOV             R0, h_0; x|16-70
+722|code|BL              Sum1|255-247-236-254
+726|code|LDR.W           R2, [R10,#-0x10]|90-248-16-44
+730|code|LDR.W           R3, [R11,#-0x10]|91-248-16-60
+734|code|ADD             R3, R2|19-68
+736|code|ADD             R0, R3|24-68
+738|code|LDR             R3, [SP,#0x198+e]|2-155
+740|code|ADD             c, R0|7-68
+742|code|EOR.W           R0, R3, b|131-234-8-0
+746|code|LDR             R3, [SP,#0x198+t1]|1-155
+748|code|ANDS            R0, R3|24-64
+750|code|EOR.W           R0, R0, b|128-234-8-0
+754|code|ADD             R7, R0|7-68
+756|code|MOV             R0, d_0; x|48-70
+758|code|BL              Sum0|255-247-211-254
+762|code|ADD             g, t1_0|60-68
+764|code|AND.W           R3, d_0, e_0|6-234-5-3
+768|code|ADD             R0, t1_0|56-68
+770|code|ORR.W           t1_0, d_0, e_0|70-234-5-7
+774|code|AND.W           R7, R7, f|7-234-9-7
+778|code|ORRS            R7, R3|31-67
+780|code|ADD             R7, R0|7-68
+782|code|MOV             R0, g; x|32-70
+784|code|BL              Sum1|255-247-205-254
+788|code|LDR.W           R2, [R10,#-0xC]|90-248-12-44
+792|code|LDR.W           R3, [R11,#-0xC]|91-248-12-60
+796|code|ADD             R3, R2|19-68
+798|code|LDR             R2, [SP,#0x198+e]|2-154
+800|code|ADD             R0, R3|24-68
+802|code|LDR             R3, [SP,#0x198+t1]|1-155
+804|code|ADD             b, R0|128-68
+806|code|EOR.W           R0, R3, R2|131-234-2-0
+810|code|ANDS            R0, g|32-64
+812|code|EORS            R0, R2|80-64
+814|code|ADD             R8, R0|128-68
+816|code|MOV             R0, c; x|56-70
+818|code|BL              Sum0|255-247-181-254
+822|code|ADD             f, t1_0|193-68
+824|code|AND.W           R3, c, d_0|7-234-6-3
+828|code|ADD             R0, t1_0|64-68
+830|code|ORR.W           t1_0, c, d_0|71-234-6-8
+834|code|AND.W           R8, R8, e_0|8-234-5-8
+838|code|ORR.W           R8, R8, R3|72-234-3-8
+842|code|ADD             R8, R0|128-68
+844|code|MOV             R0, f; x|72-70
+846|code|BL              Sum1|255-247-174-254
+850|code|LDR.W           R2, [R10,#-8]|90-248-8-44
+854|code|LDR.W           R3, [R11,#-8]|91-248-8-60
+858|code|ADD             R3, R2|19-68
+860|code|LDR             R2, [SP,#0x198+t1]|1-154
+862|code|ADD             R0, R3|24-68
+864|code|LDR             R3, [SP,#0x198+e]|2-155
+866|code|ADD             R0, R3|24-68
+868|code|LDR             R3, [SP,#0x198+t1]|1-155
+870|code|EORS            R3, g|99-64
+872|code|AND.W           R3, f, R3|9-234-3-3
+876|code|EORS            R3, R2|83-64
+878|code|ADD             R3, R0|3-68
+880|code|MOV             R0, b; x|64-70
+882|code|STR             R3, [SP,#0x198+e]|2-147
+884|code|BL              Sum0|255-247-148-254
+888|code|LDR             R3, [SP,#0x198+e]|2-155
+890|code|LDR.W           R12, [SP,#0x198+hd]|221-248-44-192
+894|code|ADDS            R1, R3, e_0|89-25
+896|code|ORR.W           R5, b, c|72-234-7-5
+900|code|ANDS            R5, d_0|53-64
+902|code|ADD             R0, R3|24-68
+904|code|AND.W           R3, b, c|8-234-7-3
+908|code|ORRS            R5, R3|29-67
+910|code|LDR             R3, =(K.6184+0x104); "56"|20-75
+912|code|ADD             R5, R0|5-68
+914|code|CMP             R10, R3|154-69
+916|code|BNE.W           loc_176|127-244-239-174
+920|code|LDR             R3, [SP,#0x198+var_18C]|3-155
+922|code|LDR             R2, [SP,#0x198+var_170]|10-154
+924|code|ADD             a_0, R3|29-68
+926|code|LDR             R3, [SP,#0x198+var_188]|4-155
+928|code|STR.W           R5, [hd_0]|204-248-0-80
+932|code|ADD             R3, b|67-68
+934|code|STR.W           R3, [hd_0,#4]|204-248-4-48
+938|code|LDR             R3, [SP,#0x198+var_184]|5-155
+940|code|ADD             c, R3|31-68
+942|code|LDR             R3, [SP,#0x198+var_180]|6-155
+944|code|STR.W           R7, [hd_0,#8]|204-248-8-112
+948|code|ADD             d_0, R3|30-68
+950|code|LDR             R3, [SP,#0x198+var_17C]|7-155
+952|code|STR.W           R6, [hd_0,#0xC]|204-248-12-96
+956|code|ADD             e_0, R3|25-68
+958|code|LDR             R3, [SP,#0x198+var_178]|8-155
+960|code|STR.W           R1, [hd_0,#0x10]|204-248-16-16
+964|code|ADD             R3, f|75-68
+966|code|STR.W           R3, [hd_0,#0x14]|204-248-20-48
+970|code|LDR             R3, [SP,#0x198+var_174]|9-155
+972|code|ADD             g, R3|28-68
+974|code|LDR             R3, [SP,#0x198+t1]|1-155
+976|code|STR.W           R4, [hd_0,#0x18]|204-248-24-64
+980|code|ADD             R3, R2|19-68
+982|code|STR.W           R3, [hd_0,#0x1C]|204-248-28-48
+986|code|ADD             SP, SP, #0x174|93-176
+988|code|POP.W           {R4-R11,PC}|189-232-240-143
+992|data|DCD K.6184+0x104|100-7-0-0
+996|data|DCD K.6184+4|100-6-0-0
+1000|code|ADDS            hd, #0x24 ; '$'|36-48
+1002|code|BX              LR|112-71
+1004|code|LDR             R3, [context,#0x64]|67-110
+1006|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1010|code|CMP             R3, #0x40 ; '@'|64-43
+1012|code|MOV             R4, context|4-70
+1014|code|MOV             R6, inbuf_arg|14-70
+1016|code|MOV             R5, inlen|21-70
+1018|code|BNE             loc_416|12-209
+1020|code|ADD.W           inbuf, hd, #0x24 ; '$'; data|0-241-36-1
+1024|code|BL              transform|255-247-92-254
+1028|code|LDR             R3, =_gcry_burn_stack|39-75
+1030|code|MOV.W           R0, #0x148|79-244-164-112
+1034|code|BLX             R3; _gcry_burn_stack|152-71
+1036|code|MOVS            R3, #0|0-35
+1038|code|STR             R3, [hd,#0x64]|99-102
+1040|code|LDR             R3, [hd,#0x20]|35-106
+1042|code|ADDS            R3, #1|1-51
+1044|code|STR             R3, [hd,#0x20]|35-98
+1046|code|CMP             inbuf, #0|0-46
+1048|code|BEQ             locret_49E|65-208
+1050|code|LDR             R3, [hd,#0x64]|99-110
+1052|code|CBNZ            R3, loc_43C|115-185
+1054|code|MOV             R7, inlen|47-70
+1056|code|MOV.W           R8, #0|79-240-0-8
+1060|code|B               loc_452|21-224
+1062|code|LDR             R3, [hd,#0x64]|99-110
+1064|code|CMP             R3, #0x3F ; '?'|63-43
+1066|code|BGT             loc_440|9-220
+1068|code|ADDS            R2, R3, #1|90-28
+1070|code|STR             R2, [hd,#0x64]|98-102
+1072|code|LDRB.W          R2, [inbuf],#1|22-248-1-43
+1076|code|ADD             R3, hd|35-68
+1078|code|SUBS            inlen, #1|1-61
+1080|code|STRB.W          R2, [R3,#0x24]|131-248-36-32
+1084|code|CMP             inlen, #0|0-45
+1086|code|BNE             loc_426|242-209
+1088|code|MOVS            R1, #0; inbuf_arg|0-33
+1090|code|MOV             R0, hd; context|32-70
+1092|code|MOV             R2, R1; inlen|10-70
+1094|code|BL              sha256_write|255-247-209-255
+1098|code|CMP             inlen, #0|0-45
+1100|code|BNE             loc_41E|231-209
+1102|code|POP.W           {hd-R8,PC}|189-232-240-129
+1106|code|CMP             inlen, #0x3F ; '?'|63-47
+1108|code|SUB.W           R1, R5, inlen|165-235-7-1
+1112|code|ADD             R1, R6; data|49-68
+1114|code|BLS             loc_470|9-217
+1116|code|MOV             R0, hd; hd|32-70
+1118|code|SUBS            inlen, #0x40 ; '@'|64-63
+1120|code|BL              transform|255-247-44-254
+1124|code|LDR             R3, [hd,#0x20]|35-106
+1126|code|STR.W           R8, [hd,#0x64]|196-248-100-128
+1130|code|ADDS            R3, #1|1-51
+1132|code|STR             R3, [hd,#0x20]|35-98
+1134|code|B               loc_452|240-231
+1136|code|BIC.W           R3, R5, #0x3F|37-240-63-3
+1140|code|MOV.W           R0, #0x148|79-244-164-112
+1144|code|ADD             R6, R3|30-68
+1146|code|LDR             R3, =_gcry_burn_stack|10-75
+1148|code|BLX             R3; _gcry_burn_stack|152-71
+1150|code|AND.W           R5, R5, #0x3F|5-240-63-5
+1154|code|ADD             R5, R6|53-68
+1156|code|CMP             inbuf, R5|174-66
+1158|code|BEQ             locret_49E|10-208
+1160|code|LDR             R3, [hd,#0x64]|99-110
+1162|code|CMP             R3, #0x3F ; '?'|63-43
+1164|code|BGT             locret_49E|7-220
+1166|code|ADDS            R2, R3, #1|90-28
+1168|code|STR             R2, [hd,#0x64]|98-102
+1170|code|LDRB.W          R2, [inbuf],#1|22-248-1-43
+1174|code|ADD             R3, hd|35-68
+1176|code|STRB.W          R2, [R3,#0x24]|131-248-36-32
+1180|code|B               loc_484|242-231
+1182|code|POP.W           {hd-R8,PC}|189-232-240-129
+1186|data|ALIGN 4|0-191
+1188|data|DCD _gcry_burn_stack|96-8-0-0
+1192|code|MOVS            R1, #0; inbuf_arg|0-33
+1194|code|PUSH            {R4-R6,LR}|112-181
+1196|code|MOV             R2, R1; inlen|10-70
+1198|code|MOV             R4, context|4-70
+1200|code|BL              sha256_write|255-247-156-255
+1204|code|LDR             R5, [hd,#0x20]|37-106
+1206|code|LDR             R3, [hd,#0x64]|99-110
+1208|code|LSLS            R2, t, #6|170-1
+1210|code|LSRS            t, t, #0x1A|173-14
+1212|code|ADDS            t, R3, t|154-24
+1214|code|ADD.W           R1, R3, #1|3-241-1-1
+1218|code|IT CS|40-191
+1220|code|ADDCS           msb, #1|1-53
+1222|code|CMP             R3, #0x37 ; '7'|55-43
+1224|code|ADD             R3, hd|35-68
+1226|code|MOV.W           R6, lsb,LSL#3|79-234-194-6
+1230|code|MOV.W           t, t,LSR#29|79-234-82-114
+1234|code|STR             R1, [hd,#0x64]|97-102
+1236|code|ORR.W           R5, R2, R5,LSL#3|66-234-197-5
+1240|code|MOV.W           R2, #0x80|79-240-128-2
+1244|code|STRB.W          R2, [R3,#0x24]|131-248-36-32
+1248|code|MOV.W           R2, #0|79-240-0-2
+1252|code|BGT             loc_4F8|8-220
+1254|code|LDR             R3, [hd,#0x64]|99-110
+1256|code|CMP             R3, #0x37 ; '7'|55-43
+1258|code|BGT             loc_520|25-220
+1260|code|ADDS            R1, R3, #1|89-28
+1262|code|ADD             R3, hd|35-68
+1264|code|STR             R1, [hd,#0x64]|97-102
+1266|code|STRB.W          R2, [R3,#0x24]|131-248-36-32
+1270|code|B               loc_4E6|246-231
+1272|code|LDR             R3, [hd,#0x64]|99-110
+1274|code|CMP             R3, #0x3F ; '?'|63-43
+1276|code|BGT             loc_50A|5-220
+1278|code|ADDS            R1, R3, #1|89-28
+1280|code|ADD             R3, hd|35-68
+1282|code|STR             R1, [hd,#0x64]|97-102
+1284|code|STRB.W          R2, [R3,#0x24]|131-248-36-32
+1288|code|B               loc_4F8|246-231
+1290|code|MOVS            R1, #0; inbuf_arg|0-33
+1292|code|MOV             R0, hd; context|32-70
+1294|code|MOV             R2, R1; inlen|10-70
+1296|code|BL              sha256_write|255-247-108-255
+1300|code|ADD.W           R0, hd, #0x24 ; '$'; s|4-241-36-0
+1304|code|MOVS            R1, #0; c|0-33
+1306|code|MOVS            R2, #0x38 ; '8'; n|56-34
+1308|code|LDR             R3, =memset|64-75
+1310|code|BLX             R3; memset|152-71
+1312|code|MOVS            R3, #0|0-35
+1314|code|MOV             R0, hd; hd|32-70
+1316|code|STRB.W          R3, [hd,#0x5C]|132-248-92-48
+1320|code|ADD.W           R1, hd, #0x24 ; '$'; data|4-241-36-1
+1324|code|STRB.W          R3, [hd,#0x5D]|132-248-93-48
+1328|code|LSRS            R3, msb, #8|43-10
+1330|code|STRB.W          msb, [hd,#0x5F]|132-248-95-80
+1334|code|STRB.W          R3, [hd,#0x5E]|132-248-94-48
+1338|code|LSRS            R3, lsb, #0x18|51-14
+1340|code|STRB.W          lsb, [hd,#0x63]|132-248-99-96
+1344|code|STRB.W          R3, [hd,#0x60]|132-248-96-48
+1348|code|LSRS            R3, lsb, #0x10|51-12
+1350|code|STRB.W          R3, [hd,#0x61]|132-248-97-48
+1354|code|LSRS            R3, lsb, #8|51-10
+1356|code|STRB.W          R3, [hd,#0x62]|132-248-98-48
+1360|code|BL              transform|255-247-180-253
+1364|code|LDR             R3, =_gcry_burn_stack|51-75
+1366|code|MOV.W           R0, #0x148|79-244-164-112
+1370|code|BLX             R3; _gcry_burn_stack|152-71
+1372|code|LDR             R3, [hd]|35-104
+1374|code|LSRS            R2, R3, #0x18|26-14
+1376|code|STRB.W          R3, [hd,#0x27]|132-248-39-48
+1380|code|STRB.W          R2, [hd,#0x24]|132-248-36-32
+1384|code|LSRS            R2, R3, #0x10|26-12
+1386|code|STRB.W          R2, [hd,#0x25]|132-248-37-32
+1390|code|LSRS            R2, R3, #8|26-10
+1392|code|LDR             R3, [hd,#4]|99-104
+1394|code|STRB.W          R2, [hd,#0x26]|132-248-38-32
+1398|code|STRB.W          R3, [hd,#0x2B]|132-248-43-48
+1402|code|LSRS            R2, R3, #0x18|26-14
+1404|code|STRB.W          R2, [hd,#0x28]|132-248-40-32
+1408|code|LSRS            R2, R3, #0x10|26-12
+1410|code|STRB.W          R2, [hd,#0x29]|132-248-41-32
+1414|code|LSRS            R2, R3, #8|26-10
+1416|code|LDR             R3, [hd,#8]|163-104
+1418|code|STRB.W          R2, [hd,#0x2A]|132-248-42-32
+1422|code|STRB.W          R3, [hd,#0x2F]|132-248-47-48
+1426|code|LSRS            R2, R3, #0x18|26-14
+1428|code|STRB.W          R2, [hd,#0x2C]|132-248-44-32
+1432|code|LSRS            R2, R3, #0x10|26-12
+1434|code|STRB.W          R2, [hd,#0x2D]|132-248-45-32
+1438|code|LSRS            R2, R3, #8|26-10
+1440|code|LDR             R3, [hd,#0xC]|227-104
+1442|code|STRB.W          R2, [hd,#0x2E]|132-248-46-32
+1446|code|STRB.W          R3, [hd,#0x33]|132-248-51-48
+1450|code|LSRS            R2, R3, #0x18|26-14
+1452|code|STRB.W          R2, [hd,#0x30]|132-248-48-32
+1456|code|LSRS            R2, R3, #0x10|26-12
+1458|code|STRB.W          R2, [hd,#0x31]|132-248-49-32
+1462|code|LSRS            R2, R3, #8|26-10
+1464|code|LDR             R3, [hd,#0x10]|35-105
+1466|code|STRB.W          R2, [hd,#0x32]|132-248-50-32
+1470|code|STRB.W          R3, [hd,#0x37]|132-248-55-48
+1474|code|LSRS            R2, R3, #0x18|26-14
+1476|code|STRB.W          R2, [hd,#0x34]|132-248-52-32
+1480|code|LSRS            R2, R3, #0x10|26-12
+1482|code|STRB.W          R2, [hd,#0x35]|132-248-53-32
+1486|code|LSRS            R2, R3, #8|26-10
+1488|code|LDR             R3, [hd,#0x14]|99-105
+1490|code|STRB.W          R2, [hd,#0x36]|132-248-54-32
+1494|code|STRB.W          R3, [hd,#0x3B]|132-248-59-48
+1498|code|LSRS            R2, R3, #0x18|26-14
+1500|code|STRB.W          R2, [hd,#0x38]|132-248-56-32
+1504|code|LSRS            R2, R3, #0x10|26-12
+1506|code|STRB.W          R2, [hd,#0x39]|132-248-57-32
+1510|code|LSRS            R2, R3, #8|26-10
+1512|code|LDR             R3, [hd,#0x18]|163-105
+1514|code|STRB.W          R2, [hd,#0x3A]|132-248-58-32
+1518|code|LSRS            R2, R3, #0x18|26-14
+1520|code|STRB.W          R2, [hd,#0x3C]|132-248-60-32
+1524|code|LSRS            R2, R3, #0x10|26-12
+1526|code|STRB.W          R2, [hd,#0x3D]|132-248-61-32
+1530|code|LSRS            R2, R3, #8|26-10
+1532|code|STRB.W          R2, [hd,#0x3E]|132-248-62-32
+1536|code|STRB.W          R3, [hd,#0x3F]|132-248-63-48
+1540|code|LDR             R3, [hd,#0x1C]|227-105
+1542|code|LSRS            R2, R3, #0x18|26-14
+1544|code|STRB.W          R3, [hd,#0x43]|132-248-67-48
+1548|code|STRB.W          R2, [hd,#0x40]|132-248-64-32
+1552|code|LSRS            R2, R3, #0x10|26-12
+1554|code|STRB.W          R2, [hd,#0x41]|132-248-65-32
+1558|code|LSRS            R2, R3, #8|26-10
+1560|code|STRB.W          R2, [hd,#0x42]|132-248-66-32
+1564|code|POP             {hd-lsb,PC}|112-189
+1566|data|ALIGN 0x10|0-191
+1568|data|DCD memset|100-8-0-0
+1572|data|DCD _gcry_burn_stack|96-8-0-0
+1576|code|PUSH            {R3-R5,LR}|56-181
+1578|code|LDR             R5, =_gcry_digest_spec_sha224|4-77
+1580|code|LDR             R4, =grub_md_register|4-76
+1582|code|MOV             mod, R5|40-70
+1584|code|BLX             R4; grub_md_register|160-71
+1586|code|ADD.W           R0, R5, #0x30 ; '0'|5-241-48-0
+1590|code|BLX             R4; grub_md_register|160-71
+1592|code|POP             {R3-R5,PC}|56-189
+1594|data|ALIGN 4|0-191
+1596|data|DCD _gcry_digest_spec_sha224|180-7-0-0
+1600|data|DCD grub_md_register|108-8-0-0
+1604|code|PUSH            {R3-R5,LR}|56-181
+1606|code|LDR             R5, =_gcry_digest_spec_sha224|4-77
+1608|code|LDR             R4, =grub_md_unregister|4-76
+1610|code|MOV             R0, R5|40-70
+1612|code|BLX             R4; grub_md_unregister|160-71
+1614|code|ADD.W           R0, R5, #0x30 ; '0'|5-241-48-0
+1618|code|BLX             R4; grub_md_unregister|160-71
+1620|code|POP             {R3-R5,PC}|56-189
+1622|data|ALIGN 4|0-191
+1624|data|DCD _gcry_digest_spec_sha224|180-7-0-0
+1628|data|DCD grub_md_unregister|104-8-0-0
+1632|data|DCD 0x428A2F98, 0x71374491, 0xB5C0FBCF, 0xE9B5DBA5, 0x3956C25B|152-47-138-66-145-68-55-113-207-251-192-181-165-219-181-233-91-194-86-57-241-17-241-89-164-130-63-146-213-94-28-171-152-170-7-216-1-91-131-18-190-133-49-36-195-125-12-85-116-93-190-114-254-177-222-128-167-6-220-155-116-241-155-193-193-105-155-228-134-71-190-239-198-157-193-15-204-161-12-36-111-44-233-45-170-132-116-74-220-169-176-92-218-136-249-118-82-81-62-152-109-198-49-168-200-39-3-176-199-127-89-191-243-11-224-198-71-145-167-213-81-99-202-6-103-41-41-20-133-10-183-39-56-33-27-46-252-109-44-77-19-13-56-83-84-115-10-101-187-10-106-118-46-201-194-129-133-44-114-146-161-232-191-162-75-102-26-168-112-139-75-194-163-81-108-199-25-232-146-209-36-6-153-214-133-53-14-244-112-160-106-16-22-193-164-25-8-108-55-30-76-119-72-39-181-188-176-52-179-12-28-57-74-170-216-78-79-202-156-91-243-111-46-104-238-130-143-116-111-99-165-120-20-120-200-132-8-2-199-140-250-255-190-144-235-108-80-164-247-163-249-190-242-120-113-198
+1888|data|DCB "SHA256",0|83-72-65-50-53-54-0
+1895|data|DCB "SHA224",0|83-72-65-50-50-52-0
+1902|data|DCB "2.16.840.1.101.3.4.2.1",0|50-46-49-54-46-56-52-48-46-49-46-49-48-49-46-51-46-52-46-50-46-49-0
+1925|data|DCB "1.2.840.113549.1.1.11",0|49-46-50-46-56-52-48-46-49-49-51-53-52-57-46-49-46-49-46-49-49-0
+1947|data|DCB "2.16.840.1.101.3.4.2.4",0|50-46-49-54-46-56-52-48-46-49-46-49-48-49-46-51-46-52-46-50-46-52-0
+1972|data|gcry_md_spec_t <aSha224, asn224, 0x13, oid_spec_sha224, 0x1C, \; "SHA224"|103-7-0-0-60-8-0-0-19-0-0-0-52-8-0-0-28-0-0-0-77-0-0-0-237-3-0-0-169-4-0-0-233-3-0-0-104-0-0-0-64-0-0-0-0-0-0-0
+2020|data|gcry_md_spec_t <aSha256, asn256, 0x13, oid_spec_sha256, 0x20, \; "SHA256"|96-7-0-0-32-8-0-0-19-0-0-0-20-8-0-0-32-0-0-0-1-0-0-0-237-3-0-0-169-4-0-0-233-3-0-0-104-0-0-0-64-0-0-0-0-0-0-0
+2068|data|gcry_md_oid_spec_t <a21684011013421>; "2.16.840.1.101.3.4.2.1" ...|110-7-0-0-133-7-0-0-0-0-0-0
+2080|data|DCB 0x30, 0x31, 0x30, 0xD, 6, 9, 0x60, 0x86, 0x48, 1, 0x65|48-49-48-13-6-9-96-134-72-1-101-3-4-2-1-5-0-4-32
+2099|data|ALIGN 4|0
+2100|data|gcry_md_oid_spec_t <a21684011013424>; "2.16.840.1.101.3.4.2.4"|155-7-0-0-0-0-0-0
+2108|data|DCB 0x30, 0x2D, 0x30, 0xD, 6, 9, 0x60, 0x86, 0x48, 1, 0x65|48-45-48-13-6-9-96-134-72-1-101-3-4-2-4-5-0-4-28
+2127|data|ALIGN 0x10|0
+2128|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

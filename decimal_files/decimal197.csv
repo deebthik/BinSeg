@@ -1,0 +1,219 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|MOV             R8, argc|136-70
+6|code|LDR             R5, =unk_224|106-77
+8|code|MOV             R9, args|145-70
+10|code|SUB             SP, SP, #0x6C|155-176
+12|code|ADD             R4, SP, #0x90+limit|14-172
+14|code|LDM             R5!, {cmd-R3}|15-205
+16|code|STM             R4!, {R0-R3}|15-196
+18|code|LDM             R5!, {R0-R3}|15-205
+20|code|STM             R4!, {R0-R3}|15-196
+22|code|LDM.W           R5, {R0-R3}|149-232-15-0
+26|code|STM.W           R4, {R0-R3}|132-232-15-0
+30|code|CMP.W           argc, #0|184-241-0-15
+34|code|BNE             loc_6C|35-209
+36|code|ADD             R0, SP, #0x90+p|6-168
+38|code|LDR             R3, =grub_get_datetime|99-75
+40|code|BLX             R3; grub_get_datetime|152-71
+42|code|MOV             R4, R0|4-70
+44|code|CMP             R0, #0|0-40
+46|code|BNE.W           loc_15E|64-240-150-128
+50|code|ADD             R0, SP, #0x90+p|6-168
+52|code|LDR             R3, =grub_get_weekday_name|96-75
+54|code|LDRB.W          R5, [SP,#0x90+p+3]|157-248-27-80
+58|code|LDRH.W          R7, [SP,#0x90+p]|189-248-24-112
+62|code|LDRB.W          R6, [SP,#0x90+p+2]|157-248-26-96
+66|code|LDRB.W          R10, [SP,#0x90+var_74]|157-248-28-160
+70|code|LDRB.W          args, [SP,#0x90+var_73]|157-248-29-144
+74|code|LDRB.W          argc, [SP,#0x90+var_72]|157-248-30-128
+78|code|BLX             R3; grub_get_weekday_name|152-71
+80|code|MOV             R3, R5|43-70
+82|code|STR.W           R10, [SP,#0x90+var_90]|205-248-0-160
+86|code|STR.W           R9, [SP,#0x90+var_8C]|205-248-4-144
+90|code|MOV             R1, R7|57-70
+92|code|STR.W           R8, [SP,#0x90+var_88]|205-248-8-128
+96|code|MOV             R2, R6|50-70
+98|code|LDR             R5, =grub_printf|86-77
+100|code|STR             R0, [SP,#0x90+var_84]|3-144
+102|code|LDR             R0, =aD02d02d02d02d0; "%d-%02d-%02d %02d:%02d:%02d %s\n"|86-72
+104|code|BLX             R5; grub_printf|168-71
+106|code|B               loc_1A8|157-224
+108|code|ADD             R0, SP, #0x90+value|8-168
+110|code|MOVS            R1, #0|0-33
+112|code|MOVS            R2, #0x18|24-34
+114|code|LDR             R3, =grub_memset|84-75
+116|code|BLX             R3; grub_memset|152-71
+118|code|LDR.W           R10, =grub_strtoul|223-248-96-161
+122|code|SUB.W           args, args, #4|169-241-4-9
+126|code|MOVS            R5, #0|0-37
+128|code|LDR.W           R0, [R9,#4]!|89-248-4-15
+132|code|ADD             R1, SP, #0x90+p|6-169
+134|code|MOVS            R2, #0xA|10-34
+136|code|STR             R0, [SP,#0x90+p]|6-144
+138|code|BLX             R10; grub_strtoul|208-71
+140|code|LDR             R3, [SP,#0x90+p]|6-155
+142|code|LDRB.W          R12, [R3]|147-248-0-192
+146|code|CMP.W           c, #0x2D ; '-'|188-241-45-15
+150|code|BEQ             loc_A2|4-208
+152|code|CMP.W           c, #0x3A ; ':'|188-241-58-15
+156|code|BNE             fail|86-209
+158|code|MOVS            R6, #3|3-38
+160|code|B               loc_A4|0-224
+162|code|MOVS            R6, #0|0-38
+164|code|LSLS            R3, R6, #2|179-0
+166|code|ADD             R2, SP, #0x90+var_28|26-170
+168|code|ADD             R2, R3|26-68
+170|code|MOVS            R4, #1|1-36
+172|code|LSL.W           R7, R4, R6|4-250-6-247
+176|code|STR.W           m1, [R2,#-0x48]|66-248-72-12
+180|code|ADD             R2, SP, #0x90+value|8-170
+182|code|ADD             R3, R2|19-68
+184|code|MOV             R11, cur_mask|187-70
+186|code|LDR             R0, [SP,#0x90+p]|6-152
+188|code|LDRB            R2, [R0]|2-120
+190|code|CBZ             R2, loc_F2|194-177
+192|code|CMP             R2, R12|98-69
+194|code|STR             R3, [SP,#0x90+var_7C]|5-147
+196|code|STR.W           R12, [SP,#0x90+var_80]|205-248-16-192
+200|code|BNE             fail|64-209
+202|code|ADD             R1, SP, #0x90+p|6-169
+204|code|MOVS            R2, #0xA|10-34
+206|code|ADDS            R0, #1|1-48
+208|code|BLX             R10; grub_strtoul|208-71
+210|code|LDR             R3, [SP,#0x90+var_7C]|5-155
+212|code|ADDS            R1, R4, R6|161-25
+214|code|MOVS            R2, #1|1-34
+216|code|CMP             R4, #2|2-44
+218|code|LSL.W           R2, R2, R1|2-250-1-242
+222|code|ORR.W           cur_mask, cur_mask, R2|75-234-2-11
+226|code|LDR.W           R12, [SP,#0x90+var_80]|221-248-16-192
+230|code|STR.W           R0, [R3,R4,LSL#2]|67-248-36-0
+234|code|BEQ             loc_F0|1-208
+236|code|MOVS            R4, #2|2-36
+238|code|B               loc_BA|228-231
+240|code|MOVS            R4, #3|3-36
+242|code|LDR             R3, [SP,#0x90+p]|6-155
+244|code|LDRB            R3, [R3]|27-120
+246|code|CBNZ            R3, fail|75-187
+248|code|CBNZ            R6, loc_10E|78-185
+250|code|CMP             R4, #2|2-44
+252|code|ITTTT EQ|1-191
+254|code|MOVEQ.W         cur_mask, cur_mask,LSL#1|79-234-75-11
+258|code|LDREQ           R3, [SP,#0x90+value+4]|9-155
+260|code|MOVEQ           R6, #1|1-38
+262|code|STREQ           R3, [SP,#0x90+value+8]|10-147
+264|code|ITT EQ|4-191
+266|code|LDREQ           R3, [SP,#0x90+value]|8-155
+268|code|STREQ           R3, [SP,#0x90+value+4]|9-147
+270|code|ADD             R3, SP, #0x90+limit|14-171
+272|code|ADD             R2, SP, #0x90+value|8-170
+274|code|ADD.W           R3, R3, R6,LSL#3|3-235-198-3
+278|code|ADD.W           R6, R2, R6,LSL#2|2-235-134-6
+282|code|ADDS            R3, #4|4-51
+284|code|MOVS            R2, #0|0-34
+286|code|LDR.W           R0, [R6,R2,LSL#2]|86-248-34-0
+290|code|LDR.W           R1, [R3,#-4]|83-248-4-28
+294|code|CMP             R0, R1|136-66
+296|code|BLT             fail|16-219
+298|code|LDR             R1, [R3]|25-104
+300|code|CMP             R0, R1|136-66
+302|code|BGT             fail|13-220
+304|code|ADDS            R2, #1|1-50
+306|code|ADDS            R3, #8|8-51
+308|code|CMP             R2, R4|162-66
+310|code|BNE             loc_11E|242-209
+312|code|RSB.W           R7, R7, R7,LSL#3|199-235-199-7
+316|code|SUBS.W          argc, argc, #1|184-241-1-8
+320|code|BIC.W           R5, R5, R7|37-234-7-5
+324|code|ORR.W           R5, R11, R5|75-234-5-5
+328|code|BNE             loc_80|154-209
+330|code|B               loc_156|4-224
+332|code|LDR             R1, =aInvalidDatetim; "invalid datetime"|30-73
+334|code|MOVS            R0, #0x12|18-32
+336|code|LDR             R3, =grub_error|30-75
+338|code|BLX             R3; grub_error|152-71
+340|code|B               loc_1A6|39-224
+342|code|ADD             R0, SP, #0x90+p|6-168
+344|code|LDR             R3, =grub_get_datetime|22-75
+346|code|BLX             R3; grub_get_datetime|152-71
+348|code|CBZ             R0, loc_164|16-177
+350|code|LDR             R3, =grub_errno|28-75
+352|code|LDR             R4, [R3]|28-104
+354|code|B               loc_1A8|33-224
+356|code|LSLS            R6, mask, #0x1F|238-7
+358|code|ITT MI|68-191
+360|code|LDRMI           R3, [SP,#0x90+value]|8-155
+362|code|STRHMI.W        R3, [SP,#0x90+p]|173-248-24-48
+366|code|LSLS            R4, mask, #0x1E|172-7
+368|code|ITT MI|68-191
+370|code|LDRMI           R3, [SP,#0x90+value+4]|9-155
+372|code|STRBMI.W        R3, [SP,#0x90+p+2]|141-248-26-48
+376|code|LSLS            R0, mask, #0x1D|104-7
+378|code|ADD             R0, SP, #0x90+p|6-168
+380|code|ITT MI|68-191
+382|code|LDRMI           R3, [SP,#0x90+value+8]|10-155
+384|code|STRBMI.W        R3, [SP,#0x90+p+3]|141-248-27-48
+388|code|LSLS            R1, mask, #0x1C|41-7
+390|code|ITT MI|68-191
+392|code|LDRMI           R3, [SP,#0x90+value+0xC]|11-155
+394|code|STRBMI.W        R3, [SP,#0x90+var_74]|141-248-28-48
+398|code|LSLS            R2, mask, #0x1B|234-6
+400|code|ITT MI|68-191
+402|code|LDRMI           R3, [SP,#0x90+value+0x10]|12-155
+404|code|STRBMI.W        R3, [SP,#0x90+var_73]|141-248-29-48
+408|code|LSLS            R3, mask, #0x1A|171-6
+410|code|ITT MI|68-191
+412|code|LDRMI           R3, [SP,#0x90+value+0x14]|13-155
+414|code|STRBMI.W        R3, [SP,#0x90+var_72]|141-248-30-48
+418|code|LDR             R3, =grub_set_datetime|12-75
+420|code|BLX             R3; grub_set_datetime|152-71
+422|code|MOV             R4, R0|4-70
+424|code|MOV             R0, R4|32-70
+426|code|ADD             SP, SP, #0x6C ; 'l'|27-176
+428|code|POP.W           {R4-R11,PC}|189-232-240-143
+432|data|DCD unk_224|36-2-0-0
+436|data|DCD grub_get_datetime|232-2-0-0
+440|data|DCD grub_get_weekday_name|248-2-0-0
+444|data|DCD grub_printf|0-3-0-0
+448|data|DCD aD02d02d02d02d0; "%d-%02d-%02d %02d:%02d:%02d %s\n"|84-2-0-0
+452|data|DCD grub_memset|244-2-0-0
+456|data|DCD aInvalidDatetim; "invalid datetime"|116-2-0-0
+460|data|DCD grub_error|8-3-0-0
+464|data|DCD grub_errno|240-2-0-0
+468|data|DCD grub_set_datetime|236-2-0-0
+472|data|DCD grub_strtoul|12-3-0-0
+476|code|PUSH            {mod,R1,R4,LR}|19-181
+478|code|MOVS            R3, #0|0-35
+480|code|LDR             R1, =(grub_cmd_date+1)|5-73
+482|code|STR             R3, [SP,#0x10+var_10]|0-147
+484|code|LDR             R2, =aYearMonthDayHo; "[[year-]month-day] [hour:minute[:second"...|5-74
+486|code|LDR             R3, =aDisplaySetCurr; "Display/set current datetime."|6-75
+488|code|LDR             R4, =grub_register_command_prio|6-76
+490|code|LDR             mod, =aDate; "date"|7-72
+492|code|BLX             R4; grub_register_command_prio|160-71
+494|code|LDR             R3, =cmd|7-75
+496|code|STR             R0, [R3]|24-96
+498|code|ADD             SP, SP, #8|2-176
+500|code|POP             {R4,PC}|16-189
+502|data|ALIGN 4|0-191
+504|data|DCD grub_cmd_date+1|1-0-0-0
+508|data|DCD aYearMonthDayHo; "[[year-]month-day] [hour:minute[:second"...|138-2-0-0
+512|data|DCD aDisplaySetCurr; "Display/set current datetime."|180-2-0-0
+516|data|DCD grub_register_command_prio|252-2-0-0
+520|data|DCD aDate; "date"|133-2-0-0
+524|data|DCD cmd|228-2-0-0
+528|code|PUSH            {R3,LR}|8-181
+530|code|LDR             R3, =cmd|2-75
+532|code|LDR             R0, [R3]|24-104
+534|code|LDR             R3, =grub_unregister_command|2-75
+536|code|BLX             R3; grub_unregister_command|152-71
+538|code|POP             {R3,PC}|8-189
+540|data|DCD cmd|228-2-0-0
+544|data|DCD grub_unregister_command|4-3-0-0
+596|data|DCB "%d-%02d-%02d %02d:%02d:%02d %s",0xA,0|37-100-45-37-48-50-100-45-37-48-50-100-32-37-48-50-100-58-37-48-50-100-58-37-48-50-100-32-37-115-10-0
+628|data|DCB "invalid datetime",0|105-110-118-97-108-105-100-32-100-97-116-101-116-105-109-101-0
+645|data|DCB "date",0|100-97-116-101-0
+650|data|DCB "[[year-]month-day] [hour:minute[:second]]",0|91-91-121-101-97-114-45-93-109-111-110-116-104-45-100-97-121-93-32-91-104-111-117-114-58-109-105-110-117-116-101-91-58-115-101-99-111-110-100-93-93-0
+692|data|DCB "Display/set current datetime.",0|68-105-115-112-108-97-121-47-115-101-116-32-99-117-114-114-101-110-116-32-100-97-116-101-116-105-109-101-46-0
+723|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,50 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|LDR             R3, =grub_gettext|5-75
+4|code|LDR             ctxt, =aHelloWorld; "Hello World"|5-72
+6|code|LDR             R3, [R3]|27-104
+8|code|BLX             R3|152-71
+10|code|LDR             R3, =grub_printf|5-75
+12|code|MOV             R1, R0|1-70
+14|code|LDR             R0, =aS; "%s\n"|5-72
+16|code|BLX             R3; grub_printf|152-71
+18|code|MOVS            R0, #0|0-32
+20|code|POP             {R3,PC}|8-189
+22|data|ALIGN 4|0-191
+24|data|DCD grub_gettext|184-0-0-0
+28|data|DCD aHelloWorld; "Hello World"|108-0-0-0
+32|data|DCD grub_printf|176-0-0-0
+36|data|DCD aS; "%s\n"|120-0-0-0
+40|code|LDR             R3, =aSayHelloWorld; "Say `Hello World'."|6-75
+42|code|MOVS            R2, #0|0-34
+44|code|PUSH            {mod,R1,R4,LR}|19-181
+46|code|LDR             R1, =(grub_cmd_hello+1)|6-73
+48|code|STR             R3, [SP,#0x10+var_10]|0-147
+50|code|MOV             R3, R2|19-70
+52|code|STR             R2, [SP,#0x10+var_C]|1-146
+54|code|LDR             R4, =grub_register_extcmd|5-76
+56|code|LDR             mod, =aHello; "hello"|5-72
+58|code|BLX             R4; grub_register_extcmd|160-71
+60|code|LDR             R3, =cmd|5-75
+62|code|STR             R0, [R3]|24-96
+64|code|ADD             SP, SP, #8|2-176
+66|code|POP             {R4,PC}|16-189
+68|data|DCD aSayHelloWorld; "Say `Hello World'."|130-0-0-0
+72|data|DCD grub_cmd_hello+1|1-0-0-0
+76|data|DCD grub_register_extcmd|180-0-0-0
+80|data|DCD aHello; "hello"|124-0-0-0
+84|data|DCD cmd|168-0-0-0
+88|code|PUSH            {R3,LR}|8-181
+90|code|LDR             R3, =cmd|2-75
+92|code|LDR             R0, [R3]|24-104
+94|code|LDR             R3, =grub_unregister_extcmd|2-75
+96|code|BLX             R3; grub_unregister_extcmd|152-71
+98|code|POP             {R3,PC}|8-189
+100|data|DCD cmd|168-0-0-0
+104|data|DCD grub_unregister_extcmd|172-0-0-0
+108|data|DCB "Hello World",0|72-101-108-108-111-32-87-111-114-108-100-0
+120|data|DCB "%s",0xA,0|37-115-10-0
+124|data|DCB "hello",0|104-101-108-108-111-0
+130|data|DCB "Say `Hello World'.",0|83-97-121-32-96-72-101-108-108-111-32-87-111-114-108-100-39-46-0
+149|data||255
+150|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

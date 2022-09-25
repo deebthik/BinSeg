@@ -1,0 +1,793 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_scsi_dev_list|10-75
+2|code|PUSH            {hook-pull,R4,R5,LR}|55-181
+4|code|MOV             R5, pull|21-70
+6|code|LDR             R4, [R3]|28-104
+8|code|STMEA.W         SP, {hook,hook_data}|141-232-3-0
+12|code|CBZ             p, loc_20|68-177
+14|code|LDR             R3, [p]|35-104
+16|code|CBZ             R3, loc_1C|35-177
+18|code|LDR             R0, =(scsi_iterate+1)|7-72
+20|code|MOV             R1, SP|105-70
+22|code|MOV             R2, pull|42-70
+24|code|BLX             R3|152-71
+26|code|CBNZ            R0, loc_24|24-185
+28|code|LDR             p, [p,#0x14]|100-105
+30|code|B               loc_C|245-231
+32|code|MOV             R0, p|32-70
+34|code|B               loc_26|0-224
+36|code|MOVS            R0, #1|1-32
+38|code|ADD             SP, SP, #0xC|3-176
+40|code|POP             {p,pull,PC}|48-189
+42|data|ALIGN 4|0-191
+44|data|DCD grub_scsi_dev_list|108-9-0-0
+48|data|DCD scsi_iterate+1|9-7-0-0
+52|code|PUSH            {R4-R6,LR}|112-181
+54|code|SUB             SP, SP, #0x28|138-176
+56|code|MOVS            R3, #3|3-35
+58|code|MOVS            R1, #0|0-33
+60|code|STRB.W          R3, [SP,#0x38+rs]|141-248-8-48
+64|code|MOV             R4, err|4-70
+66|code|LDR             R3, [err,#0x10]|3-105
+68|code|MOVS            R2, #6|6-34
+70|code|ADD.W           err, SP, #0x38+rs.pad|13-241-14-0
+74|code|STRB.W          R1, [SP,#0x38+rs.reserved1]|141-248-10-16
+78|code|STRB.W          R1, [SP,#0x38+rs.reserved2]|141-248-11-16
+82|code|MOVS            R5, #0x12|18-37
+84|code|LSLS            R3, R3, #5|91-1
+86|code|STRB.W          R3, [SP,#0x38+rs.lun]|141-248-9-48
+90|code|LDR             R3, =grub_memset|8-75
+92|code|STRB.W          R1, [SP,#0x38+rs._control]|141-248-13-16
+96|code|STRB.W          R5, [SP,#0x38+rs.alloc_length]|141-248-12-80
+100|code|BLX             R3; grub_memset|152-71
+102|code|LDR             R3, [scsi]|35-104
+104|code|ADD             R2, SP, #0x38+rsd|5-170
+106|code|MOV             err, scsi|32-70
+108|code|STR             R2, [SP,#0x38+var_38]|0-146
+110|code|MOVS            R1, #0xC|12-33
+112|code|ADD             R2, SP, #0x38+rs|2-170
+114|code|LDR             R6, [R3,#0xC]|222-104
+116|code|MOV             R3, R5|43-70
+118|code|BLX             R6|176-71
+120|code|ADD             SP, SP, #0x28 ; '('|10-176
+122|code|POP             {scsi-R6,PC}|112-189
+124|data|DCD grub_memset|132-9-0-0
+128|code|PUSH            {R4,LR}|16-181
+130|code|LDR             R4, [disk,#0x28]|132-106
+132|code|LDR             R3, [scsi]|35-104
+134|code|LDR             R3, [R3,#8]|155-104
+136|code|CBZ             R3, loc_8E|11-177
+138|code|MOV             disk, scsi|32-70
+140|code|BLX             R3|152-71
+142|code|MOV             R0, scsi|32-70
+144|code|LDR             R3, =grub_free|1-75
+146|code|BLX             R3; grub_free|152-71
+148|code|POP             {scsi,PC}|16-189
+150|data|ALIGN 4|0-191
+152|data|DCD grub_free|152-9-0-0
+156|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+160|code|SUB             SP, SP, #0x64|153-176
+162|code|LDR             R3, =grub_strlen|174-75
+164|code|MOV             R5, name|5-70
+166|code|MOV             R7, disk|15-70
+168|code|BLX             R3; grub_strlen|152-71
+170|code|SUBS            R0, #1|1-56
+172|code|ADDS            R3, name, R0|43-24
+174|code|BCS             loc_BE|6-210
+176|code|LDRB            R6, [name,R0]|46-92
+178|code|SUBS            R6, #0x61 ; 'a'|97-62
+180|code|UXTB            R2, R6|242-178
+182|code|CMP             R2, #0x19|25-42
+184|code|BHI             loc_BE|1-216
+186|code|SUBS            nameend, #1|1-59
+188|code|B               loc_C0|0-224
+190|code|MOVS            R6, #0|0-38
+192|code|CMP             R3, name|171-66
+194|code|MOV             R10, R3|154-70
+196|code|BCS             loc_D2|5-210
+198|code|LDRB.W          R3, [nameend,#1]|154-248-1-48
+202|code|SUBS            R3, #0x30 ; '0'|48-59
+204|code|CMP             R3, #9|9-43
+206|code|BLS             loc_E0|7-217
+208|code|B               loc_4A6|233-225
+210|code|LDRB.W          R2, [R10]|154-248-0-32
+214|code|SUBS            nameend, #1|1-59
+216|code|SUBS            R2, #0x30 ; '0'|48-58
+218|code|CMP             R2, #9|9-42
+220|code|BLS             loc_C0|240-217
+222|code|B               loc_C6|242-231
+224|code|MOVS            R1, #0|0-33
+226|code|LDR             R3, =grub_strtoul|159-75
+228|code|MOV             R2, R1|10-70
+230|code|ADD.W           R0, nameend, #1|10-241-1-0
+234|code|BLX             R3; grub_strtoul|152-71
+236|code|LDR             R3, =grub_malloc|157-75
+238|code|MOV             R9, R0|129-70
+240|code|MOVS            bus, #0x28 ; '('|40-32
+242|code|BLX             R3; grub_malloc|152-71
+244|code|MOV             R4, scsi|4-70
+246|code|CBNZ            scsi, loc_FE|16-185
+248|code|LDR             R3, =grub_errno|155-75
+250|code|LDR             name, [R3]|29-104
+252|code|B               loc_4B0|216-225
+254|code|LDR.W           R11, =grub_scsi_names|223-248-156-178
+258|code|RSB.W           nameend, name, nameend|197-235-10-10
+262|code|LDR             R3, =grub_strncmp|153-75
+264|code|MOV.W           R8, #0|79-240-0-8
+268|code|ADD.W           R0, id, id,LSL#2|8-235-136-0
+272|code|MOV             R1, name|41-70
+274|code|ADD             R0, R11|88-68
+276|code|MOV             R2, R10|82-70
+278|code|STR             R3, [SP,#0x88+maxtime]|4-147
+280|code|BLX             R3; grub_strncmp|152-71
+282|code|CBZ             R0, loc_12A|48-177
+284|code|ADD.W           id, id, #1|8-241-1-8
+288|code|LDR             R3, [SP,#0x88+maxtime]|4-155
+290|code|CMP.W           id, #3|184-241-3-15
+294|code|BNE             loc_10C|241-209
+296|code|B               loc_4A0|186-225
+298|code|LDR             R3, =grub_scsi_dev_list|145-75
+300|code|LDR.W           R11, =grub_errno|223-248-56-178
+304|code|STR             R0, [SP,#0x88+maxtime]|4-144
+306|code|LDR.W           R10, [R3]|211-248-0-160
+310|code|CMP.W           p, #0|186-241-0-15
+314|code|BEQ.W           loc_4A0|0-240-177-129
+318|code|LDR.W           R3, [p,#4]|218-248-4-48
+322|code|MOV             R0, id|64-70
+324|code|MOV             R1, bus|73-70
+326|code|MOV             R2, scsi|34-70
+328|code|BLX             R3|152-71
+330|code|MOV             R5, R0|5-70
+332|code|CBZ             R0, loc_15A|40-177
+334|code|LDR             R3, [SP,#0x88+maxtime]|4-155
+336|code|LDR.W           p, [p,#0x14]|218-248-20-160
+340|code|STR.W           R3, [R11]|203-248-0-48
+344|code|B               loc_136|237-231
+346|code|ORR.W           R3, R6, bus,LSL#8|70-234-9-35
+350|code|STR             scsi, [disk,#0x28]|188-98
+352|code|ORR.W           R3, R3, id,LSL#24|67-234-8-99
+356|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|131-72
+358|code|STR             R3, [disk,#0x18]|187-97
+360|code|MOVW            R1, #0x21E|64-242-30-33
+364|code|STR.W           p, [scsi]|196-248-0-160
+368|code|MOV.W           id, #0x24 ; '$'|79-240-36-8
+372|code|STR             R6, [scsi,#0x10]|38-97
+374|code|STR.W           bus, [scsi,#8]|196-248-8-144
+378|code|ADD.W           bus, SP, #0x88+var_5C|13-241-44-9
+382|code|LDR             R2, =aScsi; "scsi"|126-74
+384|code|LDR             R3, =aDevOpened; "dev opened\n"|126-75
+386|code|LDR             R6, =grub_real_dprintf|127-78
+388|code|BLX             R6; grub_real_dprintf|176-71
+390|code|MOVS            R3, #0x12|18-35
+392|code|STRB.W          R3, [SP,#0x88+var_5C]|141-248-44-48
+396|code|MOV             R1, R5|41-70
+398|code|LDR             R3, [scsi,#0x10]|35-105
+400|code|MOVS            R2, #6|6-34
+402|code|LDR.W           p, =grub_memset|223-248-12-162
+406|code|ADD.W           R0, SP, #0x88+var_58+2|13-241-50-0
+410|code|STRB.W          R8, [SP,#0x88+var_58]|141-248-48-128
+414|code|LSLS            R3, R3, #5|91-1
+416|code|STRB.W          R5, [SP,#0x88+var_5C+2]|141-248-46-80
+420|code|STRB.W          R3, [SP,#0x88+var_5C+1]|141-248-45-48
+424|code|STRB.W          R5, [SP,#0x88+var_5C+3]|141-248-47-80
+428|code|STRB.W          R5, [SP,#0x88+var_58+1]|141-248-49-80
+432|code|BLX             R10; grub_memset|208-71
+434|code|LDR             R3, [scsi]|35-104
+436|code|ADD             R2, SP, #0x88+var_4C|15-170
+438|code|MOVS            R1, #0xC|12-33
+440|code|STR             R2, [SP,#0x88+var_88]|0-146
+442|code|MOV             R0, scsi|32-70
+444|code|MOV             R2, R9|74-70
+446|code|LDR.W           R12, [R3,#0xC]|211-248-12-192
+450|code|MOV             R3, R8|67-70
+452|code|BLX             R12|224-71
+454|code|MOV             R8, R0|128-70
+456|code|MOV             R0, scsi; scsi|32-70
+458|code|BL              grub_scsi_request_sense_0|255-247-51-255
+462|code|STR.W           R10, [SP,#0x88+var_6C]|205-248-28-160
+466|code|CBZ             R0, loc_1DA|16-177
+468|code|LDR             R3, =grub_errno|100-75
+470|code|STR.W           R8, [R3]|195-248-0-128
+474|code|CMP.W           R8, #0|184-241-0-15
+478|code|BNE             loc_20C|21-209
+480|code|LDRB.W          R3, [SP,#0x88+var_4C]|157-248-60-48
+484|code|MOVW            R1, #0x229|64-242-41-33
+488|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|98-72
+490|code|AND.W           R3, R3, #0x1F|3-240-31-3
+494|code|STRB            R3, [scsi,#4]|35-113
+496|code|LDRB.W          R3, [SP,#0x88+var_4C+1]|157-248-61-48
+500|code|LDR             R2, =aScsi; "scsi"|96-74
+502|code|LSRS            R3, R3, #7|219-9
+504|code|STR             R3, [scsi,#0x14]|99-97
+506|code|LDRB            R3, [scsi,#4]|35-121
+508|code|STR             R3, [SP,#0x88+var_88]|0-147
+510|code|LDR             R3, [scsi,#0x14]|99-105
+512|code|STR             R3, [SP,#0x88+var_84]|1-147
+514|code|LDR             R3, =aInquiryDevtype; "inquiry: devtype=0x%02x removable=%d\n"|96-75
+516|code|BLX             R6; grub_real_dprintf|176-71
+518|code|LDRB            R3, [scsi,#4]|35-121
+520|code|CBNZ            R3, loc_21E|75-185
+522|code|B               loc_22E|16-224
+524|code|MOV             R0, scsi|32-70
+526|code|LDR             R3, =grub_free|94-75
+528|code|BLX             R3; grub_free|152-71
+530|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|88-72
+532|code|MOV.W           R1, #0x224|79-244-9-113
+536|code|LDR             R2, =aScsi; "scsi"|87-74
+538|code|LDR             R3, =aInquiryFailed; "inquiry failed\n"|92-75
+540|code|B               loc_42A|5-225
+542|code|CMP             R3, #5|5-43
+544|code|BEQ             loc_22E|5-208
+546|code|MOV             R0, scsi|32-70
+548|code|LDR             R3, =grub_free|88-75
+550|code|BLX             R3; grub_free|152-71
+552|code|MOVS            R0, #0xC|12-32
+554|code|LDR             R1, =aUnknownScsiDev; "unknown SCSI device"|89-73
+556|code|B               loc_4AA|61-225
+558|code|LDR.W           R8, =grub_get_time_ms|223-248-116-129
+562|code|BLX             R8; grub_get_time_ms|192-71
+564|code|MOVW            R2, #0x1388|65-242-136-50
+568|code|MOVS            R3, #0|0-35
+570|code|STR.W           R8, [SP,#0x88+var_68]|205-248-32-128
+574|code|MOV.W           R8, #0|79-240-0-8
+578|code|ADDS.W          R10, R0, R2|16-235-2-10
+582|code|ADC.W           R11, R1, R3|65-235-3-11
+586|code|STRD.W          R10, R11, [SP,#0x88+maxtime]|205-233-4-171
+590|code|LDR.W           R11, =grub_errno|223-248-24-177
+594|code|LDR             R3, [SP,#0x88+var_68]|8-155
+596|code|BLX             R3|152-71
+598|code|LDRD.W          R2, R3, [SP,#0x88+maxtime]|221-233-4-35
+602|code|CMP             R3, R1|139-66
+604|code|IT EQ|8-191
+606|code|CMPEQ           R2, R0|130-66
+608|code|BCS             loc_278|10-210
+610|code|MOV             R0, scsi|32-70
+612|code|LDR             R3, =grub_free|72-75
+614|code|BLX             R3; grub_free|152-71
+616|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|66-72
+618|code|MOVW            R1, #0x242|64-242-66-33
+622|code|LDR             R2, =aScsi; "scsi"|66-74
+624|code|LDR             R3, =aLunIsNotReadyT; "LUN is not ready - timeout\n"|72-75
+626|code|MOVS            R5, #0xE|14-37
+628|code|BLX             R6; grub_real_dprintf|176-71
+630|code|B               loc_4B0|27-225
+632|code|STRB.W          R8, [SP,#0x88+var_4C]|141-248-60-128
+636|code|MOVS            R1, #0|0-33
+638|code|LDR             R3, [scsi,#0x10]|35-105
+640|code|MOVS            R2, #6|6-34
+642|code|ADD.W           R0, SP, #0x88+var_48+2|13-241-66-0
+646|code|STRB.W          R8, [SP,#0x88+var_4C+2]|141-248-62-128
+650|code|STRB.W          R8, [SP,#0x88+var_4C+3]|141-248-63-128
+654|code|ADD.W           R10, SP, #0x88+var_4C|13-241-60-10
+658|code|LSLS            R3, R3, #5|91-1
+660|code|STRB.W          R3, [SP,#0x88+var_4C+1]|141-248-61-48
+664|code|LDR             R3, [SP,#0x88+var_6C]|7-155
+666|code|STRB.W          R8, [SP,#0x88+var_48]|141-248-64-128
+670|code|STRB.W          R8, [SP,#0x88+var_48+1]|141-248-65-128
+674|code|BLX             R3|152-71
+676|code|LDR             R3, [scsi]|35-104
+678|code|MOVS            R1, #0xC|12-33
+680|code|STR.W           R8, [SP,#0x88+var_88]|205-248-0-128
+684|code|MOV             R2, R10|82-70
+686|code|MOV             R0, scsi|32-70
+688|code|LDR.W           R12, [R3,#0xC]|211-248-12-192
+692|code|MOVS            R3, #0|0-35
+694|code|BLX             R12|224-71
+696|code|STR             R0, [SP,#0x88+var_64]|9-144
+698|code|MOV             R0, scsi; scsi|32-70
+700|code|BL              grub_scsi_request_sense_0|255-247-186-254
+704|code|LDR             R3, [SP,#0x88+var_64]|9-155
+706|code|CBZ             R0, loc_2C8|8-177
+708|code|STR.W           R3, [R11]|203-248-0-48
+712|code|CMP             R3, #0xE|14-43
+714|code|BEQ             loc_252|194-208
+716|code|MOVS            R2, #0x25 ; '%'|37-34
+718|code|LDR.W           R11, =grub_errno|223-248-152-176
+722|code|STRB.W          R2, [SP,#0x88+var_4C]|141-248-60-32
+726|code|MOVS            R3, #0|0-35
+728|code|LDR             R2, [scsi,#0x10]|34-105
+730|code|MOV             R0, scsi|32-70
+732|code|STR.W           R3, [R11]|203-248-0-48
+736|code|MOVS            R1, #0xC|12-33
+738|code|STRB.W          R3, [SP,#0x88+var_48+2]|141-248-66-48
+742|code|STRB.W          R3, [SP,#0x88+var_48+3]|141-248-67-48
+746|code|LSLS            R2, R2, #5|82-1
+748|code|STRB.W          R3, [SP,#0x88+var_44]|141-248-68-48
+752|code|STRB.W          R2, [SP,#0x88+var_4C+1]|141-248-61-32
+756|code|MOV             R2, R10|82-70
+758|code|STRB.W          R3, [SP,#0x88+var_44+1]|141-248-69-48
+762|code|STRH.W          R3, [SP,#0x88+var_4C+2]|173-248-62-48
+766|code|STRH.W          R3, [SP,#0x88+var_48]|173-248-64-48
+770|code|STRH.W          R3, [SP,#0x88+var_44+2]|173-248-70-48
+774|code|LDR             R3, [scsi]|35-104
+776|code|STR.W           R9, [SP,#0x88+var_88]|205-248-0-144
+780|code|LDR.W           R12, [R3,#0xC]|211-248-12-192
+784|code|MOVS            R3, #8|8-35
+786|code|BLX             R12|224-71
+788|code|MOV             R8, R0|128-70
+790|code|MOV             R0, scsi; scsi|32-70
+792|code|BL              grub_scsi_request_sense_0|255-247-140-254
+796|code|CBZ             R0, loc_322|8-177
+798|code|STR.W           R8, [R11]|203-248-0-128
+802|code|CMP.W           R8, #0|184-241-0-15
+806|code|BNE             loc_348|15-209
+808|code|LDR             R3, [SP,#0x88+var_5C]|11-155
+810|code|STR.W           R8, [scsi,#0x1C]|196-248-28-128
+814|code|REV             R3, R3|27-186
+816|code|STR             R3, [scsi,#0x18]|163-97
+818|code|LDR             R3, [SP,#0x88+var_58]|12-155
+820|code|REV             R3, R3|27-186
+822|code|STR             R3, [scsi,#0x20]|35-98
+824|code|LDRD.W          R2, R3, [scsi,#0x18]|212-233-6-35
+828|code|CMP             R3, #0|0-43
+830|code|IT EQ|8-191
+832|code|CMPEQ.W         R2, #0xFFFFFFFF|178-241-255-63
+836|code|BNE             loc_430|116-209
+838|code|B               loc_3A8|47-224
+840|code|MOV             R0, scsi|32-70
+842|code|LDR             R3, =grub_free|15-75
+844|code|BLX             R3; grub_free|152-71
+846|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|9-72
+848|code|MOVW            R1, #0x251|64-242-81-33
+852|code|LDR             R2, =aScsi; "scsi"|8-74
+854|code|LDR             R3, =aReadCapacity10; "READ CAPACITY10 failed\n"|16-75
+856|code|B               loc_42A|103-224
+858|data|ALIGN 4|0-191
+860|data|DCD grub_strlen|112-9-0-0
+864|data|DCD grub_strtoul|160-9-0-0
+868|data|DCD grub_malloc|136-9-0-0
+872|data|DCD grub_errno|128-9-0-0
+876|data|DCD grub_strncmp|116-9-0-0
+880|data|DCD grub_scsi_dev_list|108-9-0-0
+884|data|DCD aDiskScsiC; "disk/scsi.c"|19-8-0-0
+888|data|DCD aScsi; "scsi"|31-8-0-0
+892|data|DCD aDevOpened; "dev opened\n"|36-8-0-0
+896|data|DCD grub_real_dprintf|144-9-0-0
+900|data|DCD aInquiryDevtype; "inquiry: devtype=0x%02x removable=%d\n"|64-8-0-0
+904|data|DCD grub_free|152-9-0-0
+908|data|DCD aInquiryFailed; "inquiry failed\n"|48-8-0-0
+912|data|DCD aUnknownScsiDev; "unknown SCSI device"|102-8-0-0
+916|data|DCD aLunIsNotReadyT; "LUN is not ready - timeout\n"|122-8-0-0
+920|data|DCD aReadCapacity10; "READ CAPACITY10 failed\n"|150-8-0-0
+924|data|DCD grub_scsi_names|244-7-0-0
+928|data|DCD grub_memset|132-9-0-0
+932|data|DCD grub_get_time_ms|140-9-0-0
+936|code|MOVS            R3, #0x9E|158-35
+938|code|STRB.W          R3, [SP,#0x88+var_5C]|141-248-44-48
+942|code|LDR             R3, [scsi,#0x10]|35-105
+944|code|MOV             R0, scsi|32-70
+946|code|STRB.W          R8, [SP,#0x88+var_4E]|141-248-58-128
+950|code|MOVS            R1, #0x10|16-33
+952|code|STRB.W          R8, [SP,#0x88+var_4D]|141-248-59-128
+956|code|MOV             R2, R9|74-70
+958|code|LSLS            R3, R3, #5|91-1
+960|code|STRH.W          R8, [SP,#0x88+var_5C+2]|173-248-46-128
+964|code|ORR.W           R3, R3, #0x10|67-240-16-3
+968|code|STRB.W          R3, [SP,#0x88+var_5C+1]|141-248-45-48
+972|code|MOV.W           R3, #0x2000|79-244-0-83
+976|code|STRH.W          R3, [SP,#0x88+var_50]|173-248-56-48
+980|code|LDR             R3, [scsi]|35-104
+982|code|STRH.W          R8, [SP,#0x88+var_58]|173-248-48-128
+986|code|STRH.W          R8, [SP,#0x88+var_58+2]|173-248-50-128
+990|code|STRH.W          R8, [SP,#0x88+var_54]|173-248-52-128
+994|code|STRH.W          R8, [SP,#0x88+var_52]|173-248-54-128
+998|code|STR.W           R10, [SP,#0x88+var_88]|205-248-0-160
+1002|code|LDR.W           R12, [R3,#0xC]|211-248-12-192
+1006|code|MOVS            R3, #0x20 ; ' '|32-35
+1008|code|BLX             R12|224-71
+1010|code|MOV             R8, R0|128-70
+1012|code|MOV             R0, scsi; scsi|32-70
+1014|code|BL              grub_scsi_request_sense_0|255-247-29-254
+1018|code|CBZ             R0, loc_400|8-177
+1020|code|STR.W           R8, [R11]|203-248-0-128
+1024|code|CMP.W           R8, #0|184-241-0-15
+1028|code|BNE             loc_41A|9-209
+1030|code|LDR             R3, [SP,#0x88+var_4C]|15-155
+1032|code|LDR             R2, [SP,#0x88+var_48]|16-154
+1034|code|REV             R3, R3|27-186
+1036|code|STR             R3, [scsi,#0x1C]|227-97
+1038|code|REV             R2, R2|18-186
+1040|code|STR             R2, [scsi,#0x18]|162-97
+1042|code|LDR             R3, [SP,#0x88+var_44]|17-155
+1044|code|REV             R3, R3|27-186
+1046|code|STR             R3, [scsi,#0x20]|35-98
+1048|code|B               loc_430|10-224
+1050|code|MOV             R0, scsi|32-70
+1052|code|LDR             R3, =grub_free|38-75
+1054|code|BLX             R3; grub_free|152-71
+1056|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|38-72
+1058|code|LDR             R2, =aScsi; "scsi"|39-74
+1060|code|MOVW            R1, #0x25B|64-242-91-33
+1064|code|LDR             R3, =aReadCapacity16; "READ CAPACITY16 failed\n"|38-75
+1066|code|BLX             R6; grub_real_dprintf|176-71
+1068|code|MOV             R5, R8|69-70
+1070|code|B               loc_4B0|63-224
+1072|code|LDRD.W          R0, R1, [scsi,#0x18]|212-233-6-1
+1076|code|ADDS            R2, R0, #1|66-28
+1078|code|ADC.W           R3, R1, #0|65-241-0-3
+1082|code|STRD.W          R2, R3, [disk,#8]|199-233-2-35
+1086|code|LDR             R3, [scsi,#0x20]|35-106
+1088|code|MOVS            R2, #1|1-34
+1090|code|STR             R2, [disk,#0x14]|122-97
+1092|code|ADD.W           LR, R3, #0xFFFFFFFF|3-241-255-62
+1096|code|ANDS.W          LR, LR, R3|30-234-3-14
+1100|code|BNE             loc_450|0-209
+1102|code|CBNZ            R3, loc_462|67-185
+1104|code|MOV             R0, scsi|32-70
+1106|code|LDR             R3, =grub_free|25-75
+1108|code|BLX             R3; grub_free|152-71
+1110|code|LDR             R1, =aInvalidSectorS; "invalid sector size %d"|28-73
+1112|code|LDR             R2, [scsi,#0x20]|34-106
+1114|code|MOVS            R0, #0x1D|29-32
+1116|code|LDR             R3, =grub_error|27-75
+1118|code|BLX             R3; grub_error|152-71
+1120|code|B               loc_4AE|37-224
+1122|code|MOV             scsi, R2|20-70
+1124|code|STR.W           LR, [disk,#0x10]|199-248-16-224
+1128|code|LDR             R2, [disk,#0x10]|58-105
+1130|code|LSL.W           LR, R4, R2|4-250-2-254
+1134|code|CMP             LR, R3|158-69
+1136|code|BCS             loc_478|2-210
+1138|code|ADDS            R2, #1|1-50
+1140|code|STR             R2, [disk,#0x10]|58-97
+1142|code|B               loc_468|247-231
+1144|code|STRD.W          R0, R1, [SP,#0x88+var_88]|205-233-0-1
+1148|code|MOVW            R1, #0x273|64-242-115-33
+1152|code|STR             R3, [SP,#0x88+var_80]|2-147
+1154|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|14-72
+1156|code|LDR             R2, =aScsi; "scsi"|14-74
+1158|code|LDR             R3, =aLastBlockLluBl; "last_block=%llu, blocksize=%u\n"|18-75
+1160|code|BLX             R6; grub_real_dprintf|176-71
+1162|code|LDRD.W          R2, R3, [disk,#8]|215-233-2-35
+1166|code|LDR             R0, =aDiskScsiC; "disk/scsi.c"|11-72
+1168|code|MOVW            R1, #0x275|64-242-117-33
+1172|code|STRD.W          R2, R3, [SP,#0x88+var_88]|205-233-0-35
+1176|code|LDR             R2, =aScsi; "scsi"|9-74
+1178|code|LDR             R3, =aDiskTotalSecto; "Disk total sectors = %llu\n"|14-75
+1180|code|BLX             R6; grub_real_dprintf|176-71
+1182|code|B               loc_4B0|7-224
+1184|code|MOV             R0, scsi|32-70
+1186|code|LDR             R3, =grub_free|5-75
+1188|code|BLX             R3; grub_free|152-71
+1190|code|LDR             R1, =aNotAScsiDisk; "not a SCSI disk"|12-73
+1192|code|MOVS            R0, #0xC|12-32
+1194|code|LDR             R3, =grub_error|8-75
+1196|code|BLX             R3; grub_error|152-71
+1198|code|MOV             R5, R0|5-70
+1200|code|MOV             R0, R5|40-70
+1202|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+1204|code|POP.W           {R4-R11,PC}|189-232-240-143
+1208|data|DCD grub_free|152-9-0-0
+1212|data|DCD aDiskScsiC; "disk/scsi.c"|19-8-0-0
+1216|data|DCD aScsi; "scsi"|31-8-0-0
+1220|data|DCD aReadCapacity16; "READ CAPACITY16 failed\n"|174-8-0-0
+1224|data|DCD aInvalidSectorS; "invalid sector size %d"|198-8-0-0
+1228|data|DCD grub_error|148-9-0-0
+1232|data|DCD aLastBlockLluBl; "last_block=%llu, blocksize=%u\n"|221-8-0-0
+1236|data|DCD aDiskTotalSecto; "Disk total sectors = %llu\n"|252-8-0-0
+1240|data|DCD aNotAScsiDisk; "not a SCSI disk"|3-8-0-0
+1244|code|PUSH.W          {R4-R6,R8,R9,LR}|45-233-112-67
+1248|code|SUB             SP, SP, #0x18|134-176
+1250|code|LDR             R4, [disk,#0x28]|132-106
+1252|code|LDR             R5, [SP,#0x30+size]|12-157
+1254|code|LDR             R6, [SP,#0x30+buf]|13-158
+1256|code|LDRB            R1, [scsi,#4]|33-121
+1258|code|CMP             R1, #5|5-41
+1260|code|BNE             loc_4F8|4-209
+1262|code|LDR             R1, =aCannotWriteToC; "cannot write to CD-ROM"|49-73
+1264|code|MOVS            disk, #0x1D|29-32
+1266|code|LDR             R3, =grub_error|49-75
+1268|code|BLX             R3; grub_error|152-71
+1270|code|B               loc_5AC|89-224
+1272|code|CMP             R1, #0|0-41
+1274|code|BNE             loc_5AA|86-209
+1276|code|MOV             R8, R3|152-70
+1278|code|MOV             R9, R1|137-70
+1280|code|ORRS.W          disk, R8, R9|88-234-9-0
+1284|code|REV             R2, R2|18-186
+1286|code|BEQ             loc_54E|34-208
+1288|code|MOVS            R0, #0x8A|138-32
+1290|code|STRB.W          R0, [SP,#0x30+var_28]|141-248-8-0
+1294|code|LDR             R0, [scsi,#0x10]|32-105
+1296|code|REV             R3, R3|27-186
+1298|code|STRB.W          R1, [SP,#0x30+var_1A]|141-248-22-16
+1302|code|STRB.W          R1, [SP,#0x30+var_19]|141-248-23-16
+1306|code|MOVS            R1, #0x10|16-33
+1308|code|LSLS            R0, R0, #5|64-1
+1310|code|STRH.W          R2, [SP,#0x30+var_22]|173-248-14-32
+1314|code|STRB.W          R0, [SP,#0x30+var_27]|141-248-9-0
+1318|code|LSRS            R2, R2, #0x10|18-12
+1320|code|STRH.W          R2, [SP,#0x30+var_20]|173-248-16-32
+1324|code|MOV             R0, scsi|32-70
+1326|code|LDR             R2, [scsi]|34-104
+1328|code|STRH.W          R3, [SP,#0x30+var_26]|173-248-10-48
+1332|code|LSRS            R3, R3, #0x10|27-12
+1334|code|STRH.W          R3, [SP,#0x30+var_24]|173-248-12-48
+1338|code|REV             R3, R5|43-186
+1340|code|STRH.W          R3, [SP,#0x30+var_1E]|173-248-18-48
+1344|code|LSRS            R3, R3, #0x10|27-12
+1346|code|STRH.W          R3, [SP,#0x30+var_1C]|173-248-20-48
+1350|code|LDR             R3, [scsi,#0x20]|35-106
+1352|code|STR             R6, [SP,#0x30+var_30]|0-150
+1354|code|LDR             R6, [R2,#0x10]|22-105
+1356|code|B               loc_592|33-224
+1358|code|MOVS            R3, #0x2A ; '*'|42-35
+1360|code|STRB.W          R3, [SP,#0x30+var_28]|141-248-8-48
+1364|code|LDR             R3, [scsi,#0x10]|35-105
+1366|code|MOV             R0, scsi|32-70
+1368|code|STRH.W          R2, [SP,#0x30+var_26]|173-248-10-32
+1372|code|LSRS            R2, R2, #0x10|18-12
+1374|code|STRH.W          R2, [SP,#0x30+var_24]|173-248-12-32
+1378|code|LSLS            R3, R3, #5|91-1
+1380|code|STRB.W          R3, [SP,#0x30+var_27]|141-248-9-48
+1384|code|UXTH            R3, R5|171-178
+1386|code|STRB.W          R1, [SP,#0x30+var_22]|141-248-14-16
+1390|code|STRB.W          R1, [SP,#0x30+var_20+1]|141-248-17-16
+1394|code|LSRS            R2, R3, #8|26-10
+1396|code|STRH.W          R1, [SP,#0x30+var_1E]|173-248-18-16
+1400|code|ORR.W           R2, R2, R3,LSL#8|66-234-3-34
+1404|code|LDR             R3, [scsi,#0x20]|35-106
+1406|code|MOVS            R1, #0xC|12-33
+1408|code|UXTH            R2, R2|146-178
+1410|code|STRB.W          R2, [SP,#0x30+var_22+1]|141-248-15-32
+1414|code|LSRS            R2, R2, #8|18-10
+1416|code|STRB.W          R2, [SP,#0x30+var_20]|141-248-16-32
+1420|code|LDR             R2, [scsi]|34-104
+1422|code|STR             R6, [SP,#0x30+var_30]|0-150
+1424|code|LDR             R6, [R2,#0x10]|22-105
+1426|code|MULS            R3, R5|107-67
+1428|code|ADD             R2, SP, #0x30+var_28|2-170
+1430|code|BLX             R6|176-71
+1432|code|MOV             R5, R0|5-70
+1434|code|MOV             R0, scsi; scsi|32-70
+1436|code|BL              grub_scsi_request_sense_0|255-247-74-253
+1440|code|CBZ             R0, loc_5A6|8-177
+1442|code|LDR             R3, =grub_errno|6-75
+1444|code|STR             R5, [R3]|29-96
+1446|code|MOV             R0, err|40-70
+1448|code|B               loc_5AC|0-224
+1450|code|MOVS            disk, #0|0-32
+1452|code|ADD             SP, SP, #0x18|6-176
+1454|code|POP.W           {scsi-R6,R8,R9,PC}|189-232-112-131
+1458|data|ALIGN 4|0-191
+1460|data|DCD aCannotWriteToC; "cannot write to CD-ROM"|23-9-0-0
+1464|data|DCD grub_error|148-9-0-0
+1468|data|DCD grub_errno|128-9-0-0
+1472|code|PUSH            {R4-R6,LR}|112-181
+1474|code|SUB             SP, SP, #0x18|134-176
+1476|code|REV             R2, R2|18-186
+1478|code|MOVS            R1, #0x88|136-33
+1480|code|LDR             R5, [SP,#0x28+size]|10-157
+1482|code|REV             R3, R3|27-186
+1484|code|STRB.W          R1, [SP,#0x28+rd]|141-248-8-16
+1488|code|MOV             R4, scsi|4-70
+1490|code|LDR             R1, [scsi,#0x10]|1-105
+1492|code|STRH.W          R2, [SP,#0x28+rd.lba+4]|173-248-14-32
+1496|code|LSRS            R2, R2, #0x10|18-12
+1498|code|STRH.W          R2, [SP,#0x28+rd.lba+6]|173-248-16-32
+1502|code|REV             R2, R5|42-186
+1504|code|LSLS            R1, R1, #5|73-1
+1506|code|STRH.W          R3, [SP,#0x28+rd.lba]|173-248-10-48
+1510|code|STRB.W          R1, [SP,#0x28+rd.lun]|141-248-9-16
+1514|code|LSRS            R3, R3, #0x10|27-12
+1516|code|MOVS            R1, #0|0-33
+1518|code|STRH.W          R3, [SP,#0x28+rd.lba+2]|173-248-12-48
+1522|code|STRB.W          R1, [SP,#0x28+rd.reserved]|141-248-22-16
+1526|code|STRB.W          R1, [SP,#0x28+rd._control]|141-248-23-16
+1530|code|LDR             R3, [scsi,#0x20]|3-106
+1532|code|LDR             R1, [SP,#0x28+buf]|11-153
+1534|code|STRH.W          R2, [SP,#0x28+rd.size]|173-248-18-32
+1538|code|LSRS            R2, R2, #0x10|18-12
+1540|code|STRH.W          R2, [SP,#0x28+rd.size+2]|173-248-20-32
+1544|code|LDR             R2, [scsi]|2-104
+1546|code|MULS            R3, R5|107-67
+1548|code|STR             R1, [SP,#0x28+var_28]|0-145
+1550|code|MOVS            R1, #0x10|16-33
+1552|code|LDR             R6, [R2,#0xC]|214-104
+1554|code|ADD             R2, SP, #0x28+rd|2-170
+1556|code|BLX             R6|176-71
+1558|code|MOV             R5, R0|5-70
+1560|code|MOV             err, scsi; scsi|32-70
+1562|code|BL              grub_scsi_request_sense_0|255-247-11-253
+1566|code|CBZ             err_sense, loc_624|8-177
+1568|code|LDR             R3, =grub_errno|2-75
+1570|code|STR             err, [R3]|29-96
+1572|code|MOV             err_sense, err|40-70
+1574|code|ADD             SP, SP, #0x18|6-176
+1576|code|POP             {scsi-R6,PC}|112-189
+1578|data|ALIGN 4|0-191
+1580|data|DCD grub_errno|128-9-0-0
+1584|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+1588|code|SUB             SP, SP, #0x1C; size|135-176
+1590|code|LDR             R4, [disk,#0x28]|132-106
+1592|code|LDR             R5, [SP,#0x38+size]|14-157
+1594|code|LDR             R6, [SP,#0x38+buf]|15-158
+1596|code|LDRB            disk, [scsi,#4]|32-121
+1598|code|CBZ             R0, loc_646|16-177
+1600|code|CMP             R0, #5|5-40
+1602|code|BEQ             loc_68C|35-208
+1604|code|B               loc_6FA|89-224
+1606|code|MOV             R8, R3|152-70
+1608|code|MOV             R9, R0|129-70
+1610|code|ORRS.W          R7, R8, R9|88-234-9-7
+1614|code|BNE             loc_698|35-209
+1616|code|MOVS            R3, #0x28 ; '('|40-35
+1618|code|STRB.W          R3, [SP,#0x38+var_2C]|141-248-12-48
+1622|code|LDR             R3, [scsi,#0x10]|35-105
+1624|code|REV             R1, R2|17-186
+1626|code|STRB.W          R0, [SP,#0x38+var_26]|141-248-18-0
+1630|code|STRH.W          R1, [SP,#0x38+var_2A]|173-248-14-16
+1634|code|LSRS            R1, R1, #0x10|9-12
+1636|code|LSLS            R3, R3, #5|91-1
+1638|code|STRB.W          R3, [SP,#0x38+var_2B]|141-248-13-48
+1642|code|UXTH            R3, R5; sector|171-178
+1644|code|STRH.W          R1, [SP,#0x38+var_28]|173-248-16-16
+1648|code|STRB.W          R0, [SP,#0x38+var_24+1]|141-248-21-0
+1652|code|LSRS            R2, R3, #8|26-10
+1654|code|STRH.W          R0, [SP,#0x38+var_22]|173-248-22-0
+1658|code|ORR.W           R2, R2, R3,LSL#8|66-234-3-34
+1662|code|UXTH            R2, R2|146-178
+1664|code|STRB.W          R2, [SP,#0x38+var_26+1]|141-248-19-32
+1668|code|LSRS            R2, R2, #8; sector|18-10
+1670|code|STRB.W          R2, [SP,#0x38+var_24]|141-248-20-32
+1674|code|B               loc_6D4|35-224
+1676|code|MOV             R8, R3|152-70
+1678|code|MOV.W           R9, #0|79-240-0-9
+1682|code|ORRS.W          R0, R8, R9|88-234-9-0
+1686|code|BEQ             loc_6A6|6-208
+1688|code|STMEA.W         SP, {R5,R6}|141-232-96-0
+1692|code|MOV             R0, scsi; disk|32-70
+1694|code|BL              grub_scsi_read16_0|255-247-143-255
+1698|code|MOV             R5, R0|5-70
+1700|code|B               loc_6F6|39-224
+1702|code|MOVS            R3, #0xA8|168-35
+1704|code|STRB.W          R3, [SP,#0x38+var_2C]|141-248-12-48
+1708|code|LDR             R3, [scsi,#0x10]|35-105
+1710|code|REV             R1, R2|17-186
+1712|code|STRB.W          R9, [SP,#0x38+var_22]|141-248-22-144
+1716|code|STRH.W          R1, [SP,#0x38+var_2A]|173-248-14-16
+1720|code|LSRS            R1, R1, #0x10|9-12
+1722|code|LSLS            R3, R3, #5|91-1
+1724|code|STRB.W          R3, [SP,#0x38+var_2B]|141-248-13-48
+1728|code|REV             R3, R5|43-186
+1730|code|STRH.W          R1, [SP,#0x38+var_28]|173-248-16-16
+1734|code|STRH.W          R3, [SP,#0x38+var_26]|173-248-18-48
+1738|code|STRB.W          R9, [SP,#0x38+var_22+1]|141-248-23-144
+1742|code|LSRS            R3, R3, #0x10|27-12
+1744|code|STRH.W          R3, [SP,#0x38+var_24]|173-248-20-48
+1748|code|LDR             R2, [scsi]|34-104
+1750|code|MOVS            R1, #0xC|12-33
+1752|code|LDR             R3, [scsi,#0x20]|35-106
+1754|code|MOV             R0, scsi|32-70
+1756|code|STR             R6, [SP,#0x38+var_38]|0-150
+1758|code|LDR             R6, [R2,#0xC]|214-104
+1760|code|ADD.W           R2, SP, R1|13-235-1-2
+1764|code|MULS            R3, R5|107-67
+1766|code|BLX             R6|176-71
+1768|code|MOV             R5, R0|5-70
+1770|code|MOV             R0, scsi; scsi|32-70
+1772|code|BL              grub_scsi_request_sense_0|255-247-162-252
+1776|code|CBZ             R0, loc_6F6|8-177
+1778|code|LDR             R3, =grub_errno|4-75
+1780|code|STR             R5, [R3]|29-96
+1782|code|MOV             R0, err|40-70
+1784|code|B               loc_6FC|0-224
+1786|code|MOVS            R0, #0|0-32
+1788|code|ADD             SP, SP, #0x1C|7-176
+1790|code|POP.W           {scsi-R9,PC}|189-232-240-131
+1794|data|ALIGN 4|0-191
+1796|data|DCD grub_errno|128-9-0-0
+1800|code|CMP             luns, #1|1-42
+1802|code|PUSH.W          {data-R11,LR}|45-233-248-79
+1806|code|MOV             R8, bus|136-70
+1808|code|MOV             R7, luns|23-70
+1810|code|MOV             R6, data|30-70
+1812|code|BNE             loc_744|22-209
+1814|code|LDR             bus, =grub_scsi_names|28-73
+1816|code|ADD.W           R4, id, id,LSL#2|0-235-128-4
+1820|code|MOV             luns, bus|66-70
+1822|code|LDR             id, =aSD; "%s%d"|27-72
+1824|code|ADD             R1, R4|33-68
+1826|code|LDR             ctx, =grub_xasprintf|27-75
+1828|code|BLX             R3; grub_xasprintf|152-71
+1830|code|MOV             R5, sname|5-70
+1832|code|CBNZ            sname, loc_730|16-185
+1834|code|MOVS            R0, #1|1-32
+1836|code|POP.W           {R3-R11,PC}|189-232-248-143
+1840|code|LDR             R3, [ctx]|51-104
+1842|code|LDR             R1, [ctx,#4]|113-104
+1844|code|BLX             R3|152-71
+1846|code|LDR             R3, =grub_free|23-75
+1848|code|MOV             R4, R0|4-70
+1850|code|MOV             ret, sname|40-70
+1852|code|BLX             R3; grub_free|152-71
+1854|code|MOV             R0, ret|32-70
+1856|code|POP.W           {R3-R11,PC}|189-232-248-143
+1860|code|LDR.W           R9, =grub_scsi_names|223-248-64-144
+1864|code|ADD.W           R4, id, id,LSL#2|0-235-128-4
+1868|code|MOVS            R5, #0|0-37
+1870|code|CMP             i, luns|189-66
+1872|code|BGE             loc_782|23-218
+1874|code|LDR             R0, =aSDC; "%s%d%c"|17-72
+1876|code|ADD.W           R1, R9, R4|9-235-4-1
+1880|code|MOV             R2, bus|66-70
+1882|code|ADD.W           R3, i, #0x61 ; 'a'|5-241-97-3
+1886|code|LDR.W           R12, =grub_xasprintf|223-248-48-192
+1890|code|BLX             R12; grub_xasprintf|224-71
+1892|code|MOV             R11, sname|131-70
+1894|code|CMP             sname, #0|0-40
+1896|code|BEQ             loc_72A|223-208
+1898|code|LDR             R3, [ctx]|51-104
+1900|code|LDR             R1, [ctx,#4]|113-104
+1902|code|BLX             R3|152-71
+1904|code|LDR             R3, =grub_free|8-75
+1906|code|MOV             R10, R0|130-70
+1908|code|MOV             ret, sname|88-70
+1910|code|BLX             R3; grub_free|152-71
+1912|code|CMP.W           ret, #0|186-241-0-15
+1916|code|BNE             loc_72A|213-209
+1918|code|ADDS            i, #1|1-53
+1920|code|B               loc_74E|229-231
+1922|code|MOVS            R0, #0|0-32
+1924|code|POP.W           {R3-R11,PC}|189-232-248-143
+1928|data|DCD grub_scsi_names|244-7-0-0
+1932|data|DCD aSD; "%s%d"|46-9-0-0
+1936|data|DCD grub_xasprintf|120-9-0-0
+1940|data|DCD grub_free|152-9-0-0
+1944|data|DCD aSDC; "%s%d%c"|51-9-0-0
+1948|code|LDR             R3, =grub_scsi_dev_list|2-75
+1950|code|LDR             R2, [R3]|26-104
+1952|code|STR             dev, [R3]|24-96
+1954|code|STR             R2, [dev,#0x14]|66-97
+1956|code|BX              LR|112-71
+1958|data|ALIGN 4|0-191
+1960|data|DCD grub_scsi_dev_list|108-9-0-0
+1964|code|LDR             R2, =grub_scsi_dev_list|6-74
+1966|code|LDR             R3, [R2]|19-104
+1968|code|CBZ             q, locret_7C4|67-177
+1970|code|CMP             q, dev|131-66
+1972|code|BNE             loc_7BC|2-209
+1974|code|LDR             q, [q,#0x14]|91-105
+1976|code|STR             R3, [R2]|19-96
+1978|code|BX              LR|112-71
+1980|code|ADD.W           R2, q, #0x14|3-241-20-2
+1984|code|LDR             q, [q,#0x14]|91-105
+1986|code|B               loc_7B0|245-231
+1988|code|BX              LR|112-71
+1990|data|ALIGN 4|0-191
+1992|data|DCD grub_scsi_dev_list|108-9-0-0
+1996|code|PUSH            {R3,LR}|8-181
+1998|code|LDR             mod, =grub_scsi_dev_0|2-72
+2000|code|LDR             R3, =grub_disk_dev_register|2-75
+2002|code|BLX             R3; grub_disk_dev_register|152-71
+2004|code|POP             {R3,PC}|8-189
+2006|data|ALIGN 4|0-191
+2008|data|DCD grub_scsi_dev_0|60-9-0-0
+2012|data|DCD grub_disk_dev_register|124-9-0-0
+2016|code|PUSH            {R3,LR}|8-181
+2018|code|LDR             R0, =grub_scsi_dev_0|2-72
+2020|code|LDR             R3, =grub_disk_dev_unregister|2-75
+2022|code|BLX             R3; grub_disk_dev_unregister|152-71
+2024|code|POP             {R3,PC}|8-189
+2026|data|ALIGN 4|0-191
+2028|data|DCD grub_scsi_dev_0|60-9-0-0
+2032|data|DCD grub_disk_dev_unregister|156-9-0-0
+2036|data|DCB 0x75, 0x73, 0x62, 0, 0, 0x61, 0x74, 0x61, 0, 0, 0x61|117-115-98-0-0-97-116-97-0-0-97-104-99-105-0
+2051|data|DCB "not a SCSI disk",0|110-111-116-32-97-32-83-67-83-73-32-100-105-115-107-0
+2067|data|DCB "disk/scsi.c",0|100-105-115-107-47-115-99-115-105-46-99-0
+2079|data|DCB "scsi",0|115-99-115-105-0
+2084|data|DCB "dev opened",0xA,0|100-101-118-32-111-112-101-110-101-100-10-0
+2096|data|DCB "inquiry failed",0xA,0|105-110-113-117-105-114-121-32-102-97-105-108-101-100-10-0
+2112|data|DCB "inquiry: devtype=0x%02x removable=%d",0xA,0|105-110-113-117-105-114-121-58-32-100-101-118-116-121-112-101-61-48-120-37-48-50-120-32-114-101-109-111-118-97-98-108-101-61-37-100-10-0
+2150|data|DCB "unknown SCSI device",0|117-110-107-110-111-119-110-32-83-67-83-73-32-100-101-118-105-99-101-0
+2170|data|DCB "LUN is not ready - timeout",0xA,0|76-85-78-32-105-115-32-110-111-116-32-114-101-97-100-121-32-45-32-116-105-109-101-111-117-116-10-0
+2198|data|DCB "READ CAPACITY10 failed",0xA,0|82-69-65-68-32-67-65-80-65-67-73-84-89-49-48-32-102-97-105-108-101-100-10-0
+2222|data|DCB "READ CAPACITY16 failed",0xA,0|82-69-65-68-32-67-65-80-65-67-73-84-89-49-54-32-102-97-105-108-101-100-10-0
+2246|data|DCB "invalid sector size %d",0|105-110-118-97-108-105-100-32-115-101-99-116-111-114-32-115-105-122-101-32-37-100-0
+2269|data|DCB "last_block=%llu, blocksize=%u",0xA,0|108-97-115-116-95-98-108-111-99-107-61-37-108-108-117-44-32-98-108-111-99-107-115-105-122-101-61-37-117-10-0
+2300|data|DCB "Disk total sectors = %llu",0xA,0|68-105-115-107-32-116-111-116-97-108-32-115-101-99-116-111-114-115-32-61-32-37-108-108-117-10-0
+2327|data|DCB "cannot write to CD-ROM",0|99-97-110-110-111-116-32-119-114-105-116-101-32-116-111-32-67-68-45-82-79-77-0
+2350|data|DCB "%s%d",0|37-115-37-100-0
+2355|data|DCB "%s%d%c",0|37-115-37-100-37-99-0
+2364|data|grub_disk_dev <aScsi, GRUB_DISK_DEVICE_SCSI_ID, grub_scsi_iterate+1, \; "scsi"|31-8-0-0-9-0-0-0-1-0-0-0-157-0-0-0-129-0-0-0-49-6-0-0-221-4-0-0-0-0-0-0
+2396|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

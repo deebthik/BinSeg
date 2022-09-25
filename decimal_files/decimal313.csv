@@ -1,0 +1,99 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_dvh_partition_map|39-75
+2|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+6|code|SUB.W           SP, SP, #0x244|173-245-17-125
+10|code|MOV             R6, hook|14-70
+12|code|MOV             R7, hook_data|23-70
+14|code|MOV.W           hook, #0x200|79-244-0-113
+18|code|STR             R3, [SP,#0x260+p.partmap]|14-147
+20|code|MOVS            hook_data, #0|0-34
+22|code|MOVS            R3, #0|0-35
+24|code|STR             R1, [SP,#0x260+var_258]|2-145
+26|code|ADD             R5, SP, #0x260+var_220|16-173
+28|code|STRD.W          R2, R3, [SP,#0x260+var_260]|205-233-0-35
+32|code|MOV             R8, disk|128-70
+34|code|STR             R5, [SP,#0x260+var_254]|3-149
+36|code|LDR             R1, =grub_disk_read|31-73
+38|code|BLX             R1; grub_disk_read|136-71
+40|code|CMP             err, #0|0-40
+42|code|BNE             loc_96|52-209
+44|code|LDR             R2, [R5]|42-104
+46|code|LDR             R3, =0x41A9E50B|30-75
+48|code|CMP             R2, R3|154-66
+50|code|BEQ             loc_3A|2-208
+52|code|MOVS            err, #0x13|19-32
+54|code|LDR             R1, =aNotADvhPartiti; "not a dvh partition table"|29-73
+56|code|B               loc_52|11-224
+58|code|MOV             R3, err|3-70
+60|code|MOV             R4, err|4-70
+62|code|LDR.W           R2, [R5,R3,LSL#2]|85-248-35-32
+66|code|ADDS            R3, #1|1-51
+68|code|CMP             R3, #0x80|128-43
+70|code|REV             R2, R2|18-186
+72|code|ADD             R4, R2|20-68
+74|code|BNE             loc_3E|248-209
+76|code|CBZ             R4, loc_58|36-177
+78|code|LDR             R1, =aInvalidChecksu; "invalid checksum"|24-73
+80|code|MOVS            err, #0x13|19-32
+82|code|LDR             R3, =grub_error|24-75
+84|code|BLX             R3; grub_error|152-71
+86|code|B               loc_96|30-224
+88|code|MOV             R9, R4|161-70
+90|code|LDR.W           R3, [R5,#0x138]|213-248-56-49
+94|code|CBNZ            R3, loc_6A|35-185
+96|code|ADDS            partnum, #1|1-52
+98|code|ADDS            R5, #0xC|12-53
+100|code|CMP             partnum, #0x10|16-44
+102|code|BNE             loc_5A|248-209
+104|code|B               loc_92|19-224
+106|code|CMP             partnum, #0xA|10-44
+108|code|BEQ             loc_60|248-208
+110|code|LDR.W           R2, [R5,#0x13C]|213-248-60-33
+114|code|MOV             R0, disk|64-70
+116|code|ADD             R1, SP, #0x260+p|4-169
+118|code|REV             R3, R3|27-186
+120|code|REV             R2, R2|18-186
+122|code|STR             R2, [SP,#0x260+p.start]|6-146
+124|code|MOV             R2, hook_data|58-70
+126|code|STR.W           R9, [SP,#0x260+p.start+4]|205-248-28-144
+130|code|STR             R3, [SP,#0x260+p.len]|8-147
+132|code|STR.W           R9, [SP,#0x260+p.len+4]|205-248-36-144
+136|code|STR             partnum, [SP,#0x260+p.index]|12-148
+138|code|STR             partnum, [SP,#0x260+p]|4-148
+140|code|BLX             hook|176-71
+142|code|CMP             R0, #0|0-40
+144|code|BEQ             loc_60|230-208
+146|code|LDR             R3, =grub_errno|9-75
+148|code|LDR             R0, [R3]|24-104
+150|code|ADD.W           SP, SP, #0x244|13-245-17-125
+154|code|POP.W           {R4-R9,PC}|189-232-240-131
+158|data|ALIGN 0x10|0-191
+160|data|DCD grub_dvh_partition_map|24-1-0-0
+164|data|DCD grub_disk_read|60-1-0-0
+168|data|DCD 0x41A9E50B|11-229-169-65
+172|data|DCD aNotADvhPartiti; "not a dvh partition table"|232-0-0-0
+176|data|DCD aInvalidChecksu; "invalid checksum"|2-1-0-0
+180|data|DCD grub_error|68-1-0-0
+184|data|DCD grub_errno|64-1-0-0
+188|code|PUSH            {R3,LR}|8-181
+190|code|LDR             mod, =grub_partition_map_list|2-72
+192|code|LDR             R1, =grub_dvh_partition_map|2-73
+194|code|LDR             R3, =grub_list_push|3-75
+196|code|BLX             R3; grub_list_push|152-71
+198|code|POP             {R3,PC}|8-189
+200|data|DCD grub_partition_map_list|56-1-0-0
+204|data|DCD grub_dvh_partition_map|24-1-0-0
+208|data|DCD grub_list_push|76-1-0-0
+212|code|PUSH            {R3,LR}|8-181
+214|code|LDR             R0, =grub_dvh_partition_map|2-72
+216|code|LDR             R3, =grub_list_remove|2-75
+218|code|BLX             R3; grub_list_remove|152-71
+220|code|POP             {R3,PC}|8-189
+222|data|ALIGN 0x10|0-191
+224|data|DCD grub_dvh_partition_map|24-1-0-0
+228|data|DCD grub_list_remove|72-1-0-0
+232|data|DCB "not a dvh partition table",0|110-111-116-32-97-32-100-118-104-32-112-97-114-116-105-116-105-111-110-32-116-97-98-108-101-0
+258|data|DCB "invalid checksum",0|105-110-118-97-108-105-100-32-99-104-101-99-107-115-117-109-0
+275|data|DCB "dvh",0|100-118-104-0
+280|data|grub_partition_map <0, 0, aDvh, dvh_partition_map_iterate+1>; "dvh"|0-0-0-0-0-0-0-0-19-1-0-0-1-0-0-0
+296|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

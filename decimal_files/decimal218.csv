@@ -1,0 +1,181 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =grub_loader_loaded|1-75
+2|code|LDR             R0, [R3]|24-104
+4|code|BX              LR|112-71
+6|data|ALIGN 4|0-191
+8|data|DCD grub_loader_loaded|204-1-0-0
+12|code|PUSH            {R4-R6,LR}|112-181
+14|code|MOV             R5, preboot_rest_func|13-70
+16|code|MOV             R4, prio|20-70
+18|code|MOV             R6, new_preboot|6-70
+20|code|CBNZ            new_preboot, loc_1C|16-185
+22|code|CBNZ            preboot_rest_func, loc_1C|9-185
+24|code|MOVS            new_preboot, #0|0-32
+26|code|POP             {prio-preboot_func,PC}|112-189
+28|code|MOVS            new_preboot, #0x14|20-32
+30|code|LDR             R3, =grub_malloc|15-75
+32|code|BLX             R3; grub_malloc|152-71
+34|code|CMP             new_preboot, #0|0-40
+36|code|BEQ             loc_18|248-208
+38|code|LDR             R1, =grub_loader_loaded|14-73
+40|code|STR             preboot_func, [new_preboot]|6-96
+42|code|STR             preboot_rest_func, [new_preboot,#4]|69-96
+44|code|LDR             R3, [R1,#(preboots_head - 0x1CC)]|75-104
+46|code|STR             prio, [new_preboot,#8]|132-96
+48|code|CBZ             cur, loc_50|115-177
+50|code|LDR             R2, [cur,#8]|154-104
+52|code|CMP             R2, prio|162-66
+54|code|BLS             loc_3C|1-217
+56|code|LDR             cur, [cur,#0xC]|219-104
+58|code|B               loc_30|249-231
+60|code|LDR             R2, [cur,#0x10]|26-105
+62|code|STR             cur, [new_preboot,#0xC]|195-96
+64|code|STR             R2, [new_preboot,#0x10]|2-97
+66|code|STR             new_preboot, [cur,#0x10]|24-97
+68|code|LDR             R3, [new_preboot,#0x10]|3-105
+70|code|CBZ             R3, loc_4C|11-177
+72|code|STR             new_preboot, [R3,#0xC]|216-96
+74|code|POP             {prio-preboot_func,PC}|112-189
+76|code|STR             new_preboot, [R1,#(preboots_head - 0x1CC)]|72-96
+78|code|POP             {prio-preboot_func,PC}|112-189
+80|code|STR             cur, [new_preboot,#0xC]|195-96
+82|code|LDR             cur, [R1,#(preboots_tail - 0x1CC)]|139-104
+84|code|STR             new_preboot, [R1,#(preboots_tail - 0x1CC)]|136-96
+86|code|STR             R3, [new_preboot,#0x10]|3-97
+88|code|B               loc_44|244-231
+90|data|ALIGN 4|0-191
+92|data|DCD grub_malloc|244-1-0-0
+96|data|DCD grub_loader_loaded|204-1-0-0
+100|code|PUSH            {R3,LR}|8-181
+102|code|LDR             R3, [preb,#0xC]|195-104
+104|code|LDR             R2, [preb,#0x10]|2-105
+106|code|CBZ             R3, loc_70|11-177
+108|code|STR             R2, [R3,#0x10]|26-97
+110|code|B               loc_74|1-224
+112|code|LDR             R1, =grub_loader_loaded|5-73
+114|code|STR             R2, [R1,#(preboots_tail - 0x1CC)]|138-96
+116|code|LDR             R2, [preb,#0x10]|2-105
+118|code|CBZ             R2, loc_7C|10-177
+120|code|STR             R3, [R2,#0xC]|211-96
+122|code|B               loc_80|1-224
+124|code|LDR             R2, =grub_loader_loaded|2-74
+126|code|STR             R3, [R2,#(preboots_head - 0x1CC)]|83-96
+128|code|LDR             R3, =grub_free|2-75
+130|code|BLX             R3; grub_free|152-71
+132|code|POP             {R3,PC}|8-189
+134|data|ALIGN 4|0-191
+136|data|DCD grub_loader_loaded|204-1-0-0
+140|data|DCD grub_free|252-1-0-0
+144|code|PUSH            {R3-R7,LR}|248-181
+146|code|MOV             R7, boot|7-70
+148|code|LDR             R4, =grub_loader_loaded|6-76
+150|code|MOV             R6, unload|14-70
+152|code|MOV             R5, flags|21-70
+154|code|LDR             R3, [R4]|35-104
+156|code|CBZ             R3, loc_A4|19-177
+158|code|LDR             R3, [R4,#(grub_loader_unload_func - 0x1CC)]|227-104
+160|code|CBZ             R3, loc_A4|3-177
+162|code|BLX             R3|152-71
+164|code|MOVS            R3, #1|1-35
+166|code|STR             boot, [R4,#(grub_loader_boot_func - 0x1CC)]|39-97
+168|code|STR             unload, [R4,#(grub_loader_unload_func - 0x1CC)]|230-96
+170|code|STR             flags, [R4,#(grub_loader_flags - 0x1CC)]|101-97
+172|code|STR             R3, [R4]|35-96
+174|code|POP             {R3-boot,PC}|248-189
+176|data|DCD grub_loader_loaded|204-1-0-0
+180|code|PUSH            {R4,LR}|16-181
+182|code|LDR             R4, =grub_loader_loaded|5-76
+184|code|LDR             R3, [R4]|35-104
+186|code|CBZ             R3, loc_C2|19-177
+188|code|LDR             R3, [R4,#(grub_loader_unload_func - 0x1CC)]|227-104
+190|code|CBZ             R3, loc_C2|3-177
+192|code|BLX             R3|152-71
+194|code|MOVS            R3, #0|0-35
+196|code|STR             R3, [R4,#(grub_loader_boot_func - 0x1CC)]|35-97
+198|code|STR             R3, [R4,#(grub_loader_unload_func - 0x1CC)]|227-96
+200|code|STR             R3, [R4]|35-96
+202|code|POP             {R4,PC}|16-189
+204|data|DCD grub_loader_loaded|204-1-0-0
+208|code|PUSH            {R4-R6,LR}|112-181
+210|code|LDR             R5, =grub_loader_loaded|20-77
+212|code|LDR             R3, [R5]|43-104
+214|code|CBNZ            R3, loc_E2|35-185
+216|code|LDR             R1, =aYouNeedToLoadT; "you need to load the kernel first"|19-73
+218|code|MOVS            R0, #0x16|22-32
+220|code|LDR             R3, =grub_error|19-75
+222|code|BLX             R3; grub_error|152-71
+224|code|POP             {R4-R6,PC}|112-189
+226|code|LDR             R0, [R5,#(grub_loader_flags - 0x1CC)]|104-105
+228|code|LDR             R3, =grub_machine_fini|18-75
+230|code|BLX             R3; grub_machine_fini|152-71
+232|code|LDR             R6, [R5,#(preboots_head - 0x1CC)]|110-104
+234|code|CBZ             cur, loc_106|102-177
+236|code|LDR             R3, [cur]|51-104
+238|code|LDR             R0, [R5,#(grub_loader_flags - 0x1CC)]|104-105
+240|code|BLX             R3|152-71
+242|code|MOV             R4, err|4-70
+244|code|CBZ             err, loc_102|40-177
+246|code|LDR             R5, [cur,#0x10]|53-105
+248|code|CBZ             cur, loc_120|149-177
+250|code|LDR             R3, [cur,#4]|107-104
+252|code|BLX             R3|152-71
+254|code|LDR             cur, [cur,#0x10]|45-105
+256|code|B               loc_F8|250-231
+258|code|LDR             cur, [cur,#0xC]|246-104
+260|code|B               loc_EA|241-231
+262|code|LDR             R3, [R5,#(grub_loader_boot_func - 0x1CC)]|43-105
+264|code|BLX             R3|152-71
+266|code|LDR             R5, [R5,#(preboots_tail - 0x1CC)]|173-104
+268|code|MOV             R4, R0|4-70
+270|code|CBZ             R5, loc_120|61-177
+272|code|LDR             R3, [R5,#4]|107-104
+274|code|CBNZ            err, loc_11A|20-185
+276|code|BLX             R3|152-71
+278|code|MOV             err, R0|4-70
+280|code|B               loc_11C|0-224
+282|code|BLX             R3|152-71
+284|code|LDR             R5, [R5,#0x10]|45-105
+286|code|B               loc_10E|246-231
+288|code|MOV             R0, R4|32-70
+290|code|POP             {R4-R6,PC}|112-189
+292|data|DCD grub_loader_loaded|204-1-0-0
+296|data|DCD aYouNeedToLoadT; "you need to load the kernel first"|120-1-0-0
+300|data|DCD grub_error|248-1-0-0
+304|data|DCD grub_machine_fini|232-1-0-0
+308|code|B.W             grub_loader_boot|255-247-204-191
+312|code|PUSH            {mod,R1,R4,LR}|19-181
+314|code|MOVS            R2, #0|0-34
+316|code|LDR             R1, =(grub_cmd_boot+1)|4-73
+318|code|STR             R2, [SP,#0x10+var_10]|0-146
+320|code|LDR             R3, =aBootAnOperatin; "Boot an operating system."|4-75
+322|code|LDR             R4, =grub_register_command_prio|5-76
+324|code|LDR             mod, =aBoot; "boot"|5-72
+326|code|BLX             R4; grub_register_command_prio|160-71
+328|code|LDR             R3, =grub_loader_loaded|5-75
+330|code|STR             R0, [R3,#(cmd_boot - 0x1CC)]|152-97
+332|code|ADD             SP, SP, #8|2-176
+334|code|POP             {R4,PC}|16-189
+336|data|DCD grub_cmd_boot+1|53-1-0-0
+340|data|DCD aBootAnOperatin; "Boot an operating system."|159-1-0-0
+344|data|DCD grub_register_command_prio|236-1-0-0
+348|data|DCD aBoot; "boot"|154-1-0-0
+352|data|DCD grub_loader_loaded|204-1-0-0
+356|code|PUSH            {R3,LR}|8-181
+358|code|LDR             R3, =grub_loader_loaded|2-75
+360|code|LDR             R0, [R3,#(cmd_boot - 0x1CC)]|152-105
+362|code|LDR             R3, =grub_unregister_command|2-75
+364|code|BLX             R3; grub_unregister_command|152-71
+366|code|POP             {R3,PC}|8-189
+368|data|DCD grub_loader_loaded|204-1-0-0
+372|data|DCD grub_unregister_command|240-1-0-0
+376|data|DCB "you need to load the kernel first",0|121-111-117-32-110-101-101-100-32-116-111-32-108-111-97-100-32-116-104-101-32-107-101-114-110-101-108-32-102-105-114-115-116-0
+410|data|DCB "boot",0|98-111-111-116-0
+415|data|DCB "Boot an operating system.",0|66-111-111-116-32-97-110-32-111-112-101-114-97-116-105-110-103-32-115-121-115-116-101-109-46-0
+441|data||255
+442|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+460|data|% 4|255-255-255-255
+464|data|% 4|255-255-255-255
+468|data|% 4|255-255-255-255
+472|data|% 4|255-255-255-255
+476|data|% 4|255-255-255-255
+480|data|% 4|255-255-255-255

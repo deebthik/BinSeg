@@ -1,0 +1,276 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x44|145-176
+6|code|LDR             R3, =grub_disk_get_size|182-75
+8|code|MOV             R5, disk|5-70
+10|code|MOV             R10, id|138-70
+12|code|MOV             R11, start_sector|147-70
+14|code|BLX             R3; grub_disk_get_size|152-71
+16|code|CMP.W           R1, #0xFFFFFFFF|177-241-255-63
+20|code|MOV             R8, R0|128-70
+22|code|IT EQ|8-191
+24|code|CMPEQ.W         R0, #0xFFFFFFFF|176-241-255-63
+28|code|MOV             R9, R1|137-70
+30|code|BEQ.W           loc_2D6|0-240-90-129
+34|code|BIC.W           R6, R0, #0x7F|32-240-127-6
+38|code|MOV.W           R0, #0x1000|79-244-128-80
+42|code|SUBS            R6, #0x80|128-62
+44|code|ADC.W           R7, R1, #0xFFFFFFFF|65-241-255-55
+48|code|LDR             R1, =grub_malloc|172-73
+50|code|STR             R1, [SP,#0x68+var_4C]|7-145
+52|code|BLX             R1; grub_malloc|136-71
+54|code|MOV             R4, sb|4-70
+56|code|CMP             sb, #0|0-40
+58|code|BEQ.W           loc_2D6|0-240-76-129
+62|code|MOVS            R2, #0|0-34
+64|code|MOVS            R3, #0|0-35
+66|code|STR             sb, [SP,#0x68+var_5C]|3-144
+68|code|MOV             sb, disk|40-70
+70|code|STRD.W          R2, R3, [SP,#0x68+var_68]|205-233-0-35
+74|code|MOV.W           R3, #0x1000|79-244-128-83
+78|code|LDR             disk, =grub_disk_read|166-77
+80|code|MOV             R2, R6|50-70
+82|code|STR             R3, [SP,#0x68+var_60]|2-147
+84|code|MOV             R3, R7|59-70
+86|code|BLX             R5; grub_disk_read|168-71
+88|code|LDR             R5, =grub_free|164-77
+90|code|CMP             R0, #0|0-40
+92|code|BNE.W           fail|64-240-57-129
+96|code|LDRB            R2, [sb,#1]|98-120
+98|code|LDRB            R3, [sb]|35-120
+100|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+104|code|LDRB            R2, [sb,#2]|162-120
+106|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+110|code|LDRB            R2, [sb,#3]|226-120
+112|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+116|code|LDR             R2, =0xFC4E2BA9|158-74
+118|code|CMP             R3, R2|147-66
+120|code|BNE.W           fail|64-240-43-129
+124|code|LDRB            R2, [sb,#5]|98-121
+126|code|LDRB            R3, [sb,#4]|35-121
+128|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+132|code|LDRB            R2, [sb,#6]|162-121
+134|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+138|code|LDRB            R2, [sb,#7]|226-121
+140|code|ORRS.W          R3, R3, R2,LSL#24|83-234-2-99
+144|code|BNE.W           fail|64-240-31-129
+148|code|LDRB            R2, [sb,#9]|98-122
+150|code|LDRB            R3, [sb,#8]|35-122
+152|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+156|code|LDRB            R2, [sb,#0xA]|162-122
+158|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+162|code|LDRB            R2, [sb,#0xB]|226-122
+164|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+168|code|CMP.W           R3, #0x5A000000|179-241-180-79
+172|code|BNE.W           fail|64-240-17-129
+176|code|LDRB.W          R2, [sb,#0x21]|148-248-33-32
+180|code|LDRB.W          R3, [sb,#0x20]|148-248-32-48
+184|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+188|code|LDRB.W          R3, [sb,#0x22]|148-248-34-48
+192|code|ORR.W           R2, R2, R3,LSL#16|66-234-3-66
+196|code|LDRB.W          R3, [sb,#0x23]|148-248-35-48
+200|code|ORR.W           R2, R2, R3,LSL#24|66-234-3-98
+204|code|MOVS            R3, #0|0-35
+206|code|REV             R2, R2|18-186
+208|code|ADDS            R2, R2, R2|146-24
+210|code|ADCS            R3, R3|91-65
+212|code|CMP             R3, R9|75-69
+214|code|IT EQ|8-191
+216|code|CMPEQ           R2, R8|66-69
+218|code|BCS.W           fail|128-240-250-128
+222|code|LDRB.W          R8, [sb,#0x1D]|148-248-29-128
+226|code|LDRB            R3, [sb,#0x1C]|35-127
+228|code|LDR             R1, [SP,#0x68+var_4C]|7-153
+230|code|ORR.W           R8, R3, R8,LSL#8|67-234-8-40
+234|code|LDRB            R3, [sb,#0x1E]|163-127
+236|code|ORR.W           R8, R8, R3,LSL#16|72-234-3-72
+240|code|LDRB            R3, [sb,#0x1F]|227-127
+242|code|ORR.W           R8, R8, R3,LSL#24|72-234-3-104
+246|code|REV.W           R8, R8|152-250-136-248
+250|code|CMN.W           R8, #4|24-241-4-15
+254|code|BEQ             loc_120|15-208
+256|code|CMP.W           level, #1|184-241-1-15
+260|code|BLS             loc_124|14-217
+262|code|SUB.W           R3, level, #4|168-241-4-3
+266|code|CMP             R3, #2|2-43
+268|code|BLS             loc_124|10-217
+270|code|CMP.W           level, #0xA|184-241-10-15
+274|code|BEQ             loc_124|7-208
+276|code|LDR             R1, =aUnsupportedRai; "unsupported RAID level: %d"|119-73
+278|code|MOV             R2, level|66-70
+280|code|LDR             R3, =grub_error|119-75
+282|code|MOVS            R0, #0x18|24-32
+284|code|BLX             R3; grub_error|152-71
+286|code|B               fail|216-224
+288|code|MOV.W           R8, #1|79-240-1-8
+292|code|LDRB.W          R2, [sb,#0xF81]|148-248-129-47
+296|code|LDRB.W          R3, [sb,#0xF80]|148-248-128-63
+300|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+304|code|LDRB.W          R2, [sb,#0xF82]|148-248-130-47
+308|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+312|code|LDRB.W          R2, [sb,#0xF83]|148-248-131-47
+316|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+320|code|REV             R3, R3|27-186
+322|code|SUB.W           R3, R3, #0xFF00|163-245-127-67
+326|code|SUBS            R3, #0xFE|254-59
+328|code|CMP             R3, #1|1-43
+330|code|BLS.W           fail|64-242-194-128
+334|code|MOVS            R0, #0x10|16-32
+336|code|BLX             R1|136-71
+338|code|MOV             R9, uuid|129-70
+340|code|CMP             uuid, #0|0-40
+342|code|BEQ.W           fail|0-240-188-128
+346|code|LDRB            R2, [sb,#0x15]|98-125
+348|code|MOVS            R1, #0x20 ; ' '|32-33
+350|code|LDRB            R3, [sb,#0x14]|35-125
+352|code|LDR.W           R12, =grub_snprintf|223-248-160-193
+356|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+360|code|LDRB            R2, [sb,#0x16]|162-125
+362|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+366|code|LDRB            R2, [sb,#0x17]|226-125
+368|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+372|code|REV             R3, R3|27-186
+374|code|STR             R3, [uuid]|3-96
+376|code|LDRB.W          R2, [sb,#0x35]|148-248-53-32
+380|code|LDRB.W          R3, [sb,#0x34]|148-248-52-48
+384|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+388|code|LDRB.W          R2, [sb,#0x36]|148-248-54-32
+392|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+396|code|LDRB.W          R2, [sb,#0x37]|148-248-55-32
+400|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+404|code|REV             R3, R3|27-186
+406|code|STR             R3, [uuid,#4]|67-96
+408|code|LDRB.W          R2, [sb,#0x39]|148-248-57-32
+412|code|LDRB.W          R3, [sb,#0x38]|148-248-56-48
+416|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+420|code|LDRB.W          R2, [sb,#0x3A]|148-248-58-32
+424|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+428|code|LDRB.W          R2, [sb,#0x3B]|148-248-59-32
+432|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+436|code|REV             R3, R3|27-186
+438|code|STR             R3, [uuid,#8]|131-96
+440|code|LDRB.W          R2, [sb,#0x3D]|148-248-61-32
+444|code|LDRB.W          R3, [sb,#0x3C]|148-248-60-48
+448|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+452|code|LDRB.W          R2, [sb,#0x3E]|148-248-62-32
+456|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+460|code|LDRB.W          R2, [sb,#0x3F]|148-248-63-32
+464|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+468|code|MOVS            R2, #0|0-34
+470|code|REV             R3, R3|27-186
+472|code|STR             R3, [uuid,#0xC]|195-96
+474|code|MOVS            R3, #0|0-35
+476|code|STRD.W          R2, R3, [start_sector]|203-233-0-35
+480|code|MOVS            R3, #0|0-35
+482|code|STR.W           R3, [id,#4]|202-248-4-48
+486|code|LDRB.W          R2, [sb,#0xF81]|148-248-129-47
+490|code|ADD             uuid, SP, #0x68+buf|8-168
+492|code|LDRB.W          R3, [sb,#0xF80]|148-248-128-63
+496|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+500|code|LDRB.W          R2, [sb,#0xF82]|148-248-130-47
+504|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+508|code|LDRB.W          R2, [sb,#0xF83]|148-248-131-47
+512|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+516|code|REV             R3, R3|27-186
+518|code|STR.W           R3, [id]|202-248-0-48
+522|code|LDRB.W          R2, [sb,#0x2D]|148-248-45-32
+526|code|LDRB.W          R3, [sb,#0x2C]|148-248-44-48
+530|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+534|code|LDRB.W          R2, [sb,#0x2E]|148-248-46-32
+538|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+542|code|LDRB.W          R2, [sb,#0x2F]|148-248-47-32
+546|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+550|code|LDR             R2, =aMdD; "md%d"|53-74
+552|code|REV             R3, R3|27-186
+554|code|BLX             R12; grub_snprintf|224-71
+556|code|LDRB.W          R2, [sb,#0x29]|148-248-41-32
+560|code|LDRB.W          R3, [sb,#0x28]|148-248-40-48
+564|code|LDRB.W          R1, [sb,#0x21]|148-248-33-16
+568|code|ORR.W           R2, R3, R2,LSL#8|67-234-2-34
+572|code|LDRB.W          R3, [sb,#0x2A]|148-248-42-48
+576|code|ORR.W           R2, R2, R3,LSL#16|66-234-3-66
+580|code|LDRB.W          R3, [sb,#0x2B]|148-248-43-48
+584|code|ORR.W           R2, R2, R3,LSL#24|66-234-3-98
+588|code|LDRB.W          R3, [sb,#0x20]|148-248-32-48
+592|code|REV             R2, R2|18-186
+594|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+598|code|LDRB.W          R1, [sb,#0x22]|148-248-34-16
+602|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+606|code|LDRB.W          R1, [sb,#0x23]|148-248-35-16
+610|code|ORRS.W          R3, R3, R1,LSL#24|83-234-1-99
+614|code|BEQ             loc_270|3-208
+616|code|REV             R6, R3|30-186
+618|code|MOVS            R7, #0|0-39
+620|code|ADDS            R6, R6, R6|182-25
+622|code|ADCS            R7, R7|127-65
+624|code|LDRB.W          R1, [sb,#0x105]|148-248-5-17
+628|code|LDRB.W          R3, [sb,#0x104]|148-248-4-49
+632|code|LDRB.W          R0, [sb,#0x101]|148-248-1-1
+636|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+640|code|LDRB.W          R1, [sb,#0x106]|148-248-6-17
+644|code|ORR.W           R3, R3, R1,LSL#16|67-234-1-67
+648|code|LDRB.W          R1, [sb,#0x107]|148-248-7-17
+652|code|ORR.W           R3, R3, R1,LSL#24|67-234-1-99
+656|code|REV             R1, R3|25-186
+658|code|LDRB.W          R3, [sb,#0x100]|148-248-0-49
+662|code|ORR.W           R3, R3, R0,LSL#8|67-234-0-35
+666|code|LDRB.W          R0, [sb,#0x102]|148-248-2-1
+670|code|LSRS            R1, R1, #9|73-10
+672|code|ORR.W           R3, R3, R0,LSL#16|67-234-0-67
+676|code|LDRB.W          R0, [sb,#0x103]|148-248-3-1
+680|code|STRD.W          R6, R7, [SP,#0x68+var_68]|205-233-0-103
+684|code|STR             R1, [SP,#0x68+var_60]|2-145
+686|code|MOVS            R1, #0|0-33
+688|code|ORR.W           R3, R3, R0,LSL#24|67-234-0-99
+692|code|STR             R1, [SP,#0x68+var_5C]|3-145
+694|code|REV             R3, R3|27-186
+696|code|MOV             R1, uuid|73-70
+698|code|STR             R3, [SP,#0x68+var_58]|4-147
+700|code|MOVS            R0, #0x10|16-32
+702|code|ADD             R3, SP, #0x68+buf|8-171
+704|code|LDR             R6, =grub_diskfilter_make_raid|15-78
+706|code|STR.W           R8, [SP,#0x68+var_54]|205-248-20-128
+710|code|BLX             R6; grub_diskfilter_make_raid|176-71
+712|code|MOV             R6, R0|6-70
+714|code|MOV             ret, sb|32-70
+716|code|BLX             R5; grub_free|168-71
+718|code|MOV             R0, ret|48-70
+720|code|B               loc_2D8|2-224
+722|code|MOV             R0, sb|32-70
+724|code|BLX             R5; grub_free|168-71
+726|code|MOVS            R0, #0|0-32
+728|code|ADD             SP, SP, #0x44 ; 'D'|17-176
+730|code|POP.W           {R4-start_sector,PC}|189-232-240-143
+734|data|ALIGN 0x10|0-191
+736|data|DCD grub_disk_get_size|128-3-0-0
+740|data|DCD grub_malloc|140-3-0-0
+744|data|DCD grub_disk_read|136-3-0-0
+748|data|DCD grub_free|160-3-0-0
+752|data|DCD 0xFC4E2BA9|169-43-78-252
+756|data|DCD aUnsupportedRai; "unsupported RAID level: %d"|52-3-0-0
+760|data|DCD grub_error|152-3-0-0
+764|data|DCD aMdD; "md%d"|79-3-0-0
+768|data|DCD grub_diskfilter_make_raid|144-3-0-0
+772|data|DCD grub_snprintf|132-3-0-0
+776|code|PUSH            {R3,LR}|8-181
+778|code|LDR             mod, =grub_diskfilter_list|2-72
+780|code|LDR             R1, =grub_mdraid_dev|2-73
+782|code|LDR             R3, =grub_list_push|3-75
+784|code|BLX             R3; grub_list_push|152-71
+786|code|POP             {R3,PC}|8-189
+788|data|DCD grub_diskfilter_list|148-3-0-0
+792|data|DCD grub_mdraid_dev|96-3-0-0
+796|data|DCD grub_list_push|164-3-0-0
+800|code|PUSH            {R3,LR}|8-181
+802|code|LDR             R0, =grub_mdraid_dev|2-72
+804|code|LDR             R3, =grub_list_remove|2-75
+806|code|BLX             R3; grub_list_remove|152-71
+808|code|POP             {R3,PC}|8-189
+810|data|ALIGN 4|0-191
+812|data|DCD grub_mdraid_dev|96-3-0-0
+816|data|DCD grub_list_remove|156-3-0-0
+820|data|DCB "unsupported RAID level: %d",0|117-110-115-117-112-112-111-114-116-101-100-32-82-65-73-68-32-108-101-118-101-108-58-32-37-100-0
+847|data|DCB "md%d",0|109-100-37-100-0
+852|data|DCB "mdraid09_be",0|109-100-114-97-105-100-48-57-95-98-101-0
+864|data|grub_diskfilter <0, 0, aMdraid09Be, grub_mdraid_detect+1>; "mdraid09_be"|0-0-0-0-0-0-0-0-84-3-0-0-1-0-0-0
+880|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

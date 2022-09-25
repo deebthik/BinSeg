@@ -1,0 +1,173 @@
+address|type|disassembly|bytes
+0|code|CMP             argc, #2|2-41
+2|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+6|code|MOV             R11, args|147-70
+8|code|SUB             SP, SP, #0x24|137-176
+10|code|BEQ             loc_16|4-208
+12|code|LDR             argc, =aTwoArgumentsEx; "two arguments expected"|68-73
+14|code|MOVS            cmd, #0x12|18-32
+16|code|LDR             R3, =grub_error|68-75
+18|code|BLX             R3; grub_error|152-71
+20|code|B               loc_11A|129-224
+22|code|LDM             args, {argc,args}|6-202
+24|code|LDR             cmd, =aCompareFileSWi; "Compare file `%s' with `%s':\n"|67-72
+26|code|LDR             R4, =grub_printf_|68-76
+28|code|BLX             R4; grub_printf_|160-71
+30|code|LDR             R5, =grub_file_open|68-77
+32|code|LDR.W           R0, [args]|219-248-0-0
+36|code|BLX             R5; grub_file_open|168-71
+38|code|MOV             R6, R0|6-70
+40|code|LDR.W           file1, [args,#4]|219-248-4-0
+44|code|BLX             R5; grub_file_open|168-71
+46|code|MOV             R5, R0|5-70
+48|code|CMP             file1, #0|0-46
+50|code|BEQ             loc_F2|94-208
+52|code|CMP             file2, #0|0-40
+54|code|BEQ             loc_F8|95-208
+56|code|LDRD.W          R2, R3, [file1,#0x38]|214-233-14-35
+60|code|LDRD.W          file2, R1, [file2,#0x38]|208-233-14-1
+64|code|CMP             R3, R1|139-66
+66|code|IT EQ|8-191
+68|code|CMPEQ           R2, R0|130-66
+70|code|BEQ             loc_62|12-208
+72|code|LDR.W           R7, [args]|219-248-0-112
+76|code|STRD.W          R0, R1, [SP,#0x48+var_40]|205-233-2-1
+80|code|LDR             R0, =aFilesDifferInS; "Files differ in size: %llu [%s], %llu ["...|56-72
+82|code|STR             R7, [SP,#0x48+var_48]|0-151
+84|code|LDR.W           R1, [args,#4]|219-248-4-16
+88|code|STR             R1, [SP,#0x48+var_38]|4-145
+90|code|BLX             R4; grub_printf_|160-71
+92|code|MOVS            R4, #0|0-36
+94|code|MOV             R7, R4|39-70
+96|code|B               loc_FC|76-224
+98|code|LDR             R4, =grub_malloc|53-76
+100|code|MOV.W           R0, #0x200|79-244-0-112
+104|code|BLX             R4; grub_malloc|160-71
+106|code|MOV             R7, R0|7-70
+108|code|MOV.W           buf1, #0x200|79-244-0-112
+112|code|BLX             R4; grub_malloc|160-71
+114|code|MOV             R4, R0|4-70
+116|code|CMP             buf1, #0|0-47
+118|code|BEQ             loc_FC|65-208
+120|code|CMP             buf2, #0|0-40
+122|code|BEQ             loc_FC|63-208
+124|code|MOV.W           R8, #0|79-240-0-8
+128|code|MOV.W           R9, #0|79-240-0-9
+132|code|MOV             R1, buf1|57-70
+134|code|MOV.W           R2, #0x200|79-244-0-114
+138|code|LDR             R3, =grub_file_read|44-75
+140|code|MOV             R0, file1|48-70
+142|code|BLX             R3; grub_file_read|152-71
+144|code|MOV             R1, buf2|33-70
+146|code|MOV.W           R2, #0x200|79-244-0-114
+150|code|LDR             R3, =grub_file_read|41-75
+152|code|STR             R0, [SP,#0x48+rd1]|7-144
+154|code|MOV             rd1_0, file2|40-70
+156|code|BLX             R3; grub_file_read|152-71
+158|code|LDR.W           R12, [SP,#0x48+rd1]|221-248-28-192
+162|code|CMP             R12, rd2|132-69
+164|code|BNE             loc_FC|42-209
+166|code|MOVS            R2, #0|0-34
+168|code|CMP             i, R12|98-69
+170|code|BGE             loc_DC|23-218
+172|code|LDRB            R0, [buf1,i]|184-92
+174|code|LDRB            R1, [buf2,i]|161-92
+176|code|CMP             R0, R1|136-66
+178|code|BEQ             loc_D8|17-208
+180|code|STR             R0, [SP,#0x48+var_48]|0-144
+182|code|ADDS.W          R10, R8, i|24-235-2-10
+186|code|LDR.W           R0, [args]|219-248-0-0
+190|code|STR             R1, [SP,#0x48+var_40]|2-145
+192|code|LDR             R1, =grub_printf_|26-73
+194|code|STR             R0, [SP,#0x48+var_44]|1-144
+196|code|LDR.W           R3, [args,#4]|219-248-4-48
+200|code|ADC.W           args, R9, i,ASR#31|73-235-226-123
+204|code|LDR             R0, =aFilesDifferAtT; "Files differ at the offset %llu: 0x%x ["...|28-72
+206|code|MOV             i, R10|82-70
+208|code|STR             R3, [SP,#0x48+var_3C]|3-147
+210|code|MOV             R3, R11|91-70
+212|code|BLX             R1; grub_printf_|136-71
+214|code|B               loc_FC|17-224
+216|code|ADDS            i, #1|1-50
+218|code|B               loc_A8|229-231
+220|code|ADDS.W          R8, R8, #0x200|24-245-0-120
+224|code|ADC.W           R9, R9, #0|73-241-0-9
+228|code|CMP.W           R12, #0|188-241-0-15
+232|code|BNE             loc_84|204-209
+234|code|LDR             R3, =grub_printf_|16-75
+236|code|LDR             R0, =aTheFilesAreIde; "The files are identical.\n"|21-72
+238|code|BLX             R3; grub_printf_|152-71
+240|code|B               loc_FC|4-224
+242|code|MOV             R4, file1|52-70
+244|code|MOV             R7, file1|55-70
+246|code|B               loc_FC|1-224
+248|code|MOV             R4, file2|4-70
+250|code|MOV             R7, file2|7-70
+252|code|MOV             R0, R7|56-70
+254|code|LDR             R7, =grub_free|18-79
+256|code|BLX             R7; grub_free|184-71
+258|code|MOV             R0, R4|32-70
+260|code|BLX             R7; grub_free|184-71
+262|code|CBZ             file1, loc_10E|22-177
+264|code|MOV             R0, file1|48-70
+266|code|LDR             R3, =grub_file_close|16-75
+268|code|BLX             R3; grub_file_close|152-71
+270|code|CBZ             file2, loc_116|21-177
+272|code|MOV             R0, file2|40-70
+274|code|LDR             R3, =grub_file_close|14-75
+276|code|BLX             R3; grub_file_close|152-71
+278|code|LDR             R3, =grub_errno|14-75
+280|code|LDR             R0, [R3]|24-104
+282|code|ADD             SP, SP, #0x24 ; '$'|9-176
+284|code|POP.W           {R4-R11,PC}|189-232-240-143
+288|data|DCD aTwoArgumentsEx; "two arguments expected"|156-1-0-0
+292|data|DCD grub_error|164-2-0-0
+296|data|DCD aCompareFileSWi; "Compare file `%s' with `%s':\n"|179-1-0-0
+300|data|DCD grub_printf_|172-2-0-0
+304|data|DCD grub_file_open|160-2-0-0
+308|data|DCD aFilesDifferInS; "Files differ in size: %llu [%s], %llu ["...|209-1-0-0
+312|data|DCD grub_malloc|152-2-0-0
+316|data|DCD grub_file_read|148-2-0-0
+320|data|DCD aFilesDifferAtT; "Files differ at the offset %llu: 0x%x ["...|253-1-0-0
+324|data|DCD aTheFilesAreIde; "The files are identical.\n"|52-2-0-0
+328|data|DCD grub_free|168-2-0-0
+332|data|DCD grub_file_close|156-2-0-0
+336|data|DCD grub_errno|136-2-0-0
+340|code|PUSH            {mod,R1,R4,LR}|19-181
+342|code|MOVS            R3, #0|0-35
+344|code|LDR             R1, =(grub_cmd_cmp+1)|5-73
+346|code|STR             R3, [SP,#0x10+var_10]|0-147
+348|code|LDR             R2, =aFile1File2; "FILE1 FILE2"|5-74
+350|code|LDR             R3, =aCompareTwoFile; "Compare two files."|6-75
+352|code|LDR             R4, =grub_register_command_prio|6-76
+354|code|LDR             mod, =aCmp; "cmp"|7-72
+356|code|BLX             R4; grub_register_command_prio|160-71
+358|code|LDR             R3, =cmd|7-75
+360|code|STR             R0, [R3]|24-96
+362|code|ADD             SP, SP, #8|2-176
+364|code|POP             {R4,PC}|16-189
+366|data|ALIGN 0x10|0-191
+368|data|DCD grub_cmd_cmp+1|1-0-0-0
+372|data|DCD aFile1File2; "FILE1 FILE2"|82-2-0-0
+376|data|DCD aCompareTwoFile; "Compare two files."|94-2-0-0
+380|data|DCD grub_register_command_prio|140-2-0-0
+384|data|DCD aCmp; "cmp"|78-2-0-0
+388|data|DCD cmd|132-2-0-0
+392|code|PUSH            {R3,LR}|8-181
+394|code|LDR             R3, =cmd|2-75
+396|code|LDR             R0, [R3]|24-104
+398|code|LDR             R3, =grub_unregister_command|2-75
+400|code|BLX             R3; grub_unregister_command|152-71
+402|code|POP             {R3,PC}|8-189
+404|data|DCD cmd|132-2-0-0
+408|data|DCD grub_unregister_command|144-2-0-0
+412|data|DCB "two arguments expected",0|116-119-111-32-97-114-103-117-109-101-110-116-115-32-101-120-112-101-99-116-101-100-0
+435|data|DCB "Compare file `%s' with `%s':",0xA,0|67-111-109-112-97-114-101-32-102-105-108-101-32-96-37-115-39-32-119-105-116-104-32-96-37-115-39-58-10-0
+465|data|DCB "Files differ in size: %llu [%s], %llu [%s]",0xA,0|70-105-108-101-115-32-100-105-102-102-101-114-32-105-110-32-115-105-122-101-58-32-37-108-108-117-32-91-37-115-93-44-32-37-108-108-117-32-91-37-115-93-10-0
+509|data|DCB "Files differ at the offset %llu: 0x%x [%s], 0x%x [%s]",0xA,0|70-105-108-101-115-32-100-105-102-102-101-114-32-97-116-32-116-104-101-32-111-102-102-115-101-116-32-37-108-108-117-58-32-48-120-37-120-32-91-37-115-93-44-32-48-120-37-120-32-91-37-115-93-10-0
+564|data|DCB "The files are identical.",0xA,0|84-104-101-32-102-105-108-101-115-32-97-114-101-32-105-100-101-110-116-105-99-97-108-46-10-0
+590|data|DCB "cmp",0|99-109-112-0
+594|data|DCB "FILE1 FILE2",0|70-73-76-69-49-32-70-73-76-69-50-0
+606|data|DCB "Compare two files.",0|67-111-109-112-97-114-101-32-116-119-111-32-102-105-108-101-115-46-0
+625|data||255
+626|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

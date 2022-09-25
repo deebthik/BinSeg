@@ -1,0 +1,12 @@
+address|type|disassembly|bytes
+0|code|MOV             R12, SP|236-70
+2|code|STM.W           R0, {R4-R12,LR}|128-232-240-95
+6|code|MOV.W           R0, #0|79-240-0-0
+10|code|BX              LR|112-71
+12|code|LDM.W           R0, {R4-R12,LR}|144-232-240-95
+16|code|MOV             SP, R12|229-70
+18|code|MOVS            R0, R1|8-0
+20|code|IT EQ|8-191
+22|code|MOVEQ           R0, #1|1-32
+24|code|BX              LR|112-71
+26|data|DCB "LICENSE=GPLv3+",0|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

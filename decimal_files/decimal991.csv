@@ -1,0 +1,944 @@
+address|type|disassembly|bytes
+32768|data|DCD 0x464C457F; File format: \x7FELF|127-69-76-70
+32772|data|DCB 1; File class: 32-bit|1
+32773|data|DCB 1; Data encoding: little-endian|1
+32774|data|DCB 1; File version|1
+32775|data|DCB 0; OS/ABI: UNIX System V ABI|0
+32776|data|DCB 0; ABI Version|0
+32777|data|DCB 0, 0, 0, 0, 0, 0, 0; Padding|0-0-0-0-0-0-0
+32784|data|DCW 2; File type: Executable|2-0
+32786|data|DCW 0x28; Machine: ARM|40-0
+32788|data|DCD 1; File version|1-0-0-0
+32792|data|DCD _start+1; Entry point|125-143-0-0
+32796|data|DCD 0x34; PHT file offset|52-0-0-0
+32800|data|DCD 0x2198; SHT file offset|152-33-0-0
+32804|data|DCD 0x5000402; Processor-specific flags|2-4-0-5
+32808|data|DCW 0x34; ELF header size|52-0
+32810|data|DCW 0x20; PHT entry size|32-0
+32812|data|DCW 9; Number of entries in PHT|9-0
+32814|data|DCW 0x28; SHT entry size|40-0
+32816|data|DCW 0x1B; Number of entries in SHT|27-0
+32818|data|DCW 0x1A; SHT entry index for string table|26-0
+32820|data|DCD 0x70000001; Type: EXIDX|1-0-0-112
+32824|data|DCD 0x1D34; File offset|52-29-0-0
+32828|data|DCD unk_9D34; Virtual address|52-157-0-0
+32832|data|DCD 0x9D34; Physical address|52-157-0-0
+32836|data|DCD 8; Size in file image|8-0-0-0
+32840|data|DCD 8; Size in memory image|8-0-0-0
+32844|data|DCD 4; Flags|4-0-0-0
+32848|data|DCD 4; Alignment|4-0-0-0
+32852|data|DCD 6; Type: PHDR|6-0-0-0
+32856|data|DCD 0x34; File offset|52-0-0-0
+32860|data|DCD dword_8034; Virtual address|52-128-0-0
+32864|data|DCD 0x8034; Physical address|52-128-0-0
+32868|data|DCD 0x120; Size in file image|32-1-0-0
+32872|data|DCD 0x120; Size in memory image|32-1-0-0
+32876|data|DCD 5; Flags|5-0-0-0
+32880|data|DCD 4; Alignment|4-0-0-0
+32884|data|DCD 3; Type: INTERP|3-0-0-0
+32888|data|DCD 0x154; File offset|84-1-0-0
+32892|data|DCD aLibLdLinuxArmh; Virtual address|84-129-0-0
+32896|data|DCD 0x8154; Physical address|84-129-0-0
+32900|data|DCD 0x19; Size in file image|25-0-0-0
+32904|data|DCD 0x19; Size in memory image|25-0-0-0
+32908|data|DCD 4; Flags|4-0-0-0
+32912|data|DCD 1; Alignment|1-0-0-0
+32916|data|DCD 1; Type: LOAD|1-0-0-0
+32920|data|DCD 0; File offset|0-0-0-0
+32924|data|DCD dword_8000; Virtual address|0-128-0-0
+32928|data|DCD 0x8000; Physical address|0-128-0-0
+32932|data|DCD 0x1D40; Size in file image|64-29-0-0
+32936|data|DCD 0x1D40; Size in memory image|64-29-0-0
+32940|data|DCD 5; Flags|5-0-0-0
+32944|data|DCD 0x8000; Alignment|0-128-0-0
+32948|data|DCD 1; Type: LOAD|1-0-0-0
+32952|data|DCD 0x1EE4; File offset|228-30-0-0
+32956|data|DCD off_11EE4; Virtual address|228-30-1-0
+32960|data|DCD 0x11EE4; Physical address|228-30-1-0
+32964|data|DCD 0x18C; Size in file image|140-1-0-0
+32968|data|DCD 0x1B0; Size in memory image|176-1-0-0
+32972|data|DCD 6; Flags|6-0-0-0
+32976|data|DCD 0x8000; Alignment|0-128-0-0
+32980|data|DCD 2; Type: DYNAMIC|2-0-0-0
+32984|data|DCD 0x1EF0; File offset|240-30-0-0
+32988|data|DCD stru_11EF0; Virtual address|240-30-1-0
+32992|data|DCD 0x11EF0; Physical address|240-30-1-0
+32996|data|DCD 0x110; Size in file image|16-1-0-0
+33000|data|DCD 0x110; Size in memory image|16-1-0-0
+33004|data|DCD 6; Flags|6-0-0-0
+33008|data|DCD 4; Alignment|4-0-0-0
+33012|data|DCD 4; Type: NOTE|4-0-0-0
+33016|data|DCD 0x170; File offset|112-1-0-0
+33020|data|DCD dword_8170; Virtual address|112-129-0-0
+33024|data|DCD 0x8170; Physical address|112-129-0-0
+33028|data|DCD 0x44; Size in file image|68-0-0-0
+33032|data|DCD 0x44; Size in memory image|68-0-0-0
+33036|data|DCD 4; Flags|4-0-0-0
+33040|data|DCD 4; Alignment|4-0-0-0
+33044|data|DCD 0x6474E551; Type: STACK|81-229-116-100
+33048|data|DCD 0; File offset|0-0-0-0
+33052|data|DCD 0; Virtual address|0-0-0-0
+33056|data|DCD 0; Physical address|0-0-0-0
+33060|data|DCD 0; Size in file image|0-0-0-0
+33064|data|DCD 0; Size in memory image|0-0-0-0
+33068|data|DCD 6; Flags|6-0-0-0
+33072|data|DCD 0x10; Alignment|16-0-0-0
+33076|data|DCD 0x6474E552; Type: RO-AFTER|82-229-116-100
+33080|data|DCD 0x1EE4; File offset|228-30-0-0
+33084|data|DCD off_11EE4; Virtual address|228-30-1-0
+33088|data|DCD 0x11EE4; Physical address|228-30-1-0
+33092|data|DCD 0x11C; Size in file image|28-1-0-0
+33096|data|DCD 0x11C; Size in memory image|28-1-0-0
+33100|data|DCD 4; Flags|4-0-0-0
+33104|data|DCD 1; Alignment|1-0-0-0
+33108|data|DCB "/lib/ld-linux-armhf.so.3",0|47-108-105-98-47-108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+33133|data|DCB 0, 0, 0|0-0-0
+33136|data|DCD 4; Name Size|4-0-0-0
+33140|data|DCD 0x10; Desc Size|16-0-0-0
+33144|data|DCD 1; Type: NT_GNU_ABI_TAG|1-0-0-0
+33148|data|DCB "GNU",0; Name|71-78-85-0
+33152|data|DCD 0, 2, 6, 0x20; ABI: Linux 2.6.32|0-0-0-0-2-0-0-0-6-0-0-0-32-0-0-0
+33168|data|DCD 4; Name Size|4-0-0-0
+33172|data|DCD 0x14; Desc Size|20-0-0-0
+33176|data|DCD 3; Type: NT_GNU_BUILD_ID|3-0-0-0
+33180|data|DCB "GNU",0; Name|71-78-85-0
+33184|data|DCB 0xBD, 0xDE, 0xB5, 0xD, 0x41, 0x87, 0x90, 0x79, 0x6B; Desc|189-222-181-13-65-135-144-121-107-18-102-141-20-170-77-23-160-181-41-101
+33204|data|DCD 0x25|37-0-0-0
+33208|data|DCD 5|5-0-0-0
+33212|data|DCD 8|8-0-0-0
+33216|data|DCD 8|8-0-0-0
+33220|data|DCD 0x44509481, 0xD306C007, 0x5162C0AA, 0x21706E81, 0x420000|129-148-80-68-7-192-6-211-170-192-98-81-129-110-112-33-0-0-66-0-12-40-4-141-4-42-2-7-0-36-8-64
+33252|data|DCD 5, 0, 6, 0, 0, 7, 0xB, 0xC, 0, 0xE, 0xF, 0x10, 0x11|5-0-0-0-0-0-0-0-6-0-0-0-0-0-0-0-0-0-0-0-7-0-0-0-11-0-0-0-12-0-0-0-0-0-0-0-14-0-0-0-15-0-0-0-16-0-0-0-17-0-0-0-18-0-0-0-20-0-0-0-0-0-0-0-22-0-0-0-0-0-0-0-23-0-0-0-0-0-0-0-25-0-0-0-0-0-0-0-0-0-0-0-26-0-0-0-27-0-0-0-29-0-0-0-31-0-0-0-34-0-0-0-37-0-0-0-0-0-0-0-38-0-0-0-40-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-41-0-0-0-43-0-0-0
+33400|data|DCD 0x345EBC31, 0x115D5C55, 0xF738B7C, 0x7646220, 0xEEFD3EA|49-188-94-52-85-92-93-17-124-139-115-15-32-98-100-7-234-211-239-14-111-32-59-205-1-175-52-232-30-118-181-218-219-205-227-158-47-78-61-246-107-9-67-214-57-242-139-28-13-58-151-11-70-1-117-15-125-237-17-15-12-20-226-158-81-238-17-227-89-239-151-121-48-66-48-140-63-126-150-124-57-64-12-175-179-162-247-18-216-113-88-28-7-47-116-15-186-227-146-124-33-207-9-253-94-150-147-28-194-43-162-2-173-75-227-192-236-222-147-28-120-139-135-255-51-98-219-237-201-57-64-31-66-69-213-236-103-85-97-16-151-241-223-115-190-218-87-27-185-141-241-14-118-84-60-148-23-234-118-254
+33560|data|Elf32_Sym <0>|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+33576|data|Elf32_Sym <aItmDeregistert - byte_85E8, 0, 0, 0x20, 0, 0>; "_ITM_deregisterTMCloneTable"|16-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+33592|data|Elf32_Sym <aGmonStart - byte_85E8, 0, 0, 0x20, 0, 0>; "__gmon_start__"|44-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+33608|data|Elf32_Sym <aJvRegisterclas - byte_85E8, 0, 0, 0x20, 0, 0>; "_Jv_RegisterClasses"|59-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+33624|data|Elf32_Sym <aItmRegistertmc - byte_85E8, 0, 0, 0x20, 0, 0>; "_ITM_registerTMCloneTable"|79-0-0-0-0-0-0-0-0-0-0-0-32-0-0-0
+33640|data|Elf32_Sym <aRtlsdrWriteEep - byte_85E8, rtlsdr_write_eeprom, 0, 0x12, \; "rtlsdr_write_eeprom"|105-0-0-0-240-138-0-0-0-0-0-0-18-0-0-0
+33656|data|Elf32_Sym <aRtlsdrClose - byte_85E8, rtlsdr_close, 0, 0x12, 0, 0>; "rtlsdr_close"|125-0-0-0-192-138-0-0-0-0-0-0-18-0-0-0
+33672|data|Elf32_Sym <aFopen - byte_85E8, fopen, 0, 0x12, 0, 0>; "fopen"|7-1-0-0-20-138-0-0-0-0-0-0-18-0-0-0
+33688|data|Elf32_Sym <aStackChkGuard - byte_85E8, __bss_start__, 4, 0x11, 0, \; "__stack_chk_guard"|172-1-0-0-112-32-1-0-4-0-0-0-17-0-24-0
+33704|data|Elf32_Sym <aFini - byte_85E8, .term_proc, 0, 0x12, 0, 0xE>; "_fini"|67-2-0-0-192-149-0-0-0-0-0-0-18-0-14-0
+33720|data|Elf32_Sym <aRtlsdrGetDevic - byte_85E8, rtlsdr_get_device_name, 0, \; "rtlsdr_get_device_name"|138-0-0-0-252-138-0-0-0-0-0-0-18-0-0-0
+33736|data|Elf32_Sym <aBssEnd+1 - byte_85E8, _end, 0, 0x10, 0, 0x18>; "_bss_end__"|224-1-0-0-148-32-1-0-0-0-0-0-16-0-24-0
+33752|data|Elf32_Sym <aIoGetc - byte_85E8, _IO_getc, 0, 0x12, 0, 0>; "_IO_getc"|118-1-0-0-32-138-0-0-0-0-0-0-18-0-0-0
+33768|data|Elf32_Sym <aLibcCsuInit - byte_85E8, __libc_csu_init+1, 0x40, 0x12, 0,\; "__libc_csu_init"|101-2-0-0-125-149-0-0-64-0-0-0-18-0-13-0
+33784|data|Elf32_Sym <aLibcStartMain - byte_85E8, __libc_start_main, 0, 0x12, 0, \; "__libc_start_main"|134-1-0-0-108-138-0-0-0-0-0-0-18-0-0-0
+33800|data|Elf32_Sym <aDataStart - byte_85E8, __data_start, 0, 0x10, 0, 0x17>; "__data_start"|73-2-0-0-104-32-1-0-0-0-0-0-16-0-23-0
+33816|data|Elf32_Sym <aStderr - byte_85E8, stderr, 4, 0x11, 0, 0x18>; "stderr"|98-1-0-0-120-32-1-0-4-0-0-0-17-0-24-0
+33832|data|Elf32_Sym <aDataStart+2 - byte_85E8, __data_start, 0, 0x20, 0, 0x17>; "data_start"|75-2-0-0-104-32-1-0-0-0-0-0-32-0-23-0
+33848|data|Elf32_Sym <aFread - byte_85E8, fread, 0, 0x12, 0, 0>; "fread"|112-1-0-0-96-138-0-0-0-0-0-0-18-0-0-0
+33864|data|Elf32_Sym <aAbort - byte_85E8, abort, 0, 0x12, 0, 0>; "abort"|38-1-0-0-228-138-0-0-0-0-0-0-18-0-0-0
+33880|data|Elf32_Sym <byte_8821 - byte_85E8, __libc_csu_fini+1, 2, 0x12, 0, 0xD>|57-2-0-0-189-149-0-0-2-0-0-0-18-0-13-0
+33896|data|Elf32_Sym <aFprintfChk - byte_85E8, __fprintf_chk, 0, 0x12, 0, 0>; "__fprintf_chk"|64-1-0-0-168-138-0-0-0-0-0-0-18-0-0-0
+33912|data|Elf32_Sym <aEnd - byte_85E8, _end, 0, 0x10, 0, 0x18>; "__end__"|235-1-0-0-148-32-1-0-0-0-0-0-16-0-24-0
+33928|data|Elf32_Sym <aRtlsdrOpen - byte_85E8, rtlsdr_open, 0, 0x12, 0, 0>; "rtlsdr_open"|161-0-0-0-56-138-0-0-0-0-0-0-18-0-0-0
+33944|data|Elf32_Sym <aExit - byte_85E8, exit, 0, 0x12, 0, 0>; "exit"|2-1-0-0-132-138-0-0-0-0-0-0-18-0-0-0
+33960|data|Elf32_Sym <aStrncpy - byte_85E8, strncpy, 0, 0x12, 0, 0>; "strncpy"|13-1-0-0-156-138-0-0-0-0-0-0-18-0-0-0
+33976|data|Elf32_Sym <aOptarg - byte_85E8, optarg, 4, 0x11, 0, 0x18>; "optarg"|91-1-0-0-136-32-1-0-4-0-0-0-17-0-24-0
+33992|data|Elf32_Sym <aBssStart - byte_85E8, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start"|197-1-0-0-112-32-1-0-0-0-0-0-16-0-24-0
+34008|data|Elf32_Sym <aFputc - byte_85E8, fputc, 0, 0x12, 0, 0>; "fputc"|78-1-0-0-204-138-0-0-0-0-0-0-18-0-0-0
+34024|data|Elf32_Sym <aEnd_0 - byte_85E8, _end, 0, 0x10, 0, 0x18>; "_end"|243-1-0-0-148-32-1-0-0-0-0-0-16-0-24-0
+34040|data|Elf32_Sym <aFclose - byte_85E8, fclose, 0, 0x12, 0, 0>; "fclose"|84-1-0-0-180-138-0-0-0-0-0-0-18-0-0-0
+34056|data|Elf32_Sym <aStrcmp - byte_85E8, strcmp, 0, 0x12, 0, 0>; "strcmp"|127-1-0-0-252-137-0-0-0-0-0-0-18-0-0-0
+34072|data|Elf32_Sym <aRtlsdrReadEepr - byte_85E8, rtlsdr_read_eeprom, 0, 0x12, \; "rtlsdr_read_eeprom"|173-0-0-0-84-138-0-0-0-0-0-0-18-0-0-0
+34088|data|Elf32_Sym <aIoStdinUsed - byte_85E8, _IO_stdin_used, 4, 0x11, 0, 0xF>; "_IO_stdin_used"|86-2-0-0-200-149-0-0-4-0-0-0-17-0-15-0
+34104|data|Elf32_Sym <aStrtol - byte_85E8, strtol, 0, 0x12, 0, 0>; "strtol"|50-1-0-0-8-138-0-0-0-0-0-0-18-0-0-0
+34120|data|Elf32_Sym <aGetopt - byte_85E8, getopt, 0, 0x12, 0, 0>; "getopt"|57-1-0-0-144-138-0-0-0-0-0-0-18-0-0-0
+34136|data|Elf32_Sym <aDataStart+6 - byte_85E8, _start+1, 0, 0x12, 0, 0xD>; "_start"|79-2-0-0-125-143-0-0-0-0-0-0-18-0-13-0
+34152|data|Elf32_Sym <aStackChkFail - byte_85E8, __stack_chk_fail, 0, 0x12, 0, 0>; "__stack_chk_fail"|21-1-0-0-44-138-0-0-0-0-0-0-18-0-0-0
+34168|data|Elf32_Sym <aEdata - byte_85E8, __bss_start__, 0, 0x10, 0, 0x17>; "_edata"|190-1-0-0-112-32-1-0-0-0-0-0-16-0-23-0
+34184|data|Elf32_Sym <aStdin - byte_85E8, stdin, 4, 0x11, 0, 0x18>; "stdin"|44-1-0-0-128-32-1-0-4-0-0-0-17-0-24-0
+34200|data|Elf32_Sym <aRtlsdrGetDevic_0 - byte_85E8, rtlsdr_get_device_count, 0, \; "rtlsdr_get_device_count"|192-0-0-0-216-138-0-0-0-0-0-0-18-0-0-0
+34216|data|Elf32_Sym <aBssEnd - byte_85E8, _end, 0, 0x10, 0, 0x18>; "__bss_end__"|223-1-0-0-148-32-1-0-0-0-0-0-16-0-24-0
+34232|data|Elf32_Sym <aLibcCsuInit+0xA - byte_85E8, .init_proc, 0, 0x12, 0, 0xB>; "_init"|111-2-0-0-220-137-0-0-0-0-0-0-18-0-11-0
+34248|data|Elf32_Sym <aBssStart_0 - byte_85E8, __bss_start__, 0, 0x10, 0, 0x18>; "__bss_start__"|209-1-0-0-112-32-1-0-0-0-0-0-16-0-24-0
+34264|data|Elf32_Sym <aFwrite - byte_85E8, fwrite, 0, 0x12, 0, 0>; "fwrite"|105-1-0-0-72-138-0-0-0-0-0-0-18-0-0-0
+34280|data|DCB 0|0
+34281|data|DCB "librtlsdr.so.0",0|108-105-98-114-116-108-115-100-114-46-115-111-46-48-0
+34296|data|DCB "_ITM_deregisterTMCloneTable",0|95-73-84-77-95-100-101-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+34324|data|DCB "__gmon_start__",0|95-95-103-109-111-110-95-115-116-97-114-116-95-95-0
+34339|data|DCB "_Jv_RegisterClasses",0|95-74-118-95-82-101-103-105-115-116-101-114-67-108-97-115-115-101-115-0
+34359|data|DCB "_ITM_registerTMCloneTable",0|95-73-84-77-95-114-101-103-105-115-116-101-114-84-77-67-108-111-110-101-84-97-98-108-101-0
+34385|data|DCB "rtlsdr_write_eeprom",0|114-116-108-115-100-114-95-119-114-105-116-101-95-101-101-112-114-111-109-0
+34405|data|DCB "rtlsdr_close",0|114-116-108-115-100-114-95-99-108-111-115-101-0
+34418|data|DCB "rtlsdr_get_device_name",0|114-116-108-115-100-114-95-103-101-116-95-100-101-118-105-99-101-95-110-97-109-101-0
+34441|data|DCB "rtlsdr_open",0|114-116-108-115-100-114-95-111-112-101-110-0
+34453|data|DCB "rtlsdr_read_eeprom",0|114-116-108-115-100-114-95-114-101-97-100-95-101-101-112-114-111-109-0
+34472|data|DCB "rtlsdr_get_device_count",0|114-116-108-115-100-114-95-103-101-116-95-100-101-118-105-99-101-95-99-111-117-110-116-0
+34496|data|DCB "libusb-1.0.so.0",0|108-105-98-117-115-98-45-49-46-48-46-115-111-46-48-0
+34512|data|DCB "libpthread.so.0",0|108-105-98-112-116-104-114-101-97-100-46-115-111-46-48-0
+34528|data|DCB "libc.so.6",0|108-105-98-99-46-115-111-46-54-0
+34538|data|DCB "exit",0|101-120-105-116-0
+34543|data|DCB "fopen",0|102-111-112-101-110-0
+34549|data|DCB "strncpy",0|115-116-114-110-99-112-121-0
+34557|data|DCB "__stack_chk_fail",0|95-95-115-116-97-99-107-95-99-104-107-95-102-97-105-108-0
+34574|data|DCB "abort",0|97-98-111-114-116-0
+34580|data|DCB "stdin",0|115-116-100-105-110-0
+34586|data|DCB "strtol",0|115-116-114-116-111-108-0
+34593|data|DCB "getopt",0|103-101-116-111-112-116-0
+34600|data|DCB "__fprintf_chk",0|95-95-102-112-114-105-110-116-102-95-99-104-107-0
+34614|data|DCB "fputc",0|102-112-117-116-99-0
+34620|data|DCB "fclose",0|102-99-108-111-115-101-0
+34627|data|DCB "optarg",0|111-112-116-97-114-103-0
+34634|data|DCB "stderr",0|115-116-100-101-114-114-0
+34641|data|DCB "fwrite",0|102-119-114-105-116-101-0
+34648|data|DCB "fread",0|102-114-101-97-100-0
+34654|data|DCB "_IO_getc",0|95-73-79-95-103-101-116-99-0
+34663|data|DCB "strcmp",0|115-116-114-99-109-112-0
+34670|data|DCB "__libc_start_main",0|95-95-108-105-98-99-95-115-116-97-114-116-95-109-97-105-110-0
+34688|data|DCB "ld-linux-armhf.so.3",0|108-100-45-108-105-110-117-120-45-97-114-109-104-102-46-115-111-46-51-0
+34708|data|DCB "__stack_chk_guard",0|95-95-115-116-97-99-107-95-99-104-107-95-103-117-97-114-100-0
+34726|data|DCB "_edata",0|95-101-100-97-116-97-0
+34733|data|DCB "__bss_start",0|95-95-98-115-115-95-115-116-97-114-116-0
+34745|data|DCB "__bss_start__",0|95-95-98-115-115-95-115-116-97-114-116-95-95-0
+34759|data|DCB "__bss_end__",0|95-95-98-115-115-95-101-110-100-95-95-0
+34771|data|DCB "__end__",0|95-95-101-110-100-95-95-0
+34779|data|DCB "_end",0|95-101-110-100-0
+34784|data|DCD 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+34848|data|DCB 0|0
+34849|data|DCB 0x5F, 0x5F, 0x6C|95-95-108
+34852|data|DCD 0x5F636269|105-98-99-95
+34856|data|DCB 0x63, 0x73, 0x75|99-115-117
+34859|data|DCB "_fini",0|95-102-105-110-105-0
+34865|data|DCB "__data_start",0|95-95-100-97-116-97-95-115-116-97-114-116-0
+34878|data|DCB "_IO_stdin_used",0|95-73-79-95-115-116-100-105-110-95-117-115-101-100-0
+34893|data|DCB "__libc_csu_init",0|95-95-108-105-98-99-95-99-115-117-95-105-110-105-116-0
+34909|data|DCB "GLIBC_2.4",0|71-76-73-66-67-95-50-46-52-0
+34919|data|DCB 0|0
+34920|data|DCW 0|0-0
+34922|data|DCW 0; local  symbol: _ITM_deregisterTMCloneTable|0-0
+34924|data|DCW 0; local  symbol: __gmon_start__|0-0
+34926|data|DCW 0; local  symbol: _Jv_RegisterClasses|0-0
+34928|data|DCW 0; local  symbol: _ITM_registerTMCloneTable|0-0
+34930|data|DCW 0; local  symbol: rtlsdr_write_eeprom|0-0
+34932|data|DCW 0; local  symbol: rtlsdr_close|0-0
+34934|data|DCW 2; fopen@@GLIBC_2.4|2-0
+34936|data|DCW 3; __stack_chk_guard@@GLIBC_2.4|3-0
+34938|data|DCW 1; global symbol: _fini|1-0
+34940|data|DCW 0; local  symbol: rtlsdr_get_device_name|0-0
+34942|data|DCW 1; global symbol: _bss_end__|1-0
+34944|data|DCW 2; _IO_getc@@GLIBC_2.4|2-0
+34946|data|DCW 1; global symbol: __libc_csu_init|1-0
+34948|data|DCW 2; __libc_start_main@@GLIBC_2.4|2-0
+34950|data|DCW 1; global symbol: __data_start|1-0
+34952|data|DCW 2; stderr@@GLIBC_2.4|2-0
+34954|data|DCW 1; global symbol: data_start|1-0
+34956|data|DCW 2; fread@@GLIBC_2.4|2-0
+34958|data|DCW 2; abort@@GLIBC_2.4|2-0
+34960|data|DCW 1; global symbol: __libc_csu_fini|1-0
+34962|data|DCW 2; __fprintf_chk@@GLIBC_2.4|2-0
+34964|data|DCW 1; global symbol: __end__|1-0
+34966|data|DCW 0; local  symbol: rtlsdr_open|0-0
+34968|data|DCW 2; exit@@GLIBC_2.4|2-0
+34970|data|DCW 2; strncpy@@GLIBC_2.4|2-0
+34972|data|DCW 2; optarg@@GLIBC_2.4|2-0
+34974|data|DCW 1; global symbol: __bss_start|1-0
+34976|data|DCW 2; fputc@@GLIBC_2.4|2-0
+34978|data|DCW 1; global symbol: _end|1-0
+34980|data|DCW 2; fclose@@GLIBC_2.4|2-0
+34982|data|DCW 2; strcmp@@GLIBC_2.4|2-0
+34984|data|DCW 0; local  symbol: rtlsdr_read_eeprom|0-0
+34986|data|DCW 1; global symbol: _IO_stdin_used|1-0
+34988|data|DCW 2; strtol@@GLIBC_2.4|2-0
+34990|data|DCW 2; getopt@@GLIBC_2.4|2-0
+34992|data|DCW 1; global symbol: _start|1-0
+34994|data|DCW 2; __stack_chk_fail@@GLIBC_2.4|2-0
+34996|data|DCW 1; global symbol: _edata|1-0
+34998|data|DCW 2; stdin@@GLIBC_2.4|2-0
+35000|data|DCW 0; local  symbol: rtlsdr_get_device_count|0-0
+35002|data|DCW 1; global symbol: __bss_end__|1-0
+35004|data|DCW 1; global symbol: _init|1-0
+35006|data|DCW 1; global symbol: __bss_start__|1-0
+35008|data|DCW 2; fwrite@@GLIBC_2.4|2-0
+35010|data|DCW 0|0-0
+35012|data|Elf32_Verneed <1, 1, aLdLinuxArmhfSo - byte_85E8, 0x10, 0x20>; "ld-linux-armhf.so.3"|1-0-1-0-152-1-0-0-16-0-0-0-32-0-0-0
+35028|data|Elf32_Vernaux <0xD696914, 0, 3, aGlibc24 - byte_85E8, 0>; "GLIBC_2.4"|20-105-105-13-0-0-3-0-117-2-0-0-0-0-0-0
+35044|data|Elf32_Verneed <1, 1, aLibcSo6 - byte_85E8, 0x10, 0>; "libc.so.6"|1-0-1-0-248-0-0-0-16-0-0-0-0-0-0-0
+35060|data|Elf32_Vernaux <0xD696914, 0, 2, aGlibc24 - byte_85E8, 0>; "GLIBC_2.4"|20-105-105-13-0-0-2-0-117-2-0-0-0-0-0-0
+35076|data|Elf32_Rel <0x12064, 0x215>; R_ARM_GLOB_DAT __gmon_start__|100-32-1-0-21-2-0-0
+35084|data|Elf32_Rel <0x12070, 0x814>; R_ARM_COPY __stack_chk_guard|112-32-1-0-20-8-0-0
+35092|data|Elf32_Rel <0x12078, 0x1014>; R_ARM_COPY stderr|120-32-1-0-20-16-0-0
+35100|data|Elf32_Rel <0x12080, 0x2714>; R_ARM_COPY stdin|128-32-1-0-20-39-0-0
+35108|data|Elf32_Rel <0x12088, 0x1A14>; R_ARM_COPY optarg|136-32-1-0-20-26-0-0
+35116|data|Elf32_Rel <0x1200C, 0x1F16>; R_ARM_JUMP_SLOT strcmp|12-32-1-0-22-31-0-0
+35124|data|Elf32_Rel <0x12010, 0x2216>; R_ARM_JUMP_SLOT strtol|16-32-1-0-22-34-0-0
+35132|data|Elf32_Rel <0x12014, 0x716>; R_ARM_JUMP_SLOT fopen|20-32-1-0-22-7-0-0
+35140|data|Elf32_Rel <0x12018, 0xC16>; R_ARM_JUMP_SLOT _IO_getc|24-32-1-0-22-12-0-0
+35148|data|Elf32_Rel <0x1201C, 0x2516>; R_ARM_JUMP_SLOT __stack_chk_fail|28-32-1-0-22-37-0-0
+35156|data|Elf32_Rel <0x12020, 0x1716>; R_ARM_JUMP_SLOT rtlsdr_open|32-32-1-0-22-23-0-0
+35164|data|Elf32_Rel <0x12024, 0x2C16>; R_ARM_JUMP_SLOT fwrite|36-32-1-0-22-44-0-0
+35172|data|Elf32_Rel <0x12028, 0x2016>; R_ARM_JUMP_SLOT rtlsdr_read_eeprom|40-32-1-0-22-32-0-0
+35180|data|Elf32_Rel <0x1202C, 0x1216>; R_ARM_JUMP_SLOT fread|44-32-1-0-22-18-0-0
+35188|data|Elf32_Rel <0x12030, 0xE16>; R_ARM_JUMP_SLOT __libc_start_main|48-32-1-0-22-14-0-0
+35196|data|Elf32_Rel <0x12034, 0x216>; R_ARM_JUMP_SLOT __gmon_start__|52-32-1-0-22-2-0-0
+35204|data|Elf32_Rel <0x12038, 0x1816>; R_ARM_JUMP_SLOT exit|56-32-1-0-22-24-0-0
+35212|data|Elf32_Rel <0x1203C, 0x2316>; R_ARM_JUMP_SLOT getopt|60-32-1-0-22-35-0-0
+35220|data|Elf32_Rel <0x12040, 0x1916>; R_ARM_JUMP_SLOT strncpy|64-32-1-0-22-25-0-0
+35228|data|Elf32_Rel <0x12044, 0x1516>; R_ARM_JUMP_SLOT __fprintf_chk|68-32-1-0-22-21-0-0
+35236|data|Elf32_Rel <0x12048, 0x1E16>; R_ARM_JUMP_SLOT fclose|72-32-1-0-22-30-0-0
+35244|data|Elf32_Rel <0x1204C, 0x616>; R_ARM_JUMP_SLOT rtlsdr_close|76-32-1-0-22-6-0-0
+35252|data|Elf32_Rel <0x12050, 0x1C16>; R_ARM_JUMP_SLOT fputc|80-32-1-0-22-28-0-0
+35260|data|Elf32_Rel <0x12054, 0x2816>; R_ARM_JUMP_SLOT rtlsdr_get_device_count|84-32-1-0-22-40-0-0
+35268|data|Elf32_Rel <0x12058, 0x1316>; R_ARM_JUMP_SLOT abort|88-32-1-0-22-19-0-0
+35276|data|Elf32_Rel <0x1205C, 0x516>; R_ARM_JUMP_SLOT rtlsdr_write_eeprom|92-32-1-0-22-5-0-0
+35284|data|Elf32_Rel <0x12060, 0xA16>; R_ARM_JUMP_SLOT rtlsdr_get_device_name|96-32-1-0-22-10-0-0
+35292|code|PUSH            {R3,LR}; _init|8-64-45-233
+35296|code|BL              sub_8FAC|113-1-0-235
+35300|code|POP             {R3,PC}|8-128-189-232
+35304|code|PUSH            {LR}|4-224-45-229
+35308|code|LDR             LR, =(_GLOBAL_OFFSET_TABLE_ - 0x89F8)|4-224-159-229
+35312|code|ADD             LR, PC, LR; _GLOBAL_OFFSET_TABLE_|14-224-143-224
+35316|code|LDR             PC, [LR,#8]!|8-240-190-229
+35320|data|DCD _GLOBAL_OFFSET_TABLE_ - 0x89F8|8-150-0-0
+35324|code|ADR             R12, 0x8A04|0-198-143-226
+35328|code|ADD             R12, R12, #0x9000|9-202-140-226
+35332|code|LDR             PC, [R12,#(strcmp_ptr - 0x11A04)]!; __imp_strcmp|8-246-188-229
+35336|code|ADR             R12, 0x8A10|0-198-143-226
+35340|code|ADD             R12, R12, #0x9000|9-202-140-226
+35344|code|LDR             PC, [R12,#(strtol_ptr - 0x11A10)]!; __imp_strtol|0-246-188-229
+35348|code|ADR             R12, 0x8A1C|0-198-143-226
+35352|code|ADD             R12, R12, #0x9000|9-202-140-226
+35356|code|LDR             PC, [R12,#(fopen_ptr - 0x11A1C)]!; __imp_fopen|248-245-188-229
+35360|code|ADR             R12, 0x8A28|0-198-143-226
+35364|code|ADD             R12, R12, #0x9000|9-202-140-226
+35368|code|LDR             PC, [R12,#(_IO_getc_ptr - 0x11A28)]!; __imp__IO_getc|240-245-188-229
+35372|code|ADR             R12, 0x8A34|0-198-143-226
+35376|code|ADD             R12, R12, #0x9000|9-202-140-226
+35380|code|LDR             PC, [R12,#(__stack_chk_fail_ptr - 0x11A34)]!; __imp___stack_chk_fail|232-245-188-229
+35384|code|ADR             R12, 0x8A40|0-198-143-226
+35388|code|ADD             R12, R12, #0x9000|9-202-140-226
+35392|code|LDR             PC, [R12,#(rtlsdr_open_ptr - 0x11A40)]!; __imp_rtlsdr_open|224-245-188-229
+35396|code|BX              PC|120-71
+35398|data|ALIGN 4|192-70
+35400|code|ADR             R12, 0x8A50|0-198-143-226
+35404|code|ADD             R12, R12, #0x9000|9-202-140-226
+35408|code|LDR             PC, [R12,#(fwrite_ptr - 0x11A50)]!; __imp_fwrite|212-245-188-229
+35412|code|ADR             R12, 0x8A5C|0-198-143-226
+35416|code|ADD             R12, R12, #0x9000|9-202-140-226
+35420|code|LDR             PC, [R12,#(rtlsdr_read_eeprom_ptr - 0x11A5C)]!; __imp_rtlsdr_read_eeprom|204-245-188-229
+35424|code|ADR             R12, 0x8A68|0-198-143-226
+35428|code|ADD             R12, R12, #0x9000|9-202-140-226
+35432|code|LDR             PC, [R12,#(fread_ptr - 0x11A68)]!; __imp_fread|196-245-188-229
+35436|code|ADR             R12, 0x8A74|0-198-143-226
+35440|code|ADD             R12, R12, #0x9000|9-202-140-226
+35444|code|LDR             PC, [R12,#(__libc_start_main_ptr - 0x11A74)]!; __imp___libc_start_main|188-245-188-229
+35448|code|ADR             R12, 0x8A80|0-198-143-226
+35452|code|ADD             R12, R12, #0x9000|9-202-140-226
+35456|code|LDR             PC, [R12,#(__gmon_start___ptr - 0x11A80)]!; __imp___gmon_start__|180-245-188-229
+35460|code|ADR             R12, 0x8A8C|0-198-143-226
+35464|code|ADD             R12, R12, #0x9000|9-202-140-226
+35468|code|LDR             PC, [R12,#(exit_ptr - 0x11A8C)]!; __imp_exit|172-245-188-229
+35472|code|ADR             R12, 0x8A98|0-198-143-226
+35476|code|ADD             R12, R12, #0x9000|9-202-140-226
+35480|code|LDR             PC, [R12,#(getopt_ptr - 0x11A98)]!; __imp_getopt|164-245-188-229
+35484|code|ADR             R12, 0x8AA4|0-198-143-226
+35488|code|ADD             R12, R12, #0x9000|9-202-140-226
+35492|code|LDR             PC, [R12,#(strncpy_ptr - 0x11AA4)]!; __imp_strncpy|156-245-188-229
+35496|code|ADR             R12, 0x8AB0|0-198-143-226
+35500|code|ADD             R12, R12, #0x9000|9-202-140-226
+35504|code|LDR             PC, [R12,#(__fprintf_chk_ptr - 0x11AB0)]!; __imp___fprintf_chk|148-245-188-229
+35508|code|ADR             R12, 0x8ABC|0-198-143-226
+35512|code|ADD             R12, R12, #0x9000|9-202-140-226
+35516|code|LDR             PC, [R12,#(fclose_ptr - 0x11ABC)]!; __imp_fclose|140-245-188-229
+35520|code|ADR             R12, 0x8AC8|0-198-143-226
+35524|code|ADD             R12, R12, #0x9000|9-202-140-226
+35528|code|LDR             PC, [R12,#(rtlsdr_close_ptr - 0x11AC8)]!; __imp_rtlsdr_close|132-245-188-229
+35532|code|ADR             R12, 0x8AD4|0-198-143-226
+35536|code|ADD             R12, R12, #0x9000|9-202-140-226
+35540|code|LDR             PC, [R12,#(fputc_ptr - 0x11AD4)]!; __imp_fputc|124-245-188-229
+35544|code|ADR             R12, 0x8AE0|0-198-143-226
+35548|code|ADD             R12, R12, #0x9000|9-202-140-226
+35552|code|LDR             PC, [R12,#(rtlsdr_get_device_count_ptr - 0x11AE0)]!; __imp_rtlsdr_get_device_count|116-245-188-229
+35556|code|ADR             R12, 0x8AEC|0-198-143-226
+35560|code|ADD             R12, R12, #0x9000|9-202-140-226
+35564|code|LDR             PC, [R12,#(abort_ptr - 0x11AEC)]!; __imp_abort|108-245-188-229
+35568|code|ADR             R12, 0x8AF8|0-198-143-226
+35572|code|ADD             R12, R12, #0x9000|9-202-140-226
+35576|code|LDR             PC, [R12,#(rtlsdr_write_eeprom_ptr - 0x11AF8)]!; __imp_rtlsdr_write_eeprom|100-245-188-229
+35580|code|ADR             R12, 0x8B04|0-198-143-226
+35584|code|ADD             R12, R12, #0x9000|9-202-140-226
+35588|code|LDR             PC, [R12,#(rtlsdr_get_device_name_ptr - 0x11B04)]!; __imp_rtlsdr_get_device_name|92-245-188-229
+35592|code|SVCMI           0xF0E92D|45-233-240-79
+35596|code|LDMDBEQ         R0!, {R1,R6,R9,R12-PC}^|66-242-112-9
+35600|code|STMDBEQ         R1, {R6,R7,R9,R12-PC}|192-242-1-9
+35604|data|DCD 0xF2AD2400, 0xF2424D3C, 0xF8D90588, 0xF2C03000, 0x46070501|0-36-173-242-60-77-66-242-136-5-217-248-0-48-192-242-1-5-7-70-14-70-160-70-162-70-7-148-6-148-5-148-205-248-52-52-4-148-3-148-2-148-73-246-32-50-56-70-192-242-0-2-49-70-255-247-162-239-67-28-117-208-100-56-19-40-66-216-223-232-0-240-22-65-65-50-65-39-65-65-65-34-65-65-29-65-14-17-65-65-65-10-79-240-1-8-205-248-24-128-43-104-2-147-223-231-43-104-79-240-1-8-5-147-218-231-40-104-0-33-10-34-255-247-60-239-130-70-211-231-42-104-79-240-1-8-4-146-206-231-43-104-79-240-1-8-3-147-201-231-40-104-0-33-10-34-255-247-42-239-0-40-64-243-17-129-1-36-160-70-190-231-213-248-0-176-73-246-228-33-192-242-0-1-88-70-255-247-22-239-48-185-1-35-7-147-79-240-1-8-175-231-0-240-203-250-73-246-236-33-88-70-192-242-0-1-255-247-6-239-0-40-0-240-240-128-73-246-248-33-88-70-192-242-0-1-255-247-252-238-0-40-0-240-78-129-73-246-0-49-88-70-192-242-0-1-255-247-242-238-0-40-0-240-84-129-73-246-16-49-88-70-192-242-0-1-255-247-232-238-0-40-0-240-111-129-7-154-0-42-24-191-79-240-1-8-127-231-255-247-76-239-7-70-0-40-0-240-136-129-66-242-120-5-192-242-1-5-73-246-84-50-1-33-40-104-192-242-0-2-59-70-255-247-34-239-0-47-200-191-79-240-0-11-16-221-88-70-46-104-255-247-68-239-1-33-91-70-73-246-132-50-139-68-192-242-0-2-0-144-48-70-255-247-14-239-95-69-238-209-41-104-10-32-255-247-26-239-80-70-47-104-255-247-46-239-66-242-144-11-192-242-1-11-1-33-83-70-73-246-108-50-192-242-0-2-66-242-120-6-192-242-1-6-0-144-56-70-255-247-242-238-88-70-81-70-255-247-182-238-0-40-192-242-54-129-49-104-10-32-255-247-250-238-9-169-219-248-0-0-0-34-79-244-128-115-255-247-182-238-176-241-0-10-192-242-221-128-23-34-51-104-1-33-73-246-240-48-192-242-0-0-255-247-162-238-9-169-73-168-0-240-178-250-73-168-0-240-167-249-2-154-0-42-0-240-217-128-6-155-0-43-96-209-73-246-48-81-2-152-192-242-0-1-255-247-116-238-7-70-0-40-0-240-240-128-9-168-1-33-79-244-128-114-59-70-255-247-130-238-176-245-128-127-0-240-206-128-73-246-60-64-51-104-1-33-192-242-0-0-22-34-255-247-118-238-3-154-42-177-17-70-74-168-79-244-128-114-255-247-152-238-4-155-43-177-25-70-138-168-79-244-128-114-255-247-144-238-5-154-66-177-17-70-202-168-79-244-128-114-1-35-205-248-40-52-255-247-132-238-0-44-4-208-212-191-0-35-1-35-205-248-44-52-184-241-0-15-59-209-23-177-56-70-255-247-130-238-219-248-0-0-255-247-132-238-221-248-52-36-217-248-0-48-138-234-234-112-160-235-234-112-154-66-64-240-196-128-13-242-60-77-189-232-240-143-2-34-7-146-253-230-79-240-255-52-250-230-16-70-73-246-8-65-192-242-0-1-255-247-18-238-7-70-0-40-0-240-143-128-9-168-1-33-79-244-128-114-59-70-255-247-46-238-176-245-128-127-168-208-51-104-73-246-36-64-1-33-20-34-192-242-0-0-255-247-22-238-158-231-43-104-73-246-112-64-1-33-192-242-0-0-20-34-255-247-12-238-7-155-0-43-82-209-6-154-0-42-72-208-9-169-73-168-0-240-21-250-73-168-0-240-10-249-1-33-41-34-43-104-73-246-136-64-192-242-0-0-255-247-246-237-66-242-128-3-192-242-1-3-24-104-255-247-218-237-192-178-8-177-121-40-153-209-6-154-9-169-219-248-0-0-0-42-12-191-128-35-79-244-128-115-0-34-255-247-50-238-176-241-0-10-75-219-43-104-73-246-212-64-1-33-90-34-192-242-0-0-255-247-210-237-128-231-3-35-7-147-149-230-26-241-3-15-36-208-48-104-73-246-208-50-1-33-192-242-0-2-83-70-255-247-242-237-116-231-4-34-7-146-133-230-2-159-70-231-73-168-9-169-0-240-16-250-0-40-176-218-100-231-25-70-73-168-0-240-71-250-167-231-48-104-73-246-84-66-2-155-1-33-192-242-0-2-255-247-216-237-48-231-51-104-73-246-180-48-1-33-26-34-192-242-0-0-255-247-158-237-79-231-5-35-7-147-96-230-43-104-73-246-12-64-1-33-20-34-192-242-0-0-255-247-144-237-66-231-40-104-73-246-180-66-1-33-192-242-0-2-83-70-255-247-182-237-52-231-48-104-83-70-73-246-144-50-1-33-192-242-0-2-255-247-172-237-1-32-255-247-152-237-255-247-106-237-66-242-120-3-192-242-1-3-73-246-52-48-1-33-27-104-192-242-0-0-28-34-255-247-106-237-1-32-255-247-134-237-0-191
+36732|code|MOV.W           R11, #0|79-240-0-11
+36736|code|MOV.W           LR, #0|79-240-0-14
+36740|code|POP             {R1}; argc|2-188
+36742|code|MOV             R2, SP; ubp_av|106-70
+36744|code|PUSH            {R2}; stack_end|4-180
+36746|code|PUSH            {R0}; rtld_fini|1-180
+36748|code|LDR.W           R12, =(__libc_csu_fini+1)|223-248-16-192
+36752|code|PUSH.W          {R12}; fini|77-248-4-205
+36756|code|LDR             R0, =(loc_8B08+1); main|3-72
+36758|code|LDR             R3, =(__libc_csu_init+1); init|4-75
+36760|code|BLX             __libc_start_main|255-247-104-237
+36764|code|BLX             abort|255-247-162-237
+36768|data|DCD __libc_csu_fini+1|189-149-0-0
+36772|data|DCD loc_8B08+1|9-139-0-0
+36776|data|DCD __libc_csu_init+1|125-149-0-0
+36780|code|LDR             R3, =(_GLOBAL_OFFSET_TABLE_ - 0x8FBC)|20-48-159-229
+36784|code|LDR             R2, =(__gmon_start___ptr_0 - 0x12000)|20-32-159-229
+36788|code|ADD             R3, PC, R3; _GLOBAL_OFFSET_TABLE_|3-48-143-224
+36792|code|LDR             R2, [R3,R2]; __imp___gmon_start__|2-32-147-231
+36796|code|CMP             R2, #0|0-0-82-227
+36800|code|BXEQ            LR|30-255-47-1
+36804|code|B               __gmon_start__|171-254-255-234
+36808|data|DCD _GLOBAL_OFFSET_TABLE_ - 0x8FBC|68-144-0-0
+36812|data|DCD __gmon_start___ptr_0 - 0x12000|100-0-0-0
+36816|code|PUSH            {R3,LR}|8-181
+36818|code|MOVW            R0, #0x2070|66-242-112-0
+36822|code|LDR             R3, =0x12073|7-75
+36824|code|MOVT.W          R0, #1|192-242-1-0
+36828|code|SUBS            R3, R3, R0|27-26
+36830|code|CMP             R3, #6|6-43
+36832|code|BHI             loc_8FE4|0-216
+36834|code|POP             {R3,PC}|8-189
+36836|code|MOV             R3, #0|64-242-0-3-192-242-0-3
+36844|code|CMP             R3, #0|0-43
+36846|code|BEQ             locret_8FE2|248-208
+36848|code|BLX             R3|152-71
+36850|code|B               locret_8FE2|246-231
+36852|data|DCD 0x12073|115-32-1-0
+36856|code|PUSH            {R3,LR}|8-181
+36858|code|MOVW            R0, #0x2070|66-242-112-0
+36862|code|MOVW            R3, #0x2070|66-242-112-3
+36866|code|MOVT.W          R0, #1|192-242-1-0
+36870|code|MOVT.W          R3, #1|192-242-1-3
+36874|code|SUBS            R3, R3, R0|27-26
+36876|code|ASRS            R3, R3, #2|155-16
+36878|code|ADD.W           R3, R3, R3,LSR#31|3-235-211-115
+36882|code|ASRS            R1, R3, #1|89-16
+36884|code|BNE             loc_9018|0-209
+36886|code|POP             {R3,PC}|8-189
+36888|code|MOV             R2, #0|64-242-0-2-192-242-0-2
+36896|code|CMP             R2, #0|0-42
+36898|code|BEQ             locret_9016|248-208
+36900|code|BLX             R2|144-71
+36902|code|B               locret_9016|246-231
+36904|code|PUSH            {R4,LR}|16-181
+36906|code|MOV             R4, #0x1208C|66-242-140-4-192-242-1-4
+36914|code|LDRB            R3, [R4]|35-120
+36916|code|CBNZ            R3, locret_903E|27-185
+36918|code|BL              sub_8FD0|255-247-203-255
+36922|code|MOVS            R3, #1|1-35
+36924|code|STRB            R3, [R4]|35-112
+36926|code|POP             {R4,PC}|16-189
+36928|code|MOV             R0, #0x11EEC|65-246-236-96-192-242-1-0
+36936|code|PUSH            {R3,LR}|8-181
+36938|code|LDR             R3, [R0]|3-104
+36940|code|CBZ             R3, loc_905A|43-177
+36942|code|MOV             R3, #0|64-242-0-3-192-242-0-3
+36950|code|CBZ             R3, loc_905A|3-177
+36952|code|BLX             R3|152-71
+36954|code|POP.W           {R3,LR}|189-232-8-64
+36958|code|B               sub_8FF8|203-231
+36960|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+36964|code|MOV             R4, #0x12078|66-242-120-4-192-242-1-4
+36972|code|MOV             R5, R0|5-70
+36974|code|MOVS            R1, #1|1-33
+36976|code|MOVS            R2, #0x2B ; '+'|43-34
+36978|code|LDR             R3, [R4]|35-104
+36980|code|MOV             R0, #0x95D8|73-242-216-80-192-242-0-0
+36988|code|MOVW            R7, #0x95D4|73-242-212-87
+36992|code|BLX             fwrite|255-247-226-236
+36996|code|LDRH            R3, [R5]|43-136
+36998|code|LDR             R0, [R4]|32-104
+37000|code|MOVS            R1, #1|1-33
+37002|code|MOV             R2, #0x9604|73-242-4-98-192-242-0-2
+37010|code|BLX             __fprintf_chk|255-247-10-237
+37014|code|LDRH            R3, [R5,#2]|107-136
+37016|code|LDR             R0, [R4]|32-104
+37018|code|MOVS            R1, #1|1-33
+37020|code|MOV             R2, #0x9618|73-242-24-98-192-242-0-2
+37028|code|BLX             __fprintf_chk|255-247-0-237
+37032|code|ADDS            R3, R5, #4|43-29
+37034|code|LDR             R0, [R4]|32-104
+37036|code|MOVS            R1, #1|1-33
+37038|code|MOV             R2, #0x9630|73-242-48-98-192-242-0-2
+37046|code|BLX             __fprintf_chk|255-247-248-236
+37050|code|ADD.W           R3, R5, #0x104|5-245-130-115
+37054|code|LDR             R0, [R4]|32-104
+37056|code|MOVS            R1, #1|1-33
+37058|code|MOV             R2, #0x9644|73-242-68-98-192-242-0-2
+37066|code|BLX             __fprintf_chk|255-247-238-236
+37070|code|ADD.W           R3, R5, #0x204|5-245-1-115
+37074|code|LDR             R0, [R4]|32-104
+37076|code|MOVS            R1, #1|1-33
+37078|code|MOV             R2, #0x9654|73-242-84-98-192-242-0-2
+37086|code|BLX             __fprintf_chk|255-247-228-236
+37090|code|LDR             R3, [R4]|35-104
+37092|code|MOVS            R1, #1|1-33
+37094|code|MOVS            R2, #0x17|23-34
+37096|code|MOV             R0, #0x9668|73-242-104-96-192-242-0-0
+37104|code|BLX             fwrite|255-247-170-236
+37108|code|LDR.W           R2, [R5,#0x304]|213-248-4-35
+37112|code|MOVT.W          R7, #0|192-242-0-7
+37116|code|MOV             R6, #0x95CC|73-242-204-86-192-242-0-6
+37124|code|LDR             R0, [R4]|32-104
+37126|code|CMP             R2, #0|0-42
+37128|code|ITE EQ|12-191
+37130|code|MOVEQ           R2, R7|58-70
+37132|code|MOVNE           R2, R6|50-70
+37134|code|MOVS            R1, #1|1-33
+37136|code|BLX             __fprintf_chk|255-247-202-236
+37140|code|LDR             R3, [R4]|35-104
+37142|code|MOVS            R1, #1|1-33
+37144|code|MOVS            R2, #0x15|21-34
+37146|code|MOV             R0, #0x9680|73-242-128-96-192-242-0-0
+37154|code|BLX             fwrite|255-247-146-236
+37158|code|LDR.W           R2, [R5,#0x308]|213-248-8-35
+37162|code|LDR             R0, [R4]|32-104
+37164|code|MOVS            R1, #1|1-33
+37166|code|CMP             R2, #0|0-42
+37168|code|ITE EQ|12-191
+37170|code|MOVEQ           R2, R7|58-70
+37172|code|MOVNE           R2, R6|50-70
+37174|code|BLX             __fprintf_chk|255-247-184-236
+37178|code|LDR             R3, [R4]|35-104
+37180|code|MOVS            R1, #1|1-33
+37182|code|MOVS            R2, #0x17|23-34
+37184|code|MOV             R0, #0x9698|73-242-152-96-192-242-0-0
+37192|code|BLX             fwrite|255-247-126-236
+37196|code|LDR.W           R2, [R5,#0x30C]|213-248-12-35
+37200|code|LDR             R0, [R4]|32-104
+37202|code|MOVS            R1, #1|1-33
+37204|code|CMP             R2, #0|0-42
+37206|code|ITE EQ|12-191
+37208|code|MOVEQ           R2, R7|58-70
+37210|code|MOVNE           R2, R6|50-70
+37212|code|BLX             __fprintf_chk|255-247-164-236
+37216|code|LDR             R3, [R4]|35-104
+37218|code|MOVW            R0, #0x95D8|73-242-216-80
+37222|code|MOVS            R1, #1|1-33
+37224|code|MOVT.W          R0, #0|192-242-0-0
+37228|code|MOVS            R2, #0x2B ; '+'|43-34
+37230|code|POP.W           {R4-R8,LR}|189-232-240-65
+37234|code|B.W             j_fwrite|255-247-103-188
+37238|data|ALIGN 4|0-191
+37240|code|PUSH            {R3,LR}|8-181
+37242|code|MOV             R3, #0x12078|66-242-120-3-192-242-1-3
+37250|code|MOVW            R0, #0x96B0|73-242-176-96
+37254|code|MOVS            R1, #1|1-33
+37256|code|MOVT.W          R0, #0|192-242-0-0
+37260|code|LDR             R3, [R3]|27-104
+37262|code|MOV.W           R2, #0x2D4|79-244-53-114
+37266|code|BLX             fwrite|255-247-90-236
+37270|code|MOVS            R0, #1|1-32
+37272|code|BLX             exit|255-247-116-236
+37276|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+37280|code|ADDS            R6, R1, R0|14-24
+37282|code|MOV             R7, R0|7-70
+37284|code|MOV             R8, R2|144-70
+37286|code|LDRB            R3, [R6,#1]|115-120
+37288|code|LDRB            R5, [R1,R0]|13-92
+37290|code|CMP             R3, #3|3-43
+37292|code|BEQ             loc_91C8|12-208
+37294|code|MOV             R3, #0x12078|66-242-120-3-192-242-1-3
+37302|code|MOVW            R0, #0x9988|73-246-136-16
+37306|code|MOVS            R1, #1; size|1-33
+37308|code|LDR             R3, [R3]; s|27-104
+37310|code|MOVT.W          R0, #0; ptr|192-242-0-0
+37314|code|MOVS            R2, #0x22 ; '"'; n|34-34
+37316|code|BLX             fwrite|255-247-64-236
+37320|code|CMP             R5, #2|2-45
+37322|code|BLE             loc_91F4|19-221
+37324|code|ADD.W           R1, R8, #0xFFFFFFFF|8-241-255-49
+37328|code|MOVS            R3, #2|2-35
+37330|code|LDRB            R4, [R6,R3]|244-92
+37332|code|ADDS            R3, #2|2-51
+37334|code|CMP             R5, R3|157-66
+37336|code|STRB.W          R4, [R1,#1]!|1-248-1-79
+37340|code|BGT             loc_91D2|249-220
+37342|code|SUBS            R5, #3|3-61
+37344|code|LSRS            R5, R5, #1|109-8
+37346|code|ADDS            R0, R5, #2|168-28
+37348|code|ADDS            R5, #1|1-53
+37350|code|LSLS            R0, R0, #1|64-0
+37352|code|MOVS            R3, #0|0-35
+37354|code|ADD             R0, R7|56-68
+37356|code|STRB.W          R3, [R8,R5]|8-248-5-48
+37360|code|POP.W           {R4-R8,PC}|189-232-240-129
+37364|code|MOVS            R5, #0|0-37
+37366|code|MOVS            R0, #2|2-32
+37368|code|B               loc_91E8|246-231
+37370|data|ALIGN 4|0-191
+37372|code|CMP             R0, #0|0-40
+37374|code|PUSH            {R3-R7,LR}|248-181
+37376|code|BLT             loc_926A|51-219
+37378|code|ADDS            R6, R1, R0|14-24
+37380|code|MOVS            R3, #3|3-35
+37382|code|STRB            R3, [R6,#1]|115-112
+37384|code|LDRB            R4, [R2]|20-120
+37386|code|CBZ             R4, loc_9264|92-179
+37388|code|ADDS            R5, R0, #2|133-28
+37390|code|CMP             R5, #0x4D ; 'M'|77-45
+37392|code|BGT             loc_9244|24-220
+37394|code|RSB.W           R12, R0, #0x4B ; 'K'|192-241-75-12
+37398|code|MOVS            R3, #2|2-35
+37400|code|BIC.W           R12, R12, #1|44-240-1-12
+37404|code|MOVS            R7, #0|0-39
+37406|code|ADD.W           R12, R12, #4|12-241-4-12
+37410|code|B               loc_9228|1-224
+37412|code|CMP             R3, R12|99-69
+37414|code|BEQ             loc_9244|13-208
+37416|code|ADDS            R3, #2|2-51
+37418|code|STRB            R4, [R1,R5]|76-85
+37420|code|ADDS            R4, R6, R3|244-24
+37422|code|ADDS            R5, R3, R0|29-24
+37424|code|STRB.W          R7, [R4,#-1]|4-248-1-124
+37428|code|LDRB.W          R4, [R2,#1]!|18-248-1-79
+37432|code|CMP             R4, #0|0-44
+37434|code|BNE             loc_9224|243-209
+37436|code|UXTB            R2, R3|218-178
+37438|code|STRB            R2, [R1,R0]|10-84
+37440|code|ADD             R0, R3|24-68
+37442|code|POP             {R3-R7,PC}|248-189
+37444|code|MOV             R3, #0x12078|66-242-120-3-192-242-1-3
+37452|code|MOVS            R1, #1; size|1-33
+37454|code|MOVS            R2, #0x23 ; '#'; n|35-34
+37456|code|LDR             R3, [R3]; s|27-104
+37458|code|MOV             R0, #aErrorStringToo; ptr|73-246-172-16-192-242-0-0
+37466|code|BLX             fwrite|255-247-246-235
+37470|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+37474|code|POP             {R3-R7,PC}|248-189
+37476|code|MOVS            R2, #2|2-34
+37478|code|MOV             R3, R2|19-70
+37480|code|B               loc_923E|233-231
+37482|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+37486|code|POP             {R3-R7,PC}|248-189
+37488|code|PUSH            {R4-R6,LR}|112-181
+37490|code|MOV             R4, R1|12-70
+37492|code|LDRB            R3, [R1]|11-120
+37494|code|MOV             R5, R0|5-70
+37496|code|CMP             R3, #0x28 ; '('|40-43
+37498|code|BEQ             loc_92EE|56-208
+37500|code|MOV             R3, #0x12078|66-242-120-3-192-242-1-3
+37508|code|MOVW            R0, #0x99D0|73-246-208-16
+37512|code|MOVS            R1, #1|1-33
+37514|code|LDR             R3, [R3]|27-104
+37516|code|MOVT.W          R0, #0|192-242-0-0
+37520|code|MOVS            R2, #0x26 ; '&'|38-34
+37522|code|BLX             fwrite|255-247-218-235
+37526|code|LDRB            R6, [R4,#3]|230-120
+37528|code|MOV             R1, R4|33-70
+37530|code|LDRB            R3, [R4,#2]|163-120
+37532|code|ADDS            R2, R5, #4|42-29
+37534|code|MOVS            R0, #9|9-32
+37536|code|ORR.W           R3, R3, R6,LSL#8|67-234-6-35
+37540|code|STRH            R3, [R5]|43-128
+37542|code|LDRB            R6, [R4,#5]|102-121
+37544|code|LDRB            R3, [R4,#4]|35-121
+37546|code|ORR.W           R3, R3, R6,LSL#8|67-234-6-35
+37550|code|STRH            R3, [R5,#2]|107-128
+37552|code|LDRB            R3, [R4,#6]|163-121
+37554|code|SUBS.W          R6, R3, #0xA5|179-241-165-6
+37558|code|NEGS            R3, R6|115-66
+37560|code|ADCS            R3, R6|115-65
+37562|code|STR.W           R3, [R5,#0x304]|197-248-4-51
+37566|code|LDRB            R3, [R4,#7]|227-121
+37568|code|AND.W           R3, R3, #1|3-240-1-3
+37572|code|STR.W           R3, [R5,#0x30C]|197-248-12-51
+37576|code|LDRB            R3, [R4,#7]|227-121
+37578|code|UBFX.W          R3, R3, #1, #1|195-243-64-3
+37582|code|STR.W           R3, [R5,#0x308]|197-248-8-51
+37586|code|BL              sub_919C|255-247-99-255
+37590|code|MOV             R1, R4|33-70
+37592|code|ADD.W           R2, R5, #0x104|5-245-130-114
+37596|code|BL              sub_919C|255-247-94-255
+37600|code|MOV             R1, R4|33-70
+37602|code|ADD.W           R2, R5, #0x204|5-245-1-114
+37606|code|BL              sub_919C|255-247-89-255
+37610|code|MOVS            R0, #0|0-32
+37612|code|POP             {R4-R6,PC}|112-189
+37614|code|LDRB            R3, [R1,#1]|75-120
+37616|code|CMP             R3, #0x32 ; '2'|50-43
+37618|code|BNE             loc_927C|195-209
+37620|code|B               loc_9296|207-231
+37622|data|ALIGN 4|0-191
+37624|code|PUSH            {R3-R7,LR}|248-181
+37626|code|MOVS            R2, #0x28 ; '('|40-34
+37628|code|MOVS            R3, #0x32 ; '2'|50-35
+37630|code|STRB            R2, [R1]|10-112
+37632|code|STRB            R3, [R1,#1]|75-112
+37634|code|MOV             R5, R0|5-70
+37636|code|LDRH            R3, [R0]|3-136
+37638|code|MOVS            R6, #0x14|20-38
+37640|code|MOVS            R7, #2|2-39
+37642|code|MOV             R4, R1|12-70
+37644|code|ADDS            R2, R0, #4|2-29
+37646|code|MOVS            R0, #9|9-32
+37648|code|STRB            R3, [R1,#2]|139-112
+37650|code|LDRH            R3, [R5]|43-136
+37652|code|LSRS            R3, R3, #8|27-10
+37654|code|STRB            R3, [R1,#3]|203-112
+37656|code|LDRH            R3, [R5,#2]|107-136
+37658|code|STRB            R3, [R1,#4]|11-113
+37660|code|LDRH            R3, [R5,#2]|107-136
+37662|code|LSRS            R3, R3, #8|27-10
+37664|code|STRB            R3, [R1,#5]|75-113
+37666|code|LDR.W           R3, [R5,#0x304]|213-248-4-51
+37670|code|STRB            R6, [R1,#7]|206-113
+37672|code|CMP             R3, #0|0-43
+37674|code|ITE NE|20-191
+37676|code|MOVNE           R3, #0xA5|165-35
+37678|code|MOVEQ           R3, #0|0-35
+37680|code|STRB            R3, [R1,#6]|139-113
+37682|code|LDR.W           R3, [R5,#0x30C]|213-248-12-51
+37686|code|CMP             R3, #0|0-43
+37688|code|ITE NE|20-191
+37690|code|MOVNE           R3, #0x15|21-35
+37692|code|MOVEQ           R3, R6|51-70
+37694|code|STRB            R3, [R1,#7]|203-113
+37696|code|LDR.W           R6, [R5,#0x308]|213-248-8-99
+37700|code|STRB            R7, [R1,#8]|15-114
+37702|code|CMP             R6, #0|0-46
+37704|code|ITE NE|20-191
+37706|code|MOVNE           R6, R7|62-70
+37708|code|MOVEQ           R6, #0|0-38
+37710|code|ORRS            R3, R6|51-67
+37712|code|STRB            R3, [R1,#7]|203-113
+37714|code|BL              sub_91FC|255-247-83-255
+37718|code|MOV             R1, R4|33-70
+37720|code|ADD.W           R2, R5, #0x104|5-245-130-114
+37724|code|BL              sub_91FC|255-247-78-255
+37728|code|MOV             R1, R4|33-70
+37730|code|ADD.W           R2, R5, #0x204|5-245-1-114
+37734|code|BL              sub_91FC|255-247-73-255
+37738|code|MOVS            R3, #0|0-35
+37740|code|STRB.W          R3, [R4,#0x4E]|132-248-78-48
+37744|code|POP             {R3-R7,PC}|248-189
+37746|data|ALIGN 4|0-191
+37748|code|SUBS            R1, #1; switch 5 cases|1-57
+37750|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+37754|code|MOV             R4, R0|4-70
+37756|code|CMP             R1, #4|4-41
+37758|code|BHI             def_9380; jumptable 00009380 default case|66-216
+37760|code|TBB.W           [PC,R1]; switch jump|223-232-1-240
+37764|data|DCB 0x43; jump table for switch statement|67
+37765|data|DCB 0x83|131
+37766|data|DCB 0xA2|162
+37767|data|DCB 0xDC|220
+37768|data|DCB 3|3
+37769|data|ALIGN 2|0
+37770|code|MOV             R3, #0x12078; jumptable 00009380 case 5|66-242-120-3-192-242-1-3
+37778|code|MOVS            R1, #1|1-33
+37780|code|MOVS            R2, #0x16|22-34
+37782|code|LDR             R3, [R3]|27-104
+37784|code|MOV             R0, #0x9ACC|73-246-204-32-192-242-0-0
+37792|code|MOVW            R5, #0x9A78|73-246-120-37
+37796|code|BLX             fwrite|255-247-80-235
+37800|code|MOV             R2, #0x9A60|73-246-96-34-192-242-0-2
+37808|code|MOVW            R3, #0x9A68|73-246-104-35
+37812|code|MOVT.W          R5, #0|192-242-0-5
+37816|code|MOVT.W          R3, #0|192-242-0-3
+37820|code|LDM             R2!, {R0,R1}; "Realtek"|3-202
+37822|code|MOV.W           R9, #0xD7|79-240-215-9
+37826|code|MOVW            R2, #0xCCD|64-246-205-66
+37830|code|STRH            R2, [R4]|34-128
+37832|code|MOVS            R7, #1|1-39
+37834|code|STR             R0, [R4,#4]|96-96
+37836|code|MOV.W           R8, #0|79-240-0-8
+37840|code|STR             R1, [R4,#8]|161-96
+37842|code|LDM             R3!, {R0-R2}; "RTL2838UHIDIR"|7-203
+37844|code|STRH.W          R9, [R4,#2]|164-248-2-144
+37848|code|STR.W           R7, [R4,#0x304]|196-248-4-115
+37852|code|STR.W           R7, [R4,#0x308]|196-248-8-115
+37856|code|STR.W           R0, [R4,#0x104]|196-248-4-1
+37860|code|STR.W           R1, [R4,#0x108]|196-248-8-17
+37864|code|LDM             R5!, {R0,R1}; "00000001"|3-205
+37866|code|LDRH            R3, [R3]; "R"|27-136
+37868|code|STR.W           R2, [R4,#0x10C]|196-248-12-33
+37872|code|LDRB            R2, [R5]; ""|42-120
+37874|code|STRH.W          R3, [R4,#0x110]|164-248-16-49
+37878|code|STR.W           R0, [R4,#0x204]|196-248-4-2
+37882|code|STRB.W          R2, [R4,#0x20C]|132-248-12-34
+37886|code|STR.W           R1, [R4,#0x208]|196-248-8-18
+37890|code|STR.W           R8, [R4,#0x30C]|196-248-12-131
+37894|code|POP.W           {R3-R9,PC}; jumptable 00009380 default case|189-232-248-131
+37898|code|MOV             R3, #0x12078; jumptable 00009380 case 1|66-242-120-3-192-242-1-3
+37906|code|MOVS            R1, #1|1-33
+37908|code|MOVS            R2, #0x24 ; '$'|36-34
+37910|code|LDR             R3, [R3]|27-104
+37912|code|MOV             R0, #0x99F8|73-246-248-16-192-242-0-0
+37920|code|MOVW            R6, #0x9A38|73-246-56-38
+37924|code|BLX             fwrite|255-247-16-235
+37928|code|MOV             R2, #0x9A20|73-246-32-34-192-242-0-2
+37936|code|MOV             R3, #0x9A28|73-246-40-35-192-242-0-3
+37944|code|MOVT.W          R6, #0|192-242-0-6
+37948|code|LDM             R2!, {R0,R1}; "Generic"|3-202
+37950|code|MOVW            R8, #0x2832|66-246-50-8
+37954|code|LDRH.W          R12, [R6]|182-248-0-192
+37958|code|MOVW            R9, #0xBDA|64-246-218-57
+37962|code|STRH.W          R8, [R4,#2]|164-248-2-128
+37966|code|MOVS            R6, #1|1-38
+37968|code|STR             R0, [R4,#4]|96-96
+37970|code|MOVS            R7, #0|0-39
+37972|code|STR             R1, [R4,#8]|161-96
+37974|code|LDM             R3!, {R0-R2}; "RTL2832U DVB-T"|7-203
+37976|code|STRH.W          R9, [R4]|164-248-0-144
+37980|code|STRH.W          R12, [R4,#0x204]|164-248-4-194
+37984|code|STR.W           R6, [R4,#0x304]|196-248-4-99
+37988|code|LDRH.W          R8, [R3]; "-T"|179-248-0-128
+37992|code|LDRB            R3, [R3,#(aRtl2832uDvbT+0xE - 0x9A34)]; ""|155-120
+37994|code|STR.W           R0, [R4,#0x104]|196-248-4-1
+37998|code|STR.W           R1, [R4,#0x108]|196-248-8-17
+38002|code|STR.W           R2, [R4,#0x10C]|196-248-12-33
+38006|code|STRH.W          R8, [R4,#0x110]|164-248-16-129
+38010|code|STRB.W          R3, [R4,#0x112]|132-248-18-49
+38014|code|STR.W           R6, [R4,#0x30C]|196-248-12-99
+38018|code|STR.W           R7, [R4,#0x308]|196-248-8-115
+38022|code|POP.W           {R3-R9,PC}|189-232-248-131
+38026|code|MOV             R3, #0x12078; jumptable 00009380 case 2|66-242-120-3-192-242-1-3
+38034|code|MOVS            R1, #1|1-33
+38036|code|MOVS            R2, #0x20 ; ' '|32-34
+38038|code|LDR             R3, [R3]|27-104
+38040|code|MOV             R0, #0x9A3C|73-246-60-32-192-242-0-0
+38048|code|MOVW            R5, #0x9A78|73-246-120-37
+38052|code|BLX             fwrite|255-247-208-234
+38056|code|MOV             R2, #0x9A60|73-246-96-34-192-242-0-2
+38064|code|MOVW            R3, #0x9A68|73-246-104-35
+38068|code|MOVT.W          R5, #0|192-242-0-5
+38072|code|MOVT.W          R3, #0|192-242-0-3
+38076|code|LDM             R2!, {R0,R1}; "Realtek"|3-202
+38078|code|MOVW            R9, #0x2838|66-246-56-9
+38082|code|MOVW            R2, #0xBDA|64-246-218-50
+38086|code|B               loc_93C6|126-231
+38088|code|MOV             R3, #0x12078; jumptable 00009380 case 3|66-242-120-3-192-242-1-3
+38096|code|MOVS            R1, #1|1-33
+38098|code|MOVS            R2, #0x19|25-34
+38100|code|LDR             R3, [R3]|27-104
+38102|code|MOV             R0, #0x9A84|73-246-132-32-192-242-0-0
+38110|code|MOVW            R8, #0xCCD|64-246-205-72
+38114|code|BLX             fwrite|255-247-178-234
+38118|code|MOV             R2, #0x9AA0|73-246-160-34-192-242-0-2
+38126|code|MOVW            R3, #0x9AA8|73-246-168-35
+38130|code|MOVW            R1, #0x9A38|73-246-56-33
+38134|code|MOVT.W          R3, #0|192-242-0-3
+38138|code|LDR             R0, [R2]|16-104
+38140|code|MOVT.W          R1, #0|192-242-0-1
+38144|code|LDRH            R6, [R2,#(word_9AA4 - 0x9AA0)]|150-136
+38146|code|MOV.W           R12, #0xB3|79-240-179-12
+38150|code|LDRH            R7, [R1]|15-136
+38152|code|MOVS            R2, #1|1-34
+38154|code|STR             R0, [R4,#4]|96-96
+38156|code|LDM             R3!, {R0,R1}; "DAB Stick"|3-203
+38158|code|STRH            R6, [R4,#8]|38-129
+38160|code|MOVS            R6, #0|0-38
+38162|code|STRH.W          R8, [R4]|164-248-0-128
+38166|code|LDRH            R3, [R3]; "k"|27-136
+38168|code|STR.W           R0, [R4,#0x104]|196-248-4-1
+38172|code|STRH.W          R12, [R4,#2]|164-248-2-192
+38176|code|STRH.W          R3, [R4,#0x10C]|164-248-12-49
+38180|code|STR.W           R1, [R4,#0x108]|196-248-8-17
+38184|code|STRH.W          R7, [R4,#0x204]|164-248-4-114
+38188|code|STR.W           R2, [R4,#0x304]|196-248-4-35
+38192|code|STR.W           R2, [R4,#0x30C]|196-248-12-35
+38196|code|STR.W           R6, [R4,#0x308]|196-248-8-99
+38200|code|POP.W           {R3-R9,PC}|189-232-248-131
+38204|code|MOV             R3, #0x12078; jumptable 00009380 case 4|66-242-120-3-192-242-1-3
+38212|code|MOVS            R1, #1|1-33
+38214|code|MOVS            R2, #0x17|23-34
+38216|code|LDR             R3, [R3]|27-104
+38218|code|MOV             R0, #0x9AB4|73-246-180-32-192-242-0-0
+38226|code|MOVW            R5, #0x9A78|73-246-120-37
+38230|code|BLX             fwrite|255-247-120-234
+38234|code|MOV             R2, #0x9A60|73-246-96-34-192-242-0-2
+38242|code|MOVW            R3, #0x9A68|73-246-104-35
+38246|code|MOVT.W          R5, #0|192-242-0-5
+38250|code|MOVT.W          R3, #0|192-242-0-3
+38254|code|LDM             R2!, {R0,R1}; "Realtek"|3-202
+38256|code|MOV.W           R9, #0xA9|79-240-169-9
+38260|code|MOVW            R2, #0xCCD|64-246-205-66
+38264|code|B               loc_93C6|37-231
+38266|data|ALIGN 4|0-191
+38268|code|PUSH.W          {R3-R9,LR}|45-233-248-67
+38272|code|MOV             R7, R0|7-70
+38274|code|LDR             R6, =(off_11EE8 - 0x958E)|12-78
+38276|code|MOV             R8, R1|136-70
+38278|code|LDR             R5, =(off_11EE4 - 0x9594)|12-77
+38280|code|MOV             R9, R2|145-70
+38282|code|ADD             R6, PC; off_11EE8|126-68
+38284|code|BLX             .init_proc|255-247-38-234
+38288|code|ADD             R5, PC; off_11EE4|125-68
+38290|code|SUBS            R6, R6, R5|118-27
+38292|code|ASRS            R6, R6, #2|182-16
+38294|code|BEQ             locret_95AE|10-208
+38296|code|SUBS            R5, #4|4-61
+38298|code|MOVS            R4, #0|0-36
+38300|code|ADDS            R4, #1|1-52
+38302|code|LDR.W           R3, [R5,#4]!|85-248-4-63
+38306|code|MOV             R0, R7|56-70
+38308|code|MOV             R1, R8|65-70
+38310|code|MOV             R2, R9|74-70
+38312|code|BLX             R3|152-71
+38314|code|CMP             R4, R6|180-66
+38316|code|BNE             loc_959C|246-209
+38318|code|POP.W           {R3-R9,PC}|189-232-248-131
+38322|data|ALIGN 4|0-191
+38324|data|DCD off_11EE8 - 0x958E|90-137-0-0
+38328|data|DCD off_11EE4 - 0x9594|80-137-0-0
+38332|code|BX              LR|112-71
+38334|data|ALIGN 0x10|0-191
+38336|code|PUSH            {R3,LR}; _fini|8-64-45-233
+38340|code|POP             {R3,PC}|8-128-189-232
+40252|data|ALIGN 0x10|0-0-0-0
+73444|data|DCD sub_9040+1|65-144-0-0
+73448|data|DCD sub_9028+1|41-144-0-0
+73452|data|DCD 0|0-0-0-0
+73456|data|Elf32_Dyn <1, <1>>; DT_NEEDED librtlsdr.so.0|1-0-0-0-1-0-0-0
+73464|data|Elf32_Dyn <1, <0xD8>>; DT_NEEDED libusb-1.0.so.0|1-0-0-0-216-0-0-0
+73472|data|Elf32_Dyn <1, <0xE8>>; DT_NEEDED libpthread.so.0|1-0-0-0-232-0-0-0
+73480|data|Elf32_Dyn <1, <0xF8>>; DT_NEEDED libc.so.6|1-0-0-0-248-0-0-0
+73488|data|Elf32_Dyn <1, <0x198>>; DT_NEEDED ld-linux-armhf.so.3|1-0-0-0-152-1-0-0
+73496|data|Elf32_Dyn <0xC, <0x89DC>>; DT_INIT|12-0-0-0-220-137-0-0
+73504|data|Elf32_Dyn <0xD, <0x95C0>>; DT_FINI|13-0-0-0-192-149-0-0
+73512|data|Elf32_Dyn <0x19, <0x11EE4>>; DT_INIT_ARRAY|25-0-0-0-228-30-1-0
+73520|data|Elf32_Dyn <0x1B, <4>>; DT_INIT_ARRAYSZ|27-0-0-0-4-0-0-0
+73528|data|Elf32_Dyn <0x1A, <0x11EE8>>; DT_FINI_ARRAY|26-0-0-0-232-30-1-0
+73536|data|Elf32_Dyn <0x1C, <4>>; DT_FINI_ARRAYSZ|28-0-0-0-4-0-0-0
+73544|data|Elf32_Dyn <0x6FFFFEF5, <0x81B4>>; DT_GNU_HASH|245-254-255-111-180-129-0-0
+73552|data|Elf32_Dyn <5, <0x85E8>>; DT_STRTAB|5-0-0-0-232-133-0-0
+73560|data|Elf32_Dyn <6, <0x8318>>; DT_SYMTAB|6-0-0-0-24-131-0-0
+73568|data|Elf32_Dyn <0xA, <0x27F>>; DT_STRSZ|10-0-0-0-127-2-0-0
+73576|data|Elf32_Dyn <0xB, <0x10>>; DT_SYMENT|11-0-0-0-16-0-0-0
+73584|data|Elf32_Dyn <0x15, <0>>; DT_DEBUG|21-0-0-0-0-0-0-0
+73592|data|Elf32_Dyn <3, <0x12000>>; DT_PLTGOT|3-0-0-0-0-32-1-0
+73600|data|Elf32_Dyn <2, <0xB0>>; DT_PLTRELSZ|2-0-0-0-176-0-0-0
+73608|data|Elf32_Dyn <0x14, <0x11>>; DT_PLTREL|20-0-0-0-17-0-0-0
+73616|data|Elf32_Dyn <0x17, <0x892C>>; DT_JMPREL|23-0-0-0-44-137-0-0
+73624|data|Elf32_Dyn <0x11, <0x8904>>; DT_REL|17-0-0-0-4-137-0-0
+73632|data|Elf32_Dyn <0x12, <0x28>>; DT_RELSZ|18-0-0-0-40-0-0-0
+73640|data|Elf32_Dyn <0x13, <8>>; DT_RELENT|19-0-0-0-8-0-0-0
+73648|data|Elf32_Dyn <0x6FFFFFFE, <0x88C4>>; DT_VERNEED|254-255-255-111-196-136-0-0
+73656|data|Elf32_Dyn <0x6FFFFFFF, <2>>; DT_VERNEEDNUM|255-255-255-111-2-0-0-0
+73664|data|Elf32_Dyn <0x6FFFFFF0, <0x8868>>; DT_VERSYM|240-255-255-111-104-136-0-0
+73672|data|Elf32_Dyn <0>; DT_NULL|0-0-0-0-0-0-0-0
+73680|data|ALIGN 0x40|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+73728|data|DCD stru_11EF0|240-30-1-0
+73732|data|DCD 0|0-0-0-0
+73736|data|DCD 0|0-0-0-0
+73740|data|DCD __imp_strcmp|208-32-1-0
+73744|data|DCD __imp_strtol|216-32-1-0
+73748|data|DCD __imp_fopen|160-32-1-0
+73752|data|DCD __imp__IO_getc|168-32-1-0
+73756|data|DCD __imp___stack_chk_fail|224-32-1-0
+73760|data|DCD __imp_rtlsdr_open|188-32-1-0
+73764|data|DCD __imp_fwrite|232-32-1-0
+73768|data|DCD __imp_rtlsdr_read_eeprom|212-32-1-0
+73772|data|DCD __imp_fread|176-32-1-0
+73776|data|DCD __imp___libc_start_main|172-32-1-0
+73780|data|DCD __imp___gmon_start__|240-32-1-0
+73784|data|DCD __imp_exit|192-32-1-0
+73788|data|DCD __imp_getopt|220-32-1-0
+73792|data|DCD __imp_strncpy|196-32-1-0
+73796|data|DCD __imp___fprintf_chk|184-32-1-0
+73800|data|DCD __imp_fclose|204-32-1-0
+73804|data|DCD __imp_rtlsdr_close|156-32-1-0
+73808|data|DCD __imp_fputc|200-32-1-0
+73812|data|DCD __imp_rtlsdr_get_device_count|228-32-1-0
+73816|data|DCD __imp_abort|180-32-1-0
+73820|data|DCD __imp_rtlsdr_write_eeprom|152-32-1-0
+73824|data|DCD __imp_rtlsdr_get_device_name|164-32-1-0

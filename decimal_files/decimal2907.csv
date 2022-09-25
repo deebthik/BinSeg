@@ -1,0 +1,190 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|LDR             algo, [pkey]|8-104
+4|code|LDR             R3, =gcry_mpi_get_nbits|1-75
+6|code|BLX             R3; gcry_mpi_get_nbits|152-71
+8|code|POP             {R3,PC}|8-189
+10|data|ALIGN 4|0-191
+12|data|DCD gcry_mpi_get_nbits|60-2-0-0
+16|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+20|code|SUB             SP, SP, #0x2C|139-176
+22|code|LDR             R6, [data]|22-104
+24|code|STR             hash_0, [SP,#0x50+hash]|3-145
+26|code|CMP             R6, #0|0-46
+28|code|BEQ             loc_110|120-208
+30|code|LDR.W           R8, [data,#4]|210-248-4-128
+34|code|CMP.W           R8, #0|184-241-0-15
+38|code|BEQ             loc_110|115-208
+40|code|CMP             hash_0, #0|0-41
+42|code|BEQ             loc_110|113-208
+44|code|LDR.W           R11, [pkey]|211-248-0-176
+48|code|CMP.W           R11, #0|187-241-0-15
+52|code|BEQ             loc_110|108-208
+54|code|LDR             R4, [pkey,#4]|92-104
+56|code|CMP             R4, #0|0-44
+58|code|BEQ             loc_110|105-208
+60|code|LDR             data, [pkey,#8]|154-104
+62|code|STR             R2, [SP,#0x50+var_4C]|1-146
+64|code|CMP             R2, #0|0-42
+66|code|BEQ             loc_110|101-208
+68|code|LDR             pkey, [pkey,#0xC]|219-104
+70|code|STR             R3, [SP,#0x50+var_48]|2-147
+72|code|CMP             R3, #0|0-43
+74|code|BEQ             loc_110|97-208
+76|code|MOV             algo, R6|48-70
+78|code|MOVS            hash_0, #0|0-33
+80|code|LDR             R5, =gcry_mpi_cmp_ui|50-77
+82|code|BLX             R5; gcry_mpi_cmp_ui|168-71
+84|code|CMP             R0, #0|0-40
+86|code|BLE             loc_10C|89-221
+88|code|MOV             R0, R6|48-70
+90|code|MOV             R1, R4|33-70
+92|code|LDR             R7, =gcry_mpi_cmp|48-79
+94|code|BLX             R7; gcry_mpi_cmp|184-71
+96|code|CMP             R0, #0|0-40
+98|code|BGE             loc_10C|83-218
+100|code|MOV             R0, R8|64-70
+102|code|MOVS            R1, #0|0-33
+104|code|BLX             R5; gcry_mpi_cmp_ui|168-71
+106|code|CMP             R0, #0|0-40
+108|code|BLE             loc_10C|78-221
+110|code|MOV             R0, R8|64-70
+112|code|MOV             R1, R4|33-70
+114|code|BLX             R7; gcry_mpi_cmp|184-71
+116|code|CMP             R0, #0|0-40
+118|code|BGE             loc_10C|73-218
+120|code|LDR             R5, =_gcry_mpi_alloc|42-77
+122|code|LDR             R0, [R4,#4]|96-104
+124|code|BLX             R5; _gcry_mpi_alloc|168-71
+126|code|MOV             R7, R0|7-70
+128|code|LDR             R0, [R4,#4]|96-104
+130|code|BLX             R5; _gcry_mpi_alloc|168-71
+132|code|MOV             R10, R0|130-70
+134|code|LDR             R0, [R4,#4]|96-104
+136|code|BLX             R5; _gcry_mpi_alloc|168-71
+138|code|MOV             R9, R0|129-70
+140|code|LDR.W           R0, [R11,#4]|219-248-4-0
+144|code|BLX             R5; _gcry_mpi_alloc|168-71
+146|code|MOV             R1, R8|65-70
+148|code|MOV             R2, R4|34-70
+150|code|LDR             R3, =gcry_mpi_invm|36-75
+152|code|LDR.W           R8, =gcry_mpi_mulm|223-248-152-128
+156|code|MOV             R5, R0|5-70
+158|code|MOV             R0, R7|56-70
+160|code|BLX             R3; gcry_mpi_invm|152-71
+162|code|MOV             R3, R4|35-70
+164|code|MOV             R0, R10|80-70
+166|code|LDR             R1, [SP,#0x50+hash]|3-153
+168|code|MOV             R2, R7|58-70
+170|code|BLX             R8; gcry_mpi_mulm|192-71
+172|code|MOV             R1, R6|49-70
+174|code|MOV             R3, R4|35-70
+176|code|MOV             R0, R9|72-70
+178|code|MOV             R2, R7|58-70
+180|code|BLX             R8; gcry_mpi_mulm|192-71
+182|code|LDR             R3, [SP,#0x50+var_4C]|1-155
+184|code|LDR.W           R12, =_gcry_mpi_mulpowm|223-248-124-192
+188|code|MOV             R0, R5|40-70
+190|code|ADD             R1, SP, #0x50+var_40|4-169
+192|code|ADD             R2, SP, #0x50+var_34|7-170
+194|code|STR             R3, [SP,#0x50+var_40]|4-147
+196|code|MOV.W           R8, #0|79-240-0-8
+200|code|LDR             R3, [SP,#0x50+var_48]|2-155
+202|code|STR.W           R10, [SP,#0x50+var_34]|205-248-28-160
+206|code|STR.W           R9, [SP,#0x50+var_30]|205-248-32-144
+210|code|STR             R3, [SP,#0x50+var_3C]|5-147
+212|code|MOV             R3, R11|91-70
+214|code|STR.W           R8, [SP,#0x50+var_38]|205-248-24-128
+218|code|STR.W           R8, [SP,#0x50+var_2C]|205-248-36-128
+222|code|BLX             R12; _gcry_mpi_mulpowm|224-71
+224|code|MOV             R2, R4|34-70
+226|code|MOV             R0, R5|40-70
+228|code|MOV             R1, R5|41-70
+230|code|LDR             R3, =_gcry_mpi_fdiv_r|17-75
+232|code|BLX             R3; _gcry_mpi_fdiv_r|152-71
+234|code|MOV             R1, R6|49-70
+236|code|LDR             R3, =gcry_mpi_cmp|12-75
+238|code|MOV             R0, R5|40-70
+240|code|BLX             R3; gcry_mpi_cmp|152-71
+242|code|LDR             R4, =_gcry_mpi_free|15-76
+244|code|CLZ.W           R6, R0|176-250-128-246
+248|code|MOV             R0, R7|56-70
+250|code|BLX             R4; _gcry_mpi_free|160-71
+252|code|MOV             R0, R10|80-70
+254|code|BLX             R4; _gcry_mpi_free|160-71
+256|code|LSRS            R6, R6, #5|118-9
+258|code|MOV             R0, R9|72-70
+260|code|BLX             R4; _gcry_mpi_free|160-71
+262|code|MOV             R0, R5|40-70
+264|code|BLX             R4; _gcry_mpi_free|160-71
+266|code|CBNZ            R6, loc_114|30-185
+268|code|MOVS            R0, #3|3-32
+270|code|B               loc_116|2-224
+272|code|MOVS            algo, #1|1-32
+274|code|B               loc_116|0-224
+276|code|MOV             R0, R8|64-70
+278|code|ADD             SP, SP, #0x2C ; ','|11-176
+280|code|POP.W           {R4-R11,PC}|189-232-240-143
+284|data|DCD gcry_mpi_cmp_ui|56-2-0-0
+288|data|DCD gcry_mpi_cmp|88-2-0-0
+292|data|DCD _gcry_mpi_alloc|96-2-0-0
+296|data|DCD gcry_mpi_invm|92-2-0-0
+300|data|DCD _gcry_mpi_fdiv_r|72-2-0-0
+304|data|DCD _gcry_mpi_free|68-2-0-0
+308|data|DCD gcry_mpi_mulm|80-2-0-0
+312|data|DCD _gcry_mpi_mulpowm|64-2-0-0
+316|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+320|code|LDR             R6, [skey]|14-104
+322|code|CBZ             R6, loc_188|14-179
+324|code|LDR             R3, [skey,#4]|75-104
+326|code|CBZ             R3, loc_188|251-177
+328|code|LDR.W           R8, [skey,#8]|209-248-8-128
+332|code|CMP.W           R8, #0|184-241-0-15
+336|code|BEQ             loc_188|26-208
+338|code|LDR             R4, [skey,#0xC]|204-104
+340|code|CBZ             R4, loc_188|196-177
+342|code|LDR             R7, [skey,#0x10]|15-105
+344|code|CBZ             R7, loc_188|183-177
+346|code|LDR             algo, [R4,#4]|96-104
+348|code|LDR             R3, =_gcry_mpi_alloc|12-75
+350|code|BLX             R3; _gcry_mpi_alloc|152-71
+352|code|MOV             R2, R7|58-70
+354|code|MOV             R1, R8|65-70
+356|code|MOV             R3, R6|51-70
+358|code|LDR             R6, =gcry_mpi_powm|11-78
+360|code|MOV             R5, R0|5-70
+362|code|BLX             R6; gcry_mpi_powm|176-71
+364|code|MOV             R1, R4|33-70
+366|code|MOV             R0, R5|40-70
+368|code|LDR             R3, =gcry_mpi_cmp|9-75
+370|code|BLX             R3; gcry_mpi_cmp|152-71
+372|code|LDR             R3, =_gcry_mpi_free|9-75
+374|code|MOV             R4, R0|4-70
+376|code|MOV             R0, R5|40-70
+378|code|BLX             R3; _gcry_mpi_free|152-71
+380|code|CMP             R4, #0|0-44
+382|code|ITE EQ|12-191
+384|code|MOVEQ           R0, #0|0-32
+386|code|MOVNE           R0, #2|2-32
+388|code|POP.W           {R4-R8,PC}|189-232-240-129
+392|code|MOVS            algo, #1|1-32
+394|code|POP.W           {R4-R8,PC}|189-232-240-129
+398|data|ALIGN 0x10|0-191
+400|data|DCD _gcry_mpi_alloc|96-2-0-0
+404|data|DCD gcry_mpi_powm|76-2-0-0
+408|data|DCD gcry_mpi_cmp|88-2-0-0
+412|data|DCD _gcry_mpi_free|68-2-0-0
+416|code|LDR             R2, =_gcry_pubkey_spec_dsa|1-74
+418|code|LDR             R3, =grub_crypto_pk_dsa|2-75
+420|code|STR             R2, [R3]|26-96
+422|code|BX              LR|112-71
+424|data|DCD _gcry_pubkey_spec_dsa|224-1-0-0
+428|data|DCD grub_crypto_pk_dsa|84-2-0-0
+432|code|LDR             R3, =grub_crypto_pk_dsa|1-75
+434|code|MOVS            R2, #0|0-34
+436|code|STR             R2, [R3]|26-96
+438|code|BX              LR|112-71
+440|data|DCD grub_crypto_pk_dsa|84-2-0-0
+480|data|gcry_pk_spec_t <unk_1BC, dsa_names, aPqgy, aPqgyx, unk_1CB, aRs, \; "pqgy" ...|188-1-0-0-28-2-0-0-192-1-0-0-197-1-0-0-203-1-0-0-204-1-0-0-192-1-0-0-1-0-0-0-0-0-0-0-61-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-17-0-0-0-1-0-0-0
+540|data|DCD aDsa, aOpenpgpDsa, dsa_get_nbits; "dsa" ...|207-1-0-0-211-1-0-0-0-0-0-0
+552|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

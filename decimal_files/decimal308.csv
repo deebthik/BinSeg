@@ -1,0 +1,83 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3,LR}|8-181
+2|code|MOVS            argc, #0|0-33
+4|code|LDR             R3, =grub_machine_mmap_iterate|2-75
+6|code|LDR             cmd, =(lsmmap_hook+1)|3-72
+8|code|BLX             R3; grub_machine_mmap_iterate|152-71
+10|code|MOVS            R0, #0|0-32
+12|code|POP             {R3,PC}|8-189
+14|data|ALIGN 0x10|0-191
+16|data|DCD grub_machine_mmap_iterate|56-2-0-0
+20|data|DCD lsmmap_hook+1|25-0-0-0
+24|code|PUSH.W          {R0-R4,R6-R9,LR}|45-233-223-67
+28|code|MOV             R9, R3|153-70
+30|code|LDR             R3, [SP,#0x28+type]|10-155
+32|code|MOV             R6, R0|6-70
+34|code|MOV             R7, R1|15-70
+36|code|MOV             R8, R2|144-70
+38|code|CMP             R3, #0x14|20-43
+40|code|LDR             R4, =grub_printf_|12-76
+42|code|BHI             loc_44|11-216
+44|code|LDR             R2, =names|12-74
+46|code|LDR.W           R0, [R2,R3,LSL#2]|82-248-35-0
+50|code|CBZ             R0, loc_44|56-177
+52|code|LDR             R3, =grub_gettext|11-75
+54|code|LDR             R3, [R3]|27-104
+56|code|BLX             R3|152-71
+58|code|STRD.W          R8, R9, [SP,#0x28+var_28]|205-233-0-137
+62|code|STR             R0, [SP,#0x28+var_20]|2-144
+64|code|LDR             R0, =aBaseAddr0xLlxL; "base_addr = 0x%llx, length = 0x%llx, %s"...|9-72
+66|code|B               loc_4C|3-224
+68|code|LDR             R0, =aBaseAddr0xLlxL_0; "base_addr = 0x%llx, length = 0x%llx, ty"...|9-72
+70|code|STRD.W          R8, R9, [SP,#0x28+var_28]|205-233-0-137
+74|code|STR             R3, [SP,#0x28+var_20]|2-147
+76|code|MOV             R2, R6|50-70
+78|code|MOV             R3, R7|59-70
+80|code|BLX             R4; grub_printf_|160-71
+82|code|MOVS            R0, #0|0-32
+84|code|ADD             SP, SP, #0x10|4-176
+86|code|POP.W           {R4,R6-R9,PC}|189-232-208-131
+90|data|ALIGN 4|0-191
+92|data|DCD grub_printf_|68-2-0-0
+96|data|DCD names|176-0-0-0
+100|data|DCD grub_gettext|72-2-0-0
+104|data|DCD aBaseAddr0xLlxL; "base_addr = 0x%llx, length = 0x%llx, %s"...|4-1-0-0
+108|data|DCD aBaseAddr0xLlxL_0; "base_addr = 0x%llx, length = 0x%llx, ty"...|45-1-0-0
+112|code|PUSH            {mod,R1,R4,LR}|19-181
+114|code|MOVS            R2, #0|0-34
+116|code|LDR             R1, =(grub_cmd_lsmmap+1)|4-73
+118|code|STR             R2, [SP,#0x10+var_10]|0-146
+120|code|LDR             R3, =aListMemoryMapP; "List memory map provided by firmware."|4-75
+122|code|LDR             R4, =grub_register_command_prio|5-76
+124|code|LDR             mod, =aLsmmap; "lsmmap"|5-72
+126|code|BLX             R4; grub_register_command_prio|160-71
+128|code|LDR             R3, =cmd|5-75
+130|code|STR             R0, [R3]|24-96
+132|code|ADD             SP, SP, #8|2-176
+134|code|POP             {R4,PC}|16-189
+136|data|DCD grub_cmd_lsmmap+1|1-0-0-0
+140|data|DCD aListMemoryMapP; "List memory map provided by firmware."|102-1-0-0
+144|data|DCD grub_register_command_prio|60-2-0-0
+148|data|DCD aLsmmap; "lsmmap"|95-1-0-0
+152|data|DCD cmd|52-2-0-0
+156|code|PUSH            {R3,LR}|8-181
+158|code|LDR             R3, =cmd|2-75
+160|code|LDR             R0, [R3]|24-104
+162|code|LDR             R3, =grub_unregister_command|2-75
+164|code|BLX             R3; grub_unregister_command|152-71
+166|code|POP             {R3,PC}|8-189
+168|data|DCD cmd|52-2-0-0
+172|data|DCD grub_unregister_command|64-2-0-0
+176|data|DCD grub_cmd_lsmmap, aAvailableRam, aReservedRam, aAcpiReclaimabl; "available RAM" ...|0-0-0-0-140-1-0-0-154-1-0-0-167-1-0-0-188-1-0-0-218-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-238-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-10-2-0-0
+260|data|DCB "base_addr = 0x%llx, length = 0x%llx, %s",0xA,0|98-97-115-101-95-97-100-100-114-32-61-32-48-120-37-108-108-120-44-32-108-101-110-103-116-104-32-61-32-48-120-37-108-108-120-44-32-37-115-10-0
+301|data|DCB "base_addr = 0x%llx, length = 0x%llx, type = 0x%x",0xA,0|98-97-115-101-95-97-100-100-114-32-61-32-48-120-37-108-108-120-44-32-108-101-110-103-116-104-32-61-32-48-120-37-108-108-120-44-32-116-121-112-101-32-61-32-48-120-37-120-10-0
+351|data|DCB "lsmmap",0|108-115-109-109-97-112-0
+358|data|DCB "List memory map provided by firmware.",0|76-105-115-116-32-109-101-109-111-114-121-32-109-97-112-32-112-114-111-118-105-100-101-100-32-98-121-32-102-105-114-109-119-97-114-101-46-0
+396|data|DCB "available RAM",0|97-118-97-105-108-97-98-108-101-32-82-65-77-0
+410|data|DCB "reserved RAM",0|114-101-115-101-114-118-101-100-32-82-65-77-0
+423|data|DCB "ACPI reclaimable RAM",0|65-67-80-73-32-114-101-99-108-97-105-109-97-98-108-101-32-82-65-77-0
+444|data|DCB "ACPI non-volatile storage RAM",0|65-67-80-73-32-110-111-110-45-118-111-108-97-116-105-108-101-32-115-116-111-114-97-103-101-32-82-65-77-0
+474|data|DCB "faulty RAM (BadRAM)",0|102-97-117-108-116-121-32-82-65-77-32-40-66-97-100-82-65-77-41-0
+494|data|DCB "RAM holding coreboot tables",0|82-65-77-32-104-111-108-100-105-110-103-32-99-111-114-101-98-111-111-116-32-116-97-98-108-101-115-0
+522|data|DCB "RAM holding firmware code",0|82-65-77-32-104-111-108-100-105-110-103-32-102-105-114-109-119-97-114-101-32-99-111-100-101-0
+549|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

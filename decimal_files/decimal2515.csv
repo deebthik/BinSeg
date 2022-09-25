@@ -1,0 +1,212 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x64|153-176
+6|code|LDR             R3, =grub_plan_partition_map|115-75
+8|code|MOV             R5, disk|5-70
+10|code|LDR.W           R8, =grub_disk_read|223-248-204-129
+14|code|MOVS            R4, #0|0-36
+16|code|STR             hook_0, [SP,#0x64+hook]|4-145
+18|code|STR             hook_data_0, [SP,#0x64+hook_data]|5-146
+20|code|STR             R3, [SP,#0x64+p.partmap]|22-147
+22|code|STRB.W          R4, [SP,#0x64+p.msdostype]|141-248-92-64
+26|code|STR             R4, [SP,#0x64+p]|12-148
+28|code|ASRS            R2, R4, #9|98-18
+30|code|MOVS            R6, #5|5-38
+32|code|ADDS            R2, #1|1-50
+34|code|ADD             R7, SP, #0x28|10-175
+36|code|STR             R6, [SP,#0x64+var_5C]|2-150
+38|code|MOV             R0, disk|40-70
+40|code|ASRS            R3, R2, #0x1F|211-23
+42|code|STR             R7, [SP,#0x64+var_58]|3-151
+44|code|STRD.W          R2, R3, [SP,#0x64+p.offset]|205-233-18-35
+48|code|UBFX.W          R3, R4, #0, #9|196-243-8-3
+52|code|MOV             R2, R4|34-70
+54|code|STR             R3, [SP,#0x64+p.index]|20-147
+56|code|LDR             R1, =grub_disk_read|103-73
+58|code|ASRS            R3, R4, #0x1F|227-23
+60|code|STRD.W          R2, R3, [SP,#0x64+var_64]|205-233-0-35
+64|code|MOVS            R2, #1|1-34
+66|code|MOVS            R3, #0|0-35
+68|code|BLX             R1; grub_disk_read|136-71
+70|code|CMP             err, #0|0-40
+72|code|BNE.W           loc_1CC|64-240-192-128
+76|code|MOV             err, R7|56-70
+78|code|LDR             R1, =aPart; "part "|99-73
+80|code|MOV             R2, R6|50-70
+82|code|LDR             R3, =grub_memcmp|99-75
+84|code|BLX             R3; grub_memcmp|152-71
+86|code|CBNZ            R0, loc_BA|128-187
+88|code|ADDS            R3, R4, R6|163-25
+90|code|ADD.W           R9, SP, #0x64+c|13-241-39-9
+94|code|MOVS            R6, #0|0-38
+96|code|MOVS            R7, #0|0-39
+98|code|MOV.W           R11, #1|79-240-1-11
+102|code|MOV             R0, R3|24-70
+104|code|ASRS            R1, R3, #0x1F|217-23
+106|code|STRD.W          R0, R1, [SP,#0x64+var_4C]|205-233-6-1
+110|code|LDRD.W          R2, R3, [SP,#0x64+var_4C]|221-233-6-35
+114|code|MOV             R0, disk|40-70
+116|code|STR.W           R11, [SP,#0x64+var_5C]|205-248-8-176
+120|code|ADDS            R2, R2, R6|146-25
+122|code|STR.W           R9, [SP,#0x64+var_58]|205-248-12-144
+126|code|ADCS            R3, R7|123-65
+128|code|STRD.W          R2, R3, [SP,#0x64+var_64]|205-233-0-35
+132|code|MOVS            R2, #1|1-34
+134|code|MOVS            R3, #0|0-35
+136|code|BLX             R8; grub_disk_read|192-71
+138|code|CMP             err, #0|0-40
+140|code|BNE.W           loc_1CC|64-240-158-128
+144|code|LDRB.W          R3, [SP,#0x64+c]|157-248-39-48
+148|code|ADD.W           R10, R4, #6|4-241-6-10
+152|code|ADD             R10, R6|178-68
+154|code|SUB.W           R2, R3, #0x30 ; '0'|163-241-48-2
+158|code|CMP             R2, #9|9-42
+160|code|BHI             loc_AA|3-216
+162|code|ADDS            R6, #1|1-54
+164|code|ADC.W           R7, R7, #0|71-241-0-7
+168|code|B               loc_6E|225-231
+170|code|BIC.W           R2, R3, #0x20|35-240-32-2
+174|code|SUBS            R2, #0x41 ; 'A'|65-58
+176|code|CMP             R2, #0x19|25-42
+178|code|BHI             loc_CC|11-216
+180|code|B               loc_A2|245-231
+182|code|CMP             R3, #0xA|10-43
+184|code|BEQ             loc_1A0|114-208
+186|code|LDR             R3, [SP,#0x64+p]|12-155
+188|code|CBNZ            R3, loc_C8|35-185
+190|code|LDR             R1, =aNotAPlanPartit; "not a plan partition table"|73-73
+192|code|MOVS            R0, #0x13|19-32
+194|code|LDR             R3, =grub_error|73-75
+196|code|BLX             R3; grub_error|152-71
+198|code|B               loc_1CC|129-224
+200|code|MOVS            R0, #0|0-32
+202|code|B               loc_1CC|127-224
+204|code|CMP             R3, #0x20 ; ' '|32-43
+206|code|BNE             loc_BA|244-209
+208|code|MOVS            R2, #0|0-34
+210|code|MOVS            R4, #1|1-36
+212|code|STR             R2, [SP,#0x64+p.start]|14-146
+214|code|MOV             R6, R2|22-70
+216|code|STR             R2, [SP,#0x64+p.start+4]|15-146
+218|code|MOV             R7, R2|23-70
+220|code|MOV             R2, ptr|82-70
+222|code|ASRS            R3, R2, #0x1F|211-23
+224|code|STRD.W          R2, R3, [SP,#0x64+var_4C]|205-233-6-35
+228|code|LDRD.W          R2, R3, [SP,#0x64+var_4C]|221-233-6-35
+232|code|MOV             R0, disk|40-70
+234|code|STR             R4, [SP,#0x64+var_5C]|2-148
+236|code|ADDS            R2, R2, R6|146-25
+238|code|STR.W           R9, [SP,#0x64+var_58]|205-248-12-144
+242|code|ADCS            R3, R7|123-65
+244|code|STRD.W          R2, R3, [SP,#0x64+var_64]|205-233-0-35
+248|code|MOVS            R2, #1|1-34
+250|code|MOVS            R3, #0|0-35
+252|code|BLX             R8; grub_disk_read|192-71
+254|code|CMP             err, #0|0-40
+256|code|BNE             loc_1CC|100-209
+258|code|LDRB.W          R3, [SP,#0x64+c]|157-248-39-48
+262|code|ADD.W           R11, R10, #1|10-241-1-11
+266|code|ADD             R11, R6|179-68
+268|code|ADDS            R6, #1|1-54
+270|code|SUB.W           err, R3, #0x30 ; '0'|163-241-48-0
+274|code|ADC.W           R7, R7, #0|71-241-0-7
+278|code|CMP             R0, #9|9-40
+280|code|BHI             loc_136|13-216
+282|code|LDR             R2, [SP,#0x64+p.start]|14-154
+284|code|MOV.W           LR, #0xA|79-240-10-14
+288|code|LDR             R1, [SP,#0x64+p.start+4]|15-153
+290|code|UMULL.W         R2, R3, R2, LR|162-251-14-35
+294|code|ADDS            R2, R2, R0|18-24
+296|code|MLA.W           R3, LR, R1, R3|14-251-1-51
+300|code|ADC.W           R3, R3, R0,ASR#31|67-235-224-115
+304|code|STRD.W          R2, R3, [SP,#0x64+p.start]|205-233-14-35
+308|code|B               loc_E4|214-231
+310|code|CMP             R3, #0x20 ; ' '|32-43
+312|code|BNE             loc_BA|191-209
+314|code|MOVS            R2, #0|0-34
+316|code|MOV.W           R10, #1|79-240-1-10
+320|code|STR             R2, [SP,#0x64+p.len]|16-146
+322|code|MOV             R6, R2|22-70
+324|code|STR             R2, [SP,#0x64+p.len+4]|17-146
+326|code|MOV             R7, R2|23-70
+328|code|MOV             R2, ptr|90-70
+330|code|ASRS            R3, R2, #0x1F|211-23
+332|code|STRD.W          R2, R3, [SP,#0x64+var_4C]|205-233-6-35
+336|code|LDRD.W          R2, R3, [SP,#0x64+var_4C]|221-233-6-35
+340|code|MOV             R0, disk|40-70
+342|code|STR.W           R10, [SP,#0x64+var_5C]|205-248-8-160
+346|code|ADDS            R2, R2, R6|146-25
+348|code|STR.W           R9, [SP,#0x64+var_58]|205-248-12-144
+352|code|ADCS            R3, R7|123-65
+354|code|STRD.W          R2, R3, [SP,#0x64+var_64]|205-233-0-35
+358|code|MOVS            R2, #1|1-34
+360|code|MOVS            R3, #0|0-35
+362|code|BLX             R8; grub_disk_read|192-71
+364|code|CBNZ            err, loc_1CC|112-187
+366|code|LDRB.W          R3, [SP,#0x64+c]|157-248-39-48
+370|code|ADD.W           R4, R11, #1|11-241-1-4
+374|code|ADD             R4, R6|52-68
+376|code|ADDS            R6, #1|1-54
+378|code|SUB.W           err, R3, #0x30 ; '0'|163-241-48-0
+382|code|ADC.W           R7, R7, #0|71-241-0-7
+386|code|CMP             R0, #9|9-40
+388|code|BHI             loc_B6|151-216
+390|code|LDR             R2, [SP,#0x64+p.len]|16-154
+392|code|MOVS            R4, #0xA|10-36
+394|code|LDR             R1, [SP,#0x64+p.len+4]|17-153
+396|code|UMULL.W         R2, R3, R2, R4|162-251-4-35
+400|code|ADDS            R2, R2, R0|18-24
+402|code|MLA.W           R3, R4, R1, R3|4-251-1-51
+406|code|ADC.W           R3, R3, R0,ASR#31|67-235-224-115
+410|code|STRD.W          R2, R3, [SP,#0x64+p.len]|205-233-16-35
+414|code|B               loc_150|215-231
+416|code|LDRD.W          R2, R3, [SP,#0x64+p.len]|221-233-16-35
+420|code|MOV             R0, disk|40-70
+422|code|LDRD.W          R6, R7, [SP,#0x64+p.start]|221-233-14-103
+426|code|ADD             R1, SP, #0x64+p|12-169
+428|code|SUBS            R2, R2, R6|146-27
+430|code|SBC.W           R3, R3, R7|99-235-7-3
+434|code|STRD.W          R2, R3, [SP,#0x64+p.len]|205-233-16-35
+438|code|LDR             R2, [SP,#0x64+hook_data]|5-154
+440|code|LDR             R3, [SP,#0x64+hook]|4-155
+442|code|BLX             R3|152-71
+444|code|CBZ             R0, loc_1C4|16-177
+446|code|LDR             R3, =grub_errno|11-75
+448|code|LDR             R0, [R3]|24-104
+450|code|B               loc_1CC|3-224
+452|code|LDR             R3, [SP,#0x64+p]|12-155
+454|code|ADDS            R3, #1|1-51
+456|code|STR             R3, [SP,#0x64+p]|12-147
+458|code|B               loc_1C|39-231
+460|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+462|code|POP.W           {R4-R11,PC}|189-232-240-143
+466|data|ALIGN 4|0-191
+468|data|DCD grub_plan_partition_map|68-2-0-0
+472|data|DCD grub_disk_read|104-2-0-0
+476|data|DCD aPart; "part "|28-2-0-0
+480|data|DCD grub_memcmp|124-2-0-0
+484|data|DCD aNotAPlanPartit; "not a plan partition table"|34-2-0-0
+488|data|DCD grub_error|112-2-0-0
+492|data|DCD grub_errno|108-2-0-0
+496|code|PUSH            {R3,LR}|8-181
+498|code|LDR             mod, =grub_partition_map_list|2-72
+500|code|LDR             R1, =grub_plan_partition_map|2-73
+502|code|LDR             R3, =grub_list_push|3-75
+504|code|BLX             R3; grub_list_push|152-71
+506|code|POP             {R3,PC}|8-189
+508|data|DCD grub_partition_map_list|100-2-0-0
+512|data|DCD grub_plan_partition_map|68-2-0-0
+516|data|DCD grub_list_push|120-2-0-0
+520|code|PUSH            {R3,LR}|8-181
+522|code|LDR             R0, =grub_plan_partition_map|2-72
+524|code|LDR             R3, =grub_list_remove|2-75
+526|code|BLX             R3; grub_list_remove|152-71
+528|code|POP             {R3,PC}|8-189
+530|data|ALIGN 4|0-191
+532|data|DCD grub_plan_partition_map|68-2-0-0
+536|data|DCD grub_list_remove|116-2-0-0
+540|data|DCB "part ",0|112-97-114-116-32-0
+546|data|DCB "not a plan partition table",0|110-111-116-32-97-32-112-108-97-110-32-112-97-114-116-105-116-105-111-110-32-116-97-98-108-101-0
+573|data|DCB "plan",0|112-108-97-110-0
+580|data|grub_partition_map <0, 0, aPlan, plan_partition_map_iterate+1>; "plan"|0-0-0-0-0-0-0-0-61-2-0-0-1-0-0-0
+596|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

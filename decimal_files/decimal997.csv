@@ -1,0 +1,99 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+4|code|SUB             SP, SP, #0x30|140-176
+6|code|LDR             R4, =vectors.Plen|28-76
+8|code|LDR.W           R10, =grub_crypto_pbkdf2|223-248-144-160
+12|code|LDR.W           R9, =aErr0; "err == 0"|223-248-144-144
+16|code|ADD.W           R8, R4, #0x8C|4-241-140-8
+20|code|LDR             R3, [R4,#8]|163-104
+22|code|SUBS            R1, R4, #4|33-31
+24|code|LDR             R6, [R4,#0x10]|38-105
+26|code|ADD             R7, SP, #0x10|4-175
+28|code|LDR             R0, =_gcry_digest_spec_sha1|23-72
+30|code|ADDS            R4, #0x1C|28-52
+32|code|STR             R3, [SP,#0x30+var_30]|0-147
+34|code|LDR.W           R3, [R4,#-0x10]|84-248-16-60
+38|code|STR             R7, [SP,#0x30+err]|2-151
+40|code|STR             R6, [SP,#0x30+var_24]|3-150
+42|code|STR             R3, [SP,#0x30+var_2C]|1-147
+44|code|LDM             R1, {R1-R3}|14-201
+46|code|BLX             R10; grub_crypto_pbkdf2|208-71
+48|code|LDR             R3, =aGcryErrorD; "gcry error %d"|19-75
+50|code|LDR             R1, =aTestsPbkdf2Tes; "tests/pbkdf2_test.c"|20-73
+52|code|LDR             R2, =__FUNCTION__.5432; "pbkdf2_test"|20-74
+54|code|STR             R3, [SP,#0x30+var_2C]|1-147
+56|code|MOVS            R3, #0x5A ; 'Z'|90-35
+58|code|LDR             R5, =grub_test_assert_helper|20-77
+60|code|STR.W           R9, [SP,#0x30+var_30]|205-248-0-144
+64|code|STR             err_0, [SP,#0x30+err]|2-144
+66|code|CLZ.W           err_0, err_0|176-250-128-240
+70|code|LSRS            R0, R0, #5|64-9
+72|code|BLX             R5; grub_test_assert_helper|168-71
+74|code|LDR.W           R1, [R4,#-8]|84-248-8-28
+78|code|MOV             R2, R6|50-70
+80|code|LDR             R3, =grub_memcmp|15-75
+82|code|MOV             R0, R7|56-70
+84|code|BLX             R3; grub_memcmp|152-71
+86|code|LDR             R3, =aGrubMemcmpDkVe; "grub_memcmp (DK, vectors[i].DK, vectors"...|15-75
+88|code|LDR             R1, =aTestsPbkdf2Tes; "tests/pbkdf2_test.c"|10-73
+90|code|LDR             R2, =__FUNCTION__.5432; "pbkdf2_test"|11-74
+92|code|STR             R3, [SP,#0x30+var_30]|0-147
+94|code|LDR             R3, =aPbkdf2Mismatch; "PBKDF2 mismatch"|14-75
+96|code|STR             R3, [SP,#0x30+var_2C]|1-147
+98|code|MOVS            R3, #0x5C ; '\'|92-35
+100|code|CLZ.W           R0, R0|176-250-128-240
+104|code|LSRS            R0, R0, #5|64-9
+106|code|BLX             R5; grub_test_assert_helper|168-71
+108|code|CMP             R4, R8|68-69
+110|code|BNE             loc_14|209-209
+112|code|ADD             SP, SP, #0x30 ; '0'|12-176
+114|code|POP.W           {R4-R10,PC}|189-232-240-135
+118|data|ALIGN 4|0-191
+120|data|DCD vectors.Plen|212-0-0-0
+124|data|DCD _gcry_digest_spec_sha1|196-2-0-0
+128|data|DCD aGcryErrorD; "gcry error %d"|173-1-0-0
+132|data|DCD aTestsPbkdf2Tes; "tests/pbkdf2_test.c"|144-1-0-0
+136|data|DCD __FUNCTION__.5432; "pbkdf2_test"|92-1-0-0
+140|data|DCD grub_test_assert_helper|212-2-0-0
+144|data|DCD grub_memcmp|208-2-0-0
+148|data|DCD aGrubMemcmpDkVe; "grub_memcmp (DK, vectors[i].DK, vectors"...|187-1-0-0
+152|data|DCD aPbkdf2Mismatch; "PBKDF2 mismatch"|242-1-0-0
+156|data|DCD grub_crypto_pbkdf2|192-2-0-0
+160|data|DCD aErr0; "err == 0"|164-1-0-0
+164|code|PUSH            {R3,LR}|8-181
+166|code|LDR             mod, =aPbkdf2Test; "pbkdf2_test"|2-72
+168|code|LDR             R1, =(pbkdf2_test+1)|2-73
+170|code|LDR             R3, =grub_test_register|3-75
+172|code|BLX             R3; grub_test_register|152-71
+174|code|POP             {R3,PC}|8-189
+176|data|DCD aPbkdf2Test; "pbkdf2_test"|2-2-0-0
+180|data|DCD pbkdf2_test+1|1-0-0-0
+184|data|DCD grub_test_register|200-2-0-0
+188|code|PUSH            {R3,LR}|8-181
+190|code|LDR             R0, =aPbkdf2Test; "pbkdf2_test"|2-72
+192|code|LDR             R3, =grub_test_unregister|2-75
+194|code|BLX             R3; grub_test_unregister|152-71
+196|code|POP             {R3,PC}|8-189
+198|data|ALIGN 4|0-191
+200|data|DCD aPbkdf2Test; "pbkdf2_test"|2-2-0-0
+204|data|DCD grub_test_unregister|204-2-0-0
+208|data|$ADD9ED2DC3410E868D65BED82550276F <aPassword, 8, aSalt, 4, 1, 0x14, \; "K" ...|14-2-0-0-8-0-0-0-23-2-0-0-4-0-0-0-1-0-0-0-20-0-0-0-28-2-0-0-14-2-0-0-8-0-0-0-23-2-0-0-4-0-0-0-2-0-0-0-20-0-0-0-49-2-0-0-14-2-0-0-8-0-0-0-23-2-0-0-4-0-0-0-0-16-0-0-20-0-0-0-104-1-0-0-70-2-0-0-24-0-0-0-95-2-0-0-36-0-0-0-0-16-0-0-25-0-0-0-132-2-0-0-125-1-0-0-9-0-0-0-135-1-0-0-5-0-0-0-0-16-0-0-16-0-0-0-158-2-0-0
+348|data|DCB "pbkdf2_test",0|112-98-107-100-102-50-95-116-101-115-116-0
+360|data|DCB "K",0|75-0
+381|data|DCB "pass",0|112-97-115-115-0
+386|data|DCB "word",0|119-111-114-100-0
+391|data|DCB "sa",0|115-97-0
+394|data|DCB "lt",0|108-116-0
+397|data|ALIGN 0x10|0-0-0
+400|data|DCB "tests/pbkdf2_test.c",0|116-101-115-116-115-47-112-98-107-100-102-50-95-116-101-115-116-46-99-0
+420|data|DCB "err == 0",0|101-114-114-32-61-61-32-48-0
+429|data|DCB "gcry error %d",0|103-99-114-121-32-101-114-114-111-114-32-37-100-0
+443|data|DCB "grub_memcmp (DK, vectors[i].DK, vectors[i].dkLen) == 0",0|103-114-117-98-95-109-101-109-99-109-112-32-40-68-75-44-32-118-101-99-116-111-114-115-91-105-93-46-68-75-44-32-118-101-99-116-111-114-115-91-105-93-46-100-107-76-101-110-41-32-61-61-32-48-0
+498|data|DCB "PBKDF2 mismatch",0|80-66-75-68-70-50-32-109-105-115-109-97-116-99-104-0
+514|data|DCB "pbkdf2_test",0|112-98-107-100-102-50-95-116-101-115-116-0
+526|data|DCB "password",0|112-97-115-115-119-111-114-100-0
+535|data|DCB "salt",0|115-97-108-116-0
+582|data|DCB "passwordPASSWORDpassword",0|112-97-115-115-119-111-114-100-80-65-83-83-87-79-82-68-112-97-115-115-119-111-114-100-0
+607|data|DCB "saltSALTsaltSALTsaltSALTsaltSALTsalt",0|115-97-108-116-83-65-76-84-115-97-108-116-83-65-76-84-115-97-108-116-83-65-76-84-115-97-108-116-83-65-76-84-115-97-108-116-0
+687|data||255
+688|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

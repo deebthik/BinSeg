@@ -1,0 +1,129 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R7,LR}|240-181
+2|code|SUB             SP, SP, #0x24|137-176
+4|code|LDR             R3, =grub_command_list|39-75
+6|code|LDR             R7, =aXnuUuid; "xnu_uuid"|40-79
+8|code|LDR             R4, =off_118; "fedcba98"|40-76
+10|code|LDR             R0, [R3]|24-104
+12|code|MOV             R1, R7|57-70
+14|code|LDR             R3, =grub_named_list_find|40-75
+16|code|BLX             R3; grub_named_list_find|152-71
+18|code|ADD             R3, SP, #0x38+args|5-171
+20|code|LDR             R5, =grub_test_assert_helper|39-77
+22|code|MOV             R6, R0|6-70
+24|code|LDM.W           R4, {R0-R2}; "fedcba98"|148-232-7-0
+28|code|STM.W           R3, {R0-R2}|131-232-7-0
+32|code|CBNZ            R6, loc_3A|94-185
+34|code|LDR             R3, =a0; "0"|37-75
+36|code|MOV             R0, R6|48-70
+38|code|STR             R7, [SP,#0x38+var_30]|2-151
+40|code|ADD.W           R2, R4, #0xC|4-241-12-2
+44|code|LDR             R1, =aTestsXnuUuidTe; "tests/xnu_uuid_test.c"|35-73
+46|code|STR             R3, [SP,#0x38+var_38]|0-147
+48|code|LDR             R3, =aCanTFindComman; "can't find command `%s'"|35-75
+50|code|STR             R3, [SP,#0x38+var_34]|1-147
+52|code|MOVS            R3, #0x27 ; '''|39-35
+54|code|BLX             R5; grub_test_assert_helper|168-71
+56|code|B               loc_9E|49-224
+58|code|LDR             R7, [R6,#0x10]|55-105
+60|code|MOV             R0, R6|48-70
+62|code|MOVS            R1, #2|2-33
+64|code|MOV             R2, R3|26-70
+66|code|BLX             R7|184-71
+68|code|CBZ             R0, loc_66|120-177
+70|code|LDR             R3, =a0; "0"|28-75
+72|code|MOVS            R0, #0|0-32
+74|code|LDR             R1, =aTestsXnuUuidTe; "tests/xnu_uuid_test.c"|28-73
+76|code|ADD.W           R2, R4, #0xC|4-241-12-2
+80|code|STR             R3, [SP,#0x38+var_38]|0-147
+82|code|LDR             R3, =aDS; "%d: %s"|28-75
+84|code|STR             R3, [SP,#0x38+var_34]|1-147
+86|code|LDR             R3, =grub_errno|28-75
+88|code|LDR             R3, [R3]|27-104
+90|code|STR             R3, [SP,#0x38+var_30]|2-147
+92|code|LDR             R3, =grub_errmsg|27-75
+94|code|STR             R3, [SP,#0x38+var_2C]|3-147
+96|code|MOVS            R3, #0x2C ; ','|44-35
+98|code|BLX             R5; grub_test_assert_helper|168-71
+100|code|B               loc_9E|27-224
+102|code|LDR             R0, =aTstvar; "tstvar"|26-72
+104|code|LDR             R3, =grub_env_get|26-75
+106|code|BLX             R3; grub_env_get|152-71
+108|code|CBNZ            val, loc_80|64-185
+110|code|LDR             R3, =a0; "0"|18-75
+112|code|ADD.W           R2, R4, #0xC|4-241-12-2
+116|code|LDR             R1, =aTestsXnuUuidTe; "tests/xnu_uuid_test.c"|17-73
+118|code|STR             R3, [SP,#0x38+var_38]|0-147
+120|code|LDR             R3, =aTstvarIsnTSet; "tstvar isn't set"|23-75
+122|code|STR             R3, [SP,#0x38+var_34]|1-147
+124|code|MOVS            R3, #0x33 ; '3'|51-35
+126|code|B               loc_9C|13-224
+128|code|LDR             R1, =a944f9dedDbed39; "944F9DED-DBED-391C-9402-77C8CEE04173"|22-73
+130|code|LDR             R3, =grub_strcmp|23-75
+132|code|BLX             R3; grub_strcmp|152-71
+134|code|LDR             R3, =aGrubStrcmpVal9; "grub_strcmp (val, \"944F9DED-DBED-391C-"...|23-75
+136|code|LDR             R1, =aTestsXnuUuidTe; "tests/xnu_uuid_test.c"|12-73
+138|code|ADD.W           R2, R4, #0xC|4-241-12-2
+142|code|STR             R3, [SP,#0x38+var_38]|0-147
+144|code|LDR             R3, =aUuidsDonTMatch; "UUIDs don't match"|21-75
+146|code|STR             R3, [SP,#0x38+var_34]|1-147
+148|code|MOVS            R3, #0x37 ; '7'|55-35
+150|code|CLZ.W           R0, R0|176-250-128-240
+154|code|LSRS            R0, R0, #5|64-9
+156|code|BLX             R5; grub_test_assert_helper|168-71
+158|code|ADD             SP, SP, #0x24 ; '$'|9-176
+160|code|POP             {R4-R7,PC}|240-189
+162|data|ALIGN 4|0-191
+164|data|DCD grub_command_list|48-2-0-0
+168|data|DCD aXnuUuid; "xnu_uuid"|52-1-0-0
+172|data|DCD off_118; "fedcba98"|24-1-0-0
+176|data|DCD grub_named_list_find|68-2-0-0
+180|data|DCD grub_test_assert_helper|76-2-0-0
+184|data|DCD a0; "0"|83-1-0-0
+188|data|DCD aTestsXnuUuidTe; "tests/xnu_uuid_test.c"|61-1-0-0
+192|data|DCD aCanTFindComman; "can't find command `%s'"|85-1-0-0
+196|data|DCD aDS; "%d: %s"|109-1-0-0
+200|data|DCD grub_errno|52-2-0-0
+204|data|DCD grub_errmsg|44-2-0-0
+208|data|DCD aTstvar; "tstvar"|116-1-0-0
+212|data|DCD grub_env_get|72-2-0-0
+216|data|DCD aTstvarIsnTSet; "tstvar isn't set"|123-1-0-0
+220|data|DCD a944f9dedDbed39; "944F9DED-DBED-391C-9402-77C8CEE04173"|140-1-0-0
+224|data|DCD grub_strcmp|56-2-0-0
+228|data|DCD aGrubStrcmpVal9; "grub_strcmp (val, \"944F9DED-DBED-391C-"...|177-1-0-0
+232|data|DCD aUuidsDonTMatch; "UUIDs don't match"|240-1-0-0
+236|code|PUSH            {R3,LR}|8-181
+238|code|LDR             mod, =aXnuUuidTest; "xnu_uuid_test"|2-72
+240|code|LDR             R1, =(xnu_uuid_test+1)|2-73
+242|code|LDR             R3, =grub_test_register|3-75
+244|code|BLX             R3; grub_test_register|152-71
+246|code|POP             {R3,PC}|8-189
+248|data|DCD aXnuUuidTest; "xnu_uuid_test"|2-2-0-0
+252|data|DCD xnu_uuid_test+1|1-0-0-0
+256|data|DCD grub_test_register|60-2-0-0
+260|code|PUSH            {R3,LR}|8-181
+262|code|LDR             R0, =aXnuUuidTest; "xnu_uuid_test"|2-72
+264|code|LDR             R3, =grub_test_unregister|2-75
+266|code|BLX             R3; grub_test_unregister|152-71
+268|code|POP             {R3,PC}|8-189
+270|data|ALIGN 0x10|0-191
+272|data|DCD aXnuUuidTest; "xnu_uuid_test"|2-2-0-0
+276|data|DCD grub_test_unregister|64-2-0-0
+280|data|DCD aFedcba98; "fedcba98"|16-2-0-0
+284|data|DCD aTstvar; "tstvar"|116-1-0-0
+292|data|DCB 0x78, 0x6E, 0x75, 0x5F, 0x75, 0x75, 0x69, 0x64, 0x5F|120-110-117-95-117-117-105-100-95-116-101-115-116-0
+306|data|ALIGN 4|0-0
+308|data|DCB "xnu_uuid",0|120-110-117-95-117-117-105-100-0
+317|data|DCB "tests/xnu_uuid_test.c",0|116-101-115-116-115-47-120-110-117-95-117-117-105-100-95-116-101-115-116-46-99-0
+339|data|DCB "0",0|48-0
+341|data|DCB "can't find command `%s'",0|99-97-110-39-116-32-102-105-110-100-32-99-111-109-109-97-110-100-32-96-37-115-39-0
+365|data|DCB "%d: %s",0|37-100-58-32-37-115-0
+372|data|DCB "tstvar",0|116-115-116-118-97-114-0
+379|data|DCB "tstvar isn't set",0|116-115-116-118-97-114-32-105-115-110-39-116-32-115-101-116-0
+396|data|DCB "944F9DED-DBED-391C-9402-77C8CEE04173",0|57-52-52-70-57-68-69-68-45-68-66-69-68-45-51-57-49-67-45-57-52-48-50-45-55-55-67-56-67-69-69-48-52-49-55-51-0
+433|data|DCB "grub_strcmp (val, ",0x22,"944F9DED-DBED-391C-9402-77C8CEE04173",0x22|103-114-117-98-95-115-116-114-99-109-112-32-40-118-97-108-44-32-34-57-52-52-70-57-68-69-68-45-68-66-69-68-45-51-57-49-67-45-57-52-48-50-45-55-55-67-56-67-69-69-48-52-49-55-51-34-41-32-61-61-32-48-0
+496|data|DCB "UUIDs don't match",0|85-85-73-68-115-32-100-111-110-39-116-32-109-97-116-99-104-0
+514|data|DCB "xnu_uuid_test",0|120-110-117-95-117-117-105-100-95-116-101-115-116-0
+528|data|DCB "fedcba98",0|102-101-100-99-98-97-57-56-0
+537|data||255
+538|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

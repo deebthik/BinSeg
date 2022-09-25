@@ -1,0 +1,699 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R3-R5,LR}|56-181
+2|code|LDR             R3, =grub_efi_system_table_0|12-75
+4|code|LDR             R4, =image_handle|12-76
+6|code|LDR             R3, [R3]|27-104
+8|code|LDR             R0, [R4]|32-104
+10|code|LDR             R5, [R3,#0x3C]|221-107
+12|code|LDR             R3, [b,#0x7C]|235-111
+14|code|BLX             R3|152-71
+16|code|LDR             R3, [b,#0x24]|107-106
+18|code|LDRD.W          R0, R1, [R4,#8]|212-233-2-1
+22|code|LDR             R2, [R4,#(pages - 0x7D8)]|34-105
+24|code|BLX             R3|152-71
+26|code|LDR             b, =grub_free|8-77
+28|code|LDR             R0, [R4,#(file_path - 0x7D8)]|96-105
+30|code|BLX             R5; grub_free|168-71
+32|code|LDR             R0, [R4,#(cmdline - 0x7D8)]|160-105
+34|code|BLX             R5; grub_free|168-71
+36|code|MOVS            R5, #0|0-37
+38|code|LDR             R0, [R4,#(my_mod - 0x7D8)]|224-105
+40|code|LDR             R3, =grub_dl_unref|5-75
+42|code|STR             R5, [R4,#(cmdline - 0x7D8)]|165-97
+44|code|STR             R5, [R4,#(file_path - 0x7D8)]|101-97
+46|code|BLX             R3; grub_dl_unref|152-71
+48|code|MOV             R0, R5|40-70
+50|code|POP             {R3-R5,PC}|56-189
+52|data|DCD grub_efi_system_table_0|4-8-0-0
+56|data|DCD image_handle|216-7-0-0
+60|data|DCD grub_free|96-8-0-0
+64|data|DCD grub_dl_unref|100-8-0-0
+68|code|LDR             R3, =grub_efi_system_table_0|80-75
+70|code|PUSH            {R0-R2,R4-R7,LR}|247-181
+72|code|MOVS            R7, #0|0-39
+74|code|LDR             R3, [R3]|27-104
+76|code|MOV             R1, SP|105-70
+78|code|LDR             R2, =image_handle|79-74
+80|code|STR             R7, [SP,#0x20+exit_data]|1-151
+82|code|LDR             R4, [R3,#0x3C]|220-107
+84|code|LDR             R0, [R2]|16-104
+86|code|ADD             R2, SP, #0x20+exit_data|1-170
+88|code|LDR             R3, [b,#0x74]|99-111
+90|code|BLX             R3|152-71
+92|code|CMP             status, #0|0-40
+94|code|BEQ.W           loc_174|0-240-137-128
+98|code|LDR             R3, [SP,#0x20+exit_data]|1-155
+100|code|CMP             R3, #0|0-43
+102|code|BEQ.W           loc_16C|0-240-129-128
+106|code|LDR             status, [SP,#0x20+exit_data_size]|0-152
+108|code|LDR             R3, =grub_malloc|72-75
+110|code|LSLS            R0, R0, #2|128-0
+112|code|ADDS            R0, #1|1-48
+114|code|BLX             R3; grub_malloc|152-71
+116|code|MOV             R6, buf|6-70
+118|code|CMP             buf, #0|0-40
+120|code|BEQ             loc_174|124-208
+122|code|LDMFD.W         SP, {R1,R2}|157-232-6-0
+126|code|MOV             R5, buf|5-70
+128|code|MOV             LR, R7|190-70
+130|code|MOVS            buf, #0x3F ; '?'|63-32
+132|code|ADDS.W          R1, R1, #0xFFFFFFFF|17-241-255-49
+136|code|BCC             loc_158|102-211
+138|code|ADDS            R7, R2, #2|151-28
+140|code|LDRH            R3, [R2]|19-136
+142|code|CMP.W           LR, #0|190-241-0-15
+146|code|BEQ             loc_E8|41-208
+148|code|SUB.W           R12, R3, #0xDC00|163-245-92-76
+152|code|CMP.W           R12, #0x400|188-245-128-111
+156|code|BCS             loc_DC|30-210
+158|code|ADD.W           R3, R3, LR,LSL#10|3-235-142-35
+162|code|ADDS            R5, #4|4-53
+164|code|SUB.W           R3, R3, #0x35C0000|163-241-87-115
+168|code|SUB.W           R3, R3, #0x3DC00|163-245-119-51
+172|code|LSRS            R2, R3, #0x12|154-12
+174|code|ORN.W           R2, R2, #0xF|98-240-15-2
+178|code|STRB.W          R2, [R5,#-4]|5-248-4-44
+182|code|UBFX.W          R2, R3, #0xC, #6|195-243-5-50
+186|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+190|code|STRB.W          R2, [R5,#-3]|5-248-3-44
+194|code|UBFX.W          R2, R3, #6, #6|195-243-133-18
+198|code|AND.W           R3, R3, #0x3F|3-240-63-3
+202|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+206|code|ORN.W           R3, R3, #0x7F|99-240-127-3
+210|code|STRB.W          R2, [R5,#-2]|5-248-2-44
+214|code|STRB.W          R3, [R5,#-1]|5-248-1-60
+218|code|B               loc_E2|2-224
+220|code|STRB            R0, [R5]|40-112
+222|code|ADDS            R5, #1|1-53
+224|code|MOV             R7, R2|23-70
+226|code|MOV.W           LR, #0|79-240-0-14
+230|code|B               loc_154|53-224
+232|code|CMP             R3, #0x7F|127-43
+234|code|BHI             loc_F0|1-216
+236|code|STRB            R3, [R5]|43-112
+238|code|B               loc_128|27-224
+240|code|CMP.W           R3, #0x800|179-245-0-111
+244|code|BCS             loc_112|13-210
+246|code|MOV.W           R12, R3,LSR#6|79-234-147-28
+250|code|MOV             R2, R5|42-70
+252|code|AND.W           R3, R3, #0x3F|3-240-63-3
+256|code|ORN.W           R12, R12, #0x3F ; '?'|108-240-63-12
+260|code|ORN.W           R3, R3, #0x7F|99-240-127-3
+264|code|STRB.W          R12, [R2],#2|2-248-2-203
+268|code|STRB            R3, [R5,#1]|107-112
+270|code|MOV             R5, R2|21-70
+272|code|B               loc_154|32-224
+274|code|SUB.W           R2, R3, #0xD800|163-245-88-66
+278|code|CMP.W           R2, #0x400|178-245-128-111
+282|code|BCC             loc_152|26-211
+284|code|SUB.W           R2, R3, #0xDC00|163-245-92-66
+288|code|CMP.W           R2, #0x400|178-245-128-111
+292|code|BCS             loc_12C|2-210
+294|code|STRB            R0, [R5]|40-112
+296|code|ADDS            R5, #1|1-53
+298|code|B               loc_154|19-224
+300|code|LSRS            R2, R3, #0xC|26-11
+302|code|ADDS            R5, #3|3-53
+304|code|ORN.W           R2, R2, #0x1F|98-240-31-2
+308|code|STRB.W          R2, [R5,#-3]|5-248-3-44
+312|code|UBFX.W          R2, R3, #6, #6|195-243-133-18
+316|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+320|code|STRB.W          R2, [R5,#-2]|5-248-2-44
+324|code|AND.W           R2, R3, #0x3F|3-240-63-2
+328|code|ORN.W           R2, R2, #0x7F|98-240-127-2
+332|code|STRB.W          R2, [R5,#-1]|5-248-1-44
+336|code|B               loc_154|0-224
+338|code|MOV             LR, R3|158-70
+340|code|MOV             R2, R7|58-70
+342|code|B               loc_84|149-231
+344|code|MOVS            R3, #0|0-35
+346|code|MOV             R1, buf|49-70
+348|code|STRB            R3, [R5]|43-112
+350|code|MOVS            R0, #0x15|21-32
+352|code|LDR             R3, =grub_error|12-75
+354|code|BLX             R3; grub_error|152-71
+356|code|MOV             R0, buf|48-70
+358|code|LDR             R3, =grub_free|12-75
+360|code|BLX             R3; grub_free|152-71
+362|code|B               loc_174|3-224
+364|code|MOVS            status, #0x15|21-32
+366|code|LDR             R1, =aUnknownError; "unknown error"|11-73
+368|code|LDR             R3, =grub_error|8-75
+370|code|BLX             R3; grub_error|152-71
+372|code|LDR             R0, [SP,#0x20+exit_data]|1-152
+374|code|CBZ             R0, loc_17C|8-177
+376|code|LDR             R3, [b,#0x30]|35-107
+378|code|BLX             R3|152-71
+380|code|LDR             R3, =grub_loader_unset|8-75
+382|code|BLX             R3; grub_loader_unset|152-71
+384|code|LDR             R3, =grub_errno|8-75
+386|code|LDR             R0, [R3]|24-104
+388|code|ADD             SP, SP, #0xC|3-176
+390|code|POP             {b-R7,PC}|240-189
+392|data|DCD grub_efi_system_table_0|4-8-0-0
+396|data|DCD image_handle|216-7-0-0
+400|data|DCD grub_malloc|72-8-0-0
+404|data|DCD grub_error|92-8-0-0
+408|data|DCD grub_free|96-8-0-0
+412|data|DCD aUnknownError; "unknown error"|168-6-0-0
+416|data|DCD grub_loader_unset|28-8-0-0
+420|data|DCD grub_errno|40-8-0-0
+424|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+428|code|MOVS            R3, #4|4-35
+430|code|ADD.W           LR, fp, R3|0-235-3-14
+434|code|MOVS            R4, #0|0-36
+436|code|STRB            R3, [fp]|3-112
+438|code|MOV             R7, len|23-70
+440|code|STRB            R3, [fp,#1]|67-112
+442|code|MOV             R6, R4|38-70
+444|code|MOV             R3, LR|115-70
+446|code|CBNZ            R2, loc_1D4|74-185
+448|code|RSB.W           R3, LR, R3|206-235-3-3
+452|code|MOV             R2, LR|114-70
+454|code|UBFX.W          R3, R3, #1, #0x10|195-243-79-3
+458|code|MOVS            R5, #0x5C ; '\'|92-37
+460|code|ADD.W           R1, fp, R3,LSL#1|0-235-67-1
+464|code|ADDS            R1, #4|4-49
+466|code|B               loc_290|93-224
+468|code|CMP             R7, #0|0-47
+470|code|BEQ             loc_1C0|243-208
+472|code|SUBS            R2, #1|1-58
+474|code|ADD.W           R12, R1, #1|1-241-1-12
+478|code|LDRB            R5, [R1]|13-120
+480|code|CBZ             R6, loc_208|150-177
+482|code|AND.W           R8, R5, #0xC0|5-240-192-8
+486|code|CMP.W           R8, #0x80|184-241-128-15
+490|code|BNE             loc_280|73-209
+492|code|SUBS            R6, #1|1-62
+494|code|AND.W           R5, R5, #0x3F|5-240-63-5
+498|code|CMP             R6, #1|1-46
+500|code|ORR.W           R4, R5, R4,LSL#6|69-234-132-20
+504|code|BNE             loc_1FE|1-209
+506|code|CMP             R4, #0x1F|31-44
+508|code|B               loc_204|2-224
+510|code|CMP             R6, #2|2-46
+512|code|BNE             loc_244|32-209
+514|code|CMP             R4, #0xF|15-44
+516|code|BHI             loc_28C|66-216
+518|code|B               loc_280|59-224
+520|code|LSLS            R1, R5, #0x18|41-6
+522|code|BMI             loc_210|1-212
+524|code|MOV             R4, R5|44-70
+526|code|B               loc_246|26-224
+528|code|AND.W           R1, R5, #0xE0|5-240-224-1
+532|code|CMP             R1, #0xC0|192-41
+534|code|BNE             loc_224|5-209
+536|code|AND.W           R4, R5, #0x1F|5-240-31-4
+540|code|CMP             R4, #1|1-44
+542|code|BLS             loc_27E|46-217
+544|code|MOVS            R6, #1|1-38
+546|code|B               loc_28C|51-224
+548|code|AND.W           R1, R5, #0xF0|5-240-240-1
+552|code|CMP             R1, #0xE0|224-41
+554|code|BNE             loc_234|3-209
+556|code|AND.W           R4, R5, #0xF|5-240-15-4
+560|code|MOVS            R6, #2|2-38
+562|code|B               loc_28C|43-224
+564|code|AND.W           R1, R5, #0xF8|5-240-248-1
+568|code|CMP             R1, #0xF0|240-41
+570|code|BNE             loc_27E|32-209
+572|code|AND.W           R4, R5, #7|5-240-7-4
+576|code|MOVS            R6, #3|3-38
+578|code|B               loc_28C|35-224
+580|code|CBNZ            R6, loc_28C|22-187
+582|code|CMP             R4, #0|0-44
+584|code|BEQ             loc_1C0|186-208
+586|code|CMP             R7, #1|1-47
+588|code|BHI             loc_256|3-216
+590|code|CMP.W           R4, #0x10000|180-245-128-63
+594|code|BCC             loc_284|23-211
+596|code|B               loc_1C0|180-231
+598|code|CMP.W           R4, #0x10000|180-245-128-63
+602|code|BCC             loc_284|19-211
+604|code|SUB.W           R1, R4, #0x10000|164-245-128-49
+608|code|MOV             R5, R3|29-70
+610|code|UBFX.W          R1, R1, #0xA, #0xA|193-243-137-33
+614|code|SUBS            R7, #2|2-63
+616|code|ORR.W           R1, R1, #0xD800|65-244-88-65
+620|code|STRH.W          R1, [R5],#4|37-248-4-27
+624|code|UBFX.W          R1, R4, #0, #0xA|196-243-9-1
+628|code|ORR.W           R1, R1, #0xDC00|65-244-92-65
+632|code|STRH            R1, [R3,#2]|89-128
+634|code|MOV             R3, R5|43-70
+636|code|B               loc_28A|5-224
+638|code|MOV             R1, R12|97-70
+640|code|MOVS            R4, #0x3F ; '?'|63-36
+642|code|MOV             R12, R1|140-70
+644|code|STRH            R4, [R3]|28-128
+646|code|SUBS            R7, #1|1-63
+648|code|ADDS            R3, #2|2-51
+650|code|MOVS            R6, #0|0-38
+652|code|MOV             R1, R12|97-70
+654|code|B               loc_1BE|150-231
+656|code|CMP             p, R1|138-66
+658|code|MOV             R4, p|20-70
+660|code|BCS             loc_2A4|6-210
+662|code|LDRH            R4, [R4]|36-136
+664|code|ADDS            p, #2|2-50
+666|code|CMP             R4, #0x2F ; '/'|47-44
+668|code|IT EQ|8-191
+670|code|STRHEQ.W        R5, [R2,#-2]|34-248-2-92
+674|code|B               loc_290|245-231
+676|code|ADDS            R3, #2|2-51
+678|code|LSLS            R3, R3, #1|91-0
+680|code|UXTH            R3, R3|155-178
+682|code|STRB            R3, [fp,#2]|131-112
+684|code|LSRS            R3, R3, #8|27-10
+686|code|STRB            R3, [fp,#3]|195-112
+688|code|POP.W           {R4-R8,PC}|189-232-240-129
+692|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+696|code|SUB             SP, SP, #0x84|161-176
+698|code|MOV             R9, argv|145-70
+700|code|STR             argc_0, [SP,#0xA8+argc]|9-145
+702|code|CBNZ            argc_0, loc_2CA|33-185
+704|code|LDR             argc_0, =aFilenameExpect; "filename expected"|140-73
+706|code|MOVS            cmd, #0x12|18-32
+708|code|LDR             R3, =grub_error|140-75
+710|code|BLX             R3; grub_error|152-71
+712|code|B               loc_630|178-225
+714|code|LDR             R4, =image_handle|140-76
+716|code|MOVS            R5, #0|0-37
+718|code|LDR             R3, =grub_dl_ref|140-75
+720|code|LDR.W           R8, [argv]|210-248-0-128
+724|code|LDR             cmd, [R4,#(my_mod - 0x7D8)]|224-105
+726|code|BLX             R3; grub_dl_ref|152-71
+728|code|MOVS            R2, #0|0-34
+730|code|MOVS            R3, #0|0-35
+732|code|STRD.W          R2, R3, [R4,#8]|196-233-2-35
+736|code|LDR             R3, =grub_efi_system_table_0|136-75
+738|code|MOV             R0, filename|64-70
+740|code|STR             R5, [R4]|37-96
+742|code|STR             R5, [R4,#(file_path - 0x7D8)]|101-97
+744|code|LDR             R3, [R3]|27-104
+746|code|LDR.W           R10, [R3,#0x3C]|211-248-60-160
+750|code|LDR             R3, =grub_file_open|134-75
+752|code|BLX             R3; grub_file_open|152-71
+754|code|MOV             R7, file|7-70
+756|code|CMP             file, #0|0-40
+758|code|BEQ.W           loc_60C|0-240-137-129
+762|code|MOV             file, R5|40-70
+764|code|LDR             R3, =grub_device_open|131-75
+766|code|BLX             R3; grub_device_open|152-71
+768|code|STR             dev_0, [SP,#0xA8+dev]|7-144
+770|code|CMP             dev_0, #0|0-40
+772|code|BEQ.W           loc_606|0-240-127-129
+776|code|LDR             dev_0, [dev_0]|0-104
+778|code|CBZ             R0, loc_310|8-177
+780|code|LDR             R3, =grub_efidisk_get_device_handle|128-75
+782|code|B               loc_34C|29-224
+784|code|LDR             R3, [SP,#0xA8+dev]|7-155
+786|code|LDR             R3, [R3,#4]|91-104
+788|code|CBZ             R3, loc_35E|27-179
+790|code|LDR             R0, [R3]|24-104
+792|code|CBZ             R0, loc_35E|8-179
+794|code|ADD             R4, SP, #0xA8+addr|16-172
+796|code|LDR             R3, =grub_net_resolve_address|125-75
+798|code|MOV             R1, R4|33-70
+800|code|BLX             R3; grub_net_resolve_address|152-71
+802|code|CMP             err, #0|0-40
+804|code|BNE.W           loc_600|64-240-108-129
+808|code|ADD             R3, SP, #0xA8+gateway|24-171
+810|code|STR             R3, [SP,#0xA8+var_98]|4-147
+812|code|ADD             R3, SP, #0xA8+inf|15-171
+814|code|STR             R3, [SP,#0xA8+var_94]|5-147
+816|code|ADD             R3, SP, #0xA8+addr._anon_0+8|20-171
+818|code|LDM             R3, {err-R3}|15-203
+820|code|STMEA.W         SP, {R0-R3}|141-232-15-0
+824|code|LDM.W           R4, {R0-R3}|148-232-15-0
+828|code|LDR             R4, =grub_net_route_address|118-76
+830|code|BLX             R4; grub_net_route_address|160-71
+832|code|CMP             err, #0|0-40
+834|code|BNE.W           loc_600|64-240-93-129
+838|code|LDR             R3, [SP,#0xA8+inf]|15-155
+840|code|LDR             err, [R3,#0xC]|216-104
+842|code|LDR             R3, =grub_efinet_get_device_handle|116-75
+844|code|BLX             R3; grub_efidisk_get_device_handle|152-71
+846|code|STR             R0, [SP,#0xA8+dev_handle]|8-144
+848|code|LDR             R3, [SP,#0xA8+dev_handle]|8-155
+850|code|CBZ             R3, loc_35E|35-177
+852|code|MOV             dev_handle_0, R3|24-70
+854|code|LDR             R3, =grub_efi_get_device_path|114-75
+856|code|BLX             R3; grub_efi_get_device_path|152-71
+858|code|MOV             R11, dp|131-70
+860|code|CBNZ            dp, loc_364|16-185
+862|code|MOVS            R0, #0xD|13-32
+864|code|LDR             R1, =aNotAValidRootD; "not a valid root device"|112-73
+866|code|B               loc_4EC|195-224
+868|code|MOV             dp, filename|64-70
+870|code|MOVS            R1, #0x29 ; ')'|41-33
+872|code|LDR             R3, =grub_strchr|111-75
+874|code|BLX             R3; grub_strchr|152-71
+876|code|CBZ             R0, loc_372|8-177
+878|code|ADDS            R5, R0, #1|69-28
+880|code|B               loc_374|0-224
+882|code|MOV             R5, filename|69-70
+884|code|MOV             R0, R5|40-70
+886|code|MOVS            R1, #0x2F ; '/'|47-33
+888|code|LDR             R3, =grub_strrchr|108-75
+890|code|BLX             R3; grub_strrchr|152-71
+892|code|MOV             R6, R0|6-70
+894|code|CBZ             R0, loc_386|16-177
+896|code|MOV             R4, dp|92-70
+898|code|MOVS            R2, #0|0-34
+900|code|B               loc_39A|9-224
+902|code|LDR             R1, =aInvalidEfiFile; "invalid EFI file path"|106-73
+904|code|MOVS            R0, #7|7-32
+906|code|LDR             R3, =grub_error|91-75
+908|code|BLX             R3; grub_error|152-71
+910|code|B               loc_43C|85-224
+912|code|LDRB            R1, [R4,#1]|97-120
+914|code|CMP             R1, #0xFF|255-41
+916|code|STR             R1, [SP,#0xA8+var_7C]|11-145
+918|code|BEQ             loc_3B2|12-208
+920|code|ADD             R4, R3|28-68
+922|code|LDRB            R1, [R4,#3]|225-120
+924|code|LDRB            R3, [R4,#2]|163-120
+926|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+930|code|LDRB            R1, [R4]|33-120
+932|code|ADD             R2, R3|26-68
+934|code|AND.W           R1, R1, #0x7F|1-240-127-1
+938|code|STR             R1, [SP,#0xA8+status]|10-145
+940|code|CMP             R1, #0x7F|127-41
+942|code|BNE             loc_398|243-209
+944|code|B               loc_390|238-231
+946|code|LDR             R3, =grub_strlen|96-75
+948|code|MOV             R0, R5|40-70
+950|code|STR             R2, [SP,#0xA8+var_78]|12-146
+952|code|BLX             R3; grub_strlen|152-71
+954|code|LDR             R2, [SP,#0xA8+var_78]|12-154
+956|code|LDR             R3, =grub_malloc|94-75
+958|code|STR             R2, [SP,#0xA8+var_74]|13-146
+960|code|ADD.W           R0, R2, R0,LSL#1|2-235-64-0
+964|code|ADDS            R0, #0xA|10-48
+966|code|BLX             R3; grub_malloc|152-71
+968|code|LDR             R3, =image_handle|76-75
+970|code|STR             R3, [SP,#0xA8+var_78]|12-147
+972|code|STR             R0, [R3,#(file_path - 0x7D8)]|88-97
+974|code|CMP             R0, #0|0-40
+976|code|BEQ             loc_43A|51-208
+978|code|LDR.W           R12, =grub_memmove|223-248-172-193
+982|code|MOV             R1, dp|89-70
+984|code|LDR             R2, [SP,#0xA8+var_74]|13-154
+986|code|RSB.W           dp, dp, R4|203-235-4-11
+990|code|BLX             R12; grub_memmove|224-71
+992|code|LDR             R3, [SP,#0xA8+var_78]|12-155
+994|code|LDR             R2, =grub_efi_print_device_path|86-74
+996|code|LDR             R4, [R3,#0x14]|92-105
+998|code|ADD             R4, R11|92-68
+1000|code|MOV             R0, R4|32-70
+1002|code|BLX             R2; grub_efi_print_device_path|144-71
+1004|code|SUBS            R2, R6, R5|114-27
+1006|code|MOV             R0, R4; fp|32-70
+1008|code|MOV             R1, R5; str|41-70
+1010|code|UXTH            R2, R2; len|146-178
+1012|code|ADDS            R6, #1|1-54
+1014|code|BL              copy_file_path|255-247-215-254
+1018|code|LDRB.W          R11, [R4,#3]|148-248-3-176
+1022|code|LDRB            R2, [R4,#2]|162-120
+1024|code|MOV             R0, R6|48-70
+1026|code|LDR             R3, =grub_strlen|76-75
+1028|code|ORR.W           R11, R2, R11,LSL#8|66-234-11-43
+1032|code|BLX             R3; grub_strlen|152-71
+1034|code|ADD             R4, R11|92-68
+1036|code|MOV             R1, R6; str|49-70
+1038|code|UXTH            R2, R0; len|130-178
+1040|code|MOV             R0, R4; fp|32-70
+1042|code|BL              copy_file_path|255-247-201-254
+1046|code|LDRB            R1, [R4,#3]|225-120
+1048|code|LDRB            R2, [R4,#2]|162-120
+1050|code|LDRB.W          R3, [SP,#0xA8+status]|157-248-40-48
+1054|code|ORR.W           R2, R2, R1,LSL#8|66-234-1-34
+1058|code|ADDS            R1, R4, R2|161-24
+1060|code|STRB            R3, [R4,R2]|163-84
+1062|code|MOVS            R2, #4|4-34
+1064|code|LDRB.W          R3, [SP,#0xA8+var_7C]|157-248-44-48
+1068|code|STRB            R2, [R1,#2]|138-112
+1070|code|MOVS            R2, #0|0-34
+1072|code|STRB            R2, [R1,#3]|202-112
+1074|code|STRB            R3, [R1,#1]|75-112
+1076|code|LDR             R3, [SP,#0xA8+var_78]|12-155
+1078|code|LDR             R6, [R3,#0x14]|94-105
+1080|code|B               loc_43C|0-224
+1082|code|MOV             R6, R0|6-70
+1084|code|LDR             R5, =image_handle|47-77
+1086|code|STR             R6, [R5,#(file_path - 0x7D8)]|110-97
+1088|code|CMP             R6, #0|0-46
+1090|code|BEQ.W           loc_600|0-240-221-128
+1094|code|LDR             R3, =grub_printf|62-75
+1096|code|LDR             R0, =aFilePath; "file path: "|62-72
+1098|code|BLX             R3; grub_printf|152-71
+1100|code|LDR             R0, [R5,#(file_path - 0x7D8)]|104-105
+1102|code|LDR             R3, =grub_efi_print_device_path|59-75
+1104|code|BLX             R3; grub_efi_print_device_path|152-71
+1106|code|LDR             R6, [file,#0x38]|190-107
+1108|code|CBZ             size, loc_4A6|62-179
+1110|code|ADDW            R2, size, #0xFFF|6-246-255-114
+1114|code|LDR.W           R4, [b,#0x20]|218-248-32-64
+1118|code|MOVS            R0, #0|0-32
+1120|code|MOVS            R1, #1|1-33
+1122|code|LSRS            R2, R2, #0xC|18-11
+1124|code|ADD.W           R3, R5, #8|5-241-8-3
+1128|code|STR             R2, [R5,#(pages - 0x7D8)]|42-97
+1130|code|BLX             R4|160-71
+1132|code|CBZ             status_0, loc_486|88-177
+1134|code|LDR             R3, [R5,#(pages - 0x7D8)]|43-105
+1136|code|MOV.W           R1, #0x116|79-244-139-113
+1140|code|LDR             status_0, =aLoaderEfiChain; "loader/efi/chainloader.c"|52-72
+1142|code|LDR             R2, =aChain; "chain"|53-74
+1144|code|STR             R3, [SP,#0xA8+var_A8]|0-147
+1146|code|LDR             R4, =grub_real_dprintf|53-76
+1148|code|LDR             R3, =aFailedToAlloca; "Failed to allocate %u pages\n"|53-75
+1150|code|BLX             R4; grub_real_dprintf|160-71
+1152|code|MOVS            R0, #3|3-32
+1154|code|LDR             R1, =aOutOfMemory; "out of memory"|53-73
+1156|code|B               loc_4EC|50-224
+1158|code|LDR.W           R11, [R5,#(address - 0x7D8)]|213-248-8-176
+1162|code|MOV             R2, size|50-70
+1164|code|STR             status_0, [SP,#0xA8+status]|10-144
+1166|code|MOV             status_0, file|56-70
+1168|code|LDR             R4, =grub_file_read|50-76
+1170|code|MOV             R1, boot_image|89-70
+1172|code|BLX             R4; grub_file_read|160-71
+1174|code|LDR             R3, [SP,#0xA8+status]|10-155
+1176|code|CMP             R0, size|176-66
+1178|code|BEQ             loc_4B2|10-208
+1180|code|LDR             R3, =grub_errno|48-75
+1182|code|LDR             R3, [R3]|27-104
+1184|code|CMP             R3, #0|0-43
+1186|code|BNE.W           loc_600|64-240-173-128
+1190|code|LDR             R1, =aPrematureEndOf; "premature end of file %s"|47-73
+1192|code|MOV             R2, filename|66-70
+1194|code|LDR             R3, =grub_error|19-75
+1196|code|MOVS            R0, #0x15|21-32
+1198|code|BLX             R3; grub_error|152-71
+1200|code|B               loc_600|166-224
+1202|code|STMEA.W         SP, {R0,R5}|141-232-33-0
+1206|code|MOV             R0, R3|24-70
+1208|code|LDR             R3, =grub_efi_image_handle|43-75
+1210|code|LDR.W           R4, [b,#0x70]|218-248-112-64
+1214|code|LDR             R2, [R5,#(file_path - 0x7D8)]|106-105
+1216|code|LDR             R1, [R3]|25-104
+1218|code|MOV             R3, boot_image|91-70
+1220|code|BLX             R4|160-71
+1222|code|MOV             R4, status_0|4-70
+1224|code|CBZ             status_0, loc_4DC|64-177
+1226|code|LDR             R3, =0x80000009|40-75
+1228|code|CMP             status_0, R3|152-66
+1230|code|LDR             R3, =grub_error|10-75
+1232|code|ITTEE EQ|7-191
+1234|code|MOVEQ           status_0, #3|3-32
+1236|code|LDREQ           R1, =aOutOfResources; "out of resources"|38-73
+1238|code|MOVNE           R0, #0x15|21-32
+1240|code|LDRNE           R1, =aCannotLoadImag; "cannot load image"|38-73
+1242|code|B               loc_4EE|8-224
+1244|code|LDR             status_0, [R5]|40-104
+1246|code|LDR             R3, =grub_efi_get_loaded_image|38-75
+1248|code|BLX             R3; grub_efi_get_loaded_image|152-71
+1250|code|MOV             R5, loaded_image|5-70
+1252|code|CMP             loaded_image, #0|0-40
+1254|code|BNE             loc_584|77-209
+1256|code|LDR             R1, =aNoLoadedImageA; "no loaded image available"|36-73
+1258|code|MOVS            loaded_image, #0x15|21-32
+1260|code|LDR             R3, =grub_error|2-75
+1262|code|BLX             R3; grub_error|152-71
+1264|code|B               loc_600|134-224
+1266|data|ALIGN 4|0-191
+1268|data|DCD aFilenameExpect; "filename expected"|182-6-0-0
+1272|data|DCD grub_error|92-8-0-0
+1276|data|DCD image_handle|216-7-0-0
+1280|data|DCD grub_dl_ref|32-8-0-0
+1284|data|DCD grub_efi_system_table_0|4-8-0-0
+1288|data|DCD grub_file_open|80-8-0-0
+1292|data|DCD grub_device_open|16-8-0-0
+1296|data|DCD grub_efidisk_get_device_handle|60-8-0-0
+1300|data|DCD grub_net_resolve_address|104-8-0-0
+1304|data|DCD grub_net_route_address|108-8-0-0
+1308|data|DCD grub_efinet_get_device_handle|24-8-0-0
+1312|data|DCD grub_efi_get_device_path|112-8-0-0
+1316|data|DCD aNotAValidRootD; "not a valid root device"|200-6-0-0
+1320|data|DCD grub_strchr|68-8-0-0
+1324|data|DCD grub_strrchr|8-8-0-0
+1328|data|DCD aInvalidEfiFile; "invalid EFI file path"|224-6-0-0
+1332|data|DCD grub_strlen|0-8-0-0
+1336|data|DCD grub_malloc|72-8-0-0
+1340|data|DCD grub_efi_print_device_path|20-8-0-0
+1344|data|DCD grub_printf|52-8-0-0
+1348|data|DCD aFilePath; "file path: "|246-6-0-0
+1352|data|DCD aLoaderEfiChain; "loader/efi/chainloader.c"|27-7-0-0
+1356|data|DCD aChain; "chain"|52-7-0-0
+1360|data|DCD grub_real_dprintf|84-8-0-0
+1364|data|DCD aFailedToAlloca; "Failed to allocate %u pages\n"|58-7-0-0
+1368|data|DCD aOutOfMemory; "out of memory"|87-7-0-0
+1372|data|DCD grub_file_read|64-8-0-0
+1376|data|DCD grub_errno|40-8-0-0
+1380|data|DCD aPrematureEndOf; "premature end of file %s"|2-7-0-0
+1384|data|DCD grub_efi_image_handle|44-8-0-0
+1388|data|DCD 0x80000009|9-0-0-128
+1392|data|DCD aOutOfResources; "out of resources"|101-7-0-0
+1396|data|DCD aCannotLoadImag; "cannot load image"|118-7-0-0
+1400|data|DCD grub_efi_get_loaded_image|36-8-0-0
+1404|data|DCD aNoLoadedImageA; "no loaded image available"|136-7-0-0
+1408|data|DCD grub_memmove|12-8-0-0
+1412|code|LDR             R3, [SP,#0xA8+dev_handle]|8-155
+1414|code|STR             R3, [loaded_image,#0xC]|195-96
+1416|code|MOV             loaded_image, file|56-70
+1418|code|LDR             R3, =grub_file_close|43-75
+1420|code|BLX             R3; grub_file_close|152-71
+1422|code|LDR             R3, [SP,#0xA8+argc]|9-155
+1424|code|CMP             R3, #1|1-43
+1426|code|BLE             loc_5F2|46-221
+1428|code|LDR.W           filename, =grub_strlen|223-248-200-128
+1432|code|MOVS            size, #1|1-38
+1434|code|LDR.W           R0, [argv,i,LSL#2]|89-248-38-0
+1438|code|ADDS            i, #1|1-54
+1440|code|BLX             R8; grub_strlen|192-71
+1442|code|LDR             R3, [SP,#0xA8+argc]|9-155
+1444|code|ADDS            len, #1|1-52
+1446|code|CMP             R6, R3|158-66
+1448|code|ADD             R4, R0|4-68
+1450|code|BNE             loc_59A|246-209
+1452|code|LSLS            len, len, #1|100-0
+1454|code|LDR             R3, =grub_malloc|35-75
+1456|code|MOV             R0, len|32-70
+1458|code|BLX             R3; grub_malloc|152-71
+1460|code|LDR             R3, =image_handle|34-75
+1462|code|STR             p16, [R3,#(cmdline - 0x7D8)]|152-97
+1464|code|CBZ             p16, loc_600|16-179
+1466|code|ADD.W           LR, argv, #4|9-241-4-14
+1470|code|ADD.W           R3, argv, i,LSL#2|9-235-134-3
+1474|code|MOV             R12, p16|132-70
+1476|code|MOV.W           R8, #0x20 ; ' '|79-240-32-8
+1480|code|LDR.W           R1, [LR],#4|94-248-4-27
+1484|code|MOV             R2, p16|98-70
+1486|code|SUBS            p8, #1|1-57
+1488|code|LDRB.W          R7, [R1,#1]!|17-248-1-127
+1492|code|ADDS            R6, p16, #2|150-28
+1494|code|CBZ             R7, loc_5E0|31-177
+1496|code|MOV             p16, R6|50-70
+1498|code|STRH.W          R7, [R6,#-2]|38-248-2-124
+1502|code|B               loc_5D0|247-231
+1504|code|CMP             LR, R3|158-69
+1506|code|MOV             R12, R6|180-70
+1508|code|STRH.W          R8, [R2]|162-248-0-128
+1512|code|BNE             loc_5C8|238-209
+1514|code|STRH.W          R7, [R6,#-2]|38-248-2-124
+1518|code|STR             R0, [loaded_image,#0x1C]|232-97
+1520|code|STR             len, [loaded_image,#0x18]|172-97
+1522|code|LDR             R0, =(grub_chainloader_boot+1)|20-72
+1524|code|MOVS            R2, #0|0-34
+1526|code|LDR             R1, =(grub_chainloader_unload+1)|20-73
+1528|code|LDR             R3, =grub_loader_set|20-75
+1530|code|BLX             R3; grub_loader_set|152-71
+1532|code|MOVS            R0, #0|0-32
+1534|code|B               loc_630|23-224
+1536|code|LDR             R0, [SP,#0xA8+dev]|7-152
+1538|code|LDR             R3, =grub_device_close|19-75
+1540|code|BLX             R3; grub_device_close|152-71
+1542|code|MOV             R0, file|56-70
+1544|code|LDR             R3, =grub_file_close|11-75
+1546|code|BLX             R3; grub_file_close|152-71
+1548|code|LDR             R4, =image_handle|12-76
+1550|code|LDR             R3, =grub_free|17-75
+1552|code|LDR             R0, [R4,#(file_path - 0x7D8)]|96-105
+1554|code|BLX             R3; grub_free|152-71
+1556|code|LDRD.W          R0, R1, [R4,#8]|212-233-2-1
+1560|code|ORRS.W          R3, R0, R1|80-234-1-3
+1564|code|BEQ             loc_626|3-208
+1566|code|LDR.W           R3, [b,#0x24]|218-248-36-48
+1570|code|LDR             R2, [R4,#(pages - 0x7D8)]|34-105
+1572|code|BLX             R3|152-71
+1574|code|LDR             R3, =grub_dl_unref|12-75
+1576|code|LDR             R0, [R4,#(my_mod - 0x7D8)]|224-105
+1578|code|BLX             R3; grub_dl_unref|152-71
+1580|code|LDR             R3, =grub_errno|11-75
+1582|code|LDR             R0, [R3]|24-104
+1584|code|ADD             SP, SP, #0x84|33-176
+1586|code|POP.W           {R4-R11,PC}|189-232-240-143
+1590|data|ALIGN 4|0-191
+1592|data|DCD grub_file_close|76-8-0-0
+1596|data|DCD grub_malloc|72-8-0-0
+1600|data|DCD image_handle|216-7-0-0
+1604|data|DCD grub_chainloader_boot+1|69-0-0-0
+1608|data|DCD grub_chainloader_unload+1|1-0-0-0
+1612|data|DCD grub_loader_set|116-8-0-0
+1616|data|DCD grub_device_close|88-8-0-0
+1620|data|DCD grub_free|96-8-0-0
+1624|data|DCD grub_dl_unref|100-8-0-0
+1628|data|DCD grub_errno|40-8-0-0
+1632|data|DCD grub_strlen|0-8-0-0
+1636|code|PUSH            {mod-R2,R4,R5,LR}|55-181
+1638|code|MOV             R4, mod|4-70
+1640|code|MOVS            R2, #0|0-34
+1642|code|LDR             R1, =(grub_cmd_chainloader+1)|5-73
+1644|code|STR             R2, [SP,#0x18+var_18]|0-146
+1646|code|LDR             R3, =aLoadAnotherBoo; "Load another boot loader."|5-75
+1648|code|LDR             R5, =grub_register_command_prio|5-77
+1650|code|LDR             mod, =aChainloader; "chainloader"|6-72
+1652|code|BLX             R5; grub_register_command_prio|168-71
+1654|code|LDR             R3, =image_handle|6-75
+1656|code|STR             mod, [R3,#(my_mod - 0x7D8)]|220-97
+1658|code|STR             R0, [R3,#(cmd - 0x7D8)]|24-98
+1660|code|ADD             SP, SP, #0xC|3-176
+1662|code|POP             {mod,R5,PC}|48-189
+1664|data|DCD grub_cmd_chainloader+1|181-2-0-0
+1668|data|DCD aLoadAnotherBoo; "Load another boot loader."|174-7-0-0
+1672|data|DCD grub_register_command_prio|48-8-0-0
+1676|data|DCD aChainloader; "chainloader"|162-7-0-0
+1680|data|DCD image_handle|216-7-0-0
+1684|code|PUSH            {R3,LR}|8-181
+1686|code|LDR             R3, =image_handle|2-75
+1688|code|LDR             R0, [R3,#(cmd - 0x7D8)]|24-106
+1690|code|LDR             R3, =grub_unregister_command|2-75
+1692|code|BLX             R3; grub_unregister_command|152-71
+1694|code|POP             {R3,PC}|8-189
+1696|data|DCD image_handle|216-7-0-0
+1700|data|DCD grub_unregister_command|56-8-0-0
+1704|data|DCB "unknown error",0|117-110-107-110-111-119-110-32-101-114-114-111-114-0
+1718|data|DCB "filename expected",0|102-105-108-101-110-97-109-101-32-101-120-112-101-99-116-101-100-0
+1736|data|DCB "not a valid root device",0|110-111-116-32-97-32-118-97-108-105-100-32-114-111-111-116-32-100-101-118-105-99-101-0
+1760|data|DCB "invalid EFI file path",0|105-110-118-97-108-105-100-32-69-70-73-32-102-105-108-101-32-112-97-116-104-0
+1782|data|DCB "file path: ",0|102-105-108-101-32-112-97-116-104-58-32-0
+1794|data|DCB "premature end of file %s",0|112-114-101-109-97-116-117-114-101-32-101-110-100-32-111-102-32-102-105-108-101-32-37-115-0
+1819|data|DCB "loader/efi/chainloader.c",0|108-111-97-100-101-114-47-101-102-105-47-99-104-97-105-110-108-111-97-100-101-114-46-99-0
+1844|data|DCB "chain",0|99-104-97-105-110-0
+1850|data|DCB "Failed to allocate %u pages",0xA,0|70-97-105-108-101-100-32-116-111-32-97-108-108-111-99-97-116-101-32-37-117-32-112-97-103-101-115-10-0
+1879|data|DCB "out of memory",0|111-117-116-32-111-102-32-109-101-109-111-114-121-0
+1893|data|DCB "out of resources",0|111-117-116-32-111-102-32-114-101-115-111-117-114-99-101-115-0
+1910|data|DCB "cannot load image",0|99-97-110-110-111-116-32-108-111-97-100-32-105-109-97-103-101-0
+1928|data|DCB "no loaded image available",0|110-111-32-108-111-97-100-101-100-32-105-109-97-103-101-32-97-118-97-105-108-97-98-108-101-0
+1954|data|DCB "chainloader",0|99-104-97-105-110-108-111-97-100-101-114-0
+1966|data|DCB "Load another boot loader.",0|76-111-97-100-32-97-110-111-116-104-101-114-32-98-111-111-116-32-108-111-97-100-101-114-46-0
+1993|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2008|data|% 4|255-255-255-255
+2012|data|ALIGN 0x10|255-255-255-255
+2016|data|% 8|255-255-255-255-255-255-255-255
+2024|data|% 4|255-255-255-255
+2028|data|% 4|255-255-255-255
+2032|data|% 4|255-255-255-255
+2036|data|% 4|255-255-255-255
+2040|data|% 4|255-255-255-255

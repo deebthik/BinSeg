@@ -1,0 +1,1365 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, =dirty_region|4-75
+2|code|MOV.W           R2, #0xFFFFFFFF|79-240-255-50
+6|code|STR             R2, [R3]|26-96
+8|code|STR             R2, [R3,#(dirty_region.top_left_y - 0xDA0)]|90-96
+10|code|STR             R2, [R3,#(dirty_region.bottom_right_x - 0xDA0)]|154-96
+12|code|STR             R2, [R3,#(dirty_region.bottom_right_y - 0xDA0)]|218-96
+14|code|MOVS            R2, #0|0-34
+16|code|STR             R2, [R3,#(repaint_was_scheduled - 0xDA0)]|26-97
+18|code|BX              LR|112-71
+20|data|DCD dirty_region|160-13-0-0
+24|code|LDR             R3, =dirty_region|5-75
+26|code|MOVS            term, #0|0-32
+28|code|SUB             SP, SP, #8|130-176
+30|code|LDRH            R2, [R3,#(virtual_screen.columns - 0xDA0)]|154-141
+32|code|LDRH            R3, [R3,#(virtual_screen.rows - 0xDA0)]|27-142
+34|code|BFI.W           R0, R2, #0, #0x10|98-243-15-0
+38|code|BFI.W           R0, R3, #0x10, #0x10|99-243-31-64
+42|code|ADD             SP, SP, #8|2-176
+44|code|BX              LR|112-71
+46|data|ALIGN 0x10|0-191
+48|data|DCD dirty_region|160-13-0-0
+52|code|LDR             R3, =dirty_region|5-75
+54|code|MOVS            term, #0|0-32
+56|code|SUB             SP, SP, #8|130-176
+58|code|LDRH            R2, [R3,#(virtual_screen.cursor_x - 0xDA0)]|154-142
+60|code|LDRH            R3, [R3,#(virtual_screen.cursor_y - 0xDA0)]|27-143
+62|code|BFI.W           R0, R2, #0, #0x10|98-243-15-0
+66|code|BFI.W           R0, R3, #0x10, #0x10|99-243-31-64
+70|code|ADD             SP, SP, #8|2-176
+72|code|BX              LR|112-71
+74|data|ALIGN 4|0-191
+76|data|DCD dirty_region|160-13-0-0
+80|code|LDRH            R3, [glyph,#6]|195-136
+82|code|PUSH            {R4,LR}|16-181
+84|code|UBFX.W          R3, R3, #3, #8|195-243-199-3
+88|code|CMP             R3, #1|1-43
+90|code|MOV             R4, glyph|4-70
+92|code|BLS             loc_64|2-217
+94|code|LDR             glyph, [glyph,#0x10]|0-105
+96|code|LDR             R3, =grub_free|3-75
+98|code|BLX             R3; grub_free|152-71
+100|code|LDRH            R3, [glyph,#6]|227-136
+102|code|BFC.W           R3, #3, #8|111-243-202-3
+106|code|STRH            R3, [glyph,#6]|227-128
+108|code|POP             {glyph,PC}|16-189
+110|data|ALIGN 0x10|0-191
+112|data|DCD grub_free|164-14-0-0
+116|code|PUSH            {R3-R7,LR}|248-181
+118|code|MOVS            R5, #0|0-37
+120|code|LDR             R4, =dirty_region|16-76
+122|code|LDR             R3, [R4,#(virtual_screen.text_buffer - 0xDA0)]|99-109
+124|code|STR             R5, [R4,#(virtual_screen.functional - 0xDA0)]|229-101
+126|code|CBZ             R3, loc_A4|139-177
+128|code|MOV             R6, R4|38-70
+130|code|MOVS            R7, #0x1C|28-39
+132|code|LDR             R2, [R4,#(virtual_screen.rows - 0xDA0)]|34-107
+134|code|LDR             R3, [R4,#(virtual_screen.columns - 0xDA0)]|227-106
+136|code|MULS            R3, R2|83-67
+138|code|CMP             i, R3|157-66
+140|code|BCS             loc_9C|6-210
+142|code|LDR             R0, [R6,#(virtual_screen.text_buffer - 0xDA0)]|112-109
+144|code|MLA.W           R0, R7, i, R0; glyph|7-251-5-0
+148|code|BL              grub_unicode_destroy_glyph|255-247-220-255
+152|code|ADDS            i, #1|1-53
+154|code|B               loc_84|243-231
+156|code|LDR             R3, =dirty_region|7-75
+158|code|LDR             R0, [R3,#(virtual_screen.text_buffer - 0xDA0)]|88-109
+160|code|LDR             R3, =grub_free|7-75
+162|code|BLX             R3; grub_free|152-71
+164|code|MOVS            R1, #0|0-33
+166|code|MOVS            R2, #0x4C ; 'L'|76-34
+168|code|LDR             R3, =grub_memset|6-75
+170|code|LDR             R0, =virtual_screen|7-72
+172|code|BLX             R3; grub_memset|152-71
+174|code|LDR             R3, =grub_video_delete_render_target|7-75
+176|code|LDR             R0, [R4,#(text_layer - 0xDA0)]|32-110
+178|code|BLX             R3; grub_video_delete_render_target|152-71
+180|code|MOVS            R3, #0|0-35
+182|code|STR             R3, [R4,#(text_layer - 0xDA0)]|35-102
+184|code|POP             {R3-R7,PC}|248-189
+186|data|ALIGN 4|0-191
+188|data|DCD dirty_region|160-13-0-0
+192|data|DCD grub_free|164-14-0-0
+196|data|DCD grub_memset|112-14-0-0
+200|data|DCD virtual_screen|180-13-0-0
+204|data|DCD grub_video_delete_render_target|52-14-0-0
+208|code|PUSH            {term_color-R2,R4-R7,LR}|247-181
+210|code|MOV             R4, term_color|4-70
+212|code|LDR             R6, =dirty_region|12-78
+214|code|ADD             term_color, SP, #0x20+old_target|1-168
+216|code|LDR             R3, =grub_video_get_active_render_target|12-75
+218|code|BLX             R3; grub_video_get_active_render_target|152-71
+220|code|LDR             R5, =grub_video_set_active_render_target|12-77
+222|code|LDR             R0, [R6,#(text_layer - 0xDA0)]|48-110
+224|code|BLX             R5; grub_video_set_active_render_target|168-71
+226|code|LDR             R7, =grub_video_map_color|12-79
+228|code|AND.W           R0, R4, #0xF|4-240-15-0
+232|code|BLX             R7; grub_video_map_color|184-71
+234|code|STR             R0, [R6,#(virtual_screen.fg_color - 0xDA0)]|176-100
+236|code|LSRS            R0, R4, #4|32-9
+238|code|BNE             loc_FC|5-209
+240|code|MOV             R1, R0|1-70
+242|code|MOV             R2, R0|2-70
+244|code|MOV             R3, R0|3-70
+246|code|LDR             R4, =grub_video_map_rgba|8-76
+248|code|BLX             R4; grub_video_map_rgba|160-71
+250|code|B               loc_FE|0-224
+252|code|BLX             R7; grub_video_map_color|184-71
+254|code|STR             R0, [R6,#(virtual_screen.bg_color - 0xDA0)]|240-100
+256|code|LDR             R0, [SP,#0x20+old_target]|1-152
+258|code|BLX             R5; grub_video_set_active_render_target|168-71
+260|code|ADD             SP, SP, #0xC|3-176
+262|code|POP             {R4-R7,PC}|240-189
+264|data|DCD dirty_region|160-13-0-0
+268|data|DCD grub_video_get_active_render_target|72-14-0-0
+272|data|DCD grub_video_set_active_render_target|152-14-0-0
+276|data|DCD grub_video_map_color|48-14-0-0
+280|data|DCD grub_video_map_rgba|84-14-0-0
+284|code|CMP             state, #1|1-41
+286|code|LDR             R3, =dirty_region|8-75
+288|code|BEQ             loc_132|7-208
+290|code|BCC             loc_12C|3-211
+292|code|CMP             state, #2|2-41
+294|code|BNE             loc_13A|8-209
+296|code|LDR             R2, =grub_term_highlight_color|6-74
+298|code|B               loc_134|3-224
+300|code|LDRB.W          R2, [R3,#(virtual_screen.standard_color_setting - 0xDA0)]|147-248-68-32
+304|code|B               loc_136|1-224
+306|code|LDR             R2, =grub_term_normal_color|5-74
+308|code|LDRB            R2, [R2]|18-120
+310|code|STRB.W          R2, [R3,#(virtual_screen.term_color - 0xDA0)]|131-248-69-32
+314|code|LDRB.W          term, [R3,#(virtual_screen.term_color - 0xDA0)]|147-248-69-0
+318|code|B               set_term_color|199-231
+320|data|DCD dirty_region|160-13-0-0
+324|data|DCD grub_term_highlight_color|100-14-0-0
+328|data|DCD grub_term_normal_color|128-14-0-0
+332|code|PUSH            {R4,LR}|16-181
+334|code|LDR             R4, =dirty_region|6-76
+336|code|LDR             R3, =grub_font_get_constructed_device_width|6-75
+338|code|LDR             term, [R4,#(virtual_screen.font - 0xDA0)]|32-108
+340|code|BLX             R3; grub_font_get_constructed_device_width|152-71
+342|code|CBZ             dev_width, loc_164|40-177
+344|code|LDR             R1, [R4,#(virtual_screen.normal_char_width - 0xDA0)]|97-106
+346|code|SUBS            R3, R1, #1|75-30
+348|code|ADD             dev_width, R3|24-68
+350|code|LDR             R3, =__aeabi_uidiv|4-75
+352|code|BLX             R3; __aeabi_uidiv|152-71
+354|code|POP             {R4,PC}|16-189
+356|code|MOVS            dev_width, #1|1-32
+358|code|POP             {R4,PC}|16-189
+360|data|DCD dirty_region|160-13-0-0
+364|data|DCD grub_font_get_constructed_device_width|176-14-0-0
+368|data|DCD __aeabi_uidiv|140-14-0-0
+372|code|PUSH            {R3-R7,LR}|248-181
+374|code|BL              grub_virtual_screen_free|255-247-125-255
+378|code|MOVS            R4, #0|0-36
+380|code|LDR             R3, =grub_video_restore|15-75
+382|code|MOVS            R7, #0x1C|28-39
+384|code|BLX             R3; grub_video_restore|152-71
+386|code|LDR             R5, =dirty_region|15-77
+388|code|LDR             R2, [R5,#(virtual_screen.rows - 0xDA0)]|42-107
+390|code|LDR             R3, [R5,#(virtual_screen.columns - 0xDA0)]|235-106
+392|code|MULS            R3, R2|83-67
+394|code|CMP             i, R3|156-66
+396|code|BCS             loc_1B2|17-210
+398|code|MUL.W           R6, R7, i|7-251-4-246
+402|code|LDR             R0, [R5,#(virtual_screen.text_buffer - 0xDA0)]|104-109
+404|code|ADDS            i, #1|1-52
+406|code|ADD             R0, R6; glyph|48-68
+408|code|BL              grub_unicode_destroy_glyph|255-247-90-255
+412|code|LDR             R3, [R5,#(virtual_screen.text_buffer - 0xDA0)]|107-109
+414|code|ADDS            R2, R3, R6|154-25
+416|code|LDRH            R1, [R2,#6]|209-136
+418|code|BFC.W           R1, #3, #8|111-243-202-1
+422|code|STRH            R1, [R2,#6]|209-128
+424|code|LDR             R2, [R3,R6]|154-89
+426|code|BFC.W           R2, #0, #0x17|111-243-22-2
+430|code|STR             R2, [R3,R6]|154-81
+432|code|B               loc_184|232-231
+434|code|LDR             R3, =grub_errno|4-75
+436|code|MOVS            R0, #0|0-32
+438|code|STR             R0, [R3]|24-96
+440|code|POP             {R3-R7,PC}|248-189
+442|data|ALIGN 4|0-191
+444|data|DCD grub_video_restore|148-14-0-0
+448|data|DCD dirty_region|160-13-0-0
+452|data|DCD grub_errno|108-14-0-0
+456|code|LDR             R3, =dirty_region|8-75
+458|code|LDR             R2, [R3]|26-104
+460|code|ADDS            R2, #1|1-50
+462|code|BEQ             loc_1E6|10-208
+464|code|LDR             R2, [R3,#(dirty_region.top_left_y - 0xDA0)]|90-104
+466|code|ADDS            R2, #1|1-50
+468|code|BEQ             loc_1E6|7-208
+470|code|LDR             R2, [R3,#(dirty_region.bottom_right_x - 0xDA0)]|154-104
+472|code|ADDS            R2, #1|1-50
+474|code|BEQ             loc_1E6|4-208
+476|code|LDR             R0, [R3,#(dirty_region.bottom_right_y - 0xDA0)]|216-104
+478|code|ADDS            R3, R0, #1|67-28
+480|code|NEGS            R0, R3|88-66
+482|code|ADCS            R0, R3|88-65
+484|code|BX              LR|112-71
+486|code|MOVS            R0, #1|1-32
+488|code|BX              LR|112-71
+490|data|ALIGN 4|0-191
+492|data|DCD dirty_region|160-13-0-0
+496|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+500|code|MOV             R7, x|7-70
+502|code|MOV             R8, y|136-70
+504|code|MOV             R6, width|22-70
+506|code|MOV             R4, height|28-70
+508|code|BL              dirty_region_is_empty|255-247-228-255
+512|code|LDR             R5, =dirty_region|22-77
+514|code|CBZ             R0, loc_218|72-177
+516|code|SUBS            width, #1|1-62
+518|code|SUBS            R1, height, #1|97-30
+520|code|ADD             R6, x|62-68
+522|code|ADD             R1, y|65-68
+524|code|STM.W           R5, {x,y}|133-232-128-1
+528|code|STR             R6, [R5,#(dirty_region.bottom_right_x - 0xDA0)]|174-96
+530|code|STR             R1, [R5,#(dirty_region.bottom_right_y - 0xDA0)]|233-96
+532|code|POP.W           {height-y,PC}|189-232-240-129
+536|code|LDR             R3, [R5]|43-104
+538|code|LDR             R2, [R5,#(dirty_region.bottom_right_x - 0xDA0)]|170-104
+540|code|CMP             x, R3|159-66
+542|code|LDR             R3, [R5,#(dirty_region.top_left_y - 0xDA0)]|107-104
+544|code|IT LT|184-191
+546|code|STRLT           x, [R5]|47-96
+548|code|CMP             y, R3|152-69
+550|code|ITT LT|188-191
+552|code|LDRLT           R3, =dirty_region|12-75
+554|code|STRLT.W         y, [R3,#(dirty_region.top_left_y - 0xDA0)]|195-248-4-128
+558|code|ADDS            R3, x, width|187-25
+560|code|SUBS            R3, #1|1-59
+562|code|CMP             R3, R2|147-66
+564|code|LDR             R2, [R5,#(dirty_region.bottom_right_y - 0xDA0)]|234-104
+566|code|ITTTT GT|193-191
+568|code|ADDGT.W         width, width, #0xFFFFFFFF|6-241-255-54
+572|code|LDRGT           R3, =dirty_region|7-75
+574|code|ADDGT           R6, R6, x|246-25
+576|code|STRGT           R6, [R3,#(dirty_region.bottom_right_x - 0xDA0)]|158-96
+578|code|ADD.W           R3, y, height|8-235-4-3
+582|code|SUBS            R3, #1|1-59
+584|code|CMP             R3, R2|147-66
+586|code|ITTTT GT|193-191
+588|code|ADDGT.W         height, height, #0xFFFFFFFF|4-241-255-52
+592|code|LDRGT           R3, =dirty_region|2-75
+594|code|ADDGT.W         R1, R4, y|4-235-8-1
+598|code|STRGT           R1, [R3,#(dirty_region.bottom_right_y - 0xDA0)]|217-96
+600|code|POP.W           {R4-y,PC}|189-232-240-129
+604|data|DCD dirty_region|160-13-0-0
+608|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+612|code|MOV             R5, height|29-70
+614|code|LDR             R4, =dirty_region|11-76
+616|code|MOV             R8, x|128-70
+618|code|MOV             R7, y|15-70
+620|code|MOV             R6, width|22-70
+622|code|LDR             height, [R4,#(repaint_scheduled - 0xDA0)]|99-110
+624|code|CBZ             R3, loc_286|75-177
+626|code|MOVS            x, #0; x|0-32
+628|code|LDR             R3, [R4,#(window.height - 0xDA0)]; height|99-111
+630|code|MOV             y, R0; y|1-70
+632|code|LDR             width, [R4,#(window.width - 0xDA0)]; width|34-111
+634|code|BL              dirty_region_add_real|255-247-185-255
+638|code|MOVS            R3, #0|0-35
+640|code|STR             R3, [R4,#(repaint_scheduled - 0xDA0)]|99-102
+642|code|MOVS            R3, #1|1-35
+644|code|STR             R3, [R4,#(repaint_was_scheduled - 0xDA0)]|35-97
+646|code|MOV             R0, x|64-70
+648|code|MOV             R1, y|57-70
+650|code|MOV             R2, width|50-70
+652|code|MOV             R3, height|43-70
+654|code|POP.W           {R4-x,LR}|189-232-240-65
+658|code|B               dirty_region_add_real|173-231
+660|data|DCD dirty_region|160-13-0-0
+664|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+668|code|SUB             SP, SP, #0x2C|139-176
+670|code|BL              dirty_region_is_empty|255-247-147-255
+674|code|CMP             R0, #0|0-40
+676|code|BNE.W           loc_3B8|64-240-136-128
+680|code|LDR             R4, =dirty_region|69-76
+682|code|LDR             R5, [R4,#(dirty_region.top_left_y - 0xDA0)]|101-104
+684|code|LDR             R3, [R4,#(dirty_region.bottom_right_y - 0xDA0)]|227-104
+686|code|LDR             R6, [R4]|38-104
+688|code|SUBS            R3, R3, y|91-27
+690|code|LDR             R7, [R4,#(dirty_region.bottom_right_x - 0xDA0)]|167-104
+692|code|ADD.W           R8, R3, #1|3-241-1-8
+696|code|LDR             R3, [R4,#(repaint_was_scheduled - 0xDA0)]|35-105
+698|code|SUBS            R7, R7, x|191-27
+700|code|ADDS            R7, #1|1-55
+702|code|CBZ             R3, loc_2C6|19-177
+704|code|LDR             R3, [R4,#(grub_gfxterm_decorator_hook - 0xDA0)]|227-111
+706|code|CBZ             R3, loc_2C6|3-177
+708|code|BLX             R3|152-71
+710|code|LDR.W           R12, =grub_video_set_active_render_target|223-248-4-193
+714|code|MOV             R9, height|193-70
+716|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+720|code|LDR.W           R11, =grub_video_get_viewport|223-248-252-176
+724|code|STR.W           R12, [SP,#0x50+var_3C]|205-248-20-192
+728|code|BLX             R12; grub_video_set_active_render_target|224-71
+730|code|ADD             R1, SP, #0x50+var_34|7-169
+732|code|ADD             R2, SP, #0x50+var_30|8-170
+734|code|ADD             R3, SP, #0x50+var_2C|9-171
+736|code|ADD             R0, SP, #0x50+var_38|6-168
+738|code|BLX             R11; grub_video_get_viewport|216-71
+740|code|ADD.W           R0, R4, #0x68 ; 'h'|4-241-104-0
+744|code|LDR.W           R11, =grub_video_set_viewport|223-248-220-176
+748|code|LDM             R0, {R0-R3}|15-200
+750|code|BLX             R11; grub_video_set_viewport|216-71
+752|code|LDR.W           R11, =grub_gfxterm_background_0|223-248-208-176
+756|code|LDR.W           R10, =dirty_region|223-248-200-160
+760|code|LDR.W           R0, [R11]|219-248-0-0
+764|code|CMP             R0, #0|0-40
+766|code|BEQ             loc_36E|54-208
+768|code|MOVS            R1, #0|0-33
+770|code|MOV             R2, x|50-70
+772|code|MOV             R3, y|43-70
+774|code|STR             x, [SP,#0x50+var_50]|0-150
+776|code|STR             y, [SP,#0x50+var_4C]|1-149
+778|code|STR             width, [SP,#0x50+var_48]|2-151
+780|code|STR.W           height, [SP,#0x50+var_44]|205-248-12-128
+784|code|LDR.W           R12, =grub_video_blit_bitmap|223-248-192-192
+788|code|BLX             R12; grub_video_blit_bitmap|224-71
+790|code|LDR.W           R2, [R11]|219-248-0-32
+794|code|ADDS            R3, width, x|187-25
+796|code|LDR.W           R10, [R10,#(virtual_screen.bg_color_display - 0xDA0)]|218-248-80-160
+800|code|LDR             R1, [R2]|17-104
+802|code|CMP             R3, R1|139-66
+804|code|BCC             loc_34E|19-211
+806|code|LDR             R2, [R2,#4]|82-104
+808|code|CMP             y, R2|149-66
+810|code|BCS             loc_34E|16-210
+812|code|ADD.W           R0, height, y|8-235-5-0
+816|code|SUBS            R3, R3, R1|91-26
+818|code|CMP             R0, R2|144-66
+820|code|LDR.W           R12, =grub_video_fill_rect|223-248-160-192
+824|code|IT CS|40-191
+826|code|RSBCS.W         height, y, R2|197-235-2-8
+830|code|CMP             R1, x|177-66
+832|code|STR.W           R8, [SP,#0x50+var_50]|205-248-0-128
+836|code|MOV             R0, R10|80-70
+838|code|IT CC|56-191
+840|code|MOVCC           R1, x|49-70
+842|code|MOV             R2, y|42-70
+844|code|BLX             R12; grub_video_fill_rect|224-71
+846|code|LDR             R2, =grub_gfxterm_background_0|29-74
+848|code|ADD.W           R3, height, y|9-235-5-3
+852|code|LDR             R2, [R2]|18-104
+854|code|LDR             R2, [R2,#4]|82-104
+856|code|CMP             R3, R2|147-66
+858|code|BCC             loc_382|18-211
+860|code|CMP             R2, y|170-66
+862|code|SUB.W           R3, R3, R2|163-235-2-3
+866|code|MOV             R0, R10|80-70
+868|code|STR             R3, [SP,#0x50+var_50]|0-147
+870|code|MOV             R1, x|49-70
+872|code|IT CC|56-191
+874|code|MOVCC           R2, y|42-70
+876|code|B               loc_37A|5-224
+878|code|STR.W           height, [SP,#0x50+var_50]|205-248-0-128
+882|code|MOV             R1, x|49-70
+884|code|LDR.W           R0, [R10,#(virtual_screen.bg_color_display - 0xDA0)]|218-248-80-0
+888|code|MOV             R2, y|42-70
+890|code|MOV             R3, width|59-70
+892|code|LDR.W           R12, =grub_video_fill_rect|223-248-88-192
+896|code|BLX             R12; grub_video_fill_rect|224-71
+898|code|LDR             R3, =grub_gfxterm_background_0|16-75
+900|code|LDR.W           R12, =grub_video_blit_render_target|223-248-84-192
+904|code|LDR             R0, [R4,#(text_layer - 0xDA0)]|32-110
+906|code|LDR             R1, [R3,#(grub_gfxterm_background_0.blend_text_bg - 0xE24)]|89-104
+908|code|LDR             R3, [R4,#(virtual_screen.offset_x - 0xDA0)]|227-105
+910|code|STR             width, [SP,#0x50+var_48]|2-151
+912|code|SUBS            R3, x, R3|243-26
+914|code|STR             R3, [SP,#0x50+var_50]|0-147
+916|code|LDR             R3, [R4,#(virtual_screen.offset_y - 0xDA0)]|35-106
+918|code|STR.W           height, [SP,#0x50+var_44]|205-248-12-144
+922|code|SUBS            R3, y, R3|235-26
+924|code|STR             R3, [SP,#0x50+var_4C]|1-147
+926|code|CBZ             R1, loc_3A2|1-177
+928|code|MOVS            R1, #1|1-33
+930|code|MOV             R3, y|43-70
+932|code|MOV             R2, x|50-70
+934|code|BLX             R12; grub_video_blit_render_target|224-71
+936|code|ADD             R0, SP, #0x50+var_38|6-168
+938|code|LDR             y, =grub_video_set_viewport|7-77
+940|code|LDM             R0, {R0-R3}|15-200
+942|code|BLX             R5; grub_video_set_viewport|168-71
+944|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+948|code|LDR             R3, [SP,#0x50+var_3C]|5-155
+950|code|BLX             R3|152-71
+952|code|ADD             SP, SP, #0x2C ; ','|11-176
+954|code|POP.W           {R4-R11,PC}|189-232-240-143
+958|data|ALIGN 0x10|0-191
+960|data|DCD dirty_region|160-13-0-0
+964|data|DCD grub_gfxterm_background_0|36-14-0-0
+968|data|DCD grub_video_set_viewport|180-14-0-0
+972|data|DCD grub_video_set_active_render_target|152-14-0-0
+976|data|DCD grub_video_get_viewport|120-14-0-0
+980|data|DCD grub_video_blit_bitmap|76-14-0-0
+984|data|DCD grub_video_fill_rect|88-14-0-0
+988|data|DCD grub_video_blit_render_target|172-14-0-0
+992|code|PUSH            {R4,LR}|16-181
+994|code|MOV             R4, c|4-70
+996|code|BL              grub_unicode_destroy_glyph|255-247-52-254
+1000|code|MOVS            R2, #0x14|20-34
+1002|code|LDR             R3, =grub_memset|7-75
+1004|code|MOV             R0, c|32-70
+1006|code|MOVS            R1, #0|0-33
+1008|code|BLX             R3; grub_memset|152-71
+1010|code|LDR             R3, [c]|35-104
+1012|code|MOVS            R2, #0x20 ; ' '|32-34
+1014|code|BFI.W           R3, R2, #0, #0x17|98-243-22-3
+1018|code|STR             R3, [c]|35-96
+1020|code|LDR             R3, =dirty_region|3-75
+1022|code|LDR             R2, [R3,#(virtual_screen.fg_color - 0xDA0)]|154-108
+1024|code|LDR             R3, [R3,#(virtual_screen.bg_color - 0xDA0)]|219-108
+1026|code|STR             R2, [c,#0x14]|98-97
+1028|code|STR             R3, [c,#0x18]|163-97
+1030|code|POP             {c,PC}|16-189
+1032|data|DCD grub_memset|112-14-0-0
+1036|data|DCD dirty_region|160-13-0-0
+1040|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1044|code|MOVS            R6, #0|0-38
+1046|code|LDR             R7, =dirty_region|24-79
+1048|code|MOV.W           R8, #0x1C|79-240-28-8
+1052|code|LDR             R2, [R7,#(virtual_screen.columns - 0xDA0)]|250-106
+1054|code|MOVS            R5, #0x1C|28-37
+1056|code|LDR             R4, =dirty_region|21-76
+1058|code|CMP             i, R2|150-66
+1060|code|BCS             loc_434|6-210
+1062|code|LDR             R0, [R7,#(virtual_screen.text_buffer - 0xDA0)]|120-109
+1064|code|MLA.W           R0, R8, i, R0; glyph|8-251-6-0
+1068|code|BL              grub_unicode_destroy_glyph|255-247-16-254
+1072|code|ADDS            i, #1|1-54
+1074|code|B               loc_41C|243-231
+1076|code|LDR             R3, [R4,#(virtual_screen.rows - 0xDA0)]|35-107
+1078|code|MOV             R7, R4|39-70
+1080|code|LDR             R0, [R4,#(virtual_screen.text_buffer - 0xDA0)]|96-109
+1082|code|SUBS            R3, #1|1-59
+1084|code|MULS            R3, R5|107-67
+1086|code|MLA.W           R1, R5, R2, R0|5-251-2-1
+1090|code|MULS            R2, R3|90-67
+1092|code|LDR             R3, =grub_memmove|13-75
+1094|code|BLX             R3; grub_memmove|152-71
+1096|code|LDR             i, [R4,#(virtual_screen.rows - 0xDA0)]|38-107
+1098|code|LDR             R3, [R4,#(virtual_screen.columns - 0xDA0)]|227-106
+1100|code|SUBS            R6, #1|1-62
+1102|code|MULS            R6, R3|94-67
+1104|code|MULS            R5, i|117-67
+1106|code|LDR             R1, [R4,#(virtual_screen.rows - 0xDA0)]|33-107
+1108|code|LDR             R3, [R4,#(virtual_screen.columns - 0xDA0)]|227-106
+1110|code|LDR             R2, =dirty_region|8-74
+1112|code|MULS            R3, R1|75-67
+1114|code|CMP             i, R3|158-66
+1116|code|BCS             loc_46C|6-210
+1118|code|LDR             R0, [R7,#(virtual_screen.text_buffer - 0xDA0)]|120-109
+1120|code|ADDS            i, #1|1-54
+1122|code|ADD             R0, R5; c|40-68
+1124|code|ADDS            R5, #0x1C|28-53
+1126|code|BL              clear_char|255-247-187-255
+1130|code|B               loc_452|242-231
+1132|code|LDR             R3, [R2,#(virtual_screen.total_scroll - 0xDA0)]|147-109
+1134|code|ADDS            R3, #1|1-51
+1136|code|STR             R3, [R2,#(virtual_screen.total_scroll - 0xDA0)]|147-101
+1138|code|POP.W           {R4-R8,PC}|189-232-240-129
+1142|data|ALIGN 4|0-191
+1144|data|DCD dirty_region|160-13-0-0
+1148|data|DCD grub_memmove|80-14-0-0
+1152|code|LDR             R3, =dirty_region|4-75
+1154|code|LDR             R2, [R3,#(virtual_screen - 0xDA0)]|90-105
+1156|code|LDR             R0, [R3,#(virtual_screen.offset_x - 0xDA0)]|216-105
+1158|code|LDR             R1, [R3,#(virtual_screen.offset_y - 0xDA0)]|25-106
+1160|code|LDR             R3, [R3,#(virtual_screen.height - 0xDA0)]|155-105
+1162|code|CBZ             R2, locret_490|10-177
+1164|code|CBZ             R3, locret_490|3-177
+1166|code|B               dirty_region_add|231-230
+1168|code|BX              LR|112-71
+1170|data|ALIGN 4|0-191
+1172|data|DCD dirty_region|160-13-0-0
+1176|code|PUSH.W          {R0,R1,R4-R10,LR}|45-233-243-71
+1180|code|LDR             R4, =dirty_region|24-76
+1182|code|LDR             R3, [R4,#(virtual_screen.cursor_y - 0xDA0)]|163-107
+1184|code|LDR             R5, [R4,#(virtual_screen.total_scroll - 0xDA0)]|165-109
+1186|code|ADDS            R6, R5, R3|238-24
+1188|code|LDR             R3, [R4,#(virtual_screen.rows - 0xDA0)]|35-107
+1190|code|CMP             R6, R3|158-66
+1192|code|BCS             loc_4F8|38-210
+1194|code|LDR             R7, [R4,#(virtual_screen.normal_char_width - 0xDA0)]|103-106
+1196|code|LDR             R3, [R4,#(virtual_screen.cursor_x - 0xDA0)]|99-107
+1198|code|LDR             R5, [R4,#(virtual_screen.normal_char_height - 0xDA0)]|165-106
+1200|code|LDR.W           R10, [R4,#(virtual_screen.fg_color - 0xDA0)]|212-248-72-160
+1204|code|MUL.W           R8, R3, R7|3-251-7-248
+1208|code|LDR             R3, [R4,#(virtual_screen.font - 0xDA0)]|35-108
+1210|code|LDR.W           R9, =grub_video_set_active_render_target|223-248-72-144
+1214|code|LDR             R0, [R4,#(text_layer - 0xDA0)]|32-110
+1216|code|LDRSH.W         R3, [R3,#0x14]|179-249-20-48
+1220|code|MLA.W           R5, R5, R6, R3|5-251-6-53
+1224|code|BLX             R9; grub_video_set_active_render_target|200-71
+1226|code|MOVS            R6, #2|2-38
+1228|code|MOV             R1, x|65-70
+1230|code|MOV             R3, width|59-70
+1232|code|LDR.W           R12, =grub_video_fill_rect|223-248-52-192
+1236|code|MOV             R0, color|80-70
+1238|code|STR             R6, [SP,#0x28+var_28]|0-150
+1240|code|MOV             R2, y|42-70
+1242|code|BLX             R12; grub_video_fill_rect|224-71
+1244|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+1248|code|BLX             R9; grub_video_set_active_render_target|200-71
+1250|code|LDR             R0, [R4,#(virtual_screen.offset_x - 0xDA0)]|224-105
+1252|code|LDR             R1, [R4,#(virtual_screen.offset_y - 0xDA0)]|33-106
+1254|code|CBZ             width, loc_4F8|63-177
+1256|code|ADD             R0, x|64-68
+1258|code|ADD             R1, y|41-68
+1260|code|MOV             R2, width|58-70
+1262|code|MOV             R3, R6|51-70
+1264|code|ADD             SP, SP, #8|2-176
+1266|code|POP.W           {R4-color,LR}|189-232-240-71
+1270|code|B               dirty_region_add|179-230
+1272|code|ADD             SP, SP, #8|2-176
+1274|code|POP.W           {R4-R10,PC}|189-232-240-135
+1278|data|ALIGN 0x10|0-191
+1280|data|DCD dirty_region|160-13-0-0
+1284|data|DCD grub_video_set_active_render_target|152-14-0-0
+1288|data|DCD grub_video_fill_rect|88-14-0-0
+1292|code|LDR             R3, =dirty_region|52-75
+1294|code|MOVS            R2, #0x1C|28-34
+1296|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1300|code|MOV             R6, cy|14-70
+1302|code|LDR             cy, [R3,#(virtual_screen.columns - 0xDA0)]|217-106
+1304|code|MOV             R4, cx|4-70
+1306|code|SUB             SP, SP, #0x1C|135-176
+1308|code|MOV             R5, R3|29-70
+1310|code|MLA.W           R1, R1, cy, cx|1-251-6-1
+1314|code|LDR             cx, [R3,#(virtual_screen.text_buffer - 0xDA0)]|88-109
+1316|code|MULS            R1, R2|81-67
+1318|code|ADD.W           R11, R0, R1|0-235-1-11
+1322|code|LDR             R1, [R0,R1]|65-88
+1324|code|UBFX.W          R1, R1, #0, #0x17|193-243-22-1
+1328|code|CMP             R1, #0|0-41
+1330|code|BEQ             loc_5D8|81-208
+1332|code|LDR             R0, [R3,#(virtual_screen.font - 0xDA0)]|24-108
+1334|code|MOV             R1, p|89-70
+1336|code|LDR             R3, =grub_font_construct_glyph|42-75
+1338|code|BLX             R3; grub_font_construct_glyph|152-71
+1340|code|MOV             R9, glyph|129-70
+1342|code|CBNZ            glyph, loc_546|16-185
+1344|code|LDR             R3, =grub_errno|41-75
+1346|code|STR             glyph, [R3]|24-96
+1348|code|B               loc_5D8|72-224
+1350|code|LDR             R3, [R5,#(virtual_screen.font - 0xDA0)]|43-108
+1352|code|LDR.W           R10, [R5,#(virtual_screen.normal_char_width - 0xDA0)]|213-248-36-160
+1356|code|LDRH            R3, [R3,#0x14]|155-138
+1358|code|STR             R3, [SP,#0x40+var_34]|3-147
+1360|code|LDRH            R3, [glyph,#0xC]|131-137
+1362|code|CBZ             R3, loc_564|59-177
+1364|code|ADD.W           glyph, R10, #0xFFFFFFFF|10-241-255-48
+1368|code|MOV             R1, R10|81-70
+1370|code|ADD             R0, R3|24-68
+1372|code|LDR             R3, =__aeabi_uidiv|35-75
+1374|code|BLX             R3; __aeabi_uidiv|152-71
+1376|code|UXTB            R0, R0|192-178
+1378|code|B               loc_566|0-224
+1380|code|MOVS            glyph, #1|1-32
+1382|code|LDR.W           R3, [p,#0x14]|219-248-20-48
+1386|code|LDR.W           R8, [R5,#(virtual_screen.normal_char_height - 0xDA0)]|213-248-40-128
+1390|code|MUL.W           R7, R10, R0|10-251-0-247
+1394|code|STR             R3, [SP,#0x40+var_30]|4-147
+1396|code|LDR             color_0, [R5,#(virtual_screen.total_scroll - 0xDA0)]|171-109
+1398|code|LDR.W           R2, [p,#0x18]|219-248-24-32
+1402|code|ADD             cy, R3|30-68
+1404|code|LDR             R0, [R5,#(text_layer - 0xDA0)]|40-110
+1406|code|MUL.W           cx, R10, cx|10-251-4-244
+1410|code|LDR.W           R10, =grub_video_set_active_render_target|223-248-108-160
+1414|code|MUL.W           R6, height, R6|8-251-6-246
+1418|code|STR             R2, [SP,#0x40+bgcolor]|5-146
+1420|code|BLX             R10; grub_video_set_active_render_target|208-71
+1422|code|LDR             R2, [SP,#0x40+bgcolor]|5-154
+1424|code|MOV             R3, width|59-70
+1426|code|LDR.W           R12, =grub_video_fill_rect|223-248-96-192
+1430|code|MOV             R1, x|33-70
+1432|code|STR.W           height, [SP,#0x40+var_40]|205-248-0-128
+1436|code|MOV             R0, R2|16-70
+1438|code|MOV             R2, y|50-70
+1440|code|BLX             R12; grub_video_fill_rect|224-71
+1442|code|LDRH.W          R3, [SP,#0x40+var_34]|189-248-12-48
+1446|code|LDR             R1, [SP,#0x40+var_30]|4-153
+1448|code|MOV             R2, x|34-70
+1450|code|LDR.W           R12, =grub_font_draw_glyph|223-248-76-192
+1454|code|MOV             R0, glyph|72-70
+1456|code|SXTAH.W         R3, y, R3|6-250-131-243
+1460|code|BLX             R12; grub_font_draw_glyph|224-71
+1462|code|LDR.W           R0, [R5,#(render_target - 0xDA0)]|213-248-128-0
+1466|code|BLX             R10; grub_video_set_active_render_target|208-71
+1468|code|LDR             R0, [R5,#(virtual_screen.offset_x - 0xDA0)]|232-105
+1470|code|LDR             R1, [R5,#(virtual_screen.offset_y - 0xDA0)]|41-106
+1472|code|CBZ             width, loc_5D8|87-177
+1474|code|CMP.W           height, #0|184-241-0-15
+1478|code|BEQ             loc_5D8|7-208
+1480|code|ADD             R0, x|32-68
+1482|code|ADD             R1, y|49-68
+1484|code|MOV             R2, width|58-70
+1486|code|MOV             R3, height|67-70
+1488|code|ADD             SP, SP, #0x1C|7-176
+1490|code|POP.W           {x-p,LR}|189-232-240-79
+1494|code|B               dirty_region_add|67-230
+1496|code|ADD             SP, SP, #0x1C|7-176
+1498|code|POP.W           {R4-p,PC}|189-232-240-143
+1502|data|ALIGN 0x10|0-191
+1504|data|DCD dirty_region|160-13-0-0
+1508|data|DCD grub_font_construct_glyph|92-14-0-0
+1512|data|DCD grub_errno|108-14-0-0
+1516|data|DCD __aeabi_uidiv|140-14-0-0
+1520|data|DCD grub_video_set_active_render_target|152-14-0-0
+1524|data|DCD grub_video_fill_rect|88-14-0-0
+1528|data|DCD grub_font_draw_glyph|124-14-0-0
+1532|code|LDR             R3, =dirty_region|4-75
+1534|code|LDR             R1, [R3,#(virtual_screen.cursor_y - 0xDA0)]|153-107
+1536|code|LDR             R2, [R3,#(virtual_screen.total_scroll - 0xDA0)]|154-109
+1538|code|LDR             R0, [R3,#(virtual_screen.cursor_x - 0xDA0)]|88-107
+1540|code|LDR             R3, [R3,#(virtual_screen.rows - 0xDA0)]|27-107
+1542|code|ADD             R2, R1|10-68
+1544|code|CMP             R2, R3|154-66
+1546|code|BCS             locret_60E|0-210
+1548|code|B               paint_char|126-231
+1550|code|BX              LR|112-71
+1552|data|DCD dirty_region|160-13-0-0
+1556|code|PUSH            {R3-R5,LR}|56-181
+1558|code|MOV             R5, on|13-70
+1560|code|LDR             R3, =dirty_region|7-75
+1562|code|LDR             R2, [R3,#(virtual_screen.cursor_state - 0xDA0)]|218-107
+1564|code|MOV             R4, R3|28-70
+1566|code|CMP             R2, on|138-66
+1568|code|BEQ             locret_634|8-208
+1570|code|CBZ             R2, loc_62A|18-177
+1572|code|BL              write_char|255-247-234-255
+1576|code|B               loc_632|3-224
+1578|code|BL              write_char|255-247-231-255
+1582|code|BL              draw_cursor|255-247-51-255
+1586|code|STR             on, [R4,#(virtual_screen.cursor_state - 0xDA0)]|229-99
+1588|code|POP             {R3-on,PC}|56-189
+1590|data|ALIGN 4|0-191
+1592|data|DCD dirty_region|160-13-0-0
+1596|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+1600|code|MOV             R5, term|5-70
+1602|code|LDR             R4, =dirty_region|89-76
+1604|code|MOV             R6, c|14-70
+1606|code|LDR             R3, [R4,#(virtual_screen.functional - 0xDA0)]|227-109
+1608|code|CMP             R3, #0|0-43
+1610|code|BEQ.W           locret_7A4|0-240-171-128
+1614|code|LDR             R3, [c]|11-104
+1616|code|UBFX.W          R3, R3, #0, #0x17|195-243-22-3
+1620|code|CMP             R3, #7|7-43
+1622|code|BEQ.W           locret_7A4|0-240-165-128
+1626|code|LDR             R3, [R4,#(virtual_screen.cursor_state - 0xDA0)]|227-107
+1628|code|CBZ             R3, loc_662|11-177
+1630|code|BL              write_char|255-247-205-255
+1634|code|LDR             R3, [c]|51-104
+1636|code|LDR             R2, =0x7FFFFD|81-74
+1638|code|ANDS            R2, R3|26-64
+1640|code|CMP             R2, #8|8-42
+1642|code|BEQ             loc_674|3-208
+1644|code|UBFX.W          R2, R3, #0, #0x17|195-243-22-2
+1648|code|CMP             R2, #0xD|13-42
+1650|code|BNE             loc_6B4|31-209
+1652|code|UBFX.W          R3, R3, #0, #0x17|195-243-22-3
+1656|code|CMP             R3, #0xA|10-43
+1658|code|BEQ             loc_696|12-208
+1660|code|CMP             R3, #0xD|13-43
+1662|code|BEQ             loc_6AE|22-208
+1664|code|CMP             R3, #8|8-43
+1666|code|BNE.W           loc_796|64-240-136-128
+1670|code|LDR             R3, [R4,#(virtual_screen.cursor_x - 0xDA0)]|99-107
+1672|code|CMP             R3, #0|0-43
+1674|code|BEQ.W           loc_796|0-240-132-128
+1678|code|LDR             R2, =dirty_region|70-74
+1680|code|SUBS            R3, #1|1-59
+1682|code|STR             R3, [R2,#(virtual_screen.cursor_x - 0xDA0)]|83-99
+1684|code|B               loc_796|127-224
+1686|code|LDR             R2, [R4,#(virtual_screen.rows - 0xDA0)]|34-107
+1688|code|LDR             R3, [R4,#(virtual_screen.cursor_y - 0xDA0)]|163-107
+1690|code|SUBS            R2, #1|1-58
+1692|code|CMP             R3, R2|147-66
+1694|code|BCC             loc_6A6|2-211
+1696|code|BL              scroll_up|255-247-182-254
+1700|code|B               loc_796|119-224
+1702|code|LDR             R2, =dirty_region|64-74
+1704|code|ADDS            R3, #1|1-51
+1706|code|STR             R3, [R2,#(virtual_screen.cursor_y - 0xDA0)]|147-99
+1708|code|B               loc_796|115-224
+1710|code|MOVS            R3, #0|0-35
+1712|code|STR             R3, [R4,#(virtual_screen.cursor_x - 0xDA0)]|99-99
+1714|code|B               loc_796|112-224
+1716|code|MOV             R1, c; c|49-70
+1718|code|MOV             R0, term; term|40-70
+1720|code|BL              grub_gfxterm_getcharwidth|255-247-72-253
+1724|code|LDR             R3, [R4,#(virtual_screen.cursor_x - 0xDA0)]|99-107
+1726|code|LDR             R1, [R4,#(virtual_screen.columns - 0xDA0)]|225-106
+1728|code|LDR             R2, =dirty_region|57-74
+1730|code|UXTB            R7, R0|199-178
+1732|code|ADD             R3, char_width|59-68
+1734|code|CMP             R3, R1|139-66
+1736|code|BLS             loc_6DE|9-217
+1738|code|LDR             R1, [R2,#(virtual_screen.rows - 0xDA0)]|17-107
+1740|code|LDR             R3, [R2,#(virtual_screen.cursor_y - 0xDA0)]|147-107
+1742|code|SUBS            R1, #1|1-57
+1744|code|CMP             R3, R1|139-66
+1746|code|BCC             loc_6DA|2-211
+1748|code|BL              scroll_up|255-247-156-254
+1752|code|B               loc_6DE|1-224
+1754|code|ADDS            R3, #1|1-51
+1756|code|STR             R3, [R2,#(virtual_screen.cursor_y - 0xDA0)]|147-99
+1758|code|LDR             term, [R4,#(virtual_screen.cursor_y - 0xDA0)]|165-107
+1760|code|LDR             R2, [R4,#(virtual_screen.cursor_x - 0xDA0)]|98-107
+1762|code|LDR             R3, [R4,#(virtual_screen.columns - 0xDA0)]|227-106
+1764|code|LDR.W           R8, =grub_memmove|223-248-208-128
+1768|code|MLA.W           R3, R5, R3, R2|5-251-3-35
+1772|code|LDR             R2, [R4,#(virtual_screen.text_buffer - 0xDA0)]|98-109
+1774|code|MOVS            R5, #0x1C|28-37
+1776|code|MLA.W           R5, R5, R3, R2|5-251-3-37
+1780|code|MOV             R0, p; glyph|40-70
+1782|code|BL              grub_unicode_destroy_glyph|255-247-171-252
+1786|code|MOV             R0, p|40-70
+1788|code|MOV             R1, c|49-70
+1790|code|MOVS            R2, #0x14|20-34
+1792|code|BLX             R8; grub_memmove|192-71
+1794|code|LDRH            R0, [c,#6]|240-136
+1796|code|UBFX.W          R0, R0, #3, #8|192-243-199-0
+1800|code|CMP             R0, #1|1-40
+1802|code|BLS             loc_722|10-217
+1804|code|LSLS            R0, R0, #2|128-0
+1806|code|LDR             R3, =grub_malloc|40-75
+1808|code|BLX             R3; grub_malloc|152-71
+1810|code|STR             R0, [p,#0x10]|40-97
+1812|code|CBZ             R0, loc_72E|88-177
+1814|code|LDRH            R2, [c,#6]|242-136
+1816|code|LDR             R1, [c,#0x10]|49-105
+1818|code|UBFX.W          R2, R2, #3, #8|194-243-199-2
+1822|code|LSLS            R2, R2, #2|146-0
+1824|code|B               loc_72C|4-224
+1826|code|ADD.W           R0, p, #0x10|5-241-16-0
+1830|code|ADD.W           R1, c, #0x10|6-241-16-1
+1834|code|MOVS            R2, #4|4-34
+1836|code|BLX             R8; grub_memmove|192-71
+1838|code|LDR             R3, =grub_errno|33-75
+1840|code|MOVS            R2, #0|0-34
+1842|code|CMP             char_width, #1|1-47
+1844|code|STR             R2, [R3]|26-96
+1846|code|LDR             R3, [R4,#(virtual_screen.fg_color - 0xDA0)]|163-108
+1848|code|STR             R3, [p,#0x14]|107-97
+1850|code|LDR             R3, [R4,#(virtual_screen.bg_color - 0xDA0)]|227-108
+1852|code|STR             R3, [p,#0x18]|171-97
+1854|code|BHI             loc_754|9-216
+1856|code|BL              write_char|255-247-92-255
+1860|code|LDR             R2, [R4,#(virtual_screen.cursor_x - 0xDA0)]|98-107
+1862|code|LDR             R3, =dirty_region|24-75
+1864|code|ADD             char_width, R2|23-68
+1866|code|LDR             R2, [R4,#(virtual_screen.columns - 0xDA0)]|226-106
+1868|code|STR             R7, [R4,#(virtual_screen.cursor_x - 0xDA0)]|103-99
+1870|code|CMP             R7, R2|151-66
+1872|code|BCS             loc_784|24-210
+1874|code|B               loc_796|32-224
+1876|code|ADDS            p, #0x1C|28-53
+1878|code|MOVS            c, #1|1-38
+1880|code|MOV.W           R8, #0x1C|79-240-28-8
+1884|code|CMP             i, char_width|190-66
+1886|code|BCS             loc_740|239-210
+1888|code|LDR             R2, [R4,#(virtual_screen.columns - 0xDA0)]|226-106
+1890|code|LDR             R3, [R4,#(virtual_screen.rows - 0xDA0)]|35-107
+1892|code|MULS            R3, R2|83-67
+1894|code|LDR             R2, [R4,#(virtual_screen.text_buffer - 0xDA0)]|98-109
+1896|code|MLA.W           R3, R8, R3, R2|8-251-3-35
+1900|code|CMP             R5, R3|157-66
+1902|code|BCS             loc_740|231-210
+1904|code|MOV             R0, R5; glyph|40-70
+1906|code|ADDS            i, #1|1-54
+1908|code|BL              grub_unicode_destroy_glyph|255-247-108-252
+1912|code|LDR             R3, [R5]|43-104
+1914|code|BFC.W           R3, #0, #0x17|111-243-22-3
+1918|code|STR.W           R3, [R5],#0x1C|69-248-28-59
+1922|code|B               loc_75C|235-231
+1924|code|LDR             R1, [R3,#(virtual_screen.rows - 0xDA0)]|25-107
+1926|code|MOVS            R2, #0|0-34
+1928|code|STR             R2, [R3,#(virtual_screen.cursor_x - 0xDA0)]|90-99
+1930|code|LDR             R2, [R3,#(virtual_screen.cursor_y - 0xDA0)]|154-107
+1932|code|SUBS            R1, #1|1-57
+1934|code|CMP             R2, R1|138-66
+1936|code|BCS             loc_6A0|134-210
+1938|code|ADDS            R2, #1|1-50
+1940|code|STR             R2, [R3,#(virtual_screen.cursor_y - 0xDA0)]|154-99
+1942|code|LDR             R3, [R4,#(virtual_screen.cursor_state - 0xDA0)]|227-107
+1944|code|CBZ             R3, locret_7A4|35-177
+1946|code|BL              write_char|255-247-47-255
+1950|code|POP.W           {R4-R8,LR}|189-232-240-65
+1954|code|B               draw_cursor|121-230
+1956|code|POP.W           {R4-R8,PC}|189-232-240-129
+1960|data|DCD dirty_region|160-13-0-0
+1964|data|DCD 0x7FFFFD|253-255-127-0
+1968|data|DCD grub_malloc|136-14-0-0
+1972|data|DCD grub_errno|108-14-0-0
+1976|data|DCD grub_memmove|80-14-0-0
+1980|code|PUSH            {term,R1,R4-R6,LR}|115-181
+1982|code|UXTH            R6, R1|142-178
+1984|code|LDR             R4, =dirty_region|15-76
+1986|code|LSRS            R5, R1, #0x10|13-12
+1988|code|STR             R1, [SP,#0x18+var_14]|1-145
+1990|code|LDR             R2, [R4,#(virtual_screen.columns - 0xDA0)]|226-106
+1992|code|LDR             R3, [R4,#(virtual_screen.rows - 0xDA0)]|35-107
+1994|code|CMP             R6, R2|150-66
+1996|code|ITT CS|36-191
+1998|code|ADDCS.W         R2, R2, #0xFFFFFFFF|2-241-255-50
+2002|code|UXTHCS          R6, R2|150-178
+2004|code|CMP             R5, R3|157-66
+2006|code|ITT CS|36-191
+2008|code|ADDCS.W         R3, R3, #0xFFFFFFFF|3-241-255-51
+2012|code|UXTHCS          R5, R3|157-178
+2014|code|LDR             R3, [R4,#(virtual_screen.cursor_state - 0xDA0)]|227-107
+2016|code|CBZ             R3, loc_7E6|11-177
+2018|code|BL              write_char|255-247-11-255
+2022|code|LDR             R3, [R4,#(virtual_screen.cursor_state - 0xDA0)]|227-107
+2024|code|STR             R6, [R4,#(virtual_screen.cursor_x - 0xDA0)]|102-99
+2026|code|STR             R5, [R4,#(virtual_screen.cursor_y - 0xDA0)]|165-99
+2028|code|CBZ             R3, loc_7FA|43-177
+2030|code|BL              write_char|255-247-5-255
+2034|code|ADD             SP, SP, #8|2-176
+2036|code|POP.W           {R4-R6,LR}|189-232-112-64
+2040|code|B               draw_cursor|78-230
+2042|code|ADD             SP, SP, #8|2-176
+2044|code|POP             {R4-R6,PC}|112-189
+2046|data|ALIGN 0x10|0-191
+2048|data|DCD dirty_region|160-13-0-0
+2052|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2056|code|SUB             SP, SP, #0x1C|135-176
+2058|code|LDR             R4, =dirty_region|72-76
+2060|code|LDR             R3, [R4,#(virtual_screen.total_scroll - 0xDA0)]|163-109
+2062|code|CMP             R3, #0|0-43
+2064|code|BEQ             loc_910|126-208
+2066|code|LDR             R3, =grub_gfxterm_background_0|71-75
+2068|code|LDR             R5, =grub_video_set_active_render_target|71-77
+2070|code|LDR             R6, =grub_video_scroll|72-78
+2072|code|LDR             R3, [R3]|27-104
+2074|code|CBZ             R3, loc_834|91-177
+2076|code|LDR             term, [R4,#(text_layer - 0xDA0)]|32-110
+2078|code|BLX             R5; grub_video_set_active_render_target|168-71
+2080|code|LDR             R2, [R4,#(virtual_screen.normal_char_height - 0xDA0)]|162-106
+2082|code|LDR             R3, [R4,#(virtual_screen.total_scroll - 0xDA0)]|163-109
+2084|code|MOVS            R1, #0|0-33
+2086|code|NEGS            R2, R2|82-66
+2088|code|LDR             R0, [R4,#(virtual_screen.bg_color - 0xDA0)]|224-108
+2090|code|MULS            R2, R3|90-67
+2092|code|BLX             R6; grub_video_scroll|176-71
+2094|code|BL              dirty_region_add_virtualscreen|255-247-39-254
+2098|code|B               loc_8C8|73-224
+2100|code|BL              write_char|255-247-226-254
+2104|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+2108|code|BLX             R5; grub_video_set_active_render_target|168-71
+2110|code|LDR             R3, [R4,#(window.double_repaint - 0xDA0)]|163-111
+2112|code|LDR             R7, [R4,#(virtual_screen.bg_color_display - 0xDA0)]|39-109
+2114|code|CMP             R3, #0|0-43
+2116|code|LDR.W           R9, =grub_video_get_viewport|223-248-248-144
+2120|code|LDR.W           R8, =grub_video_set_viewport|223-248-248-128
+2124|code|LDR.W           R10, =grub_video_fill_rect|223-248-248-160
+2128|code|ITE NE|20-191
+2130|code|MOVNE.W         R11, #2|79-240-2-11
+2134|code|MOVEQ.W         R11, #1|79-240-1-11
+2138|code|ADD             R1, SP, #0x40+var_34|3-169
+2140|code|ADD             R2, SP, #0x40+var_30|4-170
+2142|code|ADD             R3, SP, #0x40+var_2C|5-171
+2144|code|ADD             R0, SP, #0x40+var_38|2-168
+2146|code|BLX             R9; grub_video_get_viewport|200-71
+2148|code|ADD.W           R0, R4, #0x68 ; 'h'|4-241-104-0
+2152|code|LDM             R0, {R0-R3}|15-200
+2154|code|BLX             R8; grub_video_set_viewport|192-71
+2156|code|MOV             R0, R7|56-70
+2158|code|LDR             R2, [R4,#(virtual_screen.total_scroll - 0xDA0)]|162-109
+2160|code|LDR             R3, [R4,#(virtual_screen.normal_char_height - 0xDA0)]|163-106
+2162|code|LDR             R1, [R4,#(virtual_screen.offset_x - 0xDA0)]|225-105
+2164|code|MULS            R3, R2|83-67
+2166|code|LDR             R2, [R4,#(virtual_screen.offset_y - 0xDA0)]|34-106
+2168|code|STR             R3, [SP,#0x40+var_40]|0-147
+2170|code|LDR             R3, [R4,#(virtual_screen - 0xDA0)]|99-105
+2172|code|BLX             R10; grub_video_fill_rect|208-71
+2174|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+2178|code|BLX             R5; grub_video_set_active_render_target|168-71
+2180|code|BL              dirty_region_redraw|255-247-8-253
+2184|code|LDR             R2, [R4,#(virtual_screen.normal_char_height - 0xDA0)]|162-106
+2186|code|LDR             R3, [R4,#(virtual_screen.total_scroll - 0xDA0)]|163-109
+2188|code|MOVS            R1, #0|0-33
+2190|code|NEGS            R2, R2|82-66
+2192|code|MOV             R0, R7|56-70
+2194|code|MULS            R2, R3|90-67
+2196|code|BLX             R6; grub_video_scroll|176-71
+2198|code|ADD             R0, SP, #0x40+var_38|2-168
+2200|code|LDM             R0, {R0-R3}|15-200
+2202|code|BLX             R8; grub_video_set_viewport|192-71
+2204|code|CMP.W           R11, #1|187-241-1-15
+2208|code|BEQ             loc_8AC|4-208
+2210|code|LDR             R3, =grub_video_swap_buffers|38-75
+2212|code|MOV.W           R11, #1|79-240-1-11
+2216|code|BLX             R3; grub_video_swap_buffers|152-71
+2218|code|B               loc_85A|214-231
+2220|code|BL              dirty_region_reset|255-247-168-251
+2224|code|LDR             R0, [R4,#(text_layer - 0xDA0)]|32-110
+2226|code|BLX             R5; grub_video_set_active_render_target|168-71
+2228|code|LDR             R2, [R4,#(virtual_screen.normal_char_height - 0xDA0)]|162-106
+2230|code|LDR             R3, [R4,#(virtual_screen.total_scroll - 0xDA0)]|163-109
+2232|code|MOVS            R1, #0|0-33
+2234|code|NEGS            R2, R2|82-66
+2236|code|LDR             R0, [R4,#(virtual_screen.bg_color - 0xDA0)]|224-108
+2238|code|MULS            R2, R3|90-67
+2240|code|BLX             R6; grub_video_scroll|176-71
+2242|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+2246|code|BLX             R5; grub_video_set_active_render_target|168-71
+2248|code|LDR             R3, [R4,#(virtual_screen.total_scroll - 0xDA0)]|163-109
+2250|code|MOVS            R2, #0|0-34
+2252|code|LDR             R5, [R4,#(virtual_screen.rows - 0xDA0)]|37-107
+2254|code|LDR             R7, =dirty_region|23-79
+2256|code|CMP             R3, R5|171-66
+2258|code|STR             R2, [R4,#(virtual_screen.total_scroll - 0xDA0)]|162-101
+2260|code|ITE LS|148-191
+2262|code|SUBLS           R5, R5, R3|237-26
+2264|code|SUBHI           R5, R5, R5|109-27
+2266|code|LDR             R3, [R4,#(virtual_screen.rows - 0xDA0)]|35-107
+2268|code|CMP             R5, R3|157-66
+2270|code|BCS             loc_902|16-210
+2272|code|MOVS            R6, #0|0-38
+2274|code|LDR             R3, [R4,#(virtual_screen.columns - 0xDA0)]|227-106
+2276|code|CMP             R6, R3|158-66
+2278|code|BCS             loc_8FE|10-210
+2280|code|LDR             R3, [R7,#(virtual_screen.total_scroll - 0xDA0)]|187-109
+2282|code|LDR             R2, [R7,#(virtual_screen.rows - 0xDA0)]|58-107
+2284|code|ADD             R3, R5|43-68
+2286|code|CMP             R3, R2|147-66
+2288|code|BCS             loc_8FA|3-210
+2290|code|MOV             R0, R6; cx|48-70
+2292|code|MOV             R1, R5; cy|41-70
+2294|code|BL              paint_char|255-247-9-254
+2298|code|ADDS            R6, #1|1-54
+2300|code|B               loc_8E2|241-231
+2302|code|ADDS            R5, #1|1-53
+2304|code|B               loc_8DA|235-231
+2306|code|LDR             R3, =dirty_region|10-75
+2308|code|LDR             R3, [R3,#(virtual_screen.cursor_state - 0xDA0)]|219-107
+2310|code|CBZ             R3, loc_910|27-177
+2312|code|BL              write_char|255-247-120-254
+2316|code|BL              draw_cursor|255-247-196-253
+2320|code|BL              dirty_region_redraw|255-247-194-252
+2324|code|LDR             R3, =grub_video_swap_buffers|9-75
+2326|code|BLX             R3; grub_video_swap_buffers|152-71
+2328|code|LDR             R3, [R4,#(window.double_repaint - 0xDA0)]|163-111
+2330|code|CBZ             R3, loc_920|11-177
+2332|code|BL              dirty_region_redraw|255-247-188-252
+2336|code|BL              dirty_region_reset|255-247-110-251
+2340|code|ADD             SP, SP, #0x1C|7-176
+2342|code|POP.W           {R4-R11,PC}|189-232-240-143
+2346|data|ALIGN 4|0-191
+2348|data|DCD dirty_region|160-13-0-0
+2352|data|DCD grub_gfxterm_background_0|36-14-0-0
+2356|data|DCD grub_video_set_active_render_target|152-14-0-0
+2360|data|DCD grub_video_scroll|64-14-0-0
+2364|data|DCD grub_video_swap_buffers|144-14-0-0
+2368|data|DCD grub_video_get_viewport|120-14-0-0
+2372|data|DCD grub_video_set_viewport|180-14-0-0
+2376|data|DCD grub_video_fill_rect|88-14-0-0
+2380|code|PUSH.W          {term,R1,R4-R8,LR}|45-233-243-65
+2384|code|MOV             R7, term|7-70
+2386|code|LDR             R6, =dirty_region|20-78
+2388|code|MOVS            R5, #0|0-37
+2390|code|MOV.W           R8, #0x1C|79-240-28-8
+2394|code|LDR             R2, [R6,#(virtual_screen.rows - 0xDA0)]|50-107
+2396|code|LDR             R3, [R6,#(virtual_screen.columns - 0xDA0)]|243-106
+2398|code|LDR             R4, =dirty_region|17-76
+2400|code|MULS            R3, R2|83-67
+2402|code|CMP             R5, R3|157-66
+2404|code|BCS             loc_974|6-210
+2406|code|LDR             R0, [R6,#(virtual_screen.text_buffer - 0xDA0)]|112-109
+2408|code|MLA.W           R0, R8, R5, R0; c|8-251-5-0
+2412|code|BL              clear_char|255-247-56-253
+2416|code|ADDS            R5, #1|1-53
+2418|code|B               loc_95A|242-231
+2420|code|LDR             R6, =grub_video_set_active_render_target|12-78
+2422|code|MOVS            R5, #0|0-37
+2424|code|LDR             R0, [R4,#(text_layer - 0xDA0)]|32-110
+2426|code|STR             R5, [R4,#(virtual_screen.cursor_y - 0xDA0)]|165-99
+2428|code|STR             R5, [R4,#(virtual_screen.cursor_x - 0xDA0)]|101-99
+2430|code|BLX             R6; grub_video_set_active_render_target|176-71
+2432|code|LDR             R3, [R4,#(virtual_screen.height - 0xDA0)]|163-105
+2434|code|MOV             R1, R5|41-70
+2436|code|MOV             R2, R5|42-70
+2438|code|LDR             R0, [R4,#(virtual_screen.bg_color - 0xDA0)]|224-108
+2440|code|LDR             R5, =grub_video_fill_rect|8-77
+2442|code|STR             R3, [SP,#0x20+var_20]|0-147
+2444|code|LDR             R3, [R4,#(virtual_screen - 0xDA0)]|99-105
+2446|code|BLX             R5; grub_video_fill_rect|168-71
+2448|code|LDR.W           R0, [R4,#(render_target - 0xDA0)]|212-248-128-0
+2452|code|BLX             R6; grub_video_set_active_render_target|176-71
+2454|code|BL              dirty_region_add_virtualscreen|255-247-115-253
+2458|code|MOV             R0, term|56-70
+2460|code|ADD             SP, SP, #8|2-176
+2462|code|POP.W           {R4-R8,LR}|189-232-240-65
+2466|code|B               grub_gfxterm_refresh|47-231
+2468|data|DCD dirty_region|160-13-0-0
+2472|data|DCD grub_video_set_active_render_target|152-14-0-0
+2476|data|DCD grub_video_fill_rect|88-14-0-0
+2480|code|LDR             R3, =dirty_region|1-75
+2482|code|MOVS            R2, #1|1-34
+2484|code|STR             R2, [R3,#(repaint_scheduled - 0xDA0)]|90-102
+2486|code|BX              LR|112-71
+2488|data|DCD dirty_region|160-13-0-0
+2492|code|PUSH.W          {target-y_0,R4-R11,LR}|45-233-247-79
+2496|code|MOV             R5, target|5-70
+2498|code|LDR             R4, =dirty_region|79-76
+2500|code|MOV             R9, width|153-70
+2502|code|LDR             R7, [SP,#0x30+border_width]|15-159
+2504|code|MOV             R11, x|139-70
+2506|code|STR             y_0, [SP,#0x30+y]|1-146
+2508|code|LDR             R6, [SP,#0x30+font]|14-158
+2510|code|BL              grub_virtual_screen_free|255-247-81-251
+2514|code|STR.W           target, [R4,#(render_target - 0xDA0)]|196-248-128-80
+2518|code|MOV             target, #0xFFFFFFFE|111-240-1-5
+2522|code|MULS            R5, R7|125-67
+2524|code|BL              grub_virtual_screen_free|255-247-74-251
+2528|code|LDR.W           R8, =grub_font_get_glyph|223-248-52-129
+2532|code|STR             R7, [R4,#(virtual_screen.offset_x - 0xDA0)]|231-97
+2534|code|STR             R7, [R4,#(virtual_screen.offset_y - 0xDA0)]|39-98
+2536|code|MOVS            R7, #0x20 ; ' '|32-39
+2538|code|ADD.W           R3, width, R5|9-235-5-3
+2542|code|STR             R3, [R4,#(virtual_screen - 0xDA0)]|99-97
+2544|code|LDR             R3, [SP,#0x30+height]|12-155
+2546|code|STR             R6, [R4,#(virtual_screen.font - 0xDA0)]|38-100
+2548|code|ADD             R5, R3|29-68
+2550|code|STR             R5, [R4,#(virtual_screen.height - 0xDA0)]|165-97
+2552|code|MOVS            R5, #0|0-37
+2554|code|MOV             R0, R6|48-70
+2556|code|MOV             R1, R7|57-70
+2558|code|BLX             R8; grub_font_get_glyph|192-71
+2560|code|CBZ             R0, loc_A0A|24-177
+2562|code|LDRH            R3, [R0,#0xC]|131-137
+2564|code|CMP             R5, R3|157-66
+2566|code|IT CC|56-191
+2568|code|MOVCC           R5, R3|29-70
+2570|code|ADDS            R7, #1|1-55
+2572|code|CMP             R7, #0x7F|127-47
+2574|code|BNE             loc_9FA|244-209
+2576|code|LDR             R3, [R4,#(virtual_screen.font - 0xDA0)]|35-108
+2578|code|CMP             R5, #0|0-45
+2580|code|MOV.W           R2, #1|79-240-1-2
+2584|code|LDR             R7, =__aeabi_uidiv|58-79
+2586|code|ITE NE|20-191
+2588|code|MOVNE           R1, R5|41-70
+2590|code|MOVEQ           R1, #8|8-33
+2592|code|LDRSH.W         R8, [R3,#0x12]|179-249-18-128
+2596|code|MOVS            R3, #0|0-35
+2598|code|STR             R2, [R4,#(virtual_screen.cursor_state - 0xDA0)]|226-99
+2600|code|STR             R3, [R4,#(virtual_screen.cursor_x - 0xDA0)]|99-99
+2602|code|STR             R3, [R4,#(virtual_screen.cursor_y - 0xDA0)]|163-99
+2604|code|STR             R3, [R4,#(virtual_screen.total_scroll - 0xDA0)]|163-101
+2606|code|STR             R1, [R4,#(virtual_screen.normal_char_width - 0xDA0)]|97-98
+2608|code|STR.W           R8, [R4,#(virtual_screen.normal_char_height - 0xDA0)]|196-248-40-128
+2612|code|LDR             R0, [R4,#(virtual_screen - 0xDA0)]|96-105
+2614|code|BLX             R7; __aeabi_uidiv|184-71
+2616|code|MOV             R1, R8|65-70
+2618|code|MOV.W           R8, #0x1C|79-240-28-8
+2622|code|LDR             R5, =dirty_region|48-77
+2624|code|MOV             R6, R0|6-70
+2626|code|STR             R0, [R4,#(virtual_screen.columns - 0xDA0)]|224-98
+2628|code|LDR             R0, [R4,#(virtual_screen.height - 0xDA0)]|160-105
+2630|code|BLX             R7; __aeabi_uidiv|184-71
+2632|code|LDR             R3, =grub_malloc|47-75
+2634|code|LDR             R7, =grub_errno|48-79
+2636|code|STR             R0, [R4,#(virtual_screen.rows - 0xDA0)]|32-99
+2638|code|MUL.W           R0, R8, R0|8-251-0-240
+2642|code|MULS            R0, R6|112-67
+2644|code|BLX             R3; grub_malloc|152-71
+2646|code|LDR             R3, [R7]|59-104
+2648|code|STR             R0, [R4,#(virtual_screen.text_buffer - 0xDA0)]|96-101
+2650|code|CMP             R3, #0|0-43
+2652|code|BNE             loc_AF6|75-209
+2654|code|LDR             R6, =grub_video_create_render_target|44-78
+2656|code|ADD.W           R0, R5, #0x60 ; '`'|5-241-96-0
+2660|code|LDR             R1, [R5,#(virtual_screen - 0xDA0)]|105-105
+2662|code|MOVS            R3, #0x22 ; '"'|34-35
+2664|code|LDR             R2, [R5,#(virtual_screen.height - 0xDA0)]|170-105
+2666|code|BLX             R6; grub_video_create_render_target|176-71
+2668|code|LDR             R6, [R7]|62-104
+2670|code|CMP             R6, #0|0-46
+2672|code|BNE             loc_AF6|65-209
+2674|code|LDR.W           R10, =grub_video_set_active_render_target|223-248-168-160
+2678|code|LDR             R0, [R5,#(text_layer - 0xDA0)]|40-110
+2680|code|BLX             R10; grub_video_set_active_render_target|208-71
+2682|code|MOVS            R0, #7; term_color|7-32
+2684|code|STRB.W          R0, [R5,#(virtual_screen.standard_color_setting - 0xDA0)]|133-248-68-0
+2688|code|STRB.W          R0, [R5,#(virtual_screen.term_color - 0xDA0)]|133-248-69-0
+2692|code|BL              set_term_color|255-247-36-251
+2696|code|LDR.W           R0, [R5,#(render_target - 0xDA0)]|213-248-128-0
+2700|code|BLX             R10; grub_video_set_active_render_target|208-71
+2702|code|LDR             R3, =grub_gfxterm_background_0|33-75
+2704|code|LDR.W           R12, =grub_video_map_rgba|223-248-140-192
+2708|code|MOV             R10, R5|170-70
+2710|code|LDRB            R0, [R3,#(grub_gfxterm_background_0.default_bg_color - 0xE24)]|24-122
+2712|code|LDRB            R1, [R3,#(grub_gfxterm_background_0.default_bg_color.green - 0xE24)]|89-122
+2714|code|LDRB            R2, [R3,#(grub_gfxterm_background_0.default_bg_color.blue - 0xE24)]|154-122
+2716|code|LDRB            R3, [R3,#(grub_gfxterm_background_0.default_bg_color.alpha - 0xE24)]|219-122
+2718|code|BLX             R12; grub_video_map_rgba|224-71
+2720|code|STR             R0, [R5,#(virtual_screen.bg_color_display - 0xDA0)]|40-101
+2722|code|LDR             R2, [R4,#(virtual_screen.rows - 0xDA0)]|34-107
+2724|code|LDR             R3, [R4,#(virtual_screen.columns - 0xDA0)]|227-106
+2726|code|LDR             R5, =dirty_region|22-77
+2728|code|MULS            R3, R2|83-67
+2730|code|CMP             R6, R3|158-66
+2732|code|BCS             loc_ACE|15-210
+2734|code|MUL.W           R0, R8, R6|8-251-6-240
+2738|code|LDR.W           R3, [R10,#(virtual_screen.text_buffer - 0xDA0)]|218-248-84-48
+2742|code|ADDS            R6, #1|1-54
+2744|code|ADD             R3, R0|3-68
+2746|code|LDRH            R2, [R3,#6]|218-136
+2748|code|BFC.W           R2, #3, #8|111-243-202-2
+2752|code|STRH            R2, [R3,#6]|218-128
+2754|code|LDR.W           R3, [R10,#(virtual_screen.text_buffer - 0xDA0)]|218-248-84-48
+2758|code|ADD             R0, R3; c|24-68
+2760|code|BL              clear_char|255-247-138-252
+2764|code|B               loc_AA2|233-231
+2766|code|LDR             R3, [R7]|59-104
+2768|code|CBNZ            R3, loc_AF6|139-185
+2770|code|LDR             R3, [SP,#0x30+y]|1-155
+2772|code|MOVS            R4, #1|1-36
+2774|code|STR.W           x, [R5,#(window - 0xDA0)]|197-248-104-176
+2778|code|STR             R4, [R5,#(virtual_screen.functional - 0xDA0)]|236-101
+2780|code|STR             R3, [R5,#(window.y - 0xDA0)]|235-102
+2782|code|LDR             R3, [SP,#0x30+height]|12-155
+2784|code|STR.W           width, [R5,#(window.width - 0xDA0)]|197-248-112-144
+2788|code|STR             R3, [R5,#(window.height - 0xDA0)]|107-103
+2790|code|LDR             R3, [SP,#0x30+double_repaint]|13-155
+2792|code|STR             R3, [R5,#(window.double_repaint - 0xDA0)]|171-103
+2794|code|BL              dirty_region_reset|255-247-137-250
+2798|code|LDR             R3, =grub_errno|7-75
+2800|code|STR             R4, [R5,#(repaint_scheduled - 0xDA0)]|108-102
+2802|code|LDR             R0, [R3]|24-104
+2804|code|B               loc_AF8|0-224
+2806|code|LDR             R0, [R7]|56-104
+2808|code|ADD             SP, SP, #0xC|3-176
+2810|code|POP.W           {R4-x,PC}|189-232-240-143
+2814|data|ALIGN 0x10|0-191
+2816|data|DCD dirty_region|160-13-0-0
+2820|data|DCD __aeabi_uidiv|140-14-0-0
+2824|data|DCD grub_malloc|136-14-0-0
+2828|data|DCD grub_errno|108-14-0-0
+2832|data|DCD grub_video_create_render_target|96-14-0-0
+2836|data|DCD grub_gfxterm_background_0|36-14-0-0
+2840|data|DCD grub_font_get_glyph|56-14-0-0
+2844|data|DCD grub_video_set_active_render_target|152-14-0-0
+2848|data|DCD grub_video_map_rgba|84-14-0-0
+2852|code|PUSH            {R4-R7,LR}|240-181
+2854|code|SUB             SP, SP, #0x64|153-176
+2856|code|ADD             R0, SP, #0x78+mode_info|5-168
+2858|code|LDR             R3, =grub_video_get_info|35-75
+2860|code|BLX             R3; grub_video_get_info|152-71
+2862|code|MOV             R4, err|4-70
+2864|code|CMP             err, #0|0-40
+2866|code|BNE             loc_BB4|63-209
+2868|code|LDR             R3, =grub_video_set_active_render_target|33-75
+2870|code|BLX             R3; grub_video_set_active_render_target|152-71
+2872|code|LDR             R5, [SP,#0x78+mode_info.mode_type]|7-157
+2874|code|LDR             R6, =grub_video_map_rgba|33-78
+2876|code|AND.W           R5, R5, #0x90|5-240-144-5
+2880|code|SUB.W           R3, R5, #0x10|165-241-16-3
+2884|code|NEGS            R5, R3|93-66
+2886|code|ADCS            R5, R3|93-65
+2888|code|LDR             R3, =grub_gfxterm_background_0|30-75
+2890|code|LDRB            R1, [R3,#(grub_gfxterm_background_0.default_bg_color.green - 0xE24)]|89-122
+2892|code|LDRB            R2, [R3,#(grub_gfxterm_background_0.default_bg_color.blue - 0xE24)]|154-122
+2894|code|LDRB            R0, [R3,#(grub_gfxterm_background_0.default_bg_color - 0xE24)]|24-122
+2896|code|LDRB            R3, [R3,#(grub_gfxterm_background_0.default_bg_color.alpha - 0xE24)]|219-122
+2898|code|BLX             R6; grub_video_map_rgba|176-71
+2900|code|LDR             R3, [SP,#0x78+mode_info.height]|6-155
+2902|code|MOV             R1, err|33-70
+2904|code|MOV             R2, err|34-70
+2906|code|LDR             R6, =grub_video_fill_rect|27-78
+2908|code|STR             R3, [SP,#0x78+height]|0-147
+2910|code|LDR             R3, [SP,#0x78+mode_info]|5-155
+2912|code|MOV             R7, R0|7-70
+2914|code|BLX             R6; grub_video_fill_rect|176-71
+2916|code|CBZ             double_redraw, loc_B78|69-177
+2918|code|LDR             R3, =grub_video_swap_buffers|25-75
+2920|code|BLX             R3; grub_video_swap_buffers|152-71
+2922|code|LDR             R3, [SP,#0x78+mode_info.height]|6-155
+2924|code|MOV             R0, R7|56-70
+2926|code|MOV             R1, err|33-70
+2928|code|MOV             R2, err|34-70
+2930|code|STR             R3, [SP,#0x78+height]; height|0-147
+2932|code|LDR             R3, [SP,#0x78+mode_info]|5-155
+2934|code|BLX             R6; grub_video_fill_rect|176-71
+2936|code|LDR             R3, =grub_env_get|21-75
+2938|code|LDR             R0, =aGfxtermFont; "gfxterm_font"|22-72
+2940|code|BLX             R3; grub_env_get|152-71
+2942|code|LDR             R3, =unk_D08|22-75
+2944|code|CMP             R0, #0|0-40
+2946|code|IT EQ|8-191
+2948|code|MOVEQ           R0, R3|24-70
+2950|code|LDR             R3, =grub_font_get|21-75
+2952|code|BLX             R3; grub_font_get|152-71
+2954|code|CBNZ            font_0, loc_B96|32-185
+2956|code|LDR             R1, =aNoFontLoaded; "no font loaded"|20-73
+2958|code|MOVS            font_0, #0x17|23-32
+2960|code|LDR             R3, =grub_error|20-75
+2962|code|BLX             R3; grub_error|152-71
+2964|code|B               loc_BB4|14-224
+2966|code|LDR             R2, =dirty_region|20-74
+2968|code|MOVS            R3, #0|0-35
+2970|code|MOV             R1, R3; x|25-70
+2972|code|STR             R3, [R2,#(grub_gfxterm_decorator_hook - 0xDA0)]|211-103
+2974|code|LDR             R2, [SP,#0x78+mode_info.height]|6-154
+2976|code|STR             font_0, [SP,#0x78+font]; font|2-144
+2978|code|MOV             font_0, R3; target|24-70
+2980|code|STMEA.W         SP, {R2,double_redraw}|141-232-36-0
+2984|code|MOVS            R2, #0xA|10-34
+2986|code|STR             R2, [SP,#0x78+border_width]; border_width|3-146
+2988|code|MOV             R2, R3; y|26-70
+2990|code|LDR             R3, [SP,#0x78+mode_info]; width|5-155
+2992|code|BL              grub_gfxterm_set_window|255-247-4-255
+2996|code|ADD             SP, SP, #0x64 ; 'd'|25-176
+2998|code|POP             {err-R7,PC}|240-189
+3000|data|DCD grub_video_get_info|168-14-0-0
+3004|data|DCD grub_video_set_active_render_target|152-14-0-0
+3008|data|DCD grub_video_map_rgba|84-14-0-0
+3012|data|DCD grub_gfxterm_background_0|36-14-0-0
+3016|data|DCD grub_video_fill_rect|88-14-0-0
+3020|data|DCD grub_video_swap_buffers|144-14-0-0
+3024|data|DCD grub_env_get|188-14-0-0
+3028|data|DCD aGfxtermFont; "gfxterm_font"|9-13-0-0
+3032|data|DCD unk_D08|8-13-0-0
+3036|data|DCD grub_font_get|104-14-0-0
+3040|data|DCD aNoFontLoaded; "no font loaded"|22-13-0-0
+3044|data|DCD grub_error|156-14-0-0
+3048|data|DCD dirty_region|160-13-0-0
+3052|code|PUSH            {R3-R5,LR}|56-181
+3054|code|LDR             term, =aGfxmode; "gfxmode"|20-72
+3056|code|LDR             R3, =grub_env_get|20-75
+3058|code|BLX             R3; grub_env_get|152-71
+3060|code|MOV             R1, modevar|1-70
+3062|code|CBZ             modevar, loc_BFC|8-177
+3064|code|LDRB            R3, [modevar]|3-120
+3066|code|CBNZ            R3, loc_C0A|51-185
+3068|code|LDR             modevar, =aAuto; "auto"|18-72
+3070|code|MOVS            modevar, #0x40 ; '@'|64-33
+3072|code|MOVS            R2, #0|0-34
+3074|code|LDR             R3, =grub_video_set_mode|18-75
+3076|code|BLX             R3; grub_video_set_mode|152-71
+3078|code|MOV             R4, R0|4-70
+3080|code|B               loc_C2A|15-224
+3082|code|LDR             modevar, =aSAuto; "%s;auto"|17-72
+3084|code|LDR             R3, =grub_xasprintf|17-75
+3086|code|BLX             R3; grub_xasprintf|152-71
+3088|code|MOV             R5, tmp|5-70
+3090|code|CBNZ            tmp, loc_C1A|16-185
+3092|code|LDR             R3, =grub_errno|16-75
+3094|code|LDR             tmp, [R3]|24-104
+3096|code|POP             {R3-tmp,PC}|56-189
+3098|code|LDR             R3, =grub_video_set_mode|12-75
+3100|code|MOVS            R1, #0x40 ; '@'|64-33
+3102|code|MOVS            R2, #0|0-34
+3104|code|BLX             R3; grub_video_set_mode|152-71
+3106|code|LDR             R3, =grub_free|14-75
+3108|code|MOV             R4, R0|4-70
+3110|code|MOV             err, tmp|40-70
+3112|code|BLX             R3; grub_free|152-71
+3114|code|CBNZ            err, loc_C3C|60-185
+3116|code|BL              grub_gfxterm_fullscreen|255-247-122-255
+3120|code|MOV             R5, R0|5-70
+3122|code|CBZ             R0, loc_C3C|24-177
+3124|code|LDR             R3, =grub_video_restore|10-75
+3126|code|BLX             R3; grub_video_restore|152-71
+3128|code|MOV             R0, R5|40-70
+3130|code|POP             {R3-R5,PC}|56-189
+3132|code|MOV             R0, err|32-70
+3134|code|POP             {R3-R5,PC}|56-189
+3136|data|DCD aGfxmode; "gfxmode"|37-13-0-0
+3140|data|DCD grub_env_get|188-14-0-0
+3144|data|DCD aAuto; "auto"|45-13-0-0
+3148|data|DCD grub_video_set_mode|68-14-0-0
+3152|data|DCD aSAuto; "%s;auto"|50-13-0-0
+3156|data|DCD grub_xasprintf|60-14-0-0
+3160|data|DCD grub_errno|108-14-0-0
+3164|data|DCD grub_free|164-14-0-0
+3168|data|DCD grub_video_restore|148-14-0-0
+3172|code|PUSH            {R0-R2,R4-R7,LR}|247-181
+3174|code|ADD             R0, SP, #0x20+old_target|1-168
+3176|code|LDR             R5, =dirty_region|11-77
+3178|code|LDR             R4, =grub_gfxterm_background_0|12-76
+3180|code|LDR             R3, =grub_video_get_active_render_target|12-75
+3182|code|BLX             R3; grub_video_get_active_render_target|152-71
+3184|code|LDR             R7, =grub_video_set_active_render_target|12-79
+3186|code|LDR             R0, [R5,#(text_layer - 0xDA0)]|40-110
+3188|code|BLX             R7; grub_video_set_active_render_target|184-71
+3190|code|LDR             R6, =grub_video_map_rgba|12-78
+3192|code|LDRB            R1, [R4,#(grub_gfxterm_background_0.default_bg_color.green - 0xE24)]|97-122
+3194|code|LDRB            R2, [R4,#(grub_gfxterm_background_0.default_bg_color.blue - 0xE24)]|162-122
+3196|code|LDRB            R3, [R4,#(grub_gfxterm_background_0.default_bg_color.alpha - 0xE24)]|227-122
+3198|code|LDRB            R0, [R4,#(grub_gfxterm_background_0.default_bg_color - 0xE24)]|32-122
+3200|code|BLX             R6; grub_video_map_rgba|176-71
+3202|code|STR             R0, [R5,#(virtual_screen.bg_color - 0xDA0)]|232-100
+3204|code|LDR             R0, [SP,#0x20+old_target]|1-152
+3206|code|BLX             R7; grub_video_set_active_render_target|184-71
+3208|code|LDRB            R0, [R4,#(grub_gfxterm_background_0.default_bg_color - 0xE24)]|32-122
+3210|code|LDRB            R1, [R4,#(grub_gfxterm_background_0.default_bg_color.green - 0xE24)]|97-122
+3212|code|LDRB            R2, [R4,#(grub_gfxterm_background_0.default_bg_color.blue - 0xE24)]|162-122
+3214|code|LDRB            R3, [R4,#(grub_gfxterm_background_0.default_bg_color.alpha - 0xE24)]|227-122
+3216|code|BLX             R6; grub_video_map_rgba|176-71
+3218|code|STR             R0, [R5,#(virtual_screen.bg_color_display - 0xDA0)]|40-101
+3220|code|ADD             SP, SP, #0xC|3-176
+3222|code|POP             {R4-R7,PC}|240-189
+3224|data|DCD dirty_region|160-13-0-0
+3228|data|DCD grub_gfxterm_background_0|36-14-0-0
+3232|data|DCD grub_video_get_active_render_target|72-14-0-0
+3236|data|DCD grub_video_set_active_render_target|152-14-0-0
+3240|data|DCD grub_video_map_rgba|84-14-0-0
+3244|code|LDR             R3, =dirty_region|2-75
+3246|code|LDR             R2, [R3,#(window.width - 0xDA0)]|26-111
+3248|code|LDR             R3, [R3,#(window.height - 0xDA0)]|91-111
+3250|code|STR             R2, [width]|2-96
+3252|code|STR             R3, [height]|11-96
+3254|code|BX              LR|112-71
+3256|data|DCD dirty_region|160-13-0-0
+3260|code|PUSH            {R3,LR}|8-181
+3262|code|LDR             R3, =grub_term_outputs|8-75
+3264|code|LDR             R3, [R3]|27-104
+3266|code|CBZ             R3, loc_CC8|11-177
+3268|code|LDR             mod, =grub_term_outputs_disabled|7-72
+3270|code|B               loc_CD0|3-224
+3272|code|LDR             mod, =grub_video_term; term|7-72
+3274|code|LDR             R3, [R0,#(grub_video_term.init - 0xD44)]|195-104
+3276|code|CBNZ            R3, loc_CD8|35-185
+3278|code|LDR             R0, =grub_term_outputs|4-72
+3280|code|LDR             R1, =grub_video_term|5-73
+3282|code|LDR             R3, =grub_list_push|6-75
+3284|code|BLX             R3; grub_list_push|152-71
+3286|code|POP             {R3,PC}|8-189
+3288|code|BLX             R3; grub_gfxterm_term_init|152-71
+3290|code|CMP             R0, #0|0-40
+3292|code|BEQ             loc_CCE|247-208
+3294|code|POP             {R3,PC}|8-189
+3296|data|DCD grub_term_outputs|132-14-0-0
+3300|data|DCD grub_term_outputs_disabled|116-14-0-0
+3304|data|DCD grub_video_term|68-13-0-0
+3308|data|DCD grub_list_push|184-14-0-0
+3312|code|PUSH            {R3-R5,LR}|56-181
+3314|code|LDR             R5, =grub_video_term|3-77
+3316|code|LDR             R4, =grub_list_remove|3-76
+3318|code|MOV             R0, R5|40-70
+3320|code|BLX             R4; grub_list_remove|160-71
+3322|code|MOV             R0, R5|40-70
+3324|code|BLX             R4; grub_list_remove|160-71
+3326|code|POP             {R3-R5,PC}|56-189
+3328|data|DCD grub_video_term|68-13-0-0
+3332|data|DCD grub_list_remove|160-14-0-0
+3396|data|grub_term_output <0, 0, aGfxterm, grub_gfxterm_term_init+1, \; "gfxterm"|0-0-0-0-0-0-0-0-58-13-0-0-237-11-0-0-117-1-0-0-61-6-0-0-77-1-0-0-25-0-0-0-53-0-0-0-189-7-0-0-77-9-0-0-29-1-0-0-21-6-0-0-5-8-0-0-37-11-0-0-32-0-0-0-2-0-0-0-0-0-0-0-0-0-0-0
+3472|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+3488|data|grub_dirty_region <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+3504|data|% 4|255-255-255-255
+3508|data|grub_virtual_screen <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+3584|data|% 4|255-255-255-255
+3588|data|% 4|255-255-255-255
+3592|data|grub_gfxterm_window <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+3612|data|% 4|255-255-255-255
+3616|data|% 4|255-255-255-255

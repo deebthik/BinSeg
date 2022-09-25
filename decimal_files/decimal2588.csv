@@ -1,0 +1,722 @@
+address|type|disassembly|bytes
+0|code|PUSH            {R4-R6,LR}|112-181
+2|code|SUB             SP, SP, #0x60|152-176
+4|code|MOV             R4, dev|4-70
+6|code|MOVS            R1, #0x65 ; 'e'|101-33
+8|code|STRB.W          R1, [SP,#0x70+tohash]|141-248-20-16
+12|code|MOVS            dev, #0x6B ; 'k'|107-32
+14|code|STRB.W          R1, [SP,#0x70+tohash.magic+2]|141-248-22-16
+18|code|MOVS            R1, #0x79 ; 'y'|121-33
+20|code|STRB.W          R1, [SP,#0x70+tohash.magic+3]|141-248-23-16
+24|code|LDR             R1, [dev,#0x38]|161-107
+26|code|STRB.W          R0, [SP,#0x70+tohash.magic+1]|141-248-21-0
+30|code|STR             R2, [SP,#0x70+tohash.zone]|6-146
+32|code|LDR             R1, [R1,#0x10]|9-105
+34|code|STR             R3, [SP,#0x70+tohash.zone+4]|7-147
+36|code|CMP             R1, #0x40 ; '@'|64-41
+38|code|BHI             loc_64|29-216
+40|code|STMEA.W         SP, {R2,R3}|141-232-12-0
+44|code|MOVS            R1, #0x9B|155-33
+46|code|LDR.W           R3, [dev,#0x1D8]|212-248-216-49
+50|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|14-72
+52|code|LDR             R2, =aGeli; "geli"|14-74
+54|code|STR             R3, [SP,#0x70+var_68]|2-147
+56|code|LDR             R5, =grub_real_dprintf|14-77
+58|code|LDR             R3, =aRekeyingLluKey; "rekeying %llu keysize=%d\n"|15-75
+60|code|BLX             R5; grub_real_dprintf|168-71
+62|code|LDR             R6, =grub_crypto_hmac_buffer|15-78
+64|code|MOVS            R3, #0xC|12-35
+66|code|ADD             R5, SP, #0x70+key|8-173
+68|code|STR             R3, [SP,#0x70+var_70]|0-147
+70|code|ADD.W           R1, dev, #0x18C|4-245-198-113
+74|code|STR             R5, [SP,#0x70+var_6C]|1-149
+76|code|MOVS            R2, #0x40 ; '@'|64-34
+78|code|LDR             R0, [dev,#0x38]|160-107
+80|code|ADD             R3, SP, #0x70+tohash|5-171
+82|code|BLX             R6; grub_crypto_hmac_buffer|176-71
+84|code|CBNZ            gcry_err, loc_66|56-185
+86|code|MOV             gcry_err, dev|32-70
+88|code|MOV             R1, R5|41-70
+90|code|LDR.W           R2, [dev,#0x1D8]|212-248-216-33
+94|code|LDR             R3, =grub_cryptodisk_setkey|8-75
+96|code|BLX             R3; grub_cryptodisk_setkey|152-71
+98|code|B               loc_66|0-224
+100|code|MOVS            R0, #0xA|10-32
+102|code|ADD             SP, SP, #0x60 ; '`'|24-176
+104|code|POP             {dev-R6,PC}|112-189
+106|data|ALIGN 4|0-191
+108|data|DCD aDiskGeliC; "disk/geli.c"|242-6-0-0
+112|data|DCD aGeli; "geli"|254-6-0-0
+116|data|DCD grub_real_dprintf|164-9-0-0
+120|data|DCD aRekeyingLluKey; "rekeying %llu keysize=%d\n"|3-7-0-0
+124|data|DCD grub_crypto_hmac_buffer|208-9-0-0
+128|data|DCD grub_cryptodisk_setkey|88-9-0-0
+132|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+136|code|MOV             R8, disk|128-70
+138|code|LDR             R6, =_gcry_digest_spec_sha256|164-78
+140|code|SUB.W           SP, SP, #0x29C|173-245-39-125
+144|code|MOV             R4, check_uuid_0|12-70
+146|code|MOV             R9, boot_only|145-70
+148|code|LDR             R3, [R6,#0x10]|51-105
+150|code|LSLS            R3, R3, #1|91-0
+152|code|ADDS            R3, #1|1-51
+154|code|CMP             R3, #0x47 ; 'G'|71-43
+156|code|BHI.W           loc_22E|0-242-199-128
+160|code|LDR             R7, =grub_disk_get_size|159-79
+162|code|BLX             R7; grub_disk_get_size|184-71
+164|code|STR             R7, [SP,#0x2C0+var_2AC]|5-151
+166|code|ADDS.W          R2, R0, #0xFFFFFFFF|16-241-255-50
+170|code|MOV             R0, #0xFFFFFFFD|111-240-2-0
+174|code|ADC.W           R3, R1, #0xFFFFFFFF|65-241-255-51
+178|code|MOV.W           R1, #0xFFFFFFFF|79-240-255-49
+182|code|CMP             R1, R3|153-66
+184|code|IT EQ|8-191
+186|code|CMPEQ           R0, R2|144-66
+188|code|BCC.W           loc_22E|192-240-183-128
+192|code|MOVS            R0, #0|0-32
+194|code|MOVS            R1, #0|0-33
+196|code|ADD             R5, SP, #0x2C0+header|42-173
+198|code|STRD.W          R0, R1, [SP,#0x2C0+var_2C0]|205-233-0-1
+202|code|STR             R5, [SP,#0x2C0+var_2B4]|3-149
+204|code|MOVW            R1, #0x1EF|64-242-239-17
+208|code|MOV             R0, disk|64-70
+210|code|STR             R1, [SP,#0x2C0+var_2B8]|2-145
+212|code|LDR             R1, =grub_disk_read|147-73
+214|code|BLX             R1; grub_disk_read|136-71
+216|code|CMP             err, #0|0-40
+218|code|BNE.W           loc_22E|64-240-168-128
+222|code|MOV             err, R5|40-70
+224|code|LDR             R1, =aGeomEli; "GEOM::ELI"|145-73
+226|code|MOVS            R2, #0xA|10-34
+228|code|LDR             R3, =grub_memcmp|145-75
+230|code|BLX             R3; grub_memcmp|152-71
+232|code|CBNZ            R0, loc_F2|24-185
+234|code|LDR             R3, [R5,#0x10]|43-105
+236|code|SUBS            R3, #1|1-59
+238|code|CMP             R3, #4|4-43
+240|code|BLS             loc_102|7-217
+242|code|LDRB            R3, [R5]|43-120
+244|code|MOVW            R1, #0x10F|64-242-15-17
+248|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|141-72
+250|code|LDR             R2, =aGeli; "geli"|142-74
+252|code|STR             R3, [SP,#0x2C0+var_2C0]|0-147
+254|code|LDR             R3, =aWrongMagic02x; "wrong magic %02x\n"|142-75
+256|code|B               loc_120|14-224
+258|code|LDRH            R2, [R5,#0x28]|42-141
+260|code|LDRH            R3, [R5,#0x26]|235-140
+262|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+266|code|SUBS            R0, R3, #1|88-30
+268|code|ANDS.W          R10, R0, R3|16-234-3-10
+272|code|BNE             loc_114|0-209
+274|code|CBNZ            R3, loc_126|67-185
+276|code|STR             R3, [SP,#0x2C0+var_2C0]|0-147
+278|code|MOV.W           R1, #0x118|79-244-140-113
+282|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|133-72
+284|code|LDR             R2, =aGeli; "geli"|133-74
+286|code|LDR             R3, =aIncorrectSecto; "incorrect sector size %d\n"|135-75
+288|code|LDR             check_uuid_0, =grub_real_dprintf|135-76
+290|code|BLX             R4; grub_real_dprintf|160-71
+292|code|B               loc_22E|131-224
+294|code|LDR             R3, [R5,#0x14]|107-105
+296|code|LSLS            R2, R3, #0x1F|218-7
+298|code|BPL             loc_138|5-213
+300|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|128-72
+302|code|MOV.W           R1, #0x11E|79-244-143-113
+306|code|LDR             R2, =aGeli; "geli"|128-74
+308|code|LDR             R3, =aSkippingOneTim; "skipping one-time volume\n"|131-75
+310|code|B               loc_14C|9-224
+312|code|CMP.W           boot_only, #0|185-241-0-15
+316|code|BEQ             loc_152|9-208
+318|code|LSLS            R3, R3, #0x1E|155-7
+320|code|BMI             loc_152|7-212
+322|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|123-72
+324|code|MOV.W           R1, #0x124|79-244-146-113
+328|code|LDR             R2, =aGeli; "geli"|122-74
+330|code|LDR             R3, =aNotABootVolume; "not a boot volume\n"|127-75
+332|code|LDR             check_uuid_0, =grub_real_dprintf|124-76
+334|code|BLX             R4; grub_real_dprintf|160-71
+336|code|B               loc_22E|109-224
+338|code|LDR             R3, [R6,#0x10]|51-105
+340|code|LSLS            R3, R3, #1|91-0
+342|code|ADDS            R3, #1|1-51
+344|code|CMP             R3, #0x47 ; 'G'|71-43
+346|code|BHI             loc_1B0|41-216
+348|code|MOVS            R3, #4|4-35
+350|code|ADD.W           R10, SP, #0x2C0+var_260|13-241-96-10
+354|code|STR             R3, [SP,#0x2C0+var_2C0]|0-147
+356|code|ADD.W           R1, SP, #0x2C0+header.salt|13-241-215-1
+360|code|STR.W           R10, [SP,#0x2C0+check_uuid]|205-248-4-160
+364|code|MOVS            R2, #0x40 ; '@'|64-34
+366|code|LDR             R0, =_gcry_digest_spec_sha256|107-72
+368|code|LDR             R3, =aUuid; "uuid"|118-75
+370|code|LDR.W           R12, =grub_crypto_hmac_buffer|223-248-20-194
+374|code|BLX             R12; grub_crypto_hmac_buffer|224-71
+376|code|CBNZ            R0, loc_1B2|216-185
+378|code|ADD.W           boot_only, SP, #0x2C0+uuid|13-241-24-9
+382|code|MOV             R11, R10|211-70
+384|code|LDR             R3, [R6,#0x10]|51-105
+386|code|ADD             R3, R10|83-68
+388|code|CMP             R11, R3|155-69
+390|code|BCS             loc_19C|9-210
+392|code|MOV             R0, R9|72-70
+394|code|MOVS            R1, #3|3-33
+396|code|LDR             R2, =a02x; "%02x"|112-74
+398|code|ADD.W           R9, R9, #2|9-241-2-9
+402|code|LDRB.W          R3, [R11],#1|27-248-1-59
+406|code|LDR             R7, =grub_snprintf|111-79
+408|code|BLX             R7; grub_snprintf|184-71
+410|code|B               loc_180|241-231
+412|code|MOVS            R3, #0|0-35
+414|code|STRB.W          R3, [R9]|137-248-0-48
+418|code|CMP             check_uuid_0, #0|0-44
+420|code|BEQ             loc_214|54-208
+422|code|ADD             R1, SP, #0x2C0+uuid|6-169
+424|code|ADD.W           LR, check_uuid_0, #0xFFFFFFFF|4-241-255-62
+428|code|MOV             R12, R1|140-70
+430|code|B               loc_1D8|19-224
+432|code|MOVS            R0, #0x23 ; '#'|35-32
+434|code|LDR             R3, =grub_crypto_gcry_error|105-75
+436|code|BLX             R3; grub_crypto_gcry_error|152-71
+438|code|B               loc_22E|58-224
+440|code|LDRB.W          R2, [R1],#1|17-248-1-43
+444|code|CBZ             R2, loc_1E6|154-177
+446|code|CMP             R0, #0x19|25-40
+448|code|SUB.W           R11, R2, #0x41 ; 'A'|162-241-65-11
+452|code|MOV             R10, R3|154-70
+454|code|IT LS|152-191
+456|code|ADDLS.W         R10, R3, #0x20 ; ' '|3-241-32-10
+460|code|CMP.W           R11, #0x19|187-241-25-15
+464|code|IT LS|152-191
+466|code|ADDLS           R2, #0x20 ; ' '|32-50
+468|code|CMP             R10, R2|146-69
+470|code|BNE             loc_1E6|6-209
+472|code|LDRB.W          R3, [LR,#1]!|30-248-1-63
+476|code|MOV             R9, R1|137-70
+478|code|SUB.W           R0, R3, #0x41 ; 'A'|163-241-65-0
+482|code|CMP             R3, #0|0-43
+484|code|BNE             loc_1B8|232-209
+486|code|LDRB.W          R2, [R9]|153-248-0-32
+490|code|CMP             R0, #0x19|25-40
+492|code|IT LS|152-191
+494|code|ADDLS           R3, #0x20 ; ' '|32-51
+496|code|SUB.W           R1, R2, #0x41 ; 'A'|162-241-65-1
+500|code|CMP             R1, #0x19|25-41
+502|code|IT LS|152-191
+504|code|ADDLS           R2, #0x20 ; ' '|32-50
+506|code|CMP             R3, R2|147-66
+508|code|BEQ             loc_214|10-208
+510|code|STR             check_uuid_0, [SP,#0x2C0+check_uuid]|1-148
+512|code|MOVW            R1, #0x131|64-242-49-17
+516|code|STR.W           R12, [SP,#0x2C0+var_2C0]|205-248-0-192
+520|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|73-72
+522|code|LDR             R2, =aGeli; "geli"|74-74
+524|code|LDR             R3, =aSS; "%s != %s\n"|83-75
+526|code|LDR             check_uuid_0, =grub_real_dprintf|76-76
+528|code|BLX             R4; grub_real_dprintf|160-71
+530|code|B               loc_22E|12-224
+532|code|LDRH            R2, [R5,#0x18]|42-139
+534|code|CMP             R2, #0x16|22-42
+536|code|BHI             loc_226|5-216
+538|code|LDR             R3, =algorithms|81-75
+540|code|LDR.W           R9, [R3,R2,LSL#2]|83-248-34-144
+544|code|CMP.W           R9, #0|185-241-0-15
+548|code|BNE             loc_232|5-209
+550|code|LDR             R1, =aCipher0xXUnkno; "Cipher 0x%x unknown"|79-73
+552|code|MOVS            R0, #5|5-32
+554|code|LDR             R3, =grub_error|79-75
+556|code|BLX             R3; grub_error|152-71
+558|code|MOVS            R0, #0|0-32
+560|code|B               loc_312|111-224
+562|code|MOV             R0, ciphername|72-70
+564|code|LDR             R3, =grub_crypto_lookup_cipher_by_name|77-75
+566|code|BLX             R3; grub_crypto_lookup_cipher_by_name|152-71
+568|code|MOV             check_uuid_0, ciph|4-70
+570|code|CBNZ            ciph, loc_244|24-185
+572|code|MOVS            ciph, #5|5-32
+574|code|LDR             R1, =aCipherSIsnTAva; "Cipher %s isn't available"|76-73
+576|code|MOV             R2, ciphername|74-70
+578|code|B               loc_22A|242-231
+580|code|LDR.W           ciphername, =grub_crypto_cipher_open|223-248-68-145
+584|code|BLX             R9; grub_crypto_cipher_open|200-71
+586|code|MOV             R10, cipher|130-70
+588|code|CMP             cipher, #0|0-40
+590|code|BEQ             loc_22E|238-208
+592|code|LDRH            R3, [R5,#0x18]|43-139
+594|code|CMP             R3, #0x16|22-43
+596|code|BNE             loc_260|4-209
+598|code|MOV             cipher, ciph|32-70
+600|code|BLX             R9; grub_crypto_cipher_open|200-71
+602|code|MOV             R9, secondary_cipher|129-70
+604|code|CBNZ            secondary_cipher, loc_264|16-185
+606|code|B               loc_22E|230-231
+608|code|MOV.W           R9, #0|79-240-0-9
+612|code|LDRH            R2, [R5,#0x1A]|106-139
+614|code|CMP.W           R2, #0x400|178-245-128-111
+618|code|BLS             loc_272|2-217
+620|code|MOVS            R0, #0x12|18-32
+622|code|LDR             R1, =aInvalidKeysize; "invalid keysize %d"|65-73
+624|code|B               loc_22A|219-231
+626|code|MOV.W           R0, #0x1E0|79-244-240-112
+630|code|LDR             R3, =grub_zalloc|64-75
+632|code|BLX             R3; grub_zalloc|152-71
+634|code|MOV             ciph, newdev|4-70
+636|code|CMP             newdev, #0|0-40
+638|code|BEQ             loc_22E|214-208
+640|code|STR.W           cipher, [newdev,#0x28]|192-248-40-160
+644|code|MOVS            R2, #0|0-34
+646|code|STR.W           secondary_cipher, [newdev,#0x2C]|192-248-44-144
+650|code|MOVS            R3, #0|0-35
+652|code|STRD.W          R2, R3, [newdev,#0x10]|192-233-4-35
+656|code|MOVS            R3, #0|0-35
+658|code|STR             R3, [newdev,#0x20]|3-98
+660|code|STR             R3, [newdev,#0x48]|131-100
+662|code|LDRH            R3, [R5,#0x18]|43-139
+664|code|LDR             R2, =_gcry_digest_spec_sha512|56-74
+666|code|CMP             R3, #0x16|22-43
+668|code|STR             R6, [newdev,#0x3C]|198-99
+670|code|ITETT EQ|9-191
+672|code|MOVEQ           R3, #3|3-35
+674|code|MOVNE           R3, #1|1-35
+676|code|STREQ           R3, [newdev,#0x40]|3-100
+678|code|MOVEQ           R3, #5|5-35
+680|code|ITT NE|28-191
+682|code|STRNE           R3, [newdev,#0x40]|3-100
+684|code|MOVNE           R3, #6|6-35
+686|code|STR             R2, [newdev,#0x38]|130-99
+688|code|STR             R3, [newdev,#0x44]|67-100
+690|code|MOVS            R3, #0|0-35
+692|code|STR             R3, [newdev,#0x30]|3-99
+694|code|STR             R3, [newdev,#0x34]|67-99
+696|code|STR.W           R3, [newdev,#0x180]|192-248-128-49
+700|code|MOVS            newdev, #1|1-32
+702|code|LDRH            R2, [R5,#0x28]|42-141
+704|code|LDRH            R3, [R5,#0x26]|235-140
+706|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+710|code|LDR.W           R3, [newdev,#0x180]|212-248-128-49
+714|code|LSL.W           R1, R0, R3|0-250-3-241
+718|code|CMP             R1, R2|145-66
+720|code|BCS             loc_2DA|3-210
+722|code|ADDS            R3, #1|1-51
+724|code|STR.W           R3, [newdev,#0x180]|196-248-128-49
+728|code|B               loc_2C6|245-231
+730|code|LDR             R3, [R5,#0x10]|43-105
+732|code|MOV             R0, disk|64-70
+734|code|CMP             R3, #4|4-43
+736|code|ITTTT HI|129-191
+738|code|LDRHI           R3, =(geli_rekey+1)|39-75
+740|code|STRHI.W         R3, [newdev,#0x184]|196-248-132-49
+744|code|MOVHI           R3, #0x14|20-35
+746|code|STRHI.W         R3, [newdev,#0x188]|196-248-136-49
+750|code|LDR             R3, =aGeli; "geli"|17-75
+752|code|STR.W           R3, [newdev,#0x17C]|196-248-124-49
+756|code|LDR             R3, [SP,#0x2C0+var_2AC]|5-155
+758|code|BLX             R3|152-71
+760|code|MOVS            R2, #0x48 ; 'H'|72-34
+762|code|LDR             R3, =grub_memmove|34-75
+764|code|ADDS.W          R0, R0, #0xFFFFFFFF|16-241-255-48
+768|code|ADC.W           R1, R1, #0xFFFFFFFF|65-241-255-49
+772|code|STRD.W          R0, R1, [newdev,#0x18]|196-233-6-1
+776|code|ADD.W           R0, newdev, #0x58 ; 'X'|4-241-88-0
+780|code|ADD             R1, SP, #0x2C0+uuid|6-169
+782|code|BLX             R3; grub_memmove|152-71
+784|code|MOV             R0, newdev|32-70
+786|code|ADD.W           SP, SP, #0x29C|13-245-39-125
+790|code|POP.W           {R4-R11,PC}|189-232-240-143
+794|data|ALIGN 4|0-191
+796|data|DCD _gcry_digest_spec_sha256|108-9-0-0
+800|data|DCD grub_disk_get_size|92-9-0-0
+804|data|DCD grub_disk_read|128-9-0-0
+808|data|DCD aGeomEli; "GEOM::ELI"|29-7-0-0
+812|data|DCD grub_memcmp|200-9-0-0
+816|data|DCD aDiskGeliC; "disk/geli.c"|242-6-0-0
+820|data|DCD aGeli; "geli"|254-6-0-0
+824|data|DCD aWrongMagic02x; "wrong magic %02x\n"|39-7-0-0
+828|data|DCD aIncorrectSecto; "incorrect sector size %d\n"|57-7-0-0
+832|data|DCD grub_real_dprintf|164-9-0-0
+836|data|DCD aSkippingOneTim; "skipping one-time volume\n"|83-7-0-0
+840|data|DCD aNotABootVolume; "not a boot volume\n"|109-7-0-0
+844|data|DCD aUuid; "uuid"|128-7-0-0
+848|data|DCD a02x; "%02x"|133-7-0-0
+852|data|DCD grub_snprintf|124-9-0-0
+856|data|DCD grub_crypto_gcry_error|140-9-0-0
+860|data|DCD aSS; "%s != %s\n"|138-7-0-0
+864|data|DCD algorithms|216-8-0-0
+868|data|DCD aCipher0xXUnkno; "Cipher 0x%x unknown"|148-7-0-0
+872|data|DCD grub_error|172-9-0-0
+876|data|DCD grub_crypto_lookup_cipher_by_name|168-9-0-0
+880|data|DCD aCipherSIsnTAva; "Cipher %s isn't available"|168-7-0-0
+884|data|DCD aInvalidKeysize; "invalid keysize %d"|194-7-0-0
+888|data|DCD grub_zalloc|156-9-0-0
+892|data|DCD _gcry_digest_spec_sha512|192-9-0-0
+896|data|DCD geli_rekey+1|1-0-0-0
+900|data|DCD grub_memmove|112-9-0-0
+904|data|DCD grub_crypto_hmac_buffer|208-9-0-0
+908|data|DCD grub_crypto_cipher_open|132-9-0-0
+912|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+916|code|SUBW            SP, SP, #0x4D4|173-242-212-77
+920|code|MOV             R4, dev|12-70
+922|code|LDR             R3, =memset|163-75
+924|code|MOVS            dev, #0; c|0-33
+926|code|MOV             R9, source|129-70
+928|code|MOVS            R2, #0xFC; n|252-34
+930|code|ADD             source, SP, #0x4F8+passphrase+4; s|121-168
+932|code|STR             R1, [SP,#0x4F8+passphrase]|120-145
+934|code|BLX             R3; memset|152-71
+936|code|LDR             R3, [dev,#0x28]|163-106
+938|code|LDR             R3, [R3]|27-104
+940|code|LDR             R3, [R3,#0xC]|219-104
+942|code|CMP             R3, #0x10|16-43
+944|code|BLS             loc_3B8|2-217
+946|code|MOVS            R0, #0x26 ; '&'|38-32
+948|code|LDR             R1, =aCipherBlockIsT; "cipher block is too long"|157-73
+950|code|B               loc_61C|49-225
+952|code|LDR             R3, [dev,#0x38]|163-107
+954|code|LDR             R3, [R3,#0x10]|27-105
+956|code|CMP             R3, #0x40 ; '@'|64-43
+958|code|BLS             loc_3C6|2-217
+960|code|MOVS            R0, #0x26 ; '&'|38-32
+962|code|LDR             R1, =aMdlenIsTooLong; "mdlen is too long"|155-73
+964|code|B               loc_61C|42-225
+966|code|LDR             R3, =grub_disk_get_size|155-75
+968|code|MOV             R0, source|72-70
+970|code|BLX             R3; grub_disk_get_size|152-71
+972|code|ADDS.W          R2, R0, #0xFFFFFFFF|16-241-255-50
+976|code|MOV             R0, #0xFFFFFFFD|111-240-2-0
+980|code|ADC.W           R3, R1, #0xFFFFFFFF|65-241-255-51
+984|code|MOV.W           R1, #0xFFFFFFFF|79-240-255-49
+988|code|CMP             R1, R3|153-66
+990|code|IT EQ|8-191
+992|code|CMPEQ           R0, R2|144-66
+994|code|BCS             loc_3EA|2-210
+996|code|MOVS            R0, #0x26 ; '&'|38-32
+998|code|LDR             R1, =aNotAGeli; "not a geli"|148-73
+1000|code|B               loc_61C|24-225
+1002|code|MOVS            R0, #0|0-32
+1004|code|MOVS            R1, #0|0-33
+1006|code|ADD             R7, SP, #0x4F8+header|184-175
+1008|code|STRD.W          R0, R1, [SP,#0x4F8+var_4F8]|205-233-0-1
+1012|code|STR             R7, [SP,#0x4F8+var_4EC]|3-151
+1014|code|MOVW            R1, #0x1EF|64-242-239-17
+1018|code|MOV             R0, source|72-70
+1020|code|STR             R1, [SP,#0x4F8+var_4F0]|2-145
+1022|code|LDR             R1, =grub_disk_read|143-73
+1024|code|BLX             R1; grub_disk_read|136-71
+1026|code|MOV             R1, err|1-70
+1028|code|CMP             err, #0|0-40
+1030|code|BNE.W           loc_620|64-240-11-129
+1034|code|ADD.W           R8, SP, #0x4F8+zero|13-241-16-8
+1038|code|MOVS            R2, #0x10|16-34
+1040|code|LDR             R3, =grub_memset|139-75
+1042|code|MOV             err, R8|64-70
+1044|code|LDRH            R6, [R7,#0x1A]|126-139
+1046|code|BLX             R3; grub_memset|152-71
+1048|code|LDR             R0, =aAttemptingToDe; "Attempting to decrypt master key..."|138-72
+1050|code|LDR             R3, =grub_puts_|139-75
+1052|code|BLX             R3; grub_puts_|152-71
+1054|code|LDR.W           R0, [source,#0x1C]|217-248-28-0
+1058|code|CBZ             R0, loc_428|8-177
+1060|code|LDR             R3, =grub_partition_get_name|137-75
+1062|code|BLX             R3; grub_partition_get_name|152-71
+1064|code|LDR.W           R1, [source]|217-248-0-16
+1068|code|ADD.W           R2, dev, #0x58 ; 'X'|4-241-88-2
+1072|code|LDR.W           LR, [source,#0x1C]|217-248-28-224
+1076|code|MOV             R5, R0|5-70
+1078|code|LDR             R3, =unk_7D7|134-75
+1080|code|STR             R2, [SP,#0x4F8+var_4F8]|0-146
+1082|code|LDR             R2, =asc_7D5; ","|134-74
+1084|code|LDR             tmp, =aEnterPassphras; "Enter passphrase for %s%s%s (%s): "|134-72
+1086|code|CMP.W           LR, #0|190-241-0-15
+1090|code|IT EQ|8-191
+1092|code|MOVEQ           R2, R3|26-70
+1094|code|LDR.W           source, =grub_printf_|223-248-104-146
+1098|code|CMP             tmp, #0|0-45
+1100|code|IT NE|24-191
+1102|code|MOVNE           R3, tmp|43-70
+1104|code|BLX             R9; grub_printf_|200-71
+1106|code|MOV             R0, tmp|40-70
+1108|code|LDR             R3, =grub_free|129-75
+1110|code|BLX             R3; grub_free|152-71
+1112|code|ADD             R0, SP, #0x4F8+passphrase|120-168
+1114|code|MOV.W           R1, #0x100|79-244-128-113
+1118|code|LDR             R3, =grub_password_get|128-75
+1120|code|BLX             R3; grub_password_get|152-71
+1122|code|CBNZ            R0, loc_46A|16-185
+1124|code|MOVS            R0, #0x12|18-32
+1126|code|LDR             R1, =aPassphraseNotS; "Passphrase not supplied"|127-73
+1128|code|B               loc_61C|216-224
+1130|code|LDR             R1, [R7,#0x2C]|249-106
+1132|code|LDRB.W          R3, [R7,#0x2B]|151-248-43-48
+1136|code|ORRS.W          R1, R3, R1,LSL#8|83-234-1-33
+1140|code|BEQ             loc_4C4|38-208
+1142|code|LDR             R3, =grub_strlen|124-75
+1144|code|ADD             R0, SP, #0x4F8+passphrase|120-168
+1146|code|LDR.W           R11, [dev,#0x38]|212-248-56-176
+1150|code|BLX             R3; grub_strlen|152-71
+1152|code|MOVS            tmp, #0x40 ; '@'|64-37
+1154|code|STR             R5, [SP,#0x4F8+var_4F8]|0-149
+1156|code|LDR             R1, [R7,#0x2C]|249-106
+1158|code|ADD.W           R10, SP, #0x4F8+candidate_key|13-245-144-122
+1162|code|LDRB.W          R3, [R7,#0x2B]|151-248-43-48
+1166|code|LDR.W           R12, =grub_crypto_pbkdf2|223-248-36-194
+1170|code|ORR.W           R3, R3, R1,LSL#8|67-234-1-35
+1174|code|STR.W           R10, [SP,#0x4F8+var_4F0]|205-248-8-160
+1178|code|STR             R3, [SP,#0x4F8+var_4F4]|1-147
+1180|code|ADD             R1, SP, #0x4F8+passphrase|120-169
+1182|code|STR             R5, [SP,#0x4F8+var_4EC]|3-149
+1184|code|ADDW            R3, SP, #0x4F8+header.salt|13-242-15-51
+1188|code|MOV             R2, R0|2-70
+1190|code|MOV             R0, R11|88-70
+1192|code|BLX             R12; grub_crypto_pbkdf2|224-71
+1194|code|MOV             R1, gcry_err|1-70
+1196|code|CMP             gcry_err, #0|0-40
+1198|code|BNE.W           loc_5CE|64-240-142-128
+1202|code|ADD             R3, SP, #0x4F8+geomkey|24-171
+1204|code|STR             R5, [SP,#0x4F8+var_4F8]|0-149
+1206|code|STR             R3, [SP,#0x4F8+var_4F4]|1-147
+1208|code|MOV             R2, R1|10-70
+1210|code|LDR             gcry_err, [dev,#0x38]|160-107
+1212|code|MOV             R3, R10|83-70
+1214|code|LDR             R5, =grub_crypto_hmac_buffer|107-77
+1216|code|BLX             R5; grub_crypto_hmac_buffer|168-71
+1218|code|B               loc_4F6|24-224
+1220|code|LDR             R0, [dev,#0x38]|160-107
+1222|code|MOV             R2, R1|10-70
+1224|code|LDR             R3, =grub_crypto_hmac_init|105-75
+1226|code|BLX             R3; grub_crypto_hmac_init|152-71
+1228|code|MOV             tmp, hnd|5-70
+1230|code|CBNZ            hnd, loc_4D4|8-185
+1232|code|MOVS            hnd, #0x22 ; '"'|34-32
+1234|code|B               loc_5CE|124-224
+1236|code|ADDW            R1, SP, #0x4F8+header.salt|13-242-15-49
+1240|code|MOVS            R2, #0x40 ; '@'|64-34
+1242|code|LDR.W           R10, =grub_crypto_hmac_write|223-248-220-161
+1246|code|BLX             R10; grub_crypto_hmac_write|208-71
+1248|code|LDR             R3, =grub_strlen|97-75
+1250|code|ADD             R0, SP, #0x4F8+passphrase|120-168
+1252|code|BLX             R3; grub_strlen|152-71
+1254|code|ADD             R1, SP, #0x4F8+passphrase|120-169
+1256|code|MOV             R2, R0|2-70
+1258|code|MOV             R0, hnd|40-70
+1260|code|BLX             R10; grub_crypto_hmac_write|208-71
+1262|code|MOV             R0, hnd|40-70
+1264|code|ADD             R1, SP, #0x4F8+geomkey|24-169
+1266|code|LDR             R3, =grub_crypto_hmac_fini|96-75
+1268|code|BLX             R3; grub_crypto_hmac_fini|152-71
+1270|code|CMP             gcry_err, #0|0-40
+1272|code|BNE             loc_5CE|105-209
+1274|code|LDR             gcry_err, [dev,#0x38]|160-107
+1276|code|ADD             R3, SP, #0x4F8+digest|8-171
+1278|code|LDR             R5, =grub_crypto_hmac_buffer|91-77
+1280|code|MOV.W           R11, #1|79-240-1-11
+1284|code|STR             R3, [SP,#0x4F8+var_4F4]|1-147
+1286|code|ADD             R1, SP, #0x4F8+geomkey|24-169
+1288|code|STR.W           R11, [SP,#0x4F8+var_4F8]|205-248-0-176
+1292|code|LDR             R3, =unk_86D|90-75
+1294|code|MOV             R10, R5|170-70
+1296|code|LDR             R2, [R0,#0x10]|2-105
+1298|code|BLX             R5; grub_crypto_hmac_buffer|168-71
+1300|code|CMP             gcry_err, #0|0-40
+1302|code|BNE             loc_5CE|90-209
+1304|code|LDR             gcry_err, [dev,#0x38]|160-107
+1306|code|ADD             R3, SP, #0x4F8+verify_key|40-171
+1308|code|STR.W           R11, [SP,#0x4F8+var_4F8]|205-248-0-176
+1312|code|ADD             R1, SP, #0x4F8+geomkey|24-169
+1314|code|STR             R3, [SP,#0x4F8+var_4F4]|1-147
+1316|code|LDR             R3, =unk_6F0|85-75
+1318|code|LDR             R2, [R0,#0x10]|2-105
+1320|code|BLX             R5; grub_crypto_hmac_buffer|168-71
+1322|code|MOV             R5, gcry_err|5-70
+1324|code|CMP             gcry_err, #0|0-40
+1326|code|BNE             loc_5CE|78-209
+1328|code|LSRS            R6, R6, #3|246-8
+1330|code|LDR             gcry_err, =aDiskGeliC; "disk/geli.c"|83-72
+1332|code|STR             R6, [SP,#0x4F8+var_4F8]|0-150
+1334|code|MOV.W           R1, #0x1DE|79-244-239-113
+1338|code|LDR             R2, =aGeli; "geli"|82-74
+1340|code|LDR             R3, =aKeylenU; "keylen = %u\n"|82-75
+1342|code|LDR.W           R12, =grub_real_dprintf|223-248-124-193
+1346|code|BLX             R12; grub_real_dprintf|224-71
+1348|code|LDRB.W          R3, [R7,#0x2A]|151-248-42-48
+1352|code|ASRS            R3, i|43-65
+1354|code|LSLS            R3, R3, #0x1F|219-7
+1356|code|BPL             loc_610|96-213
+1358|code|LDR             R0, =aDiskGeliC; "disk/geli.c"|76-72
+1360|code|MOV.W           R1, #0x1EA|79-244-245-113
+1364|code|LDR             R2, =aGeli; "geli"|75-74
+1366|code|LDR             R3, =aTryingKeyslotD; "Trying keyslot %d\n"|77-75
+1368|code|STR             i, [SP,#0x4F8+var_4F8]|0-149
+1370|code|LDR.W           R12, =grub_real_dprintf|223-248-96-193
+1374|code|BLX             R12; grub_real_dprintf|224-71
+1376|code|LDR             R0, [dev,#0x28]|160-106
+1378|code|ADD             R1, SP, #0x4F8+digest|8-169
+1380|code|MOV             R2, R6|50-70
+1382|code|LDR             R3, =grub_crypto_cipher_set_key|74-75
+1384|code|BLX             R3; grub_crypto_cipher_set_key|152-71
+1386|code|CMP             gcry_err, #0|0-40
+1388|code|BNE             loc_5CE|47-209
+1390|code|MOVS            R3, #0xC0|192-35
+1392|code|STR.W           R8, [SP,#0x4F8+var_4F8]|205-248-0-128
+1396|code|MLA.W           R2, R3, i, R7|3-251-5-114
+1400|code|LDR             gcry_err, [dev,#0x28]|160-106
+1402|code|ADD             R1, SP, #0x4F8+candidate_key|72-169
+1404|code|LDR.W           R12, =grub_crypto_cbc_decrypt|223-248-64-193
+1408|code|ADDS            R2, #0x6F ; 'o'|111-50
+1410|code|BLX             R12; grub_crypto_cbc_decrypt|224-71
+1412|code|CBNZ            gcry_err, loc_5CE|24-187
+1414|code|LDR             gcry_err, [dev,#0x38]|160-107
+1416|code|MOVS            R3, #0x80|128-35
+1418|code|ADD.W           R11, SP, #0x4F8+key_hmac|13-241-224-11
+1422|code|STR             R3, [SP,#0x4F8+var_4F8]|0-147
+1424|code|STR.W           R11, [SP,#0x4F8+var_4F4]|205-248-4-176
+1428|code|ADD             R1, SP, #0x4F8+verify_key|40-169
+1430|code|LDR             R2, [R0,#0x10]|2-105
+1432|code|ADD             R3, SP, #0x4F8+candidate_key|72-171
+1434|code|BLX             R10; grub_crypto_hmac_buffer|208-71
+1436|code|CBNZ            gcry_err, loc_5CE|184-185
+1438|code|LDR             R3, [dev,#0x38]|163-107
+1440|code|ADD             gcry_err, SP, #0x4F8+candidate_key.hmac|104-168
+1442|code|MOV             R1, R11|89-70
+1444|code|LDR             R2, [R3,#0x10]|26-105
+1446|code|LDR             R3, =grub_memcmp|59-75
+1448|code|BLX             R3; grub_memcmp|152-71
+1450|code|CMP             R0, #0|0-40
+1452|code|BNE             loc_610|48-209
+1454|code|LDR             R0, =aSlotDOpened; "Slot %d opened\n"|58-72
+1456|code|MOV             R1, i|41-70
+1458|code|BLX             R9; grub_printf_|200-71
+1460|code|LDR.W           R2, [dev,#0x184]|212-248-132-33
+1464|code|LDRH            R3, [R7,#0x18]|59-139
+1466|code|CBNZ            R2, loc_5D4|90-185
+1468|code|CMP             R3, #0x16|22-43
+1470|code|MOV             R0, dev|32-70
+1472|code|IT EQ|8-191
+1474|code|LSLEQ           R6, R6, #1|118-0
+1476|code|ADD             R1, SP, #0x4F8+candidate_key.cipher_key|88-169
+1478|code|LDR             R3, =grub_cryptodisk_setkey|53-75
+1480|code|MOV             R2, real_keysize|50-70
+1482|code|BLX             R3; grub_cryptodisk_setkey|152-71
+1484|code|CBZ             gcry_err, loc_5FC|176-177
+1486|code|LDR             R3, =grub_crypto_gcry_error|52-75
+1488|code|BLX             R3; grub_crypto_gcry_error|152-71
+1490|code|B               loc_620|37-224
+1492|code|CMP             R3, #0x16|22-43
+1494|code|ADD             R1, SP, #0x4F8+candidate_key|72-169
+1496|code|LDR             R3, =grub_memmove|50-75
+1498|code|ADD.W           R0, dev, #0x18C|4-245-198-112
+1502|code|MOV.W           R2, #0x40 ; '@'|79-240-64-2
+1506|code|IT EQ|8-191
+1508|code|LSLEQ           R6, R6, #1|118-0
+1510|code|BLX             R3; grub_memmove|152-71
+1512|code|ADD.W           R3, dev, #0x1D0|4-245-232-115
+1516|code|STR.W           real_keysize, [dev,#0x1D8]|196-248-216-97
+1520|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+1524|code|MOV.W           R1, #0xFFFFFFFF|79-240-255-49
+1528|code|STRD.W          R0, R1, [R3]|195-233-0-1
+1532|code|MOVS            R2, #0x40 ; '@'|64-34
+1534|code|ADD.W           R0, dev, #0xB4|4-241-180-0
+1538|code|STR.W           R2, [dev,#0xF4]|196-248-244-32
+1542|code|ADD             R1, SP, #0x4F8+candidate_key|72-169
+1544|code|LDR             R3, =grub_memmove|38-75
+1546|code|BLX             R3; grub_memmove|152-71
+1548|code|MOVS            R0, #0|0-32
+1550|code|B               loc_620|7-224
+1552|code|CMP             R5, #1|1-45
+1554|code|BEQ             loc_618|1-208
+1556|code|MOVS            R5, #1|1-37
+1558|code|B               loc_544|149-231
+1560|code|LDR             R1, =aAccessDenied; "access denied"|35-73
+1562|code|MOVS            R0, #0x1E|30-32
+1564|code|LDR             R3, =grub_error|35-75
+1566|code|BLX             R3; grub_error|152-71
+1568|code|ADDW            SP, SP, #0x4D4|13-242-212-77
+1572|code|POP.W           {dev-R11,PC}|189-232-240-143
+1576|data|DCD memset|152-9-0-0
+1580|data|DCD aCipherBlockIsT; "cipher block is too long"|216-7-0-0
+1584|data|DCD aMdlenIsTooLong; "mdlen is too long"|241-7-0-0
+1588|data|DCD grub_disk_get_size|92-9-0-0
+1592|data|DCD aNotAGeli; "not a geli"|3-8-0-0
+1596|data|DCD grub_disk_read|128-9-0-0
+1600|data|DCD grub_memset|136-9-0-0
+1604|data|DCD aAttemptingToDe; "Attempting to decrypt master key..."|14-8-0-0
+1608|data|DCD grub_puts_|96-9-0-0
+1612|data|DCD grub_partition_get_name|104-9-0-0
+1616|data|DCD unk_7D7|215-7-0-0
+1620|data|DCD asc_7D5; ","|213-7-0-0
+1624|data|DCD aEnterPassphras; "Enter passphrase for %s%s%s (%s): "|50-8-0-0
+1628|data|DCD grub_free|184-9-0-0
+1632|data|DCD grub_password_get|148-9-0-0
+1636|data|DCD aPassphraseNotS; "Passphrase not supplied"|85-8-0-0
+1640|data|DCD grub_strlen|84-9-0-0
+1644|data|DCD grub_crypto_hmac_buffer|208-9-0-0
+1648|data|DCD grub_crypto_hmac_init|120-9-0-0
+1652|data|DCD grub_crypto_hmac_fini|116-9-0-0
+1656|data|DCD unk_86D|109-8-0-0
+1660|data|DCD unk_6F0|240-6-0-0
+1664|data|DCD aDiskGeliC; "disk/geli.c"|242-6-0-0
+1668|data|DCD aGeli; "geli"|254-6-0-0
+1672|data|DCD aKeylenU; "keylen = %u\n"|111-8-0-0
+1676|data|DCD aTryingKeyslotD; "Trying keyslot %d\n"|124-8-0-0
+1680|data|DCD grub_crypto_cipher_set_key|204-9-0-0
+1684|data|DCD grub_memcmp|200-9-0-0
+1688|data|DCD aSlotDOpened; "Slot %d opened\n"|143-8-0-0
+1692|data|DCD grub_cryptodisk_setkey|88-9-0-0
+1696|data|DCD grub_crypto_gcry_error|140-9-0-0
+1700|data|DCD grub_memmove|112-9-0-0
+1704|data|DCD aAccessDenied; "access denied"|159-8-0-0
+1708|data|DCD grub_error|172-9-0-0
+1712|data|DCD grub_printf_|188-9-0-0
+1716|data|DCD grub_crypto_pbkdf2|100-9-0-0
+1720|data|DCD grub_crypto_hmac_write|176-9-0-0
+1724|data|DCD grub_real_dprintf|164-9-0-0
+1728|data|DCD grub_crypto_cbc_decrypt|160-9-0-0
+1732|code|PUSH            {R3,LR}|8-181
+1734|code|LDR             mod, =grub_cryptodisk_list|2-72
+1736|code|LDR             R1, =geli_crypto|2-73
+1738|code|LDR             R3, =grub_list_push|3-75
+1740|code|BLX             R3; grub_list_push|152-71
+1742|code|POP             {R3,PC}|8-189
+1744|data|DCD grub_cryptodisk_list|144-9-0-0
+1748|data|DCD geli_crypto|52-9-0-0
+1752|data|DCD grub_list_push|196-9-0-0
+1756|code|PUSH            {R3,LR}|8-181
+1758|code|LDR             R0, =geli_crypto|2-72
+1760|code|LDR             R3, =grub_list_remove|2-75
+1762|code|BLX             R3; grub_list_remove|152-71
+1764|code|POP             {R3,PC}|8-189
+1766|data|ALIGN 4|0-191
+1768|data|DCD geli_crypto|52-9-0-0
+1772|data|DCD grub_list_remove|180-9-0-0
+1778|data|DCB "disk/geli.c",0|100-105-115-107-47-103-101-108-105-46-99-0
+1790|data|DCB "geli",0|103-101-108-105-0
+1795|data|DCB "rekeying %llu keysize=%d",0xA,0|114-101-107-101-121-105-110-103-32-37-108-108-117-32-107-101-121-115-105-122-101-61-37-100-10-0
+1821|data|DCB "GEOM::ELI",0|71-69-79-77-58-58-69-76-73-0
+1831|data|DCB "wrong magic %02x",0xA,0|119-114-111-110-103-32-109-97-103-105-99-32-37-48-50-120-10-0
+1849|data|DCB "incorrect sector size %d",0xA,0|105-110-99-111-114-114-101-99-116-32-115-101-99-116-111-114-32-115-105-122-101-32-37-100-10-0
+1875|data|DCB "skipping one-time volume",0xA,0|115-107-105-112-112-105-110-103-32-111-110-101-45-116-105-109-101-32-118-111-108-117-109-101-10-0
+1901|data|DCB "not a boot volume",0xA,0|110-111-116-32-97-32-98-111-111-116-32-118-111-108-117-109-101-10-0
+1920|data|DCB "uuid",0|117-117-105-100-0
+1925|data|DCB "%02x",0|37-48-50-120-0
+1930|data|DCB "%s != %s",0xA,0|37-115-32-33-61-32-37-115-10-0
+1940|data|DCB "Cipher 0x%x unknown",0|67-105-112-104-101-114-32-48-120-37-120-32-117-110-107-110-111-119-110-0
+1960|data|DCB "Cipher %s isn't available",0|67-105-112-104-101-114-32-37-115-32-105-115-110-39-116-32-97-118-97-105-108-97-98-108-101-0
+1986|data|DCB "invalid keysize %d",0|105-110-118-97-108-105-100-32-107-101-121-115-105-122-101-32-37-100-0
+2005|data|DCB ",",0|44-0
+2008|data|DCB "cipher block is too long",0|99-105-112-104-101-114-32-98-108-111-99-107-32-105-115-32-116-111-111-32-108-111-110-103-0
+2033|data|DCB "mdlen is too long",0|109-100-108-101-110-32-105-115-32-116-111-111-32-108-111-110-103-0
+2051|data|DCB "not a geli",0|110-111-116-32-97-32-103-101-108-105-0
+2062|data|DCB "Attempting to decrypt master key...",0|65-116-116-101-109-112-116-105-110-103-32-116-111-32-100-101-99-114-121-112-116-32-109-97-115-116-101-114-32-107-101-121-46-46-46-0
+2098|data|DCB "Enter passphrase for %s%s%s (%s): ",0|69-110-116-101-114-32-112-97-115-115-112-104-114-97-115-101-32-102-111-114-32-37-115-37-115-37-115-32-40-37-115-41-58-32-0
+2133|data|DCB "Passphrase not supplied",0|80-97-115-115-112-104-114-97-115-101-32-110-111-116-32-115-117-112-112-108-105-101-100-0
+2159|data|DCB "keylen = %u",0xA,0|107-101-121-108-101-110-32-61-32-37-117-10-0
+2172|data|DCB "Trying keyslot %d",0xA,0|84-114-121-105-110-103-32-107-101-121-115-108-111-116-32-37-100-10-0
+2191|data|DCB "Slot %d opened",0xA,0|83-108-111-116-32-37-100-32-111-112-101-110-101-100-10-0
+2207|data|DCB "access denied",0|97-99-99-101-115-115-32-100-101-110-105-101-100-0
+2221|data|DCB "des",0|100-101-115-0
+2225|data|DCB "3des",0|51-100-101-115-0
+2230|data|DCB "blowfish",0|98-108-111-119-102-105-115-104-0
+2239|data|DCB "cast5",0|99-97-115-116-53-0
+2245|data|DCB "aes",0|97-101-115-0
+2249|data|DCB "camellia128",0|99-97-109-101-108-108-105-97-49-50-56-0
+2264|data|DCD geli_rekey, aDes, a3des, aBlowfish, aCast5, geli_rekey; "des" ...|0-0-0-0-173-8-0-0-177-8-0-0-182-8-0-0-191-8-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-197-8-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-201-8-0-0-197-8-0-0
+2356|data|grub_cryptodisk_dev <0, 0, configure_ciphers+1, recover_key+1>|0-0-0-0-0-0-0-0-133-0-0-0-145-3-0-0
+2372|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

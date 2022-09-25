@@ -1,0 +1,248 @@
+address|type|disassembly|bytes
+0|code|LDR             R3, [disk,#0x1C]|195-105
+2|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+6|code|SUB.W           SP, SP, #0x274|173-245-29-125
+10|code|MOV             R8, disk|128-70
+12|code|STR             hook_0, [SP,#0x298+hook]|14-145
+14|code|STR             hook_data_0, [SP,#0x298+hook_data]|15-146
+16|code|LDR             hook_0, =grub_msdos_partition_map|127-73
+18|code|CBZ             R3, loc_2E|99-177
+20|code|LDR             hook_data_0, [R3,#0x28]|154-106
+22|code|CMP             R2, R1|138-66
+24|code|BNE             loc_2E|9-209
+26|code|LDRB.W          R2, [R3,#0x2C]|147-248-44-32
+30|code|CMP             R2, #0x81|129-42
+32|code|BNE             loc_28|2-209
+34|code|LDRD.W          R2, R3, [R3,#8]|211-233-2-35
+38|code|B               loc_32|4-224
+40|code|MOVS            disk, #0x13|19-32
+42|code|LDR             R1, =aNoEmbeddingSup; "no embedding supported"|122-73
+44|code|B               loc_E0|88-224
+46|code|MOVS            R2, #0|0-34
+48|code|MOVS            R3, #0|0-35
+50|code|ADD             R5, SP, #0x298+p|16-173
+52|code|MOVS            R6, #0|0-38
+54|code|STRD.W          R2, R3, [SP,#0x298+delta]|205-233-10-35
+58|code|MOV.W           disk, #0xFFFFFFFF|79-240-255-48
+62|code|MOV             R4, R5|44-70
+64|code|MOVS            R2, #0|0-34
+66|code|MOVS            R3, #0|0-35
+68|code|STR             R2, [R5,#0x18]|170-97
+70|code|STR             R2, [R5,#0x1C]|234-97
+72|code|STR             R2, [SP,#0x298+ext_offset]|8-146
+74|code|STR             R2, [SP,#0x298+ext_offset+4]|9-146
+76|code|MOVS            R2, #1|1-34
+78|code|STR             R0, [R5]|40-96
+80|code|STR             R1, [R5,#0x28]|169-98
+82|code|STRD.W          R2, R3, [SP,#0x298+lastaddr]|205-233-12-35
+86|code|MOVS            R2, #0|0-34
+88|code|MOVS            R3, #0|0-35
+90|code|ADD             R7, SP, #0x298+mbr|28-175
+92|code|STRD.W          R2, R3, [SP,#0x298+var_298]|205-233-0-35
+96|code|STR             R7, [SP,#0x298+var_28C]|3-151
+98|code|MOV.W           R3, #0x200|79-244-0-115
+102|code|MOV             R0, disk|64-70
+104|code|STR             R3, [SP,#0x298+var_290]|2-147
+106|code|LDR             R1, =grub_disk_read|107-73
+108|code|LDRD.W          R2, R3, [R4,#0x18]|212-233-6-35
+112|code|BLX             R1; grub_disk_read|136-71
+114|code|CMP             R0, #0|0-40
+116|code|BNE.W           finish|64-240-166-128
+120|code|LDRD.W          R2, R3, [R4,#0x18]|212-233-6-35
+124|code|ORRS.W          R1, R2, R3|82-234-3-1
+128|code|BNE             loc_98|10-209
+130|code|ADDS            R1, R7, R0|57-24
+132|code|LDRB.W          R1, [R1,#0x1C2]|145-248-194-17
+136|code|CMP             R1, #0xEE|238-41
+138|code|BNE             loc_92|2-209
+140|code|MOVS            R0, #0x13|19-32
+142|code|LDR             R1, =aDummyMbr; "dummy mbr"|99-73
+144|code|B               loc_E0|38-224
+146|code|ADDS            R0, #0x10|16-48
+148|code|CMP             R0, #0x40 ; '@'|64-40
+150|code|BNE             loc_82|244-209
+152|code|CBZ             labeln, loc_AC|70-177
+154|code|LDRD.W          R0, R1, [SP,#0x298+lastaddr]|221-233-12-1
+158|code|CMP             R1, R3|153-66
+160|code|IT EQ|8-191
+162|code|CMPEQ           R0, R2|144-66
+164|code|BNE             loc_AC|2-209
+166|code|MOVS            R0, #0x13|19-32
+168|code|LDR             R1, =aLoopDetected; "loop detected"|93-73
+170|code|B               loc_E0|25-224
+172|code|ADD.W           R9, labeln, #1|6-241-1-9
+176|code|TST.W           labeln, R6|25-234-6-15
+180|code|IT EQ|8-191
+182|code|STRDEQ.W        R2, R3, [SP,#0x298+lastaddr]|205-233-12-35
+186|code|LDRH.W          R2, [SP,#0x298+mbr.signature]|189-248-110-34
+190|code|MOVW            R3, #0xAA55|74-246-85-35
+194|code|CMP             R2, R3|154-66
+196|code|BEQ             loc_CC|2-208
+198|code|MOVS            R0, #0x13|19-32
+200|code|LDR             R1, =aNoSignature; "no signature"|86-73
+202|code|B               loc_E0|9-224
+204|code|MOVS            R2, #0|0-34
+206|code|ADD             R3, SP, #0x298+mbr|28-171
+208|code|ADD             R3, R2|19-68
+210|code|LDRB.W          R3, [R3,#0x1BE]|147-248-190-49
+214|code|ANDS.W          R3, R3, #0x7F|19-240-127-3
+218|code|BEQ             loc_E6|4-208
+220|code|LDR             R1, =aBadBootFlag; "bad boot flag"|82-73
+222|code|MOVS            R0, #0x13|19-32
+224|code|LDR             R3, =grub_error|82-75
+226|code|BLX             R3; grub_error|152-71
+228|code|B               loc_208|144-224
+230|code|ADDS            R2, #0x10|16-50
+232|code|CMP             R2, #0x40 ; '@'|64-42
+234|code|BNE             loc_CE|240-209
+236|code|STR             R3, [R5,#0x20]|43-98
+238|code|LDR             R1, [R4,#0x20]|33-106
+240|code|ADD             R3, SP, #0x298+mbr|28-171
+242|code|CMP             R1, #3|3-41
+244|code|BGT             loc_196|79-220
+246|code|ADD.W           R2, R1, #0x1C|1-241-28-2
+250|code|LDRD.W          R6, R7, [R4,#0x18]|212-233-6-103
+254|code|ADD.W           R2, R3, R2,LSL#4|3-235-2-18
+258|code|ADD.W           R3, R3, R1,LSL#4|3-235-1-19
+262|code|LDRH.W          LR, [R2,#8]|178-248-8-224
+266|code|LDRH            R0, [R2,#6]|208-136
+268|code|ORR.W           LR, R0, LR,LSL#16|64-234-14-78
+272|code|LDR.W           R0, [disk,#0x10]|216-248-16-0
+276|code|SUBS            R0, #9|9-56
+278|code|LSL.W           LR, LR, R0|14-250-0-254
+282|code|ADDS.W          R10, R6, LR|22-235-14-10
+286|code|ADC.W           R11, R7, #0|71-241-0-11
+290|code|LDRD.W          R6, R7, [SP,#0x298+delta]|221-233-10-103
+294|code|SUBS.W          R10, R10, R6|186-235-6-10
+298|code|SBC.W           R11, R11, R7|107-235-7-11
+302|code|MOV             R6, R10|86-70
+304|code|MOV             R7, R11|95-70
+306|code|STRD.W          R6, R7, [R4,#8]|196-233-2-103
+310|code|LDRH.W          LR, [R2,#0xA]|178-248-10-224
+314|code|ADD.W           R11, R3, #0x1B8|3-245-220-123
+318|code|LDRH            R2, [R2,#0xC]|146-137
+320|code|LDRB.W          R3, [R3,#0x1C2]|147-248-194-49
+324|code|ORR.W           R2, LR, R2,LSL#16|78-234-2-66
+328|code|STRB.W          R3, [R4,#0x2C]|132-248-44-48
+332|code|LSLS            R2, R0|130-64
+334|code|MOVS            R0, #0|0-32
+336|code|STR             R2, [R4,#0x10]|34-97
+338|code|STR             R0, [R4,#0x14]|96-97
+340|code|STR             R1, [SP,#0x298+var_298]|0-145
+342|code|LDRB.W          R1, [R11,#6]|155-248-6-16
+346|code|STR             R3, [SP,#0x298+var_290]|2-147
+348|code|STRD.W          R6, R7, [SP,#0x298+var_288]|205-233-4-103
+352|code|STR             R1, [SP,#0x298+var_294]|1-145
+354|code|MOVS            R1, #0xBC|188-33
+356|code|STR             R2, [SP,#0x298+var_280]|6-146
+358|code|STR             R0, [SP,#0x298+var_27C]|7-144
+360|code|LDR             R3, =aPartitionDFlag; "partition %d: flag 0x%x, type 0x%x, sta"...|49-75
+362|code|LDR             R0, =aPartmapMsdosC; "partmap/msdos.c"|50-72
+364|code|LDR             R2, =aPartition; "partition"|50-74
+366|code|LDR             R6, =grub_real_dprintf|51-78
+368|code|BLX             R6; grub_real_dprintf|176-71
+370|code|LDRB.W          R3, [R11,#0xA]|155-248-10-48
+374|code|CBZ             R3, loc_184|43-177
+376|code|AND.W           R2, R3, #0x7F|3-240-127-2
+380|code|CMP             R2, #5|5-42
+382|code|BEQ             loc_184|1-208
+384|code|CMP             R3, #0xF|15-43
+386|code|BNE             loc_1B0|21-209
+388|code|LDR             R3, [R4]|35-104
+390|code|CMP             R3, #2|2-43
+392|code|ITT LE|220-191
+394|code|ADDLE           R3, #1|1-51
+396|code|STRLE           R3, [R4]|35-96
+398|code|LDR             R3, [R4,#0x20]|35-106
+400|code|ADDS            R3, #1|1-51
+402|code|STR             R3, [R4,#0x20]|35-98
+404|code|B               loc_EE|171-231
+406|code|MOVS            R2, #0|0-34
+408|code|MOV             R0, R3|24-70
+410|code|ADD.W           R1, R0, i,LSL#4|0-235-2-17
+414|code|LDRB.W          R1, [R1,#0x1C2]|145-248-194-17
+418|code|AND.W           R6, R1, #0x7F|1-240-127-6
+422|code|CMP             R6, #5|5-46
+424|code|BEQ             loc_1CA|15-208
+426|code|CMP             R1, #0xF|15-41
+428|code|BNE             loc_1F8|36-209
+430|code|B               loc_1CA|12-224
+432|code|LDR             R3, [R4]|35-104
+434|code|MOV             R0, disk|64-70
+436|code|MOV             R1, R5|41-70
+438|code|LDR             R2, [SP,#0x298+hook_data]|15-154
+440|code|ADDS            R3, #1|1-51
+442|code|STR             R3, [R4]|35-96
+444|code|LDR             R3, [SP,#0x298+hook]|14-155
+446|code|BLX             R3|152-71
+448|code|CMP             R0, #0|0-40
+450|code|BEQ             loc_18E|228-208
+452|code|LDR             R3, =grub_errno|30-75
+454|code|LDR             R0, [R3]|24-104
+456|code|B               loc_208|30-224
+458|code|ADDS            i, #0x1C|28-50
+460|code|ADD.W           R3, R3, R2,LSL#4|3-235-2-19
+464|code|LDR.W           R2, [disk,#0x10]|216-248-16-32
+468|code|LDRH            R1, [R3,#6]|217-136
+470|code|SUBS            R2, #9|9-58
+472|code|LDRH            R3, [R3,#8]|27-137
+474|code|ORR.W           R3, R1, R3,LSL#16|65-234-3-67
+478|code|LDRD.W          R0, R1, [SP,#0x298+ext_offset]|221-233-8-1
+482|code|LSLS            R3, R2|147-64
+484|code|ADDS            R0, R0, R3|192-24
+486|code|LDRD.W          R2, R3, [SP,#0x298+ext_offset]|221-233-8-35
+490|code|ADC.W           R1, R1, #0|65-241-0-1
+494|code|ORRS            R3, R2|19-67
+496|code|BNE             loc_200|6-209
+498|code|STRD.W          R0, R1, [SP,#0x298+ext_offset]|205-233-8-1
+502|code|B               loc_200|3-224
+504|code|ADDS            i, #1|1-50
+506|code|CMP             i, #4|4-42
+508|code|BNE             loc_19A|205-209
+510|code|B               finish|225-231
+512|code|STRD.W          R0, R1, [R5,#0x18]|197-233-6-1
+516|code|MOV             R6, labeln|78-70
+518|code|B               loc_56|38-231
+520|code|ADD.W           SP, SP, #0x274|13-245-29-125
+524|code|POP.W           {R4-R11,PC}|189-232-240-143
+528|data|DCD grub_msdos_partition_map|24-3-0-0
+532|data|DCD aNoEmbeddingSup; "no embedding supported"|112-2-0-0
+536|data|DCD grub_disk_read|60-3-0-0
+540|data|DCD aDummyMbr; "dummy mbr"|135-2-0-0
+544|data|DCD aLoopDetected; "loop detected"|145-2-0-0
+548|data|DCD aNoSignature; "no signature"|159-2-0-0
+552|data|DCD aBadBootFlag; "bad boot flag"|172-2-0-0
+556|data|DCD grub_error|72-3-0-0
+560|data|DCD aPartitionDFlag; "partition %d: flag 0x%x, type 0x%x, sta"...|212-2-0-0
+564|data|DCD aPartmapMsdosC; "partmap/msdos.c"|186-2-0-0
+568|data|DCD aPartition; "partition"|202-2-0-0
+572|data|DCD grub_real_dprintf|68-3-0-0
+576|data|DCD grub_errno|64-3-0-0
+580|code|PUSH            {R3,LR}|8-181
+582|code|LDR             mod, =grub_partition_map_list|2-72
+584|code|LDR             R1, =grub_msdos_partition_map|2-73
+586|code|LDR             R3, =grub_list_push|3-75
+588|code|BLX             R3; grub_list_push|152-71
+590|code|POP             {R3,PC}|8-189
+592|data|DCD grub_partition_map_list|56-3-0-0
+596|data|DCD grub_msdos_partition_map|24-3-0-0
+600|data|DCD grub_list_push|80-3-0-0
+604|code|PUSH            {R3,LR}|8-181
+606|code|LDR             R0, =grub_msdos_partition_map|2-72
+608|code|LDR             R3, =grub_list_remove|2-75
+610|code|BLX             R3; grub_list_remove|152-71
+612|code|POP             {R3,PC}|8-189
+614|data|ALIGN 4|0-191
+616|data|DCD grub_msdos_partition_map|24-3-0-0
+620|data|DCD grub_list_remove|76-3-0-0
+624|data|DCB "no embedding supported",0|110-111-32-101-109-98-101-100-100-105-110-103-32-115-117-112-112-111-114-116-101-100-0
+647|data|DCB "dummy mbr",0|100-117-109-109-121-32-109-98-114-0
+657|data|DCB "loop detected",0|108-111-111-112-32-100-101-116-101-99-116-101-100-0
+671|data|DCB "no signature",0|110-111-32-115-105-103-110-97-116-117-114-101-0
+684|data|DCB "bad boot flag",0|98-97-100-32-98-111-111-116-32-102-108-97-103-0
+698|data|DCB "partmap/msdos.c",0|112-97-114-116-109-97-112-47-109-115-100-111-115-46-99-0
+714|data|DCB "partition",0|112-97-114-116-105-116-105-111-110-0
+724|data|DCB "partition %d: flag 0x%x, type 0x%x, start 0x%llx, len 0x%llx",0xA|112-97-114-116-105-116-105-111-110-32-37-100-58-32-102-108-97-103-32-48-120-37-120-44-32-116-121-112-101-32-48-120-37-120-44-32-115-116-97-114-116-32-48-120-37-108-108-120-44-32-108-101-110-32-48-120-37-108-108-120-10-0
+786|data|DCB "msdos",0|109-115-100-111-115-0
+792|data|grub_partition_map <0, 0, aMsdos, grub_partition_msdos_iterate+1>; "msdos"|0-0-0-0-0-0-0-0-18-3-0-0-1-0-0-0
+808|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

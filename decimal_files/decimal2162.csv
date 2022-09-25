@@ -1,0 +1,1196 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB             SP, SP, #0x2C|139-176
+6|code|MOV             R5, hook|5-70
+8|code|MOV             R8, hook_data|136-70
+10|code|MOV             R10, avoid_efi_boot_services|146-70
+12|code|MOVS            hook_data, #0|0-33
+14|code|ADD             R4, SP, #0x50+desc_version|9-172
+16|code|ADD             hook, SP, #0x50+mmap_size|6-168
+18|code|STR             R4, [SP,#0x50+var_50]|0-148
+20|code|ADD             avoid_efi_boot_services, SP, #0x50+map_key|7-170
+22|code|ADD             R3, SP, #0x50+desc_size|8-171
+24|code|LDR.W           R11, =grub_efi_get_memory_map|223-248-32-179
+28|code|STR             R1, [SP,#0x50+mmap_size]|6-145
+30|code|STR             R1, [SP,#0x50+map_key]|7-145
+32|code|STR             R1, [SP,#0x50+desc_size]|8-145
+34|code|STR             R1, [SP,#0x50+desc_version]|9-145
+36|code|BLX             R11; grub_efi_get_memory_map|216-71
+38|code|CMP             R0, #0|0-40
+40|code|BLT             loc_4E|17-219
+42|code|LDR             R0, [SP,#0x50+mmap_size]|6-152
+44|code|LDR             R3, =grub_malloc|187-75
+46|code|BLX             R3; grub_malloc|152-71
+48|code|MOV             R9, map_buf|129-70
+50|code|CBZ             map_buf, loc_4E|96-177
+52|code|STR             R4, [SP,#0x50+var_50]|0-148
+54|code|ADD             map_buf, SP, #0x50+mmap_size|6-168
+56|code|MOV             R1, map_buf|73-70
+58|code|ADD             R2, SP, #0x50+map_key|7-170
+60|code|ADD             R3, SP, #0x50+desc_size|8-171
+62|code|BLX             R11; grub_efi_get_memory_map|216-71
+64|code|CMP             R0, #0|0-40
+66|code|BLE             loc_48|1-221
+68|code|MOV             R4, map_buf|76-70
+70|code|B               loc_CE|66-224
+72|code|MOV             R0, map_buf|72-70
+74|code|LDR             R3, =grub_free|181-75
+76|code|BLX             R3; grub_free|152-71
+78|code|LDR             R3, =grub_errno|181-75
+80|code|LDR             R0, [R3]|24-104
+82|code|B               loc_39C|163-225
+84|code|CMP.W           avoid_efi_boot_services, #0; jumptable 0000017A case 3|186-241-0-15
+88|code|BEQ.W           loc_270; jumptable 0000017A cases 1,2,7|0-240-10-129
+92|code|LDRB            R0, [desc,#9]; jumptable 0000017A case 5|96-122
+94|code|LDRB            R3, [desc,#8]|35-122
+96|code|LDRB            R2, [desc,#0xD]|98-123
+98|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+102|code|LDRB            R3, [desc,#0xA]|163-122
+104|code|LDRB.W          LR, [desc,#0x19]|148-248-25-224
+108|code|LDRB.W          R11, [desc,#0x1D]|148-248-29-176
+112|code|ORR.W           R0, R0, R3,LSL#16|64-234-3-64
+116|code|LDRB            R3, [desc,#0xC]|35-123
+118|code|LDRB.W          R12, [desc,#0xB]|148-248-11-192
+122|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+126|code|LDRB            R2, [desc,#0xE]|162-123
+128|code|LDRB            R1, [desc,#0xF]|225-123
+130|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+134|code|LDRB            R3, [desc,#0x18]|35-126
+136|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+140|code|LDRB.W          LR, [desc,#0x1A]|148-248-26-224
+144|code|ORR.W           R3, R3, LR,LSL#16|67-234-14-67
+148|code|LDRB.W          LR, [desc,#0x1B]|148-248-27-224
+152|code|ORR.W           LR, R3, LR,LSL#24|67-234-14-110
+156|code|LDRB            R3, [desc,#0x1C]|35-127
+158|code|ORR.W           R3, R3, R11,LSL#8|67-234-11-35
+162|code|LDRB.W          R11, [desc,#0x1E]|148-248-30-176
+166|code|ORR.W           R3, R3, R11,LSL#16|67-234-11-67
+170|code|MOV.W           R11, #0x14|79-240-20-11
+174|code|LSLS            R3, R3, #0xC|27-3
+176|code|ORR.W           R1, R2, R1,LSL#24|66-234-1-97
+180|code|ORR.W           R3, R3, LR,LSR#20|67-234-30-83
+184|code|STR.W           R11, [SP,#0x50+var_50]|205-248-0-176
+188|code|ORR.W           R0, R0, R12,LSL#24|64-234-12-96
+192|code|STR.W           hook_data, [SP,#0x50+var_4C]|205-248-4-128
+196|code|MOV.W           R2, LR,LSL#12|79-234-14-50
+200|code|BLX             hook|168-71
+202|code|LDR             R3, [SP,#0x50+desc_size]|8-155
+204|code|ADD             desc, R3|28-68
+206|code|LDR             R3, [SP,#0x50+mmap_size]|6-155
+208|code|ADD             R3, map_buf|75-68
+210|code|CMP             desc, R3|156-66
+212|code|BCS.W           loc_39A|128-240-97-129
+216|code|LDRB            R2, [desc,#9]|98-122
+218|code|LDRB            R3, [desc,#8]|35-122
+220|code|LDR.W           R12, =grub_real_dprintf|223-248-96-194
+224|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+228|code|LDRB            R2, [desc,#0xA]|162-122
+230|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+234|code|LDRB            R2, [desc,#0xB]|226-122
+236|code|ORR.W           R0, R3, R2,LSL#24|67-234-2-96
+240|code|LDRB            R2, [desc,#0xD]|98-123
+242|code|LDRB            R3, [desc,#0xC]|35-123
+244|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+248|code|LDRB            R2, [desc,#0xE]|162-123
+250|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+254|code|LDRB            R2, [desc,#0xF]|226-123
+256|code|ORR.W           R1, R3, R2,LSL#24|67-234-2-97
+260|code|STRD.W          R0, R1, [SP,#0x50+var_50]|205-233-0-1
+264|code|LDRB            R2, [desc,#0x19]|98-126
+266|code|LDRB            R3, [desc,#0x18]|35-126
+268|code|LDRB.W          LR, [desc,#0x1D]|148-248-29-224
+272|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+276|code|LDRB            R2, [desc,#0x1A]|162-126
+278|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+282|code|LDRB            R2, [desc,#0x1B]|226-126
+284|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+288|code|LDRB            R2, [desc,#0x1C]|34-127
+290|code|ORR.W           R2, R2, LR,LSL#8|66-234-14-34
+294|code|LDRB.W          LR, [desc,#0x1E]|148-248-30-224
+298|code|LSLS            R6, R3, #0xC|30-3
+300|code|ADDS            R0, R0, R6|128-25
+302|code|ORR.W           R2, R2, LR,LSL#16|66-234-14-66
+306|code|MOV.W           R7, R2,LSL#12|79-234-2-55
+310|code|ORR.W           R7, R7, R3,LSR#20|71-234-19-87
+314|code|ADCS            R1, R7|121-65
+316|code|STRD.W          R0, R1, [SP,#0x50+var_48]|205-233-2-1
+320|code|LDRB            R2, [desc,#1]|98-120
+322|code|MOVS            R1, #0x42 ; 'B'|66-33
+324|code|LDRB            R3, [desc]|35-120
+326|code|LDR             R0, =aMmapEfiMmapC; "mmap/efi/mmap.c"|120-72
+328|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+332|code|LDRB            R2, [desc,#2]|162-120
+334|code|ORR.W           R3, R3, R2,LSL#16|67-234-2-67
+338|code|LDRB            R2, [desc,#3]|226-120
+340|code|ORR.W           R3, R3, R2,LSL#24|67-234-2-99
+344|code|LDR             R2, =aMmap; "mmap"|116-74
+346|code|STR             R3, [SP,#0x50+var_40]|4-147
+348|code|LDR             R3, =aEfiMemoryRegio; "EFI memory region 0x%llx-0x%llx: %d\n"|116-75
+350|code|BLX             R12; grub_real_dprintf|224-71
+352|code|LDRB            R1, [desc,#1]|97-120
+354|code|LDRB            R3, [desc]|35-120
+356|code|ORR.W           R1, R3, R1,LSL#8|67-234-1-33
+360|code|LDRB            R3, [desc,#2]|163-120
+362|code|ORR.W           R1, R1, R3,LSL#16|65-234-3-65
+366|code|LDRB            R3, [desc,#3]|227-120
+368|code|ORR.W           R1, R1, R3,LSL#24|65-234-3-97
+372|code|CMP             R1, #0xD; switch 14 cases|13-41
+374|code|BHI             def_17A; jumptable 0000017A default case|74-216
+376|code|ADR             R3, jpt_17A|1-163
+378|code|LDR.W           PC, [R3,R1,LSL#2]; switch jump|83-248-33-240
+382|data|ALIGN 0x10|0-191
+384|data|DCD loc_21A+1; jump table for switch statement|27-2-0-0-113-2-0-0-113-2-0-0-85-0-0-0-21-2-0-0-93-0-0-0-27-2-0-0-113-2-0-0-185-1-0-0-199-2-0-0-69-3-0-0-27-2-0-0-27-2-0-0-27-2-0-0
+440|code|LDRB            R0, [desc,#9]; jumptable 0000017A case 8|96-122
+442|code|LDRB            R3, [desc,#8]|35-122
+444|code|LDRB            R2, [desc,#0xD]|98-123
+446|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+450|code|LDRB            R3, [desc,#0xA]|163-122
+452|code|LDRB.W          LR, [desc,#0x19]|148-248-25-224
+456|code|LDRB.W          R11, [desc,#0x1D]|148-248-29-176
+460|code|ORR.W           R0, R0, R3,LSL#16|64-234-3-64
+464|code|LDRB            R3, [desc,#0xC]|35-123
+466|code|LDRB.W          R12, [desc,#0xB]|148-248-11-192
+470|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+474|code|LDRB            R2, [desc,#0xE]|162-123
+476|code|LDRB            R1, [desc,#0xF]|225-123
+478|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+482|code|LDRB            R3, [desc,#0x18]|35-126
+484|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+488|code|LDRB.W          LR, [desc,#0x1A]|148-248-26-224
+492|code|ORR.W           R3, R3, LR,LSL#16|67-234-14-67
+496|code|LDRB.W          LR, [desc,#0x1B]|148-248-27-224
+500|code|ORR.W           LR, R3, LR,LSL#24|67-234-14-110
+504|code|LDRB            R3, [desc,#0x1C]|35-127
+506|code|ORR.W           R3, R3, R11,LSL#8|67-234-11-35
+510|code|LDRB.W          R11, [desc,#0x1E]|148-248-30-176
+514|code|ORR.W           R3, R3, R11,LSL#16|67-234-11-67
+518|code|MOV.W           R11, #5|79-240-5-11
+522|code|LSLS            R3, R3, #0xC|27-3
+524|code|B               loc_B0|80-231
+526|code|LDR             R0, =aUnknownMemoryT; jumptable 0000017A default case|73-72
+528|code|LDR             R3, =grub_printf|73-75
+530|code|BLX             R3; grub_printf|152-71
+532|code|CMP.W           avoid_efi_boot_services, #0; jumptable 0000017A case 4|186-241-0-15
+536|code|BEQ             loc_270; jumptable 0000017A cases 1,2,7|42-208
+538|code|LDRB            R0, [desc,#9]; jumptable 0000017A cases 0,6,11-13|96-122
+540|code|LDRB            R3, [desc,#8]|35-122
+542|code|LDRB            R2, [desc,#0xD]|98-123
+544|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+548|code|LDRB            R3, [desc,#0xA]|163-122
+550|code|LDRB.W          LR, [desc,#0x19]|148-248-25-224
+554|code|LDRB.W          R11, [desc,#0x1D]|148-248-29-176
+558|code|ORR.W           R0, R0, R3,LSL#16|64-234-3-64
+562|code|LDRB            R3, [desc,#0xC]|35-123
+564|code|LDRB.W          R12, [desc,#0xB]|148-248-11-192
+568|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+572|code|LDRB            R2, [desc,#0xE]|162-123
+574|code|LDRB            R1, [desc,#0xF]|225-123
+576|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+580|code|LDRB            R3, [desc,#0x18]|35-126
+582|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+586|code|LDRB.W          LR, [desc,#0x1A]|148-248-26-224
+590|code|ORR.W           R3, R3, LR,LSL#16|67-234-14-67
+594|code|LDRB.W          LR, [desc,#0x1B]|148-248-27-224
+598|code|ORR.W           LR, R3, LR,LSL#24|67-234-14-110
+602|code|LDRB            R3, [desc,#0x1C]|35-127
+604|code|ORR.W           R3, R3, R11,LSL#8|67-234-11-35
+608|code|LDRB.W          R11, [desc,#0x1E]|148-248-30-176
+612|code|ORR.W           R3, R3, R11,LSL#16|67-234-11-67
+616|code|MOV.W           R11, #2|79-240-2-11
+620|code|LSLS            R3, R3, #0xC|27-3
+622|code|B               loc_B0|31-231
+624|code|LDRB            R0, [desc,#9]; jumptable 0000017A cases 1,2,7|96-122
+626|code|LDRB            R3, [desc,#8]|35-122
+628|code|LDRB            R2, [desc,#0xD]|98-123
+630|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+634|code|LDRB            R3, [desc,#0xA]|163-122
+636|code|LDRB.W          LR, [desc,#0x19]|148-248-25-224
+640|code|LDRB.W          R11, [desc,#0x1D]|148-248-29-176
+644|code|ORR.W           R0, R0, R3,LSL#16|64-234-3-64
+648|code|LDRB            R3, [desc,#0xC]|35-123
+650|code|LDRB.W          R12, [desc,#0xB]|148-248-11-192
+654|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+658|code|LDRB            R2, [desc,#0xE]|162-123
+660|code|LDRB            R1, [desc,#0xF]|225-123
+662|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+666|code|LDRB            R3, [desc,#0x18]|35-126
+668|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+672|code|LDRB.W          LR, [desc,#0x1A]|148-248-26-224
+676|code|ORR.W           R3, R3, LR,LSL#16|67-234-14-67
+680|code|LDRB.W          LR, [desc,#0x1B]|148-248-27-224
+684|code|ORR.W           LR, R3, LR,LSL#24|67-234-14-110
+688|code|LDRB            R3, [desc,#0x1C]|35-127
+690|code|ORR.W           R3, R3, R11,LSL#8|67-234-11-35
+694|code|LDRB.W          R11, [desc,#0x1E]|148-248-30-176
+698|code|ORR.W           R3, R3, R11,LSL#16|67-234-11-67
+702|code|MOV.W           R11, #1|79-240-1-11
+706|code|LSLS            R3, R3, #0xC|27-3
+708|code|B               loc_B0|244-230
+710|code|LDRB            R0, [desc,#9]; jumptable 0000017A case 9|96-122
+712|code|LDRB            R3, [desc,#8]|35-122
+714|code|LDRB            R2, [desc,#0xD]|98-123
+716|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+720|code|LDRB            R3, [desc,#0xA]|163-122
+722|code|LDRB.W          LR, [desc,#0x19]|148-248-25-224
+726|code|LDRB.W          R11, [desc,#0x1D]|148-248-29-176
+730|code|ORR.W           R0, R0, R3,LSL#16|64-234-3-64
+734|code|LDRB            R3, [desc,#0xC]|35-123
+736|code|LDRB.W          R12, [desc,#0xB]|148-248-11-192
+740|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+744|code|LDRB            R2, [desc,#0xE]|162-123
+746|code|LDRB            R1, [desc,#0xF]|225-123
+748|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+752|code|LDRB            R3, [desc,#0x18]|35-126
+754|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+758|code|LDRB.W          LR, [desc,#0x1A]|148-248-26-224
+762|code|ORR.W           R3, R3, LR,LSL#16|67-234-14-67
+766|code|LDRB.W          LR, [desc,#0x1B]|148-248-27-224
+770|code|ORR.W           LR, R3, LR,LSL#24|67-234-14-110
+774|code|LDRB            R3, [desc,#0x1C]|35-127
+776|code|ORR.W           R3, R3, R11,LSL#8|67-234-11-35
+780|code|LDRB.W          R11, [desc,#0x1E]|148-248-30-176
+784|code|ORR.W           R3, R3, R11,LSL#16|67-234-11-67
+788|code|MOV.W           R11, #3|79-240-3-11
+792|code|LSLS            R3, R3, #0xC|27-3
+794|code|B               loc_B0|201-230
+796|data|DCD grub_malloc|164-14-0-0
+800|data|DCD grub_free|184-14-0-0
+804|data|DCD grub_errno|144-14-0-0
+808|data|DCD aMmapEfiMmapC; "mmap/efi/mmap.c"|135-12-0-0
+812|data|DCD aMmap; "mmap"|151-12-0-0
+816|data|DCD aEfiMemoryRegio; "EFI memory region 0x%llx-0x%llx: %d\n"|156-12-0-0
+820|data|DCD aUnknownMemoryT; "Unknown memory type %d, considering res"...|193-12-0-0
+824|data|DCD grub_printf|152-14-0-0
+828|data|DCD grub_efi_get_memory_map|168-14-0-0
+832|data|DCD grub_real_dprintf|172-14-0-0
+836|code|LDRB            R0, [desc,#9]; jumptable 0000017A case 10|96-122
+838|code|LDRB            R3, [desc,#8]|35-122
+840|code|LDRB            R2, [desc,#0xD]|98-123
+842|code|ORR.W           R0, R3, R0,LSL#8|67-234-0-32
+846|code|LDRB            R3, [desc,#0xA]|163-122
+848|code|LDRB.W          LR, [desc,#0x19]|148-248-25-224
+852|code|LDRB.W          R11, [desc,#0x1D]|148-248-29-176
+856|code|ORR.W           R0, R0, R3,LSL#16|64-234-3-64
+860|code|LDRB            R3, [desc,#0xC]|35-123
+862|code|LDRB.W          R12, [desc,#0xB]|148-248-11-192
+866|code|ORR.W           R3, R3, R2,LSL#8|67-234-2-35
+870|code|LDRB            R2, [desc,#0xE]|162-123
+872|code|LDRB            R1, [desc,#0xF]|225-123
+874|code|ORR.W           R2, R3, R2,LSL#16|67-234-2-66
+878|code|LDRB            R3, [desc,#0x18]|35-126
+880|code|ORR.W           R3, R3, LR,LSL#8|67-234-14-35
+884|code|LDRB.W          LR, [desc,#0x1A]|148-248-26-224
+888|code|ORR.W           R3, R3, LR,LSL#16|67-234-14-67
+892|code|LDRB.W          LR, [desc,#0x1B]|148-248-27-224
+896|code|ORR.W           LR, R3, LR,LSL#24|67-234-14-110
+900|code|LDRB            R3, [desc,#0x1C]|35-127
+902|code|ORR.W           R3, R3, R11,LSL#8|67-234-11-35
+906|code|LDRB.W          R11, [desc,#0x1E]|148-248-30-176
+910|code|ORR.W           R3, R3, R11,LSL#16|67-234-11-67
+914|code|MOV.W           R11, #4|79-240-4-11
+918|code|LSLS            R3, R3, #0xC|27-3
+920|code|B               loc_B0|138-230
+922|code|MOVS            R0, #0|0-32
+924|code|ADD             SP, SP, #0x2C ; ','|11-176
+926|code|POP.W           {R4-R11,PC}|189-232-240-143
+930|code|MOVS            R2, #0|0-34
+932|code|B.W             grub_efi_mmap_iterate|255-247-44-190
+936|code|PUSH.W          {R0-R2,R4-R9,LR}|45-233-247-67
+940|code|MOVW            R8, #0xFFF|64-246-255-120
+944|code|ADDS.W          R8, R8, R2|24-235-2-8
+948|code|MOV             R6, R0|6-70
+950|code|MOV.W           R9, #0|79-240-0-9
+954|code|MOV.W           R0, #0x18|79-240-24-0
+958|code|ADC.W           R9, R9, R3|73-235-3-9
+962|code|LDR             R3, =grub_malloc|34-75
+964|code|MOV             R7, R1|15-70
+966|code|BLX             R3; grub_malloc|152-71
+968|code|MOV             R4, curover|4-70
+970|code|CMP             curover, #0|0-40
+972|code|BEQ             loc_446|59-208
+974|code|LDR             R3, =grub_efi_system_table_0|32-75
+976|code|MOV.W           R1, #0xFFFFFFFF|79-240-255-49
+980|code|LDR             curover, =0xFFFFF000|31-72
+982|code|ANDS            R1, R7|57-64
+984|code|ANDS            R0, R6|48-64
+986|code|LDR             R3, [R3]|27-104
+988|code|ADDS.W          R6, R6, R8|22-235-8-6
+992|code|STRD.W          R0, R1, [SP,#0x28+address]|205-233-0-1
+996|code|ADC.W           R7, R7, R9|71-235-9-7
+1000|code|SUBS            R6, R6, R0|54-26
+1002|code|SBC.W           R7, R7, R1|103-235-1-7
+1006|code|LDR             R5, [R3,#0x3C]|221-107
+1008|code|LSRS            R6, R6, #0xC|54-11
+1010|code|ORR.W           R6, R6, R7,LSL#20|70-234-7-86
+1014|code|LDR             R3, [b,#0x24]|107-106
+1016|code|MOV             R2, pages|50-70
+1018|code|BLX             R3|152-71
+1020|code|CBZ             status, loc_404|16-177
+1022|code|LDR             R3, =0x8000000E|22-75
+1024|code|CMP             status, R3|152-66
+1026|code|BNE             loc_41E|12-209
+1028|code|LDR             R3, [SP,#0x28+type]|10-155
+1030|code|MOVS            status, #2|2-32
+1032|code|LDR             b, [b,#0x20]|45-106
+1034|code|ADDS            R3, #2|2-51
+1036|code|CMP             R3, #0x16|22-43
+1038|code|ITET LS|150-191
+1040|code|LDRLS           R2, =CSWTCH.18|18-74
+1042|code|MOVHI           R1, #8|8-33
+1044|code|LDRBLS          R1, [R2,R3]|209-92
+1046|code|MOV             R2, pages|50-70
+1048|code|MOV             R3, SP|107-70
+1050|code|BLX             R5|168-71
+1052|code|CBZ             status, loc_428|32-177
+1054|code|MOV             status, curover|32-70
+1056|code|LDR             R3, =grub_free|15-75
+1058|code|BLX             R3; grub_free|152-71
+1060|code|MOVS            R0, #0|0-32
+1062|code|B               loc_446|14-224
+1064|code|LDR             R1, =overlays|14-73
+1066|code|STR             pages, [curover,#0x10]|38-97
+1068|code|LDR             R3, [R1]|11-104
+1070|code|STR             curover, [R1]|12-96
+1072|code|STR             R3, [curover]|35-96
+1074|code|LDR             R3, =curhandle|13-75
+1076|code|LDR             status, [R3]|24-104
+1078|code|ADDS            R2, R0, #1|66-28
+1080|code|STR             R2, [R3]|26-96
+1082|code|LDRD.W          R2, R3, [SP,#0x28+address]|221-233-0-35
+1086|code|STR             R0, [curover,#0x14]|96-97
+1088|code|STRD.W          R2, R3, [curover,#8]|196-233-2-35
+1092|code|B               loc_446|255-231
+1094|code|ADD             SP, SP, #0xC|3-176
+1096|code|POP.W           {curover-R9,PC}|189-232-240-131
+1100|data|DCD grub_malloc|164-14-0-0
+1104|data|DCD grub_efi_system_table_0|140-14-0-0
+1108|data|DCD 0xFFFFF000|0-240-255-255
+1112|data|DCD 0x8000000E|14-0-0-128
+1116|data|DCD CSWTCH.18|112-12-0-0
+1120|data|DCD grub_free|184-14-0-0
+1124|data|DCD overlays|120-14-0-0
+1128|data|DCD curhandle|100-14-0-0
+1132|code|LDR             R3, =grub_efi_system_table_0|17-75
+1134|code|MOV             R2, handle|2-70
+1136|code|PUSH            {R4-R6,LR}|112-181
+1138|code|MOVS            R6, #0|0-38
+1140|code|LDR             R3, [R3]|27-104
+1142|code|LDR             R1, [R3,#0x3C]|217-107
+1144|code|LDR             R3, =overlays|15-75
+1146|code|LDR             R4, [R3]|28-104
+1148|code|MOV             R5, R3|29-70
+1150|code|CBZ             curover, loc_4AA|164-177
+1152|code|LDR             R3, [curover,#0x14]|99-105
+1154|code|CMP             R3, R2|147-66
+1156|code|BNE             loc_4A4|14-209
+1158|code|LDR             R3, [b,#0x24]|75-106
+1160|code|LDR             R2, [curover,#0x10]|34-105
+1162|code|LDRD.W          handle, b, [curover,#8]|212-233-2-1
+1166|code|BLX             R3|152-71
+1168|code|LDR             R3, [curover]|35-104
+1170|code|CBZ             R6, loc_498|14-177
+1172|code|STR             R3, [R6]|51-96
+1174|code|B               loc_49A|0-224
+1176|code|STR             R3, [R5]|43-96
+1178|code|MOV             R0, curover|32-70
+1180|code|LDR             R3, =grub_free|7-75
+1182|code|BLX             R3; grub_free|152-71
+1184|code|MOVS            R0, #0|0-32
+1186|code|POP             {curover-R6,PC}|112-189
+1188|code|MOV             R6, prevover|38-70
+1190|code|LDR             prevover, [prevover]|36-104
+1192|code|B               loc_47E|233-231
+1194|code|LDR             b, =aHandleDNotFoun; "handle %d not found"|5-73
+1196|code|MOVS            handle, #0x26 ; '&'|38-32
+1198|code|LDR             R3, =grub_error|5-75
+1200|code|BLX             R3; grub_error|152-71
+1202|code|POP             {curover-R6,PC}|112-189
+1204|data|DCD grub_efi_system_table_0|140-14-0-0
+1208|data|DCD overlays|120-14-0-0
+1212|data|DCD grub_free|184-14-0-0
+1216|data|DCD aHandleDNotFoun; "handle %d not found"|239-12-0-0
+1220|data|DCD grub_error|176-14-0-0
+1224|code|PUSH.W          {R0-R2,R4-R9,LR}|45-233-247-67
+1228|code|MOV             R9, R3|153-70
+1230|code|MOVS            R0, #0x18|24-32
+1232|code|LDR             R3, =grub_malloc|43-75
+1234|code|MOV             R8, R2|144-70
+1236|code|BLX             R3; grub_malloc|152-71
+1238|code|MOV             R4, curover|4-70
+1240|code|CBZ             curover, loc_522|24-179
+1242|code|LDR             R3, =grub_efi_system_table_0|42-75
+1244|code|MOV.W           R2, #0xFFFFFFFF|79-240-255-50
+1248|code|MOVW            curover, #0xFFF|64-246-255-112
+1252|code|MOVS            R1, #0|0-33
+1254|code|LDR             R3, [R3]|27-104
+1256|code|LDR             R6, [R3,#0x3C]|222-107
+1258|code|MOVS            R3, #0|0-35
+1260|code|STRD.W          R2, R3, [SP,#0x28+address]|205-233-0-35
+1264|code|ADDS.W          R2, R8, R0|24-235-0-2
+1268|code|ADC.W           R3, R9, R1|73-235-1-3
+1272|code|LSRS            R5, R2, #0xC|21-11
+1274|code|LDR.W           R12, [b,#0x20]|214-248-32-192
+1278|code|MOVS            R0, #1|1-32
+1280|code|ORR.W           R5, R5, R3,LSL#20|69-234-3-85
+1284|code|LDR             R3, [SP,#0x28+type]|11-155
+1286|code|ADDS            R3, #2|2-51
+1288|code|CMP             R3, #0x16|22-43
+1290|code|ITET LS|150-191
+1292|code|LDRLS           R2, =CSWTCH.18|30-74
+1294|code|MOVHI           R7, #8|8-39
+1296|code|LDRBLS          R7, [R2,R3]|215-92
+1298|code|MOV             R2, pages|42-70
+1300|code|MOV             R3, SP|107-70
+1302|code|MOV             R1, R7|57-70
+1304|code|BLX             R12|224-71
+1306|code|CBZ             status, loc_526|32-177
+1308|code|MOV             status, curover|32-70
+1310|code|LDR             R3, =grub_free|27-75
+1312|code|BLX             R3; grub_free|152-71
+1314|code|MOVS            R0, #0|0-32
+1316|code|B               loc_57A|41-224
+1318|code|LDRD.W          R8, R9, [SP,#0x28+address]|221-233-0-137
+1322|code|ORRS.W          R3, R8, R9|88-234-9-3
+1326|code|BEQ             loc_552|16-208
+1328|code|LDR             R2, =overlays|23-74
+1330|code|LDR             R1, =curhandle|24-73
+1332|code|STR             pages, [curover,#0x10]|37-97
+1334|code|LDR             R3, [R2]|19-104
+1336|code|STR             curover, [R2]|20-96
+1338|code|LDR             R2, [SP,#0x28+handle]|10-154
+1340|code|STR             R3, [curover]|35-96
+1342|code|LDR             R3, [R1]|11-104
+1344|code|ADDS            R0, R3, #1|88-28
+1346|code|STR             R0, [R1]|8-96
+1348|code|LDMFD.W         SP, {R0,R1}|157-232-3-0
+1352|code|STR             R3, [curover,#0x14]|99-97
+1354|code|STR             R0, [curover,#8]|160-96
+1356|code|STR             R1, [curover,#0xC]|225-96
+1358|code|STR             R3, [R2]|19-96
+1360|code|B               loc_57A|19-224
+1362|code|MOV.W           R2, #0xFFFFFFFF|79-240-255-50
+1366|code|MOVS            R3, #0|0-35
+1368|code|LDR             b, [b,#0x20]|54-106
+1370|code|MOV             R1, R7|57-70
+1372|code|STRD.W          R2, R3, [SP,#0x28+address]|205-233-0-35
+1376|code|MOVS            status, #1|1-32
+1378|code|MOV             R2, pages|42-70
+1380|code|MOV             R3, SP|107-70
+1382|code|BLX             R6|176-71
+1384|code|MOV             R1, R9|73-70
+1386|code|MOV             R2, pages|42-70
+1388|code|LDR             R3, =grub_efi_free_pages|10-75
+1390|code|MOV             R6, R0|6-70
+1392|code|MOV             status, R8|64-70
+1394|code|BLX             R3; grub_efi_free_pages|152-71
+1396|code|CMP             status, #0|0-46
+1398|code|BEQ             loc_530|219-208
+1400|code|B               loc_522|211-231
+1402|code|ADD             SP, SP, #0xC|3-176
+1404|code|POP.W           {curover-R9,PC}|189-232-240-131
+1408|data|DCD grub_malloc|164-14-0-0
+1412|data|DCD grub_efi_system_table_0|140-14-0-0
+1416|data|DCD CSWTCH.18|112-12-0-0
+1420|data|DCD grub_free|184-14-0-0
+1424|data|DCD overlays|120-14-0-0
+1428|data|DCD curhandle|100-14-0-0
+1432|data|DCD grub_efi_free_pages|188-14-0-0
+1436|code|B.W             grub_mmap_unregister|255-247-102-191
+1440|code|LDR             R2, [SP,#mmap_num]|1-154
+1442|code|MOVS            R0, #0|0-32
+1444|code|LDR             R3, [R2]|19-104
+1446|code|ADDS            R3, #1|1-51
+1448|code|STR             R3, [R2]|19-96
+1450|code|BX              LR|112-71
+1452|code|PUSH.W          {entry-R2,R4-R11,LR}|45-233-247-79
+1456|code|MOV.W           R10, #0|79-240-0-10
+1460|code|LDRD.W          R8, R9, [entry,#8]|208-233-2-137
+1464|code|LDRD.W          R4, R5, [entry]|208-233-0-69
+1468|code|LDR             R6, =__aeabi_llsr|33-78
+1470|code|AND.W           R4, R4, R8|4-234-8-4
+1474|code|AND.W           R5, R5, R9|5-234-9-5
+1478|code|STRD.W          R2, R3, [SP,#0x30+iterator]|205-233-0-35
+1482|code|MOV             R0, R8|64-70
+1484|code|MOV             R1, R9|73-70
+1486|code|MOV             R2, i|82-70
+1488|code|LDR             R7, =__aeabi_llsr|28-79
+1490|code|BLX             R6; __aeabi_llsr|176-71
+1492|code|MOVS            R1, #0|0-33
+1494|code|AND.W           R0, R0, #1|0-240-1-0
+1498|code|ORRS.W          R3, R0, R1|80-234-1-3
+1502|code|BEQ             loc_5E8|3-208
+1504|code|MOVS            R6, #0|0-38
+1506|code|LDR.W           R11, =__aeabi_llsl|223-248-100-176
+1510|code|B               loc_60C|17-224
+1512|code|ADD.W           i, i, #1|10-241-1-10
+1516|code|CMP.W           i, #0x40 ; '@'|186-241-64-15
+1520|code|BNE             loc_5CA|235-209
+1522|code|B               loc_5E0|245-231
+1524|code|MOV             R0, R8|64-70
+1526|code|MOV             R1, R9|73-70
+1528|code|MOV             R2, i|82-70
+1530|code|BLX             R7; __aeabi_llsr|184-71
+1532|code|MOVS            R1, #0|0-33
+1534|code|AND.W           R0, R0, #1|0-240-1-0
+1538|code|ORRS.W          R3, R0, R1|80-234-1-3
+1542|code|BEQ             loc_614|5-208
+1544|code|ADD.W           i, i, #1|10-241-1-10
+1548|code|CMP.W           i, #0x40 ; '@'|186-241-64-15
+1552|code|BNE             loc_5F4|240-209
+1554|code|B               loc_63A|18-224
+1556|code|LDR             R3, =__aeabi_llsr|11-75
+1558|code|MOV             R2, j|50-70
+1560|code|LDRD.W          R0, R1, [SP,#0x30+iterator]|221-233-0-1
+1564|code|BLX             R3; __aeabi_llsr|152-71
+1566|code|MOVS            R1, #0|0-33
+1568|code|AND.W           R0, R0, #1|0-240-1-0
+1572|code|ORRS.W          R3, R0, R1|80-234-1-3
+1576|code|BEQ             loc_636|5-208
+1578|code|MOVS            R0, #1|1-32
+1580|code|MOVS            R1, #0|0-33
+1582|code|MOV             R2, i|82-70
+1584|code|BLX             R11; __aeabi_llsl|216-71
+1586|code|ORRS            R4, R0|4-67
+1588|code|ORRS            R5, R1|13-67
+1590|code|ADDS            j, #1|1-54
+1592|code|B               loc_608|230-231
+1594|code|MOV             R0, R4|32-70
+1596|code|MOV             R1, R5|41-70
+1598|code|ADD             SP, SP, #0xC|3-176
+1600|code|POP.W           {R4-R11,PC}|189-232-240-143
+1604|data|DCD __aeabi_llsr|136-14-0-0
+1608|data|DCD __aeabi_llsl|180-14-0-0
+1612|code|PUSH.W          {R0,R1,R4-R8,LR}|45-233-243-65
+1616|code|MOV             R4, R2|20-70
+1618|code|LDR             R2, [SP,#0x20+type]|8-154
+1620|code|MOV             R5, R3|29-70
+1622|code|MOV             R6, R0|6-70
+1624|code|MOV             R7, R1|15-70
+1626|code|ADDS            R3, R2, #2|147-28
+1628|code|LDR.W           R8, [SP,#0x20+data]|221-248-36-128
+1632|code|BNE             loc_674|8-209
+1634|code|STR             R2, [SP,#0x20+var_20]|0-146
+1636|code|MOVS            R1, #0x52 ; 'R'|82-33
+1638|code|LDR             R2, =aMmap_0; "mmap"|20-74
+1640|code|LDR             R0, =aMmapMmapC; "mmap/mmap.c"|20-72
+1642|code|LDR             R3, =aUnknownMemoryT_0; "Unknown memory type %d. Assuming unusab"...|21-75
+1644|code|LDR.W           R12, =grub_real_dprintf|223-248-84-192
+1648|code|BLX             R12; grub_real_dprintf|224-71
+1650|code|MOVS            R2, #2|2-34
+1652|code|LDM.W           ctx, {R3,LR}|152-232-8-64
+1656|code|MOVS            R1, #0x18|24-33
+1658|code|ADDS            R4, R4, R6|164-25
+1660|code|MOV.W           R0, #0|79-240-0-0
+1664|code|ADCS            R5, R7|125-65
+1666|code|MUL.W           R1, R1, LR|1-251-14-241
+1670|code|ADD.W           R12, R3, R1|3-235-1-12
+1674|code|ADDS            R1, #0x18|24-49
+1676|code|ADD             R3, R1|11-68
+1678|code|MOVS            R1, #1|1-33
+1680|code|STRD.W          R6, R7, [R12]|204-233-0-103
+1684|code|STR.W           R0, [R12,#8]|204-248-8-0
+1688|code|STR.W           type_0, [R12,#0xC]|204-248-12-32
+1692|code|STR.W           R0, [R12,#0x10]|204-248-16-0
+1696|code|STRD.W          R4, R5, [R3]|195-233-0-69
+1700|code|STR             R1, [R3,#8]|153-96
+1702|code|STR             type_0, [R3,#0xC]|218-96
+1704|code|STR             R0, [R3,#0x10]|24-97
+1706|code|ADD.W           R3, LR, #2|14-241-2-3
+1710|code|STR.W           R3, [ctx,#4]|200-248-4-48
+1714|code|ADD             SP, SP, #8|2-176
+1716|code|POP.W           {R4-ctx,PC}|189-232-240-129
+1720|data|DCD aMmap_0; "mmap"|15-13-0-0
+1724|data|DCD aMmapMmapC; "mmap/mmap.c"|3-13-0-0
+1728|data|DCD aUnknownMemoryT_0; "Unknown memory type %d. Assuming unusab"...|20-13-0-0
+1732|data|DCD grub_real_dprintf|172-14-0-0
+1736|code|PUSH            {R0-R2,R4-R7,LR}|247-181
+1738|code|ADDS            R2, R2, R0|18-24
+1740|code|LDR             R4, [SP,#0x20+range]|9-156
+1742|code|ADCS            R3, R1|75-65
+1744|code|LDRD.W          R6, R7, [range_0]|212-233-0-103
+1748|code|LDRD.W          range_0, R5, [range_0,#8]|212-233-2-69
+1752|code|CMP             R1, R7|185-66
+1754|code|IT EQ|8-191
+1756|code|CMPEQ           R0, R6|176-66
+1758|code|ITT CC|60-191
+1760|code|MOVCC           R0, R6; start|48-70
+1762|code|MOVCC           R1, R7; start|57-70
+1764|code|CMP             R5, R3|157-66
+1766|code|IT EQ|8-191
+1768|code|CMPEQ           R4, R2|148-66
+1770|code|ITT CC|60-191
+1772|code|MOVCC           R2, R4|34-70
+1774|code|MOVCC           R3, R5|43-70
+1776|code|CMP             R1, R3|153-66
+1778|code|IT EQ|8-191
+1780|code|CMPEQ           R0, R2|144-66
+1782|code|BCS             loc_708|7-210
+1784|code|SUBS            R2, R2, R0; size|18-26
+1786|code|MOV             R4, #0xFFFFFFFE|111-240-1-4
+1790|code|SBC.W           R3, R3, R1; size|99-235-1-3
+1794|code|STR             R4, [SP,#0x20+var_20]; type|0-148
+1796|code|LDR             R4, =(grub_mmap_register+1)|2-76
+1798|code|BLX             R4; grub_mmap_register|160-71
+1800|code|MOVS            R0, #0|0-32
+1802|code|ADD             SP, SP, #0xC|3-176
+1804|code|POP             {R4-R7,PC}|240-189
+1806|data|ALIGN 0x10|0-191
+1808|data|DCD grub_mmap_register+1|169-3-0-0
+1812|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1816|code|SUB             SP, SP, #0x24|137-176
+1818|code|MOV             R8, R0|128-70
+1820|code|MOV             R9, R1|137-70
+1822|code|STRD.W          R2, R3, [SP,#0x48+size]|205-233-6-35
+1826|code|MOV.W           R1, #0x17C|79-244-190-113
+1830|code|STRD.W          R2, R3, [SP,#0x48+var_40]|205-233-2-35
+1834|code|LDR             R4, =grub_real_dprintf|82-76
+1836|code|LDR             R3, =aHookLlxLlx; "hook %llx+%llx\n"|82-75
+1838|code|STRD.W          R8, R9, [SP,#0x48+var_48]|205-233-0-137
+1842|code|LDR             R0, =aMmapMmapC; "mmap/mmap.c"|82-72
+1844|code|LDR             R2, =aBadram; "badram"|82-74
+1846|code|BLX             R4; grub_real_dprintf|160-71
+1848|code|LDR             R3, [SP,#0x48+entry]|19-155
+1850|code|LDR             R5, =__aeabi_llsr|82-77
+1852|code|MOVS            R4, #0|0-36
+1854|code|LDRD.W          R6, R7, [R3,#8]|211-233-2-103
+1858|code|MOV             R0, R6|48-70
+1860|code|MOV             R1, R7|57-70
+1862|code|MOV             R2, tail|34-70
+1864|code|BLX             R5; __aeabi_llsr|168-71
+1866|code|MOVS            R1, #0|0-33
+1868|code|AND.W           R0, R0, #1|0-240-1-0
+1872|code|ORRS.W          R3, R0, R1|80-234-1-3
+1876|code|BNE             loc_75A|1-209
+1878|code|ADDS            tail, #1|1-52
+1880|code|B               loc_742|243-231
+1882|code|LDR.W           R11, =__aeabi_llsr|223-248-40-177
+1886|code|MOV.W           R10, #0|79-240-0-10
+1890|code|MOV             R5, R10|85-70
+1892|code|MOV             R2, i|82-70
+1894|code|MOV             R0, R6|48-70
+1896|code|MOV             R1, R7|57-70
+1898|code|ADD.W           i, i, #1|10-241-1-10
+1902|code|BLX             R11; __aeabi_llsr|216-71
+1904|code|MOVS            R1, #0|0-33
+1906|code|AND.W           R0, R0, #1|0-240-1-0
+1910|code|ORRS.W          R3, R0, R1|80-234-1-3
+1914|code|IT EQ|8-191
+1916|code|ADDEQ           var, #1|1-53
+1918|code|CMP.W           i, #0x40 ; '@'|186-241-64-15
+1922|code|BNE             loc_764|239-209
+1924|code|LDR             R0, [SP,#0x48+entry]; entry|19-152
+1926|code|MOVS            R2, #0; iterator|0-34
+1928|code|MOVS            R3, #0; iterator|0-35
+1930|code|BL              fill_mask|255-247-15-255
+1934|code|CMP             R1, R9|73-69
+1936|code|IT EQ|8-191
+1938|code|CMPEQ           R0, R8|64-69
+1940|code|BCS             loc_7E8|40-210
+1942|code|MOV.W           i, #0xFFFFFFFF|79-240-255-58
+1946|code|MOV.W           R11, #0xFFFFFFFF|79-240-255-59
+1950|code|MOVS            R2, #0|0-34
+1952|code|MOVS            R3, #0|0-35
+1954|code|STRD.W          R2, R3, [SP,#0x48+low]|205-233-4-35
+1958|code|LDRD.W          R2, R3, [SP,#0x48+low]|221-233-4-35
+1962|code|SUBS.W          R2, R10, R2|186-235-2-2
+1966|code|SBC.W           R3, R11, R3|107-235-3-3
+1970|code|CMP             R3, #0|0-43
+1972|code|IT EQ|8-191
+1974|code|CMPEQ           R2, #2|2-42
+1976|code|BCC             loc_7F0|26-211
+1978|code|LDRD.W          R6, R7, [SP,#0x48+low]|221-233-4-103
+1982|code|LDR             R0, [SP,#0x48+entry]; entry|19-152
+1984|code|ADDS.W          R6, R6, R10|22-235-10-6
+1988|code|ADC.W           R7, R7, R11|71-235-11-7
+1992|code|LSRS            R7, R7, #1|127-8
+1994|code|MOV.W           R6, R6,RRX|79-234-54-6
+1998|code|MOV             R2, R6; iterator|50-70
+2000|code|MOV             R3, R7; iterator|59-70
+2002|code|BL              fill_mask|255-247-235-254
+2006|code|CMP             R1, R9|73-69
+2008|code|IT EQ|8-191
+2010|code|CMPEQ           R0, R8|64-69
+2012|code|ITEE CC|50-191
+2014|code|STRDCC.W        R6, R7, [SP,#0x48+low]|205-233-4-103
+2018|code|MOVCS           R10, R6|178-70
+2020|code|MOVCS           R11, R7|187-70
+2022|code|B               loc_7A6|222-231
+2024|code|MOV.W           i, #0|79-240-0-10
+2028|code|MOV.W           R11, #0|79-240-0-11
+2032|code|MOV             R2, tail|34-70
+2034|code|LDR             R3, =__aeabi_llsl|37-75
+2036|code|MOVS            R0, #1|1-32
+2038|code|MOVS            R1, #0|0-33
+2040|code|BLX             R3; __aeabi_llsl|152-71
+2042|code|LDRD.W          R2, R3, [SP,#0x48+size]|221-233-6-35
+2046|code|ADDS.W          R2, R2, R8|18-235-8-2
+2050|code|ADC.W           R3, R3, R9|67-235-9-3
+2054|code|MOV             R8, R2|144-70
+2056|code|MOV             R9, R3|153-70
+2058|code|STRD.W          R0, R1, [SP,#0x48+low]|205-233-4-1
+2062|code|LDR             R3, =__aeabi_llsr|29-75
+2064|code|MOV             R0, R10|80-70
+2066|code|MOV             R1, R11|89-70
+2068|code|SUBS            R2, var, tail|42-27
+2070|code|BLX             R3; __aeabi_llsr|152-71
+2072|code|ORRS.W          R3, R0, R1|80-234-1-3
+2076|code|BNE             loc_86C|38-209
+2078|code|LDR             R0, [SP,#0x48+entry]; entry|19-152
+2080|code|MOV             R2, R10; iterator|82-70
+2082|code|MOV             R3, R11; iterator|91-70
+2084|code|BL              fill_mask|255-247-194-254
+2088|code|CMP             R1, R9|73-69
+2090|code|MOV             R6, R0|6-70
+2092|code|IT EQ|8-191
+2094|code|CMPEQ           R0, R8|64-69
+2096|code|MOV             R7, R1|15-70
+2098|code|BCS             loc_86C|27-210
+2100|code|LDRD.W          R2, R3, [SP,#0x48+low]|221-233-4-35
+2104|code|MOV.W           R1, #0x1A0|79-244-208-113
+2108|code|STRD.W          R6, R7, [SP,#0x48+var_48]|205-233-0-103
+2112|code|LDR             R0, =aMmapMmapC; "mmap/mmap.c"|14-72
+2114|code|STRD.W          R2, R3, [SP,#0x48+var_40]|205-233-2-35
+2118|code|LDR.W           R12, =grub_real_dprintf|223-248-44-192
+2122|code|LDR             R2, =aBadram; "badram"|13-74
+2124|code|LDR             R3, =aLlxSizeLlxIsAB; "%llx (size %llx) is a badram range\n"|15-75
+2126|code|BLX             R12; grub_real_dprintf|224-71
+2128|code|MOV             R3, #0xFFFFFFFE|111-240-1-3
+2132|code|MOV             R0, R6; start|48-70
+2134|code|STR             R3, [SP,#0x48+var_48]; type|0-147
+2136|code|MOV             R1, R7; start|57-70
+2138|code|LDRD.W          R2, R3, [SP,#0x48+low]; size|221-233-4-35
+2142|code|LDR             R6, =(grub_mmap_register+1)|12-78
+2144|code|BLX             R6; grub_mmap_register|176-71
+2146|code|ADDS.W          R10, R10, #1|26-241-1-10
+2150|code|ADC.W           R11, R11, #0|75-241-0-11
+2154|code|B               loc_80E|208-231
+2156|code|MOVS            R0, #0|0-32
+2158|code|ADD             SP, SP, #0x24 ; '$'|9-176
+2160|code|POP.W           {tail-R11,PC}|189-232-240-143
+2164|data|DCD grub_real_dprintf|172-14-0-0
+2168|data|DCD aHookLlxLlx; "hook %llx+%llx\n"|70-13-0-0
+2172|data|DCD aMmapMmapC; "mmap/mmap.c"|3-13-0-0
+2176|data|DCD aBadram; "badram"|63-13-0-0
+2180|data|DCD __aeabi_llsr|136-14-0-0
+2184|data|DCD __aeabi_llsl|180-14-0-0
+2188|data|DCD aLlxSizeLlxIsAB; "%llx (size %llx) is a badram range\n"|86-13-0-0
+2192|data|DCD grub_mmap_register+1|169-3-0-0
+2196|code|PUSH            {str-R2,LR}|7-181
+2198|code|MOVS            R2, #0|0-34
+2200|code|LDR             R3, =grub_strtoul|14-75
+2202|code|ADD             R1, SP, #0x10+ptr|1-169
+2204|code|BLX             R3; grub_strtoul|152-71
+2206|code|LDR             R3, [SP,#0x10+ptr]|1-155
+2208|code|LDRB            R3, [R3]|27-120
+2210|code|CMP             R3, #0x4B ; 'K'|75-43
+2212|code|BEQ             loc_8C0|12-208
+2214|code|BHI             loc_8B2|4-216
+2216|code|CMP             R3, #0x47 ; 'G'|71-43
+2218|code|BNE             loc_8CC|15-209
+2220|code|LSRS            R1, R0, #2|129-8
+2222|code|LSLS            R0, R0, #0x1E|128-7
+2224|code|B               loc_8CE|13-224
+2226|code|CMP             R3, #0x4D ; 'M'|77-43
+2228|code|BEQ             loc_8C6|7-208
+2230|code|CMP             R3, #0x54 ; 'T'|84-43
+2232|code|BNE             loc_8CC|8-209
+2234|code|LSLS            R1, R0, #8|1-2
+2236|code|MOVS            R0, #0|0-32
+2238|code|B               loc_8CE|6-224
+2240|code|LSRS            R1, R0, #0x16|129-13
+2242|code|LSLS            R0, R0, #0xA|128-2
+2244|code|B               loc_8CE|3-224
+2246|code|LSRS            R1, R0, #0xC|1-11
+2248|code|LSLS            R0, R0, #0x14|0-5
+2250|code|B               loc_8CE|0-224
+2252|code|MOVS            R1, #0|0-33
+2254|code|ADD             SP, SP, #0xC|3-176
+2256|code|POP.W           {PC}|93-248-4-251
+2260|data|DCD grub_strtoul|192-14-0-0
+2264|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2268|code|SUB             SP, SP, #0x54|149-176
+2270|code|MOVS            R6, #0|0-38
+2272|code|LDR             R5, =(grub_machine_mmap_iterate+1)|121-77
+2274|code|STR             hook_data_0, [SP,#0x78+hook_data]|7-145
+2276|code|ADD             hook_data_0, SP, #0x78+var_28|20-169
+2278|code|STR             hook_0, [SP,#0x78+hook]|6-144
+2280|code|STR.W           R6, [R1,#-0x24]!; hook_data|65-248-36-109
+2284|code|LDR             hook_0, =(count_hook+1); hook|119-72
+2286|code|BLX             R5; grub_machine_mmap_iterate|168-71
+2288|code|LDR             R3, [SP,#0x78+mmap_num]|11-155
+2290|code|MOVS            R0, #0x30 ; '0'|48-32
+2292|code|LDR             R7, =grub_malloc|118-79
+2294|code|MULS            R0, R3|88-67
+2296|code|BLX             R7; grub_malloc|184-71
+2298|code|LDR             R3, =grub_zalloc|118-75
+2300|code|STR             R0, [SP,#0x78+ctx]|12-144
+2302|code|MOVS            R0, #0xC|12-32
+2304|code|BLX             R3; grub_zalloc|152-71
+2306|code|STR             R7, [SP,#0x78+var_58]|8-151
+2308|code|MOV             R4, R0|4-70
+2310|code|LDR             present, [SP,#0x78+ctx]|12-152
+2312|code|CBZ             R0, loc_90C|0-177
+2314|code|CBNZ            present, loc_91A|52-185
+2316|code|LDR             R5, =grub_free|114-77
+2318|code|BLX             R5; grub_free|168-71
+2320|code|MOV             R0, present|32-70
+2322|code|BLX             R5; grub_free|168-71
+2324|code|LDR             R3, =grub_errno|113-75
+2326|code|LDR             R0, [R3]|24-104
+2328|code|B               loc_AC2|211-224
+2330|code|LDR             R0, =(fill_hook+1); hook|113-72
+2332|code|ADD             R1, SP, #0x78+ctx; hook_data|12-169
+2334|code|STR             R6, [SP,#0x78+ctx.i]|13-150
+2336|code|BLX             R5; grub_machine_mmap_iterate|168-71
+2338|code|MOV.W           R9, #0x18|79-240-24-9
+2342|code|MOVS            R1, #0|0-33
+2344|code|MOV             R8, R1|136-70
+2346|code|LDR             R3, [SP,#0x78+mmap_num]|11-155
+2348|code|LSLS            R3, R3, #1|91-0
+2350|code|SUBS            R3, #1|1-59
+2352|code|CMP             i_0, R3|152-69
+2354|code|BGE             loc_996|48-218
+2356|code|MLA.W           R3, i_0, R9, R9|8-251-9-147
+2360|code|LDR             R6, [SP,#0x78+ctx]|12-158
+2362|code|ADDS            R5, R6, R3|245-24
+2364|code|SUBS            R3, #0x18|24-59
+2366|code|ADD             R6, R3|30-68
+2368|code|LDRD.W          R10, R11, [R5]|213-233-0-171
+2372|code|LDRD.W          R2, R3, [R6]|214-233-0-35
+2376|code|CMP             R11, R3|155-69
+2378|code|IT EQ|8-191
+2380|code|CMPEQ           R10, R2|146-69
+2382|code|BCC             loc_95C|5-211
+2384|code|BNE             loc_990|30-209
+2386|code|LDR             R3, [R5,#8]|171-104
+2388|code|CBNZ            R3, loc_990|227-185
+2390|code|LDR             R3, [R6,#8]|179-104
+2392|code|CMP             R3, #1|1-43
+2394|code|BNE             loc_990|25-209
+2396|code|MOV             R12, R5|172-70
+2398|code|ADD.W           LR, SP, #0x78+t|13-241-56-14
+2402|code|LDM.W           R12!, {R0-R3}|188-232-15-0
+2406|code|MOV             R7, R6|55-70
+2408|code|STM.W           LR!, {R0-R3}|174-232-15-0
+2412|code|LDM.W           R12, {R0,R1}|156-232-3-0
+2416|code|STM.W           LR, {R0,R1}|142-232-3-0
+2420|code|LDM             R7!, {R0-R3}|15-207
+2422|code|STM             R5!, {R0-R3}|15-197
+2424|code|ADD             R5, SP, #0x78+t|14-173
+2426|code|LDM.W           R7, {R0,R1}|151-232-3-0
+2430|code|STM.W           R12, {R0,R1}|140-232-3-0
+2434|code|LDM             R5!, {R0-R3}|15-205
+2436|code|STM             R6!, {R0-R3}|15-198
+2438|code|LDM.W           LR, {R0,R1}|158-232-3-0
+2442|code|STM.W           R7, {R0,R1}|135-232-3-0
+2446|code|MOVS            R1, #1|1-33
+2448|code|ADD.W           i_0, i_0, #1|8-241-1-8
+2452|code|B               loc_92A|201-231
+2454|code|CMP             done, #0|0-41
+2456|code|BNE             loc_926|197-209
+2458|code|LDR             R3, [SP,#0x78+ctx]|12-155
+2460|code|MOV.W           i_0, #0xC|79-240-12-8
+2464|code|LDR.W           R9, =grub_free|223-248-52-145
+2468|code|STR             done, [SP,#0x78+i]|3-145
+2470|code|LDRD.W          R10, R11, [R3]|211-233-0-171
+2474|code|LDR             R7, [R3,#0xC]|223-104
+2476|code|LDR             R3, [SP,#0x78+mmap_num]|11-155
+2478|code|LDR             R2, [SP,#0x78+i]|3-154
+2480|code|CMP.W           R2, R3,LSL#1|178-235-67-15
+2484|code|BGE.W           loc_ABA|128-242-129-128
+2488|code|LDR             R2, [SP,#0x78+i]|3-154
+2490|code|MOVS            R3, #0x18|24-35
+2492|code|LDR             R1, [SP,#0x78+ctx]|12-153
+2494|code|MUL.W           R6, R3, R2|3-251-2-246
+2498|code|ADD             R1, R6|49-68
+2500|code|LDR             R3, [R1,#8]|139-104
+2502|code|LDR             R2, [R1,#0x10]|10-105
+2504|code|CBZ             R3, loc_A12|27-179
+2506|code|MUL.W           R2, R8, R2|8-251-2-242
+2510|code|ADDS            R3, present, R2|163-24
+2512|code|LDR             R0, [R3,#8]|152-104
+2514|code|CMP             R0, #0|0-40
+2516|code|BEQ             loc_A48|56-208
+2518|code|LDR             R1, [R1,#0xC]|201-104
+2520|code|LDR             R0, [R3,#4]|88-104
+2522|code|CMP             R0, R1|136-66
+2524|code|BNE             loc_9FA|13-209
+2526|code|LDR.W           LR, [present,R2]|84-248-2-224
+2530|code|CMP.W           LR, #0|190-241-0-15
+2534|code|BEQ             loc_9F4|5-208
+2536|code|LDM.W           LR, {R0-R2}|158-232-7-0
+2540|code|STM.W           R3, {R0-R2}|131-232-7-0
+2544|code|MOV             R0, LR|112-70
+2546|code|B               loc_A0E|12-224
+2548|code|STR.W           LR, [R3,#8]|195-248-8-224
+2552|code|B               loc_A48|38-224
+2554|code|LDR             R0, [present,R2]|160-88
+2556|code|B               loc_A02|1-224
+2558|code|MOV             R3, R0|3-70
+2560|code|LDR             R0, [R0]|0-104
+2562|code|CBZ             R0, loc_A48|8-179
+2564|code|LDR             R2, [R0,#4]|66-104
+2566|code|CMP             R2, R1|138-66
+2568|code|BNE             loc_9FE|249-209
+2570|code|LDR             R2, [p]|2-104
+2572|code|STR             R2, [R3]|26-96
+2574|code|BLX             R9; grub_free|200-71
+2576|code|B               loc_A48|26-224
+2578|code|MLA.W           R2, R8, R2, present|8-251-2-66
+2582|code|LDR             R3, [R2,#8]|147-104
+2584|code|CBNZ            R3, loc_A2A|59-185
+2586|code|MOVS            R3, #1|1-35
+2588|code|STR             R3, [R2,#8]|147-96
+2590|code|LDR             R3, [R1,#0x10]|11-105
+2592|code|LDR             R2, [R1,#0xC]|202-104
+2594|code|MLA.W           R3, R8, R3, present|8-251-3-67
+2598|code|STR             R2, [R3,#4]|90-96
+2600|code|B               loc_A48|14-224
+2602|code|LDR             R3, [SP,#0x78+var_58]|8-155
+2604|code|MOVS            R0, #0xC|12-32
+2606|code|BLX             R3|152-71
+2608|code|LDR             R3, [SP,#0x78+ctx]|12-155
+2610|code|ADD             R3, R6|51-68
+2612|code|LDR             R2, [R3,#0xC]|218-104
+2614|code|LDR             R3, [R3,#0x10]|27-105
+2616|code|MUL.W           R3, R8, R3|8-251-3-243
+2620|code|STR             R2, [n,#4]|66-96
+2622|code|MOVS            R2, #1|1-34
+2624|code|STR             R2, [n,#8]|130-96
+2626|code|LDR             R2, [present,R3]|226-88
+2628|code|STR             R2, [n]|2-96
+2630|code|STR             n, [present,R3]|224-80
+2632|code|LDR             R3, [present,#8]|163-104
+2634|code|CBZ             R3, loc_A5C|59-177
+2636|code|LDR.W           R12, [present,#4]|212-248-4-192
+2640|code|CMP.W           curtype, #0xFFFFFFFF|188-241-255-63
+2644|code|BEQ             loc_A60|4-208
+2646|code|CMP             curtype, lasttype|188-69
+2648|code|BNE             loc_A60|2-209
+2650|code|B               loc_AB2|42-224
+2652|code|MOV.W           R12, #0xFFFFFFFF|79-240-255-60
+2656|code|LDR             R3, [SP,#0x78+ctx]|12-155
+2658|code|ADD             R3, R6|51-68
+2660|code|LDRD.W          R2, R3, [R3]|211-233-0-35
+2664|code|CMP             R11, R3|155-69
+2666|code|IT EQ|8-191
+2668|code|CMPEQ           R10, R2|146-69
+2670|code|STRD.W          R2, R3, [SP,#0x78+var_68]|205-233-4-35
+2674|code|BEQ             loc_A9E|20-208
+2676|code|ADDS            R1, lasttype, #2|185-28
+2678|code|CMP             R1, #1|1-41
+2680|code|BLS             loc_A9E|17-217
+2682|code|LDR             R3, [SP,#0x78+hook_data]|7-155
+2684|code|MOV             R0, R10|80-70
+2686|code|STR.W           R12, [SP,#0x78+var_54]|205-248-36-192
+2690|code|MOV             R1, R11|89-70
+2692|code|STR             lasttype, [SP,#0x78+var_78]|0-151
+2694|code|STR             R3, [SP,#0x78+var_74]|1-147
+2696|code|LDRD.W          R2, R3, [SP,#0x78+var_68]|221-233-4-35
+2700|code|LDR             R5, [SP,#0x78+hook]|6-157
+2702|code|SUBS.W          R2, R2, R10|178-235-10-2
+2706|code|SBC.W           R3, R3, R11|99-235-11-3
+2710|code|BLX             R5|168-71
+2712|code|LDR.W           R12, [SP,#0x78+var_54]|221-248-36-192
+2716|code|CBNZ            R0, loc_ABA|104-185
+2718|code|CMP.W           R12, #0xFFFFFFFF|188-241-255-63
+2722|code|BEQ             loc_AA8|1-208
+2724|code|CMP             R12, lasttype|188-69
+2726|code|BEQ             loc_AB2|4-208
+2728|code|LDR             R3, [SP,#0x78+ctx]|12-155
+2730|code|MOV             R7, lasttype|103-70
+2732|code|ADD             R6, R3|30-68
+2734|code|LDRD.W          R10, R11, [R6]|214-233-0-171
+2738|code|LDR             R3, [SP,#0x78+i]|3-155
+2740|code|ADDS            R3, #1|1-51
+2742|code|STR             R3, [SP,#0x78+i]|3-147
+2744|code|B               loc_9AC|120-231
+2746|code|LDR             R0, [SP,#0x78+ctx]|12-152
+2748|code|LDR             R3, =grub_free|6-75
+2750|code|BLX             R3; grub_free|152-71
+2752|code|MOVS            R0, #0|0-32
+2754|code|ADD             SP, SP, #0x54 ; 'T'|21-176
+2756|code|POP.W           {present-R11,PC}|189-232-240-143
+2760|data|DCD grub_machine_mmap_iterate+1|163-3-0-0
+2764|data|DCD count_hook+1|161-5-0-0
+2768|data|DCD grub_malloc|164-14-0-0
+2772|data|DCD grub_zalloc|160-14-0-0
+2776|data|DCD grub_free|184-14-0-0
+2780|data|DCD grub_errno|144-14-0-0
+2784|data|DCD fill_hook+1|77-6-0-0
+2788|code|CMP             argc, #2|2-41
+2790|code|PUSH            {cmd-R6,LR}|127-181
+2792|code|MOV             R6, args|22-70
+2794|code|BEQ             loc_AF8|5-208
+2796|code|MOVS            cmd, #0x12|18-32
+2798|code|LDR             argc, =aTwoArgumentsEx; "two arguments expected"|13-73
+2800|code|LDR             R3, =grub_error|13-75
+2802|code|BLX             R3; grub_error|152-71
+2804|code|MOV             R4, R0|4-70
+2806|code|B               loc_B1E|18-224
+2808|code|LDR             cmd, [args]; str|16-104
+2810|code|BL              parsemem|255-247-203-254
+2814|code|LDR             R5, =grub_errno|11-77
+2816|code|LDR             R4, [R5]|44-104
+2818|code|STRD.W          R0, R1, [SP,#0x20+range]|205-233-0-1
+2822|code|CBNZ            R4, loc_B1E|84-185
+2824|code|LDR             R0, [args,#4]; str|112-104
+2826|code|BL              parsemem|255-247-195-254
+2830|code|LDR             R4, [R5]|44-104
+2832|code|STRD.W          R0, R1, [SP,#0x20+range.to]|205-233-2-1
+2836|code|CBNZ            R4, loc_B1E|28-185
+2838|code|LDR             R0, =(cutmem_iter+1); hook|6-72
+2840|code|MOV             R1, SP; hook_data|105-70
+2842|code|BL              grub_mmap_iterate|255-247-221-254
+2846|code|MOV             R0, R4|32-70
+2848|code|ADD             SP, SP, #0x10|4-176
+2850|code|POP             {R4-args,PC}|112-189
+2852|data|DCD aTwoArgumentsEx; "two arguments expected"|122-13-0-0
+2856|data|DCD grub_error|176-14-0-0
+2860|data|DCD grub_errno|144-14-0-0
+2864|data|DCD cutmem_iter+1|201-6-0-0
+2868|code|CMP             argc, #1|1-41
+2870|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+2874|code|MOV             R5, args|21-70
+2876|code|SUB             SP, SP, #0x2C|139-176
+2878|code|BEQ             loc_B4A|4-208
+2880|code|LDR             argc, =aOneArgumentExp; "one argument expected"|38-73
+2882|code|MOVS            cmd, #0x12|18-32
+2884|code|LDR             R3, =grub_error|38-75
+2886|code|BLX             R3; grub_error|152-71
+2888|code|B               loc_BD4|68-224
+2890|code|LDR             R3, =aExecutingBadra; "executing badram\n"|38-75
+2892|code|MOV.W           argc, #0x1B0|79-244-216-113
+2896|code|LDR             cmd, =aMmapMmapC; "mmap/mmap.c"|37-72
+2898|code|MOV.W           R7, #0xFFFFFFFF|79-240-255-55
+2902|code|LDR             args, =aBadram; "badram"|37-74
+2904|code|LDR             R4, =grub_real_dprintf|37-76
+2906|code|BLX             R4; grub_real_dprintf|160-71
+2908|code|LDR             R3, [args]|43-104
+2910|code|LDR             args, =grub_strtoull|37-77
+2912|code|LDR             R6, =0xFFFFFC00|37-78
+2914|code|STR             R3, [SP,#0x48+str]|5-147
+2916|code|MOV             R8, R5|168-70
+2918|code|MOVS            R2, #0x10|16-34
+2920|code|LDR             R0, [SP,#0x48+str]|5-152
+2922|code|ADD             R1, SP, #0x48+str|5-169
+2924|code|BLX             R5; grub_strtoull|168-71
+2926|code|LDR             R3, [SP,#0x48+str]|5-155
+2928|code|STRD.W          R0, R1, [SP,#0x48+entry]|205-233-6-1
+2932|code|ADD             R1, SP, #0x48+str|5-169
+2934|code|LDRB            R2, [R3]|26-120
+2936|code|CMP             R2, #0x2C ; ','|44-42
+2938|code|MOV.W           R2, #0x10|79-240-16-2
+2942|code|ITT EQ|4-191
+2944|code|ADDEQ           R3, #1|1-51
+2946|code|STREQ           R3, [SP,#0x48+str]|5-147
+2948|code|LDR             R0, [SP,#0x48+str]|5-152
+2950|code|BLX             R8; grub_strtoull|192-71
+2952|code|LDR             R3, [SP,#0x48+str]|5-155
+2954|code|STRD.W          R0, R1, [SP,#0x48+entry.mask]|205-233-8-1
+2958|code|LDRB            R2, [R3]|26-120
+2960|code|CMP             R2, #0x2C ; ','|44-42
+2962|code|ITT EQ|4-191
+2964|code|ADDEQ           R3, #1|1-51
+2966|code|STREQ           R3, [SP,#0x48+str]|5-147
+2968|code|LDR             R3, =grub_errno|24-75
+2970|code|LDR             R2, [R3]|26-104
+2972|code|CMP             R2, #0xA|10-42
+2974|code|BNE             loc_BA6|2-209
+2976|code|MOVS            R0, #0|0-32
+2978|code|STR             R0, [R3]|24-96
+2980|code|B               loc_BD4|22-224
+2982|code|ADD.W           R9, SP, #0x48+var_20|13-241-40-9
+2986|code|ANDS            R0, R6|48-64
+2988|code|ANDS            R1, R7|57-64
+2990|code|STRD.W          R0, R1, [SP,#0x48+entry.mask]|205-233-8-1
+2994|code|LDRD.W          R2, R3, [R9,#-0x10]!|121-233-4-35
+2998|code|STRD.W          R0, R1, [SP,#0x48+var_40]|205-233-2-1
+3002|code|MOV.W           R1, #0x1CA|79-244-229-113
+3006|code|LDR             R0, =aMmapMmapC; "mmap/mmap.c"|10-72
+3008|code|STRD.W          R2, R3, [SP,#0x48+var_48]|205-233-0-35
+3012|code|LDR             R2, =aBadram; "badram"|9-74
+3014|code|LDR             R3, =aBadramLlxLlx; "badram %llx:%llx\n"|14-75
+3016|code|BLX             R4; grub_real_dprintf|160-71
+3018|code|MOV             R1, R9; hook_data|73-70
+3020|code|LDR             R0, =(badram_iter+1); hook|13-72
+3022|code|BL              grub_mmap_iterate|255-247-131-254
+3026|code|B               loc_B66|200-231
+3028|code|ADD             SP, SP, #0x2C ; ','|11-176
+3030|code|POP.W           {R4-R9,PC}|189-232-240-131
+3034|data|ALIGN 4|0-191
+3036|data|DCD aOneArgumentExp; "one argument expected"|145-13-0-0
+3040|data|DCD grub_error|176-14-0-0
+3044|data|DCD aExecutingBadra; "executing badram\n"|167-13-0-0
+3048|data|DCD aMmapMmapC; "mmap/mmap.c"|3-13-0-0
+3052|data|DCD aBadram; "badram"|63-13-0-0
+3056|data|DCD grub_real_dprintf|172-14-0-0
+3060|data|DCD grub_strtoull|132-14-0-0
+3064|data|DCD 0xFFFFFC00|0-252-255-255
+3068|data|DCD grub_errno|144-14-0-0
+3072|data|DCD aBadramLlxLlx; "badram %llx:%llx\n"|185-13-0-0
+3076|data|DCD badram_iter+1|21-7-0-0
+3080|code|PUSH            {mod,R1,R4-R6,LR}|115-181
+3082|code|MOVS            R6, #0|0-38
+3084|code|LDR             R5, =grub_register_command_prio|8-77
+3086|code|STR             R6, [SP,#0x18+var_18]|0-150
+3088|code|LDR             R1, =(grub_cmd_badram+1)|8-73
+3090|code|LDR             R2, =aAddr1Mask1Addr; "ADDR1,MASK1[,ADDR2,MASK2[,...]]"|9-74
+3092|code|LDR             R3, =aDeclareMemoryR; "Declare memory regions as faulty (badra"...|9-75
+3094|code|LDR             mod, =aBadram; "badram"|10-72
+3096|code|BLX             R5; grub_register_command_prio|168-71
+3098|code|LDR             R4, =cmd|10-76
+3100|code|STR             R6, [SP,#0x18+var_18]|0-150
+3102|code|LDR             R1, =(grub_cmd_cutmem+1)|10-73
+3104|code|LDR             R2, =aFromKMGToKMG; "FROM[K|M|G] TO[K|M|G]"|10-74
+3106|code|LDR             R3, =aRemoveAnyMemor; "Remove any memory regions in specified "...|11-75
+3108|code|STR             R0, [R4]|32-96
+3110|code|LDR             R0, =aCutmem; "cutmem"|11-72
+3112|code|BLX             R5; grub_register_command_prio|168-71
+3114|code|STR             R0, [R4,#(cmd_cut - 0xE7C)]|96-96
+3116|code|ADD             SP, SP, #8|2-176
+3118|code|POP             {R4-R6,PC}|112-189
+3120|data|DCD grub_register_command_prio|148-14-0-0
+3124|data|DCD grub_cmd_badram+1|53-11-0-0
+3128|data|DCD aAddr1Mask1Addr; "ADDR1,MASK1[,ADDR2,MASK2[,...]]"|203-13-0-0
+3132|data|DCD aDeclareMemoryR; "Declare memory regions as faulty (badra"...|235-13-0-0
+3136|data|DCD aBadram; "badram"|63-13-0-0
+3140|data|DCD cmd|124-14-0-0
+3144|data|DCD grub_cmd_cutmem+1|229-10-0-0
+3148|data|DCD aFromKMGToKMG; "FROM[K|M|G] TO[K|M|G]"|29-14-0-0
+3152|data|DCD aRemoveAnyMemor; "Remove any memory regions in specified "...|51-14-0-0
+3156|data|DCD aCutmem; "cutmem"|22-14-0-0
+3160|code|PUSH            {R3-R5,LR}|56-181
+3162|code|LDR             R5, =cmd|3-77
+3164|code|LDR             R4, =grub_unregister_command|3-76
+3166|code|LDR             R0, [R5]|40-104
+3168|code|BLX             R4; grub_unregister_command|160-71
+3170|code|LDR             R0, [R5,#(cmd_cut - 0xE7C)]|104-104
+3172|code|BLX             R4; grub_unregister_command|160-71
+3174|code|POP             {R3-R5,PC}|56-189
+3176|data|DCD cmd|124-14-0-0
+3180|data|DCD grub_unregister_command|156-14-0-0
+3207|data|DCB "mmap/efi/mmap.c",0|109-109-97-112-47-101-102-105-47-109-109-97-112-46-99-0
+3223|data|DCB "mmap",0|109-109-97-112-0
+3228|data|DCB "EFI memory region 0x%llx-0x%llx: %d",0xA,0|69-70-73-32-109-101-109-111-114-121-32-114-101-103-105-111-110-32-48-120-37-108-108-120-45-48-120-37-108-108-120-58-32-37-100-10-0
+3265|data|DCB "Unknown memory type %d, considering reserved",0xA,0|85-110-107-110-111-119-110-32-109-101-109-111-114-121-32-116-121-112-101-32-37-100-44-32-99-111-110-115-105-100-101-114-105-110-103-32-114-101-115-101-114-118-101-100-10-0
+3311|data|DCB "handle %d not found",0|104-97-110-100-108-101-32-37-100-32-110-111-116-32-102-111-117-110-100-0
+3331|data|DCB "mmap/mmap.c",0|109-109-97-112-47-109-109-97-112-46-99-0
+3343|data|DCB "mmap",0|109-109-97-112-0
+3348|data|DCB "Unknown memory type %d. Assuming unusable",0xA,0|85-110-107-110-111-119-110-32-109-101-109-111-114-121-32-116-121-112-101-32-37-100-46-32-65-115-115-117-109-105-110-103-32-117-110-117-115-97-98-108-101-10-0
+3391|data|DCB "badram",0|98-97-100-114-97-109-0
+3398|data|DCB "hook %llx+%llx",0xA,0|104-111-111-107-32-37-108-108-120-43-37-108-108-120-10-0
+3414|data|DCB "%llx (size %llx) is a badram range",0xA,0|37-108-108-120-32-40-115-105-122-101-32-37-108-108-120-41-32-105-115-32-97-32-98-97-100-114-97-109-32-114-97-110-103-101-10-0
+3450|data|DCB "two arguments expected",0|116-119-111-32-97-114-103-117-109-101-110-116-115-32-101-120-112-101-99-116-101-100-0
+3473|data|DCB "one argument expected",0|111-110-101-32-97-114-103-117-109-101-110-116-32-101-120-112-101-99-116-101-100-0
+3495|data|DCB "executing badram",0xA,0|101-120-101-99-117-116-105-110-103-32-98-97-100-114-97-109-10-0
+3513|data|DCB "badram %llx:%llx",0xA,0|98-97-100-114-97-109-32-37-108-108-120-58-37-108-108-120-10-0
+3531|data|DCB "ADDR1,MASK1[,ADDR2,MASK2[,...]]",0|65-68-68-82-49-44-77-65-83-75-49-91-44-65-68-68-82-50-44-77-65-83-75-50-91-44-46-46-46-93-93-0
+3563|data|DCB "Declare memory regions as faulty (badram).",0|68-101-99-108-97-114-101-32-109-101-109-111-114-121-32-114-101-103-105-111-110-115-32-97-115-32-102-97-117-108-116-121-32-40-98-97-100-114-97-109-41-46-0
+3606|data|DCB "cutmem",0|99-117-116-109-101-109-0
+3613|data|DCB "FROM[K|M|G] TO[K|M|G]",0|70-82-79-77-91-75-124-77-124-71-93-32-84-79-91-75-124-77-124-71-93-0
+3635|data|DCB "Remove any memory regions in specified range.",0|82-101-109-111-118-101-32-97-110-121-32-109-101-109-111-114-121-32-114-101-103-105-111-110-115-32-105-110-32-115-112-101-99-105-102-105-101-100-32-114-97-110-103-101-46-0
+3684|data|DCD 1|1-0-0-0
+3688|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+3704|data|% 4|255-255-255-255
+3708|data|% 4|255-255-255-255

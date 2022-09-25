@@ -1,0 +1,455 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {lba-ch,R4-R11,LR}|45-233-247-79
+4|code|MOV             R10, cl|138-70
+6|code|LDR             R7, =__aeabi_uidiv|22-79
+8|code|MOVW            cl, #0x3EC1|67-246-193-97
+12|code|MOV             R8, lba|128-70
+14|code|MOV             R9, ch|145-70
+16|code|MOV             R6, dh|30-70
+18|code|BLX             R7; __aeabi_uidiv|184-71
+20|code|CMP.W           R0, #0x400|176-245-128-111
+24|code|MOV             R4, R0|4-70
+26|code|BCC             loc_2A|6-211
+28|code|MOVS            R3, #0xFF|255-35
+30|code|STRB            R3, [dh]|51-112
+32|code|STRB.W          R3, [ch]|137-248-0-48
+36|code|STRB.W          R3, [cl]|138-248-0-48
+40|code|B               loc_58|22-224
+42|code|LDR             R3, =__aeabi_uidivmod|14-75
+44|code|AND.W           R5, cylinder, #0x300|0-244-64-117
+48|code|MOVS            R1, #0x3F ; '?'|63-33
+50|code|MOV             cylinder, lba|64-70
+52|code|MOV.W           R11, R5,LSR#2|79-234-149-11
+56|code|STR             R3, [SP,#0x30+var_2C]|1-147
+58|code|BLX             R3; __aeabi_uidivmod|152-71
+60|code|MOV             R0, lba|64-70
+62|code|ADDS            R1, #1|1-49
+64|code|ORR.W           R5, R11, R1|75-234-1-5
+68|code|MOVS            R1, #0x3F ; '?'|63-33
+70|code|STRB.W          R5, [cl]|138-248-0-80
+74|code|STRB.W          cylinder, [ch]|137-248-0-64
+78|code|BLX             R7; __aeabi_uidiv|184-71
+80|code|MOVS            R1, #0xFF|255-33
+82|code|LDR             R3, [SP,#0x30+var_2C]|1-155
+84|code|BLX             R3|152-71
+86|code|STRB            R1, [dh]|49-112
+88|code|ADD             SP, SP, #0xC|3-176
+90|code|POP.W           {cylinder-R11,PC}|189-232-240-143
+94|data|ALIGN 0x10|0-191
+96|data|DCD __aeabi_uidiv|192-6-0-0
+100|data|DCD __aeabi_uidivmod|212-6-0-0
+104|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+108|code|SUBS            R3, argc_0, #0|11-30
+110|code|SUB.W           SP, SP, #0x234|173-245-13-125
+114|code|MOV             R9, args|145-70
+116|code|STR             R3, [SP,#0x258+argc]|11-147
+118|code|BGT             loc_7E|2-220
+120|code|MOVS            cmd, #0x12|18-32
+122|code|LDR             argc_0, =aDeviceNameRequ; "device name required"|162-73
+124|code|B               loc_88|4-224
+126|code|LDR             R3, [SP,#0x258+argc]|11-155
+128|code|CMP             R3, #4|4-43
+130|code|BLE             loc_90|5-221
+132|code|LDR             argc_0, =aOnly3Partition; "only 3 partitions can be in hybrid MBR"|160-73
+134|code|MOVS            cmd, #0x12|18-32
+136|code|LDR             R3, =grub_error|160-75
+138|code|BLX             R3; grub_error|152-71
+140|code|MOV             R5, R0|5-70
+142|code|B               loc_408|187-225
+144|code|LDR             R4, [args]|20-104
+146|code|LDR             R6, =grub_device_open|159-78
+148|code|LDRB            R3, [R4]|35-120
+150|code|CMP             R3, #0x28 ; '('|40-43
+152|code|BNE             loc_D0|26-209
+154|code|MOV             cmd, R4|32-70
+156|code|LDR             R5, =grub_strlen|157-77
+158|code|BLX             R5; grub_strlen|168-71
+160|code|ADD             R0, R4|32-68
+162|code|LDRB.W          R7, [R0,#-1]|16-248-1-124
+166|code|CMP             R7, #0x29 ; ')'|41-47
+168|code|BNE             loc_D0|18-209
+170|code|LDR.W           R4, [args]|217-248-0-64
+174|code|MOV             R0, R4|32-70
+176|code|BLX             R5; grub_strlen|168-71
+178|code|MOVS            R3, #0|0-35
+180|code|ADD             R0, R4|32-68
+182|code|STRB.W          R3, [R0,#-1]|0-248-1-60
+186|code|LDR.W           R0, [args]|217-248-0-0
+190|code|ADDS            R0, #1|1-48
+192|code|BLX             R6; grub_device_open|176-71
+194|code|LDR.W           R6, [args]|217-248-0-96
+198|code|MOV             R4, R0|4-70
+200|code|MOV             dev, R6|48-70
+202|code|BLX             R5; grub_strlen|168-71
+204|code|STRB            R7, [R6,R0]|55-84
+206|code|B               loc_D8|3-224
+208|code|LDR.W           R0, [args]|217-248-0-0
+212|code|BLX             R6; grub_device_open|176-71
+214|code|MOV             R4, R0|4-70
+216|code|CMP             dev, #0|0-44
+218|code|BEQ             loc_13E|48-208
+220|code|LDR             R0, [dev]|32-104
+222|code|CBNZ            R0, loc_EC|40-185
+224|code|MOV             R0, dev|32-70
+226|code|LDR             R3, =grub_device_close|141-75
+228|code|BLX             R3; grub_device_close|152-71
+230|code|MOVS            R0, #0x12|18-32
+232|code|LDR             R1, =aNotADisk; "not a disk"|140-73
+234|code|B               loc_88|205-231
+236|code|MOV.W           R1, #0x200|79-244-0-113
+240|code|MOVS            R2, #0|0-34
+242|code|MOVS            R3, #0|0-35
+244|code|STR             R1, [SP,#0x258+var_250]|2-145
+246|code|ADD             R5, SP, #0x258+mbr|12-173
+248|code|STRD.W          R2, R3, [SP,#0x258+var_258]|205-233-0-35
+252|code|STR             R5, [SP,#0x258+var_24C]|3-149
+254|code|LDR             R1, =grub_disk_read|136-73
+256|code|BLX             R1; grub_disk_read|136-71
+258|code|CBNZ            R0, loc_138|200-185
+260|code|LDRH.W          R2, [R5,#0x1FE]|181-248-254-33
+264|code|MOVW            R3, #0xAA55|74-246-85-35
+268|code|CMP             R2, R3|154-66
+270|code|BEQ             loc_11C|5-208
+272|code|MOV             R0, dev|32-70
+274|code|LDR             R3, =grub_device_close|129-75
+276|code|BLX             R3; grub_device_close|152-71
+278|code|MOVS            R0, #0x13|19-32
+280|code|LDR             R1, =aNoSignature; "no signature"|130-73
+282|code|B               loc_88|181-231
+284|code|ADDS            R3, R5, R0|43-24
+286|code|LDRB.W          R3, [R3,#0x1C2]|147-248-194-49
+290|code|CMP             R3, #0xEE|238-43
+292|code|BEQ             loc_144|14-208
+294|code|ADDS            R0, #0x10|16-48
+296|code|CMP             R0, #0x40 ; '@'|64-40
+298|code|BNE             loc_11C|247-209
+300|code|MOV             R0, dev|32-70
+302|code|LDR             R3, =grub_device_close|122-75
+304|code|BLX             R3; grub_device_close|152-71
+306|code|MOVS            R0, #0x13|19-32
+308|code|LDR             R1, =aNoGptPartition; "no GPT partition map found"|124-73
+310|code|B               loc_88|167-231
+312|code|MOV             R0, dev|32-70
+314|code|LDR             R3, =grub_device_close|119-75
+316|code|BLX             R3; grub_device_close|152-71
+318|code|LDR             R3, =grub_errno|123-75
+320|code|LDR             R5, [R3]|29-104
+322|code|B               loc_408|97-225
+324|code|LDR             R3, [dev]|35-104
+326|code|ADD             R7, SP, #0x258+mbr.entries.start_sector+0x10|128-175
+328|code|ADD.W           R10, args, #4|9-241-4-10
+332|code|MOVS            R5, #1|1-37
+334|code|LDRD.W          R2, R3, [R3,#8]|211-233-2-35
+338|code|STRD.W          R2, R3, [SP,#0x258+first_sector]|205-233-4-35
+342|code|MOVS            R3, #0|0-35
+344|code|STR             R3, [SP,#0x258+numactive]|10-147
+346|code|LDR             R3, [SP,#0x258+argc]|11-155
+348|code|CMP             i, R3|157-66
+350|code|BEQ.W           loc_2E2|0-240-192-128
+354|code|LDR.W           R0, [R10]|218-248-0-0
+358|code|MOVS            R1, #0x2B ; '+'|43-33
+360|code|LDR             R3, =grub_strchr|113-75
+362|code|MOV             R8, R10|208-70
+364|code|BLX             R3; grub_strchr|152-71
+366|code|MOV             R6, separator|6-70
+368|code|CBNZ            separator, loc_180|48-185
+370|code|LDR.W           separator, [R10]|218-248-0-0
+374|code|MOVS            R1, #0x2D ; '-'|45-33
+376|code|LDR             R3, =grub_strchr|109-75
+378|code|BLX             R3; grub_strchr|152-71
+380|code|MOV             R6, separator|6-70
+382|code|CBZ             separator, loc_18A|32-177
+384|code|LDRB            R3, [R6]|51-120
+386|code|STR             R3, [SP,#0x258+csep]|7-147
+388|code|MOVS            R3, #0|0-35
+390|code|STRB            R3, [R6]|51-112
+392|code|B               loc_18C|0-224
+394|code|STR             separator, [SP,#0x258+csep]|7-144
+396|code|LDR.W           R1, [R8]|216-248-0-16
+400|code|ADD.W           R10, R10, #4|10-241-4-10
+404|code|LDR             separator, [dev]|32-104
+406|code|LDR             R3, =grub_partition_probe|103-75
+408|code|BLX             R3; grub_partition_probe|152-71
+410|code|MOV             R8, R0|128-70
+412|code|CBZ             separator, loc_1A4|22-177
+414|code|LDRB.W          R3, [SP,#0x258+csep]|157-248-28-48
+418|code|STRB            R3, [separator]|51-112
+420|code|CMP.W           R8, #0|184-241-0-15
+424|code|BNE             loc_1B6|5-209
+426|code|MOV             partition, dev|32-70
+428|code|LDR             R3, =grub_device_close|90-75
+430|code|BLX             R3; grub_device_close|152-71
+432|code|MOVS            R0, #0xC|12-32
+434|code|LDR             R1, =aNoSuchPartitio; "no such partition"|97-73
+436|code|B               loc_88|104-231
+438|code|LDRD.W          R2, R3, [R8,#8]|216-233-2-35
+442|code|STRD.W          R2, R3, [SP,#0x258+var_238]|205-233-8-35
+446|code|LDRD.W          partition, R1, [SP,#0x258+var_238]|221-233-8-1
+450|code|LDRD.W          R2, R3, [partition,#0x10]|216-233-4-35
+454|code|ADDS            R0, R0, R2|128-24
+456|code|ADCS            R1, R3|89-65
+458|code|MOV             R2, R0|2-70
+460|code|MOV.W           R0, #0xFFFFFFFF|79-240-255-48
+464|code|MOV             R3, R1|11-70
+466|code|MOVS            R1, #0|0-33
+468|code|CMP             R1, R3|153-66
+470|code|IT EQ|8-191
+472|code|CMPEQ           R0, R2|144-66
+474|code|BCS             loc_1E8|5-210
+476|code|MOV             R0, dev|32-70
+478|code|LDR             R3, =grub_device_close|78-75
+480|code|BLX             R3; grub_device_close|152-71
+482|code|MOVS            R0, #0xB|11-32
+484|code|LDR             R1, =aOnlyPartitions; "only partitions residing in the first 2"...|85-73
+486|code|B               loc_88|79-231
+488|code|LDRD.W          R2, R3, [SP,#0x258+first_sector]|221-233-4-35
+492|code|LDRD.W          R0, R1, [SP,#0x258+var_238]|221-233-8-1
+496|code|CMP             R1, R3|153-66
+498|code|IT EQ|8-191
+500|code|CMPEQ           R0, R2|144-66
+502|code|ITTT CC|62-191
+504|code|MOVCC           R2, R0|2-70
+506|code|MOVCC           R3, R1|11-70
+508|code|STRDCC.W        R2, R3, [SP,#0x258+first_sector]|205-233-4-35
+512|code|CBZ             separator, loc_214|70-177
+514|code|LDRB            R3, [separator,#1]|115-120
+516|code|CBZ             R3, loc_214|51-177
+518|code|MOVS            R1, #0|0-33
+520|code|ADDS            R0, separator, #1|112-28
+522|code|MOV             R2, R1|10-70
+524|code|LDR             R3, =grub_strtoul|76-75
+526|code|BLX             R3; grub_strtoul|152-71
+528|code|UXTB            R0, R0|192-178
+530|code|B               loc_26C|43-224
+532|code|LDR             R3, [dev]|35-104
+534|code|MOV             R0, dev|32-70
+536|code|STR.W           partition, [R3,#0x1C]|195-248-28-128
+540|code|LDR             R3, =grub_fs_probe|73-75
+542|code|BLX             R3; grub_fs_probe|152-71
+544|code|LDR             R2, =grub_errno|66-74
+546|code|LDR             R1, [R2]|17-104
+548|code|CMP             R1, #8|8-41
+550|code|MOV             R11, R0|131-70
+552|code|BNE             loc_230|2-209
+554|code|MOVS            R3, #0|0-35
+556|code|STR             R3, [R2]|19-96
+558|code|B               loc_400|231-224
+560|code|CMP             fs, #0|0-40
+562|code|BEQ.W           loc_400|0-240-229-128
+566|code|LDR             fs, [fs,#8]|128-104
+568|code|LDR             R1, =aNtfs; "ntfs"|67-73
+570|code|LDR             separator, =grub_strcmp|68-78
+572|code|BLX             R6; grub_strcmp|176-71
+574|code|CMP             R0, #0|0-40
+576|code|BNE.W           loc_3EE|64-240-213-128
+580|code|MOVS            R0, #7|7-32
+582|code|B               loc_266|14-224
+584|code|LDR.W           R0, [fs,#8]|219-248-8-0
+588|code|LDR             R1, =aHfsplus; "hfsplus"|64-73
+590|code|BLX             R6; grub_strcmp|176-71
+592|code|CMP             R0, #0|0-40
+594|code|BEQ.W           loc_404|0-240-215-128
+598|code|LDR.W           R0, [fs,#8]|219-248-8-0
+602|code|LDR             R1, =aHfs; "hfs"|62-73
+604|code|BLX             R6; grub_strcmp|176-71
+606|code|CMP             R0, #0|0-40
+608|code|ITE NE|20-191
+610|code|MOVNE           R0, #0x83|131-32
+612|code|MOVEQ           R0, #0xAF|175-32
+614|code|LDR             R3, [dev]|35-104
+616|code|MOVS            R2, #0|0-34
+618|code|STR             R2, [R3,#0x1C]|218-97
+620|code|LDR             R3, [SP,#0x258+csep]|7-155
+622|code|CMP             R3, #0x2B ; '+'|43-43
+624|code|ITE EQ|12-191
+626|code|MOVEQ           R3, #0x80|128-35
+628|code|MOVNE           R3, #0|0-35
+630|code|STRB.W          R3, [R7,#-2]|7-248-2-60
+634|code|BNE             loc_290|9-209
+636|code|LDR             R3, [SP,#0x258+numactive]|10-155
+638|code|CBZ             R3, loc_28C|43-177
+640|code|MOV             type, dev|32-70
+642|code|LDR             R3, =grub_device_close|37-75
+644|code|BLX             R3; grub_device_close|152-71
+646|code|MOVS            R0, #0x12|18-32
+648|code|LDR             R1, =aOnlyOnePartiti; "only one partition can be active"|51-73
+650|code|B               loc_88|253-230
+652|code|MOVS            R3, #1|1-35
+654|code|STR             R3, [SP,#0x258+numactive]|10-147
+656|code|STRB            type, [R7,#2]|184-112
+658|code|ADD             R3, SP, #0x258+var_28|140-171
+660|code|LDR.W           type, [partition,#8]; lba|216-248-8-0
+664|code|ADD.W           R6, R3, i,LSL#4|3-235-5-22
+668|code|MOV             R1, R7; cl|57-70
+670|code|ADDS            R2, R7, #1; ch|122-28
+672|code|ADDS            i, #1|1-53
+674|code|LSRS            R3, R0, #0x10|3-12
+676|code|STRH.W          R0, [R6,#-0x3A]|38-248-58-12
+680|code|STRH.W          R3, [R6,#-0x38]|38-248-56-60
+684|code|SUBS            R3, R7, #1; dh|123-30
+686|code|BL              lba_to_chs|255-247-167-254
+690|code|LDR.W           R3, [partition,#0x10]|216-248-16-48
+694|code|LDR.W           R0, [partition,#8]|216-248-8-0
+698|code|ADDS            R1, R7, #4; cl|57-29
+700|code|ADDS            R2, R7, #5; ch|122-29
+702|code|ADD             R0, R3|24-68
+704|code|ADDS            R3, R7, #3; dh|251-28
+706|code|SUBS            R0, #1; lba|1-56
+708|code|ADDS            R7, #0x10|16-55
+710|code|BL              lba_to_chs|255-247-155-254
+714|code|LDRH.W          R3, [partition,#0x10]|184-248-16-48
+718|code|MOV             R0, partition|64-70
+720|code|STRH.W          R3, [R6,#-0x36]|38-248-54-60
+724|code|LDRH.W          R3, [partition,#0x12]|184-248-18-48
+728|code|STRH.W          R3, [R6,#-0x34]|38-248-52-60
+732|code|LDR             R3, =grub_free|31-75
+734|code|BLX             R3; grub_free|152-71
+736|code|B               loc_15A|59-231
+738|code|ADD             R6, SP, #0x258+mbr|12-174
+740|code|LDR.W           R8, =grub_memset|223-248-120-128
+744|code|ADD.W           i, R6, i,LSL#4|6-235-5-21
+748|code|ADDW            R7, SP, #0x258+mbr.signature|13-242-46-39
+752|code|ADD.W           R5, R5, #0x1BE|5-245-223-117
+756|code|CMP             R5, R7|189-66
+758|code|BEQ             loc_364|53-208
+760|code|MOV             R0, R5|40-70
+762|code|MOVS            R1, #0|0-33
+764|code|MOVS            R2, #0x10|16-34
+766|code|ADDS            R5, #0x10|16-53
+768|code|BLX             R8; grub_memset|192-71
+770|code|B               loc_2F4|247-231
+772|data|DCD aDeviceNameRequ; "device name required"|108-4-0-0
+776|data|DCD aOnly3Partition; "only 3 partitions can be in hybrid MBR"|129-4-0-0
+780|data|DCD grub_error|208-6-0-0
+784|data|DCD grub_device_open|160-6-0-0
+788|data|DCD grub_strlen|152-6-0-0
+792|data|DCD grub_device_close|200-6-0-0
+796|data|DCD aNotADisk; "not a disk"|168-4-0-0
+800|data|DCD grub_disk_read|164-6-0-0
+804|data|DCD aNoSignature; "no signature"|179-4-0-0
+808|data|DCD aNoGptPartition; "no GPT partition map found"|95-5-0-0
+812|data|DCD grub_errno|168-6-0-0
+816|data|DCD grub_strchr|188-6-0-0
+820|data|DCD grub_partition_probe|156-6-0-0
+824|data|DCD aNoSuchPartitio; "no such partition"|192-4-0-0
+828|data|DCD aOnlyPartitions; "only partitions residing in the first 2"...|210-4-0-0
+832|data|DCD grub_strtoul|224-6-0-0
+836|data|DCD grub_fs_probe|204-6-0-0
+840|data|DCD aNtfs; "ntfs"|25-5-0-0
+844|data|DCD grub_strcmp|184-6-0-0
+848|data|DCD aHfsplus; "hfsplus"|126-5-0-0
+852|data|DCD aHfs; "hfs"|30-5-0-0
+856|data|DCD aOnlyOnePartiti; "only one partition can be active"|34-5-0-0
+860|data|DCD grub_free|216-6-0-0
+864|data|DCD grub_memset|172-6-0-0
+868|code|LDRD.W          R2, R3, [SP,#0x258+first_sector]|221-233-4-35
+872|code|MOV.W           R11, #0|79-240-0-11
+876|code|MOV.W           R10, #0xFFFFFFFF|79-240-255-58
+880|code|CMP             R11, R3|155-69
+882|code|IT EQ|8-191
+884|code|CMPEQ           R10, R2|146-69
+886|code|BCC             loc_37C|1-211
+888|code|ADDS.W          R10, R2, #0xFFFFFFFF|18-241-255-58
+892|code|MOVS            R3, #0|0-35
+894|code|MOV             R0, R10; lba|80-70
+896|code|STRB.W          R3, [R6,#0x1BE]|134-248-190-49
+900|code|MOVS            R2, #0xEE|238-34
+902|code|STRH.W          R3, [R6,#0x1C8]|166-248-200-49
+906|code|ADD             R1, SP, #0x258+mbr.entries.end_sector; cl|125-169
+908|code|STRB.W          R2, [R6,#0x1C2]|134-248-194-33
+912|code|MOVS            R2, #1|1-34
+914|code|STRB.W          R3, [R6,#0x1C1]|134-248-193-49
+918|code|STRH.W          R2, [R6,#0x1C6]|166-248-198-33
+922|code|MOVS            R2, #2|2-34
+924|code|STRB.W          R3, [R6,#0x1BF]|134-248-191-49
+928|code|ADDW            R3, SP, #0x258+mbr.entries.end_head; dh|13-242-243-19
+932|code|STRB.W          R2, [R6,#0x1C0]|134-248-192-33
+936|code|ADDW            R2, SP, #0x258+mbr.entries.end_cylinder; ch|13-242-245-18
+940|code|BL              lba_to_chs|255-247-40-254
+944|code|STRH.W          R10, [R6,#0x1CA]|166-248-202-161
+948|code|MOVW            R3, #0xAA55|74-246-85-35
+952|code|MOVS            R2, #0|0-34
+954|code|STRH.W          R3, [R6,#0x1FE]|166-248-254-49
+958|code|MOV.W           R1, #0x200|79-244-0-113
+962|code|MOVS            R3, #0|0-35
+964|code|MOV.W           R10, R10,LSR#16|79-234-26-74
+968|code|STRH.W          R10, [R6,#0x1CC]|166-248-204-161
+972|code|STR             R1, [SP,#0x258+var_250]|2-145
+974|code|STRD.W          R2, R3, [SP,#0x258+var_258]|205-233-0-35
+978|code|STR             R6, [SP,#0x258+var_24C]|3-150
+980|code|LDR             R1, =grub_disk_write|15-73
+982|code|LDR             R0, [dev]|32-104
+984|code|BLX             R1; grub_disk_write|136-71
+986|code|MOV             R5, R0|5-70
+988|code|CMP             R0, #0|0-40
+990|code|BNE.W           loc_138|127-244-171-174
+994|code|LDR.W           R1, [args]|217-248-0-16
+998|code|LDR             R3, =grub_printf_|12-75
+1000|code|LDR             R0, =aNewMbrIsWritte; "New MBR is written to `%s'\n"|12-72
+1002|code|BLX             R3; grub_printf_|152-71
+1004|code|B               loc_408|12-224
+1006|code|LDR.W           R0, [fs,#8]|219-248-8-0
+1010|code|LDR             R1, =aFat; "fat"|11-73
+1012|code|BLX             R6; grub_strcmp|176-71
+1014|code|CMP             R0, #0|0-40
+1016|code|BNE.W           loc_248|127-244-38-175
+1020|code|MOVS            R0, #0xC|12-32
+1022|code|B               loc_266|50-231
+1024|code|MOVS            R0, #0x83|131-32
+1026|code|B               loc_266|48-231
+1028|code|MOVS            R0, #0xAF|175-32
+1030|code|B               loc_266|46-231
+1032|code|MOV             R0, R5|40-70
+1034|code|ADD.W           SP, SP, #0x234|13-245-13-125
+1038|code|POP.W           {R4-R11,PC}|189-232-240-143
+1042|data|ALIGN 4|0-191
+1044|data|DCD grub_disk_write|196-6-0-0
+1048|data|DCD grub_printf_|220-6-0-0
+1052|data|DCD aNewMbrIsWritte; "New MBR is written to `%s'\n"|67-5-0-0
+1056|data|DCD aFat; "fat"|122-5-0-0
+1060|code|PUSH            {mod,R1,R4,LR}|19-181
+1062|code|MOVS            R3, #0|0-35
+1064|code|LDR             R1, =(grub_cmd_gptsync+1)|5-73
+1066|code|STR             R3, [SP,#0x10+var_10]|0-147
+1068|code|LDR             R2, =aDevicePartitio; "DEVICE [PARTITION[+/-[TYPE]]] ..."|5-74
+1070|code|LDR             R3, =aFillHybridMbrO; "Fill hybrid MBR of GPT drive DEVICE. Sp"...|6-75
+1072|code|LDR             R4, =grub_register_command_prio|6-76
+1074|code|LDR             mod, =aGptsync; "gptsync"|7-72
+1076|code|BLX             R4; grub_register_command_prio|160-71
+1078|code|LDR             R3, =cmd|7-75
+1080|code|STR             R0, [R3]|24-96
+1082|code|ADD             SP, SP, #8|2-176
+1084|code|POP             {R4,PC}|16-189
+1086|data|ALIGN 0x10|0-191
+1088|data|DCD grub_cmd_gptsync+1|105-0-0-0
+1092|data|DCD aDevicePartitio; "DEVICE [PARTITION[+/-[TYPE]]] ..."|142-5-0-0
+1096|data|DCD aFillHybridMbrO; "Fill hybrid MBR of GPT drive DEVICE. Sp"...|176-5-0-0
+1100|data|DCD grub_register_command_prio|176-6-0-0
+1104|data|DCD aGptsync; "gptsync"|134-5-0-0
+1108|data|DCD cmd|148-6-0-0
+1112|code|PUSH            {R3,LR}|8-181
+1114|code|LDR             R3, =cmd|2-75
+1116|code|LDR             R0, [R3]|24-104
+1118|code|LDR             R3, =grub_unregister_command|2-75
+1120|code|BLX             R3; grub_unregister_command|152-71
+1122|code|POP             {R3,PC}|8-189
+1124|data|DCD cmd|148-6-0-0
+1128|data|DCD grub_unregister_command|180-6-0-0
+1132|data|DCB "device name required",0|100-101-118-105-99-101-32-110-97-109-101-32-114-101-113-117-105-114-101-100-0
+1153|data|DCB "only 3 partitions can be in hybrid MBR",0|111-110-108-121-32-51-32-112-97-114-116-105-116-105-111-110-115-32-99-97-110-32-98-101-32-105-110-32-104-121-98-114-105-100-32-77-66-82-0
+1192|data|DCB "not a disk",0|110-111-116-32-97-32-100-105-115-107-0
+1203|data|DCB "no signature",0|110-111-32-115-105-103-110-97-116-117-114-101-0
+1216|data|DCB "no such partition",0|110-111-32-115-117-99-104-32-112-97-114-116-105-116-105-111-110-0
+1234|data|DCB "only partitions residing in the first 2TB can be present in hybr"|111-110-108-121-32-112-97-114-116-105-116-105-111-110-115-32-114-101-115-105-100-105-110-103-32-105-110-32-116-104-101-32-102-105-114-115-116-32-50-84-66-32-99-97-110-32-98-101-32-112-114-101-115-101-110-116-32-105-110-32-104-121-98-114-105-100-32-77-66-82-0
+1305|data|DCB "ntfs",0|110-116-102-115-0
+1310|data|DCB "hfs",0|104-102-115-0
+1314|data|DCB "only one partition can be active",0|111-110-108-121-32-111-110-101-32-112-97-114-116-105-116-105-111-110-32-99-97-110-32-98-101-32-97-99-116-105-118-101-0
+1347|data|DCB "New MBR is written to `%s'",0xA,0|78-101-119-32-77-66-82-32-105-115-32-119-114-105-116-116-101-110-32-116-111-32-96-37-115-39-10-0
+1375|data|DCB "no GPT partition map found",0|110-111-32-71-80-84-32-112-97-114-116-105-116-105-111-110-32-109-97-112-32-102-111-117-110-100-0
+1402|data|DCB "fat",0|102-97-116-0
+1406|data|DCB "hfsplus",0|104-102-115-112-108-117-115-0
+1414|data|DCB "gptsync",0|103-112-116-115-121-110-99-0
+1422|data|DCB "DEVICE [PARTITION[+/-[TYPE]]] ...",0|68-69-86-73-67-69-32-91-80-65-82-84-73-84-73-79-78-91-43-47-45-91-84-89-80-69-93-93-93-32-46-46-46-0
+1456|data|DCB "Fill hybrid MBR of GPT drive DEVICE. Specified partitions will b"|70-105-108-108-32-104-121-98-114-105-100-32-77-66-82-32-111-102-32-71-80-84-32-100-114-105-118-101-32-68-69-86-73-67-69-46-32-83-112-101-99-105-102-105-101-100-32-112-97-114-116-105-116-105-111-110-115-32-119-105-108-108-32-98-101-32-97-32-112-97-114-116-32-111-102-32-104-121-98-114-105-100-32-77-66-82-46-32-85-112-32-116-111-32-51-32-112-97-114-116-105-116-105-111-110-115-32-97-114-101-32-97-108-108-111-119-101-100-46-32-84-89-80-69-32-105-115-32-97-110-32-77-66-82-32-116-121-112-101-46-32-43-32-109-101-97-110-115-32-116-104-97-116-32-112-97-114-116-105-116-105-111-110-32-105-115-32-97-99-116-105-118-101-46-32-79-110-108-121-32-111-110-101-32-112-97-114-116-105-116-105-111-110-32-99-97-110-32-98-101-32-97-99-116-105-118-101-46-0
+1665|data||255
+1666|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

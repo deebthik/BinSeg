@@ -1,0 +1,803 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+4|code|MOV             R4, R2|20-70
+6|code|MOV             R5, R1|13-70
+8|code|CBNZ            size, loc_16|43-185
+10|code|MOV             R4, outptr|4-70
+12|code|SUB.W           LR, in1ptr, #8|161-241-8-14
+16|code|SUB.W           R12, in2ptr, #8|162-241-8-12
+20|code|B               loc_36|15-224
+22|code|ORR.W           R6, in2ptr, in1ptr|66-234-1-6
+26|code|LSLS            R7, R6, #0x1D|119-7
+28|code|BEQ             loc_30|8-208
+30|code|LDRB            R6, [R4]|38-120
+32|code|ADDS            in1ptr, #1|1-49
+34|code|LDRB            R4, [in1ptr]|44-120
+36|code|ADDS            in2ptr, #1|1-50
+38|code|SUBS            size, #1|1-59
+40|code|EORS            R4, R6|116-64
+42|code|STRB.W          R4, [outptr],#1|0-248-1-75
+46|code|B               loc_4|233-231
+48|code|LSLS            R6, outptr, #0x1D|70-7
+50|code|BNE             loc_1E|244-209
+52|code|B               loc_A|233-231
+54|code|SUBS            R5, R3, outptr|29-26
+56|code|ADD             R5, R4|37-68
+58|code|CMP             R5, #7|7-45
+60|code|BLS             loc_54|10-217
+62|code|LDRD.W          R6, R7, [R12,#8]!|252-233-2-103
+66|code|LDRD.W          R8, R9, [LR,#8]!|254-233-2-137
+70|code|EOR.W           R6, R6, R8|134-234-8-6
+74|code|EOR.W           R7, R7, R9|135-234-9-7
+78|code|STRD.W          R6, R7, [outptr],#8|224-232-2-103
+82|code|B               loc_36|240-231
+84|code|BIC.W           R5, R3, #7|35-240-7-5
+88|code|AND.W           R3, R3, #7|3-240-7-3
+92|code|ADDS            outptr, R4, R5|96-25
+94|code|SUBS            R4, R5, #1|108-30
+96|code|ADD             R1, R4|33-68
+98|code|ADD             R2, R4|34-68
+100|code|ADD             R3, R0|3-68
+102|code|CMP             outptr, R3|152-66
+104|code|BEQ             locret_7A|7-208
+106|code|LDRB.W          R5, [R2,#1]!|18-248-1-95
+110|code|LDRB.W          R4, [R1,#1]!|17-248-1-79
+114|code|EORS            R4, R5|108-64
+116|code|STRB.W          R4, [outptr],#1|0-248-1-75
+120|code|B               loc_66|245-231
+122|code|POP.W           {R4-R9,PC}|189-232-240-131
+126|code|PUSH            {R4-R7,LR}|240-181
+128|code|SUB             SP, SP, #0x24|137-176
+130|code|ADD             R6, SP, #0x38+bs|4-174
+132|code|MOVS            R2, #0x10|16-34
+134|code|MOV             R7, a|7-70
+136|code|LDR             R5, =grub_memmove|24-77
+138|code|MOV             a, R6|48-70
+140|code|MOVS            R4, #0|0-36
+142|code|BLX             R5; grub_memmove|168-71
+144|code|MOV             R0, SP|104-70
+146|code|MOVS            R1, #0|0-33
+148|code|MOVS            R2, #0x10|16-34
+150|code|LDR             R3, =grub_memset|22-75
+152|code|BLX             R3; grub_memset|152-71
+154|code|ASRS            R3, i, #3|227-16
+156|code|AND.W           R2, i, #7|4-240-7-2
+160|code|LDRB            R3, [a,R3]|251-92
+162|code|LSLS            R3, R2|147-64
+164|code|LSLS            R3, R3, #0x18|27-6
+166|code|BPL             loc_B4|5-213
+168|code|MOV             R0, SP; out|104-70
+170|code|MOV             R1, SP; in1|105-70
+172|code|MOV             R2, R6; in2|50-70
+174|code|MOVS            R3, #0x10; size|16-35
+176|code|BL              grub_crypto_xor|255-247-166-255
+180|code|MOVS            R3, #0|0-35
+182|code|MOV             R1, R3|25-70
+184|code|LDRB            R2, [R6,R1]|114-92
+186|code|LSLS            R3, R3, #7|219-1
+188|code|ORR.W           R3, R3, R2,LSR#1|67-234-82-3
+192|code|STRB            R3, [R6,R1]|115-84
+194|code|ADDS            R1, #1|1-49
+196|code|AND.W           R3, R2, #1|2-240-1-3
+200|code|CMP             R1, #0x10|16-41
+202|code|BNE             loc_B8|245-209
+204|code|CBZ             R3, loc_DA|43-177
+206|code|LDRB.W          R3, [SP,#0x38+bs]|157-248-16-48
+210|code|EOR.W           R3, R3, #0xE1|131-240-225-3
+214|code|STRB.W          R3, [SP,#0x38+bs]|141-248-16-48
+218|code|ADDS            i, #1|1-52
+220|code|CMP             i, #0x80|128-44
+222|code|BNE             loc_9A|220-209
+224|code|MOV             R0, a|56-70
+226|code|MOV             R1, SP|105-70
+228|code|MOVS            R2, #0x10|16-34
+230|code|BLX             R5; grub_memmove|168-71
+232|code|ADD             SP, SP, #0x24 ; '$'|9-176
+234|code|POP             {i-a,PC}|240-189
+236|data|DCD grub_memmove|104-9-0-0
+240|data|DCD grub_memset|132-9-0-0
+244|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+248|code|ORRS.W          R1, R2, R3|82-234-3-1
+252|code|SUB             SP, SP, #0x5C|151-176
+254|code|MOV             R5, cipher|5-70
+256|code|LDR             R4, [SP,#0x80+psize]|34-156
+258|code|LDR             R6, [SP,#0x80+l]|37-158
+260|code|BEQ             loc_112|5-208
+262|code|CMP             R3, #0|0-43
+264|code|IT EQ|8-191
+266|code|CMPEQ           R2, #1|1-42
+268|code|BEQ.W           loc_222|0-240-137-128
+272|code|B               loc_352|31-225
+274|code|RSB.W           R2, R6, #0xF|198-241-15-2
+278|code|LDR             R3, =grub_memmove|145-75
+280|code|ADD.W           cipher, SP, #0x80+var_57|13-241-41-0
+284|code|LDR             R1, [SP,#0x80+nonce]|36-153
+286|code|BLX             R3; grub_memmove|152-71
+288|code|LDR             R3, [SP,#0x80+m]|38-155
+290|code|ADD.W           R10, R6, #0xFFFFFFFF|6-241-255-58
+294|code|ADD.W           R8, SP, #0x80+in2|13-241-56-8
+298|code|SUBS            R3, #2|2-59
+300|code|UXTB.W          R10, R10|95-250-138-250
+304|code|MOV             R2, R8|66-70
+306|code|LSRS            R3, R3, #1|91-8
+308|code|ORR.W           R3, R10, R3,LSL#3|74-234-195-3
+312|code|STRB.W          R3, [SP,#0x80+var_58]|141-248-40-48
+316|code|MOVS            R3, #0|0-35
+318|code|CMP             R3, R6|179-66
+320|code|BEQ             loc_150|6-208
+322|code|LSLS            R1, R3, #3|217-0
+324|code|ADDS            R3, #1|1-51
+326|code|LSR.W           R1, R4, R1|36-250-1-241
+330|code|STRB.W          R1, [R2,#-1]!|2-248-1-29
+334|code|B               loc_13E|246-231
+336|code|MOV             R0, cipher|40-70
+338|code|ADD             R1, SP, #0x80+in1|18-169
+340|code|ADD             R2, SP, #0x80+var_58|10-170
+342|code|MOVS            R3, #0x10|16-35
+344|code|LDR.W           R9, =grub_crypto_ecb_encrypt|223-248-4-146
+348|code|BLX             R9; grub_crypto_ecb_encrypt|200-71
+350|code|CMP             R0, #0|0-40
+352|code|BNE.W           loc_354|64-240-248-128
+356|code|ADD.W           R3, R4, #0xF|4-241-15-3
+360|code|MOV             R7, R0|7-70
+362|code|STRB.W          R10, [SP,#0x80+var_58]|141-248-40-160
+366|code|LSRS            R3, R3, #4|27-9
+368|code|STR             R3, [SP,#0x80+var_7C]|1-147
+370|code|LDR             R3, [SP,#0x80+var_7C]|1-155
+372|code|CMP             R7, R3|159-66
+374|code|BEQ             loc_1E6|54-208
+376|code|CMP             R4, #0xF|15-44
+378|code|ADD.W           R1, R7, #1|7-241-1-1
+382|code|MOV             R2, R8|66-70
+384|code|MOV.W           R3, #0|79-240-0-3
+388|code|ITE LS|148-191
+390|code|MOVLS           R10, R4|162-70
+392|code|MOVHI.W         R10, #0x10|79-240-16-10
+396|code|CMP             R3, R6|179-66
+398|code|BEQ             loc_19E|6-208
+400|code|LSLS            R0, R3, #3|216-0
+402|code|ADDS            R3, #1|1-51
+404|code|LSR.W           R0, R1, R0|33-250-0-240
+408|code|STRB.W          R0, [R2,#-1]!|2-248-1-13
+412|code|B               loc_18C|246-231
+414|code|MOV             R0, cipher|40-70
+416|code|ADD             R1, SP, #0x80+in2|14-169
+418|code|ADD             R2, SP, #0x80+var_58|10-170
+420|code|MOVS            R3, #0x10|16-35
+422|code|BLX             R9; grub_crypto_ecb_encrypt|200-71
+424|code|CMP             R0, #0|0-40
+426|code|BNE.W           loc_354|64-240-211-128
+430|code|LDR             R3, [SP,#0x80+out]|32-155
+432|code|LSLS            R1, R7, #4|57-1
+434|code|ADD             R2, SP, #0x80+in2; in2|14-170
+436|code|SUBS            R4, #0x10|16-60
+438|code|ADD.W           R11, R3, R1|3-235-1-11
+442|code|LDR             R3, [SP,#0x80+in]|33-155
+444|code|MOV             R0, R11; out|88-70
+446|code|ADD             R1, R3; in1|25-68
+448|code|MOV             R3, R10; size|83-70
+450|code|BL              grub_crypto_xor|255-247-29-255
+454|code|ADD             R0, SP, #0x80+in1; out|18-168
+456|code|MOV             R2, R11; in2|90-70
+458|code|MOV             R3, R10; size|83-70
+460|code|MOV             R1, R0; in1|1-70
+462|code|BL              grub_crypto_xor|255-247-23-255
+466|code|ADD             R1, SP, #0x80+in1|18-169
+468|code|MOV             R0, cipher|40-70
+470|code|MOVS            R3, #0x10|16-35
+472|code|MOV             R2, R1|10-70
+474|code|BLX             R9; grub_crypto_ecb_encrypt|200-71
+476|code|CMP             R0, #0|0-40
+478|code|BNE.W           loc_354|64-240-185-128
+482|code|ADDS            R7, #1|1-55
+484|code|B               loc_172|197-231
+486|code|ADD             R3, SP, #0x80+var_58|10-171
+488|code|RSB.W           R6, R6, #0x10|198-241-16-6
+492|code|ADD             R6, R3|30-68
+494|code|MOVS            R3, #0|0-35
+496|code|CMP             R8, R6|176-69
+498|code|BEQ             loc_1FA|2-208
+500|code|STRB.W          R3, [R8,#-1]!|8-248-1-61
+504|code|B               loc_1F0|250-231
+506|code|MOV             R0, cipher|40-70
+508|code|ADD             R1, SP, #0x80+in2|14-169
+510|code|ADD             R2, SP, #0x80+var_58|10-170
+512|code|MOVS            R3, #0x10|16-35
+514|code|LDR             R4, =grub_crypto_ecb_encrypt|87-76
+516|code|BLX             R4; grub_crypto_ecb_encrypt|160-71
+518|code|MOV             R7, R0|7-70
+520|code|CBNZ            R0, loc_21E|72-185
+522|code|LDR             R3, [SP,#0x80+mac_out]|35-155
+524|code|CMP             R3, #0|0-43
+526|code|BEQ.W           loc_34E|0-240-158-128
+530|code|MOV             R0, R3; out|24-70
+532|code|ADD             R1, SP, #0x80+in1; in1|18-169
+534|code|ADD             R2, SP, #0x80+in2; in2|14-170
+536|code|LDR             R3, [SP,#0x80+m]; size|38-155
+538|code|BL              grub_crypto_xor|255-247-241-254
+542|code|MOV             R0, R7|56-70
+544|code|B               loc_354|152-224
+546|code|MOVS            R1, #0|0-33
+548|code|MOVS            R2, #0x10|16-34
+550|code|ADD             cipher, SP, #0x80+var_58|10-168
+552|code|LDR.W           R8, =grub_memset|223-248-56-129
+556|code|BLX             R8; grub_memset|192-71
+558|code|LDR             R7, =grub_crypto_ecb_encrypt|76-79
+560|code|MOV             R0, cipher|40-70
+562|code|ADD             R1, SP, #0x80+in2|14-169
+564|code|ADD             R2, SP, #0x80+var_58|10-170
+566|code|MOVS            R3, #0x10|16-35
+568|code|BLX             R7; grub_crypto_ecb_encrypt|184-71
+570|code|MOV             R9, R0|129-70
+572|code|CMP             R0, #0|0-40
+574|code|BNE.W           loc_354|64-240-137-128
+578|code|RSB.W           R6, R6, #0xF|198-241-15-6
+582|code|ADD             R0, SP, #0x80+a|2-168
+584|code|CMP             R6, #0xC|12-46
+586|code|BNE             loc_268|13-209
+588|code|LDR             R3, =grub_memmove|67-75
+590|code|MOV             R2, R6|50-70
+592|code|LDR             R1, [SP,#0x80+nonce]|36-153
+594|code|BLX             R3; grub_memmove|152-71
+596|code|MOVS            R3, #1|1-35
+598|code|STRB.W          R9, [SP,#0x80+var_6C]|141-248-20-144
+602|code|STRB.W          R9, [SP,#0x80+var_6B]|141-248-21-144
+606|code|STRB.W          R9, [SP,#0x80+var_6A]|141-248-22-144
+610|code|STRB.W          R3, [SP,#0x80+var_69]|141-248-23-48
+614|code|B               loc_294|21-224
+616|code|MOV             R1, R9|73-70
+618|code|MOVS            R2, #0x10|16-34
+620|code|BLX             R8; grub_memset|192-71
+622|code|MOV             R2, R6|50-70
+624|code|LDR             R3, =grub_memmove|58-75
+626|code|ADD             R0, SP, #0x80+a|2-168
+628|code|LDR             R1, [SP,#0x80+nonce]|36-153
+630|code|BLX             R3; grub_memmove|152-71
+632|code|ADD             R0, SP, #0x80+a; a|2-168
+634|code|ADD             R1, SP, #0x80+in2; b|14-169
+636|code|BL              grub_gcm_mul|255-247-255-254
+640|code|LDRB.W          R3, [SP,#0x80+var_69]|157-248-23-48
+644|code|ADD             R0, SP, #0x80+a; a|2-168
+646|code|ADD             R1, SP, #0x80+in2; b|14-169
+648|code|EOR.W           R6, R3, R6,LSL#3|131-234-198-6
+652|code|STRB.W          R6, [SP,#0x80+var_69]|141-248-23-96
+656|code|BL              grub_gcm_mul|255-247-245-254
+660|code|MOV             R0, cipher|40-70
+662|code|ADD             R1, SP, #0x80+in1|18-169
+664|code|ADD             R2, SP, #0x80+a|2-170
+666|code|MOVS            R3, #0x10|16-35
+668|code|BLX             R7; grub_crypto_ecb_encrypt|184-71
+670|code|CMP             R0, #0|0-40
+672|code|BNE             loc_354|88-209
+674|code|ADD.W           R7, R4, #0xF|4-241-15-7
+678|code|ADD.W           R10, SP, #0x80+var_6C|13-241-20-10
+682|code|BIC.W           R7, R7, #0xF|39-240-15-7
+686|code|MOV             R6, R4|38-70
+688|code|SUBS            R3, R4, R7|227-27
+690|code|STR             R3, [SP,#0x80+var_7C]|1-147
+692|code|LDR             R3, [SP,#0x80+var_7C]|1-155
+694|code|CMP             R6, R3|158-66
+696|code|BEQ             loc_316|45-208
+698|code|CMP             R6, #0xF|15-46
+700|code|ADD             R2, SP, #0x80+var_68|6-170
+702|code|ITE LS|148-191
+704|code|MOVLS           R8, R6|176-70
+706|code|MOVHI.W         R8, #0x10|79-240-16-8
+710|code|LDRB.W          R3, [R2,#-1]!|18-248-1-61
+714|code|ADDS            R3, #1|1-51
+716|code|UXTB            R3, R3|219-178
+718|code|STRB            R3, [R2]|19-112
+720|code|CBNZ            R3, loc_2D6|11-185
+722|code|CMP             R2, R10|82-69
+724|code|BNE             loc_2C6|247-209
+726|code|LDR             R3, [SP,#0x80+in]|33-155
+728|code|RSB.W           R11, R6, R4|198-235-4-11
+732|code|ADD             R0, SP, #0x80+var_58; out|10-168
+734|code|LDR             R7, =grub_crypto_ecb_encrypt|32-79
+736|code|ADD.W           R9, R3, R11|3-235-11-9
+740|code|MOV             R3, R8; size|67-70
+742|code|MOV             R1, R0; in1|1-70
+744|code|MOV             R2, R9; in2|74-70
+746|code|BL              grub_crypto_xor|255-247-137-254
+750|code|ADD             R0, SP, #0x80+var_58; a|10-168
+752|code|ADD             R1, SP, #0x80+in2; b|14-169
+754|code|BL              grub_gcm_mul|255-247-196-254
+758|code|MOV             R0, cipher|40-70
+760|code|ADD             R1, SP, #0x80+var_68|6-169
+762|code|ADD             R2, SP, #0x80+a|2-170
+764|code|MOVS            R3, #0x10|16-35
+766|code|BLX             R7; grub_crypto_ecb_encrypt|184-71
+768|code|CBNZ            R0, loc_354|64-187
+770|code|LDR             R3, [SP,#0x80+out]|32-155
+772|code|MOV             R1, R9; in1|73-70
+774|code|ADD             R2, SP, #0x80+var_68; in2|6-170
+776|code|SUBS            R6, #0x10|16-62
+778|code|ADD.W           R0, R3, R11; out|3-235-11-0
+782|code|MOV             R3, R8; size|67-70
+784|code|BL              grub_crypto_xor|255-247-118-254
+788|code|B               loc_2B4|206-231
+790|code|ADD             R2, SP, #0x80+in2|14-170
+792|code|LSLS            R4, R4, #3|228-0
+794|code|MOVS            R3, #0|0-35
+796|code|MOV             R1, R2; b|17-70
+798|code|LSLS            R0, R3, #3|216-0
+800|code|ADDS            R3, #1|1-51
+802|code|LSR.W           R5, R4, R0|36-250-0-245
+806|code|LDRB.W          R0, [R2,#-1]!|18-248-1-13
+810|code|CMP             R3, #8|8-43
+812|code|EOR.W           R0, R0, R5|128-234-5-0
+816|code|STRB            R0, [R2]|16-112
+818|code|BNE             loc_31E|244-209
+820|code|ADD             R0, SP, #0x80+var_58; a|10-168
+822|code|BL              grub_gcm_mul|255-247-162-254
+826|code|LDR             R3, [SP,#0x80+mac_out]|35-155
+828|code|CBZ             R3, loc_34E|59-177
+830|code|MOV             R0, R3; out|24-70
+832|code|ADD             R1, SP, #0x80+var_58; in1|10-169
+834|code|ADD             R2, SP, #0x80+in1; in2|18-170
+836|code|LDR             R3, [SP,#0x80+m]; size|38-155
+838|code|BL              grub_crypto_xor|255-247-91-254
+842|code|MOVS            R0, #0|0-32
+844|code|B               loc_354|2-224
+846|code|LDR             R0, [SP,#0x80+mac_out]|35-152
+848|code|B               loc_354|0-224
+850|code|MOVS            cipher, #4|4-32
+852|code|ADD             SP, SP, #0x5C ; '\'|23-176
+854|code|POP.W           {R4-R11,PC}|189-232-240-143
+858|data|ALIGN 4|0-191
+860|data|DCD grub_memmove|104-9-0-0
+864|data|DCD grub_crypto_ecb_encrypt|92-9-0-0
+868|data|DCD grub_memset|132-9-0-0
+872|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+876|code|CMP             keysize, #0x88|136-41
+878|code|SUB             SP, SP, #0x8C|163-176
+880|code|MOV             R5, key|5-70
+882|code|STRD.W          R2, R3, [SP,#0xB0+salt]|205-233-8-35
+886|code|BEQ             loc_38C|9-208
+888|code|STR             keysize, [SP,#0xB0+out]|0-145
+890|code|MOV.W           keysize, #0x140|79-244-160-113
+894|code|LDR             key, =aFsZfsZfscryptC; "fs/zfs/zfscrypt.c"|91-72
+896|code|LDR             R2, =aZfs; "zfs"|91-74
+898|code|LDR             R3, =aUnexpectedKeyS; "Unexpected key size %u\n"|92-75
+900|code|LDR             R4, =grub_real_dprintf|92-76
+902|code|BLX             R4; grub_real_dprintf|160-71
+904|code|MOVS            R0, #0|0-32
+906|code|B               loc_4E6|172-224
+908|code|ADDS            key, #0x38 ; '8'|56-48
+910|code|LDR             keysize, =unk_7A0|91-73
+912|code|MOVS            R2, #0x10|16-34
+914|code|LDR             R4, =grub_memcmp|91-76
+916|code|BLX             R4; grub_memcmp|160-71
+918|code|CBZ             R0, loc_3B0|88-177
+920|code|ADD.W           R0, key, #0x40 ; '@'|5-241-64-0
+924|code|LDR             R1, =unk_7B1|89-73
+926|code|MOVS            R2, #8|8-34
+928|code|BLX             R4; grub_memcmp|160-71
+930|code|CMP             R0, #0|0-40
+932|code|ITE EQ|12-191
+934|code|MOVEQ.W         R8, #0x18|79-240-24-8
+938|code|MOVNE.W         R8, #0x20 ; ' '|79-240-32-8
+942|code|B               loc_3B4|1-224
+944|code|MOV.W           R8, #0x10|79-240-16-8
+948|code|LDR             R3, =zfs_wrap_keys|84-75
+950|code|LDR.W           R11, =grub_crypto_cipher_open|223-248-120-177
+954|code|LDR             R4, [R3]|28-104
+956|code|CMP             wrap_key, #0|0-44
+958|code|BEQ.W           loc_4E4|0-240-145-128
+962|code|LDR             R0, =_gcry_cipher_spec_aes|82-72
+964|code|BLX             R11; grub_crypto_cipher_open|216-71
+966|code|MOV             R9, cipher|129-70
+968|code|CBNZ            cipher, loc_3D0|16-185
+970|code|LDR             R3, =grub_errno|81-75
+972|code|STR             cipher, [R3]|24-96
+974|code|B               loc_388|219-231
+976|code|ADD             R6, SP, #0xB0+wrap_key_real|26-174
+978|code|MOVS            R1, #0|0-33
+980|code|LDR             R3, =grub_memset|79-75
+982|code|MOVS            R2, #0x20 ; ' '|32-34
+984|code|MOV             cipher, R6|48-70
+986|code|BLX             R3; grub_memset|152-71
+988|code|LDR             R3, [wrap_key,#8]|163-104
+990|code|ADD.W           R1, wrap_key, #0x10|4-241-16-1
+994|code|CBNZ            R3, loc_3F4|59-185
+996|code|LDR             R2, [wrap_key,#4]|98-104
+998|code|MOV             R0, R6|48-70
+1000|code|LDR             R3, =grub_memmove|75-75
+1002|code|CMP             R2, keylen|66-69
+1004|code|IT CS|40-191
+1006|code|MOVCS           R2, keylen|66-70
+1008|code|BLX             R3; grub_memmove|152-71
+1010|code|B               loc_412|14-224
+1012|code|MOVS            R2, #8|8-34
+1014|code|MOV.W           R3, #0x3E8|79-244-122-115
+1018|code|STR             R6, [SP,#0xB0+psize]|2-150
+1020|code|STMEA.W         SP, {R2,R3}|141-232-12-0
+1024|code|ADD             R3, SP, #0xB0+salt|8-171
+1026|code|STR.W           keylen, [SP,#0xB0+mac_out]|205-248-12-128
+1030|code|LDR             R0, =_gcry_digest_spec_sha1|69-72
+1032|code|LDR             R2, [wrap_key,#4]|98-104
+1034|code|LDR             R7, =grub_crypto_pbkdf2|69-79
+1036|code|BLX             R7; grub_crypto_pbkdf2|184-71
+1038|code|CMP             err, #0|0-40
+1040|code|BNE             loc_49E|69-209
+1042|code|MOV             R0, cipher|72-70
+1044|code|MOV             R1, R6|49-70
+1046|code|MOV             R2, keylen|66-70
+1048|code|LDR             R3, =grub_crypto_cipher_set_key|66-75
+1050|code|BLX             R3; grub_crypto_cipher_set_key|152-71
+1052|code|CMP             err, #0|0-40
+1054|code|BNE             loc_49E|62-209
+1056|code|ADD.W           R3, key, #0x58 ; 'X'|5-241-88-3
+1060|code|ADD             R7, SP, #0xB0+decrypted|10-175
+1062|code|STR             R3, [SP,#0xB0+in]; in|1-147
+1064|code|ADD             R6, SP, #0xB0+mac|18-174
+1066|code|MOVS            R3, #0x20 ; ' '|32-35
+1068|code|MOV.W           R10, #0x10|79-240-16-10
+1072|code|STR             R3, [SP,#0xB0+psize]; psize|2-147
+1074|code|MOV             err, cipher; cipher|72-70
+1076|code|ADD.W           R3, key, #0x48 ; 'H'|5-241-72-3
+1080|code|STR             R7, [SP,#0xB0+out]; out|0-151
+1082|code|STR             R3, [SP,#0xB0+nonce]; nonce|4-147
+1084|code|MOVS            R3, #2|2-35
+1086|code|STR             R6, [SP,#0xB0+mac_out]; mac_out|3-150
+1088|code|STR             R3, [SP,#0xB0+l]; l|5-147
+1090|code|STR.W           R10, [SP,#0xB0+m]; m|205-248-24-160
+1094|code|LDRD.W          R2, R3, [SP,#0xB0+algo]; algo|221-233-44-35
+1098|code|BL              algo_decrypt|255-247-83-254
+1102|code|CBZ             err, loc_458|24-177
+1104|code|LDR             R0, =aFsZfsZfscryptC; "fs/zfs/zfscrypt.c"|38-72
+1106|code|MOVW            R1, #0x175|64-242-117-17
+1110|code|B               loc_496|30-224
+1112|code|MOV             err, R6|48-70
+1114|code|ADD.W           R1, key, #0x78 ; 'x'|5-241-120-1
+1118|code|MOV             R2, R10|82-70
+1120|code|LDR             R3, =grub_crypto_memcmp|49-75
+1122|code|BLX             R3; grub_crypto_memcmp|152-71
+1124|code|CMP             R0, #0|0-40
+1126|code|BNE             loc_450|243-209
+1128|code|ADD.W           R3, key, #0x18|5-241-24-3
+1132|code|STR             R7, [SP,#0xB0+out]; out|0-151
+1134|code|STR             R3, [SP,#0xB0+in]; in|1-147
+1136|code|MOV             R0, cipher; cipher|72-70
+1138|code|ADD.W           R3, key, #8|5-241-8-3
+1142|code|STR.W           keylen, [SP,#0xB0+psize]; psize|205-248-8-128
+1146|code|STR             R3, [SP,#0xB0+nonce]; nonce|4-147
+1148|code|MOVS            R3, #2|2-35
+1150|code|STR             R6, [SP,#0xB0+mac_out]; mac_out|3-150
+1152|code|STR             R3, [SP,#0xB0+l]; l|5-147
+1154|code|STR.W           R10, [SP,#0xB0+m]; m|205-248-24-160
+1158|code|LDRD.W          R2, R3, [SP,#0xB0+algo]; algo|221-233-44-35
+1162|code|BL              algo_decrypt|255-247-51-254
+1166|code|CBZ             err, loc_4A6|80-177
+1168|code|LDR             R0, =aFsZfsZfscryptC; "fs/zfs/zfscrypt.c"|22-72
+1170|code|MOV.W           R1, #0x17E|79-244-191-113
+1174|code|LDR             R2, =aZfs; "zfs"|22-74
+1176|code|LDR             R3, =aKeyLoadingFail; "key loading failed\n"|36-75
+1178|code|LDR             R6, =grub_real_dprintf|23-78
+1180|code|BLX             R6; grub_real_dprintf|176-71
+1182|code|LDR             R3, =grub_errno|28-75
+1184|code|MOVS            R2, #0|0-34
+1186|code|STR             R2, [R3]|26-96
+1188|code|B               loc_4E0|28-224
+1190|code|ADD.W           R1, keylen, #0x18|8-241-24-1
+1194|code|MOV             err, R6|48-70
+1196|code|ADD             R1, key|41-68
+1198|code|MOV             R2, R10|82-70
+1200|code|LDR             R3, =grub_crypto_memcmp|29-75
+1202|code|BLX             R3; grub_crypto_memcmp|152-71
+1204|code|MOV             R6, R0|6-70
+1206|code|CMP             R0, #0|0-40
+1208|code|BNE             loc_490|234-209
+1210|code|LDR             R0, =_gcry_cipher_spec_aes|20-72
+1212|code|LDR             R3, =grub_crypto_cipher_open|28-75
+1214|code|BLX             R3; grub_crypto_cipher_open|152-71
+1216|code|MOV             cipher, ret|129-70
+1218|code|CMP             ret, #0|0-40
+1220|code|BEQ             loc_49E|235-208
+1222|code|MOV             R1, R7|57-70
+1224|code|MOV             R2, keylen|66-70
+1226|code|LDR             R3, =grub_crypto_cipher_set_key|22-75
+1228|code|BLX             R3; grub_crypto_cipher_set_key|152-71
+1230|code|CBZ             err, loc_4DC|40-177
+1232|code|LDR             R3, =grub_errno|15-75
+1234|code|MOV             err, ret|72-70
+1236|code|STR             R6, [R3]|30-96
+1238|code|LDR             R3, =grub_free|23-75
+1240|code|BLX             R3; grub_free|152-71
+1242|code|B               loc_4E0|1-224
+1244|code|MOV             err, ret|72-70
+1246|code|B               loc_4E6|2-224
+1248|code|LDR             wrap_key, [wrap_key]|36-104
+1250|code|B               loc_3BC|107-231
+1252|code|MOV             R0, wrap_key|32-70
+1254|code|ADD             SP, SP, #0x8C|35-176
+1256|code|POP.W           {R4-R11,PC}|189-232-240-143
+1260|data|DCD aFsZfsZfscryptC; "fs/zfs/zfscrypt.c"|28-8-0-0
+1264|data|DCD aZfs; "zfs"|46-8-0-0
+1268|data|DCD aUnexpectedKeyS; "Unexpected key size %u\n"|50-8-0-0
+1272|data|DCD grub_real_dprintf|164-9-0-0
+1276|data|DCD unk_7A0|160-7-0-0
+1280|data|DCD grub_memcmp|184-9-0-0
+1284|data|DCD unk_7B1|177-7-0-0
+1288|data|DCD zfs_wrap_keys|84-9-0-0
+1292|data|DCD _gcry_cipher_spec_aes|128-9-0-0
+1296|data|DCD grub_errno|124-9-0-0
+1300|data|DCD grub_memset|132-9-0-0
+1304|data|DCD grub_memmove|104-9-0-0
+1308|data|DCD _gcry_digest_spec_sha1|152-9-0-0
+1312|data|DCD grub_crypto_pbkdf2|100-9-0-0
+1316|data|DCD grub_crypto_cipher_set_key|192-9-0-0
+1320|data|DCD grub_crypto_memcmp|140-9-0-0
+1324|data|DCD aKeyLoadingFail; "key loading failed\n"|74-8-0-0
+1328|data|DCD grub_crypto_cipher_open|116-9-0-0
+1332|data|DCD grub_free|172-9-0-0
+1336|code|PUSH.W          {R4-R9,LR}|45-233-240-67
+1340|code|SUB             SP, SP, #0x44|145-176
+1342|code|ADD.W           R8, SP, #0x60+sw|13-241-48-8
+1346|code|MOV             R9, cipher|129-70
+1348|code|LDR             R5, [SP,#0x60+endian]|28-157
+1350|code|MOV             R6, R2|22-70
+1352|code|MOV             R7, R3|31-70
+1354|code|MOV             cipher, R8|64-70
+1356|code|LDR             R1, [SP,#0x60+nonce]|24-153
+1358|code|MOVS            R2, #0x10|16-34
+1360|code|LDR             R3, =grub_memmove|31-75
+1362|code|LDR             R4, [SP,#0x60+buf]|25-156
+1364|code|BLX             R3; grub_memmove|152-71
+1366|code|CBNZ            R5, loc_564|45-185
+1368|code|CMP.W           cipher, #0|185-241-0-15
+1372|code|BNE             loc_578|12-209
+1374|code|MOVS            R0, #0x1E|30-32
+1376|code|LDR             R1, =aNoDecryptionKe; "no decryption key available"|28-73
+1378|code|B               loc_5BA|42-224
+1380|code|MOVS            R3, #0|0-35
+1382|code|LDR.W           R2, [R8,i,LSL#2]|88-248-35-32
+1386|code|REV             R2, R2|18-186
+1388|code|STR.W           R2, [R8,i,LSL#2]|72-248-35-32
+1392|code|ADDS            i, #1|1-51
+1394|code|CMP             i, #4|4-43
+1396|code|BNE             loc_566|247-209
+1398|code|B               loc_558|239-231
+1400|code|LDR             R3, [SP,#0x60+size]|26-155
+1402|code|MOV             R0, cipher; cipher|72-70
+1404|code|STR             R4, [SP,#0x60+out]; out|0-148
+1406|code|MOV             R2, R6; algo|50-70
+1408|code|STR             R4, [SP,#0x60+in]; in|1-148
+1410|code|ADD             R4, SP, #0x60+mac|8-172
+1412|code|STR             R3, [SP,#0x60+psize]; psize|2-147
+1414|code|ADD             R3, SP, #0x60+sw+4|13-171
+1416|code|STR             R4, [SP,#0x60+mac_out]; mac_out|3-148
+1418|code|STR             R3, [SP,#0x60+var_50]; nonce|4-147
+1420|code|MOVS            R3, #3|3-35
+1422|code|STR             R3, [SP,#0x60+l]; l|5-147
+1424|code|MOVS            R3, #0xC|12-35
+1426|code|STR             R3, [SP,#0x60+m]; m|6-147
+1428|code|MOV             R3, R7; algo|59-70
+1430|code|BL              algo_decrypt|255-247-173-253
+1434|code|CBZ             err, loc_5A2|16-177
+1436|code|LDR             R3, =grub_crypto_gcry_error|14-75
+1438|code|BLX             R3; grub_crypto_gcry_error|152-71
+1440|code|B               loc_5C8|18-224
+1442|code|LDR             R3, [SP,#0x60+expected_mac]|27-155
+1444|code|LDR.W           R3, [R3,i,LSL#2]|83-248-32-48
+1448|code|CBNZ            R5, loc_5AC|5-185
+1450|code|REV             R3, R3|27-186
+1452|code|LDR.W           R2, [R4,i,LSL#2]|84-248-32-32
+1456|code|REV             R2, R2|18-186
+1458|code|CMP             R3, R2|147-66
+1460|code|BEQ             loc_5C0|4-208
+1462|code|LDR             R1, =aMacVerificatio; "MAC verification failed"|9-73
+1464|code|MOVS            i, #9|9-32
+1466|code|LDR             R3, =grub_error|9-75
+1468|code|BLX             R3; grub_error|152-71
+1470|code|B               loc_5C8|3-224
+1472|code|ADDS            i, #1|1-48
+1474|code|CMP             i, #3|3-40
+1476|code|BNE             loc_5A2|237-209
+1478|code|MOVS            i, #0|0-32
+1480|code|ADD             SP, SP, #0x44 ; 'D'|17-176
+1482|code|POP.W           {R4-cipher,PC}|189-232-240-131
+1486|data|ALIGN 0x10|0-191
+1488|data|DCD grub_memmove|104-9-0-0
+1492|data|DCD aNoDecryptionKe; "no decryption key available"|94-8-0-0
+1496|data|DCD grub_crypto_gcry_error|136-9-0-0
+1500|data|DCD aMacVerificatio; "MAC verification failed"|122-8-0-0
+1504|data|DCD grub_error|168-9-0-0
+1508|code|PUSH            {R3-R7,LR}|248-181
+1510|code|MOV             R7, key_in|7-70
+1512|code|MOV             R5, keylen|13-70
+1514|code|MOV             R6, passphrase|22-70
+1516|code|CBNZ            passphrase, loc_5F4|18-185
+1518|code|CMP             keylen, #0x20 ; ' '|32-41
+1520|code|IT CS|40-191
+1522|code|MOVCS           R5, #0x20 ; ' '|32-37
+1524|code|ADD.W           key_in, keylen, #0x10|5-241-16-0
+1528|code|LDR             R3, =grub_malloc|9-75
+1530|code|BLX             R3; grub_malloc|152-71
+1532|code|MOV             R4, key|4-70
+1534|code|CBNZ            key, loc_606|16-185
+1536|code|LDR             R3, =grub_errno|8-75
+1538|code|LDR             key, [R3]|24-104
+1540|code|POP             {R3-key_in,PC}|248-189
+1542|code|STR             passphrase, [key,#8]|134-96
+1544|code|MOV             R2, keylen|42-70
+1546|code|STR             keylen, [key,#4]|69-96
+1548|code|MOV             R1, key_in|57-70
+1550|code|LDR             R3, =grub_memmove|6-75
+1552|code|ADDS            key, #0x10|16-48
+1554|code|BLX             R3; grub_memmove|152-71
+1556|code|LDR             R3, =zfs_wrap_keys|5-75
+1558|code|MOVS            R0, #0|0-32
+1560|code|LDR             R2, [R3]|26-104
+1562|code|STR             key, [R3]|28-96
+1564|code|STR             R2, [key]|34-96
+1566|code|POP             {R3-key_in,PC}|248-189
+1568|data|DCD grub_malloc|156-9-0-0
+1572|data|DCD grub_errno|124-9-0-0
+1576|data|DCD grub_memmove|104-9-0-0
+1580|data|DCD zfs_wrap_keys|84-9-0-0
+1584|code|PUSH            {R4-R6,LR}|112-181
+1586|code|SUBS            R4, argc, #0|12-30
+1588|code|SUB.W           SP, SP, #0x400|173-245-128-109
+1592|code|MOV             R5, ctxt|5-70
+1594|code|BLE             loc_654|11-221
+1596|code|LDR             ctxt, [args]|16-104
+1598|code|LDR             R3, =grub_file_open|48-75
+1600|code|BLX             R3; grub_file_open|152-71
+1602|code|CBZ             file, loc_66E|160-177
+1604|code|MOV             R1, SP|105-70
+1606|code|MOV.W           R2, #0x400|79-244-128-98
+1610|code|LDR             R3, =grub_file_read|46-75
+1612|code|BLX             R3; grub_file_read|152-71
+1614|code|SUBS            R1, real_size, #0|1-30
+1616|code|BGE             loc_67C|20-218
+1618|code|B               loc_66E|12-224
+1620|code|LDR             R3, =grub_xputs|44-75
+1622|code|LDR             ctxt, =aEnterZfsPasswo; "Enter ZFS password: "|45-72
+1624|code|LDR             R6, [R3]|30-104
+1626|code|LDR             R3, =grub_gettext|45-75
+1628|code|LDR             R3, [R3]|27-104
+1630|code|BLX             R3|152-71
+1632|code|BLX             R6|176-71
+1634|code|MOV             R0, SP|104-70
+1636|code|MOVW            R1, #0x3FF|64-242-255-49
+1640|code|LDR             R3, =grub_password_get|42-75
+1642|code|BLX             R3; grub_password_get|152-71
+1644|code|CBNZ            R0, loc_674|16-185
+1646|code|LDR             R3, =grub_errno|42-75
+1648|code|LDR             R0, [R3]|24-104
+1650|code|B               loc_6F8|65-224
+1652|code|MOV             R0, SP|104-70
+1654|code|LDR             R3, =grub_strlen|41-75
+1656|code|BLX             R3; grub_strlen|152-71
+1658|code|MOV             R1, R0; keylen|1-70
+1660|code|LDR             R3, [ctxt,#4]|107-104
+1662|code|LDR             R2, [R3,#8]|154-104
+1664|code|CBZ             R2, loc_6E0|114-179
+1666|code|ADD.W           R1, R1, R1,LSR#31|1-235-209-113
+1670|code|MOVS            real_size, #0|0-32
+1672|code|ASRS            R1, R1, #1|73-16
+1674|code|CMP             i, R1|136-66
+1676|code|BGE             loc_6DA|37-218
+1678|code|LDRB.W          R3, [SP,i,LSL#1]|29-248-16-48
+1682|code|SUB.W           R2, R3, #0x41 ; 'A'|163-241-65-2
+1686|code|CMP             R2, #0x19|25-42
+1688|code|IT LS|152-191
+1690|code|ADDLS           R3, #0x20 ; ' '|32-51
+1692|code|UXTB            R2, R3|218-178
+1694|code|SUB.W           R3, R2, #0x30 ; '0'|162-241-48-3
+1698|code|UXTB            R6, R3|222-178
+1700|code|ADD.W           R3, SP, i,LSL#1|13-235-64-3
+1704|code|LDRB            R3, [R3,#1]|91-120
+1706|code|SUB.W           R4, R3, #0x41 ; 'A'|163-241-65-4
+1710|code|CMP             R4, #0x19|25-44
+1712|code|IT LS|152-191
+1714|code|ADDLS           R3, #0x20 ; ' '|32-51
+1716|code|CMP             c1, #9|9-46
+1718|code|IT HI|136-191
+1720|code|SUBHI           R2, #0x57 ; 'W'|87-58
+1722|code|UXTB            R3, R3|219-178
+1724|code|SUB.W           R5, R3, #0x30 ; '0'|163-241-48-5
+1728|code|IT HI|136-191
+1730|code|UXTBHI          c1, R2|214-178
+1732|code|UXTB            R4, R5|236-178
+1734|code|CMP             c2, #9|9-44
+1736|code|ITT HI|132-191
+1738|code|SUBHI           R3, #0x57 ; 'W'|87-59
+1740|code|UXTBHI          c2, R3|220-178
+1742|code|ORR.W           R3, c2, c1,LSL#4|68-234-6-19
+1746|code|STRB.W          R3, [SP,i]|13-248-0-48
+1750|code|ADDS            i, #1|1-48
+1752|code|B               loc_68A|215-231
+1754|code|MOV             i, SP|104-70
+1756|code|MOVS            R2, #0|0-34
+1758|code|B               loc_6F4|9-224
+1760|code|LDR             R2, [R3,#0x10]|26-105
+1762|code|CBNZ            R2, loc_6F0|42-185
+1764|code|CBNZ            argc, loc_6F2|44-185
+1766|code|LDR             R2, [R3]|26-104
+1768|code|CLZ.W           R2, R2|178-250-130-242
+1772|code|LSRS            R2, R2, #5|82-9
+1774|code|B               loc_6F2|0-224
+1776|code|MOVS            R2, #1; passphrase|1-34
+1778|code|MOV             real_size, SP; key_in|104-70
+1780|code|BL              grub_zfs_add_key|255-247-118-255
+1784|code|ADD.W           SP, SP, #0x400|13-245-128-109
+1788|code|POP             {R4-R6,PC}|112-189
+1790|data|ALIGN 0x10|0-191
+1792|data|DCD grub_file_open|160-9-0-0
+1796|data|DCD grub_file_read|144-9-0-0
+1800|data|DCD grub_xputs|112-9-0-0
+1804|data|DCD aEnterZfsPasswo; "Enter ZFS password: "|146-8-0-0
+1808|data|DCD grub_gettext|180-9-0-0
+1812|data|DCD grub_password_get|148-9-0-0
+1816|data|DCD grub_errno|124-9-0-0
+1820|data|DCD grub_strlen|96-9-0-0
+1824|code|LDR             R2, =(grub_zfs_decrypt_real+1)|10-74
+1826|code|LDR             R3, =grub_zfs_decrypt|11-75
+1828|code|PUSH            {mod,R1,R4,LR}|19-181
+1830|code|STR             R2, [R3]|26-96
+1832|code|LDR             R2, =(grub_zfs_load_key_real+1)|10-74
+1834|code|LDR             R3, =grub_zfs_load_key|11-75
+1836|code|LDR             R1, =(grub_cmd_zfs_key+1)|11-73
+1838|code|LDR             R4, =grub_register_extcmd|12-76
+1840|code|STR             R2, [R3]|26-96
+1842|code|MOVS            R2, #0|0-34
+1844|code|LDR             R3, =aImportZfsWrapp; "Import ZFS wrapping key stored in FILE."|11-75
+1846|code|LDR             mod, =aZfskey; "zfskey"|12-72
+1848|code|STR             R3, [SP,#0x10+var_10]|0-147
+1850|code|LDR             R3, =options|12-75
+1852|code|STR             R3, [SP,#0x10+var_C]|1-147
+1854|code|LDR             R3, =aHPRFile; "[-h|-p|-r] [FILE]"|12-75
+1856|code|BLX             R4; grub_register_extcmd|160-71
+1858|code|LDR             R3, =zfs_wrap_keys|12-75
+1860|code|STR             R0, [R3,#(cmd_key - 0x954)]|88-96
+1862|code|ADD             SP, SP, #8|2-176
+1864|code|POP             {R4,PC}|16-189
+1866|data|ALIGN 4|0-191
+1868|data|DCD grub_zfs_decrypt_real+1|57-5-0-0
+1872|data|DCD grub_zfs_decrypt|188-9-0-0
+1876|data|DCD grub_zfs_load_key_real+1|105-3-0-0
+1880|data|DCD grub_zfs_load_key|120-9-0-0
+1884|data|DCD grub_cmd_zfs_key+1|49-6-0-0
+1888|data|DCD grub_register_extcmd|176-9-0-0
+1892|data|DCD aImportZfsWrapp; "Import ZFS wrapping key stored in FILE."|192-8-0-0
+1896|data|DCD aZfskey; "zfskey"|167-8-0-0
+1900|data|DCD options|188-7-0-0
+1904|data|DCD aHPRFile; "[-h|-p|-r] [FILE]"|174-8-0-0
+1908|data|DCD zfs_wrap_keys|84-9-0-0
+1912|code|LDR             R2, =grub_zfs_decrypt|5-74
+1914|code|PUSH            {R3,LR}|8-181
+1916|code|MOVS            R3, #0|0-35
+1918|code|STR             R3, [R2]|19-96
+1920|code|LDR             R2, =grub_zfs_load_key|4-74
+1922|code|STR             R3, [R2]|19-96
+1924|code|LDR             R3, =zfs_wrap_keys|4-75
+1926|code|LDR             R0, [R3,#(cmd_key - 0x954)]|88-104
+1928|code|LDR             R3, =grub_unregister_extcmd|4-75
+1930|code|BLX             R3; grub_unregister_extcmd|152-71
+1932|code|POP             {R3,PC}|8-189
+1934|data|ALIGN 0x10|0-191
+1936|data|DCD grub_zfs_decrypt|188-9-0-0
+1940|data|DCD grub_zfs_load_key|120-9-0-0
+1944|data|DCD zfs_wrap_keys|84-9-0-0
+1948|data|DCD grub_unregister_extcmd|108-9-0-0
+2076|data|DCB "fs/zfs/zfscrypt.c",0|102-115-47-122-102-115-47-122-102-115-99-114-121-112-116-46-99-0
+2094|data|DCB "zfs",0|122-102-115-0
+2098|data|DCB "Unexpected key size %u",0xA,0|85-110-101-120-112-101-99-116-101-100-32-107-101-121-32-115-105-122-101-32-37-117-10-0
+2122|data|DCB "key loading failed",0xA,0|107-101-121-32-108-111-97-100-105-110-103-32-102-97-105-108-101-100-10-0
+2142|data|DCB "no decryption key available",0|110-111-32-100-101-99-114-121-112-116-105-111-110-32-107-101-121-32-97-118-97-105-108-97-98-108-101-0
+2170|data|DCB "MAC verification failed",0|77-65-67-32-118-101-114-105-102-105-99-97-116-105-111-110-32-102-97-105-108-101-100-0
+2194|data|DCB "Enter ZFS password: ",0|69-110-116-101-114-32-90-70-83-32-112-97-115-115-119-111-114-100-58-32-0
+2215|data|DCB "zfskey",0|122-102-115-107-101-121-0
+2222|data|DCB "[-h|-p|-r] [FILE]",0|91-45-104-124-45-112-124-45-114-93-32-91-70-73-76-69-93-0
+2240|data|DCB "Import ZFS wrapping key stored in FILE.",0|73-109-112-111-114-116-32-90-70-83-32-119-114-97-112-112-105-110-103-32-107-101-121-32-115-116-111-114-101-100-32-105-110-32-70-73-76-69-46-0
+2280|data|DCB "raw",0|114-97-119-0
+2284|data|DCB "Assume input is raw.",0|65-115-115-117-109-101-32-105-110-112-117-116-32-105-115-32-114-97-119-46-0
+2305|data|DCB "hex",0|104-101-120-0
+2309|data|DCB "Assume input is hex.",0|65-115-115-117-109-101-32-105-110-112-117-116-32-105-115-32-104-101-120-46-0
+2330|data|DCB "passphrase",0|112-97-115-115-112-104-114-97-115-101-0
+2341|data|DCB "Assume input is passphrase.",0|65-115-115-117-109-101-32-105-110-112-117-116-32-105-115-32-112-97-115-115-112-104-114-97-115-101-46-0
+2369|data||255
+2370|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+2388|data|% 4|255-255-255-255

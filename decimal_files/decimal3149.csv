@@ -1,0 +1,1835 @@
+address|type|disassembly|bytes
+0|code|PUSH            {term-R2,LR}|7-181
+2|code|LDR             R3, [term,#0x1C]|195-105
+4|code|BLX             R3|152-71
+6|code|LSRS            R0, R0, #0x10|0-12
+8|code|ADD             SP, SP, #0xC|3-176
+10|code|POP.W           {PC}|93-248-4-251
+14|code|PUSH            {R4-data,LR}|112-181
+16|code|SUBS            R4, str, #1|76-30
+18|code|LDR             data, [term,#0x48]|134-108
+20|code|MOV             R5, term|5-70
+22|code|LDRB.W          R1, [R4,#1]!|20-248-1-31
+26|code|CBZ             R1, locret_24|25-177
+28|code|LDR             R3, [data,#0x2C]|243-106
+30|code|MOV             R0, term|40-70
+32|code|BLX             R3|152-71
+34|code|B               loc_16|248-231
+36|code|POP             {str-data,PC}|112-189
+38|code|PUSH            {R4-R6,LR}|112-181
+40|code|MOV             R4, data|4-70
+42|code|LDR             R6, =grub_free|12-78
+44|code|MOVS            R5, #0|0-37
+46|code|LDR             data, [data,#4]|64-104
+48|code|BLX             R6; grub_free|176-71
+50|code|LDR             R0, [data,#8]|160-104
+52|code|STR             R5, [data,#4]|101-96
+54|code|BLX             R6; grub_free|176-71
+56|code|LDR             R0, [data,#0xC]|224-104
+58|code|STR             R5, [data,#8]|165-96
+60|code|BLX             R6; grub_free|176-71
+62|code|LDR             R0, [data,#0x10]|32-105
+64|code|STR             R5, [data,#0xC]|229-96
+66|code|BLX             R6; grub_free|176-71
+68|code|LDR             R0, [data,#0x14]|96-105
+70|code|STR             R5, [data,#0x10]|37-97
+72|code|BLX             R6; grub_free|176-71
+74|code|LDR             R0, [data,#0x18]|160-105
+76|code|STR             R5, [data,#0x14]|101-97
+78|code|BLX             R6; grub_free|176-71
+80|code|STR             R5, [data,#0x18]|165-97
+82|code|LDR             R0, [data,#0x1C]|224-105
+84|code|BLX             R6; grub_free|176-71
+86|code|STR             R5, [data,#0x1C]|229-97
+88|code|POP             {data-R6,PC}|112-189
+90|data|ALIGN 4|0-191
+92|data|DCD grub_free|188-24-0-0
+96|code|LDR             R3, [term,#0x48]|131-108
+98|code|LDR             term, [R3,#4]|88-104
+100|code|BX              LR|112-71
+102|code|PUSH.W          {R4-R8,LR}|45-233-240-65
+106|code|MOV             R6, str|14-70
+108|code|LDR             R4, [term,#0x48]|132-108
+110|code|LDR             R5, =grub_strcmp|75-77
+112|code|MOV             term, data; term|32-70
+114|code|BL              grub_terminfo_all_free|255-247-216-255
+118|code|LDR             R0, =aVt100; "vt100"|74-72
+120|code|MOV             R1, str|49-70
+122|code|MOV             R8, R5|168-70
+124|code|BLX             R5; grub_strcmp|168-71
+126|code|MOV             R7, R0|7-70
+128|code|CBNZ            R0, loc_B2|184-185
+130|code|LDR             R5, =grub_strdup|72-77
+132|code|LDR             R0, =aVt100; "vt100"|70-72
+134|code|BLX             R5; grub_strdup|168-71
+136|code|STR             R0, [data,#4]|96-96
+138|code|LDR             R0, =aIP1DP2Dh; "\x1B[%i%p1%d;%p2%dH"|71-72
+140|code|BLX             R5; grub_strdup|168-71
+142|code|STR             R0, [data,#8]|160-96
+144|code|LDR             R0, =aHJ; "\x1B[H\x1B[J"|70-72
+146|code|BLX             R5; grub_strdup|168-71
+148|code|STR             R0, [data,#0xC]|224-96
+150|code|LDR             R0, =a7m; "\x1B[7m"|70-72
+152|code|BLX             R5; grub_strdup|168-71
+154|code|STR             R0, [data,#0x10]|32-97
+156|code|LDR             R0, =aM; "\x1B[m"|69-72
+158|code|BLX             R5; grub_strdup|168-71
+160|code|STR             R0, [data,#0x14]|96-97
+162|code|LDR             R0, =a25h; "\x1B[?25h"|69-72
+164|code|BLX             R5; grub_strdup|168-71
+166|code|STR             R0, [data,#0x18]|160-97
+168|code|LDR             R0, =a25l; "\x1B[?25l"|68-72
+170|code|BLX             R5; grub_strdup|168-71
+172|code|STR             R7, [data,#0x20]|39-98
+174|code|STR             R0, [data,#0x1C]|224-97
+176|code|B               loc_EC|28-224
+178|code|LDR             R0, =aVt100Color; "vt100-color"|67-72
+180|code|MOV             R1, str|49-70
+182|code|BLX             R5; grub_strcmp|168-71
+184|code|CBNZ            R0, loc_F4|224-185
+186|code|LDR             R5, =grub_strdup|58-77
+188|code|LDR             R0, =aVt100Color; "vt100-color"|64-72
+190|code|BLX             R5; grub_strdup|168-71
+192|code|STR             R0, [data,#4]|96-96
+194|code|LDR             R0, =aIP1DP2Dh; "\x1B[%i%p1%d;%p2%dH"|57-72
+196|code|BLX             R5; grub_strdup|168-71
+198|code|STR             R0, [data,#8]|160-96
+200|code|LDR             R0, =aHJ; "\x1B[H\x1B[J"|56-72
+202|code|BLX             R5; grub_strdup|168-71
+204|code|STR             R0, [data,#0xC]|224-96
+206|code|LDR             R0, =a7m; "\x1B[7m"|56-72
+208|code|BLX             R5; grub_strdup|168-71
+210|code|STR             R0, [data,#0x10]|32-97
+212|code|LDR             R0, =aM; "\x1B[m"|55-72
+214|code|BLX             R5; grub_strdup|168-71
+216|code|STR             R0, [data,#0x14]|96-97
+218|code|LDR             R0, =a25h; "\x1B[?25h"|55-72
+220|code|BLX             R5; grub_strdup|168-71
+222|code|STR             R0, [data,#0x18]|160-97
+224|code|LDR             R0, =a25l; "\x1B[?25l"|54-72
+226|code|BLX             R5; grub_strdup|168-71
+228|code|STR             R0, [data,#0x1C]|224-97
+230|code|LDR             R0, =a3P1Dm4P2Dm; "\x1B[3%p1%dm\x1B[4%p2%dm"|55-72
+232|code|BLX             R5; grub_strdup|168-71
+234|code|STR             R0, [data,#0x20]|32-98
+236|code|LDR             R3, =grub_errno|54-75
+238|code|LDR             R0, [R3]|24-104
+240|code|POP.W           {data-R8,PC}|189-232-240-129
+244|code|LDR             R0, =aArc; "arc"|53-72
+246|code|MOV             R1, str|49-70
+248|code|BLX             R5; grub_strcmp|168-71
+250|code|MOV             R7, R0|7-70
+252|code|CBNZ            R0, loc_126|152-185
+254|code|LDR             R5, =grub_strdup|41-77
+256|code|LDR             R0, =aArc; "arc"|50-72
+258|code|BLX             R5; grub_strdup|168-71
+260|code|STR             R0, [data,#4]|96-96
+262|code|LDR             R0, =unk_1434|50-72
+264|code|BLX             R5; grub_strdup|168-71
+266|code|STR             R0, [data,#8]|160-96
+268|code|LDR             R0, =unk_1444|49-72
+270|code|BLX             R5; grub_strdup|168-71
+272|code|STR             R0, [data,#0xC]|224-96
+274|code|LDR             R0, =unk_1448|49-72
+276|code|BLX             R5; grub_strdup|168-71
+278|code|STR             R0, [data,#0x10]|32-97
+280|code|LDR             R0, =unk_144C|48-72
+282|code|BLX             R5; grub_strdup|168-71
+284|code|STR             R7, [data,#0x18]|167-97
+286|code|STR             R7, [data,#0x1C]|231-97
+288|code|STR             R0, [data,#0x14]|96-97
+290|code|LDR             R0, =unk_1450|47-72
+292|code|B               loc_E8|224-231
+294|code|LDR             R0, =aIeee1275; "ieee1275"|47-72
+296|code|MOV             R1, str|49-70
+298|code|BLX             R5; grub_strcmp|168-71
+300|code|CBNZ            R0, loc_160|192-185
+302|code|LDR             R5, =grub_strdup|29-77
+304|code|LDR             R0, =aIeee1275; "ieee1275"|44-72
+306|code|BLX             R5; grub_strdup|168-71
+308|code|STR             R0, [data,#4]|96-96
+310|code|LDR             R0, =aIP1DP2Dh; "\x1B[%i%p1%d;%p2%dH"|28-72
+312|code|BLX             R5; grub_strdup|168-71
+314|code|STR             R0, [data,#8]|160-96
+316|code|LDR             R0, =unk_146A|42-72
+318|code|BLX             R5; grub_strdup|168-71
+320|code|STR             R0, [data,#0xC]|224-96
+322|code|LDR             R0, =a7m; "\x1B[7m"|27-72
+324|code|BLX             R5; grub_strdup|168-71
+326|code|STR             R0, [data,#0x10]|32-97
+328|code|LDR             R0, =aM; "\x1B[m"|26-72
+330|code|BLX             R5; grub_strdup|168-71
+332|code|MOV             R1, str|49-70
+334|code|STR             R0, [data,#0x14]|96-97
+336|code|LDR             R0, =aIeee1275; "ieee1275"|36-72
+338|code|BLX             R8; grub_strcmp|192-71
+340|code|CMP             R0, #0|0-40
+342|code|BEQ             loc_DA|192-208
+344|code|MOVS            R3, #0|0-35
+346|code|STR             R3, [data,#0x18]|163-97
+348|code|STR             R3, [data,#0x1C]|227-97
+350|code|B               loc_E6|194-231
+352|code|LDR             R0, =aIeee1275Nocurs; "ieee1275-nocursor"|34-72
+354|code|MOV             R1, str|49-70
+356|code|BLX             R5; grub_strcmp|168-71
+358|code|CMP             R0, #0|0-40
+360|code|BEQ             loc_12E|225-208
+362|code|LDR             R0, =aDumb; "dumb"|33-72
+364|code|MOV             R1, str|49-70
+366|code|BLX             R5; grub_strcmp|168-71
+368|code|MOV             R5, R0|5-70
+370|code|CBNZ            R0, loc_18C|88-185
+372|code|LDR             R0, =aDumb; "dumb"|30-72
+374|code|LDR             R3, =grub_strdup|11-75
+376|code|BLX             R3; grub_strdup|152-71
+378|code|STR             R5, [data,#8]|165-96
+380|code|STR             R5, [data,#0xC]|229-96
+382|code|STR             R5, [data,#0x10]|37-97
+384|code|STR             R5, [data,#0x14]|101-97
+386|code|STR             R5, [data,#0x18]|165-97
+388|code|STR             R5, [data,#0x1C]|229-97
+390|code|STR             R5, [data,#0x20]|37-98
+392|code|STR             R0, [data,#4]|96-96
+394|code|B               loc_EC|175-231
+396|code|LDR             R1, =aUnknownTerminf; "unknown terminfo type `%s'"|25-73
+398|code|MOV             R2, str|50-70
+400|code|LDR             R3, =grub_error|25-75
+402|code|MOVS            R0, #0x12|18-32
+404|code|BLX             R3; grub_error|152-71
+406|code|POP.W           {data-R8,PC}|189-232-240-129
+410|data|ALIGN 4|0-191
+412|data|DCD grub_strcmp|168-24-0-0
+416|data|DCD aVt100; "vt100"|220-19-0-0
+420|data|DCD grub_strdup|136-24-0-0
+424|data|DCD aIP1DP2Dh; "\x1B[%i%p1%d;%p2%dH"|226-19-0-0
+428|data|DCD aHJ; "\x1B[H\x1B[J"|243-19-0-0
+432|data|DCD a7m; "\x1B[7m"|250-19-0-0
+436|data|DCD aM; "\x1B[m"|255-19-0-0
+440|data|DCD a25h; "\x1B[?25h"|3-20-0-0
+444|data|DCD a25l; "\x1B[?25l"|10-20-0-0
+448|data|DCD aVt100Color; "vt100-color"|17-20-0-0
+452|data|DCD a3P1Dm4P2Dm; "\x1B[3%p1%dm\x1B[4%p2%dm"|29-20-0-0
+456|data|DCD grub_errno|152-24-0-0
+460|data|DCD aArc; "arc"|48-20-0-0
+464|data|DCD unk_1434|52-20-0-0
+468|data|DCD unk_1444|68-20-0-0
+472|data|DCD unk_1448|72-20-0-0
+476|data|DCD unk_144C|76-20-0-0
+480|data|DCD unk_1450|80-20-0-0
+484|data|DCD aIeee1275; "ieee1275"|97-20-0-0
+488|data|DCD unk_146A|106-20-0-0
+492|data|DCD aIeee1275Nocurs; "ieee1275-nocursor"|115-20-0-0
+496|data|DCD aDumb; "dumb"|133-20-0-0
+500|data|DCD aUnknownTerminf; "unknown terminfo type `%s'"|138-20-0-0
+504|data|DCD grub_error|180-24-0-0
+508|code|PUSH.W          {R4-R10,LR}|45-233-240-71
+512|code|MOV             R7, args|23-70
+514|code|SUB             SP, SP, #0x28|138-176
+516|code|LDR             R3, [ctxt,#4]|67-104
+518|code|MOV             R8, argc|136-70
+520|code|CMP             argc, #0|0-41
+522|code|BNE             loc_280|57-209
+524|code|LDR             R4, =grub_gettext|80-76
+526|code|LDR             ctxt, =aAscii; "ASCII"|81-72
+528|code|LDR             R5, =grub_printf|81-77
+530|code|LDR             state, [R4]|35-104
+532|code|BLX             R3|152-71
+534|code|LDR             R3, =aCp437; "CP-437"|81-75
+536|code|STR             R3, [SP,#0x48+var_3C]|3-147
+538|code|LDR             R3, [R4]|35-104
+540|code|STR             R0, [SP,#0x48+ptr]|2-144
+542|code|LDR             R0, =aUtf8; "UTF-8"|80-72
+544|code|BLX             R3|152-71
+546|code|LDR             R3, [R4]|35-104
+548|code|STR             R0, [SP,#0x48+var_38]|4-144
+550|code|LDR             R0, =aVisuallyOrdere; "visually-ordered UTF-8"|79-72
+552|code|BLX             R3|152-71
+554|code|LDR             R3, =aGlyphDescripto; "Glyph descriptors"|79-75
+556|code|STR             R3, [SP,#0x48+var_30]|6-147
+558|code|LDR             R3, [R4]|35-104
+560|code|STR             R0, [SP,#0x48+var_34]|5-144
+562|code|LDR             R0, =aUnknownEncodin; "Unknown encoding"|78-72
+564|code|BLX             R3|152-71
+566|code|LDR             R3, [R4]|35-104
+568|code|STR             R0, [SP,#0x48+var_2C]|7-144
+570|code|LDR             R0, =aUnknownEncodin; "Unknown encoding"|76-72
+572|code|BLX             R3|152-71
+574|code|LDR             R3, [R4]|35-104
+576|code|STR             R0, [SP,#0x48+var_28]|8-144
+578|code|LDR             R0, =aUnknownEncodin; "Unknown encoding"|74-72
+580|code|BLX             R3|152-71
+582|code|LDR             R3, =grub_puts_|74-75
+584|code|STR             R0, [SP,#0x48+var_24]|9-144
+586|code|LDR             R0, =aCurrentTerminf; "Current terminfo types:"|74-72
+588|code|BLX             R3; grub_puts_|152-71
+590|code|LDR             R3, =terminfo_outputs|74-75
+592|code|LDR             R4, [R3]|28-104
+594|code|CBZ             R4, loc_27C|156-177
+596|code|LDR             R3, [R4,#0x3C]|227-107
+598|code|ADD             R6, SP, #0x48+var_20|10-174
+600|code|LDR             R0, [R4,#0x48]|160-108
+602|code|UBFX.W          R3, R3, #3, #3|195-243-194-3
+606|code|LDR             R1, [R4,#8]|161-104
+608|code|ADD.W           R3, R6, R3,LSL#2|6-235-131-3
+612|code|LDRH            R6, [R0,#0x28]|6-141
+614|code|LDR             R2, [R0,#4]|66-104
+616|code|STR             R6, [SP,#0x48+var_48]|0-150
+618|code|LDRH            R0, [R0,#0x2A]|64-141
+620|code|STR             R0, [SP,#0x48+var_44]|1-144
+622|code|LDR             R0, =aSSSDxD; "%s: %s\t%s\t%dx%d\n"|67-72
+624|code|LDR.W           R3, [R3,#-0x20]|83-248-32-60
+628|code|BLX             R5; grub_printf|168-71
+630|code|LDR             R3, [R4,#0x48]|163-108
+632|code|LDR             R4, [R3]|28-104
+634|code|B               loc_252|234-231
+636|code|MOV             R2, R4|34-70
+638|code|B               loc_346|98-224
+640|code|LDR             args, [state,#8]|154-104
+642|code|LDR             R5, [state,#0x18]|157-105
+644|code|CMP             R2, #0|0-42
+646|code|LDR             R2, [state,#0x10]|26-105
+648|code|ITE NE|20-191
+650|code|MOVNE.W         R9, #0x10|79-240-16-9
+654|code|MOVEQ.W         R9, #0|79-240-0-9
+658|code|CMP             R2, #0|0-42
+660|code|IT NE|24-191
+662|code|MOVNE.W         encoding, #0x18|79-240-24-9
+666|code|CBZ             R5, loc_2DC|253-177
+668|code|LDR             ctxt, [state,#0x1C]|216-105
+670|code|ADD             R4, SP, #0x48+var_20|10-172
+672|code|MOVS            R2, #0|0-34
+674|code|LDR             R6, =grub_strtoul|55-78
+676|code|LDR             R5, =grub_errno|55-77
+678|code|STR.W           R0, [R4,#-0x20]!|68-248-32-13
+682|code|MOV             argc, R4|33-70
+684|code|BLX             R6; grub_strtoul|176-71
+686|code|LDR             R2, [R5]|42-104
+688|code|MOV             R10, R0|130-70
+690|code|CMP             R2, #0|0-42
+692|code|BNE             loc_346|71-209
+694|code|LDR             R3, [SP,#0x48+ptr]|2-155
+696|code|LDRB            R1, [R3]|25-120
+698|code|CMP             R1, #0x78 ; 'x'|120-41
+700|code|BEQ             loc_2C8|4-208
+702|code|LDR             R1, =aIncorrectTermi; "incorrect terminal dimensions specifica"...|50-73
+704|code|MOVS            w, #0x12|18-32
+706|code|LDR             R3, =grub_error|50-75
+708|code|BLX             R3; grub_error|152-71
+710|code|B               loc_31C|41-224
+712|code|ADDS            w, R3, #1|88-28
+714|code|MOV             R1, R4|33-70
+716|code|STR             R0, [SP,#0x48+ptr]|2-144
+718|code|BLX             R6; grub_strtoul|176-71
+720|code|LDR             R2, [R5]|42-104
+722|code|CMP             R2, #0|0-42
+724|code|BNE             loc_346|55-209
+726|code|MOV             R6, w|86-70
+728|code|MOV             R5, h|5-70
+730|code|B               loc_2DE|0-224
+732|code|MOV             R6, R5|46-70
+734|code|LDR             R3, =terminfo_outputs|38-75
+736|code|LDR.W           R10, =grub_strcmp|223-248-184-160
+740|code|LDR             R4, [R3]|28-104
+742|code|B               loc_2F4|5-224
+744|code|LDR             R0, [args]|56-104
+746|code|LDR             R1, =aOfconsole; "ofconsole"|41-73
+748|code|BLX             R10; grub_strcmp|208-71
+750|code|CBZ             R0, loc_320|184-177
+752|code|LDR             R3, [cur,#0x48]|163-108
+754|code|LDR             cur, [R3]|28-104
+756|code|CBZ             cur, loc_338|4-179
+758|code|LDR             R0, [args]|56-104
+760|code|LDR             R1, [cur,#8]|161-104
+762|code|BLX             R10; grub_strcmp|208-71
+764|code|CMP             R0, #0|0-40
+766|code|BNE             loc_2E8|243-209
+768|code|LDR             R3, [cur,#0x3C]|227-107
+770|code|BIC.W           R3, R3, #0x38|35-240-56-3
+774|code|ORR.W           R3, encoding, R3|73-234-3-3
+778|code|STR             R3, [cur,#0x3C]|227-99
+780|code|CBNZ            w, loc_32C|118-185
+782|code|CMP.W           argc, #1|184-241-1-15
+786|code|BEQ             loc_344|23-208
+788|code|MOV             R0, cur; term|32-70
+790|code|LDR             R1, [args,#4]; str|121-104
+792|code|BL              grub_terminfo_set_current|255-247-165-254
+796|code|MOV             R2, R0|2-70
+798|code|B               loc_346|18-224
+800|code|LDR             R0, =aConsole; "console"|28-72
+802|code|LDR             R1, [cur,#8]|161-104
+804|code|BLX             R10; grub_strcmp|208-71
+806|code|CMP             R0, #0|0-40
+808|code|BNE             loc_2F0|226-209
+810|code|B               loc_300|233-231
+812|code|CMP             h, #0|0-45
+814|code|BEQ             loc_30E|238-208
+816|code|LDR             R3, [cur,#0x48]|163-108
+818|code|STRH            w, [data,#0x24]|158-132
+820|code|STRH            h, [data,#0x26]|221-132
+822|code|B               loc_30E|234-231
+824|code|LDR             R1, =aTerminalSIsnTF; "terminal %s isn't found or it's not han"...|23-73
+826|code|MOVS            R0, #0x12|18-32
+828|code|LDR             R2, [args]|58-104
+830|code|LDR             R3, =grub_error|19-75
+832|code|BLX             R3; grub_error|152-71
+834|code|B               loc_31C|235-231
+836|code|MOVS            R2, #0|0-34
+838|code|MOV             R0, R2|16-70
+840|code|ADD             SP, SP, #0x28 ; '('|10-176
+842|code|POP.W           {R4-R10,PC}|189-232-240-135
+846|data|ALIGN 0x10|0-191
+848|data|DCD grub_gettext|196-24-0-0
+852|data|DCD aAscii; "ASCII"|165-20-0-0
+856|data|DCD grub_printf|160-24-0-0
+860|data|DCD aCp437; "CP-437"|171-20-0-0
+864|data|DCD aUtf8; "UTF-8"|178-20-0-0
+868|data|DCD aVisuallyOrdere; "visually-ordered UTF-8"|184-20-0-0
+872|data|DCD aGlyphDescripto; "Glyph descriptors"|207-20-0-0
+876|data|DCD aUnknownEncodin; "Unknown encoding"|225-20-0-0
+880|data|DCD grub_puts_|120-24-0-0
+884|data|DCD aCurrentTerminf; "Current terminfo types:"|242-20-0-0
+888|data|DCD terminfo_outputs|220-22-0-0
+892|data|DCD aSSSDxD; "%s: %s\t%s\t%dx%d\n"|10-21-0-0
+896|data|DCD grub_strtoul|200-24-0-0
+900|data|DCD grub_errno|152-24-0-0
+904|data|DCD aIncorrectTermi; "incorrect terminal dimensions specifica"...|27-21-0-0
+908|data|DCD grub_error|180-24-0-0
+912|data|DCD aOfconsole; "ofconsole"|71-21-0-0
+916|data|DCD aConsole; "console"|81-21-0-0
+920|data|DCD aTerminalSIsnTF; "terminal %s isn't found or it's not han"...|89-21-0-0
+924|data|DCD grub_strcmp|168-24-0-0
+928|code|PUSH            {R4,LR}|16-181
+930|code|MOV             R4, err|4-70
+932|code|BL              grub_terminfo_set_current|255-247-95-254
+936|code|CBNZ            err, locret_3B4|32-185
+938|code|LDR             R3, =terminfo_outputs|3-75
+940|code|LDR             R2, [term,#0x48]|162-108
+942|code|LDR             R1, [R3]|25-104
+944|code|STR             R1, [R2]|17-96
+946|code|STR             term, [R3]|28-96
+948|code|POP             {term,PC}|16-189
+950|data|ALIGN 4|0-191
+952|data|DCD terminfo_outputs|220-22-0-0
+956|code|PUSH            {R4,LR}|16-181
+958|code|LDR             R4, =terminfo_outputs|10-76
+960|code|LDR             R3, [ptr]|35-104
+962|code|CBZ             R3, loc_3DE|99-177
+964|code|CMP             R3, term|131-66
+966|code|BNE             loc_3DA|8-209
+968|code|LDR             term, [R3,#0x48]; term|152-108
+970|code|BL              grub_terminfo_all_free|255-247-44-254
+974|code|LDR             R3, [R4]|35-104
+976|code|MOVS            R0, #0|0-32
+978|code|LDR             R3, [R3,#0x48]|155-108
+980|code|LDR             R3, [R3]|27-104
+982|code|STR             R3, [R4]|35-96
+984|code|POP             {R4,PC}|16-189
+986|code|LDR             R4, [R3,#0x48]|156-108
+988|code|B               loc_3C0|240-231
+990|code|LDR             R1, =aTerminalNotFou; "terminal not found"|3-73
+992|code|MOVS            term, #0x26 ; '&'|38-32
+994|code|LDR             R3, =grub_error|3-75
+996|code|BLX             R3; grub_error|152-71
+998|code|POP             {R4,PC}|16-189
+1000|data|DCD terminfo_outputs|220-22-0-0
+1004|data|DCD aTerminalNotFou; "terminal not found"|145-21-0-0
+1008|data|DCD grub_error|180-24-0-0
+1012|code|LDR             R3, [term,#0x48]|131-108
+1014|code|MOVS            term, #0|0-32
+1016|code|SUB             SP, SP, #8|130-176
+1018|code|LDR             data, [data,#0x28]|155-106
+1020|code|UXTH            R2, R3|154-178
+1022|code|LSRS            R3, R3, #0x10|27-12
+1024|code|BFI.W           R0, R2, #0, #0x10|98-243-15-0
+1028|code|BFI.W           R0, R3, #0x10, #0x10|99-243-31-64
+1032|code|ADD             SP, SP, #8|2-176
+1034|code|BX              LR|112-71
+1036|code|PUSH            {R4-R7,LR}|240-181
+1038|code|SUB             SP, SP, #0x14|133-176
+1040|code|LDR             R3, [term,#0x1C]|195-105
+1042|code|UXTH            R6, R1|142-178
+1044|code|STR             R1, [SP,#0x28+var_24]|1-145
+1046|code|MOV             R7, term|7-70
+1048|code|LSRS            R5, R1, #0x10|13-12
+1050|code|LDR             R4, [term,#0x48]|132-108
+1052|code|BLX             R3|152-71
+1054|code|STR             R0, [SP,#0x28+var_1C]|3-144
+1056|code|UXTH            R0, R0|128-178
+1058|code|CMP             R6, R0|134-66
+1060|code|BLS             loc_434|6-217
+1062|code|LDR             R1, =aInvalidPointUU; "invalid point (%u,%u)"|19-73
+1064|code|MOV             R2, R6|50-70
+1066|code|MOV             R3, R5|43-70
+1068|code|LDR             data, =grub_error|18-76
+1070|code|MOVS            R0, #0x26 ; '&'|38-32
+1072|code|BLX             R4; grub_error|160-71
+1074|code|B               loc_46E|28-224
+1076|code|MOV             R0, term; term|56-70
+1078|code|BL              grub_term_height|255-247-227-253
+1082|code|CMP             R5, R0|133-66
+1084|code|BHI             loc_426|243-216
+1086|code|LDR             R0, [data,#8]; string|160-104
+1088|code|CBZ             R0, loc_454|64-177
+1090|code|MOV             R1, R5|41-70
+1092|code|MOV             R2, R6|50-70
+1094|code|LDR             R3, =(grub_terminfo_tparm+1)|13-75
+1096|code|BLX             R3; grub_terminfo_tparm|152-71
+1098|code|MOV             R1, R0; str|1-70
+1100|code|MOV             R0, term; term|56-70
+1102|code|BL              putstr|255-247-222-253
+1106|code|B               loc_46A|10-224
+1108|code|LDRH            R3, [data,#0x2A]|99-141
+1110|code|CMP             R3, R5|171-66
+1112|code|BNE             loc_46A|7-209
+1114|code|LDRH            R3, [data,#0x28]|35-141
+1116|code|SUBS            R3, #1|1-59
+1118|code|CMP             R6, R3|158-66
+1120|code|BNE             loc_46A|3-209
+1122|code|LDR             R3, [data,#0x2C]|227-106
+1124|code|MOV             R0, term|56-70
+1126|code|MOVS            R1, #8|8-33
+1128|code|BLX             R3|152-71
+1130|code|STRH            R6, [data,#0x28]|38-133
+1132|code|STRH            R5, [data,#0x2A]|101-133
+1134|code|ADD             SP, SP, #0x14|5-176
+1136|code|POP             {R4-term,PC}|240-189
+1138|data|ALIGN 4|0-191
+1140|data|DCD aInvalidPointUU; "invalid point (%u,%u)"|164-21-0-0
+1144|data|DCD grub_error|180-24-0-0
+1148|data|DCD grub_terminfo_tparm+1|173-11-0-0
+1152|code|LDR             R3, [term,#0x48]|131-108
+1154|code|PUSH            {term,R1,R4,LR}|19-181
+1156|code|MOV             R4, term|4-70
+1158|code|LDR             term, [R3,#0xC]; string|216-104
+1160|code|LDR             data, =(grub_terminfo_tparm+1)|8-75
+1162|code|BLX             R3; grub_terminfo_tparm|152-71
+1164|code|MOV             R1, R0; str|1-70
+1166|code|MOV             R0, term; term|32-70
+1168|code|BL              putstr|255-247-189-253
+1172|code|MOVS            R3, #0|0-35
+1174|code|STRH.W          R3, [SP,#0x10+pos]|173-248-4-48
+1178|code|MOV             R0, term; term|32-70
+1180|code|STRH.W          R3, [SP,#0x10+pos.y]|173-248-6-48
+1184|code|LDR             R1, [SP,#0x10+pos]; pos|1-153
+1186|code|BL              grub_terminfo_gotoxy|255-247-179-255
+1190|code|ADD             SP, SP, #8|2-176
+1192|code|POP             {term,PC}|16-189
+1194|data|ALIGN 4|0-191
+1196|data|DCD grub_terminfo_tparm+1|173-11-0-0
+1200|code|LDR             R3, [term,#0x48]|131-108
+1202|code|PUSH            {R4-R7,LR}|240-181
+1204|code|MOV             R6, term|6-70
+1206|code|LDR             R7, [data,#0x20]|31-106
+1208|code|SUB             SP, SP, #0x24|137-176
+1210|code|MOV             LR, state|142-70
+1212|code|CBZ             R7, loc_50A|47-179
+1214|code|LDR             R5, =unk_1278|27-77
+1216|code|MOV             R4, SP|108-70
+1218|code|CMP.W           LR, #1|190-241-1-15
+1222|code|LDM             R5!, {term-data}|15-205
+1224|code|STM             R4!, {R0-R3}|15-196
+1226|code|LDM.W           R5, {R0-R3}|149-232-15-0
+1230|code|STM.W           R4, {R0-R3}|132-232-15-0
+1234|code|BLS             loc_4DE|4-217
+1236|code|CMP.W           LR, #2|190-241-2-15
+1240|code|BNE             loc_528|38-209
+1242|code|LDR             R3, =grub_term_highlight_color|21-75
+1244|code|B               loc_4E0|0-224
+1246|code|LDR             R3, =grub_term_normal_color|21-75
+1248|code|LDRB            R3, [R3]|27-120
+1250|code|ADD             R1, SP, #0x38+var_18|8-169
+1252|code|MOV             R0, R7; string|56-70
+1254|code|AND.W           R2, R3, #0xF|3-240-15-2
+1258|code|LSRS            R3, R3, #4|27-9
+1260|code|AND.W           fg, fg, #7|2-240-7-2
+1264|code|AND.W           bg, bg, #7|3-240-7-3
+1268|code|ADD.W           R2, R1, R2,LSL#2|1-235-130-2
+1272|code|ADD.W           R3, R1, R3,LSL#2|1-235-131-3
+1276|code|LDR.W           R1, [R2,#-0x20]|82-248-32-28
+1280|code|LDR.W           R2, [R3,#-0x20]|83-248-32-44
+1284|code|LDR             R3, =(grub_terminfo_tparm+1)|12-75
+1286|code|BLX             R3; grub_terminfo_tparm|152-71
+1288|code|B               loc_51C|8-224
+1290|code|CMP             state, #1|1-41
+1292|code|BLS             loc_516|3-217
+1294|code|CMP             state, #2|2-41
+1296|code|BNE             loc_528|10-209
+1298|code|LDR             term, [data,#0x10]|24-105
+1300|code|B               loc_518|0-224
+1302|code|LDR             term, [data,#0x14]; string|88-105
+1304|code|LDR             data, =(grub_terminfo_tparm+1)|7-75
+1306|code|BLX             R3; grub_terminfo_tparm|152-71
+1308|code|MOV             R1, R0|1-70
+1310|code|MOV             R0, term|48-70
+1312|code|ADD             SP, SP, #0x24 ; '$'|9-176
+1314|code|POP.W           {R4-R7,LR}|189-232-240-64
+1318|code|B               putstr|114-229
+1320|code|ADD             SP, SP, #0x24 ; '$'|9-176
+1322|code|POP             {R4-R7,PC}|240-189
+1324|data|DCD unk_1278|120-18-0-0
+1328|data|DCD grub_term_highlight_color|144-24-0-0
+1332|data|DCD grub_term_normal_color|164-24-0-0
+1336|data|DCD grub_terminfo_tparm+1|173-11-0-0
+1340|code|PUSH            {R4,LR}|16-181
+1342|code|MOV             R4, term|4-70
+1344|code|LDR             R2, [term,#0x48]|130-108
+1346|code|LDR             R3, =(grub_terminfo_tparm+1)|5-75
+1348|code|CBZ             on, loc_54A|9-177
+1350|code|LDR             term, [data,#0x18]|144-105
+1352|code|B               loc_54C|0-224
+1354|code|LDR             term, [data,#0x1C]; string|208-105
+1356|code|BLX             R3; grub_terminfo_tparm|152-71
+1358|code|MOV             R1, R0|1-70
+1360|code|MOV             R0, term|32-70
+1362|code|POP.W           {term,LR}|189-232-16-64
+1366|code|B               putstr|90-229
+1368|data|DCD grub_terminfo_tparm+1|173-11-0-0
+1372|code|LDR             R3, [c]|11-104
+1374|code|PUSH            {term-R2,R4-R7,LR}|247-181
+1376|code|UBFX.W          R3, R3, #0, #0x17|195-243-22-3
+1380|code|CMP             R3, #0xA|10-43
+1382|code|MOV             R5, term|5-70
+1384|code|MOV             R6, c|14-70
+1386|code|LDR             R4, [term,#0x48]|132-108
+1388|code|BEQ             loc_58A|13-208
+1390|code|BGT             loc_578|3-220
+1392|code|CMP             R3, #7|7-43
+1394|code|BEQ             loc_5EA|58-208
+1396|code|CMP             R3, #8|8-43
+1398|code|B               loc_57E|2-224
+1400|code|CMP             R3, #0xD|13-43
+1402|code|BEQ             loc_59E|16-208
+1404|code|CMP             R3, #0x7F|127-43
+1406|code|BNE             loc_5A2|16-209
+1408|code|LDRH            R3, [data,#0x28]|35-141
+1410|code|CMP             R3, #0|0-43
+1412|code|BEQ             loc_5EA|49-208
+1414|code|SUBS            R3, #1|1-59
+1416|code|B               loc_5E8|46-224
+1418|code|LDRH            R7, [data,#0x2A]|103-141
+1420|code|BL              grub_term_height|255-247-56-253
+1424|code|SUBS            R0, #1|1-56
+1426|code|CMP             R7, R0|135-66
+1428|code|BCS             loc_5EA|41-210
+1430|code|LDRH            R3, [data,#0x2A]|99-141
+1432|code|ADDS            R3, #1|1-51
+1434|code|STRH            R3, [data,#0x2A]|99-133
+1436|code|B               loc_5EA|37-224
+1438|code|MOVS            R3, #0|0-35
+1440|code|B               loc_5E8|34-224
+1442|code|LDR             R3, [R5,#0x1C]|235-105
+1444|code|MOV             term, R5|40-70
+1446|code|BLX             R3|152-71
+1448|code|LDRH            R2, [data,#0x28]|34-141
+1450|code|LDRSB.W         R3, [c,#8]|150-249-8-48
+1454|code|ADD             R3, R2|19-68
+1456|code|STR             R0, [SP,#0x20+var_1C]|1-144
+1458|code|UXTH            R0, R0|128-178
+1460|code|CMP             R0, R3|152-66
+1462|code|BGE             loc_5E0|19-218
+1464|code|MOVS            R3, #0|0-35
+1466|code|MOV             R0, term; term|40-70
+1468|code|STRH            R3, [data,#0x28]|35-133
+1470|code|LDRH            R7, [data,#0x2A]|103-141
+1472|code|BL              grub_term_height|255-247-30-253
+1476|code|MOVS            R1, #0xD|13-33
+1478|code|SUBS            R0, #1|1-56
+1480|code|CMP             R7, R0|135-66
+1482|code|MOV             R0, term|40-70
+1484|code|ITTT CC|62-191
+1486|code|LDRHCC          R3, [data,#0x2A]|99-141
+1488|code|ADDCC           R3, #1|1-51
+1490|code|STRHCC          R3, [data,#0x2A]|99-133
+1492|code|LDR             R3, [data,#0x2C]|227-106
+1494|code|BLX             R3|152-71
+1496|code|LDR             R3, [data,#0x2C]|227-106
+1498|code|MOV             R0, term|40-70
+1500|code|MOVS            R1, #0xA|10-33
+1502|code|BLX             R3|152-71
+1504|code|LDRSB.W         R2, [c,#8]|150-249-8-32
+1508|code|LDRH            R3, [data,#0x28]|35-141
+1510|code|ADD             R3, R2|19-68
+1512|code|STRH            R3, [data,#0x28]|35-133
+1514|code|LDR             R1, [c]|49-104
+1516|code|MOV             R0, term|40-70
+1518|code|LDR             R3, [data,#0x2C]|227-106
+1520|code|UBFX.W          R1, R1, #0, #0x17|193-243-22-1
+1524|code|ADD             SP, SP, #0xC|3-176
+1526|code|POP.W           {data-R7,LR}|189-232-240-64
+1530|code|BX              R3|24-71
+1532|code|LDR             R3, [term,#0x48]|131-108
+1534|code|MOVS            term, #0|0-32
+1536|code|SUB             SP, SP, #8|130-176
+1538|code|LDR             data, [data,#0x24]|91-106
+1540|code|UXTH            R2, R3|154-178
+1542|code|LSRS            R3, R3, #0x10|27-12
+1544|code|BFI.W           R0, R2, #0, #0x10|98-243-15-0
+1548|code|BFI.W           R0, R3, #0x10, #0x10|99-243-31-64
+1552|code|ADD             SP, SP, #8|2-176
+1554|code|BX              LR|112-71
+1556|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+1560|code|MOV             R7, termi|7-70
+1562|code|LDR             R4, [termi,#0x1C]|196-105
+1564|code|SUB             SP, SP, #0x44|145-176
+1566|code|LDR             R5, [data,#0x18]|165-105
+1568|code|CBZ             R5, loc_626|13-177
+1570|code|SUBS            R2, ret, #1|106-30
+1572|code|B               loc_72E|131-224
+1574|code|LDR             R6, [data,#0x1C]|230-105
+1576|code|BLX             R6|176-71
+1578|code|SUBS.W          R8, R0, #0|176-241-0-8
+1582|code|BGE             loc_634|1-218
+1584|code|STR             R5, [data,#0x18]|165-97
+1586|code|B               loc_724|119-224
+1588|code|MOVS            R3, #1|1-35
+1590|code|STR             R3, [data,#0x18]|163-97
+1592|code|BIC.W           R3, R8, #0x80|40-240-128-3
+1596|code|STR.W           R8, [data]|196-248-0-128
+1600|code|CMP             R3, #0x1B|27-43
+1602|code|BEQ             loc_67C|27-208
+1604|code|CMP.W           R8, #0x7F|184-241-127-15
+1608|code|BEQ             loc_672|19-208
+1610|code|CMP.W           R8, #0x1F|184-241-31-15
+1614|code|BGT             loc_676|18-220
+1616|code|CMP.W           R8, #9|184-241-9-15
+1620|code|BEQ             loc_676|15-208
+1622|code|CMP.W           R8, #8|184-241-8-15
+1626|code|BEQ             loc_676|12-208
+1628|code|CMP.W           R8, #0xA|184-241-10-15
+1632|code|BEQ             loc_676|9-208
+1634|code|CMP.W           R8, #0xD|184-241-13-15
+1638|code|BEQ             loc_676|6-208
+1640|code|ADD.W           R8, R8, #0x60 ; '`'|8-241-96-8
+1644|code|ORR.W           R8, R8, #0x2000000|72-240-0-120
+1648|code|B               loc_676|1-224
+1650|code|MOV.W           R8, #8|79-240-8-8
+1654|code|STR.W           R8, [data]|196-248-0-128
+1658|code|B               loc_724|83-224
+1660|code|ADD.W           R10, SP, #0x68+dest|13-241-4-10
+1664|code|LDR             R1, =aPqwxtuqrpmab; "PQwxtuqrpMAB;"|165-73
+1666|code|MOVS            R2, #0xC; n|12-34
+1668|code|LDR             R3, =memcpy|165-75
+1670|code|MOV             R0, R10; dest|80-70
+1672|code|ADD             R5, SP, #0x68+var_58|4-173
+1674|code|BLX             R3; memcpy|152-71
+1676|code|LDR.W           LR, =(aPqwxtuqrpmab+0xC); ";"|223-248-164-226
+1680|code|CMP.W           R8, #0x1B|184-241-27-15
+1684|code|LDM.W           LR!, {R0-R3}; ";"|190-232-15-0
+1688|code|STM             R5!, {R0-R3}|15-197
+1690|code|LDM.W           LR!, {R0-R3}|190-232-15-0
+1694|code|STM             R5!, {R0-R3}|15-197
+1696|code|LDM.W           LR, {R0-R3}|158-232-15-0
+1700|code|STM.W           R5, {R0-R3}|133-232-15-0
+1704|code|LDR             R5, =grub_get_time_ms|157-77
+1706|code|BEQ             loc_6B4|3-208
+1708|code|BLX             R5; grub_get_time_ms|168-71
+1710|code|MOV             R8, R0|128-70
+1712|code|MOV             R9, R1|137-70
+1714|code|B               loc_6E8|25-224
+1716|code|BLX             R5; grub_get_time_ms|168-71
+1718|code|MOV             R8, R0|128-70
+1720|code|MOV             R9, R1|137-70
+1722|code|MOV             R0, termi|56-70
+1724|code|BLX             R6|176-71
+1726|code|ADDS            R2, R0, #1|66-28
+1728|code|BNE             loc_6F2|23-209
+1730|code|BLX             R5; grub_get_time_ms|168-71
+1732|code|SUBS.W          R0, R0, R8|176-235-8-0
+1736|code|SBC.W           R1, R1, R9|97-235-9-1
+1740|code|CMP             R1, #0|0-41
+1742|code|IT EQ|8-191
+1744|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+1746|code|BCC             loc_6BA|242-211
+1748|code|B               loc_724|38-224
+1750|code|BLX             R5; grub_get_time_ms|168-71
+1752|code|SUBS.W          R0, R0, R8|176-235-8-0
+1756|code|SBC.W           R1, R1, R9|97-235-9-1
+1760|code|CMP             R1, #0|0-41
+1762|code|IT EQ|8-191
+1764|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+1766|code|BCS             loc_724|29-210
+1768|code|MOV             R0, termi|56-70
+1770|code|BLX             R6|176-71
+1772|code|ADDS            R1, R0, #1|65-28
+1774|code|BEQ             loc_6D6|242-208
+1776|code|B               loc_76C|60-224
+1778|code|LDR             R3, [data,#0x18]|163-105
+1780|code|CMP             R0, #0x4F ; 'O'|79-40
+1782|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+1786|code|LDR             R3, [data,#0x18]|163-105
+1788|code|ADD.W           R3, R3, #1|3-241-1-3
+1792|code|STR             R3, [data,#0x18]|163-97
+1794|code|BNE             loc_742|30-209
+1796|code|BLX             R5; grub_get_time_ms|168-71
+1798|code|MOV             R8, R0|128-70
+1800|code|MOV             R9, R1|137-70
+1802|code|MOV             R0, termi|56-70
+1804|code|BLX             R6|176-71
+1806|code|ADDS            R3, R0, #1|67-28
+1808|code|BNE             loc_748|26-209
+1810|code|BLX             R5; grub_get_time_ms|168-71
+1812|code|SUBS.W          R0, R0, R8|176-235-8-0
+1816|code|SBC.W           R1, R1, R9|97-235-9-1
+1820|code|CMP             R1, #0|0-41
+1822|code|IT EQ|8-191
+1824|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+1826|code|BCC             loc_70A|242-211
+1828|code|LDR             R0, [data,#0x18]|160-105
+1830|code|CMP             R0, #0|0-40
+1832|code|BEQ.W           loc_912|0-240-243-128
+1836|code|SUBS            R2, R0, #1|66-30
+1838|code|MOV             R1, data|33-70
+1840|code|STR             R2, [data,#0x18]|162-97
+1842|code|LDR.W           R5, [R1],#4|81-248-4-91
+1846|code|MOV             R0, data|32-70
+1848|code|LSLS            R2, R2, #2|146-0
+1850|code|LDR             R3, =grub_memmove|122-75
+1852|code|BLX             R3; grub_memmove|152-71
+1854|code|MOV             R0, ret|40-70
+1856|code|B               loc_912|231-224
+1858|code|CMP             R0, #0x5B ; '['|91-40
+1860|code|BNE             loc_724|238-209
+1862|code|B               loc_6AC|177-231
+1864|code|LDR             R3, [data,#0x18]|163-105
+1866|code|CMP             R0, #0x46 ; 'F'|70-40
+1868|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+1872|code|LDR             R3, [data,#0x18]|163-105
+1874|code|ADD.W           R3, R3, #1|3-241-1-3
+1878|code|STR             R3, [data,#0x18]|163-97
+1880|code|BNE             loc_764|4-209
+1882|code|LDR             R3, =0x80004F|115-75
+1884|code|STR             R3, [data]|35-96
+1886|code|MOVS            R3, #1|1-35
+1888|code|STR             R3, [data,#0x18]|163-97
+1890|code|B               loc_724|223-231
+1892|code|CMP             R0, #0x48 ; 'H'|72-40
+1894|code|BNE             loc_724|221-209
+1896|code|LDR             R3, =0x800047|112-75
+1898|code|B               loc_75C|247-231
+1900|code|LDR             R3, [data,#0x18]|163-105
+1902|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+1906|code|LDR             R3, [data,#0x18]|163-105
+1908|code|ADDS            R3, #1|1-51
+1910|code|STR             R3, [data,#0x18]|163-97
+1912|code|MOVS            R3, #0|0-35
+1914|code|LDR             R1, =unk_1278|109-73
+1916|code|LSLS            R2, R3, #3|218-0
+1918|code|ADD.W           LR, R1, #0x5C ; '\'|1-241-92-14
+1922|code|MOV             R11, R1|139-70
+1924|code|LDRB.W          LR, [LR,R3,LSL#3]|30-248-51-224
+1928|code|CMP             LR, R0|134-69
+1930|code|BNE             loc_792|2-209
+1932|code|ADDS            R3, R1, R2|139-24
+1934|code|LDR             R3, [R3,#0x60]|27-110
+1936|code|B               loc_75C|228-231
+1938|code|ADDS            R3, #1|1-51
+1940|code|CMP             R3, #0xC|12-43
+1942|code|BNE             loc_77A|240-209
+1944|code|CMP             R0, #0x30 ; '0'|48-40
+1946|code|BEQ             loc_7C2|18-208
+1948|code|CMP             R0, #0x4F ; 'O'|79-40
+1950|code|BNE             loc_7E4|33-209
+1952|code|BLX             R5; grub_get_time_ms|168-71
+1954|code|MOV             R8, R0|128-70
+1956|code|MOV             R9, R1|137-70
+1958|code|MOV             R0, termi|56-70
+1960|code|BLX             R6|176-71
+1962|code|ADDS            R2, R0, #1|66-28
+1964|code|BNE             loc_820|56-209
+1966|code|BLX             R5; grub_get_time_ms|168-71
+1968|code|SUBS.W          R0, R0, R8|176-235-8-0
+1972|code|SBC.W           R1, R1, R9|97-235-9-1
+1976|code|CMP             R1, #0|0-41
+1978|code|IT EQ|8-191
+1980|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+1982|code|BCC             loc_7A6|242-211
+1984|code|B               loc_724|176-231
+1986|code|BLX             R5; grub_get_time_ms|168-71
+1988|code|MOV             R8, R0|128-70
+1990|code|MOV             R9, R1|137-70
+1992|code|MOV             R0, termi|56-70
+1994|code|BLX             R6|176-71
+1996|code|ADDS            R3, R0, #1|67-28
+1998|code|BNE             loc_84A|60-209
+2000|code|BLX             R5; grub_get_time_ms|168-71
+2002|code|SUBS.W          R0, R0, R8|176-235-8-0
+2006|code|SBC.W           R1, R1, R9|97-235-9-1
+2010|code|CMP             R1, #0|0-41
+2012|code|IT EQ|8-191
+2014|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+2016|code|BCC             loc_7C8|242-211
+2018|code|B               loc_724|159-231
+2020|code|ADD.W           R2, R1, #0xBC|1-241-188-2
+2024|code|MOVS            R3, #0|0-35
+2026|code|LDRB.W          R1, [R2,R3,LSL#3]|18-248-51-16
+2030|code|MOV.W           R10, R3,LSL#3|79-234-195-10
+2034|code|CMP             R1, R0|129-66
+2036|code|BNE             loc_818|16-209
+2038|code|BLX             R5; grub_get_time_ms|168-71
+2040|code|MOV             R8, R0|128-70
+2042|code|MOV             R9, R1|137-70
+2044|code|MOV             R0, termi|56-70
+2046|code|BLX             R6|176-71
+2048|code|ADDS            R3, R0, #1|67-28
+2050|code|BNE             loc_8F6|120-209
+2052|code|BLX             R5; grub_get_time_ms|168-71
+2054|code|SUBS.W          R0, R0, R8|176-235-8-0
+2058|code|SBC.W           R1, R1, R9|97-235-9-1
+2062|code|CMP             R1, #0|0-41
+2064|code|IT EQ|8-191
+2066|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+2068|code|BCC             loc_7FC|242-211
+2070|code|B               loc_724|133-231
+2072|code|ADDS            R3, #1|1-51
+2074|code|CMP             R3, #6|6-43
+2076|code|BNE             loc_7EA|229-209
+2078|code|B               loc_724|129-231
+2080|code|LDR             R3, [data,#0x18]|163-105
+2082|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+2086|code|LDR             R3, [data,#0x18]|163-105
+2088|code|ADDS            R3, #1|1-51
+2090|code|STR             R3, [data,#0x18]|163-97
+2092|code|MOVS            R3, #0|0-35
+2094|code|LDRB.W          R2, [R10,R3]|26-248-3-32
+2098|code|CMP             R2, R0|130-66
+2100|code|BNE             loc_842|5-209
+2102|code|ADD             R2, SP, #0x68+var_28|16-170
+2104|code|ADD.W           R3, R2, R3,LSL#2|2-235-131-3
+2108|code|LDR.W           R3, [R3,#-0x30]|83-248-48-60
+2112|code|B               loc_75C|140-231
+2114|code|ADDS            R3, #1|1-51
+2116|code|CMP             R3, #0xC|12-43
+2118|code|BNE             loc_82E|242-209
+2120|code|B               loc_724|108-231
+2122|code|LDR             R3, [data,#0x18]|163-105
+2124|code|SUB.W           R11, R0, #0x30 ; '0'|160-241-48-11
+2128|code|CMP.W           R11, #1|187-241-1-15
+2132|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+2136|code|LDR             R3, [data,#0x18]|163-105
+2138|code|ADD.W           R3, R3, #1|3-241-1-3
+2142|code|STR             R3, [data,#0x18]|163-97
+2144|code|BHI.W           loc_724|63-246-96-175
+2148|code|BLX             R5; grub_get_time_ms|168-71
+2150|code|MOV             R8, R0|128-70
+2152|code|MOV             R9, R1|137-70
+2154|code|MOV             R0, termi|56-70
+2156|code|BLX             R6|176-71
+2158|code|ADDS            R1, R0, #1|65-28
+2160|code|BNE             loc_886|9-209
+2162|code|BLX             R5; grub_get_time_ms|168-71
+2164|code|SUBS.W          R0, R0, R8|176-235-8-0
+2168|code|SBC.W           R1, R1, R9|97-235-9-1
+2172|code|CMP             R1, #0|0-41
+2174|code|IT EQ|8-191
+2176|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+2178|code|BCC             loc_86A|242-211
+2180|code|B               loc_724|78-231
+2182|code|LDR             R3, [data,#0x18]|163-105
+2184|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+2188|code|SUBS            R0, #0x30 ; '0'|48-56
+2190|code|LDR             R3, [data,#0x18]|163-105
+2192|code|CMP             R0, #9|9-40
+2194|code|ADD.W           R3, R3, #1|3-241-1-3
+2198|code|STR             R3, [data,#0x18]|163-97
+2200|code|BHI.W           loc_724|63-246-68-175
+2204|code|MOV.W           R10, #0xA|79-240-10-10
+2208|code|MLA.W           R10, R10, R11, R0|10-251-11-10
+2212|code|CMP.W           R10, #0|186-241-0-15
+2216|code|BEQ.W           loc_724|63-244-60-175
+2220|code|CMP.W           R10, #0xC|186-241-12-15
+2224|code|BGT.W           loc_724|63-247-56-175
+2228|code|BLX             R5; grub_get_time_ms|168-71
+2230|code|MOV             R8, R0|128-70
+2232|code|MOV             R9, R1|137-70
+2234|code|MOV             R0, termi|56-70
+2236|code|BLX             R6|176-71
+2238|code|ADDS            R2, R0, #1|66-28
+2240|code|BNE             loc_8D6|9-209
+2242|code|BLX             R5; grub_get_time_ms|168-71
+2244|code|SUBS.W          R0, R0, R8|176-235-8-0
+2248|code|SBC.W           R1, R1, R9|97-235-9-1
+2252|code|CMP             R1, #0|0-41
+2254|code|IT EQ|8-191
+2256|code|CMPEQ           R0, #0x64 ; 'd'|100-40
+2258|code|BCC             loc_8BA|242-211
+2260|code|B               loc_724|38-231
+2262|code|LDR             R3, [data,#0x18]|163-105
+2264|code|CMP             R0, #0x71 ; 'q'|113-40
+2266|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+2270|code|LDR             R3, [data,#0x18]|163-105
+2272|code|ADD.W           R3, R3, #1|3-241-1-3
+2276|code|STR             R3, [data,#0x18]|163-97
+2278|code|BNE.W           loc_724|127-244-29-175
+2282|code|ADD             R3, SP, #0x68+var_28|16-171
+2284|code|ADD.W           R10, R3, R10,LSL#2|3-235-138-10
+2288|code|LDR.W           R3, [R10,#-0x34]|90-248-52-60
+2292|code|B               loc_75C|50-231
+2294|code|LDR             R3, [data,#0x18]|163-105
+2296|code|CMP             R0, #0x7E ; '~'|126-40
+2298|code|STR.W           R0, [data,R3,LSL#2]|68-248-35-0
+2302|code|LDR             R3, [data,#0x18]|163-105
+2304|code|ADD.W           R3, R3, #1|3-241-1-3
+2308|code|STR             R3, [data,#0x18]|163-97
+2310|code|BNE.W           loc_724|127-244-13-175
+2314|code|ADD             R11, R10|211-68
+2316|code|LDR.W           R3, [R11,#0xC0]|219-248-192-48
+2320|code|B               loc_75C|36-231
+2322|code|ADD             SP, SP, #0x44 ; 'D'|17-176
+2324|code|POP.W           {data-R11,PC}|189-232-240-143
+2328|data|DCD aPqwxtuqrpmab; "PQwxtuqrpMAB;"|152-18-0-0
+2332|data|DCD memcpy|128-24-0-0
+2336|data|DCD grub_get_time_ms|176-24-0-0
+2340|data|DCD grub_memmove|132-24-0-0
+2344|data|DCD 0x80004F|79-0-128-0
+2348|data|DCD 0x800047|71-0-128-0
+2352|data|DCD unk_1278|120-18-0-0
+2356|data|DCD aPqwxtuqrpmab+0xC; ";"|164-18-0-0
+2360|code|LDR             R3, [termi,#0x1C]|195-105
+2362|code|MOVS            termi, #0|0-32
+2364|code|STR             R0, [data,#0x18]|152-97
+2366|code|BX              LR|112-71
+2368|code|PUSH            {R3,LR}|8-181
+2370|code|BL              grub_terminfo_cls|255-247-157-253
+2374|code|MOVS            R0, #0|0-32
+2376|code|POP             {R3,PC}|8-189
+2378|code|LDR             R3, =aSetTerminfoTyp; "Set terminfo type of TERM  to TYPE.\n"|7-75
+2380|code|MOVS            R2, #0|0-34
+2382|code|PUSH            {mod,R1,R4,LR}|19-181
+2384|code|STR             R3, [SP,#0x10+var_10]|0-147
+2386|code|LDR             R3, =options|6-75
+2388|code|LDR             R1, =(grub_cmd_terminfo+1)|6-73
+2390|code|LDR             R4, =grub_register_extcmd|7-76
+2392|code|STR             R3, [SP,#0x10+var_C]|1-147
+2394|code|LDR             mod, =aTerminfo; "terminfo"|7-72
+2396|code|LDR             R3, =aAUVGWxhTermTyp; "[[-a|-u|-v] [-g WxH] TERM [TYPE]]"|7-75
+2398|code|BLX             R4; grub_register_extcmd|160-71
+2400|code|LDR             R3, =terminfo_outputs|7-75
+2402|code|STR             R0, [R3,#(cmd - 0x16DC)]|88-96
+2404|code|ADD             SP, SP, #8|2-176
+2406|code|POP             {R4,PC}|16-189
+2408|data|DCD aSetTerminfoTyp; "Set terminfo type of TERM  to TYPE.\n"|229-21-0-0
+2412|data|DCD options|100-19-0-0
+2416|data|DCD grub_cmd_terminfo+1|253-1-0-0
+2420|data|DCD grub_register_extcmd|192-24-0-0
+2424|data|DCD aTerminfo; "terminfo"|186-21-0-0
+2428|data|DCD aAUVGWxhTermTyp; "[[-a|-u|-v] [-g WxH] TERM [TYPE]]"|195-21-0-0
+2432|data|DCD terminfo_outputs|220-22-0-0
+2436|code|PUSH            {R3,LR}|8-181
+2438|code|LDR             R3, =terminfo_outputs|2-75
+2440|code|LDR             R0, [R3,#(cmd - 0x16DC)]|88-104
+2442|code|LDR             R3, =grub_unregister_extcmd|2-75
+2444|code|BLX             R3; grub_unregister_extcmd|152-71
+2446|code|POP             {R3,PC}|8-189
+2448|data|DCD terminfo_outputs|220-22-0-0
+2452|data|DCD grub_unregister_extcmd|148-24-0-0
+2456|code|LDR             R2, =stack_ptr|6-74
+2458|code|PUSH            {R4,LR}|16-181
+2460|code|LDR             R3, [R2]|19-104
+2462|code|CMP             R3, #0x13|19-43
+2464|code|ITTTT LE|223-191
+2466|code|ADDLE.W         R1, R2, R3,LSL#3|2-235-195-1
+2470|code|MOVLE           R4, #1|1-36
+2472|code|ADDLE           R3, R3, R4|27-25
+2474|code|STRBLE          R4, [R1,#8]|12-114
+2476|code|ITT LE|220-191
+2478|code|STRLE           x, [R1,#4]|72-96
+2480|code|STRLE           R3, [R2]|19-96
+2482|code|POP             {R4,PC}|16-189
+2484|data|DCD stack_ptr|228-22-0-0
+2488|code|LDR             R3, =stack_ptr|7-75
+2490|code|LDR             R2, [R3]|26-104
+2492|code|CMP             R2, #0|0-42
+2494|code|BGT             loc_9C4|1-220
+2496|code|MOVS            R0, #0|0-32
+2498|code|BX              LR|112-71
+2500|code|SUBS            R2, #1|1-58
+2502|code|STR             R2, [R3]|26-96
+2504|code|ADD.W           R3, R3, R2,LSL#3|3-235-194-3
+2508|code|LDRB            R2, [R3,#8]|26-122
+2510|code|CMP             R2, #0|0-42
+2512|code|BEQ             loc_9C0|246-208
+2514|code|LDR             R0, [R3,#4]|88-104
+2516|code|BX              LR|112-71
+2518|data|ALIGN 4|0-191
+2520|data|DCD stack_ptr|228-22-0-0
+2524|code|LDR             R2, =stack_ptr|9-74
+2526|code|LDR             R3, [R2]|19-104
+2528|code|CMP             R3, #0|0-43
+2530|code|BGT             loc_9E8|1-220
+2532|code|LDR             R0, =dummy.4136|8-72
+2534|code|BX              LR|112-71
+2536|code|SUBS            R3, #1|1-59
+2538|code|STR             R3, [R2]|19-96
+2540|code|ADD.W           R3, R2, R3,LSL#3|2-235-195-3
+2544|code|LDRB            R1, [R3,#8]|25-122
+2546|code|CMP             R1, #0|0-41
+2548|code|BNE             loc_9E4|246-209
+2550|code|LDR             R0, [R3,#4]|88-104
+2552|code|ADDS            R2, #0xA4|164-50
+2554|code|CMP             R0, #0|0-40
+2556|code|IT EQ|8-191
+2558|code|MOVEQ           R0, R2|16-70
+2560|code|BX              LR|112-71
+2562|data|ALIGN 4|0-191
+2564|data|DCD stack_ptr|228-22-0-0
+2568|data|DCD dummy.4136|136-23-0-0
+2572|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2576|code|MOVS            R4, #0|0-36
+2578|code|MOV             R8, len|144-70
+2580|code|STR             R4, [len]|20-96
+2582|code|CMP             format, #0|0-41
+2584|code|BEQ             locret_B00|114-208
+2586|code|ADDS            R3, fmt, #1|75-28
+2588|code|MOVS            len, #0x25 ; '%'|37-34
+2590|code|MOV             R7, R4|39-70
+2592|code|STRB            R2, [fmt]|10-112
+2594|code|MOV             LR, R4|166-70
+2596|code|MOV             R2, R4|34-70
+2598|code|MOV             R12, R4|164-70
+2600|code|MOV             R6, R4|38-70
+2602|code|MOVW            R10, #0x2710|66-242-16-122
+2606|code|LDRB            R5, [s]|5-120
+2608|code|CBNZ            R5, loc_A4A|93-185
+2610|code|CMP.W           LR, #0|190-241-0-15
+2614|code|BEQ             loc_AEA|88-208
+2616|code|MOV             format, fmt|11-70
+2618|code|MOVS            R4, #0x25 ; '%'|37-36
+2620|code|STRB.W          R4, [R3],#2|3-248-2-75
+2624|code|LDRB            R4, [s]|4-120
+2626|code|STRB            R4, [fmt,#1]|76-112
+2628|code|MOVS            R4, #0|0-36
+2630|code|MOV             R7, R4|39-70
+2632|code|B               loc_AEA|79-224
+2634|code|CMP             done, #0|0-46
+2636|code|BNE             loc_A32|241-209
+2638|code|CMP             R5, #0x58 ; 'X'|88-45
+2640|code|BEQ             loc_A8A|27-208
+2642|code|BHI             loc_A70|13-216
+2644|code|CMP             R5, #0x2D ; '-'|45-45
+2646|code|BEQ             loc_AA4|37-208
+2648|code|BHI             loc_A64|4-216
+2650|code|CMP             R5, #0x20 ; ' '|32-45
+2652|code|BEQ             loc_AD4|58-208
+2654|code|CMP             R5, #0x23 ; '#'|35-45
+2656|code|BEQ             loc_AD4|56-208
+2658|code|B               loc_AB6|40-224
+2660|code|CMP             R5, #0x2E ; '.'|46-45
+2662|code|BEQ             loc_A90|19-208
+2664|code|CMP             R5, #0x3A ; ':'|58-45
+2666|code|BNE             loc_AB6|36-209
+2668|code|ADDS            s, #1|1-48
+2670|code|B               loc_AB0|31-224
+2672|code|CMP             R5, #0x6F ; 'o'|111-45
+2674|code|BEQ             loc_A8A|10-208
+2676|code|BHI             loc_A82|5-216
+2678|code|SUB.W           R9, R5, #0x63 ; 'c'|165-241-99-9
+2682|code|CMP.W           R9, #1|185-241-1-15
+2686|code|BHI             loc_AB6|26-216
+2688|code|B               loc_A8A|3-224
+2690|code|CMP             R5, #0x73 ; 's'|115-45
+2692|code|BEQ             loc_A8A|1-208
+2694|code|CMP             R5, #0x78 ; 'x'|120-45
+2696|code|BNE             loc_AB6|21-209
+2698|code|STRB            R5, [R3]|29-112
+2700|code|ADDS            R3, #1|1-51
+2702|code|B               loc_AE6|42-224
+2704|code|ADD.W           R9, format, #1|3-241-1-9
+2708|code|ADDS            s, #1|1-48
+2710|code|STRB            R5, [R3]|29-112
+2712|code|CBNZ            dot, loc_ADC|2-187
+2714|code|MOV             R7, value|39-70
+2716|code|MOV             R3, format|75-70
+2718|code|MOV             value, dot|20-70
+2720|code|MOVS            dot, #1|1-34
+2722|code|B               loc_A2E|196-231
+2724|code|CMP.W           allowminus, #0|188-241-0-15
+2728|code|BEQ             loc_AE6|29-208
+2730|code|STRB            R5, [R3]|29-112
+2732|code|ADDS            s, #1|1-48
+2734|code|ADDS            R3, #1|1-51
+2736|code|MOV.W           R12, #1|79-240-1-12
+2740|code|B               loc_A2E|187-231
+2742|code|SUB.W           R9, R5, #0x30 ; '0'|165-241-48-9
+2746|code|UXTB.W          R11, R9|95-250-137-251
+2750|code|CMP.W           R11, #9|187-241-9-15
+2754|code|BHI             loc_AE6|16-216
+2756|code|MOV.W           R11, #0xA|79-240-10-11
+2760|code|MLA.W           value, R11, value, R9|11-251-4-148
+2764|code|CMP             value, R10|84-69
+2766|code|IT GT|200-191
+2768|code|MOVGT.W         LR, #1|79-240-1-14
+2772|code|STRB            R5, [R3]|29-112
+2774|code|ADDS            s, #1|1-48
+2776|code|ADDS            R3, #1|1-51
+2778|code|B               loc_A2E|168-231
+2780|code|MOV             R3, format|75-70
+2782|code|MOV             value, done|52-70
+2784|code|MOV.W           LR, #1|79-240-1-14
+2788|code|B               loc_A2E|163-231
+2790|code|MOVS            R6, #1|1-38
+2792|code|B               loc_A2E|161-231
+2794|code|MOVS            fmt, #0|0-33
+2796|code|CBNZ            dot, loc_AF2|10-185
+2798|code|MOV             my_width, value|39-70
+2800|code|MOV             value, R1|12-70
+2802|code|STRB            R1, [format]|25-112
+2804|code|CMP             my_prec, my_width|188-66
+2806|code|ITE GE|172-191
+2808|code|STRGE.W         my_prec, [len]|200-248-0-64
+2812|code|STRLT.W         my_width, [len]|200-248-0-112
+2816|code|POP.W           {R4-R11,PC}|189-232-240-143
+2820|code|PUSH            {R4,LR}|16-181
+2822|code|LDR             R4, =stack_ptr|9-76
+2824|code|LDR.W           R1, [R4,#(out_used - 0x16E4)]|212-248-168-16
+2828|code|LDR.W           R3, [R4,#(out_size - 0x16E4)]|212-248-172-48
+2832|code|ADD             need, R1|8-68
+2834|code|CMP             need, R3|152-66
+2836|code|BLS             locret_B28|8-217
+2838|code|LSLS            R1, need, #1|65-0
+2840|code|LDR             R3, =grub_realloc|5-75
+2842|code|LDR.W           need, [R4,#(out_buff - 0x16E4)]|212-248-176-0
+2846|code|STR.W           R1, [R4,#(out_size - 0x16E4)]|196-248-172-16
+2850|code|BLX             R3; grub_realloc|152-71
+2852|code|STR.W           R0, [R4,#(out_buff - 0x16E4)]|196-248-176-0
+2856|code|POP             {R4,PC}|16-189
+2858|data|ALIGN 4|0-191
+2860|data|DCD stack_ptr|228-22-0-0
+2864|data|DCD grub_realloc|124-24-0-0
+2868|code|PUSH            {R4,LR}|16-181
+2870|code|CMP             c, #0|0-40
+2872|code|ITE NE|20-191
+2874|code|MOVNE           R4, c|4-70
+2876|code|MOVEQ           R4, #0x80|128-36
+2878|code|MOVS            R0, #1; need|1-32
+2880|code|BL              get_space|255-247-224-255
+2884|code|LDR             R3, =stack_ptr|4-75
+2886|code|LDR.W           R2, [R3,#(out_used - 0x16E4)]|211-248-168-32
+2890|code|LDR.W           R1, [R3,#(out_buff - 0x16E4)]|211-248-176-16
+2894|code|ADDS            R0, R2, #1|80-28
+2896|code|STR.W           R0, [R3,#(out_used - 0x16E4)]|195-248-168-0
+2900|code|STRB            c, [R1,R2]|140-84
+2902|code|POP             {c,PC}|16-189
+2904|data|DCD stack_ptr|228-22-0-0
+2908|code|CMP             len, #0x1E|30-42
+2910|code|PUSH            {R3-R7,LR}|248-181
+2912|code|IT LT|184-191
+2914|code|MOVLT           len, #0x1E|30-34
+2916|code|LDR             R4, =stack_ptr|14-76
+2918|code|ADDS            R5, len, #1|85-28
+2920|code|MOV             R7, fmt|7-70
+2922|code|MOV             R6, number|14-70
+2924|code|MOV             fmt, R5; need|40-70
+2926|code|BL              get_space|255-247-201-255
+2930|code|LDR.W           R3, [R4,#(out_used - 0x16E4)]|212-248-168-48
+2934|code|LDR.W           R0, [R4,#(out_buff - 0x16E4)]|212-248-176-0
+2938|code|MOV             R1, R5|41-70
+2940|code|MOV             R2, fmt|58-70
+2942|code|LDR             R5, =grub_snprintf|9-77
+2944|code|ADD             R0, R3|24-68
+2946|code|MOV             R3, number|51-70
+2948|code|BLX             R5; grub_snprintf|168-71
+2950|code|LDR.W           R3, [R4,#(out_used - 0x16E4)]|212-248-168-48
+2954|code|LDR.W           R0, [R4,#(out_buff - 0x16E4)]|212-248-176-0
+2958|code|ADD             R0, R3|24-68
+2960|code|LDR             R3, =grub_strlen|5-75
+2962|code|BLX             R3; grub_strlen|152-71
+2964|code|LDR.W           R3, [R4,#(out_used - 0x16E4)]|212-248-168-48
+2968|code|ADD             R0, R3|24-68
+2970|code|STR.W           R0, [R4,#(out_used - 0x16E4)]|196-248-168-0
+2974|code|POP             {R3-fmt,PC}|248-189
+2976|data|DCD stack_ptr|228-22-0-0
+2980|data|DCD grub_snprintf|140-24-0-0
+2984|data|DCD grub_strlen|116-24-0-0
+2988|code|PUSH            {R0-R3}|15-180
+2990|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+2994|code|SUB             SP, SP, #0x5C|151-176
+2996|code|LDR             R6, [SP,#0x90+string]|32-158
+2998|code|CMP             R6, #0|0-46
+3000|code|BEQ.W           loc_1252|0-240-75-131
+3004|code|LDR             R5, =stack_ptr|123-77
+3006|code|ADD.W           R10, SP, #0x90+varg_r1|13-241-132-10
+3010|code|LDR             R7, =grub_strlen|123-79
+3012|code|MOV             R0, R6|48-70
+3014|code|STR.W           R10, [SP,#0x90+ap]|205-248-8-160
+3018|code|MOVS            R3, #0|0-35
+3020|code|STR.W           R3, [R5,#(fmt_size - 0x16E4)]|197-248-180-48
+3024|code|STR.W           R3, [R5,#(out_size - 0x16E4)]|197-248-172-48
+3028|code|STR.W           R3, [R5,#(out_used - 0x16E4)]|197-248-168-48
+3032|code|BLX             R7; grub_strlen|184-71
+3034|code|MOV             R9, R0|129-70
+3036|code|MOV             R0, R6|48-70
+3038|code|BLX             R7; grub_strlen|184-71
+3040|code|LDR.W           R1, [R5,#(fmt_size - 0x16E4)]|213-248-180-16
+3044|code|CMP             R0, R1|136-66
+3046|code|MOV             R11, R0|131-70
+3048|code|BHI             loc_C04|12-216
+3050|code|LDR             R3, =grub_memset|114-75
+3052|code|ADD             R0, SP, #0x90+var_80|4-168
+3054|code|MOVS            R1, #0|0-33
+3056|code|MOVS            R2, #0x24 ; '$'|36-34
+3058|code|MOV.W           R8, #0|79-240-0-8
+3062|code|BLX             R3; grub_memset|152-71
+3064|code|MOV             R4, R8|68-70
+3066|code|MOV             R0, R6|48-70
+3068|code|MOV.W           R12, #0xFFFFFFFF|79-240-255-60
+3072|code|LDR             R3, =dummy.4178|109-75
+3074|code|B               loc_C2E|20-224
+3076|code|ADDS            R1, #2|2-49
+3078|code|LDR             R3, =grub_realloc|109-75
+3080|code|ADD             R1, R0|1-68
+3082|code|LDR.W           R0, [R5,#(fmt_buff - 0x16E4)]|213-248-184-0
+3086|code|STR.W           R1, [R5,#(fmt_size - 0x16E4)]|197-248-180-16
+3090|code|BLX             R3; grub_realloc|152-71
+3092|code|STR.W           R0, [R5,#(fmt_buff - 0x16E4)]|197-248-184-0
+3096|code|CMP             R0, #0|0-40
+3098|code|BNE             loc_BEA|230-209
+3100|code|MOV             R8, R0|128-70
+3102|code|MOV             R4, R0|4-70
+3104|code|B               loc_D2E|133-224
+3106|code|LDRB            R2, [R0]|2-120
+3108|code|CMP             R2, #0x25 ; '%'|37-42
+3110|code|BEQ             loc_C36|6-208
+3112|code|LDRB            R2, [R0]|2-120
+3114|code|CBZ             R2, loc_C2E|2-177
+3116|code|ADDS            R0, #1|1-48
+3118|code|SUBS            R2, R0, R6|130-27
+3120|code|CMP             R2, R11|90-69
+3122|code|BLT             loc_C22|246-219
+3124|code|B               loc_D28|120-224
+3126|code|ADD             R2, SP, #0x90+len; len|13-170
+3128|code|ADDS            R0, #1; s|1-48
+3130|code|LDR.W           R1, [R5,#(fmt_buff - 0x16E4)]; format|213-248-184-16
+3134|code|STR             R3, [SP,#0x90+var_8C]|1-147
+3136|code|STR.W           R12, [SP,#0x90+var_90]|205-248-0-192
+3140|code|BL              parse_format|255-247-226-254
+3144|code|LDR.W           R12, [SP,#0x90+var_90]|221-248-0-192
+3148|code|LDR             R3, [SP,#0x90+var_8C]|1-155
+3150|code|LDRB            R2, [R0]|2-120
+3152|code|CMP             R2, #0x58 ; 'X'|88-42
+3154|code|BEQ             loc_CCC|59-208
+3156|code|BHI             loc_C8A|25-216
+3158|code|CMP             R2, #0x2D ; '-'|45-42
+3160|code|BEQ             loc_D1C|96-208
+3162|code|BHI             loc_C72|10-216
+3164|code|CMP             R2, #0x27 ; '''|39-42
+3166|code|BEQ             loc_D06|82-208
+3168|code|BHI             loc_C6A|3-216
+3170|code|CMP             R2, #0x21 ; '!'|33-42
+3172|code|BEQ             loc_D20|92-208
+3174|code|CMP             R2, #0x26 ; '&'|38-42
+3176|code|B               loc_C9A|23-224
+3178|code|SUBS            R2, #0x2A ; '*'|42-58
+3180|code|CMP             R2, #1|1-42
+3182|code|BHI             loc_C28|219-216
+3184|code|B               loc_D1C|84-224
+3186|code|CMP             R2, #0x3E ; '>'|62-42
+3188|code|BHI             loc_C7E|3-216
+3190|code|CMP             R2, #0x3C ; '<'|60-42
+3192|code|BCS             loc_D1C|80-210
+3194|code|CMP             R2, #0x2F ; '/'|47-42
+3196|code|B               loc_C9A|13-224
+3198|code|CMP             R2, #0x4F ; 'O'|79-42
+3200|code|BEQ             loc_D1C|76-208
+3202|code|CMP             R2, #0x50 ; 'P'|80-42
+3204|code|BEQ             loc_D00|60-208
+3206|code|CMP             R2, #0x41 ; 'A'|65-42
+3208|code|B               loc_C9A|7-224
+3210|code|CMP             R2, #0x6F ; 'o'|111-42
+3212|code|BEQ             loc_CCC|30-208
+3214|code|BHI             loc_CAC|13-216
+3216|code|CMP             R2, #0x64 ; 'd'|100-42
+3218|code|BHI             loc_C9E|4-216
+3220|code|CMP             R2, #0x63 ; 'c'|99-42
+3222|code|BCS             loc_CCC|25-210
+3224|code|CMP             R2, #0x5E ; '^'|94-42
+3226|code|BNE             loc_C28|197-209
+3228|code|B               loc_D1C|62-224
+3230|code|CMP             R2, #0x6C ; 'l'|108-42
+3232|code|BEQ             loc_CD4|24-208
+3234|code|CMP             R2, #0x6D ; 'm'|109-42
+3236|code|BEQ             loc_D1C|58-208
+3238|code|CMP             R2, #0x67 ; 'g'|103-42
+3240|code|BEQ             loc_D02|43-208
+3242|code|B               loc_C28|189-231
+3244|code|CMP             R2, #0x78 ; 'x'|120-42
+3246|code|BEQ             loc_CCC|13-208
+3248|code|BHI             loc_CBC|4-216
+3250|code|CMP             R2, #0x70 ; 'p'|112-42
+3252|code|BEQ             loc_CEA|25-208
+3254|code|CMP             R2, #0x73 ; 's'|115-42
+3256|code|BEQ             loc_CD4|12-208
+3258|code|B               loc_C28|181-231
+3260|code|CMP             R2, #0x7C ; '|'|124-42
+3262|code|BEQ             loc_D1C|45-208
+3264|code|CMP             R2, #0x7E ; '~'|126-42
+3266|code|BEQ             loc_D20|45-208
+3268|code|CMP             R2, #0x7B ; '{'|123-42
+3270|code|BNE             loc_C28|175-209
+3272|code|ADDS            R1, R0, #1|65-28
+3274|code|B               loc_D0E|32-224
+3276|code|CMP.W           R12, #0|188-241-0-15
+3280|code|BGT             loc_D08|26-220
+3282|code|B               loc_D20|37-224
+3284|code|CMP.W           R12, #0|188-241-0-15
+3288|code|ADD.W           R4, R4, #1|4-241-1-4
+3292|code|ITTT GT|194-191
+3294|code|ADDGT           R2, SP, #0x90+var_38|22-170
+3296|code|ADDGT.W         R2, R2, R12,LSL#2|2-235-140-2
+3300|code|STRGT.W         R3, [R2,#-0x4C]|66-248-76-60
+3304|code|B               loc_C28|158-231
+3306|code|LDRB            R2, [R0,#1]|66-120
+3308|code|ADDS            R1, R0, #1|65-28
+3310|code|SUBS            R2, #0x30 ; '0'|48-58
+3312|code|CMP             R2, #9|9-42
+3314|code|BHI             loc_D24|23-216
+3316|code|CMP             R8, R2|144-69
+3318|code|MOV             R0, R1|8-70
+3320|code|MOV             R12, R2|148-70
+3322|code|IT LT|184-191
+3324|code|MOVLT           R8, R2|144-70
+3326|code|B               loc_C28|147-231
+3328|code|ADDS            R4, #1|1-52
+3330|code|ADDS            R0, #1|1-48
+3332|code|B               loc_C28|144-231
+3334|code|ADDS            R0, #2|2-48
+3336|code|MOV.W           R12, #0xFFFFFFFF|79-240-255-60
+3340|code|B               loc_C28|140-231
+3342|code|MOV             R0, R1|8-70
+3344|code|ADDS            R1, #1|1-49
+3346|code|LDRB            R2, [R0]|2-120
+3348|code|SUBS            R2, #0x30 ; '0'|48-58
+3350|code|CMP             R2, #9|9-42
+3352|code|BLS             loc_D0E|249-217
+3354|code|B               loc_C28|133-231
+3356|code|ADDS            R4, #2|2-52
+3358|code|B               loc_D08|243-231
+3360|code|ADDS            R4, #1|1-52
+3362|code|B               loc_D08|241-231
+3364|code|MOV             R0, R1|8-70
+3366|code|B               loc_C28|127-231
+3368|code|CMP             R4, #9|9-44
+3370|code|IT GE|168-191
+3372|code|MOVGE           R4, #9|9-36
+3374|code|LDR.W           R0, [R5,#(fmt_buff - 0x16E4)]|213-248-184-0
+3378|code|CMP             R0, #0|0-40
+3380|code|BEQ.W           loc_1254|0-240-142-130
+3384|code|CMP             R8, R4|160-69
+3386|code|ADD.W           R10, R10, #4|10-241-4-10
+3390|code|MOV             R0, R8|64-70
+3392|code|MOV.W           R2, #0|79-240-0-2
+3396|code|IT LT|184-191
+3398|code|MOVLT           R0, R4|32-70
+3400|code|CMP             R2, R0|130-66
+3402|code|BGE             loc_D6C|15-218
+3404|code|ADD             R1, SP, #0x90+var_80|4-169
+3406|code|LDR.W           R3, [R1,R2,LSL#2]|81-248-34-48
+3410|code|CBZ             R3, loc_D5A|19-177
+3412|code|LDR.W           R3, [R10,#-4]|90-248-4-60
+3416|code|B               loc_D60|2-224
+3418|code|LDR.W           R3, [R10,#-4]|90-248-4-60
+3422|code|ADD             R1, SP, #0x90+len|13-169
+3424|code|STR.W           R3, [R1,R2,LSL#2]|65-248-34-48
+3428|code|ADD.W           R10, R10, #4|10-241-4-10
+3432|code|ADDS            R2, #1|1-50
+3434|code|B               loc_D48|237-231
+3436|code|MOVS            R3, #0|0-35
+3438|code|STR             R3, [R5]|43-96
+3440|code|CMP.W           R8, #0|184-241-0-15
+3444|code|BEQ             loc_D7E|3-208
+3446|code|MOV             R4, R6|52-70
+3448|code|LDR.W           R10, =tparam_base|223-248-68-160
+3452|code|B               loc_DA4|18-224
+3454|code|ADDS.W          R4, R4, #0xFFFFFFFF|20-241-255-52
+3458|code|BCC             loc_D76|248-211
+3460|code|ADD             R3, SP, #0x90+len|13-171
+3462|code|LDR.W           R0, [R3,R4,LSL#2]; x|83-248-36-0
+3466|code|BL              npush|255-247-5-254
+3470|code|B               loc_D7E|246-231
+3472|code|LDRB            R0, [R4]; c|32-120
+3474|code|CMP             R0, #0x25 ; '%'|37-40
+3476|code|BEQ             loc_DC4|22-208
+3478|code|BL              save_char|255-247-205-254
+3482|code|LDRB            R3, [R4]; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|35-120
+3484|code|CMP             R3, #0|0-43
+3486|code|BEQ.W           loc_123E|0-240-78-130
+3490|code|ADDS            R4, #1|1-52
+3492|code|SUBS            R3, R4, R6|163-27
+3494|code|CMP             R3, R9|75-69
+3496|code|BLT             loc_D90|242-219
+3498|code|B               loc_123E|72-226
+3500|data|DCD stack_ptr|228-22-0-0
+3504|data|DCD grub_strlen|116-24-0-0
+3508|data|DCD grub_memset|156-24-0-0
+3512|data|DCD dummy.4178|160-23-0-0
+3516|data|DCD grub_realloc|124-24-0-0
+3520|data|DCD tparam_base|200-22-0-0
+3524|code|LDR.W           R8, [R5,#(fmt_buff - 0x16E4)]|213-248-184-128
+3528|code|ADDS            R0, R4, #1; s|96-28
+3530|code|ADD             R2, SP, #0x90+var_84; len|3-170
+3532|code|STR.W           R4, [R10]; unk_16C2|202-248-0-64
+3536|code|MOV             R1, R8; format|65-70
+3538|code|BL              parse_format|255-247-27-254
+3542|code|LDRB            R3, [R0]|3-120
+3544|code|MOV             R4, R0|4-70
+3546|code|SUBS            R3, #0x21 ; '!'|33-59
+3548|code|CMP             R3, #0x5D; switch 94 cases|93-43
+3550|code|BHI             def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|220-216
+3552|code|ADR             R2, jpt_DE2|1-162
+3554|code|LDR.W           PC, [R2,R3,LSL#2]; switch jump|82-248-35-240
+3558|data|ALIGN 4|0-191
+3560|data|DCD loc_1190+1, def_DE2+1, def_DE2+1, def_DE2+1, loc_F60+1; jump table for switch statement|145-17-0-0-155-13-0-0-155-13-0-0-155-13-0-0-97-15-0-0-37-17-0-0-121-16-0-0-155-13-0-0-155-13-0-0-191-16-0-0-161-16-0-0-155-13-0-0-175-16-0-0-155-13-0-0-207-16-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-105-17-0-0-85-17-0-0-125-17-0-0-155-13-0-0-155-13-0-0-5-17-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-15-17-0-0-15-16-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-101-15-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-69-17-0-0-155-13-0-0-155-13-0-0-155-13-0-0-155-13-0-0-113-15-0-0-101-15-0-0-5-18-0-0-155-13-0-0-71-16-0-0-155-13-0-0-169-17-0-0-155-13-0-0-155-13-0-0-119-15-0-0-235-16-0-0-155-13-0-0-101-15-0-0-213-15-0-0-155-13-0-0-155-13-0-0-137-15-0-0-195-17-0-0-155-13-0-0-155-13-0-0-155-13-0-0-101-15-0-0-155-13-0-0-155-13-0-0-131-16-0-0-53-17-0-0-155-13-0-0-157-17-0-0
+3936|code|MOVS            R0, #0x25 ; '%'; jumptable 00000DE2 case 4|37-32
+3938|code|B               loc_D96|24-231
+3940|code|BL              npop; jumptable 00000DE2 cases 55,67,78,87|255-247-40-253
+3944|code|LDR             R2, [SP,#0x90+var_84]|3-154
+3946|code|MOV             R1, R0|1-70
+3948|code|MOV             R0, R8|64-70
+3950|code|B               loc_F82|8-224
+3952|code|BL              npop; jumptable 00000DE2 case 66|255-247-34-253
+3956|code|B               loc_D96|15-231
+3958|code|BL              spop; jumptable 00000DE2 case 75|255-247-49-253
+3962|code|BLX             R7; grub_strlen|184-71
+3964|code|MOVS            R2, #0; len|0-34
+3966|code|MOV             R1, R0; number|1-70
+3968|code|LDR             R0, =aD; fmt|183-72
+3970|code|BL              save_number|255-247-235-253
+3974|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|8-231
+3976|code|BL              spop; jumptable 00000DE2 case 82|255-247-40-253
+3980|code|LDR             R1, [SP,#0x90+var_84]|3-153
+3982|code|STR             R1, [SP,#0x90+var_90]|0-145
+3984|code|MOV             R11, R0|131-70
+3986|code|BLX             R7; grub_strlen|184-71
+3988|code|LDR             R1, [SP,#0x90+var_90]|0-153
+3990|code|CMP             R0, R1|136-66
+3992|code|IT LT|184-191
+3994|code|MOVLT           R0, R1|8-70
+3996|code|ADDS            R1, R0, #1|65-28
+3998|code|STR             R1, [SP,#0x90+var_90]|0-145
+4000|code|MOV             R0, R1; need|8-70
+4002|code|BL              get_space|255-247-175-253
+4006|code|LDR.W           R2, [R5,#(out_used - 0x16E4)]|213-248-168-32
+4010|code|LDR.W           R0, [R5,#(out_buff - 0x16E4)]|213-248-176-0
+4014|code|MOV             R3, R11|91-70
+4016|code|LDR             R1, [SP,#0x90+var_90]|0-153
+4018|code|ADD             R0, R2|16-68
+4020|code|LDR.W           R12, =grub_snprintf|223-248-188-194
+4024|code|MOV             R2, R8|66-70
+4026|code|BLX             R12; grub_snprintf|224-71
+4028|code|LDR.W           R3, [R5,#(out_used - 0x16E4)]|213-248-168-48
+4032|code|LDR.W           R0, [R5,#(out_buff - 0x16E4)]|213-248-176-0
+4036|code|ADD             R0, R3|24-68
+4038|code|BLX             R7; grub_strlen|184-71
+4040|code|LDR.W           R3, [R5,#(out_used - 0x16E4)]|213-248-168-48
+4044|code|ADD             R0, R3|24-68
+4046|code|STR.W           R0, [R5,#(out_used - 0x16E4)]|197-248-168-0
+4050|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|226-230
+4052|code|LDRB            R3, [R0,#1]; jumptable 00000DE2 case 79|67-120
+4054|code|ADD.W           R8, R0, #1|0-241-1-8
+4058|code|SUBS            R3, #0x31 ; '1'|49-59
+4060|code|CMP             R3, #8|8-43
+4062|code|BHI.W           loc_1236|0-242-42-129
+4066|code|ADD             R2, SP, #0x90+var_38|22-170
+4068|code|ADD.W           R3, R2, R3,LSL#2|2-235-131-3
+4072|code|LDR.W           R0, [R3,#-0x48]|83-248-72-12
+4076|code|CBZ             R0, loc_1008|96-177
+4078|code|LDR             R3, [R5]|43-104
+4080|code|LDR             R2, =stack_ptr|156-74
+4082|code|CMP             R3, #0x13|19-43
+4084|code|BGT.W           loc_1236|0-243-31-129
+4088|code|ADD.W           R1, R2, R3,LSL#3|2-235-195-1
+4092|code|MOVS            R4, #0|0-36
+4094|code|ADDS            R3, #1|1-51
+4096|code|STR             R3, [R2]|19-96
+4098|code|STRB            R4, [R1,#8]|12-114
+4100|code|STR             R0, [R1,#4]|72-96
+4102|code|B               loc_1236|22-225
+4104|code|LDR.W           R0, [R3,#-0x24]|83-248-36-12
+4108|code|B               loc_1072|49-224
+4110|code|LDRB            R4, [R0,#1]; jumptable 00000DE2 case 47|68-120
+4112|code|ADD.W           R8, R0, #1|0-241-1-8
+4116|code|SUB.W           R11, R4, #0x41 ; 'A'|164-241-65-11
+4120|code|UXTB.W          R2, R11|95-250-139-242
+4124|code|CMP             R2, #0x19|25-42
+4126|code|BHI             loc_102E|6-216
+4128|code|BL              npop|255-247-202-252
+4132|code|ADD.W           R3, R5, R11,LSL#2|5-235-139-3
+4136|code|STR.W           R0, [R3,#0xC0]|195-248-192-0
+4140|code|B               loc_1236|3-225
+4142|code|SUBS            R4, #0x61 ; 'a'|97-60
+4144|code|UXTB            R3, R4|227-178
+4146|code|CMP             R3, #0x19|25-43
+4148|code|BHI.W           loc_1236|0-242-255-128
+4152|code|BL              npop|255-247-190-252
+4156|code|ADD.W           R4, R5, R4,LSL#2|5-235-132-4
+4160|code|STR.W           R0, [R4,#0x128]|196-248-40-1
+4164|code|B               loc_1236|247-224
+4166|code|LDRB            R3, [R0,#1]; jumptable 00000DE2 case 70|67-120
+4168|code|ADD.W           R8, R0, #1|0-241-1-8
+4172|code|SUB.W           R2, R3, #0x41 ; 'A'|163-241-65-2
+4176|code|UXTB            R1, R2|209-178
+4178|code|CMP             R1, #0x19|25-41
+4180|code|BHI             loc_1060|4-216
+4182|code|ADD.W           R2, R5, R2,LSL#2|5-235-130-2
+4186|code|LDR.W           R0, [R2,#0xC0]|210-248-192-0
+4190|code|B               loc_1072|8-224
+4192|code|SUBS            R3, #0x61 ; 'a'|97-59
+4194|code|UXTB            R2, R3|218-178
+4196|code|CMP             R2, #0x19|25-42
+4198|code|BHI.W           loc_1236|0-242-230-128
+4202|code|ADD.W           R3, R5, R3,LSL#2|5-235-131-3
+4206|code|LDR.W           R0, [R3,#0x128]; x|211-248-40-1
+4210|code|BL              npush|255-247-145-252
+4214|code|B               loc_1236|222-224
+4216|code|LDRB            R0, [R0,#1]; jumptable 00000DE2 case 6|64-120
+4218|code|ADDS            R4, #2|2-52
+4220|code|BL              npush|255-247-140-252
+4224|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|139-230
+4226|code|ADDS            R2, R0, #1; jumptable 00000DE2 case 90|66-28
+4228|code|MOV.W           LR, #0xA|79-240-10-14
+4232|code|MOVS            R0, #0|0-32
+4234|code|LDRB            R3, [R2]|19-120
+4236|code|MOV             R4, R2|20-70
+4238|code|ADDS            R2, #1|1-50
+4240|code|SUBS            R3, #0x30 ; '0'|48-59
+4242|code|UXTB            R1, R3|217-178
+4244|code|CMP             R1, #9|9-41
+4246|code|BHI.W           loc_11A2|0-242-132-128
+4250|code|MLA.W           R0, LR, R0, R3|14-251-0-48
+4254|code|B               loc_108A|244-231
+4256|code|BL              npop; jumptable 00000DE2 case 10|255-247-138-252
+4260|code|MOV             R8, R0|128-70
+4262|code|BL              npop|255-247-135-252
+4266|code|ADD             R0, R8|64-68
+4268|code|B               loc_11A2|121-224
+4270|code|BL              npop; jumptable 00000DE2 case 12|255-247-131-252
+4274|code|MOV             R8, R0|128-70
+4276|code|BL              npop|255-247-128-252
+4280|code|RSB.W           R0, R8, R0|200-235-0-0
+4284|code|B               loc_11A2|113-224
+4286|code|BL              npop; jumptable 00000DE2 case 9|255-247-123-252
+4290|code|MOV             R8, R0|128-70
+4292|code|BL              npop|255-247-120-252
+4296|code|MUL.W           R0, R0, R8|0-251-8-240
+4300|code|B               loc_11A2|105-224
+4302|code|BL              npop; jumptable 00000DE2 case 14|255-247-115-252
+4306|code|MOV             R8, R0|128-70
+4308|code|BL              npop|255-247-112-252
+4312|code|CMP.W           R8, #0|184-241-0-15
+4316|code|BEQ             loc_10E6|3-208
+4318|code|MOV             R1, R8|65-70
+4320|code|LDR             R3, =__aeabi_uidiv|97-75
+4322|code|BLX             R3; __aeabi_uidiv|152-71
+4324|code|B               loc_11A2|93-224
+4326|code|MOV             R0, R8|64-70
+4328|code|B               loc_11A2|91-224
+4330|code|BL              npop; jumptable 00000DE2 case 76|255-247-101-252
+4334|code|MOV             R8, R0|128-70
+4336|code|BL              npop|255-247-98-252
+4340|code|MOV             R1, R8|65-70
+4342|code|CMP.W           R8, #0|184-241-0-15
+4346|code|BEQ             loc_1100|1-208
+4348|code|LDR             R3, =__aeabi_uidivmod|91-75
+4350|code|BLX             R3; __aeabi_uidivmod|152-71
+4352|code|MOV             R0, R1|8-70
+4354|code|B               loc_11A2|78-224
+4356|code|BL              npop; jumptable 00000DE2 case 32|255-247-88-252
+4360|code|CMP             R0, #0|0-40
+4362|code|BEQ             loc_11A2|74-208
+4364|code|B               loc_1114|2-224
+4366|code|BL              npop; jumptable 00000DE2 case 46|255-247-83-252
+4370|code|CBNZ            R0, loc_1120|40-185
+4372|code|BL              npop|255-247-80-252
+4376|code|ADDS            R0, #0|0-48
+4378|code|IT NE|24-191
+4380|code|MOVNE           R0, #1|1-32
+4382|code|B               loc_11A2|64-224
+4384|code|MOVS            R0, #1|1-32
+4386|code|B               loc_11A2|62-224
+4388|code|BL              npop; jumptable 00000DE2 case 5|255-247-72-252
+4392|code|MOV             R8, R0|128-70
+4394|code|BL              npop|255-247-69-252
+4398|code|AND.W           R0, R0, R8|0-234-8-0
+4402|code|B               loc_11A2|54-224
+4404|code|BL              npop; jumptable 00000DE2 case 91|255-247-64-252
+4408|code|MOV             R8, R0|128-70
+4410|code|BL              npop|255-247-61-252
+4414|code|ORR.W           R0, R0, R8|64-234-8-0
+4418|code|B               loc_11A2|46-224
+4420|code|BL              npop; jumptable 00000DE2 case 61|255-247-56-252
+4424|code|MOV             R8, R0|128-70
+4426|code|BL              npop|255-247-53-252
+4430|code|EOR.W           R0, R0, R8|128-234-8-0
+4434|code|B               loc_11A2|38-224
+4436|code|BL              npop; jumptable 00000DE2 case 28|255-247-48-252
+4440|code|MOV             R8, R0|128-70
+4442|code|BL              npop|255-247-45-252
+4446|code|RSB.W           R3, R8, R0|200-235-0-3
+4450|code|NEGS            R0, R3|88-66
+4452|code|ADCS            R0, R3|88-65
+4454|code|B               loc_11A2|28-224
+4456|code|BL              npop; jumptable 00000DE2 case 27|255-247-38-252
+4460|code|MOV             R8, R0|128-70
+4462|code|BL              npop|255-247-35-252
+4466|code|CMP             R0, R8|64-69
+4468|code|ITE GE|172-191
+4470|code|MOVGE           R0, #0|0-32
+4472|code|MOVLT           R0, #1|1-32
+4474|code|B               loc_11A2|18-224
+4476|code|BL              npop; jumptable 00000DE2 case 29|255-247-28-252
+4480|code|MOV             R8, R0|128-70
+4482|code|BL              npop|255-247-25-252
+4486|code|CMP             R0, R8|64-69
+4488|code|ITE LE|212-191
+4490|code|MOVLE           R0, #0|0-32
+4492|code|MOVGT           R0, #1|1-32
+4494|code|B               loc_11A2|8-224
+4496|code|BL              npop; jumptable 00000DE2 case 0|255-247-18-252
+4500|code|CLZ.W           R0, R0|176-250-128-240
+4504|code|LSRS            R0, R0, #5|64-9
+4506|code|B               loc_11A2|2-224
+4508|code|BL              npop; jumptable 00000DE2 case 93|255-247-12-252
+4512|code|MVNS            R0, R0; x|192-67
+4514|code|BL              npush|255-247-249-251
+4518|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|248-229
+4520|code|LDR             R3, [SP,#0x90+var_80]; jumptable 00000DE2 case 72|4-155
+4522|code|CBNZ            R3, loc_11B2|19-185
+4524|code|LDR             R3, [SP,#0x90+len]|13-155
+4526|code|ADDS            R3, #1|1-51
+4528|code|STR             R3, [SP,#0x90+len]|13-147
+4530|code|LDR             R3, [SP,#0x90+var_7C]|5-155
+4532|code|CMP             R3, #0|0-43
+4534|code|BNE.W           def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|127-244-240-173
+4538|code|LDR             R3, [SP,#0x90+var_58]|14-155
+4540|code|ADDS            R3, #1|1-51
+4542|code|STR             R3, [SP,#0x90+var_58]|14-147
+4544|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|235-229
+4546|code|BL              npop; jumptable 00000DE2 case 83|255-247-249-251
+4550|code|CMP             R0, #0|0-40
+4552|code|BNE.W           def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|127-244-231-173
+4556|code|ADDS            R3, R4, #1|99-28
+4558|code|LDRB            R2, [R3]|26-120
+4560|code|CBZ             R2, loc_123A|154-179
+4562|code|CMP             R2, #0x25 ; '%'|37-42
+4564|code|BNE             loc_11F8|16-209
+4566|code|ADDS            R4, R3, #1|92-28
+4568|code|LDRB            R3, [R3,#1]|91-120
+4570|code|CMP             R3, #0x3F ; '?'|63-43
+4572|code|BNE             loc_11E2|1-209
+4574|code|ADDS            R0, #1|1-48
+4576|code|B               loc_11FA|11-224
+4578|code|CMP             R3, #0x3B ; ';'|59-43
+4580|code|BNE             loc_11F0|4-209
+4582|code|CMP             R0, #0|0-40
+4584|code|BEQ.W           def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|63-244-215-173
+4588|code|SUBS            R0, #1|1-56
+4590|code|B               loc_11FA|4-224
+4592|code|CMP             R3, #0x65 ; 'e'|101-43
+4594|code|BNE             loc_11FA|2-209
+4596|code|CBNZ            R0, loc_11FA|8-185
+4598|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|208-229
+4600|code|MOV             R4, R3|28-70
+4602|code|LDRB            R3, [R4]|35-120
+4604|code|CBZ             R3, loc_1200|3-177
+4606|code|ADDS            R4, #1|1-52
+4608|code|MOV             R3, R4|35-70
+4610|code|B               loc_11CE|228-231
+4612|code|ADDS            R4, #1; jumptable 00000DE2 case 68|1-52
+4614|code|MOVS            R2, #0|0-34
+4616|code|LDRB            R3, [R4]|35-120
+4618|code|CMP             R3, #0|0-43
+4620|code|BEQ.W           def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|63-244-197-173
+4624|code|CMP             R3, #0x25 ; '%'|37-43
+4626|code|BNE             loc_122A|10-209
+4628|code|LDRB            R1, [R4,#1]|97-120
+4630|code|ADDS            R3, R4, #1|99-28
+4632|code|CMP             R1, #0x3F ; '?'|63-41
+4634|code|BNE             loc_1220|1-209
+4636|code|ADDS            R2, #1|1-50
+4638|code|B               loc_122C|5-224
+4640|code|CMP             R1, #0x3B ; ';'|59-41
+4642|code|BNE             loc_122C|3-209
+4644|code|CBZ             R2, loc_123A|74-177
+4646|code|SUBS            R2, #1|1-58
+4648|code|B               loc_122C|0-224
+4650|code|MOV             R3, R4|35-70
+4652|code|LDRB            R1, [R3]|25-120
+4654|code|CBZ             R1, loc_1232|1-177
+4656|code|ADDS            R3, #1|1-51
+4658|code|MOV             R4, R3|28-70
+4660|code|B               loc_1208|232-231
+4662|code|MOV             R4, R8|68-70
+4664|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|175-229
+4666|code|MOV             R4, R3|28-70
+4668|code|B               def_DE2; jumptable 00000DE2 default case, cases 1-3,7,8,11,13,15-26,30,31,33-45,48-54,56-60,62-65,69,71,73,74,77,80,81,84-86,88,89,92|173-229
+4670|code|MOVS            R0, #1; need|1-32
+4672|code|BL              get_space|255-247-96-252
+4676|code|LDR.W           R0, [R5,#(out_buff - 0x16E4)]|213-248-176-0
+4680|code|LDR.W           R3, [R5,#(out_used - 0x16E4)]|213-248-168-48
+4684|code|MOVS            R2, #0|0-34
+4686|code|STRB            R2, [R0,R3]|194-84
+4688|code|B               loc_1254|0-224
+4690|code|LDR             R0, =unk_16C2|7-72
+4692|code|ADD             SP, SP, #0x5C ; '\'|23-176
+4694|code|POP.W           {R4-R11,LR}|189-232-240-79
+4698|code|ADD             SP, SP, #0x10|4-176
+4700|code|BX              LR|112-71
+4702|data|ALIGN 0x10|0-191
+4704|data|DCD aD; "%d"|195-22-0-0
+4708|data|DCD stack_ptr|228-22-0-0
+4712|data|DCD __aeabi_uidiv|172-24-0-0
+4716|data|DCD __aeabi_uidivmod|184-24-0-0
+4720|data|DCD unk_16C2|194-22-0-0
+4724|data|DCD grub_snprintf|140-24-0-0
+5084|data|DCB "vt100",0|118-116-49-48-48-0
+5090|data|DCB 0x1B,"[%i%p1%d;%p2%dH",0|27-91-37-105-37-112-49-37-100-59-37-112-50-37-100-72-0
+5107|data|DCB 0x1B,"[H",0x1B,"[J",0|27-91-72-27-91-74-0
+5114|data|DCB 0x1B,"[7m",0|27-91-55-109-0
+5119|data|DCB 0x1B,"[m",0|27-91-109-0
+5123|data|DCB 0x1B,"[?25h",0|27-91-63-50-53-104-0
+5130|data|DCB 0x1B,"[?25l",0|27-91-63-50-53-108-0
+5137|data|DCB "vt100-color",0|118-116-49-48-48-45-99-111-108-111-114-0
+5149|data|DCB 0x1B,"[3%p1%dm",0x1B,"[4%p2%dm",0|27-91-51-37-112-49-37-100-109-27-91-52-37-112-50-37-100-109-0
+5168|data|DCB "arc",0|97-114-99-0
+5217|data|DCB "ieee1275",0|105-101-101-101-49-50-55-53-0
+5235|data|DCB "ieee1275-nocursor",0|105-101-101-101-49-50-55-53-45-110-111-99-117-114-115-111-114-0
+5253|data|DCB "dumb",0|100-117-109-98-0
+5258|data|DCB "unknown terminfo type `%s'",0|117-110-107-110-111-119-110-32-116-101-114-109-105-110-102-111-32-116-121-112-101-32-96-37-115-39-0
+5285|data|DCB "ASCII",0|65-83-67-73-73-0
+5291|data|DCB "CP-437",0|67-80-45-52-51-55-0
+5298|data|DCB "UTF-8",0|85-84-70-45-56-0
+5304|data|DCB "visually-ordered UTF-8",0|118-105-115-117-97-108-108-121-45-111-114-100-101-114-101-100-32-85-84-70-45-56-0
+5327|data|DCB "Glyph descriptors",0|71-108-121-112-104-32-100-101-115-99-114-105-112-116-111-114-115-0
+5345|data|DCB "Unknown encoding",0|85-110-107-110-111-119-110-32-101-110-99-111-100-105-110-103-0
+5362|data|DCB "Current terminfo types:",0|67-117-114-114-101-110-116-32-116-101-114-109-105-110-102-111-32-116-121-112-101-115-58-0
+5386|data|DCB "%s: %s",9,"%s",9,"%dx%d",0xA,0|37-115-58-32-37-115-9-37-115-9-37-100-120-37-100-10-0
+5403|data|DCB "incorrect terminal dimensions specification",0|105-110-99-111-114-114-101-99-116-32-116-101-114-109-105-110-97-108-32-100-105-109-101-110-115-105-111-110-115-32-115-112-101-99-105-102-105-99-97-116-105-111-110-0
+5447|data|DCB "ofconsole",0|111-102-99-111-110-115-111-108-101-0
+5457|data|DCB "console",0|99-111-110-115-111-108-101-0
+5465|data|DCB "terminal %s isn't found or it's not handled by terminfo",0|116-101-114-109-105-110-97-108-32-37-115-32-105-115-110-39-116-32-102-111-117-110-100-32-111-114-32-105-116-39-115-32-110-111-116-32-104-97-110-100-108-101-100-32-98-121-32-116-101-114-109-105-110-102-111-0
+5521|data|DCB "terminal not found",0|116-101-114-109-105-110-97-108-32-110-111-116-32-102-111-117-110-100-0
+5540|data|DCB "invalid point (%u,%u)",0|105-110-118-97-108-105-100-32-112-111-105-110-116-32-40-37-117-44-37-117-41-0
+5562|data|DCB "terminfo",0|116-101-114-109-105-110-102-111-0
+5571|data|DCB "[[-a|-u|-v] [-g WxH] TERM [TYPE]]",0|91-91-45-97-124-45-117-124-45-118-93-32-91-45-103-32-87-120-72-93-32-84-69-82-77-32-91-84-89-80-69-93-93-0
+5605|data|DCB "Set terminfo type of TERM  to TYPE.",0xA,0|83-101-116-32-116-101-114-109-105-110-102-111-32-116-121-112-101-32-111-102-32-84-69-82-77-32-32-116-111-32-84-89-80-69-46-10-0
+5642|data|DCB "ascii",0|97-115-99-105-105-0
+5648|data|DCB "Terminal is ASCII-only [default].",0|84-101-114-109-105-110-97-108-32-105-115-32-65-83-67-73-73-45-111-110-108-121-32-91-100-101-102-97-117-108-116-93-46-0
+5682|data|DCB "utf8",0|117-116-102-56-0
+5687|data|DCB "Terminal is logical-ordered UTF-8.",0|84-101-114-109-105-110-97-108-32-105-115-32-108-111-103-105-99-97-108-45-111-114-100-101-114-101-100-32-85-84-70-45-56-46-0
+5722|data|DCB "visual-utf8",0|118-105-115-117-97-108-45-117-116-102-56-0
+5734|data|DCB "Terminal is visually-ordered UTF-8.",0|84-101-114-109-105-110-97-108-32-105-115-32-118-105-115-117-97-108-108-121-45-111-114-100-101-114-101-100-32-85-84-70-45-56-46-0
+5770|data|DCB "geometry",0|103-101-111-109-101-116-114-121-0
+5779|data|DCB "Terminal has specified geometry.",0|84-101-114-109-105-110-97-108-32-104-97-115-32-115-112-101-99-105-102-105-101-100-32-103-101-111-109-101-116-114-121-46-0
+5812|data|DCB "WIDTHxHEIGHT.",0|87-73-68-84-72-120-72-69-73-71-72-84-46-0
+5827|data|DCB "%d",0|37-100-0
+5832|data|DCD unk_16C2|194-22-0-0
+5836|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
+5852|data|% 4|255-255-255-255
+5856|data|% 4|255-255-255-255
+5860|data|% 4|255-255-255-255
+5864|data|stack_frame <?>|255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255-255
+6024|data|% 1|255
+6025|data|ALIGN 4|255-255-255
+6028|data|% 4|255-255-255-255
+6032|data|% 4|255-255-255-255
+6036|data|% 4|255-255-255-255
+6040|data|% 4|255-255-255-255

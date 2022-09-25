@@ -1,0 +1,214 @@
+address|type|disassembly|bytes
+0|code|PUSH.W          {R4-R11,LR}|45-233-240-79
+4|code|SUB.W           SP, SP, #0x354|173-245-85-125
+8|code|MOVS            R3, #0|0-35
+10|code|ADD             R4, SP, #0x378+mbr|84-172
+12|code|STR             hook_0, [SP,#0x378+hook]|13-145
+14|code|MOV.W           hook_0, #0x200|79-244-0-113
+18|code|STR             hook_data_0, [SP,#0x378+hook_data]|14-146
+20|code|MOVS            hook_data_0, #0|0-34
+22|code|STR             R1, [SP,#0x378+var_370]|2-145
+24|code|MOV             R6, disk|6-70
+26|code|STRD.W          R2, R3, [SP,#0x378+var_378]|205-233-0-35
+30|code|STR             R4, [SP,#0x378+var_36C]|3-148
+32|code|LDR             R7, =grub_disk_read|96-79
+34|code|BLX             R7; grub_disk_read|184-71
+36|code|CMP             R0, #0|0-40
+38|code|BNE             loc_E0|91-209
+40|code|LDRH.W          R2, [R4,#0x1FE]|180-248-254-33
+44|code|MOVW            R3, #0xAA55|74-246-85-35
+48|code|CMP             R2, R3|154-66
+50|code|BEQ             loc_3A|2-208
+52|code|MOVS            R0, #0x13|19-32
+54|code|LDR             R1, =aNoSignature; "no signature"|92-73
+56|code|B               loc_E8|86-224
+58|code|ADDS            R3, R4, R0|35-24
+60|code|LDRB.W          R3, [R3,#0x1C2]|147-248-194-49
+64|code|CMP             R3, #0xEE|238-43
+66|code|BEQ             loc_50|5-208
+68|code|ADDS            R0, #0x10|16-48
+70|code|CMP             R0, #0x40 ; '@'|64-40
+72|code|BNE             loc_3A|247-209
+74|code|MOVS            R0, #0x13|19-32
+76|code|LDR             R1, =aNoGptPartition; "no GPT partition map found"|87-73
+78|code|B               loc_E8|75-224
+80|code|LDR.W           R11, =grub_memcmp|223-248-140-177
+84|code|MOVS            R4, #0|0-36
+86|code|MOV.W           R8, #0|79-240-0-8
+90|code|MOV.W           R9, #0|79-240-0-9
+94|code|MOVS            R2, #1|1-34
+96|code|MOVS            R3, #0x5C ; '\'|92-35
+98|code|LSLS            R2, sector_log|162-64
+100|code|STR             R3, [SP,#0x378+var_370]|2-147
+102|code|STRD.W          R8, R9, [SP,#0x378+var_378]|205-233-0-137
+106|code|ADD             R5, SP, #0x378+gpt|29-173
+108|code|MOV             R0, disk|48-70
+110|code|STR             R5, [SP,#0x378+var_36C]|3-149
+112|code|ASRS            R3, R2, #0x1F|211-23
+114|code|BLX             R7; grub_disk_read|184-71
+116|code|MOV             R10, R0|130-70
+118|code|CMP             R0, #0|0-40
+120|code|BNE             loc_E0|50-209
+122|code|MOV             R0, R5|40-70
+124|code|LDR             R1, =grub_gpt_magic|76-73
+126|code|MOVS            R2, #8|8-34
+128|code|BLX             R11; grub_memcmp|216-71
+130|code|CMP             R0, #0|0-40
+132|code|BEQ             loc_F0|52-208
+134|code|ADDS            sector_log, #1|1-52
+136|code|CMP             sector_log, #7|7-44
+138|code|BNE             loc_5E|232-209
+140|code|MOVS            R0, #0x13|19-32
+142|code|LDR             R1, =aNoValidGptHead; "no valid GPT header"|73-73
+144|code|B               loc_E8|42-224
+146|code|LDR             R0, =grub_gpt_partition_type_empty|73-72
+148|code|MOV             R1, R8|65-70
+150|code|MOVS            R2, #0x10|16-34
+152|code|BLX             R11; grub_memcmp|216-71
+154|code|CMP             R0, #0|0-40
+156|code|BNE             loc_118|60-209
+158|code|LDR             R3, [SP,#0x378+gpt.partentry_size]|50-155
+160|code|ADD             last_offset, R3|29-68
+162|code|CMP.W           last_offset, #0x200|181-245-0-127
+166|code|BNE             loc_B8|7-209
+168|code|LDRD.W          R2, R3, [SP,#0x378+entries]|221-233-6-35
+172|code|MOVS            R5, #0|0-37
+174|code|ADDS            R2, #1|1-50
+176|code|ADC.W           R3, R3, #0|67-241-0-3
+180|code|STRD.W          R2, R3, [SP,#0x378+entries]|205-233-6-35
+184|code|ADDS            i, #1|1-55
+186|code|LDR             R3, [SP,#0x378+gpt.maxpart]|49-155
+188|code|CMP             i, R3|159-66
+190|code|BCS             loc_19A|108-210
+192|code|MOV             R2, last_offset|42-70
+194|code|ASRS            R3, last_offset, #0x1F|235-23
+196|code|ADD.W           R8, SP, #0x378+entry|13-241-208-8
+200|code|STRD.W          R2, R3, [SP,#0x378+var_378]|205-233-0-35
+204|code|STR.W           R8, [SP,#0x378+var_36C]|205-248-12-128
+208|code|MOVS            R3, #0x80|128-35
+210|code|MOV             R0, disk|48-70
+212|code|STR             R3, [SP,#0x378+var_370]|2-147
+214|code|LDRD.W          R2, R3, [SP,#0x378+entries]|221-233-6-35
+218|code|BLX             R9; grub_disk_read|200-71
+220|code|CMP             R0, #0|0-40
+222|code|BEQ             loc_92|216-208
+224|code|LDR             R3, =grub_errno|54-75
+226|code|LDR.W           R10, [R3]|211-248-0-160
+230|code|B               loc_19A|88-224
+232|code|LDR             R3, =grub_error|53-75
+234|code|BLX             R3; grub_error|152-71
+236|code|MOV             R10, R0|130-70
+238|code|B               loc_19A|84-224
+240|code|LDR             R0, =aPartmapGptC; "partmap/gpt.c"|52-72
+242|code|MOVS            R1, #0x5A ; 'Z'|90-33
+244|code|LDR             R2, =aGpt; "gpt"|52-74
+246|code|LDR             R3, =aReadAValidGptH; "Read a valid GPT header\n"|53-75
+248|code|LDR             R7, =grub_real_dprintf|53-79
+250|code|BLX             R7; grub_real_dprintf|184-71
+252|code|LDR             R0, [R5,#0x48]|168-108
+254|code|LDR             R1, [R5,#0x4C]|233-108
+256|code|MOV             R2, sector_log|34-70
+258|code|LDR             R3, =__aeabi_llsl|52-75
+260|code|MOV             R5, R10|85-70
+262|code|BLX             R3; __aeabi_llsl|152-71
+264|code|MOV             R7, R10|87-70
+266|code|LDR.W           R9, =grub_disk_read|223-248-152-144
+270|code|LDR.W           R11, =grub_memcmp|223-248-208-176
+274|code|STRD.W          R0, R1, [SP,#0x378+entries]|205-233-6-1
+278|code|B               loc_BA|208-231
+280|code|LDRD.W          R2, R3, [R8,#0x20]|216-233-8-35
+284|code|STRD.W          R2, R3, [SP,#0x378+var_358]|205-233-8-35
+288|code|MOV             R2, sector_log|34-70
+290|code|LDR             R3, =__aeabi_llsl|44-75
+292|code|LDRD.W          R0, R1, [SP,#0x378+var_358]|221-233-8-1
+296|code|STR             R3, [SP,#0x378+var_33C]|15-147
+298|code|BLX             R3; __aeabi_llsl|152-71
+300|code|MOV             R2, R0|2-70
+302|code|MOV             R3, R1|11-70
+304|code|STRD.W          R0, R1, [SP,#0x378+var_350]|205-233-10-1
+308|code|STRD.W          R2, R3, [SP,#0x378+part.start]|205-233-18-35
+312|code|LDRD.W          R0, R1, [R8,#0x28]|216-233-10-1
+316|code|LDRD.W          R2, R3, [SP,#0x378+var_358]|221-233-8-35
+320|code|ADDS            R0, #1|1-48
+322|code|LDR.W           R8, =grub_real_dprintf|223-248-140-128
+326|code|ADC.W           R1, R1, #0|65-241-0-1
+330|code|SUBS            R2, R0, R2|130-26
+332|code|SBC.W           R3, R1, R3|97-235-3-3
+336|code|MOV             R0, R2|16-70
+338|code|MOV             R2, sector_log|34-70
+340|code|MOV             R1, R3|25-70
+342|code|LDR             R3, [SP,#0x378+var_33C]|15-155
+344|code|BLX             R3|152-71
+346|code|LDRD.W          R2, R3, [SP,#0x378+entries]|221-233-6-35
+350|code|STR             i, [SP,#0x378+var_378]|0-151
+352|code|STR             i, [SP,#0x378+part]|16-151
+354|code|STRD.W          R2, R3, [SP,#0x378+part.offset]|205-233-22-35
+358|code|LDR             R3, =grub_gpt_partition_map|28-75
+360|code|STR             last_offset, [SP,#0x378+part.index]|24-149
+362|code|STR             R3, [SP,#0x378+part.partmap]|26-147
+364|code|LDR             R3, [disk,#0x1C]|243-105
+366|code|STR             R3, [SP,#0x378+part.parent]|25-147
+368|code|LDRD.W          R2, R3, [SP,#0x378+var_350]|221-233-10-35
+372|code|STRD.W          R2, R3, [SP,#0x378+var_370]|205-233-2-35
+376|code|LDR             R2, =aGpt; "gpt"|19-74
+378|code|LDR             R3, =aGptEntryDStart; "GPT entry %d: start=%lld, length=%lld\n"|24-75
+380|code|STRD.W          R0, R1, [SP,#0x378+part.len]|205-233-20-1
+384|code|STRD.W          R0, R1, [SP,#0x378+var_368]|205-233-4-1
+388|code|MOVS            R1, #0x72 ; 'r'|114-33
+390|code|LDR             R0, =aPartmapGptC; "partmap/gpt.c"|15-72
+392|code|BLX             R8; grub_real_dprintf|192-71
+394|code|MOV             R0, disk|48-70
+396|code|ADD             R1, SP, #0x378+part|16-169
+398|code|LDR             R2, [SP,#0x378+hook_data]|14-154
+400|code|LDR             R3, [SP,#0x378+hook]|13-155
+402|code|BLX             R3|152-71
+404|code|CMP             R0, #0|0-40
+406|code|BEQ             loc_9E|130-208
+408|code|B               loc_E0|162-231
+410|code|MOV             R0, R10|80-70
+412|code|ADD.W           SP, SP, #0x354|13-245-85-125
+416|code|POP.W           {R4-R11,PC}|189-232-240-143
+420|data|DCD grub_disk_read|220-2-0-0
+424|data|DCD aNoSignature; "no signature"|32-2-0-0
+428|data|DCD aNoGptPartition; "no GPT partition map found"|102-2-0-0
+432|data|DCD grub_gpt_magic|176-2-0-0
+436|data|DCD aNoValidGptHead; "no valid GPT header"|129-2-0-0
+440|data|DCD grub_gpt_partition_type_empty|16-2-0-0
+444|data|DCD grub_errno|224-2-0-0
+448|data|DCD grub_error|232-2-0-0
+452|data|DCD aPartmapGptC; "partmap/gpt.c"|45-2-0-0
+456|data|DCD aGpt; "gpt"|59-2-0-0
+460|data|DCD aReadAValidGptH; "Read a valid GPT header\n"|149-2-0-0
+464|data|DCD grub_real_dprintf|228-2-0-0
+468|data|DCD __aeabi_llsl|236-2-0-0
+472|data|DCD grub_gpt_partition_map|184-2-0-0
+476|data|DCD aGptEntryDStart; "GPT entry %d: start=%lld, length=%lld\n"|63-2-0-0
+480|data|DCD grub_memcmp|248-2-0-0
+484|code|PUSH            {R3,LR}|8-181
+486|code|LDR             mod, =grub_partition_map_list|2-72
+488|code|LDR             R1, =grub_gpt_partition_map|2-73
+490|code|LDR             R3, =grub_list_push|3-75
+492|code|BLX             R3; grub_list_push|152-71
+494|code|POP             {R3,PC}|8-189
+496|data|DCD grub_partition_map_list|216-2-0-0
+500|data|DCD grub_gpt_partition_map|184-2-0-0
+504|data|DCD grub_list_push|244-2-0-0
+508|code|PUSH            {R3,LR}|8-181
+510|code|LDR             R0, =grub_gpt_partition_map|2-72
+512|code|LDR             R3, =grub_list_remove|2-75
+514|code|BLX             R3; grub_list_remove|152-71
+516|code|POP             {R3,PC}|8-189
+518|data|ALIGN 4|0-191
+520|data|DCD grub_gpt_partition_map|184-2-0-0
+524|data|DCD grub_list_remove|240-2-0-0
+528|data|grub_gpt_part_type_t <0>|0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+544|data|DCB "no signature",0|110-111-32-115-105-103-110-97-116-117-114-101-0
+557|data|DCB "partmap/gpt.c",0|112-97-114-116-109-97-112-47-103-112-116-46-99-0
+571|data|DCB "gpt",0|103-112-116-0
+575|data|DCB "GPT entry %d: start=%lld, length=%lld",0xA,0|71-80-84-32-101-110-116-114-121-32-37-100-58-32-115-116-97-114-116-61-37-108-108-100-44-32-108-101-110-103-116-104-61-37-108-108-100-10-0
+614|data|DCB "no GPT partition map found",0|110-111-32-71-80-84-32-112-97-114-116-105-116-105-111-110-32-109-97-112-32-102-111-117-110-100-0
+641|data|DCB "no valid GPT header",0|110-111-32-118-97-108-105-100-32-71-80-84-32-104-101-97-100-101-114-0
+661|data|DCB "Read a valid GPT header",0xA,0|82-101-97-100-32-97-32-118-97-108-105-100-32-71-80-84-32-104-101-97-100-101-114-10-0
+688|data|DCB 0x45, 0x46, 0x49, 0x20, 0x50, 0x41, 0x52, 0x54|69-70-73-32-80-65-82-84
+696|data|grub_partition_map <0, 0, aGpt, grub_gpt_partition_map_iterate+1>; "gpt"|0-0-0-0-0-0-0-0-59-2-0-0-1-0-0-0
+712|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0

@@ -1,0 +1,210 @@
+address|type|disassembly|bytes
+0|code|CMP             argc, #0|0-41
+2|code|PUSH.W          {ctxt,argc,R4-R8,LR}|45-233-243-65
+6|code|MOV             R5, args|21-70
+8|code|LDR             R4, [ctxt,#4]|68-104
+10|code|BGT             loc_12|2-220
+12|code|MOVS            ctxt, #0x12|18-32
+14|code|LDR             argc, =aDeviceNameRequ; "device name required"|68-73
+16|code|B               loc_114|128-224
+18|code|LDR             R7, [args]|23-104
+20|code|LDR             R3, =grub_strlen|67-75
+22|code|MOV             ctxt, R7|56-70
+24|code|BLX             R3; grub_strlen|152-71
+26|code|MOV             R6, R0|6-70
+28|code|LDR             R0, [args]|40-104
+30|code|LDRB            R3, [R0]|3-120
+32|code|CMP             R3, #0x28 ; '('|40-43
+34|code|LDR             R3, =grub_device_open|65-75
+36|code|BNE             loc_44|14-209
+38|code|SUBS            R6, #1|1-62
+40|code|LDRB.W          R8, [R7,R6]|23-248-6-128
+44|code|CMP.W           R8, #0x29 ; ')'|184-241-41-15
+48|code|BNE             loc_44|8-209
+50|code|MOVS            R2, #0|0-34
+52|code|STRB            R2, [R7,R6]|186-85
+54|code|LDR             R0, [args]|40-104
+56|code|ADDS            R0, #1|1-48
+58|code|BLX             R3; grub_device_open|152-71
+60|code|STRB.W          R8, [R7,R6]|7-248-6-128
+64|code|MOV             args, R0|5-70
+66|code|B               loc_48|1-224
+68|code|BLX             R3; grub_device_open|152-71
+70|code|MOV             args, R0|5-70
+72|code|CBZ             R5, loc_8E|13-179
+74|code|LDR             R3, [state,#8]|163-104
+76|code|CBZ             R3, loc_64|83-177
+78|code|LDR             R3, [R5,#4]|107-104
+80|code|CBZ             R3, loc_58|19-177
+82|code|LDR             R3, [R3,#8]|155-104
+84|code|LDR             R1, [R3,#8]|153-104
+86|code|B               loc_5A|0-224
+88|code|LDR             R1, =aNone; "none"|52-73
+90|code|LDR             R3, [R5]|43-104
+92|code|CBZ             R3, loc_78|99-177
+94|code|LDR             R3, [R3,#4]|91-104
+96|code|LDR             val, [R3]|25-104
+98|code|B               loc_78|9-224
+100|code|LDR             R3, [state,#0x10]|35-105
+102|code|CBZ             R3, loc_84|107-177
+104|code|LDR             R3, [R5]|43-104
+106|code|CBZ             R3, loc_76|35-177
+108|code|LDR             R3, [R3,#0x1C]|219-105
+110|code|CBZ             R3, loc_76|19-177
+112|code|LDR             R3, [R3,#0x28]|155-106
+114|code|LDR             R1, [R3,#8]|153-104
+116|code|B               loc_78|0-224
+118|code|LDR             R1, =aNone; "none"|45-73
+120|code|LDR             R3, [state]|35-104
+122|code|CBZ             R3, loc_80|11-177
+124|code|LDR             dev, [state,#4]|96-104
+126|code|B               loc_A0|15-224
+128|code|LDR             dev, =aS; "%s"|43-72
+130|code|B               loc_A8|17-224
+132|code|MOV             dev, R5|40-70
+134|code|LDR             R3, =grub_fs_probe|43-75
+136|code|BLX             R3; grub_fs_probe|152-71
+138|code|MOV             R6, fs|6-70
+140|code|CBNZ            fs, loc_94|16-185
+142|code|LDR             R3, =grub_errno|42-75
+144|code|LDR             R0, [R3]|24-104
+146|code|B               loc_118|65-224
+148|code|LDR             R3, [state,#0x18]|163-105
+150|code|CBZ             R3, loc_AE|83-177
+152|code|LDR             R3, [state]|35-104
+154|code|CBZ             R3, loc_A4|27-177
+156|code|LDR             fs, [state,#4]|96-104
+158|code|LDR             R1, [fs,#8]|177-104
+160|code|LDR             R3, =grub_env_set|38-75
+162|code|B               loc_AA|2-224
+164|code|LDR             fs, =aS; "%s"|34-72
+166|code|LDR             R1, [fs,#8]|177-104
+168|code|LDR             R3, =grub_printf|37-75
+170|code|BLX             R3; grub_env_set|152-71
+172|code|B               loc_EE|31-224
+174|code|LDR             R3, [state,#0x20]|35-106
+176|code|CBZ             R3, loc_CA|91-177
+178|code|LDR             R3, [fs,#0x20]|3-106
+180|code|CBZ             R3, loc_C4|51-177
+182|code|MOV             fs, dev|40-70
+184|code|ADD             R1, SP, #0x20+label|1-169
+186|code|BLX             R3|152-71
+188|code|CMP             err, #0|0-40
+190|code|BNE             loc_118|43-209
+192|code|LDR             R1, [SP,#0x20+label]|1-153
+194|code|CBNZ            R1, loc_DE|97-185
+196|code|MOVS            R0, #0x18|24-32
+198|code|LDR             R1, =aSDoesNotSuppor; "%s does not support UUIDs"|31-73
+200|code|B               loc_FC|24-224
+202|code|LDR             R3, [state,#0x28]|163-106
+204|code|CBZ             R3, loc_10A|235-177
+206|code|LDR             R3, [fs,#0x1C]|195-105
+208|code|CBZ             R3, loc_F8|147-177
+210|code|MOV             fs, dev|40-70
+212|code|ADD             R1, SP, #0x20+label|1-169
+214|code|BLX             R3|152-71
+216|code|CBNZ            err, loc_118|240-185
+218|code|LDR             R1, [SP,#0x20+label]|1-153
+220|code|CBZ             R1, loc_F8|97-177
+222|code|LDR             R3, [state]|35-104
+224|code|CBNZ            R3, loc_104|131-185
+226|code|LDR             err, =aS; "%s"|19-72
+228|code|LDR             R3, =grub_printf|22-75
+230|code|BLX             R3; grub_env_set|152-71
+232|code|LDR             R0, [SP,#0x20+label]|1-152
+234|code|LDR             R3, =grub_free|23-75
+236|code|BLX             R3; grub_free|152-71
+238|code|MOV             R0, dev|40-70
+240|code|LDR             R3, =grub_device_close|22-75
+242|code|BLX             R3; grub_device_close|152-71
+244|code|MOVS            R0, #0|0-32
+246|code|B               loc_118|15-224
+248|code|LDR             R1, =aFilesystemSDoe; "filesystem `%s' does not support labels"|21-73
+250|code|MOVS            R0, #0x18|24-32
+252|code|LDR             R2, [fs,#8]|178-104
+254|code|LDR             R3, =grub_error|21-75
+256|code|BLX             R3; grub_error|152-71
+258|code|B               loc_118|9-224
+260|code|LDR             err, [state,#4]|96-104
+262|code|LDR             R3, =grub_env_set|13-75
+264|code|B               loc_E6|237-231
+266|code|MOV             fs, dev|40-70
+268|code|LDR             R3, =grub_device_close|15-75
+270|code|BLX             R3; grub_device_close|152-71
+272|code|LDR             R1, =aUnrecognisedTa; "unrecognised target"|17-73
+274|code|MOVS            R0, #0x12|18-32
+276|code|LDR             R3, =grub_error|15-75
+278|code|BLX             R3; grub_error|152-71
+280|code|ADD             SP, SP, #8|2-176
+282|code|POP.W           {state-R8,PC}|189-232-240-129
+286|data|ALIGN 0x10|0-191
+288|data|DCD aDeviceNameRequ; "device name required"|89-2-0-0
+292|data|DCD grub_strlen|204-3-0-0
+296|data|DCD grub_device_open|208-3-0-0
+300|data|DCD aNone; "none"|84-2-0-0
+304|data|DCD aS; "%s"|110-2-0-0
+308|data|DCD grub_fs_probe|228-3-0-0
+312|data|DCD grub_errno|216-3-0-0
+316|data|DCD grub_env_set|244-3-0-0
+320|data|DCD grub_printf|220-3-0-0
+324|data|DCD aSDoesNotSuppor; "%s does not support UUIDs"|113-2-0-0
+328|data|DCD grub_free|236-3-0-0
+332|data|DCD grub_device_close|224-3-0-0
+336|data|DCD aFilesystemSDoe; "filesystem `%s' does not support labels"|139-2-0-0
+340|data|DCD grub_error|232-3-0-0
+344|data|DCD aUnrecognisedTa; "unrecognised target"|179-2-0-0
+348|code|LDR             R3, =aRetrieveDevice; "Retrieve device info."|7-75
+350|code|MOVS            R2, #0|0-34
+352|code|PUSH            {mod,R1,R4,LR}|19-181
+354|code|STR             R3, [SP,#0x10+var_10]|0-147
+356|code|LDR             R3, =options|6-75
+358|code|LDR             R1, =(grub_cmd_probe+1)|7-73
+360|code|LDR             R4, =grub_register_extcmd|7-76
+362|code|STR             R3, [SP,#0x10+var_C]|1-147
+364|code|LDR             mod, =aProbe; "probe"|7-72
+366|code|LDR             R3, =aDevice; "DEVICE"|8-75
+368|code|BLX             R4; grub_register_extcmd|160-71
+370|code|LDR             R3, =cmd|8-75
+372|code|STR             R0, [R3]|24-96
+374|code|ADD             SP, SP, #8|2-176
+376|code|POP             {R4,PC}|16-189
+378|data|ALIGN 4|0-191
+380|data|DCD aRetrieveDevice; "Retrieve device info."|212-2-0-0
+384|data|DCD options|172-1-0-0
+388|data|DCD grub_cmd_probe+1|1-0-0-0
+392|data|DCD grub_register_extcmd|240-3-0-0
+396|data|DCD aProbe; "probe"|199-2-0-0
+400|data|DCD aDevice; "DEVICE"|205-2-0-0
+404|data|DCD cmd|200-3-0-0
+408|code|PUSH            {R3,LR}|8-181
+410|code|LDR             R3, =cmd|2-75
+412|code|LDR             R0, [R3]|24-104
+414|code|LDR             R3, =grub_unregister_extcmd|2-75
+416|code|BLX             R3; grub_unregister_extcmd|152-71
+418|code|POP             {R3,PC}|8-189
+420|data|DCD cmd|200-3-0-0
+424|data|DCD grub_unregister_extcmd|212-3-0-0
+428|data|grub_arg_option <aSet, 0x73, 0, aSetAVariableTo, aVarname, \; "set" ...|234-2-0-0-115-0-0-0-0-0-0-0-238-2-0-0-14-3-0-0-1-0-0-0-22-3-0-0-100-0-0-0-0-0-0-0-29-3-0-0-0-0-0-0-0-0-0-0-47-3-0-0-112-0-0-0-0-0-0-0-55-3-0-0-0-0-0-0-0-0-0-0-85-3-0-0-102-0-0-0-0-0-0-0-88-3-0-0-0-0-0-0-0-0-0-0-115-3-0-0-117-0-0-0-0-0-0-0-123-3-0-0-0-0-0-0-0-0-0-0-150-3-0-0-108-0-0-0-0-0-0-0-156-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+596|data|DCB "none",0|110-111-110-101-0
+601|data|DCB "device name required",0|100-101-118-105-99-101-32-110-97-109-101-32-114-101-113-117-105-114-101-100-0
+622|data|DCB "%s",0|37-115-0
+625|data|DCB "%s does not support UUIDs",0|37-115-32-100-111-101-115-32-110-111-116-32-115-117-112-112-111-114-116-32-85-85-73-68-115-0
+651|data|DCB "filesystem `%s' does not support labels",0|102-105-108-101-115-121-115-116-101-109-32-96-37-115-39-32-100-111-101-115-32-110-111-116-32-115-117-112-112-111-114-116-32-108-97-98-101-108-115-0
+691|data|DCB "unrecognised target",0|117-110-114-101-99-111-103-110-105-115-101-100-32-116-97-114-103-101-116-0
+711|data|DCB "probe",0|112-114-111-98-101-0
+717|data|DCB "DEVICE",0|68-69-86-73-67-69-0
+724|data|DCB "Retrieve device info.",0|82-101-116-114-105-101-118-101-32-100-101-118-105-99-101-32-105-110-102-111-46-0
+746|data|DCB "set",0|115-101-116-0
+750|data|DCB "Set a variable to return value.",0|83-101-116-32-97-32-118-97-114-105-97-98-108-101-32-116-111-32-114-101-116-117-114-110-32-118-97-108-117-101-46-0
+782|data|DCB "VARNAME",0|86-65-82-78-65-77-69-0
+790|data|DCB "driver",0|100-114-105-118-101-114-0
+797|data|DCB "Determine driver.",0|68-101-116-101-114-109-105-110-101-32-100-114-105-118-101-114-46-0
+815|data|DCB "partmap",0|112-97-114-116-109-97-112-0
+823|data|DCB "Determine partition map type.",0|68-101-116-101-114-109-105-110-101-32-112-97-114-116-105-116-105-111-110-32-109-97-112-32-116-121-112-101-46-0
+853|data|DCB "fs",0|102-115-0
+856|data|DCB "Determine filesystem type.",0|68-101-116-101-114-109-105-110-101-32-102-105-108-101-115-121-115-116-101-109-32-116-121-112-101-46-0
+883|data|DCB "fs-uuid",0|102-115-45-117-117-105-100-0
+891|data|DCB "Determine filesystem UUID.",0|68-101-116-101-114-109-105-110-101-32-102-105-108-101-115-121-115-116-101-109-32-85-85-73-68-46-0
+918|data|DCB "label",0|108-97-98-101-108-0
+924|data|DCB "Determine filesystem label.",0|68-101-116-101-114-109-105-110-101-32-102-105-108-101-115-121-115-116-101-109-32-108-97-98-101-108-46-0
+953|data|DCB 0x4C, 0x49, 0x43, 0x45, 0x4E, 0x53, 0x45, 0x3D, 0x47|76-73-67-69-78-83-69-61-71-80-76-118-51-43-0
